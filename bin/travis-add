@@ -1,0 +1,5 @@
+For examplke, to add an encrypted username
+
+travis encrypt -r profLewis/geog0111-core DOCKER_USERNAME="proflewis" --add       
+
+

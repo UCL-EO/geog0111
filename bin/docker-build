@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker login
+# clean out previous images
+docker rm $(docker ps --filter=status=exited --filter=status=created -q)
+docker build . --file Docker/Dockerfile --tag ucleo/geog0111
+docker push ucleo/geog0111
+
+
