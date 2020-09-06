@@ -1,0 +1,25 @@
+#sudo: required
+services:
+- docker
+env:
+  global:
+  - IMAGE_NAME=ucleo/geog0111
+before_script:
+- version="$(awk '$2 == "GEOG0111_VERSION" { print $3; exit }' Docker/Dockerfile)"
+script:
+- docker build --file Docker/Dockerfile --tag "$IMAGE_NAME" .
+#- docker run bash -c 'pwd && ls && cd ~/geog0111 && echo starting docs generation' "$IMAGE_NAME"
+#- docker run bash -c 'cd ~/geog0111 &&  echo "uploading docs" && mkdocs gh-deploy --force' "$IMAGE_NAME"
+#- docker run bash -c 'cd ~/geog0111 &&  echo "done" "$IMAGE_NAME"
+after_script:
+- docker images
+before_deploy:
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+- docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
+- docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${version}"
+deploy:
+  provider: script
+  script: 
+  - docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${version}"
+  on:
+    branch: master

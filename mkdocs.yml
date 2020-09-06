@@ -1,0 +1,64 @@
+extra:
+  social:
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/prof_plewis
+  - icon: fontawesome/brands/docker
+    link: https://hub.docker.com/r/proflewis/geog0111
+  - icon: fontawesome/brands/github
+    link: https://github.com/UCL-EO/geog0111
+google_analytics:
+- UA-1347772-1
+- auto
+markdown_extensions:
+- meta
+nav:
+- Course Basics:
+  - Notebook Use: 001_Notebook_use.md
+  - Local Install: 003_Local_Install.md
+  - Help: 005_Help.md
+- Core Concepts:
+  - Python Introduction: 010_Python_Introduction.md
+  - Python Data Types: 011_Python_data_types.md
+  - Python Strings: 012_Python_strings.md
+  - Python String Methods: 013_Python_string_methods.md
+  - Python Groups: 014_Python_groups.md
+  - Python Control: 015_Python_control.md
+  - Python For: 016_Python_for.md
+  - Functions: 017_Functions.md
+  - Running Python: 018_Running_Python.md
+  - Python Files: 019_Python_files.md
+- Datasets:
+  - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata.md
+  - Google Earth Engine: 021_GoogleEarthEngine.md
+- Image Processing:
+  - Numpy Matplotlib: 031_Numpy_matplotlib.md
+  - Plotting: 031_Plotting.md
+- Geospatial Data:
+  - GDAL: 040_GDAL.md
+  - MODIS Download: 041_MODIS_download.md
+  - GDAL Masking: 042_GDAL_masking.md
+  - GDAL Stacking And Interpolating: 043_GDAL_stacking_and_interpolating.md
+  - GDAL Reconciling Projections: 044_GDAL_Reconciling_projections.md
+- Modelling:
+  - Linear Models: 050_Linear_models.md
+  - Modelling And Optimisation: 051_Modelling_and_optimisation.md
+plugins:
+- exclude:
+    glob:
+    - '*.hdf'
+    - '*.nc'
+    - '*.zip'
+    - '*.npz'
+- search
+- mkdocs-jupyter:
+    include_source: true
+repo_url: https://github.com/UCL-EO/geog0111
+site_author: Prof P. Lewis
+site_name: GEOG0111
+site_url: http://www2.geog.ucl.ac.uk/~plewis/geog0111
+theme:
+  favicon: images/ucl_logo.png
+  features:
+  - search.highlight
+  - header.hide
+  name: material
