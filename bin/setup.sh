@@ -112,6 +112,7 @@ fi
 
 # so they can carry through
 echo "--> create put 'conda activate $conda_env' in ~/.dockenvrc'"
+echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.dockenvrc
 echo "$conda activate $conda_env" >> ~/.dockenvrc
 
 
@@ -163,7 +164,6 @@ jupyter nbextension enable hinterland/hinterland
 jupyter nbextension enable printview/main
 jupyter nbextension enable execution_dependencies/execution_dependencies
 jupyter nbextension enable python-markdown/main
-
 #echo "--> clearing pip cache"
 #rm -rf "${HOME}"/.cache/pip 
 
