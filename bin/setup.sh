@@ -173,25 +173,20 @@ mkdir -p $HOME/.jupyter/nbconfig
 echo "--> fixing $HOME/.jupyter/nbconfig/common.json"
 echo '{"nbext_hide_incompat": true}' > $HOME/.jupyter/nbconfig/common.json
 
+# install the geog0111 library
+echo "--> install geog0111 library using python setup.py install"
+python setup.py install
 EOF
 chmod +x bin/postBuild
-
-# tidy
-echo "--> tidy up"
-rm -rf ${tmp} ${HOME}/tmp
-# refresh the shell
-
-echo "--> refresh shell"
-source ~/.bash_profile 
-
-echo "--> run bin/postBuild"
-bin/postBuild
 
 echo "--> run bin/setdirs.sh"
 bin/setdirs.sh
 
-# install the geog0111 library
-echo "--> install geog0111 library using python setup.py install"
-python setup.py install
+# tidy
+echo "--> tidy up"
+rm -rf ${tmp} ${HOME}/tmp
+
+#echo "--> run bin/postBuild"
+#bin/postBuild
 
 echo "--> finished"

@@ -7,13 +7,14 @@ LABEL maintainer="P Lewis"
 
 ENV GEOG0111_VERSION 1.0.1
 USER $NB_USER
-RUN pwd && ls -lt * */* | head -5 && pwd && cd "${HOME}" && \
+RUN pwd && ls -l | head -5 && pwd && cd "${HOME}" && \
     git clone https://github.com/UCL-EO/geog0111.git && \
     cd geog0111 
 
-RUN cd "${HOME}/geog0111" && ls && && bin/setup.sh
+RUN cd "${HOME}/geog0111" && bin/setup.sh
 RUN conda init bash
 RUN conda activate geog0111
+RUN cd "${HOME}/geog0111" && bin/postBuild
 #RUN cd "${HOME}/geog0111" && bin/notebook-run-2.sh
 
 #USER root
