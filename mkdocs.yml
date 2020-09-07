@@ -11,40 +11,13 @@ google_analytics:
 - auto
 markdown_extensions:
 - meta
-nav:
-- Course Basics:
-  - Notebook Use: 001_Notebook_use.md
-  - Local Install: 003_Local_Install.md
-  - Help: 005_Help.md
-- Core Concepts:
-  - Python Introduction: 010_Python_Introduction.md
-  - Python Data Types: 011_Python_data_types.md
-  - Python Strings: 012_Python_strings.md
-  - Python String Methods: 013_Python_string_methods.md
-  - Python Groups: 014_Python_groups.md
-  - Python Control: 015_Python_control.md
-  - Python For: 016_Python_for.md
-  - Functions: 017_Functions.md
-  - Running Python: 018_Running_Python.md
-  - Python Files: 019_Python_files.md
-- Datasets:
-  - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata.md
-  - Google Earth Engine: 021_GoogleEarthEngine.md
-- Image Processing:
-  - Numpy Matplotlib: 031_Numpy_matplotlib.md
-  - Plotting: 031_Plotting.md
-- Geospatial Data:
-  - GDAL: 040_GDAL.md
-  - MODIS Download: 041_MODIS_download.md
-  - GDAL Masking: 042_GDAL_masking.md
-  - GDAL Stacking And Interpolating: 043_GDAL_stacking_and_interpolating.md
-  - GDAL Reconciling Projections: 044_GDAL_Reconciling_projections.md
-- Modelling:
-  - Linear Models: 050_Linear_models.md
-  - Modelling And Optimisation: 051_Modelling_and_optimisation.md
+nav: []
 plugins:
+- git-revision-date-localized
 - exclude:
     glob:
+    - __pycache__
+    - '*.bin'
     - '*.hdf'
     - '*.nc'
     - '*.zip'

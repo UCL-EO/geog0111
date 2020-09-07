@@ -16,10 +16,10 @@ RUN . /opt/conda/etc/profile.d/conda.sh &&\
 
 USER $NB_USER
 
-RUN cd "${HOME}" &&\
+RUN pwd && cd "${HOME}" &&\
     git clone https://github.com/UCL-EO/${CONDA_DEFAULT_ENV}.git
 
-RUN cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
+RUN pwd && cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
     bin/setup.sh
 
 RUN . /opt/conda/etc/profile.d/conda.sh && conda init bash
