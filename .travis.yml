@@ -1,11 +1,12 @@
-#sudo: required
 services:
 - docker
-env:
-  global:
-  - IMAGE_NAME=ucleo/geog0111
+#env:
+#  global:
+#  - IMAGE_NAME=ucleo/geog0111
 before_script:
-- version="$(awk '$2 == "GEOG0111_VERSION" { print $3; exit }' Docker/Dockerfile)"
+- repo="$(awk -F= '$1 == "env CONDA_DEFAULT_ENV" { print $2; exit }' Docker/Dockerfile)"
+- version="$(awk -F= '$1 == "env BASE_VERSION" { print $2; exit }' Docker/Dockerfile)"
+- IMAGE_NAME=ucleo/$repo
 script:
 - docker build --file Docker/Dockerfile --tag "$IMAGE_NAME" .
 #- docker run bash -c 'pwd && ls && cd ~/geog0111 && echo starting docs generation' "$IMAGE_NAME"

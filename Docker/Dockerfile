@@ -4,21 +4,28 @@
 FROM jgomezdans/uclgeog
 
 LABEL maintainer="P Lewis"
-USER root
-# dont waste space
-RUN . /opt/conda/etc/profile.d/conda.sh && conda activate base && \
-     conda remove -y --name uclgeog --all
-
-ENV GEOG0111_VERSION 1.0.1
-USER $NB_USER
-RUN pwd && ls -l | head -5 && pwd && cd "${HOME}" && \
-    git clone https://github.com/UCL-EO/geog0111.git && \
-    cd geog0111 
-
 ENV CONDA_DEFAULT_ENV=geog0111
+ENV BASE_VERSION=1.0.1
 
-RUN cd "${HOME}/geog0111" && bin/setup.sh 
-RUN . /opt/conda/etc/profile.d/conda.sh && \
-    cd geog0111 && conda activate geog0111 && bin/postBuild
+USER root
+# dont waste space: we dont want uclgeog but can reuse it
+RUN mv /opt/conda/envs/uclgeog /opt/conda/envs/${CONDA_DEFAULT_ENV} &&\
+    chown $NB_USER -R /opt/conda/envs/${CONDA_DEFAULT_ENV}
+
+USER $NB_USER
+
+RUN . /opt/conda/etc/profile.d/conda.sh && conda activate ${CONDA_DEFAULT_ENV}
+
+RUN ls | head -5 &&\
+    pwd &&\
+    cd "${HOME}" &&\
+    git clone https://github.com/UCL-EO/${CONDA_DEFAULT_ENV}.git
+
+RUN cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
+    bin/setup.sh \
+    bin/postBuild
+
+# shouldnt need this
 RUN pip install mkdocs
+
 WORKDIR "${HOME}"/geog0111/notebooks

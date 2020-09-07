@@ -5,15 +5,16 @@ cmddir=$(dirname $0)
 
 export OS=$(uname|cut -d '-' -f 1)
 export conda=conda
+THIS=`basename $0`
+echo "----> running $THIS from $here"
 
 if [[ "$OS" == "Windows_NT" || "$OS" == "MSYS_NT" ]]
 then
   export conda=conda.bat
-  echo "Using windows"
+  echo "--> Using windows"
 fi
 force=FALSE
 
-THIS=`basename $0`
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
@@ -93,20 +94,18 @@ if [ ! -z "$existsenv" ] ; then
     echo "--> forcing create env $conda_env from environment.yml"
     $conda env create  -n "$conda_env" --force  -f environment.yml
   else
-    echo "--> Use --force flag to ensure re-creation"
+    echo "--> update env $conda_env from environment.yml"
+    $conda env update  -n "$conda_env" -f environment.yml
   fi
 fi
 
 if [ -z "$existsenv" ] ; then
-#  echo "--> try to remove env"
-#  $conda remove -n "$conda_env" -y --all
   echo "--> create env $conda_env from environment.yml"
   $conda env create  -n "$conda_env" --force  -f environment.yml
 fi
 
 #echo "--> activate $conda_env"
 #$conda activate "$conda_env"
-
 #echo "--> update $conda_env with conda git anaconda"
 #$conda update -y -n "$conda_env"  -c defaults conda git anaconda
 
@@ -120,6 +119,7 @@ if [ -z "$SHELL" ]
 then
   SHELL=$(ps -p $$ | tail -1 | awk '{print $NF}')
 fi
+
 THISSHELLY=$(echo $SHELL| awk -F/ '{print $NF}')
 echo "--> Shell : $THISSHELLY"
 
@@ -142,6 +142,7 @@ cd "${here}"
 cat << EOF > bin/postBuild
 #!/bin/bash
 
+echo "----> bin/postBuild"
 echo "--> enabling jupyter nbextensions"
 jupyter nbextension enable contrib_nbextensions_help_item/main 
 jupyter nbextension enable autosavetime/main 
@@ -164,12 +165,8 @@ jupyter nbextension enable hinterland/hinterland
 jupyter nbextension enable printview/main
 jupyter nbextension enable execution_dependencies/execution_dependencies
 jupyter nbextension enable python-markdown/main
-#echo "--> clearing pip cache"
-#rm -rf "${HOME}"/.cache/pip 
-
 echo "--> ensuring $HOME/.jupyter/nbconfig exists"
 mkdir -p $HOME/.jupyter/nbconfig 
-
 echo "--> fixing $HOME/.jupyter/nbconfig/common.json"
 echo '{"nbext_hide_incompat": true}' > $HOME/.jupyter/nbconfig/common.json
 
@@ -186,7 +183,4 @@ bin/setdirs.sh
 echo "--> tidy up"
 rm -rf ${tmp} ${HOME}/tmp
 
-#echo "--> run bin/postBuild"
-#bin/postBuild
-
-echo "--> finished"
+echo "----> finished running $THIS from $here"

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "----> bin/postBuild"
 echo "--> enabling jupyter nbextensions"
 jupyter nbextension enable contrib_nbextensions_help_item/main 
 jupyter nbextension enable autosavetime/main 
@@ -22,13 +23,11 @@ jupyter nbextension enable hinterland/hinterland
 jupyter nbextension enable printview/main
 jupyter nbextension enable execution_dependencies/execution_dependencies
 jupyter nbextension enable python-markdown/main
-
-#echo "--> clearing pip cache"
-#rm -rf "/Users/plewis"/.cache/pip 
-
 echo "--> ensuring /Users/plewis/.jupyter/nbconfig exists"
 mkdir -p /Users/plewis/.jupyter/nbconfig 
-
 echo "--> fixing /Users/plewis/.jupyter/nbconfig/common.json"
 echo '{"nbext_hide_incompat": true}' > /Users/plewis/.jupyter/nbconfig/common.json
 
+# install the geog0111 library
+echo "--> install geog0111 library using python setup.py install"
+python setup.py install
