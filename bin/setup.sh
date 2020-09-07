@@ -104,11 +104,6 @@ if [ -z "$existsenv" ] ; then
   $conda env create  -n "$conda_env" --force  -f environment.yml
 fi
 
-#echo "--> activate $conda_env"
-#$conda activate "$conda_env"
-#echo "--> update $conda_env with conda git anaconda"
-#$conda update -y -n "$conda_env"  -c defaults conda git anaconda
-
 # so they can carry through
 echo "--> create put 'conda activate $conda_env' in ~/.dockenvrc'"
 echo 'if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then' >>  ~/.dockenvrc
@@ -117,87 +112,8 @@ echo 'fi' >>  ~/.dockenvrc
 echo "$conda activate $conda_env" >> ~/.dockenvrc
 
 
-#if [ -z "$SHELL" ]
-#then
-#  SHELL=$(ps -p $$ | tail -1 | awk '{print $NF}')
-#fi
-
-#THISSHELLY=$(echo $SHELL| awk -F/ '{print $NF}')
-#echo "--> Shell : $THISSHELLY"
-
-# belt and braces!!
-#for i in  "$THISSHELLY" "bash" "fish" "zsh" "sh"
-#do
-#  for ext in "_profile" "rc"
-#  do
-#    RC=~/.${i}${ext}
-#    touch $RC
-#    grep -v dockenvrc <  $RC > $RC.bak
-#    echo "--> ensuring run of ~/.dockenvrc in $RC"
-#    echo 'source ~/.dockenvrc' >> $RC.bak
-#    mv $RC.bak $RC
-#  done
-#done
-
 echo "----> cd back to ${here}" 
 cd "${here}"
-
-#echo "--> install jupyter_contrib_nbextensions using pip"
-#pip3 install --user jupyter_contrib_nbextensions
-
-cat << EOF > bin/postBuild
-#!/bin/bash
-
-echo "----> bin/postBuild"
-echo "--> enabling jupyter nbextensions"
-jupyter nbextension enable contrib_nbextensions_help_item/main 
-jupyter nbextension enable autosavetime/main 
-jupyter nbextension enable codefolding/main 
-jupyter nbextension enable code_font_size/code_font_size 
-jupyter nbextension enable code_prettify/code_prettify 
-jupyter nbextension enable collapsible_headings/main 
-jupyter nbextension enable comment-uncomment/main 
-jupyter nbextension enable equation-numbering/main 
-#jupyter nbextension enable execute_time/ExecuteTime 
-jupyter nbextension enable gist_it/main 
-jupyter nbextension enable hide_input/main 
-jupyter nbextension enable spellchecker/main 
-#jupyter nbextension enable toc2/main 
-jupyter nbextension enable toggle_all_line_numbers/main 
-jupyter nbextension enable exercise2/main  
-jupyter nbextension disable toc2/main 
-jupyter nbextension disable execute_time/ExecuteTime
-jupyter nbextension enable hinterland/hinterland
-jupyter nbextension enable printview/main
-jupyter nbextension enable execution_dependencies/execution_dependencies
-jupyter nbextension enable python-markdown/main
-echo "--> ensuring $HOME/.jupyter/nbconfig exists"
-mkdir -p $HOME/.jupyter/nbconfig 
-echo "--> fixing $HOME/.jupyter/nbconfig/common.json"
-echo '{"nbext_hide_incompat": true}' > $HOME/.jupyter/nbconfig/common.json
-
-# install the geog0111 library
-echo "--> install geog0111 library using python setup.py install"
-python setup.py install
-
-# put source ~/.dockenvrc in rc / profile
-# files
-# belt and braces!!
-for i in "bash" "fish" "zsh" "sh"
-do
-  for ext in "_profile" "rc"
-  do
-    RC=~/.${i}${ext}
-    touch $RC
-    grep -v dockenvrc <  $RC > $RC.bak
-    echo "--> ensuring run of ~/.dockenvrc in $RC"
-    echo 'source ~/.dockenvrc' >> $RC.bak
-    mv $RC.bak $RC
-  done
-done
-
-EOF
-chmod +x bin/postBuild
 
 echo "--> run bin/setdirs.sh"
 bin/setdirs.sh
