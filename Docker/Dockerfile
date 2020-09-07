@@ -22,7 +22,7 @@ RUN ls | head -5 &&\
     git clone https://github.com/UCL-EO/${CONDA_DEFAULT_ENV}.git
 
 RUN cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
-    bin/setup.sh \
+    bin/setup.sh &&\
     bin/postBuild
 
 # shouldnt need this
