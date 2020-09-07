@@ -15,6 +15,19 @@
 here=$(pwd)
 base="$(cd $(dirname "$0") &&  cd .. &&  pwd -P && cd "$here")"
 
+# put a link in at home
+# for the unix cmd notebook
+
+
+cd ~
+HOME=$(pwd)
+if [ ! $HOME/geog0111 == $here ]
+then
+  rm -f geog0111
+  ln -s $here geog0111 
+fi
+
+cd $here
 # put links in all notebooks* directories
 
 #subs=$(ls -d notebooks/*/ | cut -d '/' -f 2) 

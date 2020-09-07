@@ -111,7 +111,9 @@ fi
 
 # so they can carry through
 echo "--> create put 'conda activate $conda_env' in ~/.dockenvrc'"
-echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.dockenvrc
+echo 'if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then' >>  ~/.dockenvrc
+echo '    . "/Users/plewis/anaconda3/etc/profile.d/conda.sh"' >>  ~/.dockenvrc
+echo 'fi' >>  ~/.dockenvrc
 echo "$conda activate $conda_env" >> ~/.dockenvrc
 
 
