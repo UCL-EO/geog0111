@@ -4,8 +4,8 @@ services:
 #  global:
 #  - IMAGE_NAME=ucleo/geog0111
 before_script:
-- repo="$(awk -F= '$1 == "env CONDA_DEFAULT_ENV" { print $2; exit }' Docker/Dockerfile)"
-- version="$(awk -F= '$1 == "env BASE_VERSION" { print $2; exit }' Docker/Dockerfile)"
+- repo="$(grep CONDA_DEFAULT_ENV Docker/Dockerfile | awk -F= '{ print $2; exit }')"
+- version="$(grep BASE_VERSION Docker/Dockerfile | awk -F= '{ print $2; exit }')"
 - IMAGE_NAME=ucleo/$repo
 script:
 - docker build --file Docker/Dockerfile --tag "$IMAGE_NAME" .
