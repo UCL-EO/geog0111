@@ -123,14 +123,18 @@ fi
 THISSHELLY=$(echo $SHELL| awk -F/ '{print $NF}')
 echo "--> Shell : $THISSHELLY"
 
+# belt and braces!!
 for i in  "$THISSHELLY" "bash" "fish" "zsh" "sh"
 do
-  RC=~/.${i}_profile
-  touch $RC
-  grep -v dockenvrc <  $RC > $RC.bak
-   echo "--> ensuring run of ~/.dockenvrc in $RC"
-  echo 'source ~/.dockenvrc' >> $RC.bak
-  mv $RC.bak $RC
+  for ext in "_profile" "rc"
+  do
+    RC=~/.${i}${ext}
+    touch $RC
+    grep -v dockenvrc <  $RC > $RC.bak
+    echo "--> ensuring run of ~/.dockenvrc in $RC"
+    echo 'source ~/.dockenvrc' >> $RC.bak
+    mv $RC.bak $RC
+  done
 done
 
 echo "----> cd back to ${here}" 

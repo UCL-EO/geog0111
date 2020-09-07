@@ -14,6 +14,7 @@ RUN mv /opt/conda/envs/uclgeog /opt/conda/envs/${CONDA_DEFAULT_ENV} &&\
 
 USER $NB_USER
 
+RUN . /opt/conda/etc/profile.d/conda.sh && conda init bash
 RUN . /opt/conda/etc/profile.d/conda.sh && conda activate ${CONDA_DEFAULT_ENV}
 
 RUN ls | head -5 &&\
