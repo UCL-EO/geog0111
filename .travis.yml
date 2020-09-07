@@ -10,6 +10,7 @@ before_script:
 script:
 - docker build --file Docker/Dockerfile --tag "$IMAGE_NAME" .
 - docker run -it "$IMAGE_NAME" bash -ic  'source ~/.dockenvrc && cd ~/geog0111 && bin/notebook-run-2.sh'
+- docker run -it "$IMAGE_NAME" bash -ic  'source ~/.dockenvrc && cd ~/geog0111 && mkdocs gh-deploy --force'
 after_script:
 - docker images
 before_deploy:
