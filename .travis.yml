@@ -9,9 +9,7 @@ before_script:
 - IMAGE_NAME=ucleo/$repo
 script:
 - docker build --file Docker/Dockerfile --tag "$IMAGE_NAME" .
-#- docker run bash -c 'pwd && ls && cd ~/geog0111 && echo starting docs generation' "$IMAGE_NAME"
-#- docker run bash -c 'cd ~/geog0111 &&  echo "uploading docs" && mkdocs gh-deploy --force' "$IMAGE_NAME"
-#- docker run bash -c 'cd ~/geog0111 &&  echo "done" "$IMAGE_NAME"
+- docker run -it "$IMAGE_NAME" bash -ic  'source ~/.dockenvrc && cd ~/geog0111 && bin/notebook-run-2.sh'
 after_script:
 - docker images
 before_deploy:
