@@ -117,27 +117,27 @@ echo 'fi' >>  ~/.dockenvrc
 echo "$conda activate $conda_env" >> ~/.dockenvrc
 
 
-if [ -z "$SHELL" ]
-then
-  SHELL=$(ps -p $$ | tail -1 | awk '{print $NF}')
-fi
+#if [ -z "$SHELL" ]
+#then
+#  SHELL=$(ps -p $$ | tail -1 | awk '{print $NF}')
+#fi
 
-THISSHELLY=$(echo $SHELL| awk -F/ '{print $NF}')
-echo "--> Shell : $THISSHELLY"
+#THISSHELLY=$(echo $SHELL| awk -F/ '{print $NF}')
+#echo "--> Shell : $THISSHELLY"
 
 # belt and braces!!
-for i in  "$THISSHELLY" "bash" "fish" "zsh" "sh"
-do
-  for ext in "_profile" "rc"
-  do
-    RC=~/.${i}${ext}
-    touch $RC
-    grep -v dockenvrc <  $RC > $RC.bak
-    echo "--> ensuring run of ~/.dockenvrc in $RC"
-    echo 'source ~/.dockenvrc' >> $RC.bak
-    mv $RC.bak $RC
-  done
-done
+#for i in  "$THISSHELLY" "bash" "fish" "zsh" "sh"
+#do
+#  for ext in "_profile" "rc"
+#  do
+#    RC=~/.${i}${ext}
+#    touch $RC
+#    grep -v dockenvrc <  $RC > $RC.bak
+#    echo "--> ensuring run of ~/.dockenvrc in $RC"
+#    echo 'source ~/.dockenvrc' >> $RC.bak
+#    mv $RC.bak $RC
+#  done
+#done
 
 echo "----> cd back to ${here}" 
 cd "${here}"
@@ -179,6 +179,34 @@ echo '{"nbext_hide_incompat": true}' > $HOME/.jupyter/nbconfig/common.json
 # install the geog0111 library
 echo "--> install geog0111 library using python setup.py install"
 python setup.py install
+
+# put source ~/.dockenvrc in rc / profile
+# files
+if [ -z "$SHELL" ]
+then
+  SHELL=$(ps -p $$ | tail -1 | awk '{print $NF}')
+fi
+
+THISSHELLY=$(echo $SHELL| awk -F/ '{print $NF}')
+echo "--> Shell : $THISSHELLY"
+
+# belt and braces!!
+for i in  "$THISSHELLY" "bash" "fish" "zsh" "sh"
+do
+  for ext in "_profile" "rc"
+  do
+    RC=~/.${i}${ext}
+    touch $RC
+    grep -v dockenvrc <  $RC > $RC.bak
+    echo "--> ensuring run of ~/.dockenvrc in $RC"
+    echo 'source ~/.dockenvrc' >> $RC.bak
+    mv $RC.bak $RC
+  done
+done
+
+
+
+
 EOF
 chmod +x bin/postBuild
 
