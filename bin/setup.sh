@@ -182,16 +182,8 @@ python setup.py install
 
 # put source ~/.dockenvrc in rc / profile
 # files
-if [ -z "$SHELL" ]
-then
-  SHELL=$(ps -p $$ | tail -1 | awk '{print $NF}')
-fi
-
-THISSHELLY=$(echo $SHELL| awk -F/ '{print $NF}')
-echo "--> Shell : $THISSHELLY"
-
 # belt and braces!!
-for i in  "$THISSHELLY" "bash" "fish" "zsh" "sh"
+for i in "bash" "fish" "zsh" "sh"
 do
   for ext in "_profile" "rc"
   do
@@ -203,9 +195,6 @@ do
     mv $RC.bak $RC
   done
 done
-
-
-
 
 EOF
 chmod +x bin/postBuild
