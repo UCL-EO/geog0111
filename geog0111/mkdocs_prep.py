@@ -44,7 +44,8 @@ files.sort()
 
 #defaults make sure one exists for all we need
 defaults = {
-  'theme':{'favicon':'images/ucl_logo.png'},
+  'icon':'images/ucl_logo.png',
+  'theme':{'favicon':'images/ucl.png'},
   'site_name':'GEOG0111',
   'description':'',
   'author':'A. Nonymous',
@@ -57,7 +58,7 @@ info=defaults
 
 
 index = f'''
-![UCL]({info['theme']['favicon']})
+![UCL]({info['icon']})
 
 # {info['site_name']}
 
@@ -123,6 +124,22 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
 
   this = {chapter_names[j].strip().title():other}
   nav.append(this)
+
+other = []
+for s in answernames.tolist():
+  k = ' '.join(s.strip('.md').split('_')[1:]).title()
+  k = k.replace('Googleearthengine','Google Earth Engine').\
+          replace('Nasa','NASA').\
+          replace('Gdal','GDAL').\
+          replace('Modis','MODIS').\
+          replace('Downloa','Download')
+  v = s
+    that = dict(zip([k],[v]))
+    other.append(that)
+
+  this = {"Answers":other}
+  nav.append(this)
+
 
 # put in dev notes?
 if dev:
