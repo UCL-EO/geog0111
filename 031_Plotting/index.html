@@ -1,0 +1,1448 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="http://www2.geog.ucl.ac.uk/~plewis/geog0111/031_Plotting/">
+      
+      
+        <meta name="author" content="Prof P. Lewis">
+      
+      <link rel="shortcut icon" href="../images/ucl_logo.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Plotting - GEOG0111</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-1347772-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://www2.geog.ucl.ac.uk/~plewis/geog0111" title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            GEOG0111
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Plotting
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://www2.geog.ucl.ac.uk/~plewis/geog0111" title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    GEOG0111
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Course Basics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
+        Course Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../002_Unix/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Local_Install/" title="Local Install" class="md-nav__link">
+      Local Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../005_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Core Concepts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Core Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../014_Python_groups/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../015_Python_control/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../016_Python_for/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../017_Functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../018_Python_files/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../019_Running_Python/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_GoogleEarthEngine/" title="Google Earth Engine" class="md-nav__link">
+      Google Earth Engine
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Image Processing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Image Processing" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Image Processing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../031_Numpy_matplotlib/" title="Numpy Matplotlib" class="md-nav__link">
+      Numpy Matplotlib
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="Plotting" class="md-nav__link md-nav__link--active">
+      Plotting
+    </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Geospatial Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Geospatial Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../040_GDAL/" title="GDAL" class="md-nav__link">
+      GDAL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../041_MODIS_download/" title="MODIS Download" class="md-nav__link">
+      MODIS Download
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../042_GDAL_masking/" title="GDAL Masking" class="md-nav__link">
+      GDAL Masking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../043_GDAL_stacking_and_interpolating/" title="GDAL Stacking And Interpolating" class="md-nav__link">
+      GDAL Stacking And Interpolating
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../044_GDAL_Reconciling_projections/" title="GDAL Reconciling Projections" class="md-nav__link">
+      GDAL Reconciling Projections
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Modelling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Modelling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../050_Linear_models/" title="Linear Models" class="md-nav__link">
+      Linear Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../051_Modelling_and_optimisation/" title="Modelling And Optimisation" class="md-nav__link">
+      Modelling And Optimisation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/031_Plotting.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                  <h1>Plotting</h1>
+                
+                <p>The iconic cover shows the oscillation signal coming from the Pulsar PSR B1919+21 https://en.wikipedia.org/wiki/PSR_B1919%2B21</p>
+<p>derived from https://github.com/igorol/unknown_pleasures_plot and https://matplotlib.org/3.1.1/gallery/animation/unchained.html</p>
+<pre><code class="python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import animation, rc
+
+from IPython.display import HTML
+
+</code></pre>
+
+<pre><code class="python">url='https://raw.githubusercontent.com/igorol/unknown_pleasures_plot/master/pulsar.csv'
+df=pd.read_csv(url,header=None)
+</code></pre>
+
+<pre><code class="python">df
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>290</th>
+      <th>291</th>
+      <th>292</th>
+      <th>293</th>
+      <th>294</th>
+      <th>295</th>
+      <th>296</th>
+      <th>297</th>
+      <th>298</th>
+      <th>299</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.81</td>
+      <td>-0.91</td>
+      <td>-1.09</td>
+      <td>-1.00</td>
+      <td>-0.59</td>
+      <td>-0.82</td>
+      <td>-0.43</td>
+      <td>-0.68</td>
+      <td>-0.71</td>
+      <td>-0.27</td>
+      <td>...</td>
+      <td>-0.08</td>
+      <td>0.19</td>
+      <td>-0.19</td>
+      <td>-0.18</td>
+      <td>-0.20</td>
+      <td>-0.26</td>
+      <td>-0.52</td>
+      <td>-0.44</td>
+      <td>-0.58</td>
+      <td>-0.54</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.61</td>
+      <td>-0.40</td>
+      <td>-0.42</td>
+      <td>-0.38</td>
+      <td>-0.55</td>
+      <td>-0.51</td>
+      <td>-0.71</td>
+      <td>-0.79</td>
+      <td>-0.52</td>
+      <td>-0.40</td>
+      <td>...</td>
+      <td>-0.34</td>
+      <td>-0.58</td>
+      <td>-0.26</td>
+      <td>-0.64</td>
+      <td>-1.05</td>
+      <td>-0.83</td>
+      <td>-0.80</td>
+      <td>-0.47</td>
+      <td>-0.13</td>
+      <td>-0.12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1.43</td>
+      <td>-1.15</td>
+      <td>-1.25</td>
+      <td>-1.13</td>
+      <td>-0.76</td>
+      <td>-0.25</td>
+      <td>0.40</td>
+      <td>0.26</td>
+      <td>0.30</td>
+      <td>0.36</td>
+      <td>...</td>
+      <td>-0.29</td>
+      <td>0.16</td>
+      <td>0.83</td>
+      <td>0.99</td>
+      <td>1.28</td>
+      <td>0.11</td>
+      <td>-0.77</td>
+      <td>-0.88</td>
+      <td>-0.45</td>
+      <td>-1.01</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.09</td>
+      <td>-0.85</td>
+      <td>-0.72</td>
+      <td>-0.74</td>
+      <td>-0.26</td>
+      <td>-0.04</td>
+      <td>-0.19</td>
+      <td>0.18</td>
+      <td>0.03</td>
+      <td>0.19</td>
+      <td>...</td>
+      <td>0.48</td>
+      <td>0.52</td>
+      <td>-0.14</td>
+      <td>-1.13</td>
+      <td>-1.07</td>
+      <td>-1.03</td>
+      <td>-0.78</td>
+      <td>-0.40</td>
+      <td>0.18</td>
+      <td>0.27</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.13</td>
+      <td>-0.98</td>
+      <td>-0.93</td>
+      <td>-0.90</td>
+      <td>-1.14</td>
+      <td>-1.00</td>
+      <td>-0.90</td>
+      <td>-1.18</td>
+      <td>-1.30</td>
+      <td>-1.07</td>
+      <td>...</td>
+      <td>-0.27</td>
+      <td>-0.47</td>
+      <td>-0.49</td>
+      <td>-0.23</td>
+      <td>-0.75</td>
+      <td>-0.29</td>
+      <td>-0.54</td>
+      <td>-0.65</td>
+      <td>-0.64</td>
+      <td>-0.94</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>0.62</td>
+      <td>0.64</td>
+      <td>0.59</td>
+      <td>0.30</td>
+      <td>0.01</td>
+      <td>0.05</td>
+      <td>-0.63</td>
+      <td>0.07</td>
+      <td>0.36</td>
+      <td>0.78</td>
+      <td>...</td>
+      <td>0.20</td>
+      <td>0.22</td>
+      <td>0.23</td>
+      <td>0.27</td>
+      <td>-0.10</td>
+      <td>-0.21</td>
+      <td>-0.09</td>
+      <td>-0.24</td>
+      <td>-0.17</td>
+      <td>-0.62</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>0.32</td>
+      <td>0.31</td>
+      <td>0.28</td>
+      <td>0.42</td>
+      <td>-0.24</td>
+      <td>-0.48</td>
+      <td>-0.73</td>
+      <td>-0.64</td>
+      <td>0.04</td>
+      <td>0.02</td>
+      <td>...</td>
+      <td>-0.44</td>
+      <td>-0.53</td>
+      <td>-0.50</td>
+      <td>-0.49</td>
+      <td>-0.63</td>
+      <td>-0.56</td>
+      <td>-0.50</td>
+      <td>-0.38</td>
+      <td>-0.58</td>
+      <td>-0.43</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>-0.09</td>
+      <td>-0.14</td>
+      <td>-0.24</td>
+      <td>-0.24</td>
+      <td>-0.66</td>
+      <td>0.00</td>
+      <td>0.29</td>
+      <td>0.29</td>
+      <td>0.60</td>
+      <td>0.86</td>
+      <td>...</td>
+      <td>0.08</td>
+      <td>-0.88</td>
+      <td>-1.17</td>
+      <td>-0.36</td>
+      <td>-0.31</td>
+      <td>-0.12</td>
+      <td>0.29</td>
+      <td>-0.02</td>
+      <td>0.21</td>
+      <td>0.44</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>0.11</td>
+      <td>0.05</td>
+      <td>0.05</td>
+      <td>-0.05</td>
+      <td>-0.03</td>
+      <td>-0.29</td>
+      <td>-0.08</td>
+      <td>-0.54</td>
+      <td>-0.01</td>
+      <td>0.01</td>
+      <td>...</td>
+      <td>-0.73</td>
+      <td>-0.54</td>
+      <td>-0.53</td>
+      <td>-0.92</td>
+      <td>-0.68</td>
+      <td>-0.87</td>
+      <td>-1.31</td>
+      <td>-1.02</td>
+      <td>-1.10</td>
+      <td>-1.62</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>0.12</td>
+      <td>-0.12</td>
+      <td>-0.12</td>
+      <td>-0.45</td>
+      <td>-0.24</td>
+      <td>-0.48</td>
+      <td>-0.57</td>
+      <td>-0.19</td>
+      <td>-0.07</td>
+      <td>-0.59</td>
+      <td>...</td>
+      <td>0.12</td>
+      <td>0.03</td>
+      <td>-0.28</td>
+      <td>0.02</td>
+      <td>-0.01</td>
+      <td>0.13</td>
+      <td>0.09</td>
+      <td>-0.01</td>
+      <td>-0.03</td>
+      <td>-0.23</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 300 columns</p>
+</div>
+
+<pre><code class="python">vertical_margin = 20
+horizontal_margin = 100
+x_size = 28
+y_size = 25
+linewidth = 4
+plot_name='images/new_order.png'
+
+
+plt.style.use('dark_background')
+fig, ax = plt.subplots(figsize=(x_size,y_size),frameon=False)
+
+data = np.array(df)
+
+n_lines = data.shape[0]
+x = range(data.shape[1])
+
+ax.set_yticks([])
+ax.set_xticks([])
+ax.set_xlim(min(x)-horizontal_margin, max(x)+horizontal_margin)
+ax.set_ylim(-vertical_margin, df.shape[0] + vertical_margin)
+
+def init():
+    lines = []
+    fills = []
+    for i in range(n_lines):
+        line = data[i]/3 + (n_lines - i)
+        pltline = ax.plot(x, line, lw=linewidth, c='white', alpha=1, zorder=i/n_lines)
+        pltfill = ax.fill_between(x, -5,line,  facecolor='black', zorder=i/n_lines)
+        lines.append(pltline)
+        fills.append(pltfill)
+    return (lines,fills)
+
+xx=init()
+</code></pre>
+
+<p><img alt="png" src="../031_Plotting_files/031_Plotting_4_0.png" /></p>
+<pre><code class="python">data.shape
+</code></pre>
+
+<pre><code>(80, 300)
+</code></pre>
+<pre><code class="python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+import mpl_toolkits.axes_grid1
+import matplotlib.widgets
+vertical_margin = 2.0
+horizontal_margin = 10.0
+x_size = 2.8
+y_size = 2.5
+linewidth = .4
+fig, ax = plt.subplots(figsize=(x_size,y_size),frameon=False)
+
+
+data = np.array(df)
+
+n_lines = data.shape[0]
+x = range(data.shape[1])
+
+ax.set_yticks([])
+ax.set_xticks([])
+ax.set_xlim(min(x)-horizontal_margin, max(x)+horizontal_margin)
+ax.set_ylim(-vertical_margin, df.shape[0] + vertical_margin)
+
+def init():
+    lines = []
+    fills = []
+    for i in range(n_lines):
+        line = data[i]/3 + (n_lines - i)
+        pltline = ax.plot(x, line, lw=linewidth, c='white', alpha=1, zorder=i/n_lines)
+        pltfill = ax.fill_between(x, -5,line,  facecolor='black', zorder=i/n_lines)
+        lines.append(pltline)
+        fills.append(pltfill)
+    return (lines,fills)
+
+xx=init()
+#plt.savefig(plot_name)
+def update(i):
+    # Shift all data to the right with wrap around
+    old = data[-1,-1]
+    data[-1,1:] = data[-1,:-1]
+    # Fill-in new values
+    data[-1,0] = old
+    for i in range(n_lines):
+        matplotlib.lines.Line2D(lines[i],data[i])
+    return lines[0]
+
+lines,fills = init()
+anim = animation.FuncAnimation(fig, update, interval=10,frames=10,blit=True)
+
+# call the animator. blit=True means only re-draw the parts that have changed.
+</code></pre>
+
+<p><img alt="png" src="../031_Plotting_files/031_Plotting_6_0.png" /></p>
+<pre><code class="python">HTML(anim.to_html5_video())
+</code></pre>
+
+<video width="200" height="180" controls autoplay loop>
+  <source type="video/mp4" src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAAHN9tZGF0AAACoAYF//+c
+3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE1MiAtIEguMjY0L01QRUctNCBBVkMgY29kZWMg
+LSBDb3B5bGVmdCAyMDAzLTIwMTcgLSBodHRwOi8vd3d3LnZpZGVvbGFuLm9yZy94MjY0Lmh0bWwg
+LSBvcHRpb25zOiBjYWJhYz0xIHJlZj0zIGRlYmxvY2s9MTowOjAgYW5hbHlzZT0weDM6MHgxMTMg
+bWU9aGV4IHN1Ym1lPTcgcHN5PTEgcHN5X3JkPTEuMDA6MC4wMCBtaXhlZF9yZWY9MSBtZV9yYW5n
+ZT0xNiBjaHJvbWFfbWU9MSB0cmVsbGlzPTEgOHg4ZGN0PTEgY3FtPTAgZGVhZHpvbmU9MjEsMTEg
+ZmFzdF9wc2tpcD0xIGNocm9tYV9xcF9vZmZzZXQ9LTIgdGhyZWFkcz02IGxvb2thaGVhZF90aHJl
+YWRzPTEgc2xpY2VkX3RocmVhZHM9MCBucj0wIGRlY2ltYXRlPTEgaW50ZXJsYWNlZD0wIGJsdXJh
+eV9jb21wYXQ9MCBjb25zdHJhaW5lZF9pbnRyYT0wIGJmcmFtZXM9MyBiX3B5cmFtaWQ9MiBiX2Fk
+YXB0PTEgYl9iaWFzPTAgZGlyZWN0PTEgd2VpZ2h0Yj0xIG9wZW5fZ29wPTAgd2VpZ2h0cD0yIGtl
+eWludD0yNTAga2V5aW50X21pbj0yNSBzY2VuZWN1dD00MCBpbnRyYV9yZWZyZXNoPTAgcmNfbG9v
+a2FoZWFkPTQwIHJjPWNyZiBtYnRyZWU9MSBjcmY9MjMuMCBxY29tcD0wLjYwIHFwbWluPTAgcXBt
+YXg9NjkgcXBzdGVwPTQgaXBfcmF0aW89MS40MCBhcT0xOjEuMDAAgAAAGaFliIQAJ//+9bF8CmrJ
+84oM6DIu4Zckya62IuJ744nkB+owAuCIeRVaYizSmJbHhpIbdySmCCr3YGRWH1dU3kzJeVzMNQwj
+oRLFjYozaW64/xVN4daFjRM+nQ7h4NfHEmikjvWaQPmoFEtecWXP1jhBsNu+qT+3HN+LmzAtpUu6
+PXU127Q4lUejexUtJVC83f7B5WpEJ5f4PwhJPniwGlV7QpNoZlfyck+RxmKH0li0N/j42zeIeJsE
+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
+">
+  Your browser does not support the video tag.
+</video>
+
+<pre><code class="python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+fig, ax = plt.subplots()
+xdata, ydata = [], []
+ln, = plt.plot([], [], 'ro')
+
+def init():
+    ax.set_xlim(0, 2*np.pi)
+    ax.set_ylim(-1, 1)
+    return ln,
+
+def update(frame):
+    xdata.append(frame)
+    ydata.append(np.sin(frame))
+    ln.set_data(xdata, ydata)
+    return ln,
+
+ani = FuncAnimation(fig, update, frames=np.linspace(0, 2*np.pi, 128),
+                    init_func=init, blit=True)
+plt.show()
+</code></pre>
+
+<p><img alt="png" src="../031_Plotting_files/031_Plotting_8_0.png" /></p>
+<pre><code class="python">import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from matplotlib.widgets import Slider
+
+TWOPI = 2*np.pi
+
+fig, ax = plt.subplots()
+
+t = np.arange(0.0, TWOPI, 0.001)
+initial_amp = .5
+s = initial_amp*np.sin(t)
+l, = plt.plot(t, s, lw=2)
+
+ax = plt.axis([0,TWOPI,-1,1])
+
+axamp = plt.axes([0.25, .03, 0.50, 0.02])
+# Slider
+samp = Slider(axamp, 'Amp', 0, 1, valinit=initial_amp)
+
+def update(val):
+    # amp is the current value of the slider
+    amp = samp.val
+    # update curve
+    l.set_ydata(amp*np.sin(t))
+    # redraw canvas while idle
+    fig.canvas.draw_idle()
+
+# call update function on slider value change
+samp.on_changed(update)
+
+plt.show()
+</code></pre>
+
+<p><img alt="png" src="../031_Plotting_files/031_Plotting_9_0.png" /></p>
+<p><html><head></p>
+<!-- Load require.js. Delete this if your page already loads require.js -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+<script type="application/vnd.jupyter.widget-state+json">
+{
+    "version_major": 2,
+    "version_minor": 0,
+    "state": {}
+}
+</script>
+
+<p></head>
+<body></p>
+<p></body>
+</html></p>
+<pre><code class="python">
+</code></pre>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 8, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../031_Numpy_matplotlib/" title="Numpy Matplotlib" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Numpy Matplotlib
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../040_GDAL/" title="GDAL" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                GDAL
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/prof_plewis" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/proflewis/geog0111" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/UCL-EO/geog0111" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ["search.highlight", "header.hide"],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
