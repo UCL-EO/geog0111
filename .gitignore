@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 ??=???=?
 docs/_*
+*.icloud
 *.swp
 data/lai_data_*.npz
 data/TM_WORLD_BORDERS-0.3.dbf
