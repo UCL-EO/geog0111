@@ -13,6 +13,8 @@ README.md.
 It inserts md files of the form notebooks_lab/???_*.md
 and filters answers
 '''
+dev = True
+
 # load mkdocs.yml
 with open('config/mkdocs.yml','r') as f:
   info = yaml.safe_load(f)
@@ -119,6 +121,12 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
 
   this = {chapter_names[j].strip().title():other}
   nav.append(this)
+
+# put in dev notes?
+if dev:
+  k,v = "Scripts","bin.md"
+  other=[dict(zip([k],[v]))]
+  this = {"Developer Notes":other}
 
 mkd['nav'] = nav
 
