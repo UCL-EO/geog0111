@@ -19,7 +19,7 @@
     
     
       
-        <title>Index - GEOG0111</title>
+        <title>Bin - GEOG0111</title>
       
     
     
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Index
+              Bin
             
           </span>
         </div>
@@ -750,7 +750,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/bin/README.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/bin.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -758,13 +758,13 @@
                   
                 
                 
-                  <h1>Index</h1>
+                  <h1>Bin</h1>
                 
                 <h2 id="docker">Docker</h2>
 <p>The Docker file is in <a href="Docker/Dockerfile"><code>Docker/Dockerfile</code></a>. This is a minimal setup for running notebooks for this course, being based on <a href="https://hub.docker.com/r/jgomezdans/uclgeog"><code>jgomezdans/uclgeog</code></a> which is derived from <a href="https://github.com/jgomezdans/geog_docker"><code>geog_docker</code></a>. </p>
 <p>This docker is stored on dockerhub as <a href="https://hub.docker.com/r/ucleo/geog0111"><code>ucleo/geog0111</code></a> and derived from this repo <a href="https://github.com/UCL-EO/geog0111"><code>UCL-EO/geog0111</code></a>.</p>
 <p>It is automatically run from <a href="https://travis-ci.com/github/UCL-EO/geog0111">travis</a> on a new load, so you shouldn't need to generate the docker manually.</p>
-<p>The docker cleans out the environment for <code>uclgeog</code>, as we want opne called <code>geog0111</code>, clones <a href="https://github.com/UCL-EO/geog0111">this repository</a> and runs <a href="bin/setup.sh"><code>bin/setup.sh</code></a> to install the <code>geog0111</code> environment. It activates the environment and runs <a href="bin/postBuild"><code>bin/postBuild</code></a>. </p>
+<p>The docker cleans out the environment for <code>uclgeog</code>, as we want opne called <code>geog0111</code>, clones <a href="https://github.com/UCL-EO/geog0111">this repository</a> and runs <a href="setup.sh"><code>bin/setup.sh</code></a> to install the <code>geog0111</code> environment. It activates the environment and runs <a href="bin/postBuild"><code>bin/postBuild</code></a>. </p>
 <h3 id="clean-up-docker-files">Clean up docker files</h3>
 <p>The script <a href="bin/docker-killall"><code>bin/docker-killall</code></a> cleans up any cached dockers, kills running dockers, and cleans it all out. Use this only to make a clean slate for your docker in the repoi.
 Otherwise, use more subtle <code>docker</code> commands. It is intended onbly for developers, but is run as user.</p>
@@ -810,7 +810,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 </code></pre>
 <h2 id="scripts">Scripts</h2>
 <h3 id="binsetupsh"><code>bin/setup.sh</code></h3>
-<p><a href="bin/setup.sh"><code>bin/setup.sh</code></a> is the core setup script. It is run for example from <a href="Docker/Dockerfile"><code>Docker/Dockerfile</code></a>
+<p><a href="setup.sh"><code>bin/setup.sh</code></a> is the core setup script. It is run for example from <a href="Docker/Dockerfile"><code>Docker/Dockerfile</code></a>
 but may also be run on the repository. It should usually be run by the user and should work from any operating system.</p>
 <pre><code>setup.sh [-r | --remove] [-f|--force] | [-n|--no_force]
 </code></pre>
@@ -821,9 +821,9 @@ It will detect if windows is being used (so run <code>conda.bat</code>) and test
 <pre><code>conda activcate geog0111
 </code></pre>
 <h3 id="binpostbuild"><code>bin/postBuild</code></h3>
-<p><a href="bin/postBuild"><code>bin/postBuild</code></a> is run after <a href="bin/setup.sh"><code>bin/setup.sh</code></a> and does jobs such as setting up the jupyter notebook extensions, installing the <code>geog0111</code> package locally (using <a href="setup.py"><code>setup.py</code></a>) and ensuring shell initialisation is properly done for subsequent sessions. It should be run the the user, and woul;d normally be run after any new run of <a href="bin/setup.sh"><code>bin/setup.sh</code></a>.</p>
+<p><a href="bin/postBuild"><code>bin/postBuild</code></a> is run after <a href="setup.sh"><code>bin/setup.sh</code></a> and does jobs such as setting up the jupyter notebook extensions, installing the <code>geog0111</code> package locally (using <a href="setup.py"><code>setup.py</code></a>) and ensuring shell initialisation is properly done for subsequent sessions. It should be run the the user, and woul;d normally be run after any new run of <a href="setup.sh"><code>bin/setup.sh</code></a>.</p>
 <h3 id="binlink-setsh"><code>bin/link-set.sh</code></h3>
-<p><a href="bin/link-set.sh"><code>bin/link-set.sh</code></a> is the directory linking script. 
+<p><a href="link-set.sh"><code>bin/link-set.sh</code></a> is the directory linking script. 
 It should usually be run by the user.</p>
 <p>Users may work in any of several directories, so we need to put in symbolic links
 from common directories (<code>data</code> <code>$repo</code> <code>images</code>) in each of these to ensure
@@ -835,13 +835,13 @@ this is portable.</p>
 already exists). It also puts a link in from <code>$UCLDATA</code> to <code>data/ucl</code> (default <code>${HOME}/geog0111/work</code>)
 so that a system-wide data directory can be put in, and referred to asd <code>data/ucl</code> from
 scripts.</p>
-<p>This is called <a href="bin/setup.sh"><code>bin/setup.sh</code></a>, but may be run independently to fix any broken links.</p>
+<p>This is called <a href="setup.sh"><code>bin/setup.sh</code></a>, but may be run independently to fix any broken links.</p>
 <h3 id="binnotebook-runsh"><code>bin/notebook-run.sh</code></h3>
-<p>This script runs all notebooks in <a href="notebooks"><code>notebooks</code></a> using <code>jupyter nbconvert</code>. The files are saved as <code>*.nbconvert.ipynb</code>. The running is tolerant to errors. If the file is no different to the original, the original is kept. Otherwise the user is prompted to see if you want to replace the original notebook with the one that has been executed. You are provided with information on file sizes, which should help with this decision: you might not want to save a notebook that is (much) smaller than the original. Backups are stored in <code>backup.$$</code> which you need to manually clear.</p>
-<p>You might run this as a pre-cursor to <a href="bin/notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a>.</p>
+<p>This script runs all notebooks in <a href="notebooks"><code>notebooks</code></a> using <code>jupyter nbconvert</code>. The files are saved as <code>*.nbconvert.md</code>. The running is tolerant to errors. If the file is no different to the original, the original is kept. Otherwise the user is prompted to see if you want to replace the original notebook with the one that has been executed. You are provided with information on file sizes, which should help with this decision: you might not want to save a notebook that is (much) smaller than the original. Backups are stored in <code>backup.$$</code> which you need to manually clear.</p>
+<p>You might run this as a pre-cursor to <a href="notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a>.</p>
 <h3 id="binnotebook-mkdocssh"><code>bin/notebook-mkdocs.sh</code></h3>
-<p>This script <a href="bin/notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a> filters notebooks in <a href="notebooks"><code>notebooks</code></a> into <a href="notebooks_lab"><code>notebooks_lab</code></a> using <a href="geog0111/edit_notebook.py"><code>geog0111/edit_notebook.py</code></a>. This filters out noteboom extensions and other features, and makes the notebooks suitable for running in <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>, rather than just <code>jupyter noteboook</code>. It strips out exercises defiuned in <code>exercise2</code> cells, into new notebooks with the pattern <code>_answers.ipynb</code>.</p>
-<p>The script takes the <a href="notebooks_lab"><code>notebooks_lab</code></a> notebooks, and converts to markdown in <a href="docs"><code>docs</code></a> and prepares the environment for the document generator <code>mkdocs</code> using <a href="geog0111/mkdocs_prep.py"><code>geog0111/mkdocs_prep.py</code></a>. 
+<p>This script <a href="notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a> filters notebooks in <a href="notebooks"><code>notebooks</code></a> into <a href="notebooks_lab"><code>notebooks_lab</code></a> using <a href="../geog0111/edit_notebook.py"><code>geog0111/edit_notebook.py</code></a>. This filters out noteboom extensions and other features, and makes the notebooks suitable for running in <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>, rather than just <code>jupyter noteboook</code>. It strips out exercises defiuned in <code>exercise2</code> cells, into new notebooks with the pattern <code>_answers.md</code>.</p>
+<p>The script takes the <a href="notebooks_lab"><code>notebooks_lab</code></a> notebooks, and converts to markdown in <a href="docs"><code>docs</code></a> and prepares the environment for the document generator <code>mkdocs</code> using <a href="../geog0111/mkdocs_prep.py"><code>geog0111/mkdocs_prep.py</code></a>. 
 It runs <code>mkdocs build</code> locally. The documents can be viewed with:</p>
 <pre><code>mkdocs serve
 </code></pre>

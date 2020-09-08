@@ -51,7 +51,7 @@ mv notebooks_lab/*_files docs
 mv notebooks_lab/*md docs
 rm -f docs/README.md
 # scripts
-cp bin/README.md docs/bin.md
+cp bin/README docs/bin.md
 
 for i in docs/*md
 do
