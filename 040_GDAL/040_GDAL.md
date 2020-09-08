@@ -19,7 +19,7 @@ In pacticular, we will learn how to:
 * visualise the data
 * store the stacked dataset
 
-**These are all tasks that you will be required to do for the [part 1 formal assessment](Formal_assessment_part1.md) of this course. You will however be using a different NASA dataset.**
+**These are all tasks that you will be required to do for the formal assessment of this course. You will however be using a different NASA dataset.**
 
 
 ## 3.1 MODIS LAI product 
@@ -126,7 +126,7 @@ before going any further. If an update occurs, shutdown and restart your noteboo
 
 ## 3.2 Automatic downloading of NASA MODIS products
 
-In [this section](Chapter3_2_MODIS_download.md), you will learn how to:
+In [this section](041_MODIS_download.md), you will learn how to:
 
 * scan the directories (on the Earthdata server) where the MODIS data are stored
 * get the dataset filename for a given tile, date and product
@@ -135,7 +135,7 @@ In [this section](Chapter3_2_MODIS_download.md), you will learn how to:
 
 ## 3.3 GDAL masking
 
-In [this section](Chapter3_3_GDAL_masking.md) you will learn how to:
+In [this section](042_GDAL_masking.md) you will learn how to:
 
 * load locally stored files into gdal
 * select a particular dataset
@@ -145,14 +145,14 @@ In [this section](Chapter3_3_GDAL_masking.md) you will learn how to:
 
 ## 3.4 GDAL stacking and interpolating
 
-In [this section](Chapter3_4_GDAL_stacking_and_interpolating.md) you will learn how to:
+In [this section](043_GDAL_stacking_and_interpolating.md) you will learn how to:
 
 * generate a numpy time series of spatial data
 * interpolate/smooth the dataset
 
 ## 3.X Summary
 
-In this session, we have learned to use some geospatial tools using GDAL in Python. A good set of [working notes on how to use GDAL](http://jgomezdans.github.io/gdal_notes/) has been developed that you will find useful for further reading, as well as looking at the [advanced](advanced.md) section.
+In this session, we have learned to use some geospatial tools using GDAL in Python. A good set of [working notes on how to use GDAL](http://jgomezdans.github.io/gdal_notes/) has been developed that you will find useful for further reading.
 
 We have also very briefly introduced dealing with vector datasets in `ogr`, but this was mainly through the use of a pre-defined function that will take an ESRI shapefile (vector dataset), warp this to the projection of a raster dataset, and produce a mask for a given layer in the vector file.
 

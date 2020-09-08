@@ -736,6 +736,44 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Developer Notes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developer Notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Developer Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bin/" title="Scripts" class="md-nav__link">
+      Scripts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -864,7 +902,7 @@
 <li>visualise the data</li>
 <li>store the stacked dataset</li>
 </ul>
-<p><strong>These are all tasks that you will be required to do for the <a href="Formal_assessment_part1.md">part 1 formal assessment</a> of this course. You will however be using a different NASA dataset.</strong></p>
+<p><strong>These are all tasks that you will be required to do for the formal assessment of this course. You will however be using a different NASA dataset.</strong></p>
 <h2 id="31-modis-lai-product">3.1 MODIS LAI product</h2>
 <p>To introduce geospatial processing, we will use a dataset from the MODIS LAI product over the UK. </p>
 <p>You should note that the dataset you need to use for your assessed practical is a MODIS dataset with similar characteristics to the one in this example.</p>
@@ -934,7 +972,7 @@ else:
 </code></pre>
 <p>before going any further. If an update occurs, shutdown and restart your notebooks.</p>
 <h2 id="32-automatic-downloading-of-nasa-modis-products">3.2 Automatic downloading of NASA MODIS products</h2>
-<p>In <a href="Chapter3_2_MODIS_download.md">this section</a>, you will learn how to:</p>
+<p>In <a href="../041_MODIS_download/">this section</a>, you will learn how to:</p>
 <ul>
 <li>scan the directories (on the Earthdata server) where the MODIS data are stored</li>
 <li>get the dataset filename for a given tile, date and product</li>
@@ -942,7 +980,7 @@ else:
 <li>use the URL to pull the dataset over to store in the local file system</li>
 </ul>
 <h2 id="33-gdal-masking">3.3 GDAL masking</h2>
-<p>In <a href="Chapter3_3_GDAL_masking.md">this section</a> you will learn how to:</p>
+<p>In <a href="../042_GDAL_masking/">this section</a> you will learn how to:</p>
 <ul>
 <li>load locally stored files into gdal</li>
 <li>select a particular dataset</li>
@@ -951,13 +989,13 @@ else:
 <li>crop the dataset </li>
 </ul>
 <h2 id="34-gdal-stacking-and-interpolating">3.4 GDAL stacking and interpolating</h2>
-<p>In <a href="Chapter3_4_GDAL_stacking_and_interpolating.md">this section</a> you will learn how to:</p>
+<p>In <a href="../043_GDAL_stacking_and_interpolating/">this section</a> you will learn how to:</p>
 <ul>
 <li>generate a numpy time series of spatial data</li>
 <li>interpolate/smooth the dataset</li>
 </ul>
 <h2 id="3x-summary">3.X Summary</h2>
-<p>In this session, we have learned to use some geospatial tools using GDAL in Python. A good set of <a href="http://jgomezdans.github.io/gdal_notes/">working notes on how to use GDAL</a> has been developed that you will find useful for further reading, as well as looking at the <a href="advanced.md">advanced</a> section.</p>
+<p>In this session, we have learned to use some geospatial tools using GDAL in Python. A good set of <a href="http://jgomezdans.github.io/gdal_notes/">working notes on how to use GDAL</a> has been developed that you will find useful for further reading.</p>
 <p>We have also very briefly introduced dealing with vector datasets in <code>ogr</code>, but this was mainly through the use of a pre-defined function that will take an ESRI shapefile (vector dataset), warp this to the projection of a raster dataset, and produce a mask for a given layer in the vector file.</p>
 <p>If there is time in the class, we will develop some exercises to examine the datasets we have generated and/or to explore some different datasets or different locations.</p>
                 

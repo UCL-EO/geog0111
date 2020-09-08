@@ -19,7 +19,7 @@
     
     
       
-        <title>Bin - GEOG0111</title>
+        <title>Scripts - GEOG0111</title>
       
     
     
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Bin
+              Scripts
             
           </span>
         </div>
@@ -635,6 +635,155 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Developer Notes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developer Notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Developer Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Scripts
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Scripts" class="md-nav__link md-nav__link--active">
+      Scripts
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    Docker
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clean-up-docker-files" class="md-nav__link">
+    Clean up docker files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-docker" class="md-nav__link">
+    Build docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-docker" class="md-nav__link">
+    Run docker
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    Scripts
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binsetupsh" class="md-nav__link">
+    bin/setup.sh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binpostbuild" class="md-nav__link">
+    bin/postBuild
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binlink-setsh" class="md-nav__link">
+    bin/link-set.sh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binnotebook-runsh" class="md-nav__link">
+    bin/notebook-run.sh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binnotebook-mkdocssh" class="md-nav__link">
+    bin/notebook-mkdocs.sh
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -758,7 +907,7 @@
                   
                 
                 
-                  <h1>Bin</h1>
+                  <h1>Scripts</h1>
                 
                 <h2 id="docker">Docker</h2>
 <p>The Docker file is in <a href="copy/Dockerfile"><code>Docker/Dockerfile</code></a>. This is a minimal setup for running notebooks for this course, being based on <a href="https://hub.docker.com/r/jgomezdans/uclgeog"><code>jgomezdans/uclgeog</code></a> which is derived from <a href="https://github.com/jgomezdans/geog_docker"><code>geog_docker</code></a>. </p>
@@ -816,7 +965,7 @@ but may also be run on the repository. It should usually be run by the user and 
 </code></pre>
 <p>The main purpose of the script is to run the <code>conda</code> setup to make the conda environment <code>geog0111</code> from <a href="../copy/environment.yml">Docker/environment.yml</a>.
 It will detect if windows is being used (so run <code>conda.bat</code>) and test to see if the environment <code>geog0111</code> already exists. If it does, it can be removed (<code>--remove</code>) or a foce install done (<code>--force</code>). Otherwise, it will try to update the environment from <a href="../copy/environment.yml">Docker/environment.yml</a>.</p>
-<p>It generates a file <a href="copy/.dockenvrc"><code>~/.dockenvrc</code></a> to be run on shell startup to activate the environment.</p>
+<p>It generates a file <a href="copy/dockenvrc"><code>~/.dockenvrc</code></a> to be run on shell startup to activate the environment.</p>
 <p>After running this script, you should manually activate the environment:</p>
 <pre><code>conda activcate geog0111
 </code></pre>
@@ -875,6 +1024,27 @@ It runs <code>mkdocs build</code> locally. The documents can be viewed with:</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../051_Modelling_and_optimisation/" title="Modelling And Optimisation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Modelling And Optimisation
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

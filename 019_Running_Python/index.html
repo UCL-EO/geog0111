@@ -803,6 +803,44 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Developer Notes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developer Notes" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Developer Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bin/" title="Scripts" class="md-nav__link">
+      Scripts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -1002,7 +1040,7 @@
 </ul>
 <p>In particular, you will need to recall how to use:</p>
 <ul>
-<li><a href="000_Unix.md"><code>unix</code> commands</a>: <code>ls -l; chmod</code></li>
+<li><a href="../002_Unix/"><code>unix</code> commands</a>: <code>ls -l; chmod</code></li>
 <li><a href="../017_Functions/"><code>functions</code></a></li>
 </ul>
 <h2 id="running-python-code-in-a-file">Running Python  Code in a file</h2>
@@ -1275,7 +1313,7 @@ hello('Hermione')
 </code></pre>
 
 <p>We have seen that that code operates correctly -- it is very good practice to test any small incremental developments in your code in this way.</p>
-<p>Next, let's think about how to embed that modified function in our code in our file. We will call the code <a href="work/hello.py"><code>work/hello.py</code></a>, and copy most of it from the previous example. We need to make sure we update any document strings, and also take care that we are calling the correct function (it is <code>hello()</code> now, not <code>helloWorld()</code> as previously).</p>
+<p>Next, let's think about how to embed that modified function in our code in our file. We will call the code <code>work/hello.py</code> and copy most of it from the previous example. We need to make sure we update any document strings, and also take care that we are calling the correct function (it is <code>hello()</code> now, not <code>helloWorld()</code> as previously).</p>
 <p>Last then, when we make the call to <code>hello()</code> from the <code>main()</code> function, we need to make sure we pass it a string that it can print out, For example:</p>
 <pre><code>def main():
     hello('Fred')

@@ -42,6 +42,8 @@ GEOG0111 Scientific Computing
  050_Linear_models.md
  051_Modelling_and_optimisation.md
 
+ bin.md
+
 Indices and tables
 ==================
 

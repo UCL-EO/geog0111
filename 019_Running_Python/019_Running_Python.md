@@ -27,7 +27,7 @@ You will need some understanding of the following:
 
 In particular, you will need to recall how to use:
 
-   - [`unix` commands](000_Unix.md): `ls -l; chmod`
+   - [`unix` commands](002_Unix.md): `ls -l; chmod`
    - [`functions`](017_Functions.md)
  
 
@@ -401,7 +401,7 @@ hello('Hermione')
 
 We have seen that that code operates correctly -- it is very good practice to test any small incremental developments in your code in this way.
 
-Next, let's think about how to embed that modified function in our code in our file. We will call the code [`work/hello.py`](work/hello.py), and copy most of it from the previous example. We need to make sure we update any document strings, and also take care that we are calling the correct function (it is `hello()` now, not `helloWorld()` as previously).
+Next, let's think about how to embed that modified function in our code in our file. We will call the code `work/hello.py` and copy most of it from the previous example. We need to make sure we update any document strings, and also take care that we are calling the correct function (it is `hello()` now, not `helloWorld()` as previously).
 
 Last then, when we make the call to `hello()` from the `main()` function, we need to make sure we pass it a string that it can print out, For example:
 
