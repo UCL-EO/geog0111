@@ -76,7 +76,7 @@ awk < mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=
 cat config/index_tail.rst >> docs/index.rst
 
 echo "--> generating mkdocs files for docs"
-geog0111/mkdocs_prep.py 
+geog0111/mkdocs_prep.py --dev
 echo "--> building mkdocs"
 mkdocs build -v
 cd docs

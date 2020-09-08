@@ -83,7 +83,7 @@ but may also be run on the repository. It should usually be run by the user and 
 The main purpose of the script is to run the `conda` setup to make the conda environment `geog0111` from [Docker/environment.yml](copy/environment.yml).
 It will detect if windows is being used (so run `conda.bat`) and test to see if the environment `geog0111` already exists. If it does, it can be removed (`--remove`) or a foce install done (`--force`). Otherwise, it will try to update the environment from [Docker/environment.yml](copy/environment.yml).
 
-It generates a file [`~/.dockenvrc`](copy/.dockenvrc) to be run on shell startup to activate the environment.
+It generates a file [`~/.dockenvrc`](copy/dockenvrc) to be run on shell startup to activate the environment.
 
 After running this script, you should manually activate the environment:
 

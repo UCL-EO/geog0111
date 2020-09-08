@@ -128,7 +128,7 @@ echo "$conda activate $conda_env" >> ~/.dockenvrc
 
 echo "-> copy files to ${base}/copy"
 mkdir -p $base/copy
-cp ~/.dockenvrc ${base}/copy
+cp ~/.dockenvrc ${base}/copy/dockenvrc
 cp ${base}/setup.py ${base}/copy
 cp ${base}/Docker/environment.yml ${base}/copy
 

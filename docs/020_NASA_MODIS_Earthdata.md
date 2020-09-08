@@ -25,7 +25,7 @@ The are no assumptions that you know any python code at this point: the use of c
 
 For completeness, we list the python and other codes below.
 
-We do assume that you have basic familiarity with using [Jupyter notebooks](notebook.md).
+We do assume that you have basic familiarity with using [Jupyter notebooks](001_Notebook_use.md).
 
 You should run through the [Credentials](#Credentials) section below before proceeding further with these notes.
 

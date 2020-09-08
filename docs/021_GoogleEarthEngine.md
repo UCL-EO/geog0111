@@ -17,7 +17,7 @@ We do not intend this to be a complete course on using GEE, and we do not want y
 
 ### Prerequisites
 
-You will need some understanding Python basics from part 1 of this course (notebooks with the code [`1??`](.))
+You will need some understanding Python basics from part 1 of this course (notebooks with the code XXX )
 
 You will also need to make sure you have a [google account](https://support.google.com/accounts/answer/27441?hl=en) to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at [signup.earthengine.google.com]( https://signup.earthengine.google.com/). **You will need to do this before we start the class** as you will need to wait for approval from Google.
 

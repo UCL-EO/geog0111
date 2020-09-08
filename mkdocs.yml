@@ -43,6 +43,8 @@ nav:
 - Modelling:
   - Linear Models: 050_Linear_models.md
   - Modelling And Optimisation: 051_Modelling_and_optimisation.md
+- Developer Notes:
+  - Scripts: bin.md
 plugins:
 - git-revision-date-localized
 - exclude:

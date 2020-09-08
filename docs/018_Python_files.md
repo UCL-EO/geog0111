@@ -18,13 +18,6 @@ You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
 * [005 Getting help](005_Help.md)
-* [010 Variables, comments and print()](010_Python_Introduction.md)
-* [011 Data types](011_Python_data_types.md) In particular, you should be understand strings.
-* [012 Groups](012_Python_groups.md) In particular, lists.
-* [013 Control](013_Python_control.md) In particular, `if`.
-* [014 String formatting](014_Python_strings_1.md)
-* [015 String methods](015_Python_string_methods.md)
-
 
 Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
 

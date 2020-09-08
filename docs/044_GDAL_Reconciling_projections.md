@@ -308,7 +308,7 @@ shpfile = "data/TM_WORLD_BORDERS-0.3.shp"
     Follow the [ECMWF instructions](https://confluence.ecmwf.int/display/WEBAPI/Access+ECMWF+Public+Datasets)
 
 **Sort data prerequisities** 
-* Run the codes in the [prerequisites section](Chapter3_6A_GDAL_Reconciling_projections_prerequisites.md)
+* Run the codes in the [prerequisites section](044_GDAL_Reconciling_projections.md)
 
     OR
     

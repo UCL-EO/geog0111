@@ -5,8 +5,6 @@
 
 ## 3.2.1 Introduction
 
-[[up to 3.0](Chapter3_1_GDAL.md)]
-
 In this section, you will learn how to:
 
 * scan the directories (on the Earthdata server) where the MODIS data are stored

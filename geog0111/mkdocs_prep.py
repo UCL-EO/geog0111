@@ -13,7 +13,9 @@ README.md.
 It inserts md files of the form notebooks_lab/???_*.md
 and filters answers
 '''
-dev = True
+dev = False
+if '--dev' in sys.argv:
+  dev = True
 
 # load mkdocs.yml
 with open('config/mkdocs.yml','r') as f:
@@ -127,6 +129,7 @@ if dev:
   k,v = "Scripts","bin.md"
   other=[dict(zip([k],[v]))]
   this = {"Developer Notes":other}
+  nav.append(this)
 
 mkd['nav'] = nav
 
