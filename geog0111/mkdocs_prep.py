@@ -44,7 +44,8 @@ files.sort()
 
 #defaults make sure one exists for all we need
 defaults = {
-  'theme':{'favicon':'images/ucl_logo.png'},
+  'icon':'images/ucl_logo.png'
+  'theme':{'favicon':'images/ucl.png'},
   'site_name':'GEOG0111',
   'description':'',
   'author':'A. Nonymous',
@@ -57,7 +58,7 @@ info=defaults
 
 
 index = f'''
-![UCL]({info['theme']['favicon']})
+![UCL]({info['icon']})
 
 # {info['site_name']}
 
