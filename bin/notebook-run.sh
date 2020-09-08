@@ -58,4 +58,4 @@ rm note*/*nbconvert.ipynb
 
 echo "backups in backup.$$ : delete manually"
 
-echo "now run bin/notebook-run-2.sh"
+echo "now run bin/notebook-mkdocs.sh"

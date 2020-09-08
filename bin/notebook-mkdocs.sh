@@ -2,7 +2,7 @@
 
 # shell to sort nb
 # documentation
-# run bin/notebook-run-1.sh
+# run bin/notebook-run.sh
 
 rm -rf docs
 mkdir -p docs

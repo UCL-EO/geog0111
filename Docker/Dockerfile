@@ -29,6 +29,6 @@ RUN cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
     bin/postBuild
 
 # shouldnt need this
-RUN pip install mkdocs
+#RUN pip install mkdocs
 
 WORKDIR "${HOME}"/geog0111/notebooks

@@ -14,12 +14,18 @@ then
   echo "--> Using windows"
 fi
 force=FALSE
+remove=FALSE
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
 key="$1"
 case $key in
+    -r|--remove)
+    remove=TRUE
+    force=TRUE
+    shift # past argument
+    ;;
     -f|--force)
     force=TRUE
     shift # past argument
@@ -29,7 +35,7 @@ case $key in
     shift # past argument
     ;;
     -h|--help)
-    echo "$THIS [-f|--force] | [-n|--no_force] ']"
+    echo "$THIS [-r | --remove] [-f|--force] | [-n|--no_force]"
     shift # past argument
     exit
 esac
@@ -87,9 +93,14 @@ existsenv=$($conda env list | grep "$conda_env" |awk '{print $1}')
 echo "environment: $conda_env"
 echo "--> exists : $existsenv"
 echo "--> force  : $force"
+echo "--> remove : $remove"
 
 # already exists
 if [ ! -z "$existsenv" ] ; then
+  if [ $remove == TRUE ] ; then
+    echo "--> remove $conda_env" 
+    conda remove -y -n uclgeog --all
+  fi
   if [ $force == TRUE ] ; then
     echo "--> forcing create env $conda_env from environment.yml"
     $conda env create  -n "$conda_env" --force  -f environment.yml
@@ -115,8 +126,8 @@ echo "$conda activate $conda_env" >> ~/.dockenvrc
 echo "----> cd back to ${here}" 
 cd "${here}"
 
-echo "--> run bin/setdirs.sh"
-bin/setdirs.sh
+echo "--> run bin/link-set.sh"
+bin/link-set.sh
 
 # tidy
 echo "--> tidy up"
