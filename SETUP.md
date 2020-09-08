@@ -106,7 +106,7 @@ symbolic link to `data` `$repo` `images` in `..`. Since relative paths are used,
 this is portable.
 
 In addition, it puts a link in from `~/$repo` to `$repo` for convenience (unless this 
-already exists). It also puts a link in from `$UCLDATA` to `data/ucl` (default `$HOME/Data`)
+already exists). It also puts a link in from `$UCLDATA` to `data/ucl` (default `${HOME}/geog0111/work`)
 so that a system-wide data directory can be put in, and referred to asd `data/ucl` from
 scripts.
 

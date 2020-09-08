@@ -68,7 +68,7 @@ cd "${here}"
 
 if [ -z "$UCLDATA" ] ; then
   echo "--> UCLDATA not set"
-  export UCLDATA="${HOME}/Data"
+  export UCLDATA="${HOME}/geog0111/work"
   echo "--> UCLDATA -> $UCLDATA"
 fi
 

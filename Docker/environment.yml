@@ -48,6 +48,7 @@ dependencies:
   - nbgitpuller
   - mkdocs
   - pycodestyle
+  - sphinx
   - pip:
     - mkdocs-jupyter
     - urlpath
