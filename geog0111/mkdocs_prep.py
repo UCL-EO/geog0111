@@ -135,8 +135,8 @@ for s in answernames.tolist():
   that = dict(zip([k],[v]))
   other.append(that)
 
-  this = {"Answers":other}
-  nav.append(this)
+this = {"Answers":other}
+nav.append(this)
 
 
 # put in dev notes?
