@@ -91,4 +91,13 @@ fi
 
 cd $here
 
+cd bin
+if [ -L copy ] ; then
+  rm -f copy
+else
+  echo "linking bin/copy to ../copy"
+  ln -s ../copy copy
+fi
+cd $here
+
 echo "----> done running $0 from $here"

@@ -1,5 +1,5 @@
 
-![UCL](images/ucl_logo.png)
+![UCL](images/ucl.png)
 
 # GEOG0111
 

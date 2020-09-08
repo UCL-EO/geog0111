@@ -1,7 +1,7 @@
 
 ## Docker
 
-The Docker file is in [`Docker/Dockerfile`](Docker/Dockerfile). This is a minimal setup for running notebooks for this course, being based on [`jgomezdans/uclgeog`](https://hub.docker.com/r/jgomezdans/uclgeog) which is derived from [`geog_docker`](https://github.com/jgomezdans/geog_docker). 
+The Docker file is in [`Docker/Dockerfile`](copy/Dockerfile). This is a minimal setup for running notebooks for this course, being based on [`jgomezdans/uclgeog`](https://hub.docker.com/r/jgomezdans/uclgeog) which is derived from [`geog_docker`](https://github.com/jgomezdans/geog_docker). 
 
 This docker is stored on dockerhub as [`ucleo/geog0111`](https://hub.docker.com/r/ucleo/geog0111) and derived from this repo [`UCL-EO/geog0111`](https://github.com/UCL-EO/geog0111).
 
@@ -75,15 +75,15 @@ The next time you run thiis command, it should recognise an existing docker imag
 
 ### `bin/setup.sh`
 
-[`bin/setup.sh`](bin/setup.sh) is the core setup script. It is run for example from [`Docker/Dockerfile`](Docker/Dockerfile)
+[`bin/setup.sh`](bin/setup.sh) is the core setup script. It is run for example from [`Docker/Dockerfile`](copy/Dockerfile)
 but may also be run on the repository. It should usually be run by the user and should work from any operating system.
 
     setup.sh [-r | --remove] [-f|--force] | [-n|--no_force] 
 
-The main purpose of the script is to run the `conda` setup to make the conda environment `geog0111` from [Docker/environment.yml](Docker/environment.yml).
-It will detect if windows is being used (so run `conda.bat`) and test to see if the environment `geog0111` already exists. If it does, it can be removed (`--remove`) or a foce install done (`--force`). Otherwise, it will try to update the environment from [Docker/environment.yml](Docker/environment.yml).
+The main purpose of the script is to run the `conda` setup to make the conda environment `geog0111` from [Docker/environment.yml](copy/environment.yml).
+It will detect if windows is being used (so run `conda.bat`) and test to see if the environment `geog0111` already exists. If it does, it can be removed (`--remove`) or a foce install done (`--force`). Otherwise, it will try to update the environment from [Docker/environment.yml](copy/environment.yml).
 
-It generates a file [`~/.dockenvrc`](~/.dockenvrc) to be run on shell startup to activate the environment.
+It generates a file [`~/.dockenvrc`](copy/.dockenvrc) to be run on shell startup to activate the environment.
 
 After running this script, you should manually activate the environment:
 
@@ -91,7 +91,7 @@ After running this script, you should manually activate the environment:
 
 ### `bin/postBuild`
 
-[`bin/postBuild`](bin/postBuild) is run after [`bin/setup.sh`](bin/setup.sh) and does jobs such as setting up the jupyter notebook extensions, installing the `geog0111` package locally (using [`setup.py`](setup.py)) and ensuring shell initialisation is properly done for subsequent sessions. It should be run the the user, and woul;d normally be run after any new run of [`bin/setup.sh`](bin/setup.sh).
+[`bin/postBuild`](bin/postBuild) is run after [`bin/setup.sh`](bin/setup.sh) and does jobs such as setting up the jupyter notebook extensions, installing the `geog0111` package locally (using [`setup.py`](copy/setup.py)) and ensuring shell initialisation is properly done for subsequent sessions. It should be run the the user, and woul;d normally be run after any new run of [`bin/setup.sh`](bin/setup.sh).
 
 ### `bin/link-set.sh`
 
