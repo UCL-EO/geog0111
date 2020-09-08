@@ -1,0 +1,10 @@
+mkdocs
+sphinx
+mkdocs-jupyter
+mknotebooks
+mkdocs-material
+mkdocs-exclude
+mkdocs-git-revision-date-localized-plugin
+sphinx>=2.4
+recommonmark
+sphinx-typlog-theme

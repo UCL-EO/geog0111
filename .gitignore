@@ -2,7 +2,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 ??=???=?
-docs
+docs/_*
 *.swp
 data/lai_data_*.npz
 data/TM_WORLD_BORDERS-0.3.dbf
@@ -17,8 +17,8 @@ work
 site
 notebooks/OneDrive/*
 notebooks/OneDrive
-notebooks_*/*
-notebooks_*
+#notebooks_*/*
+#notebooks_*
 build
 dist
 *egg-info
@@ -95,7 +95,6 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs
 
 # PyBuilder
 target/
