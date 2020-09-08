@@ -46,8 +46,6 @@ At the end of the module, students should:
 * have an understanding of the technical issues specific to image-based analysis, model implementation and scientific visualisation
 
 
-# Timetable
-
 ## Timetable
 
 The course takes place over 10 weeks in term 1, usually in the Geography Department Unix Computing Lab (PB110) in the [Northwest wing](http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003), UCL. 

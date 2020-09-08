@@ -1,6 +1,10 @@
 #!/bin/bash
   
 here=$(pwd)
+base="$(cd $(dirname "$0") &&  cd .. &&  pwd -P && cd "$here")"
+repo=$(echo $base | awk -F/ '{print $NF}')
+
+
 cmddir=$(dirname $0)
 
 export OS=$(uname|cut -d '-' -f 1)
@@ -122,6 +126,11 @@ echo '    . "/opt/conda/etc/profile.d/conda.sh"' >>  ~/.dockenvrc
 echo 'fi' >>  ~/.dockenvrc
 echo "$conda activate $conda_env" >> ~/.dockenvrc
 
+echo "-> copy files to ${base}/copy"
+mkdir -p $base/copy
+cp ~/.dockenvrc ${base}/copy
+cp ${base}/setup.py ${base}/copy
+cp ${base}/Docker/environment.yml ${base}/copy
 
 echo "----> cd back to ${here}" 
 cd "${here}"

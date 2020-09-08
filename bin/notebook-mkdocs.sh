@@ -50,6 +50,8 @@ echo "--> staging markdown files into docs"
 mv notebooks_lab/*_files docs
 mv notebooks_lab/*md docs
 rm -f docs/README.md
+# scripts
+cp bin/README docs/bin.md
 
 for i in docs/*md
 do
@@ -69,16 +71,16 @@ EOF
 
 
 echo "--> generating sphinx files for docs"
-cp  data/index_head.rst docs/index.rst
+cp  config/index_head.rst docs/index.rst
 awk < mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=0} (start==1 && $1!="nav"){print $NF}' >> docs/index.rst
-cat data/index_tail.rst >> docs/index.rst
+cat config/index_tail.rst >> docs/index.rst
 
 echo "--> generating mkdocs files for docs"
 geog0111/mkdocs_prep.py 
 echo "--> building mkdocs"
 mkdocs build -v
 cd docs
-cp ../data/requirements.txt .
+cp ../config/requirements.txt .
 #sphinx build html latexpdf
 cd ..
 echo "----> done running $0 from $here"

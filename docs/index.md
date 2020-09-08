@@ -1,5 +1,5 @@
 
-![UCL](images/ucl_logo.png)
+![UCL](images/ucl.png)
 
 # GEOG0111
 
@@ -56,8 +56,6 @@ At the end of the module, students should:
 * have an understanding of algorithm development and be able to use widely used scientific computing software to manipulate datasets and accomplish analytical tasks
 * have an understanding of the technical issues specific to image-based analysis, model implementation and scientific visualisation
 
-
-# Timetable
 
 ## Timetable
 
