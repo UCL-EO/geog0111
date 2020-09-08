@@ -28,7 +28,4 @@ RUN . /opt/conda/etc/profile.d/conda.sh && conda activate ${CONDA_DEFAULT_ENV}
 RUN cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
     bin/postBuild
 
-# shouldnt need this
-#RUN pip install mkdocs
-
 WORKDIR "${HOME}"/geog0111/notebooks
