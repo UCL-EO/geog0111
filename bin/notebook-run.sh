@@ -1,6 +1,25 @@
 #!/bin/bash
 
 
+
+here=$(pwd)
+base="$(cd $(dirname "$0") &&  cd .. &&  pwd -P && cd "$here")"
+repo=$(echo $base | awk -F/ '{print $NF}')
+
+cd $base
+here=$base
+echo "----> running $0 from $here"
+echo "--> location: $base"
+echo "--> repo: $repo"
+
+# HOME may not be set on windows
+if [ -z "$HOME" ] ; then
+  cd ~
+  HOME=$(pwd)
+  echo "--> HOME $HOME"
+  cd "$here"
+fi
+
 rm -f notebooks_lab/*ipynb
 mkdir -p backup.$$
 cp notebooks/* backup.$$
@@ -55,6 +74,8 @@ do
 done
 # delete the ones we dont save
 rm note*/*nbconvert.ipynb
+
+echo "----> done running $0 from $here"
 
 echo "backups in backup.$$ : delete manually"
 
