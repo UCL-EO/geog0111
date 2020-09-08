@@ -134,8 +134,8 @@ for s in answernames.tolist():
           replace('Modis','MODIS').\
           replace('Downloa','Download')
   v = s
-    that = dict(zip([k],[v]))
-    other.append(that)
+  that = dict(zip([k],[v]))
+  other.append(that)
 
   this = {"Answers":other}
   nav.append(this)
