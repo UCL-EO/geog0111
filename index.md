@@ -79,5 +79,3 @@ We will generally use `jupyter` notebooks for running interactive Python program
 
 
 
-# Notes
-
