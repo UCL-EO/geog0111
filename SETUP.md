@@ -5,6 +5,8 @@ The Docker file is in [`Docker/Dockerfile`](Docker/Dockerfile). This is a minima
 
 This docker is stored on dockerhub as [`ucleo/geog0111`](https://hub.docker.com/r/ucleo/geog0111) and derived from this repo [`UCL-EO/geog0111`](https://github.com/UCL-EO/geog0111).
 
+It is automatically run from [travis](https://travis-ci.com/github/UCL-EO/geog0111) on a new load, so you shouldn't need to generate the docker manually.
+
 The docker cleans out the environment for `uclgeog`, as we want opne called `geog0111`, clones [this repository](https://github.com/UCL-EO/geog0111) and runs [`bin/setup.sh`](bin/setup.sh) to install the `geog0111` environment. It activates the environment and runs [`bin/postBuild`](bin/postBuild). 
 
 ### Clean up docker files
