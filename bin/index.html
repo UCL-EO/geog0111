@@ -814,14 +814,14 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 but may also be run on the repository. It should usually be run by the user and should work from any operating system.</p>
 <pre><code>setup.sh [-r | --remove] [-f|--force] | [-n|--no_force]
 </code></pre>
-<p>The main purpose of the script is to run the <code>conda</code> setup to make the conda environment <code>geog0111</code> from <a href="copy/environment.yml">Docker/environment.yml</a>.
-It will detect if windows is being used (so run <code>conda.bat</code>) and test to see if the environment <code>geog0111</code> already exists. If it does, it can be removed (<code>--remove</code>) or a foce install done (<code>--force</code>). Otherwise, it will try to update the environment from <a href="copy/environment.yml">Docker/environment.yml</a>.</p>
+<p>The main purpose of the script is to run the <code>conda</code> setup to make the conda environment <code>geog0111</code> from <a href="../copy/environment.yml">Docker/environment.yml</a>.
+It will detect if windows is being used (so run <code>conda.bat</code>) and test to see if the environment <code>geog0111</code> already exists. If it does, it can be removed (<code>--remove</code>) or a foce install done (<code>--force</code>). Otherwise, it will try to update the environment from <a href="../copy/environment.yml">Docker/environment.yml</a>.</p>
 <p>It generates a file <a href="copy/.dockenvrc"><code>~/.dockenvrc</code></a> to be run on shell startup to activate the environment.</p>
 <p>After running this script, you should manually activate the environment:</p>
 <pre><code>conda activcate geog0111
 </code></pre>
 <h3 id="binpostbuild"><code>bin/postBuild</code></h3>
-<p><a href="bin/postBuild"><code>bin/postBuild</code></a> is run after <a href="setup.sh"><code>bin/setup.sh</code></a> and does jobs such as setting up the jupyter notebook extensions, installing the <code>geog0111</code> package locally (using <a href="copy/setup.py"><code>setup.py</code></a>) and ensuring shell initialisation is properly done for subsequent sessions. It should be run the the user, and woul;d normally be run after any new run of <a href="setup.sh"><code>bin/setup.sh</code></a>.</p>
+<p><a href="bin/postBuild"><code>bin/postBuild</code></a> is run after <a href="setup.sh"><code>bin/setup.sh</code></a> and does jobs such as setting up the jupyter notebook extensions, installing the <code>geog0111</code> package locally (using <a href="../copy/setup.py"><code>setup.py</code></a>) and ensuring shell initialisation is properly done for subsequent sessions. It should be run the the user, and woul;d normally be run after any new run of <a href="setup.sh"><code>bin/setup.sh</code></a>.</p>
 <h3 id="binlink-setsh"><code>bin/link-set.sh</code></h3>
 <p><a href="link-set.sh"><code>bin/link-set.sh</code></a> is the directory linking script. 
 It should usually be run by the user.</p>

@@ -88,6 +88,12 @@ else
   echo "linking docs/bin to ../bin"
   ln -s ../bin bin
 fi
+if [ -L copy ] ; then
+  rm -f copy
+else
+  echo "linking docs/copy to ../copy"
+  ln -s ../copy copy
+fi
 
 cd $here
 
