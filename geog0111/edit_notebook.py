@@ -116,14 +116,14 @@ class EditNotebook():
         f.write(self.README)
       
       # sym link for subs to cwd
-      for s in subs:
-        t = Path(here,s)
-        if t.exists() and t.is_dir():
-          p = Path(outdir,s)
-          if p.exists():
-            p.unlink()
-          p.symlink_to(t,target_is_directory=True)
-          self.log(f'--> link {p.as_posix()} to {t.as_posix()}')  
+      #for s in subs:
+      #  t = Path(here,s)
+      #  if t.exists() and t.is_dir():
+      #    p = Path(outdir,s)
+      #    if p.exists():
+      #      p.unlink()
+      #    p.symlink_to(t,target_is_directory=True)
+      #    self.log(f'--> link {p.as_posix()} to {t.as_posix()}')  
 
     def trust_notebook(self,nb_name,run=False):
       '''
