@@ -70,8 +70,6 @@ index = f'''
 
 {info['long_description']}
 
-# Notes
-
 '''
 
 
