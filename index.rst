@@ -68,6 +68,8 @@ GEOG0111 Scientific Computing
  *id001
  *id001
 
+ bin.md
+
 Indices and tables
 ==================
 
