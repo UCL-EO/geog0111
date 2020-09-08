@@ -4,6 +4,8 @@
 # documentation
 # run bin/notebook-run.sh
 
+repo=$(pwd)
+
 rm -rf docs
 mkdir -p docs
 pip install sphinx
@@ -42,7 +44,7 @@ EOF
 
 
 cp  data/index_head.rst docs/index.rst
-awk < ../mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=0} (start==1 && $1!="nav"){print $NF}' >> docs/index.rst
+awk < $repo/mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=0} (start==1 && $1!="nav"){print $NF}' >> docs/index.rst
 cat data/index_tail.rst >> docs/index.rst
 
 geog0111/mkdocs_prep.py 
