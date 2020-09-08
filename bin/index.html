@@ -19,7 +19,7 @@
     
     
       
-        <title>Bin - GEOG0111</title>
+        <title>Index - GEOG0111</title>
       
     
     
@@ -85,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Bin
+              Index
             
           </span>
         </div>
@@ -750,7 +750,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/bin.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/bin/README.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -758,7 +758,7 @@
                   
                 
                 
-                  <h1>Bin</h1>
+                  <h1>Index</h1>
                 
                 <h2 id="docker">Docker</h2>
 <p>The Docker file is in <a href="Docker/Dockerfile"><code>Docker/Dockerfile</code></a>. This is a minimal setup for running notebooks for this course, being based on <a href="https://hub.docker.com/r/jgomezdans/uclgeog"><code>jgomezdans/uclgeog</code></a> which is derived from <a href="https://github.com/jgomezdans/geog_docker"><code>geog_docker</code></a>. </p>
@@ -837,11 +837,11 @@ so that a system-wide data directory can be put in, and referred to asd <code>da
 scripts.</p>
 <p>This is called <a href="bin/setup.sh"><code>bin/setup.sh</code></a>, but may be run independently to fix any broken links.</p>
 <h3 id="binnotebook-runsh"><code>bin/notebook-run.sh</code></h3>
-<p>This script runs all notebooks in <a href="notebooks"><code>notebooks</code></a> using <code>jupyter nbconvert</code>. The files are saved as <code>*.nbconvert.md</code>. The running is tolerant to errors. If the file is no different to the original, the original is kept. Otherwise the user is prompted to see if you want to replace the original notebook with the one that has been executed. You are provided with information on file sizes, which should help with this decision: you might not want to save a notebook that is (much) smaller than the original. Backups are stored in <code>backup.$$</code> which you need to manually clear.</p>
+<p>This script runs all notebooks in <a href="notebooks"><code>notebooks</code></a> using <code>jupyter nbconvert</code>. The files are saved as <code>*.nbconvert.ipynb</code>. The running is tolerant to errors. If the file is no different to the original, the original is kept. Otherwise the user is prompted to see if you want to replace the original notebook with the one that has been executed. You are provided with information on file sizes, which should help with this decision: you might not want to save a notebook that is (much) smaller than the original. Backups are stored in <code>backup.$$</code> which you need to manually clear.</p>
 <p>You might run this as a pre-cursor to <a href="bin/notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a>.</p>
 <h3 id="binnotebook-mkdocssh"><code>bin/notebook-mkdocs.sh</code></h3>
-<p>This script <a href="bin/notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a> filters notebooks in <a href="notebooks"><code>notebooks</code></a> into <a href="notebooks_lab"><code>notebooks_lab</code></a> using <a href="../geog0111/edit_notebook.py"><code>geog0111/edit_notebook.py</code></a>. This filters out noteboom extensions and other features, and makes the notebooks suitable for running in <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>, rather than just <code>jupyter noteboook</code>. It strips out exercises defiuned in <code>exercise2</code> cells, into new notebooks with the pattern <code>_answers.md</code>.</p>
-<p>The script takes the <a href="notebooks_lab"><code>notebooks_lab</code></a> notebooks, and converts to markdown in <a href="docs"><code>docs</code></a> and prepares the environment for the document generator <code>mkdocs</code> using <a href="../geog0111/mkdocs_prep.py"><code>geog0111/mkdocs_prep.py</code></a>. 
+<p>This script <a href="bin/notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a> filters notebooks in <a href="notebooks"><code>notebooks</code></a> into <a href="notebooks_lab"><code>notebooks_lab</code></a> using <a href="geog0111/edit_notebook.py"><code>geog0111/edit_notebook.py</code></a>. This filters out noteboom extensions and other features, and makes the notebooks suitable for running in <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>, rather than just <code>jupyter noteboook</code>. It strips out exercises defiuned in <code>exercise2</code> cells, into new notebooks with the pattern <code>_answers.ipynb</code>.</p>
+<p>The script takes the <a href="notebooks_lab"><code>notebooks_lab</code></a> notebooks, and converts to markdown in <a href="docs"><code>docs</code></a> and prepares the environment for the document generator <code>mkdocs</code> using <a href="geog0111/mkdocs_prep.py"><code>geog0111/mkdocs_prep.py</code></a>. 
 It runs <code>mkdocs build</code> locally. The documents can be viewed with:</p>
 <pre><code>mkdocs serve
 </code></pre>
