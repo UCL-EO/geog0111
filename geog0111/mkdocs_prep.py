@@ -123,20 +123,23 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
   this = {chapter_names[j].strip().title():other}
   nav.append(this)
 
-other = []
-for s in answernames.tolist():
-  k = ' '.join(s.strip('.md').split('_')[1:]).title()
-  k = k.replace('Googleearthengine','Google Earth Engine').\
+  # answers for this section
+  other = []
+  for s in answernames[level[1] == str(i)].tolist():
+    k = ' '.join(s.strip('.md').split('_')[1:]).title()
+    k = k.replace('Googleearthengine','Google Earth Engine').\
           replace('Nasa','NASA').\
           replace('Gdal','GDAL').\
           replace('Modis','MODIS').\
-          replace('Downloa','Download')
-  v = s
-  that = dict(zip([k],[v]))
-  other.append(that)
-
-this = {"Answers":other}
-nav.append(this)
+          replace('Downloa','Download').\
+          replace('Answers','')
+    v = s
+    that = dict(zip([k],[v]))
+    other.append(that)
+  
+  if len(other):
+    this = {"Answers":other}
+    nav.append(this)
 
 
 # put in dev notes?

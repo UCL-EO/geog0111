@@ -41,7 +41,7 @@ GEOG0111 Scientific Computing
 
  050_Linear_models.md
  051_Modelling_and_optimisation.md
- &id001
+
  001_Notebook_use_answers.md
  002_Unix_answers.md
  005_Help_answers.md
@@ -55,18 +55,6 @@ GEOG0111 Scientific Computing
  017_Functions_answers.md
  019_Running_Python_answers.md
  020_NASA_MODIS_Earthdata_answers.md
- *id001
- *id001
- *id001
- *id001
- *id001
- *id001
- *id001
- *id001
- *id001
- *id001
- *id001
- *id001
 
  bin.md
 
