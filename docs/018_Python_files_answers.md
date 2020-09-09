@@ -1,5 +1,156 @@
 # 018 Files and other Resources : Answers to exercises
 
+#### Exercise 1
+
+* Use `Path` to show the file permissions of all files that end `.sh` in the directory `bin`
+
+
+```python
+# ANSWER
+# Use Path to show the file permissions of
+# all files that end .sh in the directory bin
+
+# use glob to get a list of filenames in the directory bin 
+# that end with .sh -> pattern *.sh using a wildcard
+filenames = Path('bin').glob('*.sh')
+# loop over the filenames
+for f in filenames:
+    print(f)
+```
+
+#### Exercise 2
+
+* print out the absolute pathname of the directory that `images/ucl.png` is in
+* print the size of the file in KB to two decimal places
+
+You will need to know how many Bytes in a Kilobyte, and how to [format a string to two decimal places](012_Python_strings.md#String-formating).
+
+#### Exercise 3
+
+* Using `Path.read_text()` read the text from the file `work/easy.txt` and print the text returned.
+* split the text into lines of text using `str.split()` at each newline, and print out the resulting list
+
+You learned how to split strings in [013_Python_string_methods](013_Python_string_methods.md#split()-and-join())
+
+
+```python
+# ANSWER
+# Using Path.read_text() read the text from the file work/easy.txt 
+# and print the text returned.
+
+# set up the filename
+infile = Path('work','easy.txt')
+# read the text
+read_text = infile.read_text()
+
+# split the text into lines of 
+# text using str.split() at each newline, 
+# and print out the resulting list
+lines = read_text.split('\n')
+print(lines)
+```
+
+
+```python
+# ANSWER 
+# following from above
+
+# set up the filename
+infile = Path('work','easy.txt')
+# read the text
+read_text = infile.read_text()
+
+# print what we did
+print(f'read\n"""{read_text}"""\nfrom {infile}')
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-118-595f63975242> in <module>
+          3 
+          4 # set up the filename
+    ----> 5 infile = Path('work','easy.txt')
+          6 # read the text
+          7 read_text = infile.read_text()
+
+
+    NameError: name 'Path' is not defined
+
+
+
+```python
+# ANSWER
+import json
+
+# show the size of the files 
+# bin/copy/environment.json and bin/copy/environment.yml
+
+# form the file names
+json_file = Path('bin','copy','environment.json')
+yaml_file = Path('bin','copy','environment.yml')
+# loop and print size
+for f in [json_file,yaml_file]:
+    print(f'{f} : {f.stat().st_size} bytes')
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-119-4ac914f8e21e> in <module>
+          6 
+          7 # form the file names
+    ----> 8 json_file = Path('bin','copy','environment.json')
+          9 yaml_file = Path('bin','copy','environment.yml')
+         10 # loop and print size
+
+
+    NameError: name 'Path' is not defined
+
+
+
+```python
+# ANSWER
+
+# read the information from bin/copy/environment.json using Path and json.load() into a variable called 
+# jenv and print the keys of the dictionary jenv
+
+# open file for read
+with json_file.open('r') as f:
+    jenv = json.load(f)
+    
+print(f'jenv keys: {jenv.keys()}')
+
+# use assert to check if the keys are the same
+assert jenv.keys() == env.keys()
+print('passed assertion')
+```
+
+
+```python
+# ANSWER 
+
+# print out the absolute pathname of the 
+# directory that images/ucl.png is in
+abs_name = Path('images/ucl.png').absolute()
+print(abs_name)
+
+# we want the parent!
+print(f'the file {abs_name.name} is in {abs_name.parent}')
+
+# print the size of the file in bytes
+print(f'{abs_name.name} has size {abs_name.stat().st_size} bytes')
+
+# 1 KB is 1024 Bytes
+# .2f is 2 d.p. format
+print(f'{abs_name.name} has size ' +\
+      f'{abs_name.stat().st_size/1024:.2f} KB')
+```
+
 #### Exercise 1
 
 * copy the code above, and modify so that datasets for months `['MAYJUN','JUNJUL','JULAUG']` are plotted on the graph
