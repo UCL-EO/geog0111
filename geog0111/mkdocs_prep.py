@@ -35,11 +35,14 @@ except:
   pass
 
 # write to docs/index.md
-files = list(Path('docs').glob('???_*.md'))
+devs = list(Path('docs').glob('DEV_*.md'))
 answers = list(Path('docs').glob('???_*_answers.md'))
+files = list(Path('docs').glob('???_*.md'))
 
+devs.sort()
 answers.sort()
 files = [f for f in files if f not in answers]
+files = [f for f in files if f not in devs]
 files.sort()
 
 #defaults make sure one exists for all we need
@@ -76,7 +79,6 @@ index = f'''
 with open('docs/index.md','w') as f:
   f.write(index)
 
-# edit mkdocs.yml
 # load mkdocs.yml
 with open('config/mkdocs.yml','r') as f:
   mkd = yaml.safe_load(f)
@@ -84,22 +86,12 @@ print(files)
 
 filenames = np.array([f.name for f in files])
 answernames = np.array([f.name for f in answers])
+devnames = np.array([f.name for f in devs])
 
 num_filenames = np.sort(np.array([f.split('_')[0] for f in filenames]))
-num_answernames = np.sort(np.array([f.split('_')[0] for f in answernames]))
 
 # work out the chapter numbers
 level = np.array([[i[j] for i in num_filenames] for j in range(3)])
-
-#u_levels = np.unique(levels)
-#t_levels = np.arange(len(u_levels))
-#chapter_number = levels.copy()
-#for i in t_levels:
-#  chapter_number[levels == u_levels[i]] = i
-
-
-with open('config/sections.dat','r') as f:
-  section_names = f.readlines()
 
 with open('config/chapters.dat','r') as f:
   chapter_names = f.readlines()
@@ -115,7 +107,7 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
           replace('Nasa','NASA').\
           replace('Gdal','GDAL').\
           replace('Modis','MODIS').\
-          replace('Downloa','Download')
+          replace('Downloa','Download').strip()
     v = s
     that = dict(zip([k],[v]))
     other.append(that)
@@ -132,7 +124,7 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
           replace('Gdal','GDAL').\
           replace('Modis','MODIS').\
           replace('Downloa','Download').\
-          replace('Answers','')
+          replace('Answers','').strip()
     v = s
     that = dict(zip([k],[v]))
     other.append(that)
@@ -144,10 +136,23 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
 
 # put in dev notes?
 if dev:
-  k,v = "Scripts","bin.md"
-  other=[dict(zip([k],[v]))]
-  this = {"Developer Notes":other}
-  nav.append(this)
+  # answers for this section
+  other = []
+  for s in devnames.tolist():
+    k = ' '.join(s.strip('.md').split('_')[1:]).title()
+    k = k.replace('Googleearthengine','Google Earth Engine').\
+          replace('Nasa','NASA').\
+          replace('Gdal','GDAL').\
+          replace('Modis','MODIS').\
+          replace('Downloa','Download').\
+          replace('DEV','').strip()
+    v = s
+    that = dict(zip([k],[v]))
+    other.append(that)
+ 
+  if len(other):
+    this = {"Developers":other}
+    nav.append(this)
 
 mkd['nav'] = nav
 

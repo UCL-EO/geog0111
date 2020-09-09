@@ -52,8 +52,6 @@ pwd
 
 If you are using these notes through the [`JupyterLab`](https://jupyterlab.readthedocs.io/en/stable/) interface you have access to a [terminal](https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash) to run unix commands.
 
-This original directory is now given by the shell variable `${here}`.
-
 ## Navigating the file system
 
 ### `~` `.` `..`
@@ -89,6 +87,8 @@ pwd
 
 changes directory to our home, and prints the directory name.
 
+In the following command, we use `cd ..` to go up one directory. Notice that each time we start a new shell here, the location is re-set to the location of these notebooks (e.g. `geog0111/notebooks` or `geog0111/notebooks_lab` depending on where you run the notebook from).
+
 
 ```bash
 %%bash
@@ -97,32 +97,14 @@ cd ..
 pwd
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    CalledProcessError                        Traceback (most recent call last)
-
-    <ipython-input-108-beb4c6171dd7> in <module>
-    ----> 1 get_ipython().run_cell_magic('bash', '', 'pwd\ncd ..\npwd\n')
-    
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/IPython/core/interactiveshell.py in run_cell_magic(self, magic_name, line, cell)
+    /Users/plewis/Documents/GitHub/geog0111/notebooks
+    /Users/plewis/Documents/GitHub/geog0111
 
 
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/IPython/core/magics/script.py in named_script_magic(line, cell)
+#### Exercise 1
 
-
-    <decorator-gen-110> in shebang(self, line, cell)
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/IPython/core/magic.py in <lambda>(f, *a, **k)
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/IPython/core/magics/script.py in shebang(self, line, cell)
-
-
-    CalledProcessError: Command 'b'pwd\ncd ..\npwd\n'' died with <Signals.SIGKILL: 9>.
-
+* Use `cd` and `..` to move one directory at a time to your home directory. Check where you are at each stage using `pwd`.
+* Use `cd` and `~` to go straight to your home directory. Then go from there back to the notebook directory. Check where you are at each stage using `pwd`.
 
 ### `ls` `ls -lh` `*`
 
@@ -150,7 +132,7 @@ cd ~/geog0111
 ls -lh README.md
 ```
 
-    -rw-r--r--  1 plewis  staff   321B  6 Sep 22:34 README.md
+    -rw-r--r--  1 plewis  staff   3.1K  9 Sep 10:28 README.md
 
 
 Here, the file size if `321B` (321 Bytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
@@ -177,6 +159,71 @@ Following that, we interpret the field `rw-r--r--` from above as `644`. The most
     
  
 
+#### Exercise 2
+
+* examine the file permissions for files `bin/*` (in the directory `bin`)
+* what do you notice about these? 
+* why do you think this is so?
+
+
+```bash
+%%bash
+
+# pwd
+pwd
+
+# * examine the file permissions in the directory bin
+ls -lh bin/*
+
+# * what do you notice about these?
+cat << EOF
+===============================
+* what do you notice about these?
+===============================
+Most of them are -rwxr-xr-x, which is 755 so they have read write 
+and execute for the user (7) but only read and execute for others.
+The file bin/README has 644: read and write for the user (6) but
+just read for others.
+EOF
+
+cat << EOF
+===============================
+* why do you think this is so?
+===============================
+Most of these are executable commands (scripts to run).
+The ones that end with .sh will be sh or bash scripts
+
+The README file is not executable: its just a text file.
+EOF
+```
+
+    /Users/plewis/Documents/GitHub/geog0111/notebooks
+    -rw-r--r--  1 plewis  staff   7.4K  9 Sep 10:28 bin/README
+    -rwxr-xr-x  1 plewis  staff   217B  9 Sep 10:28 bin/docker-build
+    -rwxr-xr-x  1 plewis  staff   428B  9 Sep 10:28 bin/docker-killall
+    -rwxr-xr-x  1 plewis  staff   1.0K  9 Sep 10:28 bin/docker-run
+    -rwxr-xr-x  1 plewis  staff   569B  9 Sep 10:28 bin/git-remove-all.sh
+    -rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:46 bin/link-set.sh
+    -rwxr-xr-x  1 plewis  staff   2.1K  9 Sep 10:28 bin/notebook-mkdocs.sh
+    -rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/notebook-run.sh
+    -rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/postBuild
+    -rwxr-xr-x  1 plewis  staff   3.4K  9 Sep 10:28 bin/setup.sh
+    ===============================
+    * what do you notice about these?
+    ===============================
+    Most of them are -rwxr-xr-x, which is 755 so they have read write 
+    and execute for the user (7) but only read and execute for others.
+    The file bin/README has 644: read and write for the user (6) but
+    just read for others.
+    ===============================
+    * why do you think this is so?
+    ===============================
+    Most of these are executable commands (scripts to run).
+    The ones that end with .sh will be sh or bash scripts
+    
+    The README file is not executable: its just a text file.
+
+
 ### `chmod`
 
 We can change file permissions with the command `chmod`. For example:
@@ -184,15 +231,14 @@ We can change file permissions with the command `chmod`. For example:
 
 ```bash
 %%bash
-cd ~/geog0111
-ls -lh README.md
-chmod 755 README.md
-ls -lh README.md
-chmod 644 README.md
+ls -lh ../README.md
+chmod 755 ../README.md
+ls -lh ../README.md
+chmod 644 ../README.md
 ```
 
-    -rw-r--r--  1 plewis  staff   321B  6 Sep 22:34 README.md
-    -rwxr-xr-x  1 plewis  staff   321B  6 Sep 22:34 README.md
+    -rw-r--r--  1 plewis  staff   3.1K  9 Sep 10:28 ../README.md
+    -rwxr-xr-x  1 plewis  staff   3.1K  9 Sep 10:28 ../README.md
 
 
 First the permissions of the file are 644 as we saw above, then we use `chmod 755` to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:
@@ -211,7 +257,7 @@ A posix directory name that **starts with** the file separator '/' is called an 
 ls -l ~/geog0111/README.md
 ```
 
-    -rw-r--r--  1 plewis  staff  321  6 Sep 22:34 /Users/plewis/geog0111/README.md
+    -rw-r--r--  1 plewis  staff  3125  9 Sep 10:28 /Users/plewis/geog0111/README.md
 
 
 
@@ -220,11 +266,10 @@ A *relative pathname* is one that does not start with `/`  or `~`. It is specifi
 
 ```bash
 %%bash
-cd ~
-ls -l geog0111/README.md
+ls -l ../README.md
 ```
 
-    -rw-r--r--  1 plewis  staff  321  6 Sep 22:34 geog0111/README.md
+    -rw-r--r--  1 plewis  staff  3125  9 Sep 10:28 ../README.md
 
 
 Recall that we use `..` to specify 'up one level'. Then:
@@ -250,24 +295,9 @@ pwd
     /Users/plewis/geog0111
 
 
-### Create and delete a file `touch` `cat` `rm`
+### Create and delete a file `cat` `rm`
 
-If a file doesn't exist, we can create a zero-sized file using `touch`:
-
-
-```bash
-%%bash
-touch work/newfile.dat work/newerfile.dat
-ls -l work/n*
-```
-
-    -rw-r--r--  1 plewis  staff  0  7 Sep 15:11 work/newerfile.dat
-    -rw-r--r--  1 plewis  staff  0  7 Sep 15:11 work/newfile.dat
-
-
-If it already exists, `touch` just updates the access time.
-
-We can use the command `cat` to create a text files, for example:
+We can use the command `cat` to create a text files from a shell, for example:
 
 
 ```bash
@@ -289,9 +319,7 @@ EOF
 ls -lh work/n*
 ```
 
-    -rw-r--r--  1 plewis  staff    73B  7 Sep 15:11 work/newererfile.dat
-    -rw-r--r--  1 plewis  staff     0B  7 Sep 15:11 work/newerfile.dat
-    -rw-r--r--  1 plewis  staff     0B  7 Sep 15:11 work/newfile.dat
+    -rw-r--r--  1 plewis  staff    73B  9 Sep 11:10 work/newererfile.dat
 
 
 We can also use `cat` to see what is in a file:
@@ -313,16 +341,8 @@ We can use the command `rm` to delete a file:
 
 ```bash
 %%bash
-rm work/newfile.dat
-ls -lh work/n*
-
-# now tidy up
-rm work/n*
+rm work/newererfile.dat
 ```
-
-    -rw-r--r--  1 plewis  staff    73B  7 Sep 15:11 work/newererfile.dat
-    -rw-r--r--  1 plewis  staff     0B  7 Sep 15:11 work/newerfile.dat
-
 
 ### Creating from JupyterLab
 
@@ -336,7 +356,6 @@ Alternatively, use the menu item `File -> New -> Text File` to open a new text f
 
 ### Exercise
 
-* Create a file `work/newfile.dat` using touch and check the new file size.
 * Create a file `work/newfile.dat` using cat and check the new file size.
 * Use the menu item `File -> Open` to edit the file you have created and print the new file size
 * Use `cat` to show the new file content
@@ -366,7 +385,6 @@ In this section, we have learned the following `unix` commands and symbols:
 | `ls -l`  | long list | `ls -l README.md` |
 | `ls -lh`  | human-readable long list |`ls -lh README.md` |
 | `chmod`  | change mode (permissions) | `chmod 644 README.md` |
-| `touch` | create zero-size if it doesn't exists else update access time | `touch README.md`|
 | `rm` | remove | `rm work/n*` |
 | `755` | `rwxr-xr-x` | `chmod 755 bin/*` |
 | `644` | `rw-r--r--` | `chmod 644 README.md` |
