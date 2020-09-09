@@ -1,6 +1,6 @@
 # 014 Groups : Answers to exercises
 
-#### Exercise
+#### Exercise 1
 
 * create a tuple called `t` that contains the integers `1` to `5` inclusive
 * print out the value of `t`
@@ -25,7 +25,7 @@ print(a1,a2,a3,a4,a5)
     1 2 3 4 5
 
 
-#### Exercise
+#### Exercise 2
 
 * copy the code to a new code block below, and test that this works with lists, as well as tuples
 
@@ -61,7 +61,7 @@ print(f'the length of the {type(l0)} {l0} is {llen}')
     the length of the <class 'tuple'> (2, 8, 4, 32, 16) is 5
 
 
-#### Exercise
+#### Exercise 3
 
 * set a list called `l0` with `l0 = [2,8,4,32,16]`
 * find the index of the integer 16 in the tuple/list
@@ -104,7 +104,7 @@ print(f'index of {value} in {l0} is {l0.index(value)}')
     index of 16 in [2, 8, 4, 32, 16] is 4
 
 
-#### Exercise
+#### Exercise 4
 
 * set a list called `l0` with `l0 = [2,8,4,32,16]`
 * find the index of `16` in this list
@@ -157,7 +157,7 @@ print(msg)
     
 
 
-#### Exercise
+#### Exercise 5
 
 * create a list called `months` with the names of the months of the year
 * create a list called `ndays` with the number of days in each month (for this year)

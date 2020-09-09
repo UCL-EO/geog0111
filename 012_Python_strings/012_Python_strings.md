@@ -12,7 +12,7 @@ You will need some understanding of the following:
 
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) In particular, you should be understand strings and know how to find the length of a string.
 
@@ -73,7 +73,7 @@ print("\\")
     \
 
 
-#### Exercise
+#### Exercise 1
 
 * insert a new cell below here
 * Use what we have learned above to print the phrase `"beware of \n and \t"`, including quotes.
@@ -137,7 +137,7 @@ print(string)
 
 Notice how this is different to the case when we escaped the newline characters withing the string. In fact, at the end of each line of text, this string contains `\n` newline characters (we just don't see them).
 
-#### Exercise
+#### Exercise 2
 
 * Insert a new cell below here
 * Write Python code that prints a string containing the following text, spaced over four lines as intended. There should be no space at the start of the line.
@@ -170,7 +170,7 @@ print(dash10,len(dash10))
     ---------- 10
 
 
-#### Exercise
+#### Exercise 3
 
 * In a new cell below, generate a string called `base` and set this to the string `Hello` 
 * print base and its length
@@ -195,7 +195,7 @@ print('I joined',astring,'to',bstring,'with + and got',cstring)
     I joined hello to world with + and got helloworld
 
 
-#### Exercise
+#### Exercise 4
 
 You may have noticed that when we use `+` to join `hello + world` above, there is no space between the words. This is because we have not told the computer to put any such space in.
 
@@ -336,7 +336,7 @@ We could just use file names `0.dat`, `1.dat`, `2.dat`, `3.dat` ... `10.dat`, `1
 
 
 
-#### Exercise
+#### Exercise 5
 
 * set a variable `index` to be an integer between `0` and `99999999`.
 * use this to generate a zero-padded filename of the form `00000010.dat`
@@ -359,7 +359,7 @@ print(string)
     The number you are thinking of is 10.6 but I guessed 13.4
 
 
-#### Exercise
+#### Exercise 6
 
 * Insert a new cell below here
 * create a template string of the form:

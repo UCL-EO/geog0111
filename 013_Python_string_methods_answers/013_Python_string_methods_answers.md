@@ -1,35 +1,6 @@
 # 013 String methods : Answers to exercises
 
-
-```python
-# ANSWER
-
-# lets set up a variable called string to make this clearer
-# and do this piece by piece
-string = 'beware of \n and \t'
-print("wrong:", string)
-
-# escape the \
-string = 'beware of \\n and \\t'
-print("good:\t\t", string, '\tbut no quotes')
-
-# escape the \
-string = '"beware of \\n and \\t"'
-print("great:\t\t", string)
-
-# or ... escape the quotes. as well!
-string = "\"beware of \\n and \\t\""
-print("great again:\t", string)
-```
-
-    wrong: beware of 
-     and 	
-    good:		 beware of \n and \t 	but no quotes
-    great:		 "beware of \n and \t"
-    great again:	 "beware of \n and \t"
-
-
-#### Exercise
+#### Exercise 1
 
 * insert a new cell below here
 * what might a zero-length string look like? Try to generate one, and check its length.
@@ -68,7 +39,7 @@ print(msg)
     
 
 
-#### Exercise
+#### Exercise 2
 
 * Insert a new cell below here
 * Take the multi-line string:
@@ -113,8 +84,8 @@ print(new_string)
     Remote sensing is the process of detecting and monitoring the physical characteristics of an area by measuring its reflected and emitted radiation at a distance (typically from satellite or aircraft).
 
 
-#### Exercise
-
+#### Exercise 3
+ 
 * Insert a new cell below here
 * Take the string 
 
@@ -177,7 +148,7 @@ print ('the length of',quote+s+quote,'is',len(s))
     the length of "Hello there everyone" is 20
 
 
-#### Exercise
+#### Exercise 4
 
 * Insert a new cell below here
 * copy the code above, and see what happens if you set `i` to be the value of length of the string. 
@@ -207,7 +178,7 @@ print('character', i, 'of', string, 'is', string[i])
 
     IndexError                                Traceback (most recent call last)
 
-    <ipython-input-19-c41bb38893d7> in <module>
+    <ipython-input-18-c41bb38893d7> in <module>
          10 # copy the code above, and see what happens if you set `i` to be the value of length of the string.
          11 i = slen
     ---> 12 print('character', i, 'of', string, 'is', string[i])
@@ -234,18 +205,7 @@ print(msg)
 
 ```
 
-    
-     This fails with:
-     
-         IndexError: string index out of range
-    
-     because string[5] does not exist
-     as the length of string is 5: we can
-     only idex from 0 to 4
-    
-
-
-#### Exercise
+#### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.
 
@@ -272,10 +232,6 @@ skip  = 2
 print (s[start:stop:skip])
 ```
 
-    Hello World 11
-    HloWrd
-
-
 
 ```python
 # ANSWER
@@ -285,6 +241,3 @@ s = "Hello World"
 # index 3 is the 4th character !!!
 print(s[3])
 ```
-
-    l
-

@@ -12,7 +12,7 @@ In this session, we will learn about Functions in Python. In essence, a function
 You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) 
 * [012 String formatting](012_Python_strings.md)
@@ -87,7 +87,7 @@ help(hello_world)
     
 
 
-### Exercise
+### Exercise 1
 
 * in a new code cell below, write a function called `my_name` that prints your name
 * demonstrate that your code works (i.e. run it in a code cell)
@@ -329,7 +329,7 @@ remember that if this assertion fails, we get an `AssertionError` (you can try t
 
 We will learn more about code testing later, but for the moment, we suggest that you use one or more `assert` statements that try out different inputs-output matches with your function. 
 
-### Exercise
+### Exercise 2
 
 We assume for this exercise that you know how to create a dictionary from two lists of the same length. This was covered in the [Python_Groups](014_Python_groups.md#dict) notes.
 
@@ -559,84 +559,13 @@ hello('hello','world','again',verbose=True)
     argument 2: again
 
 
-### Exercise
+### Exercise 3
 
 * Starting from the function `list2dict(keys,values)` that you developed above, add keyword arguments to the code to achieve the following:
      - if check=True   : perform checks on the input data
      - if verbose=True : print out information on what is going on in the function
      - set all default keywords to False
 * Make sure you perform tests as above, and that you update document strings
-
-
-```python
-# ANSWER
-# - Confirm that your document string is useful.
-help(list2dict)
-
-```
-
-    Help on function list2dict in module __main__:
-    
-    list2dict(keys, values, check=False, verbose=False)
-        Purpose:
-          generate a dictionary from lists of keys and values
-          
-        Note:
-          the length of the lists must be the same
-        
-        Inputs:
-          - keys   : list of values for the keys
-          - values : list of values to associate with the keys
-          
-        Output:
-          - retval : dictionary with keys and values derived
-                     from the input lists
-                     
-        Optional keyword arguments:
-            verbose : print detailed information, default False
-            check   : perform internal tests
-    
-
-
-
-```python
-#answer
-# tests for the KWARGS
-
-dash='='*5
-# - Write tests that also show the kwargs
-# no kwargs
-print(f'{dash} no kwargs {dash}')
-assert list2dict(['January','February'],[31,29]) == {'January': 31, 'February': 29}
-print('test passed')
-
-print(f'{dash} verbose=True {dash}')
-assert list2dict(['January','February'],[31,29],\
-                          verbose=True) \
-              == {'January': 31, 'February': 29}
-
-print(f'{dash} check=True {dash}')
-assert list2dict(['January','February'],[31,29],\
-                          check=True) \
-              == {'January': 31, 'February': 29}
-
-print(f'{dash} check=True and verbose=True {dash}')
-assert list2dict(['January','February'],[31,29],\
-                          check=True,verbose=True) \
-              == {'January': 31, 'February': 29}
-print('tests passed')
-```
-
-    ===== no kwargs =====
-    test passed
-    ===== verbose=True =====
-    --> zipping dictionary for lists of length 2
-    ===== check=True =====
-    ===== check=True and verbose=True =====
-    --> perfoming sanity check on array lengths
-    --> zipping dictionary for lists of length 2
-    tests passed
-
 
 As a final point of `kwargs`, you might still be wondering why this was specified as:
 

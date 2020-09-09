@@ -1,6 +1,6 @@
 # Functions in Python : Answers to exercises
 
-### Exercise
+### Exercise 1
 
 * in a new code cell below, write a function called `my_name` that prints your name
 * demonstrate that your code works (i.e. run it in a code cell)
@@ -46,7 +46,7 @@ help(my_name)
     
 
 
-### Exercise
+### Exercise 2
 
 We assume for this exercise that you know how to create a dictionary from two lists of the same length. This was covered in the [Python_Groups](014_Python_groups.md#dict) notes.
 
@@ -417,7 +417,7 @@ print('test passed')
     test passed
 
 
-### Exercise
+### Exercise 3
 
 * Starting from the function `list2dict(keys,values)` that you developed above, add keyword arguments to the code to achieve the following:
      - if check=True   : perform checks on the input data
@@ -495,4 +495,75 @@ print(f'function returns: {list2dict(month_names,month_days)}')
 ```
 
     function returns: {'January': 31, 'February': 29}
+
+
+
+```python
+# ANSWER
+# - Confirm that your document string is useful.
+help(list2dict)
+
+```
+
+    Help on function list2dict in module __main__:
+    
+    list2dict(keys, values, check=False, verbose=False)
+        Purpose:
+          generate a dictionary from lists of keys and values
+          
+        Note:
+          the length of the lists must be the same
+        
+        Inputs:
+          - keys   : list of values for the keys
+          - values : list of values to associate with the keys
+          
+        Output:
+          - retval : dictionary with keys and values derived
+                     from the input lists
+                     
+        Optional keyword arguments:
+            verbose : print detailed information, default False
+            check   : perform internal tests
+    
+
+
+
+```python
+#answer
+# tests for the KWARGS
+
+dash='='*5
+# - Write tests that also show the kwargs
+# no kwargs
+print(f'{dash} no kwargs {dash}')
+assert list2dict(['January','February'],[31,29]) == {'January': 31, 'February': 29}
+print('test passed')
+
+print(f'{dash} verbose=True {dash}')
+assert list2dict(['January','February'],[31,29],\
+                          verbose=True) \
+              == {'January': 31, 'February': 29}
+
+print(f'{dash} check=True {dash}')
+assert list2dict(['January','February'],[31,29],\
+                          check=True) \
+              == {'January': 31, 'February': 29}
+
+print(f'{dash} check=True and verbose=True {dash}')
+assert list2dict(['January','February'],[31,29],\
+                          check=True,verbose=True) \
+              == {'January': 31, 'February': 29}
+print('tests passed')
+```
+
+    ===== no kwargs =====
+    test passed
+    ===== verbose=True =====
+    --> zipping dictionary for lists of length 2
+    ===== check=True =====
+    ===== check=True and verbose=True =====
+    --> perfoming sanity check on array lengths
+    --> zipping dictionary for lists of length 2
+    tests passed
 

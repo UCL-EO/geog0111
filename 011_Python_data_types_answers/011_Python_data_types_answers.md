@@ -1,10 +1,44 @@
 # 011 Python data types : Answers to exercises
 
-#### Exercise
+#### Exercise 1
 
 * If the ASCII code for `e` is `101` and the code for `n` is `110`, what is the code for `a`?
 
-#### Exercise
+
+```python
+# ANSWER
+msg = '''
+e -> 101
+n -> 110
+
+since e is the 5th letter of the alphabet and n is the 14th
+it follows that a is 101 - 4 == 110 - 13 = 97
+
+so
+
+a -> 97
+
+Confirm this e.g. on http://www.asciitable.com/
+'''
+print(msg)
+```
+
+    
+    e -> 101
+    n -> 110
+    
+    since e is the 5th letter of the alphabet and n is the 14th
+    it follows that a is 101 - 4 == 110 - 13 = 97
+    
+    so
+    
+    a -> 97
+    
+    Confirm this e.g. on http://www.asciitable.com/
+    
+
+
+#### Exercise 2
 
 * in a code cell below, create a variable called `name` and set it to your name
 * print the string name, and its length
@@ -60,7 +94,7 @@ print("the ASCII code for 'a' is",ord('a'))
 
 Alternatively, we might notice that `n` is the 14th letter of the alphabet, and `e`the 5th, so the code seems to be `97 + N` where `N` is the order the letter appears in the alphabet. We can confirm this with the 15th letter `o` which we see from above has the code `111`. 
 
-#### Exercise
+#### Exercise 3
 
 * insert a new cell below here
 * set a variable called message to contain the string `hello world`
@@ -80,7 +114,7 @@ print(message,type(message))
     hello world <class 'str'>
 
 
-#### Exercise
+#### Exercise 4
 
 Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:
 
@@ -124,7 +158,7 @@ print('has an energy of', E_eV, 'eV')
     has an energy of 2.7552045282834468 eV
 
 
-#### Exercise
+#### Exercise 5
 
 * insert a new cell below here
 * using integer arithmetic, print the result of:
@@ -161,7 +195,7 @@ print('7 divided by 3 is', x, type(x))
     7 divided by 3 is 2.3333333333333335 <class 'float'>
 
 
-#### Exercise
+#### Exercise 6
 
 * Insert a new cell below here
 * Set a variable called `is_class_today` to the value `True`
@@ -183,7 +217,7 @@ print('is_class_today',is_class_today,type(is_class_today))
     is_class_today True <class 'bool'>
 
 
-#### Exercise
+#### Exercise 7
    
 * Insert a new cell below here
 * write a statement to set a variable `x` to `True` and print the value of `x` and `not x` 
@@ -242,6 +276,16 @@ print (True or False)
 
 
 
+#### Exercise 9
+
+* Copy the 3 variable truth table from above onto paper 
+* fill out a column with `A and B`
+* fill out a column with `((A and B) or C) `
+* Try some other compound statements
+
+If you are unsure, or to check your answers, test the response using code, below.
+
+
 ```python
 # ANSWER
 # do the testing here e.g.
@@ -294,7 +338,7 @@ print('is_class_today',is_class_today,type(is_class_today))
     is_class_today True <class 'bool'>
 
 
-#### Exercise
+#### Exercise 10
 
 * insert a new cell below here
 * copy the code in the cell above, set `start_number` to `0`, and run

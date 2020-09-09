@@ -1,6 +1,6 @@
 # 016 More control in Python: `for` : Answers to exercises
 
-#### Exercise
+#### Exercise 1
 
 * generate a list of strings called `group` with the names of (some of) the items in your pocket or bag (or make some up!)
 * set up a `for` loop with `group`, setting the variable `item`
@@ -37,7 +37,7 @@ print("I'm done")
     I'm done
 
 
-#### Exercise
+#### Exercise 2
 
 * copy the code above
 * check to see if the value of `count` at the end of the loop is the same as the length of the list. 
@@ -103,7 +103,7 @@ print(msg)
     
 
 
-#### Exercise
+#### Exercise 3
 
 * use `range()` to print numbers counting down from 10 to 1 (**inclusive**)
 * include comments to explain your answer
@@ -144,7 +144,7 @@ print(msg)
     
 
 
-#### Exercise
+#### Exercise 4
 
 * copy the code above
 * as in the previous exercise, check to see if the value of `count` at the end of the loop is the same as the length of the list. 
@@ -208,7 +208,7 @@ print(msg)
     
 
 
-#### Exercise
+#### Exercise 5
 
 * set up  list of numbers (years) from 2008 to 2019 **inclusive**,
 * set up a list of corresponding chinese zodiac names as the items (look [online](https://www.chinahighlights.com/travelguide/chinese-zodiac/#:~:text=In%20order%2C%20the%2012%20Chinese,a%20year%20of%20the%20Rat.) for this information). 

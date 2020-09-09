@@ -268,6 +268,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../003_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../003_Local_Install/" title="Local Install" class="md-nav__link">
       Local Install
     </a>
@@ -293,14 +305,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
     
-    <label class="md-nav__link" for="nav-2-5">
+    <label class="md-nav__link" for="nav-2-6">
       Answers
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-5">
+      <label class="md-nav__title" for="nav-2-6">
         <span class="md-nav__icon md-icon"></span>
         Answers
       </label>
@@ -327,6 +339,18 @@
   <li class="md-nav__item">
     <a href="../002_Unix_answers/" title="Unix" class="md-nav__link">
       Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Help_answers/" title="Help" class="md-nav__link">
+      Help
     </a>
   </li>
 
@@ -640,22 +664,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#exercise" class="md-nav__link">
-    Exercise
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise_1" class="md-nav__link">
-    Exercise
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise_2" class="md-nav__link">
-    Exercise
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
   </a>
   
 </li>
@@ -664,6 +688,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../018_Python_files_answers/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
   </li>
 
         
@@ -1037,22 +1073,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#exercise" class="md-nav__link">
-    Exercise
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise_1" class="md-nav__link">
-    Exercise
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise_2" class="md-nav__link">
-    Exercise
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
   </a>
   
 </li>
@@ -1078,7 +1114,7 @@
                 
                 
                 <h1 id="functions-in-python-answers-to-exercises">Functions in Python : Answers to exercises</h1>
-<h3 id="exercise">Exercise</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>in a new code cell below, write a function called <code>my_name</code> that prints your name</li>
 <li>demonstrate that your code works (i.e. run it in a code cell)</li>
@@ -1114,7 +1150,7 @@ my_name()
     Purpose:
       print my name
 </code></pre>
-<h3 id="exercise_1">Exercise</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>We assume for this exercise that you know how to create a dictionary from two lists of the same length. This was covered in the <a href="../014_Python_groups/#dict">Python_Groups</a> notes.</p>
 <p>In this exercise, we suggest that you follow the design approach we took above:</p>
 <ul>
@@ -1469,7 +1505,7 @@ list2dict(keys, values)
 
 test passed
 </code></pre>
-<h3 id="exercise_2">Exercise</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <ul>
 <li>Starting from the function <code>list2dict(keys,values)</code> that you developed above, add keyword arguments to the code to achieve the following:<ul>
 <li>if check=True   : perform checks on the input data</li>
@@ -1548,6 +1584,70 @@ print(f'function returns: {list2dict(month_names,month_days)}')
 
 <pre><code>function returns: {'January': 31, 'February': 29}
 </code></pre>
+<pre><code class="python"># ANSWER
+# - Confirm that your document string is useful.
+help(list2dict)
+
+</code></pre>
+
+<pre><code>Help on function list2dict in module __main__:
+
+list2dict(keys, values, check=False, verbose=False)
+    Purpose:
+      generate a dictionary from lists of keys and values
+
+    Note:
+      the length of the lists must be the same
+
+    Inputs:
+      - keys   : list of values for the keys
+      - values : list of values to associate with the keys
+
+    Output:
+      - retval : dictionary with keys and values derived
+                 from the input lists
+
+    Optional keyword arguments:
+        verbose : print detailed information, default False
+        check   : perform internal tests
+</code></pre>
+<pre><code class="python">#answer
+# tests for the KWARGS
+
+dash='='*5
+# - Write tests that also show the kwargs
+# no kwargs
+print(f'{dash} no kwargs {dash}')
+assert list2dict(['January','February'],[31,29]) == {'January': 31, 'February': 29}
+print('test passed')
+
+print(f'{dash} verbose=True {dash}')
+assert list2dict(['January','February'],[31,29],\
+                          verbose=True) \
+              == {'January': 31, 'February': 29}
+
+print(f'{dash} check=True {dash}')
+assert list2dict(['January','February'],[31,29],\
+                          check=True) \
+              == {'January': 31, 'February': 29}
+
+print(f'{dash} check=True and verbose=True {dash}')
+assert list2dict(['January','February'],[31,29],\
+                          check=True,verbose=True) \
+              == {'January': 31, 'February': 29}
+print('tests passed')
+</code></pre>
+
+<pre><code>===== no kwargs =====
+test passed
+===== verbose=True =====
+--&gt; zipping dictionary for lists of length 2
+===== check=True =====
+===== check=True and verbose=True =====
+--&gt; perfoming sanity check on array lengths
+--&gt; zipping dictionary for lists of length 2
+tests passed
+</code></pre>
                 
                   
                     
@@ -1594,13 +1694,13 @@ print(f'function returns: {list2dict(month_names,month_days)}')
           </a>
         
         
-          <a href="../019_Running_Python_answers/" title="Running Python" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../018_Python_files_answers/" title="Python Files" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Running Python
+                Python Files
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

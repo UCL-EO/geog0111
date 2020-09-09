@@ -13,7 +13,7 @@ You will need some understanding of the following:
 
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) In particular, you should be understand strings.
 * [012 String formatting](012_Python_strings.md)
@@ -107,7 +107,7 @@ print (t,type(t))
     () <class 'tuple'>
 
 
-#### Exercise
+#### Exercise 1
 
 * create a tuple called `t` that contains the integers `1` to `5` inclusive
 * print out the value of `t`
@@ -185,11 +185,11 @@ print(f'the length of the {type(l0)} {l0} is {llen}')
     the length of the <class 'list'> [2, 8, 4, 32, 16] is 5
 
 
-#### Exercise
+#### Exercise 2
 
 * copy the code to a new code block below, and test that this works with lists, as well as tuples
 
-#### Exercise
+#### Exercise 3
 
 * set a list called `l0` with `l0 = [2,8,4,32,16]`
 * find the index of the integer 16 in the tuple/list
@@ -238,7 +238,7 @@ print(f'the list {l0} once sorted is {l1}')
     the list [64, 2, 8, 4, 32, 128, 16, 256] once sorted is [2, 4, 8, 16, 32, 64, 128, 256]
 
 
-#### Exercise
+#### Exercise 4
 
 * set a list called `l0` with `l0 = [2,8,4,32,16]`
 * find the index of `16` in this list
@@ -374,7 +374,7 @@ print(a)
     {'one': 1, 'two': 2, 'three': 3, 'four': 4}
 
 
-#### Exercise
+#### Exercise 5
 
 * create a list called `months` with the names of the months of the year
 * create a list called `ndays` with the number of days in each month (for this year)

@@ -13,7 +13,7 @@ In this section we will learn some of the fundamental data types in Python (`int
 You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 
 Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
@@ -48,7 +48,7 @@ In a string, each character is represented by an [ASCII](http://www.asciitable.c
 So the [string](https://en.wikibooks.org/wiki/Python_Programming/Text) `one` is built up of `o` + `n` + `e`, represented by the ASCII codes `111`, `110` and `101` respectively.
 
 
-#### Exercise
+#### Exercise 1
 
 * If the ASCII code for `e` is `101` and the code for `n` is `110`, what is the code for `a`?
 
@@ -68,7 +68,7 @@ print(message,len(message))
     hello world 11
 
 
-#### Exercise
+#### Exercise 2
 
 * in a code cell below, create a variable called `name` and set it to your name
 * print the string name, and its length
@@ -92,7 +92,7 @@ print('this has type', type(my_store))
     this has type <class 'str'>
 
 
-#### Exercise
+#### Exercise 3
 
 * insert a new cell below here
 * set a variable called message to contain the string `hello world`
@@ -166,7 +166,7 @@ print('has an energy of', E_J, 'J')
 
  We can compare the value of energy we get in $J$ with that using a [web calculator](http://www.calctool.org/CALC/other/converters/e_of_photon) and confirm the value of `1.93989e-19` for Near Infrared light (`1024` nm).
 
-#### Exercise
+#### Exercise 4
 
 Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:
 
@@ -226,7 +226,7 @@ We have seen examples of addition `+` and multiplication `*`. We use `x ** y` to
 
 
 
-#### Exercise
+#### Exercise 5
 
 * insert a new cell below here
 * using integer arithmetic, print the result of:
@@ -248,7 +248,7 @@ is_set = True
 is_ready = False
 ```
 
-#### Exercise
+#### Exercise 6
 
 * Insert a new cell below here
 * Set a variable called `is_class_today` to the value `True`
@@ -289,7 +289,7 @@ print('not False is',not False)
     not False is True
 
 
-#### Exercise
+#### Exercise 7
    
 * Insert a new cell below here
 * write a statement to set a variable `x` to `True` and print the value of `x` and `not x` 
@@ -326,7 +326,7 @@ We can represent this in a 'truth table':
 
 
 
-#### Exercise
+#### Exercise 8
 
 * draw a truth table *on some paper*, label the columns `A`, `B` and `A and B` and fill in the columns `A` and `B` as above
 * without looking at the example above, write the value of `A and B` in the third column.
@@ -370,7 +370,7 @@ Again, notice the alternating patterns in the columns so that we cover all permu
 
 
 
-#### Exercise
+#### Exercise 9
 
 * Copy the 3 variable truth table from above onto paper 
 * fill out a column with `A and B`
@@ -417,7 +417,7 @@ print('bool_number',bool_number,type(bool_number))
     bool_number True <class 'bool'>
 
 
-#### Exercise
+#### Exercise 10
 
 * insert a new cell below here
 * copy the code in the cell above, set `start_number` to `0`, and run

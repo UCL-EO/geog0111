@@ -1,7 +1,7 @@
 # 010 Introduction to Python : Answers to exercises
 
-   
-#### Exercise
+#### Exercise 1
+
 * Try running the code block below
 * Explain what happened ('what the computer did')
 
@@ -9,7 +9,7 @@
     
 <mark>Nothing 'apparently' happened, but really, the code block was interpreted as a set of Python commands and executed. As there is only a comment, there was no output.
 
-#### Exercise
+#### Exercise 2
 
 * Insert a new cell below here
 * Print out the string `Today I am learning Python`.
@@ -23,7 +23,7 @@ print('Today I am learning Python')
     Today I am learning Python
 
 
-#### Exercise
+#### Exercise 3
 
 * Insert a new cell below here
 * print a string `"all the world's a stage and all the men and women merely players"`
@@ -81,7 +81,7 @@ print("all\tthe\nworld's\ta\nstage\tand\nall\tthe\nmen\tand\nwomen\tmerely\nplay
     players
 
 
-#### Exercise
+#### Exercise 4
 
 * Insert a new cell below here
 * set a variable called `message` to contain the string `hello world`
@@ -98,7 +98,7 @@ print(message)
     hello world
 
 
-#### Exercise
+#### Exercise 5
 
 * Make a code cell below
 * declare the variable `dash='\n----------'` and print it

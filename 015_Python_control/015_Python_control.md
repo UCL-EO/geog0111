@@ -12,7 +12,7 @@ You will need some understanding of the following:
 
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) 
 * [012 String formatting](012_Python_strings.md)
@@ -21,7 +21,7 @@ You will need some understanding of the following:
 
 ### Timing
 
-The session should take around 30 minutes.
+The session should take around 15 minutes.
 
 ## Comparison Operators and `if`
 
@@ -50,8 +50,8 @@ print (f'a is equivalent to b? {a == b}')
     a is equivalent to b? False
 
 
-#### Exercise
-
+#### Exercise 1
+ 
 * insert a new cell below here. Use f-strings in forming strings.
 * copy the code above 
 * add a `print` statement to your code that tests for non equivalence of `a` and `b`
@@ -95,7 +95,7 @@ print (f'100 < 2       : {100 < 2}')
     100 < 2       : False
 
 
-#### Exercise
+#### Exercise 2
 
 * insert a new cell below here
 * create variables `a` and `b` and set them to types and values of your choice
@@ -165,7 +165,7 @@ print('retval is',retval)
     retval is True
 
 
-#### Exercise
+#### Exercise 3
 
 * insert a new cell below here
 * set a variable `doy` to represent the day of year and initialise it to some integer between 1 and 365 inclusive

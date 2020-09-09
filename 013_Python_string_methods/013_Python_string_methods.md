@@ -13,7 +13,7 @@ You will need some understanding of the following:
 
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) In particular, you should be understand strings.
 * [012 String formatting](012_Python_strings.md)
@@ -489,7 +489,7 @@ print (f'the length of {s} is {len(s)}')
     the length of Hellothereeveryone is 18
 
 
-#### Exercise
+#### Exercise 1
 
 * insert a new cell below here
 * what might a zero-length string look like? Try to generate one, and check its length.
@@ -575,7 +575,7 @@ print(new_string)
     😀:😀:😀
 
 
-#### Exercise
+#### Exercise 2
 
 * Insert a new cell below here
 * Take the multi-line string:
@@ -673,8 +673,8 @@ print(string)
     Remote sensing is the process of detecting and monitoring the physical characteristics of an area by measuring its reflected and emitted radiation at a distance (typically from satellite or aircraft).
 
 
-#### Exercise
-
+#### Exercise 3
+ 
 * Insert a new cell below here
 * Take the string 
 
@@ -723,7 +723,7 @@ print('character',i,'of',string,'is',string[i])
     character 4 of hello is o
 
 
-#### Exercise
+#### Exercise 4
 
 * Insert a new cell below here
 * copy the code above, and see what happens if you set `i` to be the value of length of the string. 
@@ -781,12 +781,7 @@ skip  = 1
 print (s[start:stop:skip])
 ```
 
-    Hello World 11
-    HloWrd
-    rld
-
-
-#### Exercise
+#### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.
 

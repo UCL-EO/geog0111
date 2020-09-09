@@ -12,7 +12,7 @@ You will need some understanding of the following:
 
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) 
 * [012 String formatting](012_Python_strings.md)
@@ -90,7 +90,7 @@ for item in group:
 
 In the second case, we have the `print ('blast off!')` statement inside the loop as it is indented. So it is executed each time we are in the loop. In the first case, it is outside the loop and is only run once the loop is completed.
 
-#### Exercise
+#### Exercise 1
 
 * generate a list of strings called `group` with the names of (some of) the items in your pocket or bag (or make some up!)
 * set up a `for` loop with `group`, setting the variable `item`
@@ -128,7 +128,7 @@ for item in group:
     count: 3 : house
 
 
-#### Exercise
+#### Exercise 2
 
 * copy the code above
 * check to see if the value of `count` at the end of the loop is the same as the length of the list. 
@@ -171,7 +171,7 @@ for i in range(2,10,2):
     8
 
 
-#### Exercise
+#### Exercise 3
 
 * use `range()` to print numbers counting down from 10 to 1 (**inclusive**)
 * include comments to explain your answer
@@ -200,7 +200,7 @@ for count,item in enumerate(group):
     item 2 is keys
 
 
-#### Exercise
+#### Exercise 4
 
 * copy the code above
 * as in the previous exercise, check to see if the value of `count` at the end of the loop is the same as the length of the list. 
@@ -310,7 +310,7 @@ for k,d in days_in_month.items():
     Month December has 31 days
 
 
-#### Exercise
+#### Exercise 5
 
 * set up  list of numbers (years) from 2008 to 2019 **inclusive**,
 * set up a list of corresponding chinese zodiac names as the items (look [online](https://www.chinahighlights.com/travelguide/chinese-zodiac/#:~:text=In%20order%2C%20the%2012%20Chinese,a%20year%20of%20the%20Rat.) for this information). 

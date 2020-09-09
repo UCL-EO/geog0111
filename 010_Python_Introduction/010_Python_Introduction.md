@@ -23,7 +23,7 @@ In this section we will learn some of the fundamental concepts in Python concern
 You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 
 Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
 
@@ -39,8 +39,8 @@ Comments are statements ignored by the language interpreter.
 
 Any text after a `#` in a *code block* is a comment.
 
-   
-#### Exercise
+#### Exercise 1
+
 * Try running the code block below
 * Explain what happened ('what the computer did')
 
@@ -83,7 +83,7 @@ print('hello', 'world')
     hello world
 
 
-#### Exercise
+#### Exercise 2
 
 * Insert a new cell below here
 * Print out the string `Today I am learning Python`.
@@ -118,7 +118,7 @@ print('hello\tworld')
     hello	world
 
 
-#### Exercise
+#### Exercise 3
 
 * Insert a new cell below here
 * print a string `"all the world's a stage and all the men and women merely players"`
@@ -157,7 +157,7 @@ print(my_store)
     one
 
 
-#### Exercise
+#### Exercise 4
 
 * Insert a new cell below here
 * set a variable called `message` to contain the string `hello world`
@@ -210,7 +210,7 @@ All of these can obviously be used as `values` in strings, just not as `key` nam
 
 See [https://docs.python.org/3.4/reference/lexical_analysis.html](https://docs.python.org/3.4/reference/lexical_analysis.html) for further details.
 
-#### Exercise
+#### Exercise 5
 
 * Make a code cell below
 * declare the variable `dash='\n----------'` and print it

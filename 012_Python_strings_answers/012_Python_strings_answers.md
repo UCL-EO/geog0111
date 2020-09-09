@@ -1,6 +1,6 @@
 # 012 String formatting : Answers to exercises
 
-#### Exercise
+#### Exercise 1
 
 * insert a new cell below here
 * Use what we have learned above to print the phrase `"beware of \n and \t"`, including quotes.
@@ -37,7 +37,7 @@ print('great:\t\t',string)
     great:		 "beware of \n and \t"
 
 
-#### Exercise
+#### Exercise 2
 
 * Insert a new cell below here
 * Write Python code that prints a string containing the following text, spaced over four lines as intended. There should be no space at the start of the line.
@@ -94,7 +94,7 @@ print(lear)
     The Owl and the Pussy-cat went to sea In a beautiful pea-green boat, They took some honey, and plenty of money, Wrapped up in a five-pound note.
 
 
-#### Exercise
+#### Exercise 3
 
 * In a new cell below, generate a string called `base` and set this to the string `Hello` 
 * print base and its length
@@ -141,7 +141,7 @@ print(msg)
     
 
 
-#### Exercise
+#### Exercise 4
 
 You may have noticed that when we use `+` to join `hello + world` above, there is no space between the words. This is because we have not told the computer to put any such space in.
 
@@ -210,7 +210,7 @@ print(msg)
     
 
 
-#### Exercise
+#### Exercise 5
 
 * set a variable `index` to be an integer between `0` and `99999999`.
 * use this to generate a zero-padded filename of the form `00000010.dat`
@@ -237,7 +237,7 @@ print(filename)
     00001265.dat
 
 
-#### Exercise
+#### Exercise 6
 
 * Insert a new cell below here
 * create a template string of the form:
