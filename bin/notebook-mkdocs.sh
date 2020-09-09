@@ -50,8 +50,6 @@ echo "--> staging markdown files into docs"
 mv notebooks_lab/*_files docs
 mv notebooks_lab/*md docs
 rm -f docs/README.md
-# scripts
-cp bin/README docs/bin.md
 
 for i in docs/*md
 do
@@ -78,6 +76,7 @@ cat config/index_tail.rst >> docs/index.rst
 echo "--> generating mkdocs files for docs"
 geog0111/mkdocs_prep.py --dev
 echo "--> building mkdocs"
+#rm -r docs/index.md
 mkdocs build -v
 cd docs
 cp ../config/requirements.txt .

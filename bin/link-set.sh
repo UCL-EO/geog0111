@@ -75,35 +75,31 @@ fi
 cd data
 if [ -L ucl ] ; then
   rm -f ucl
-else
-  echo "linking data/ucl to $UCLDATA"
-  ln -s $UCLDATA ucl
 fi
+echo "linking data/ucl to $UCLDATA"
+ln -s $UCLDATA ucl
 cd $here
 
 cd docs
 if [ -L bin ] ; then
   rm -f bin
-else
-  echo "linking docs/bin to ../bin"
-  ln -s ../bin bin
 fi
+echo "linking docs/bin to ../bin"
+ln -s ../bin bin
 if [ -L copy ] ; then
   rm -f copy
-else
-  echo "linking docs/copy to ../copy"
-  ln -s ../copy copy
 fi
+echo "linking docs/copy to ../copy"
+ln -s ../copy copy
 
 cd $here
 
 cd bin
 if [ -L copy ] ; then
   rm -f copy
-else
-  echo "linking bin/copy to ../copy"
-  ln -s ../copy copy
 fi
+echo "linking bin/copy to ../copy"
+ln -s ../copy copy
 cd $here
 
 echo "----> done running $0 from $here"

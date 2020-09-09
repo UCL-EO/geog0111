@@ -11,10 +11,16 @@ GEOG0111 Scientific Computing
    :caption: Contents:
 
 
+ index.md
+
  001_Notebook_use.md
  002_Unix.md
  003_Local_Install.md
  005_Help.md
+
+ 001_Notebook_use_answers.md
+ 002_Unix_answers.md
+ 005_Help_answers.md
 
  010_Python_Introduction.md
  011_Python_data_types.md
@@ -27,8 +33,20 @@ GEOG0111 Scientific Computing
  018_Python_files.md
  019_Running_Python.md
 
+ 010_Python_Introduction_answers.md
+ 011_Python_data_types_answers.md
+ 012_Python_strings_answers.md
+ 013_Python_string_methods_answers.md
+ 014_Python_groups_answers.md
+ 015_Python_control_answers.md
+ 016_Python_for_answers.md
+ 017_Functions_answers.md
+ 019_Running_Python_answers.md
+
  020_NASA_MODIS_Earthdata.md
  021_GoogleEarthEngine.md
+
+ 020_NASA_MODIS_Earthdata_answers.md
 
  031_Numpy_matplotlib.md
  031_Plotting.md
@@ -42,21 +60,8 @@ GEOG0111 Scientific Computing
  050_Linear_models.md
  051_Modelling_and_optimisation.md
 
- 001_Notebook_use_answers.md
- 002_Unix_answers.md
- 005_Help_answers.md
- 010_Python_Introduction_answers.md
- 011_Python_data_types_answers.md
- 012_Python_strings_answers.md
- 013_Python_string_methods_answers.md
- 014_Python_groups_answers.md
- 015_Python_control_answers.md
- 016_Python_for_answers.md
- 017_Functions_answers.md
- 019_Running_Python_answers.md
- 020_NASA_MODIS_Earthdata_answers.md
-
- bin.md
+ DEV_Local_Install.md
+ DEV_scripts.md
 
 Indices and tables
 ==================

@@ -12,11 +12,17 @@ google_analytics:
 markdown_extensions:
 - meta
 nav:
+- Introduction:
+  - Home: index.md
 - Course Basics:
   - Notebook Use: 001_Notebook_use.md
   - Unix: 002_Unix.md
   - Local Install: 003_Local_Install.md
   - Help: 005_Help.md
+  - Answers:
+    - Notebook Use: 001_Notebook_use_answers.md
+    - Unix: 002_Unix_answers.md
+    - Help: 005_Help_answers.md
 - Core Concepts:
   - Python Introduction: 010_Python_Introduction.md
   - Python Data Types: 011_Python_data_types.md
@@ -28,9 +34,21 @@ nav:
   - Functions: 017_Functions.md
   - Python Files: 018_Python_files.md
   - Running Python: 019_Running_Python.md
+  - Answers:
+    - Python Introduction: 010_Python_Introduction_answers.md
+    - Python Data Types: 011_Python_data_types_answers.md
+    - Python Strings: 012_Python_strings_answers.md
+    - Python String Methods: 013_Python_string_methods_answers.md
+    - Python Groups: 014_Python_groups_answers.md
+    - Python Control: 015_Python_control_answers.md
+    - Python For: 016_Python_for_answers.md
+    - Functions: 017_Functions_answers.md
+    - Running Python: 019_Running_Python_answers.md
 - Datasets:
   - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata.md
   - Google Earth Engine: 021_GoogleEarthEngine.md
+  - Answers:
+    - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata_answers.md
 - Image Processing:
   - Numpy Matplotlib: 031_Numpy_matplotlib.md
   - Plotting: 031_Plotting.md
@@ -43,22 +61,9 @@ nav:
 - Modelling:
   - Linear Models: 050_Linear_models.md
   - Modelling And Optimisation: 051_Modelling_and_optimisation.md
-- Answers:
-  - Notebook Use Answers: 001_Notebook_use_answers.md
-  - Unix Answers: 002_Unix_answers.md
-  - Help Answers: 005_Help_answers.md
-  - Python Introduction Answers: 010_Python_Introduction_answers.md
-  - Python Data Types Answers: 011_Python_data_types_answers.md
-  - Python Strings Answers: 012_Python_strings_answers.md
-  - Python String Methods Answers: 013_Python_string_methods_answers.md
-  - Python Groups Answers: 014_Python_groups_answers.md
-  - Python Control Answers: 015_Python_control_answers.md
-  - Python For Answers: 016_Python_for_answers.md
-  - Functions Answers: 017_Functions_answers.md
-  - Running Python Answers: 019_Running_Python_answers.md
-  - NASA MODIS Earthdata Answers: 020_NASA_MODIS_Earthdata_answers.md
-- Developer Notes:
-  - Scripts: bin.md
+- Developers:
+  - Local Install: DEV_Local_Install.md
+  - Scripts: DEV_scripts.md
 plugins:
 - git-revision-date-localized
 - exclude:

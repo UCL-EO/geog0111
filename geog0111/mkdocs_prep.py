@@ -89,15 +89,20 @@ answernames = np.array([f.name for f in answers])
 devnames = np.array([f.name for f in devs])
 
 num_filenames = np.sort(np.array([f.split('_')[0] for f in filenames]))
+num_afilenames = np.sort(np.array([f.split('_')[0] for f in answernames]))
 
 # work out the chapter numbers
 level = np.array([[i[j] for i in num_filenames] for j in range(3)])
+alevel = np.array([[i[j] for i in num_afilenames] for j in range(3)])
 
 with open('config/chapters.dat','r') as f:
   chapter_names = f.readlines()
 
 # nav is a list
-nav = []
+# index
+k, v = "Home","index.md"
+nav = [{"Introduction":[dict(zip([k],[v]))]}]
+
 
 for j,i in enumerate(np.sort(np.unique(level[1]))):
   other = []
@@ -112,13 +117,10 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
     that = dict(zip([k],[v]))
     other.append(that)
 
-  this = {chapter_names[j].strip().title():other}
-  nav.append(this)
-
   # answers for this section
-  other = []
-  if len(answernames[level[1] == str(i)].tolist()):
-    for s in answernames[level[1] == str(i)].tolist():
+  othera = []
+  if len(answernames[alevel[1] == str(i)].tolist()):
+    for s in answernames[alevel[1] == str(i)].tolist():
       k = ' '.join(s.strip('.md').split('_')[1:]).title()
       k = k.replace('Googleearthengine','Google Earth Engine').\
           replace('Nasa','NASA').\
@@ -128,10 +130,13 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
           replace('Answers','').strip()
       v = s
       that = dict(zip([k],[v]))
-      other.append(that)
+      othera.append(that)
   
-    this = {"Answers":other}
-    nav.append(this)
+    this = {"Answers":othera}
+    other.append(this)
+
+  this = {chapter_names[j].strip().title():other}
+  nav.append(this)
 
 
 # put in dev notes?
