@@ -33,7 +33,7 @@ mkdir -p docs
 echo "--> re-making notebooks_lab"
 rm -rf site
 rm -rf */*nbconvert*
-rm -rf notebooks_lab/*_files 
+rm -rf notebooks_lab/*_files notebooks_lab/*ipynb notebooks_lab/*md
 # filter notebooks from notebooks into notebooks_lab
 geog0111/edit_notebook.py
 

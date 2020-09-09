@@ -10,7 +10,6 @@ GEOG0111 Scientific Computing
    :maxdepth: 2
    :caption: Contents:
 
-
  index.md
 
  001_Notebook_use.md
