@@ -12,19 +12,15 @@ google_analytics:
 markdown_extensions:
 - meta
 nav:
-- Introduction:
-  - Home: index.md
+- Introduction: index.md
 - Course Basics:
   - Notebook Use: 001_Notebook_use.md
   - Unix: 002_Unix.md
   - Help: 003_Help.md
-  - Local Install: 003_Local_Install.md
-  - Help: 005_Help.md
   - Answers:
     - Notebook Use: 001_Notebook_use_answers.md
     - Unix: 002_Unix_answers.md
     - Help: 003_Help_answers.md
-    - Help: 005_Help_answers.md
 - Core Concepts:
   - Python Introduction: 010_Python_Introduction.md
   - Python Data Types: 011_Python_data_types.md
