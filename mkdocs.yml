@@ -17,11 +17,13 @@ nav:
 - Course Basics:
   - Notebook Use: 001_Notebook_use.md
   - Unix: 002_Unix.md
+  - Help: 003_Help.md
   - Local Install: 003_Local_Install.md
   - Help: 005_Help.md
   - Answers:
     - Notebook Use: 001_Notebook_use_answers.md
     - Unix: 002_Unix_answers.md
+    - Help: 003_Help_answers.md
     - Help: 005_Help_answers.md
 - Core Concepts:
   - Python Introduction: 010_Python_Introduction.md
@@ -43,6 +45,7 @@ nav:
     - Python Control: 015_Python_control_answers.md
     - Python For: 016_Python_for_answers.md
     - Functions: 017_Functions_answers.md
+    - Python Files: 018_Python_files_answers.md
     - Running Python: 019_Running_Python_answers.md
 - Datasets:
   - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata.md

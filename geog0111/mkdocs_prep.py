@@ -100,9 +100,9 @@ with open('config/chapters.dat','r') as f:
 
 # nav is a list
 # index
-k, v = "Home","index.md"
-nav = [{"Introduction":[dict(zip([k],[v]))]}]
-
+k, v = "Introduction","index.md"
+#nav = [{"Introduction":[dict(zip([k],[v]))]}]
+nav = [dict(zip([k],[v]))]
 
 for j,i in enumerate(np.sort(np.unique(level[1]))):
   other = []
