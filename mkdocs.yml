@@ -43,7 +43,7 @@ nav:
 - Modelling:
   - Linear Models: 050_Linear_models.md
   - Modelling And Optimisation: 051_Modelling_and_optimisation.md
-- Answers: &id001
+- Answers:
   - Notebook Use Answers: 001_Notebook_use_answers.md
   - Unix Answers: 002_Unix_answers.md
   - Help Answers: 005_Help_answers.md
@@ -57,18 +57,6 @@ nav:
   - Functions Answers: 017_Functions_answers.md
   - Running Python Answers: 019_Running_Python_answers.md
   - NASA MODIS Earthdata Answers: 020_NASA_MODIS_Earthdata_answers.md
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
-- Answers: *id001
 - Developer Notes:
   - Scripts: bin.md
 plugins:
