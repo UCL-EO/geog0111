@@ -27,8 +27,11 @@ echo "--> re-making docs"
 rm -rf docs
 mkdir -p docs
 
-#pip install sphinx
-#sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs
+
+pip install sphinx
+cd docs
+sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs
+cd $base
 
 echo "--> re-making notebooks_lab"
 rm -rf site
