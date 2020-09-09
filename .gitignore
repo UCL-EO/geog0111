@@ -13,8 +13,11 @@ data/TM_WORLD_BORDERS-0.3.shx
 MCD15A3H*
 *.vrt
 backup*
+work/bin
+work/images
+work/data
+work/geog0111
 info.py
-work
 site
 notebooks/OneDrive/*
 notebooks/OneDrive
