@@ -44,7 +44,7 @@ cd $here
 
 # put links in all notebooks* directories
 echo "--> linking ${subs[*]}"
-subs=('data' "$repo" 'images')
+subs=('bin' 'data' "$repo" 'images')
 mkdir -p work ${subs[*]}
 
 # outer loop 
