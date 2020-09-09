@@ -13,7 +13,7 @@ README.md.
 It inserts md files of the form notebooks_lab/???_*.md
 and filters answers
 '''
-dev = False
+dev = True
 if '--dev' in sys.argv:
   dev = True
 
@@ -117,19 +117,19 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
 
   # answers for this section
   other = []
-  for s in answernames[level[1] == str(i)].tolist():
-    k = ' '.join(s.strip('.md').split('_')[1:]).title()
-    k = k.replace('Googleearthengine','Google Earth Engine').\
+  if len(answernames[level[1] == str(i)].tolist()):
+    for s in answernames[level[1] == str(i)].tolist():
+      k = ' '.join(s.strip('.md').split('_')[1:]).title()
+      k = k.replace('Googleearthengine','Google Earth Engine').\
           replace('Nasa','NASA').\
           replace('Gdal','GDAL').\
           replace('Modis','MODIS').\
           replace('Downloa','Download').\
           replace('Answers','').strip()
-    v = s
-    that = dict(zip([k],[v]))
-    other.append(that)
+      v = s
+      that = dict(zip([k],[v]))
+      other.append(that)
   
-  if len(other):
     this = {"Answers":other}
     nav.append(this)
 
