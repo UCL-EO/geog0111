@@ -1,24 +1,69 @@
 # 002 Some basic UNIX : Answers to exercises
 
-### Exercise
+#### Exercise 1
 
-* Create a file `work/newfile.dat` using touch and check the new file size.
-* Create a file `work/newfile.dat` using cat and check the new file size.
-* Use the menu item `File -> Open` to edit the file you have created and print the new file size
-* Use `cat` to show the new file content
-* delete the file
+* Use `cd` and `..` to move one directory at a time to your home directory. Check where you are at each stage using `pwd`.
+* Use `cd` and `~` to go straight to your home directory. Then go from there back to the notebook directory. Check where you are at each stage using `pwd`.
 
 
 ```bash
 %%bash
 # ANSWER
-# Create a file `work/newfile.dat` using touch and check the new file size.
-touch work/newfile.dat
-ls -l work/newfile.dat
+
+# Use cd and .. to move one directory at a time to your home directory. 
+# Check where you are at each stage using pwd.
+
+# we start e.g. in /Users/plewis/Documents/GitHub/geog0111/notebooks
+pwd
+
+# go to /Users/plewis/Documents/GitHub/geog0111
+cd ..
+pwd
+
+# go to /Users/plewis/Documents/GitHub
+cd ..
+pwd
+
+# go to /Users/plewis
+cd ../..
+pwd
 ```
 
-    -rw-r--r--  1 plewis  staff  73  7 Sep 15:08 work/newfile.dat
+    /Users/plewis/Documents/GitHub/geog0111/notebooks
+    /Users/plewis/Documents/GitHub/geog0111
+    /Users/plewis/Documents/GitHub
+    /Users/plewis
 
+
+
+```bash
+%%bash
+# ANSWER
+
+# Use cd and ~ to go straight to your home directory. 
+# Check where you are at each stage using pwd.
+pwd
+cd ~
+pwd
+
+# Then go from there back to the notebook directory. 
+# This is e.g. in Documents/GitHub/geog0111/notebooks
+# relative to where we are
+cd Documents/GitHub/geog0111/notebooks
+pwd
+```
+
+    /Users/plewis/Documents/GitHub/geog0111/notebooks
+    /Users/plewis
+    /Users/plewis/Documents/GitHub/geog0111/notebooks
+
+
+### Exercise
+
+* Create a file `work/newfile.dat` using cat and check the new file size.
+* Use the menu item `File -> Open` to edit the file you have created and print the new file size
+* Use `cat` to show the new file content
+* delete the file
 
 
 ```bash
@@ -34,7 +79,7 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73  7 Sep 15:08 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73  9 Sep 11:10 work/newfile.dat
 
 
 
@@ -50,7 +95,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73  7 Sep 15:08 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73  9 Sep 11:10 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
