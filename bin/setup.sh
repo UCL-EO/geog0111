@@ -101,11 +101,11 @@ echo "--> remove : $remove"
 
 # already exists
 if [ ! -z "$existsenv" ] ; then
-  if [ "$remove" == TRUE ] ; then
+  if [ $remove == TRUE ] ; then
     echo "--> remove $conda_env" 
     conda remove -y -n uclgeog --all
   fi
-  if [ "$force" == TRUE ] ; then
+  if [ $force == TRUE ] ; then
     echo "--> forcing create env $conda_env from environment.yml"
     $conda env create  -n "$conda_env" --force  -f environment.yml
   else
