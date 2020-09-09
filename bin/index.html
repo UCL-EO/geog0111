@@ -1172,6 +1172,10 @@ scripts.</p>
 <p>You might run this as a pre-cursor to <a href="notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a>.</p>
 <h3 id="binnotebook-mkdocssh"><code>bin/notebook-mkdocs.sh</code></h3>
 <p>This script <a href="notebook-mkdocs.sh"><code>bin/notebook-mkdocs.sh</code></a> filters notebooks in <a href="notebooks"><code>notebooks</code></a> into <a href="notebooks_lab"><code>notebooks_lab</code></a> using <a href="../geog0111/edit_notebook.py"><code>geog0111/edit_notebook.py</code></a>. This filters out noteboom extensions and other features, and makes the notebooks suitable for running in <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>, rather than just <code>jupyter noteboook</code>. It strips out exercises defiuned in <code>exercise2</code> cells, into new notebooks with the pattern <code>_answers.md</code>.</p>
+<p>It can use sphinx or mkdocs (set on cmd line)</p>
+<pre><code>     notebook-mkdocs.sh [-h|--help] [[-s | --sphinx]|[-m|--mkdocs] 
+         [-r|--run] [[-v|--verbose]|[-q|--quiet]] [-d|--dev]
+</code></pre>
 <p>The script takes the <a href="notebooks_lab"><code>notebooks_lab</code></a> notebooks, and converts to markdown in <a href="docs"><code>docs</code></a> and prepares the environment for the document generator <code>mkdocs</code> using <a href="../geog0111/mkdocs_prep.py"><code>geog0111/mkdocs_prep.py</code></a>. 
 It runs <code>mkdocs build</code> locally. The documents can be viewed with:</p>
 <pre><code>mkdocs serve

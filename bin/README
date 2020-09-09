@@ -122,6 +122,12 @@ You might run this as a pre-cursor to [`bin/notebook-mkdocs.sh`](bin/notebook-mk
 
 This script [`bin/notebook-mkdocs.sh`](bin/notebook-mkdocs.sh) filters notebooks in [`notebooks`](notebooks) into [`notebooks_lab`](notebooks_lab) using [`geog0111/edit_notebook.py`](geog0111/edit_notebook.py). This filters out noteboom extensions and other features, and makes the notebooks suitable for running in [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), rather than just `jupyter noteboook`. It strips out exercises defiuned in `exercise2` cells, into new notebooks with the pattern `_answers.ipynb`.
 
+It can use sphinx or mkdocs (set on cmd line)
+
+         notebook-mkdocs.sh [-h|--help] [[-s | --sphinx]|[-m|--mkdocs] 
+             [-r|--run] [[-v|--verbose]|[-q|--quiet]] [-d|--dev]
+
+
 The script takes the [`notebooks_lab`](notebooks_lab) notebooks, and converts to markdown in [`docs`](docs) and prepares the environment for the document generator `mkdocs` using [`geog0111/mkdocs_prep.py`](geog0111/mkdocs_prep.py). 
 It runs `mkdocs build` locally. The documents can be viewed with:
 
