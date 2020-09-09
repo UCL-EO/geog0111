@@ -49,6 +49,7 @@ dependencies:
   - mkdocs
   - pycodestyle
   - sphinx
+  - fsspec
   - pip:
     - mkdocs-jupyter
     - urlpath
