@@ -15,11 +15,13 @@ GEOG0111 Scientific Computing
 
  001_Notebook_use.md
  002_Unix.md
+ 003_Help.md
  003_Local_Install.md
  005_Help.md
 
  001_Notebook_use_answers.md
  002_Unix_answers.md
+ 003_Help_answers.md
  005_Help_answers.md
 
  010_Python_Introduction.md
@@ -41,6 +43,7 @@ GEOG0111 Scientific Computing
  015_Python_control_answers.md
  016_Python_for_answers.md
  017_Functions_answers.md
+ 018_Python_files_answers.md
  019_Running_Python_answers.md
 
  020_NASA_MODIS_Earthdata.md
