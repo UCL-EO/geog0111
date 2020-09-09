@@ -203,7 +203,7 @@ A list has a much richer set of methods than a tuple. This is because we can add
 * `append(j)` : append `j` to the end of the list
 * `sort()` : sort the list
 
-Recall from [005_Help](005_Help.md#Exercise) that `sort()` is an `in-place` operation, and remeber the consequences of that. Notice that `insert()` and `append()` are also `in-place` operations.
+Recall from [003_Help](003_Help.md#Exercise) that `sort()` is an `in-place` operation, and remeber the consequences of that. Notice that `insert()` and `append()` are also `in-place` operations.
 
 This list of methods suggests that tuples and lists are 'ordered' (i.e. they maintain the order they are loaded in) so that indiviual elements may be accessed through an 'index'. The index values start at 0 as we saw above. The index of the last element in a list/tuple is the length of the group, minus 1. This can also be referred to an index `-1`.
 

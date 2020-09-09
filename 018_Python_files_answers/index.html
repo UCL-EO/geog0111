@@ -627,6 +627,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1_1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2_1" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1017,6 +1038,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1_1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2_1" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1039,6 +1081,139 @@
                 
                 <h1 id="018-files-and-other-resources-answers-to-exercises">018 Files and other Resources : Answers to exercises</h1>
 <h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>Use <code>Path</code> to show the file permissions of all files that end <code>.sh</code> in the directory <code>bin</code></li>
+</ul>
+<pre><code class="python"># ANSWER
+# Use Path to show the file permissions of
+# all files that end .sh in the directory bin
+
+# use glob to get a list of filenames in the directory bin 
+# that end with .sh -&gt; pattern *.sh using a wildcard
+filenames = Path('bin').glob('*.sh')
+# loop over the filenames
+for f in filenames:
+    print(f)
+</code></pre>
+
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>print out the absolute pathname of the directory that <code>images/ucl.png</code> is in</li>
+<li>print the size of the file in KB to two decimal places</li>
+</ul>
+<p>You will need to know how many Bytes in a Kilobyte, and how to <a href="../012_Python_strings/#String-formating">format a string to two decimal places</a>.</p>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>Using <code>Path.read_text()</code> read the text from the file <code>work/easy.txt</code> and print the text returned.</li>
+<li>split the text into lines of text using <code>str.split()</code> at each newline, and print out the resulting list</li>
+</ul>
+<p>You learned how to split strings in <a href="../013_Python_string_methods/#split()-and-join()">013_Python_string_methods</a></p>
+<pre><code class="python"># ANSWER
+# Using Path.read_text() read the text from the file work/easy.txt 
+# and print the text returned.
+
+# set up the filename
+infile = Path('work','easy.txt')
+# read the text
+read_text = infile.read_text()
+
+# split the text into lines of 
+# text using str.split() at each newline, 
+# and print out the resulting list
+lines = read_text.split('\n')
+print(lines)
+</code></pre>
+
+<pre><code class="python"># ANSWER 
+# following from above
+
+# set up the filename
+infile = Path('work','easy.txt')
+# read the text
+read_text = infile.read_text()
+
+# print what we did
+print(f'read\n&quot;&quot;&quot;{read_text}&quot;&quot;&quot;\nfrom {infile}')
+</code></pre>
+
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-118-595f63975242&gt; in &lt;module&gt;
+      3 
+      4 # set up the filename
+----&gt; 5 infile = Path('work','easy.txt')
+      6 # read the text
+      7 read_text = infile.read_text()
+
+
+NameError: name 'Path' is not defined
+</code></pre>
+<pre><code class="python"># ANSWER
+import json
+
+# show the size of the files 
+# bin/copy/environment.json and bin/copy/environment.yml
+
+# form the file names
+json_file = Path('bin','copy','environment.json')
+yaml_file = Path('bin','copy','environment.yml')
+# loop and print size
+for f in [json_file,yaml_file]:
+    print(f'{f} : {f.stat().st_size} bytes')
+</code></pre>
+
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-119-4ac914f8e21e&gt; in &lt;module&gt;
+      6 
+      7 # form the file names
+----&gt; 8 json_file = Path('bin','copy','environment.json')
+      9 yaml_file = Path('bin','copy','environment.yml')
+     10 # loop and print size
+
+
+NameError: name 'Path' is not defined
+</code></pre>
+<pre><code class="python"># ANSWER
+
+# read the information from bin/copy/environment.json using Path and json.load() into a variable called 
+# jenv and print the keys of the dictionary jenv
+
+# open file for read
+with json_file.open('r') as f:
+    jenv = json.load(f)
+
+print(f'jenv keys: {jenv.keys()}')
+
+# use assert to check if the keys are the same
+assert jenv.keys() == env.keys()
+print('passed assertion')
+</code></pre>
+
+<pre><code class="python"># ANSWER 
+
+# print out the absolute pathname of the 
+# directory that images/ucl.png is in
+abs_name = Path('images/ucl.png').absolute()
+print(abs_name)
+
+# we want the parent!
+print(f'the file {abs_name.name} is in {abs_name.parent}')
+
+# print the size of the file in bytes
+print(f'{abs_name.name} has size {abs_name.stat().st_size} bytes')
+
+# 1 KB is 1024 Bytes
+# .2f is 2 d.p. format
+print(f'{abs_name.name} has size ' +\
+      f'{abs_name.stat().st_size/1024:.2f} KB')
+</code></pre>
+
+<h4 id="exercise-1_1">Exercise 1</h4>
 <ul>
 <li>copy the code above, and modify so that datasets for months <code>['MAYJUN','JUNJUL','JULAUG']</code> are plotted on the graph</li>
 </ul>
@@ -1082,7 +1257,7 @@ for i,key in enumerate(['MAYJUN','JUNJUL','JULAUG']):
     plt.legend(loc='best')
 </code></pre>
 
-<h4 id="exercise-2">Exercise 2</h4>
+<h4 id="exercise-2_1">Exercise 2</h4>
 <ul>
 <li>Using what you have learned above, access the Met Office data file <a href="https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt"><code>https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt</code></a> and create a 'data package' in a numpy<code>.npz</code> file that has keys of <code>YEAR</code> and each month in the year, with associated datasets of Monthly Southeast England precipitation (mm).</li>
 <li>confirm that tha data in your <code>npz</code> file is the same as in your original dictionary</li>

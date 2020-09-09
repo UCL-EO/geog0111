@@ -15,7 +15,7 @@ At the end of the session, there is a practical exercise for you to do and submi
 You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [005 Getting help](005_Help.md)
+* [003 Getting help](003_Help.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) 
 * [012 String formatting](012_Python_strings.md)

@@ -15,13 +15,10 @@ GEOG0111 Scientific Computing
  001_Notebook_use.md
  002_Unix.md
  003_Help.md
- 003_Local_Install.md
- 005_Help.md
 
  001_Notebook_use_answers.md
  002_Unix_answers.md
  003_Help_answers.md
- 005_Help_answers.md
 
  010_Python_Introduction.md
  011_Python_data_types.md
