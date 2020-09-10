@@ -13,7 +13,10 @@ import functools
 import re
 import urllib.parse
 import requests
-from cylog import Cylog
+try:
+  from geog0111.cylog import Cylog
+except:
+  from cylog import Cylog
 
 '''
 class derived from urlpath to provide pathlib-like
