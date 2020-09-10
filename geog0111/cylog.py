@@ -77,7 +77,8 @@ class  Cylog():
 
     def msg(self,*args):
         '''message passing'''
-        print('-->',*args,file=self.stderr)
+        if self.verbose:
+          print('-->',*args,file=self.stderr)
 
     def _init(self,site=False,destination_folder='.cylog'):
 
