@@ -45,7 +45,7 @@ Run the cell below:
 
 ```python
 try:
-    from geog0111.cylog import cylog
+    from geog0111.cylog import Cylog
     from geog0111.nasa_requests import test
 except:
     raise SystemExit("Error loading the required uclgeog library")
@@ -59,71 +59,46 @@ Run the cell below, and enter your `username` and `password` if prompted.
 
 
 ```python
-cy = cylog(init=True)
+site='https://e4ftl01.cr.usgs.gov'
+cy = Cylog(site,init=True,verbose=True)
 
 # check this has worked
 print('has this worked?',test())
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    StdinNotImplementedError                  Traceback (most recent call last)
-
-    <ipython-input-2-7abf596df7a2> in <module>
-    ----> 1 cy = cylog(init=True)
-          2 
-          3 # check this has worked
-          4 print('has this worked?',test())
+    None
+    has this worked? True
 
 
-    ~/Documents/GitHub/geog0111/notebooks/geog0111/cylog.py in __init__(self, init, destination_folder)
-         60             return
-         61         else:
-    ---> 62             self._setup(destination_folder=destination_folder)
-         63 
-         64     def _setup(self,destination_folder='.cylog'):
-
-
-    ~/Documents/GitHub/geog0111/notebooks/geog0111/cylog.py in _setup(self, destination_folder)
-         63 
-         64     def _setup(self,destination_folder='.cylog'):
-    ---> 65         username = input("Enter your username: ")
-         66         password = getpass()
-         67         key = Fernet.generate_key()
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ipykernel/kernelbase.py in raw_input(self, prompt)
-        856         if not self._allow_stdin:
-        857             raise StdinNotImplementedError(
-    --> 858                 "raw_input was called, but this frontend does not support input requests."
-        859             )
-        860         return self._input_request(str(prompt),
-
-
-    StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+    --> generating key file in /Users/plewis/.cylog
+    --> --> saving key file to /Users/plewis/.cylog/.cylog.npz
 
 
 
 ```python
-cy.login()
+site='https://e4ftl01.cr.usgs.gov'
+# uncomment this line to force re-entry
+#done=cy.login(force=True)
 ```
 
+    --> forcing re-entry of password for https://e4ftl01.cr.usgs.gov
 
-    ---------------------------------------------------------------------------
 
-    NameError                                 Traceback (most recent call last)
+    --> user login required for https://e4ftl01.cr.usgs.gov <--
+    Enter your username: lewis0585
+    please type your password········
+    please re-type your password for confirmation········
+    password created
 
-    <ipython-input-3-04f472ebef55> in <module>
-    ----> 1 cy.login()
-    
 
-    NameError: name 'cy' is not defined
+    --> ciphering key from key file /Users/plewis/.cylog/.cylog.npz
+    --> --> writing ciphers to file
+    --> --> done writing ciphers to file
 
 
 If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:
 
-    cy = cylog(init=True)
+    cy = cylog(force=True)
     
 and re-run.
 
@@ -302,22 +277,6 @@ else:
     print("\nThis worked")
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-5-c30899e67e91> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic, visualise
-          2 # libraries we need
-          3 
-          4 #######################
-          5 # specify what we want
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
-
 The code exits with the message:
     
         failed to warp ['HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf":MCD15A3H:Lai_500m', 'HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h17v04.006.2020006031910.hdf":MCD15A3H:Lai_500m', 'HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h18v03.006.2020006033540.hdf":MCD15A3H:Lai_500m', 'HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h18v04.006.2020006032422.hdf":MCD15A3H:Lai_500m'] 2020, 1, ['h17v03', 'h17v04', 'h18v03', 'h18v04'], data/
@@ -336,10 +295,6 @@ For now, we can run a system command below to see what the SDS `Lai_500m` looks 
 ```python
 !gdalinfo data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf | grep Lai_500m
 ```
-
-    ERROR 4: data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf: No such file or directory
-    gdalinfo failed - unable to open 'data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf'.
-
 
 From this, we see that the dataset specification is really 
 
@@ -384,22 +339,6 @@ except AssertionError:
 else:
     print("\nThis worked")
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-7-713060207b13> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic, visualise
-          2 # libraries we need
-          3 
-          4 #######################
-          5 # specify what we want
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
 
 ### Download
 
@@ -472,22 +411,6 @@ else:
 
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-8-ea8b28754648> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 import numpy as np
-          3 # libraries we need
-          4 
-          5 #######################
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
-
 ### Visualise
 
 We have now generated a dataset, stored in a variable `lai`. We are likely to want to perform some analysis on this, but we might also like to visualise the dataset.
@@ -504,22 +427,6 @@ title = 'product {product} SDS {layer}\n'.format(**params) + \
 # set the max value to 3.0 to be able to see whats going on
 plot=visualise(data,title=title,vmax=3.0)
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-9-3c8c8e941134> in <module>
-          1 # call visualise
-    ----> 2 title = 'product {product} SDS {layer}\n'.format(**params) + \
-          3         'for day {doy} of year {year} for tiles {tiles}'.format(**params)
-          4 # set the max value to 3.0 to be able to see whats going on
-          5 plot=visualise(data,title=title,vmax=3.0)
-
-
-    NameError: name 'params' is not defined
-
 
 # Exercises
 

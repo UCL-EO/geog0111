@@ -1289,7 +1289,7 @@
 <p>First, we import <code>cylog</code> from the <code>geog0111</code> library.</p>
 <p>Run the cell below:</p>
 <pre><code class="python">try:
-    from geog0111.cylog import cylog
+    from geog0111.cylog import Cylog
     from geog0111.nasa_requests import test
 except:
     raise SystemExit(&quot;Error loading the required uclgeog library&quot;)
@@ -1298,64 +1298,41 @@ except:
 <p>If this gave an error, there is a problem importing the <code>geog0111</code> library and you should get help on this in a support class.</p>
 <h3 id="earthdata-login">Earthdata login</h3>
 <p>Run the cell below, and enter your <code>username</code> and <code>password</code> if prompted.</p>
-<pre><code class="python">cy = cylog(init=True)
+<pre><code class="python">site='https://e4ftl01.cr.usgs.gov'
+cy = Cylog(site,init=True,verbose=True)
 
 # check this has worked
 print('has this worked?',test())
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-StdinNotImplementedError                  Traceback (most recent call last)
-
-&lt;ipython-input-2-7abf596df7a2&gt; in &lt;module&gt;
-----&gt; 1 cy = cylog(init=True)
-      2 
-      3 # check this has worked
-      4 print('has this worked?',test())
+<pre><code>None
+has this worked? True
 
 
-~/Documents/GitHub/geog0111/notebooks/geog0111/cylog.py in __init__(self, init, destination_folder)
-     60             return
-     61         else:
----&gt; 62             self._setup(destination_folder=destination_folder)
-     63 
-     64     def _setup(self,destination_folder='.cylog'):
-
-
-~/Documents/GitHub/geog0111/notebooks/geog0111/cylog.py in _setup(self, destination_folder)
-     63 
-     64     def _setup(self,destination_folder='.cylog'):
----&gt; 65         username = input("Enter your username: ")
-     66         password = getpass()
-     67         key = Fernet.generate_key()
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ipykernel/kernelbase.py in raw_input(self, prompt)
-    856         if not self._allow_stdin:
-    857             raise StdinNotImplementedError(
---&gt; 858                 "raw_input was called, but this frontend does not support input requests."
-    859             )
-    860         return self._input_request(str(prompt),
-
-
-StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+--&gt; generating key file in /Users/plewis/.cylog
+--&gt; --&gt; saving key file to /Users/plewis/.cylog/.cylog.npz
 </code></pre>
-<pre><code class="python">cy.login()
+<pre><code class="python">site='https://e4ftl01.cr.usgs.gov'
+# uncomment this line to force re-entry
+#done=cy.login(force=True)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-3-04f472ebef55&gt; in &lt;module&gt;
-----&gt; 1 cy.login()
+<pre><code>--&gt; forcing re-entry of password for https://e4ftl01.cr.usgs.gov
 
 
-NameError: name 'cy' is not defined
+--&gt; user login required for https://e4ftl01.cr.usgs.gov &lt;--
+Enter your username: lewis0585
+please type your password········
+please re-type your password for confirmation········
+password created
+
+
+--&gt; ciphering key from key file /Users/plewis/.cylog/.cylog.npz
+--&gt; --&gt; writing ciphers to file
+--&gt; --&gt; done writing ciphers to file
 </code></pre>
 <p>If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:</p>
-<pre><code>cy = cylog(init=True)
+<pre><code>cy = cylog(force=True)
 </code></pre>
 <p>and re-run.</p>
 <p><code>cylog</code> stores your username and password in a file that only you can read. We can use this as a convenient way to pull some NASA MODIS data.</p>
@@ -1550,20 +1527,6 @@ else:
     print(&quot;\nThis worked&quot;)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-5-c30899e67e91&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic, visualise
-      2 # libraries we need
-      3 
-      4 #######################
-      5 # specify what we want
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <p>The code exits with the message:</p>
 <pre><code>    failed to warp ['HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf":MCD15A3H:Lai_500m', 'HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h17v04.006.2020006031910.hdf":MCD15A3H:Lai_500m', 'HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h18v03.006.2020006033540.hdf":MCD15A3H:Lai_500m', 'HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h18v04.006.2020006032422.hdf":MCD15A3H:Lai_500m'] 2020, 1, ['h17v03', 'h17v04', 'h18v03', 'h18v04'], data/
 </code></pre>
@@ -1576,9 +1539,6 @@ ModuleNotFoundError: No module named 'uclgeog'
 <pre><code class="python">!gdalinfo data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf | grep Lai_500m
 </code></pre>
 
-<pre><code>ERROR 4: data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf: No such file or directory
-gdalinfo failed - unable to open 'data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf'.
-</code></pre>
 <p>From this, we see that the dataset specification is really </p>
 <pre><code>HDF4_EOS:EOS_GRID:"data/MCD15A3H.A2020001.h17v03.006.2020006031702.hdf":MOD_Grid_MCD15A3H:Lai_500m
 </code></pre>
@@ -1618,20 +1578,6 @@ else:
     print(&quot;\nThis worked&quot;)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-7-713060207b13&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic, visualise
-      2 # libraries we need
-      3 
-      4 #######################
-      5 # specify what we want
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <h3 id="download">Download</h3>
 <p>So, other than some terms (e.g. version number) we can take as defaults, when we want to access a MODIS product as tile data, we need to specify:</p>
 <ul>
@@ -1698,20 +1644,6 @@ else:
 
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-8-ea8b28754648&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 import numpy as np
-      3 # libraries we need
-      4 
-      5 #######################
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <h3 id="visualise">Visualise</h3>
 <p>We have now generated a dataset, stored in a variable <code>lai</code>. We are likely to want to perform some analysis on this, but we might also like to visualise the dataset.</p>
 <p>We can do this using a python package <a href="https://matplotlib.org">matplotlib</a> that we will gain more experience with later.</p>
@@ -1723,20 +1655,6 @@ title = 'product {product} SDS {layer}\n'.format(**params) + \
 plot=visualise(data,title=title,vmax=3.0)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-9-3c8c8e941134&gt; in &lt;module&gt;
-      1 # call visualise
-----&gt; 2 title = 'product {product} SDS {layer}\n'.format(**params) + \
-      3         'for day {doy} of year {year} for tiles {tiles}'.format(**params)
-      4 # set the max value to 3.0 to be able to see whats going on
-      5 plot=visualise(data,title=title,vmax=3.0)
-
-
-NameError: name 'params' is not defined
-</code></pre>
 <h1 id="exercises">Exercises</h1>
 <h3 id="exercise-change-the-year-and-doy">Exercise: change the year and DOY</h3>
 <p>Using the lines of code above, download and visualise the LAI dataset for a different DOY and year. Remember that it is a 4-day synthesis, so there are only datasets on doy 1,5,9, ...</p>

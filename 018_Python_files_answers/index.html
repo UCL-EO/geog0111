@@ -1136,20 +1136,6 @@ read_text = infile.read_text()
 print(f'read\n&quot;&quot;&quot;{read_text}&quot;&quot;&quot;\nfrom {infile}')
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-118-595f63975242&gt; in &lt;module&gt;
-      3 
-      4 # set up the filename
-----&gt; 5 infile = Path('work','easy.txt')
-      6 # read the text
-      7 read_text = infile.read_text()
-
-
-NameError: name 'Path' is not defined
-</code></pre>
 <pre><code class="python"># ANSWER
 import json
 
@@ -1164,20 +1150,6 @@ for f in [json_file,yaml_file]:
     print(f'{f} : {f.stat().st_size} bytes')
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-119-4ac914f8e21e&gt; in &lt;module&gt;
-      6 
-      7 # form the file names
-----&gt; 8 json_file = Path('bin','copy','environment.json')
-      9 yaml_file = Path('bin','copy','environment.yml')
-     10 # loop and print size
-
-
-NameError: name 'Path' is not defined
-</code></pre>
 <pre><code class="python"># ANSWER
 
 # read the information from bin/copy/environment.json using Path and json.load() into a variable called 

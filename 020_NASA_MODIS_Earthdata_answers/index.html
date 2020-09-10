@@ -1159,20 +1159,6 @@ else:
     plot=visualise(data,title=title,vmax=3.0)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-10-dd49c35720e8&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 import numpy as np
-      3 
-      4 #######################
-      5 # location: madagascar
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <pre><code class="python">from uclgeog.process_timeseries import mosaic_and_clip, visualise
 
 #######################
@@ -1209,20 +1195,6 @@ else:
     plot=visualise(lai,title=title,vmax=3.0)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-11-35e188cc27e3&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 
-      3 #######################
-      4 # doy = 1 + 4 * 20 here
-      5 #######################
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <h3 id="exercise-change-the-location">Exercise: change the location</h3>
 <p>Using the lines of code above, download and visualise the LAI dataset for a different location.</p>
 <p>You will need to specify the tile or tiles that you wish to use.</p>
@@ -1260,20 +1232,6 @@ else:
     plot=visualise(data,title=title,vmax=3.0)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-12-fb369b668128&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 import numpy as np
-      3 
-      4 #######################
-      5 # location: madagascar
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <h3 id="exercise-change-the-sds">Exercise: change the SDS</h3>
 <p>Using the lines of code above, download and visualise the LAI dataset for a different location. </p>
 <p>Now, instead of using the data layer <code>Lai_500m</code>, visualise another data layer in the LAI dataset. See the table above of <a href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">the product specification</a> for details.</p>
@@ -1317,20 +1275,6 @@ else:
     plot=visualise(data,title=title)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-13-7efdd182c7c5&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 import numpy as np
-      3 
-      4 #######################
-      5 # location: madagascar
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <h3 id="exercise-change-the-product-to-another-on-mota">Exercise: change the product to another on MOTA</h3>
 <p>Using the lines of code above, download and visualise a different MODIS product.</p>
 <p>You can see the option codes on the server we have been using by <a href="https://e4ftl01.cr.usgs.gov/MOTA">looking in the directory https://e4ftl01.cr.usgs.gov/MOTA</a>.</p>
@@ -1383,20 +1327,6 @@ else:
     plot=visualise(data,title=title)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-14-4ddca96bce5f&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 import numpy as np
-      3 
-      4 #######################
-      5 # location: madagascar
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <h3 id="exercise-snow">Exercise: Snow</h3>
 <p>The MODIS snow products are on a different server to the one we used above, <a href="https://n5eil01u.ecs.nsidc.org/MOST"><code>https://n5eil01u.ecs.nsidc.org/MOST</code></a> for MODIS Terra data and <a href="https://n5eil01u.ecs.nsidc.org/MOSA"><code>https://n5eil01u.ecs.nsidc.org/MOSA</code></a> for MODIS Aqua. Product information is available on the <a href="https://nsidc.org/data/myd10a1">product website</a>. Note that there is not combined Terra and Aqua product.</p>
 <p>Use the codes above to explore, download, and plot a snow dataset from the <code>MOD10A1</code> product.</p>
@@ -1446,27 +1376,10 @@ else:
     plot=visualise(data,title=title)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-15-bd5d26ad50dd&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 import numpy as np
-      3 
-      4 #######################
-      5 # location: E Europe
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <pre><code class="python"># check for grid info ...
 !gdalinfo data/MOD10A1.A2010001.h19v03.006.2016083014706.hdf | grep NDSI_Snow_Cover
 </code></pre>
 
-<pre><code>ERROR 4: data/MOD10A1.A2010001.h19v03.006.2016083014706.hdf: No such file or directory
-gdalinfo failed - unable to open 'data/MOD10A1.A2010001.h19v03.006.2016083014706.hdf'.
-</code></pre>
 <h3 id="exercise-land-cover">Exercise: Land Cover</h3>
 <p>The MODIS land cover product is <code>MCD12Q1</code>.</p>
 <p>Use the codes above to explore, download, and plot a  land cover dataset from the <code>MCD12Q1</code> product.</p>
@@ -1518,20 +1431,6 @@ else:
     plot=visualise(data,title=title)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-17-e2f28b046795&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 import numpy as np
-      3 
-      4 #######################
-      5 # location: madagascar
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <pre><code class="python">from uclgeog.process_timeseries import mosaic_and_clip, visualise
 
 #######################
@@ -1582,20 +1481,6 @@ else:
     plot=visualise(data,title=title)
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-18-73e04bf09463&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 
-      3 #######################
-      4 # location: madagascar
-      5 # product MCD12C1 yearly Land cover
-
-
-ModuleNotFoundError: No module named 'uclgeog'
-</code></pre>
 <pre><code class="python">from uclgeog.process_timeseries import mosaic_and_clip, visualise
 
 #############
@@ -1630,21 +1515,6 @@ lai[lai&gt;254] = np.nan
 title = 'product {product} SDS {layer}\n'.format(**params) + \
         'for day {doy} of year {year} for tiles {tiles}'.format(**params)
 plot=visualise(lai,title=title)
-</code></pre>
-
-<pre><code>---------------------------------------------------------------------------
-
-ModuleNotFoundError                       Traceback (most recent call last)
-
-&lt;ipython-input-19-8a100b6b0936&gt; in &lt;module&gt;
-----&gt; 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-      2 
-      3 #############
-      4 # FparLai_QC
-      5 #############
-
-
-ModuleNotFoundError: No module named 'uclgeog'
 </code></pre>
                 
                   
