@@ -7,7 +7,7 @@
 
 ### Purpose
 
-In this session, we will learn about files and similar resources. We will introduce the standard Python library [`pathlib`](https://docs.python.org/3/library/pathlib.html) which is how we deal with file paths, as well as the useful package [`urlpath`](https://github.com/chrono-meter/urlpath) that allows a similar object-oriented approach with files and other objects on the web. We will also cover opening and closing files, and some simple read- and write-operations.
+In this session, we will learn about files and similar resources. We will introduce the standard Python library [`pathlib`](https://docs.python.org/3/library/pathlib.html) which is how we deal with file paths, as well as the local package [gurlpath](geog0111/gurlpath) derived from [`urlpath`](https://github.com/chrono-meter/urlpath) that allows a similar object-oriented approach with files and other objects on the web. We will also cover opening and closing files, and some simple read- and write-operations.
 
 
 
@@ -241,6 +241,28 @@ To use `Path.write_text()` to write text to a file `work/easy.txt`, we simply do
 
 
 ```python
+from geog0111.gurlpath import URL
+from pathlib import Path
+
+u = 'https://www.json.org/json-en.html'
+url = URL(u)
+data = url.read_text()
+ofile = Path('data',url.name)
+print(f'writing to {ofile}')
+osize = ofile.write_text(data)
+assert osize == 26718
+print('passed')
+```
+
+Use `Path.write_text()` to write text to a file `work/easy.txt`, we simply do:
+
+
+```python
+r = URL('https://www.json.org').get_text()
+```
+
+
+```python
 # from https://www.json.org
 some_text = '''
 It is easy for humans to read and write.
@@ -266,11 +288,19 @@ A similar approach is taken for reading and writing binary data.
 
 ## Reading from a URL
 
-The library `urlpath` is designed to operate in a similar manner to `pathlib`. The object corresponding to `Path` is `URL`:
+The library `gurlpath` is designed to operate in a similar manner to `pathlib` for reading data from URLs. 
+
+
+|command|  purpose|
+|---|---|
+|`URL.read_text()`|  read text|
+|`URL.read_bytes()`| read byte data|
+
+The object corresponding to `Path` is `URL`:
 
 
 ```python
-from urlpath import URL
+from geog0111.gurlpath import URL
 url = "https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt"
 
 f = URL(url)
@@ -285,16 +315,11 @@ print(f'name   : {f.name}')
 print(f'parent : {f.parent}')
 ```
 
-    URL https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
-    name   : HadSEEP_monthly_qc.txt
-    parent : https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly
-
-
 It is particularly useful for a simple object-oriented approach to reading text (or e.g. `json`) information from a URL:
 
 
 ```python
-html_data = f.get_text()
+html_data = f.read_text()
 ```
 
 If we examine the data on the website [HadSEEP_monthly_qc.txt](https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt), we see that the first 3 lines are metedata. The fourth line specifies the data columns, then the rest are datra values, with `-99.9` as invalid.
@@ -305,138 +330,9 @@ If we examine the data on the website [HadSEEP_monthly_qc.txt](https://www.metof
 ```python
 import pandas as pd
 import io
-c=pd.read_table(io.StringIO(f.get_text()),skiprows=3,na_values=[-99.9],sep=r"[ ]{1,}",engine='python')
+c=pd.read_table(io.StringIO(f.read_text()),skiprows=3,na_values=[-99.9],sep=r"[ ]{1,}",engine='python')
 c.head()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>YEAR</th>
-      <th>JAN</th>
-      <th>FEB</th>
-      <th>MAR</th>
-      <th>APR</th>
-      <th>MAY</th>
-      <th>JUN</th>
-      <th>JUL</th>
-      <th>AUG</th>
-      <th>SEP</th>
-      <th>OCT</th>
-      <th>NOV</th>
-      <th>DEC</th>
-      <th>ANN</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1873</td>
-      <td>87.1</td>
-      <td>50.4</td>
-      <td>52.9</td>
-      <td>19.9</td>
-      <td>41.1</td>
-      <td>63.6</td>
-      <td>53.2</td>
-      <td>56.4</td>
-      <td>62.0</td>
-      <td>86.0</td>
-      <td>59.4</td>
-      <td>15.7</td>
-      <td>647.7</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1874</td>
-      <td>46.8</td>
-      <td>44.9</td>
-      <td>15.8</td>
-      <td>48.4</td>
-      <td>24.1</td>
-      <td>49.9</td>
-      <td>28.3</td>
-      <td>43.6</td>
-      <td>79.4</td>
-      <td>96.1</td>
-      <td>63.9</td>
-      <td>52.3</td>
-      <td>593.5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1875</td>
-      <td>96.9</td>
-      <td>39.7</td>
-      <td>22.9</td>
-      <td>37.0</td>
-      <td>39.1</td>
-      <td>76.1</td>
-      <td>125.1</td>
-      <td>40.8</td>
-      <td>54.7</td>
-      <td>137.7</td>
-      <td>106.4</td>
-      <td>27.1</td>
-      <td>803.5</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1876</td>
-      <td>31.8</td>
-      <td>71.9</td>
-      <td>79.5</td>
-      <td>63.6</td>
-      <td>16.5</td>
-      <td>37.2</td>
-      <td>22.3</td>
-      <td>66.3</td>
-      <td>118.2</td>
-      <td>34.1</td>
-      <td>89.0</td>
-      <td>162.9</td>
-      <td>793.3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1877</td>
-      <td>146.0</td>
-      <td>47.7</td>
-      <td>56.2</td>
-      <td>66.4</td>
-      <td>62.3</td>
-      <td>24.9</td>
-      <td>78.5</td>
-      <td>82.4</td>
-      <td>38.4</td>
-      <td>58.1</td>
-      <td>144.5</td>
-      <td>54.2</td>
-      <td>859.6</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 
 ```python
@@ -445,14 +341,56 @@ plt.plot(c['YEAR'],c['JAN'])
 ```
 
 
+```python
+from geog0111.gurlpath import URL
+from pathlib import Path
+
+u='https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h09v06.006.2015084002115.hdf'
+url = URL(u)
+#cy = Cylog(url.anchor,verbose=True).login()
+#print(cy)
+data = url.read_bytes(verbose=True)
+ofile = Path('data',url.name)
+print(f'writing to {ofile}')
+osize = ofile.write_bytes(data)
+assert osize == 3365255
+print('passed')
+```
+
+    --> logging in to https://e4ftl01.cr.usgs.gov/
+    --> data read from https://e4ftl01.cr.usgs.gov/
+    writing to data/MCD15A3H.A2003345.h09v06.006.2015084002115.hdf
+    passed
 
 
-    [<matplotlib.lines.Line2D at 0x7fc87314c3d0>]
 
+```python
+from geog0111.gurlpath import URL
+from geog0111.cylog import Cylog
+from pathlib import Path
 
+u='https://e4ftl01.cr.usgs.gov'
+url = URL(u)
+rlist = url.glob('MOT*/MCD15A3H.006/2003.12.*/*0.hdf',verbose=True)
+print(len(rlist))
+```
 
-
-![png](018_Python_files_files/018_Python_files_43_1.png)
+    wildcards in: ['MOT*' 'MCD15A3H.006' '2003.12.*' '*0.hdf']
+    ----> level 0/4 : MOT*
+    --> discovered 1 files with pattern MOT* in https://e4ftl01.cr.usgs.gov
+    ----> level 1/4 : MCD15A3H.006
+    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
+    ----> level 2/4 : 2003.12.*
+    --> discovered 7 files with pattern 2003.12.* in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    ----> level 3/4 : *0.hdf
+    --> discovered 32 files with pattern *0.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.03
+    --> discovered 30 files with pattern *0.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.07
+    --> discovered 22 files with pattern *0.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11
+    --> discovered 22 files with pattern *0.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.15
+    --> discovered 18 files with pattern *0.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.23
+    --> discovered 24 files with pattern *0.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.27
+    --> discovered 33 files with pattern *0.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.31
+    181
 
 
 We will use this idea to make a dictionary of our ENSO dataset, using the items in the header for the keys. In this way, we obtain a  more elegant representation of the dataset, and can refer to items by names (keys) instead of column numbers.

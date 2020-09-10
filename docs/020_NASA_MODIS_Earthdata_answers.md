@@ -63,22 +63,6 @@ else:
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-10-dd49c35720e8> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 import numpy as np
-          3 
-          4 #######################
-          5 # location: madagascar
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
-
-
 ```python
 from uclgeog.process_timeseries import mosaic_and_clip, visualise
 
@@ -115,22 +99,6 @@ else:
             'for day {doy} of year {year} for tiles {tiles}'.format(**params)
     plot=visualise(lai,title=title,vmax=3.0)
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-11-35e188cc27e3> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 
-          3 #######################
-          4 # doy = 1 + 4 * 20 here
-          5 #######################
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
 
 ### Exercise: change the location
 
@@ -175,22 +143,6 @@ else:
             'for day {doy} of year {year} for tiles {tiles}'.format(**params)
     plot=visualise(data,title=title,vmax=3.0)
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-12-fb369b668128> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 import numpy as np
-          3 
-          4 #######################
-          5 # location: madagascar
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
 
 ### Exercise: change the SDS
 
@@ -239,22 +191,6 @@ else:
             'for day {doy} of year {year} for tiles {tiles}'.format(**params)
     plot=visualise(data,title=title)
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-13-7efdd182c7c5> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 import numpy as np
-          3 
-          4 #######################
-          5 # location: madagascar
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
 
 ### Exercise: change the product to another on MOTA
 
@@ -314,22 +250,6 @@ else:
     plot=visualise(data,title=title)
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-14-4ddca96bce5f> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 import numpy as np
-          3 
-          4 #######################
-          5 # location: madagascar
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
-
 ### Exercise: Snow
     
 The MODIS snow products are on a different server to the one we used above, [`https://n5eil01u.ecs.nsidc.org/MOST`](https://n5eil01u.ecs.nsidc.org/MOST) for MODIS Terra data and [`https://n5eil01u.ecs.nsidc.org/MOSA`](https://n5eil01u.ecs.nsidc.org/MOSA) for MODIS Aqua. Product information is available on the [product website](https://nsidc.org/data/myd10a1). Note that there is not combined Terra and Aqua product.
@@ -385,30 +305,10 @@ else:
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-15-bd5d26ad50dd> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 import numpy as np
-          3 
-          4 #######################
-          5 # location: E Europe
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
-
-
 ```python
 # check for grid info ...
 !gdalinfo data/MOD10A1.A2010001.h19v03.006.2016083014706.hdf | grep NDSI_Snow_Cover
 ```
-
-    ERROR 4: data/MOD10A1.A2010001.h19v03.006.2016083014706.hdf: No such file or directory
-    gdalinfo failed - unable to open 'data/MOD10A1.A2010001.h19v03.006.2016083014706.hdf'.
-
 
 ### Exercise: Land Cover
     
@@ -467,22 +367,6 @@ else:
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-17-e2f28b046795> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 import numpy as np
-          3 
-          4 #######################
-          5 # location: madagascar
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
-
-
 ```python
 from uclgeog.process_timeseries import mosaic_and_clip, visualise
 
@@ -535,22 +419,6 @@ else:
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-18-73e04bf09463> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 
-          3 #######################
-          4 # location: madagascar
-          5 # product MCD12C1 yearly Land cover
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
-
-
 ```python
 from uclgeog.process_timeseries import mosaic_and_clip, visualise
 
@@ -587,19 +455,3 @@ title = 'product {product} SDS {layer}\n'.format(**params) + \
         'for day {doy} of year {year} for tiles {tiles}'.format(**params)
 plot=visualise(lai,title=title)
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-19-8a100b6b0936> in <module>
-    ----> 1 from uclgeog.process_timeseries import mosaic_and_clip, visualise
-          2 
-          3 #############
-          4 # FparLai_QC
-          5 #############
-
-
-    ModuleNotFoundError: No module named 'uclgeog'
-
