@@ -109,7 +109,7 @@ class  Cylog():
             self.msg(f"key file {keyfile.as_posix()} doesn't exist")
             self._init(site=site,destination_folder=destination_folder)
 
-        self.msg(f"loading key file {keyfile.as_posix()}")
+        #self.msg(f"loading key file {keyfile.as_posix()}")
         data = dict(np.load(keyfile.as_posix()))
         if 'key' not in data.keys():
             self.msg(f"no key found in key file {keyfile.as_posix()}")
@@ -180,7 +180,7 @@ class  Cylog():
             self.msg(f"key file {keyfile.as_posix()} doesn't exist")
             self._init(site=site,destination_folder=destination_folder)
 
-        self.msg(f"loading key file {keyfile.as_posix()}")
+        #self.msg(f"loading key file {keyfile.as_posix()}")
         data = dict(np.load(keyfile.as_posix()))
         if 'key' not in data.keys():
             self.msg(f"no key found in key file {keyfile.as_posix()}")
