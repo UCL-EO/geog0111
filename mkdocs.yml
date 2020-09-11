@@ -17,6 +17,7 @@ nav:
   - Notebook Use: 001_Notebook_use.md
   - Unix: 002_Unix.md
   - Help: 003_Help.md
+  - Accounts: 004_Accounts.md
   - Answers:
     - Notebook Use: 001_Notebook_use_answers.md
     - Unix: 002_Unix_answers.md
@@ -45,10 +46,15 @@ nav:
 - Datasets:
   - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata.md
   - Python Files: 020_Python_files.md
-  - Google Earth Engine: 021_GoogleEarthEngine.md
+  - Read Files: 021_Read_files.md
+  - NASA MODIS Earthdata: 022_NASA_MODIS_Earthdata.md
+  - Pandas And Plotting: 022_Pandas_and_plotting.md
+  - Google Earth Engine: 024_GoogleEarthEngine.md
   - Answers:
     - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata_answers.md
     - Python Files: 020_Python_files_answers.md
+    - Read Files: 021_Read_files_answers.md
+    - NASA MODIS Earthdata: 022_NASA_MODIS_Earthdata_answers.md
 - Image Processing:
   - Numpy Matplotlib: 031_Numpy_matplotlib.md
   - Plotting: 031_Plotting.md

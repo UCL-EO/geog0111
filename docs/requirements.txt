@@ -1,9 +1,0 @@
-mkdocs
-sphinx
-mkdocs-jupyter
-mknotebooks
-mkdocs-material
-mkdocs-exclude
-mkdocs-git-revision-date-localized-plugin
-recommonmark
-sphinx-typlog-theme

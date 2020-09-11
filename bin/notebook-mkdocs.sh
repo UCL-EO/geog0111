@@ -20,8 +20,10 @@ if [ -z "$HOME" ] ; then
   cd ~
   HOME=$(pwd)
   echo "--> HOME $HOME"
-  cd "$here"
+  cd "$base"
 fi
+
+cd "$base"
 
 echo "--> re-making docs"
 rm -rf docs
@@ -85,5 +87,5 @@ cd docs
 cp ../config/requirements.txt .
 #sphinx build html latexpdf
 cd ..
-echo "----> done running $0 from $here"
+echo "----> done running $0 from $base"
 echo "now run:  mkdocs gh-deploy --force"

@@ -2,6 +2,38 @@
 
 #### Exercise 1
 
+There is a file called `environment.yml` in the directory `copy`.md_checkpoints/
+
+* use `Path` to generate the a variable `copy_dir` containing the pathname of the `copy` directory
+* create a variable `env_file` which adds add the file `environment.yml` to this 
+* check to see if the file exists
+
+
+```python
+# ANSWER
+
+# There is a file called environment.yml 
+# in the directory copy.md_checkpoints/
+
+# use `Path` to generate the a variable `copy_dir` 
+# containing the pathname of the `copy` directory
+copy_dir = Path('copy')
+
+# create a variable `env_file` which adds add the file 
+# `environment.yml` to this 
+env_file = Path(copy_dir,'environment.yml')
+# or
+env_file = copy_dir/'environment.yml'
+
+# check to see if the file exists
+print(f'Does {env_file} exist? {env_file.exists()}')
+```
+
+    Does copy/environment.yml exist? True
+
+
+#### Exercise 2
+
 * Use `Path` to show the file permissions of all files that end `.sh` in the directory `bin`
 
 
@@ -18,19 +50,51 @@ for f in filenames:
     print(f)
 ```
 
-#### Exercise 2
+    bin/notebook-mkdocs.sh
+    bin/setup.sh
+    bin/notebook-run.sh
+    bin/link-set.sh
+    bin/git-remove-all.sh
 
-* print out the absolute pathname of the directory that `images/ucl.png` is in
-* print the size of the file in KB to two decimal places
-
-You will need to know how many Bytes in a Kilobyte, and how to [format a string to two decimal places](012_Python_strings.md#String-formating).
 
 #### Exercise 3
 
-* Using `Path.read_text()` read the text from the file `work/easy.txt` and print the text returned.
-* split the text into lines of text using `str.split()` at each newline, and print out the resulting list
+* print out the absolute pathname of the directory that `images/ucl.png` is in
+* check that the file exists
+* if it does, print the size of the file in KB to two decimal places
 
-You learned how to split strings in [013_Python_string_methods](013_Python_string_methods.md#split()-and-join())
+You will need to know how many Bytes in a Kilobyte, and how to [format a string to two decimal places](012_Python_strings.md#String-formating). You will also need to remember how to use [`if` statements](015_Python_control.md#Comparison-Operators-and-if).
+
+
+```python
+# ANSWER
+
+# print out the absolute pathname of the 
+# directory that images/ucl.png is in
+ucl = Path('images','ucl.png')
+
+# use absolute and parent
+# Use name to show how that is helpful
+print(f'The directory {ucl.name} is in is: {ucl.absolute().parent}')
+
+# check that the file exists
+# if it does ...
+if ucl.exists():
+    # print the size of the file in KB to two decimal places
+
+    # from above, use stat().st_size
+    size_in_bytes = ucl.stat().st_size
+    # 1024 Bytes -> 1 KB
+    size_in_KB = size_in_bytes/1024
+    # 2 dp -> : .2f
+    print(f'file size {size_in_bytes} Bytes -> {size_in_KB : .2f} KB')
+else:
+    print(f'file does not exist')
+```
+
+    The directory ucl.png is in is: /Users/plewis/Documents/GitHub/geog0111/notebooks/images
+    file size 1956 Bytes ->  1.91 KB
+
 
 
 ```python
@@ -50,19 +114,36 @@ lines = read_text.split('\n')
 print(lines)
 ```
 
+    ['', 'It is easy for humans to read and write.', 'It is easy for machines to parse and generate. ', '']
+
+
+#### Exercise 4
+
+* create a `URL` object for the file `table.html` in the directory `psd/enso/mei/` on the site `http://www.esrl.noaa.gov/`.
+* print out the url and check it is `table.html`
+
 
 ```python
-# ANSWER 
-# following from above
+# ANSWER
 
-# set up the filename
-infile = Path('work','easy.txt')
-# read the text
-read_text = infile.read_text()
+# create a URL object for the file table.html 
+# in the directory psd/enso/mei/ on the site 
+# http://www.esrl.noaa.gov/.
 
-# print what we did
-print(f'read\n"""{read_text}"""\nfrom {infile}')
+site = 'http://www.esrl.noaa.gov/'
+site_dir = 'psd/enso/mei'
+site_file = 'table.html'
+url = URL(site,site_dir,site_file)
+
+# print out the url and check it is table.html
+print(url)
+assert url.name == site_file
+print('passed')
 ```
+
+    http://www.esrl.noaa.gov/psd/enso/mei/table.html
+    passed
+
 
 
 ```python
@@ -80,184 +161,143 @@ for f in [json_file,yaml_file]:
     print(f'{f} : {f.stat().st_size} bytes')
 ```
 
+    bin/copy/environment.json : 791 bytes
+    bin/copy/environment.yml : 856 bytes
+
+
 
 ```python
-# ANSWER
+from geog0111.gurlpath import URL
 
-# read the information from bin/copy/environment.json using Path and json.load() into a variable called 
-# jenv and print the keys of the dictionary jenv
+# ANSWER
 
-# open file for read
-with json_file.open('r') as f:
-    jenv = json.load(f)
+# write a function called `modis_dataset` 
+# with arguments corresponding to the settings above
+#
+# the function should return the URL objects of 
+# the NASA datasets specified by your arguments
+#
+def modis_dataset(product, tile, year, month, day,
+                  verbose=False,
+                  site='https://e4ftl01.cr.usgs.gov'):
+    '''
+    Get URL object list for NASA MODIS products
+    for the specified product, tile, year, month, day
     
-print(f'jenv keys: {jenv.keys()}')
-
-# use assert to check if the keys are the same
-assert jenv.keys() == env.keys()
-print('passed assertion')
-```
-
-
-```python
-# ANSWER 
-
-# print out the absolute pathname of the 
-# directory that images/ucl.png is in
-abs_name = Path('images/ucl.png').absolute()
-print(abs_name)
-
-# we want the parent!
-print(f'the file {abs_name.name} is in {abs_name.parent}')
-
-# print the size of the file in bytes
-print(f'{abs_name.name} has size {abs_name.stat().st_size} bytes')
-
-# 1 KB is 1024 Bytes
-# .2f is 2 d.p. format
-print(f'{abs_name.name} has size ' +\
-      f'{abs_name.stat().st_size/1024:.2f} KB')
-```
-
-#### Exercise 1
-
-* copy the code above, and modify so that datasets for months `['MAYJUN','JUNJUL','JULAUG']` are plotted on the graph
-
-Hint: use a for loop
-
-
-```python
-# do exercise here
-# ANSWER
-
-import requests
-import numpy as np
-import io
-
-# access dataset as above
-url = "http://www.esrl.noaa.gov/psd/enso/mei.old/table.html"
-txt = requests.get(url).text
-
-# copy the useful data
-start_head = txt.find('YEAR')
-start_data = txt.find('1950\t')
-stop_data  = txt.find('2018\t')
-
-header = txt[start_head:start_data].split()
-data = np.loadtxt(io.StringIO(txt[start_data:stop_data]),unpack=True)
-
-# use zip to load into a dictionary
-data_dict = dict(zip(header, data))
-
-
-'''
-Do the loop here
-'''
-for i,key in enumerate(['MAYJUN','JUNJUL','JULAUG']):
-    # plot data
+    Positional Arguments:
+     
+    product : str e.g. 'MCD15A3H'
+    tile    : str e.g. 'h08v06'
+    year    : str valid 2000-present
+    month   : str 01-12
+    day     : str 01-(28,29,30,31)
+    
+    Keyword Arguments:
+    
+    site     =  'https://e4ftl01.cr.usgs.gov'
+    verbose  =  False
     '''
-    Use enumeration i as figure number
-    '''
-    plt.figure(i,figsize=(12,7))
-    plt.title('ENSO data from {0}'.format(url))
-    plt.plot(data_dict['YEAR'],data_dict[key],label=key)
-    plt.xlabel('year')
-    plt.ylabel('ENSO')
-    plt.legend(loc='best')
-```
+    # you should put some tests in
+    site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
 
-#### Exercise 2
+    site_file = f'*.{tile}*.hdf'
 
-* Using what you have learned above, access the Met Office data file [`https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt`](https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt) and create a 'data package' in a numpy`.npz` file that has keys of `YEAR` and each month in the year, with associated datasets of Monthly Southeast England precipitation (mm).
-* confirm that tha data in your `npz` file is the same as in your original dictionary
-* produce a plot of October rainfall using these data for the years 1900 onwards
-
-
-```python
-# do exercise here
-# ANSWER
-
-'''
-Exploration of dataset shows:
-
-
-Monthly Southeast England precipitation (mm). Daily automated values used after 1996.
-Wigley & Jones (J.Climatol.,1987), Gregory et al. (Int.J.Clim.,1991)
-Jones & Conway (Int.J.Climatol.,1997), Alexander & Jones (ASL,2001). Values may change after QC.
-YEAR   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV   DEC   ANN
- 1873  87.1  50.4  52.9  19.9  41.1  63.6  53.2  56.4  62.0  86.0  59.4  15.7  647.7
- 1874  46.8  44.9  15.8  48.4  24.1  49.9  28.3  43.6  79.4  96.1  63.9  52.3  593.5
-
-so we have 3 lines of header
-then the column titles
-then the data
-
-we can define these as before using
-
-txt.find('YEAR')
-start_data = txt.find('1873')
-stop_data = None
-
-
-Other than the filenames then, the code
-is identical
-'''
-
-import requests
-import numpy as np
-import io
-
-# access dataset as above
-url = "https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt"
-txt = requests.get(url).text
-
-# copy the useful data
-start_head = txt.find('YEAR')
-start_data = txt.find('1873')
-stop_data  = None
-
-header = txt[start_head:start_data].split()
-data = np.loadtxt(io.StringIO(txt[start_data:stop_data]),unpack=True)
-
-# use zip to load into a dictionary
-data_dict = dict(zip(header, data))
-
-filename = 'HadSEEP_monthly_qc.npz'
-
-# save the dataset
-np.savez_compressed(filename,**data_dict)
+    url = URL(site,site_dir)
+    hdf_urls = url.glob(site_file,verbose=verbose)
+    return hdf_urls 
 ```
 
 
 ```python
-# ANSWER
+# ANSWER 1
+# run a test of your function, and check that 
+# the file pointed to in the URL exists and is accessible
 
-loaded_data = np.load(filename)
-
-print(type(loaded_data))
-
-# test they are the same using np.array_equal
-for k in loaded_data.keys():
-    print('\t',k,np.array_equal(data_dict[k], loaded_data[k]))
+args = ['MCD15A3H','h08v06','2020','06', '01']
+hdf_urls = modis_dataset(*args,verbose=True)
+# test if exist
+for u in hdf_urls:
+    print(f'{u.name} : {u.exists()}')
 ```
+
+    --> wildcards in: ['*.h08v06*.hdf']
+    --> level 0/1 : *.h08v06*.hdf
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+
+
+    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
+
 
 
 ```python
-# ANSWER
+# ANSWER 2
+# run a test of your function, and check that 
+# mis-specify date and see that it fails
+# use '1' instead of '01'
 
-'''
-October rainfall, 1900+
-'''
-
-year = loaded_data['YEAR']
-
-# mask where years match
-mask = year  >= 1900
-
-oct = loaded_data['OCT']
-
-# set invalid data points to nan
-oct[oct<0] = np.nan
-
-plt.plot(year[mask],oct[mask])
+args = ['MCD15A3H','h08v06','2020','06', '1']
+hdf_urls = modis_dataset(*args,verbose=True)
+# test if exist
+for u in hdf_urls:
+    print(f'{u.name} : {u.exists()}')
 ```
+
+    --> wildcards in: ['*.h08v06*.hdf']
+    --> level 0/1 : *.h08v06*.hdf
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.1
+
+
+
+```python
+# ANSWER 3
+# what happens if you use a wildcard for the date?
+args = ['MCD15A3H','h08v06','2020','06', '*']
+hdf_urls = modis_dataset(*args,verbose=True)
+# test if exist
+for u in hdf_urls:
+    print(f'{u.name} : {u.exists()}')
+```
+
+    --> wildcards in: ['2020.06.*' '*.h08v06*.hdf']
+    --> level 0/2 : 2020.06.*
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> level 1/2 : *.h08v06*.hdf
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.05
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.09
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.13
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.17
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.21
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.25
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.29
+
+
+    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
+    MCD15A3H.A2020157.h08v06.006.2020162035120.hdf : True
+    MCD15A3H.A2020161.h08v06.006.2020167041028.hdf : True
+    MCD15A3H.A2020165.h08v06.006.2020170044117.hdf : True
+    MCD15A3H.A2020169.h08v06.006.2020174041553.hdf : True
+    MCD15A3H.A2020173.h08v06.006.2020178032155.hdf : True
+    MCD15A3H.A2020177.h08v06.006.2020182190226.hdf : True
+    MCD15A3H.A2020181.h08v06.006.2020188194909.hdf : True
+
+
+
+```python
+# ANSWER 4
+msg = '''
+what happens if you use a wildcard for the date?
+
+It accepts wildcards for anywhere in the directory path.
+This is very useful for gathering datasets!
+'''
+print(msg)
+```
+
+    
+    what happens if you use a wildcard for the date?
+    
+    It accepts wildcards for anywhere in the directory path.
+    This is very useful for gathering datasets!
+    
+

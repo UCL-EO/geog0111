@@ -1,6 +1,7 @@
 import requests
 from pathlib import Path
 from geog0111.cylog import Cylog
+from geog0111.gurlib import URL
 
 __author__ = "P Lewis"
 __copyright__ = "Copyright 2018 P Lewis"
@@ -32,11 +33,7 @@ def get(url):
     return(None)
 
 
-def test():
-  url='https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/BROWSE.MCD15A3H.A2018273.h00v08.006.2018278143557.1.jpg'
-  try:
-    x = get(url) 
-    print(x)
-    return True
-  except:
-    return False
+def test(site=Nonei,file=None):
+  site = site or 'https://e4ftl01.cr.usgs.gov'
+  file = file or 'MOTA/MCD15A3H.006/2018.09.30/BROWSE.MCD15A3H.A2018273.h00v08.006.2018278143557.1.jpg'
+  return URL(site,file).ping()
