@@ -28,7 +28,7 @@ GEOG0111 Scientific Computing
  015_Python_control.md
  016_Python_for.md
  017_Functions.md
- 018_Python_files.md
+ 018_Packages.md
  019_Running_Python.md
 
  010_Python_Introduction_answers.md
@@ -39,13 +39,14 @@ GEOG0111 Scientific Computing
  015_Python_control_answers.md
  016_Python_for_answers.md
  017_Functions_answers.md
- 018_Python_files_answers.md
  019_Running_Python_answers.md
 
  020_NASA_MODIS_Earthdata.md
+ 020_Python_files.md
  021_GoogleEarthEngine.md
 
  020_NASA_MODIS_Earthdata_answers.md
+ 020_Python_files_answers.md
 
  031_Numpy_matplotlib.md
  031_Plotting.md
