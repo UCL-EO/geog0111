@@ -80,26 +80,26 @@ echo "linking data/ucl to $UCLDATA"
 ln -s $UCLDATA ucl
 cd $here
 
-cd docs
-if [ -L bin ] ; then
-  rm -f bin
-fi
-echo "linking docs/bin to ../bin"
-ln -s ../bin bin
-if [ -L copy ] ; then
-  rm -f copy
-fi
-echo "linking docs/copy to ../copy"
-ln -s ../copy copy
 
-cd $here
+csubs=('docs' 'bin' 'notebooks' 'notebooks_lab')
+# outer loop
+for n in ${csubs[@]}
+do
+  cd $base/$n
+  if [ -L bin ] ; then
+    rm -f bin
+  fi
+  echo "linking $n/bin to ../bin"
+  ln -s ../bin bin
+  if [ -L copy ] ; then
+    rm -f copy
+  fi
+  echo "linking $n/copy to ../copy"
+  ln -s ../copy copy
+  cd $base
+done
 
-cd bin
-if [ -L copy ] ; then
-  rm -f copy
-fi
-echo "linking bin/copy to ../copy"
-ln -s ../copy copy
-cd $here
+# dont want this!
+rm -f bin/bin
 
 echo "----> done running $0 from $here"

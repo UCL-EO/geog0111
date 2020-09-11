@@ -153,14 +153,15 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     self.done[pattern] = self.done[pattern] + olist
     return olist
 
-  def rglob(self,pattern, verbose=False):
+  def glob(self,pattern, verbose=False):
     '''
-    Recursively yield all existing files (of any kind, including
-    directories) matching the given relative pattern, anywhere in
-    this subtree.
+    Iterate over this subtree and yield all existing files (of any
+    kind, including directories) matching the given relative pattern.
+
+    The URL here then needs to return lxml html code.
 
     Positional arguments:
-       patterm  : to search for e.g. 2021.*.01
+       patterm  : to search for e.g. */2021.*.01
                   only wildcards * and ? considered at present
 
     Keyword arguments:
@@ -186,14 +187,21 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       for b in base_list:
         new_list = new_list + URL(b)._glob(w,verbose=True)
       base_list = new_list
-    return base_list  
+    yield [URL(i) for i in base_list]  
 
-  def glob(self, pattern, verbose=False):
+  def rglob(self, pattern, verbose=False):
     '''
-    Iterate over this subtree and yield all existing files (of any
-    kind, including directories) matching the given relative pattern.
+    Recursively yield all existing files (of any kind, including
+    directories) matching the given relative pattern, anywhere in
+    this subtree.
 
-    The URL here then needs to return lxml html code. 
+    Positional arguments:
+       patterm  : to search for e.g. 2021.*.01
+                  only wildcards * and ? considered at present
+
+    Keyword arguments:
+       verbose=False   : verbose feedback
+
     '''
     return self.rglob(pattern, verbose=verbose)
 

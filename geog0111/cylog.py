@@ -94,7 +94,7 @@ class  Cylog():
         self.dest_path.chmod(0o700)
         p = self.dest_path.joinpath('.cylog.npz')
 
-        self.msg(f'--> saving key file to {p.as_posix()}')
+        self.msg(f'saving key file to {p.as_posix()}')
 
         np.savez(p,**data)
         p.chmod(0o600)
