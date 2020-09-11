@@ -1,0 +1,1697 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://ucl-eo.github.io/geog0111/024_GoogleEarthEngine/">
+      
+      
+        <meta name="author" content="Prof P. Lewis">
+      
+      <link rel="shortcut icon" href="../images/ucl.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Google Earth Engine - GEOG0111</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-1347772-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#201-google-earth-engine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            GEOG0111
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Google Earth Engine
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    GEOG0111
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Course Basics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Course Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../002_Unix/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../004_Accounts/" title="Accounts" class="md-nav__link">
+      Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../001_Notebook_use_answers/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../002_Unix_answers/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Help_answers/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Core Concepts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Core Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../014_Python_groups/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../015_Python_control/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../016_Python_for/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../017_Functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../018_Packages/" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../019_Running_Python/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-11" type="checkbox" id="nav-3-11">
+    
+    <label class="md-nav__link" for="nav-3-11">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-11">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../010_Python_Introduction_answers/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../011_Python_data_types_answers/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings_answers/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods_answers/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../014_Python_groups_answers/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../015_Python_control_answers/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../016_Python_for_answers/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../017_Functions_answers/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../019_Running_Python_answers/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_Python_files/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_Read_files/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+      Pandas And Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Google Earth Engine
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Google Earth Engine" class="md-nav__link md-nav__link--active">
+      Google Earth Engine
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    Purpose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timing" class="md-nav__link">
+    Timing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#earth-engine" class="md-nav__link">
+    Earth Engine
+  </a>
+  
+    <nav class="md-nav" aria-label="Earth Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-gee" class="md-nav__link">
+    What is GEE?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+  
+    <nav class="md-nav" aria-label="Interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-editor" class="md-nav__link">
+    Code editor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qgis" class="md-nav__link">
+    QGIS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ee-and-geemap" class="md-nav__link">
+    ee and geemap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gee-datasets" class="md-nav__link">
+    GEE datasets
+  </a>
+  
+    <nav class="md-nav" aria-label="GEE datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leaf-area-index" class="md-nav__link">
+    Leaf Area Index
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-7" type="checkbox" id="nav-4-7">
+    
+    <label class="md-nav__link" for="nav-4-7">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-7">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_Python_files_answers/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_Read_files_answers/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Image Processing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Image Processing" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Image Processing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../031_Numpy_matplotlib/" title="Numpy Matplotlib" class="md-nav__link">
+      Numpy Matplotlib
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../031_Plotting/" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Geospatial Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Geospatial Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../040_GDAL/" title="GDAL" class="md-nav__link">
+      GDAL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../041_MODIS_download/" title="MODIS Download" class="md-nav__link">
+      MODIS Download
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../042_GDAL_masking/" title="GDAL Masking" class="md-nav__link">
+      GDAL Masking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../043_GDAL_stacking_and_interpolating/" title="GDAL Stacking And Interpolating" class="md-nav__link">
+      GDAL Stacking And Interpolating
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../044_GDAL_Reconciling_projections/" title="GDAL Reconciling Projections" class="md-nav__link">
+      GDAL Reconciling Projections
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Modelling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Modelling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../050_Linear_models/" title="Linear Models" class="md-nav__link">
+      Linear Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../051_Modelling_and_optimisation/" title="Modelling And Optimisation" class="md-nav__link">
+      Modelling And Optimisation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developers" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        Developers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DEV_Local_Install/" title="Local Install" class="md-nav__link">
+      Local Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DEV_scripts/" title="Scripts" class="md-nav__link">
+      Scripts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    Purpose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timing" class="md-nav__link">
+    Timing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#earth-engine" class="md-nav__link">
+    Earth Engine
+  </a>
+  
+    <nav class="md-nav" aria-label="Earth Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-gee" class="md-nav__link">
+    What is GEE?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+  
+    <nav class="md-nav" aria-label="Interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-editor" class="md-nav__link">
+    Code editor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qgis" class="md-nav__link">
+    QGIS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ee-and-geemap" class="md-nav__link">
+    ee and geemap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gee-datasets" class="md-nav__link">
+    GEE datasets
+  </a>
+  
+    <nav class="md-nav" aria-label="GEE datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leaf-area-index" class="md-nav__link">
+    Leaf Area Index
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/024_GoogleEarthEngine.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="201-google-earth-engine">201 Google Earth Engine</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="purpose">Purpose</h3>
+<p>In this notebook, we introduce the python interface to <a href="https://earthengine.google.com">Google Earth Engine</a> (GEE) using the <a href="https://github.com/giswqs/geemap"><code>geemap</code></a> package.</p>
+<p>We use GEE to explore some Earth Observation datasets and their characteristics and learn about interpreting quality control data.</p>
+<p>We do not intend this to be a complete course on using GEE, and we do not want you spending all of your time developing in GEE at the moment: this is a course in scientific programming using Python and so needs to be more general. This then, it is a one-session introduction to some important datasets, the core ideas of processing in GEE, and some of the core methods you might use. When you want to develop your own codes, you will find the <a href="https://github.com/giswqs/geemap"><code>geemap</code> documentation</a> and <a href="https://github.com/giswqs/earthengine-py-notebooks">examples</a> of great use. </p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding Python basics from part 1 of this course (notebooks with the code XXX )</p>
+<p>You will also need to make sure you have a <a href="https://support.google.com/accounts/answer/27441?hl=en">google account</a> to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at <a href="https://signup.earthengine.google.com/">signup.earthengine.google.com</a>. <strong>You will need to do this before we start the class</strong> as you will need to wait for approval from Google.</p>
+<h3 id="timing">Timing</h3>
+<p>The session should take around 30 minutes to initially explore, though you could spend a lifetime looking at all of the datasets!</p>
+<h2 id="earth-engine">Earth Engine</h2>
+<h3 id="what-is-gee">What is GEE?</h3>
+<p>Google Earth Engine (GEE) is a facility for access to vast quantities of Earth Observation (EO) data, as well as many other geospatial datasets. It is a hugely valuable resource for scientists, as well as making a significant contribution to the democratisation of EO: anyone can sign up for a google account and use these resources to both access and process data. With a little coding experience, anyone can develop their own products or analyses.</p>
+<p>You will find an increasingly large range of projects and <a href="https://earthengine.google.com/case_studies/">examples</a> available. For more information on GEE, see the <a href="https://earthengine.google.com/faq/">GEE FAQ</a>. You can develop and deploy your own apps either using GEE on google Cloud <a href="https://plewis.users.earthengine.app/view/nceo-united-kingdom">example</a>, or hosted on other resources such as <a href="https://github.com/giswqs/earthengine-apps">heroku</a> (<a href="https://geemap-demo.herokuapp.com">example</a>).</p>
+<p>There are some complexities and limitations to GEE that you should understand as well. In particular, whilst you can do some truly amazing things using GEE resources, they are provided free to you, and so there are limits to the amount of processing you can do at any one time, as well as quite strict limits on the amount of GEE local storage made available to you. You can certainly do great science within GEE, but to be a good coder, you will need wider exposure to accessing datasets than just through GEE.</p>
+<h3 id="interfaces">Interfaces</h3>
+<h4 id="code-editor">Code editor</h4>
+<p>The main interface to GEE is through the <a href="https://code.earthengine.google.com/">web-based code editor</a>. There is a good set of <a href="https://developers.google.com/earth-engine/guides/getstarted">documentation on this</a> that you can browse through at a later date. In the code editor, you can run and develop <a href="https://www.javascript.com/">JavaScript</a> codes, access saved datasets and documentation, and gain some basic experience of using GEE. Although we have not taught you JavaScript, you will notice that it is a high-level language with many similarities to Python. The GEE <a href="https://developers.google.com/earth-engine/guides/python_install">guide for Python installation</a> provides some succinct advice and examples of common syntax differences between JavaScript and Python. In addition, there are resources available to allow you to <a href="https://github.com/giswqs/geemap/blob/master/examples/notebooks/15_convert_js_to_py.md">translate GEE JavaScript codes into Python</a>.</p>
+<p>As a follow-up to this class, we suggest that you look in the <code>Scripts</code> tab of the <a href="https://code.earthengine.google.com/">code editor</a>, and try out one or more of the examples under the <code>Examples</code> list, for example, <code>Examples -&gt; ImageCollection -&gt; Landsat Simple Composite</code>. To use this, you need do no more than load the code by clicking on it, then click on the <code>Run</code> button. This example is a good one to start with: if you pan out in the viewer window you will see that GEE can process this 30 m resolution dataset <em>anywhere in the world</em> for you, in near real-time. It is showing a composite of all of the Landsat images over 6 months in 2015, between the dates <code>2015-1-1</code> and <code>2015-7-1</code>. To do this requires only around 4 lines of code. This is an amazing feat.</p>
+<h4 id="qgis">QGIS</h4>
+<p>Users of the popular <a href="https://qgis.org/en/site/"><code>QGIS</code></a> tool will be interested to know that GEE is available as a plugin. One version of this using the Python package <a href="https://anaconda.org/conda-forge/earthengine-api"><code>ee</code></a> is <a href="https://gee-community.github.io/qgis-earthengine-plugin/">plugin to QGIS</a>.</p>
+<h4 id="ee-and-geemap">ee and geemap</h4>
+<p>We will also be using the <a href="https://anaconda.org/conda-forge/earthengine-api"><code>ee</code></a> Python package to access GEE, but with the <a href="https://github.com/giswqs/geemap"><code>geemap</code></a> package providing the mapping front-end.  <a href="https://github.com/giswqs/geemap"><code>geemap</code></a> has very good documentation and an excellent range of <a href="https://github.com/giswqs/earthengine-py-notebooks">examples</a>. This should make it much easier for you to access GEE.</p>
+<h3 id="gee-datasets">GEE datasets</h3>
+<p>A fundamental part of GEE is the vast quantities of data that it gives access to. The core datasets are described in the <a href="https://developers.google.com/earth-engine/datasets">GEE data catalog</a>. The GEE code that you write has straightforward access to any or all of these datasets and, importantly, is able to process them using GEE resources. </p>
+<p>You do not need to download the datasets, and do not need to know great details of what goes on internally in the engine to use GEE. But, as we will see, you still need to think carefully about any interpretation of the data.</p>
+<p>You should spend some time after the class exploring the GEE datasets in the <a href="https://developers.google.com/earth-engine/datasets">data catalog</a>, but for this session, we will concentrate on the following quantities:</p>
+<ul>
+<li>Surface Reflectance</li>
+<li>Leaf Area Index</li>
+</ul>
+<h4 id="leaf-area-index">Leaf Area Index</h4>
+<p>The data product <a href="https://modis.gsfc.nasa.gov/data/dataprod/mod15.php">MOD15</a> LAI/FPAR has been generated from NASA MODIS sensors Terra and Aqua data since 2002. We are now in dataset collection 6 (the data version to use).</p>
+<pre><code>LAI is defined as the one-sided green leaf area per unit ground area in broadleaf canopies and as half the total needle surface area per unit ground area in coniferous canopies. FPAR is the fraction of photosynthetically active radiation (400-700 nm) absorbed by green vegetation. Both variables are used for calculating surface photosynthesis, evapotranspiration, and net primary production, which in turn are used to calculate terrestrial energy, carbon, water cycle processes, and biogeochemistry of vegetation. Algorithm refinements have improved quality of retrievals and consistency with field measurements over all biomes, with a focus on woody vegetation.
+</code></pre>
+<p>https://developers.google.com/earth-engine/datasets/tags/lai</p>
+<p>https://developers.google.com/earth-engine/datasets/tags/crop</p>
+<pre><code class="python">import ee
+import geemap
+</code></pre>
+
+<pre><code class="python">Map = geemap.Map()
+Map
+
+</code></pre>
+
+<pre><code>Map(center=[40, -100], controls=(WidgetControl(options=['position'], widget=HBox(children=(ToggleButton(value=…
+</code></pre>
+<pre><code class="python">point = ee.Geometry.Point([-87.7719, 41.8799])
+
+image = ee.ImageCollection('MODIS/006/MCD15A3H') \
+    .filterBounds(point) \
+    .filterDate('2019-01-01', '2019-12-31') \
+    .max() \
+    .select('Lai')
+
+vis_params = {
+    'min': 0,
+    'max': 60,
+    'bands': ['Lai']
+}
+
+Map.centerObject(point, 8)
+Map.addLayer(image, vis_params, &quot;MODIS LAI&quot;)
+</code></pre>
+
+<pre><code class="python">props = geemap.image_props(image)
+props.getInfo()
+</code></pre>
+
+<pre><code>---------------------------------------------------------------------------
+
+HttpError                                 Traceback (most recent call last)
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    344   try:
+--&gt; 345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
+    133                     logger.warning(message)
+--&gt; 134             return wrapped(*args, **kwargs)
+    135
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
+    906         if resp.status &gt;= 300:
+--&gt; 907             raise HttpError(resp, content, uri=self.uri)
+    908         return self.postproc(resp, content)
+
+
+HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned "Date: Parameter 'value' is required."&gt;
+
+
+During handling of the above exception, another exception occurred:
+
+
+EEException                               Traceback (most recent call last)
+
+&lt;ipython-input-4-02ced7a4e17a&gt; in &lt;module&gt;
+      1 props = geemap.image_props(image)
+----&gt; 2 props.getInfo()
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
+     93       The object can evaluate to anything.
+     94     """
+---&gt; 95     return data.computeValue(self)
+     96 
+     97   def encode(self, encoder):
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
+    708             body={'expression': serializer.encode(obj, for_cloud_api=True)},
+    709             project=_get_projects_path(),
+--&gt; 710             prettyPrint=False))['result']
+    711   return send_('/value', {
+    712       'json': obj.serialize(for_cloud_api=False),
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+--&gt; 347     raise _translate_cloud_exception(e)
+    348 
+    349
+
+
+EEException: Date: Parameter 'value' is required.
+</code></pre>
+<pre><code class="python">props.get('IMAGE_DATE').getInfo()
+
+</code></pre>
+
+<pre><code>---------------------------------------------------------------------------
+
+HttpError                                 Traceback (most recent call last)
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    344   try:
+--&gt; 345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
+    133                     logger.warning(message)
+--&gt; 134             return wrapped(*args, **kwargs)
+    135
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
+    906         if resp.status &gt;= 300:
+--&gt; 907             raise HttpError(resp, content, uri=self.uri)
+    908         return self.postproc(resp, content)
+
+
+HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned "Date: Parameter 'value' is required."&gt;
+
+
+During handling of the above exception, another exception occurred:
+
+
+EEException                               Traceback (most recent call last)
+
+&lt;ipython-input-5-3c50e153c167&gt; in &lt;module&gt;
+----&gt; 1 props.get('IMAGE_DATE').getInfo()
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
+     93       The object can evaluate to anything.
+     94     """
+---&gt; 95     return data.computeValue(self)
+     96 
+     97   def encode(self, encoder):
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
+    708             body={'expression': serializer.encode(obj, for_cloud_api=True)},
+    709             project=_get_projects_path(),
+--&gt; 710             prettyPrint=False))['result']
+    711   return send_('/value', {
+    712       'json': obj.serialize(for_cloud_api=False),
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+--&gt; 347     raise _translate_cloud_exception(e)
+    348 
+    349
+
+
+EEException: Date: Parameter 'value' is required.
+</code></pre>
+<pre><code class="python">props.get('CLOUD_COVER').getInfo()
+
+</code></pre>
+
+<pre><code>---------------------------------------------------------------------------
+
+HttpError                                 Traceback (most recent call last)
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    344   try:
+--&gt; 345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
+    133                     logger.warning(message)
+--&gt; 134             return wrapped(*args, **kwargs)
+    135
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
+    906         if resp.status &gt;= 300:
+--&gt; 907             raise HttpError(resp, content, uri=self.uri)
+    908         return self.postproc(resp, content)
+
+
+HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned "Date: Parameter 'value' is required."&gt;
+
+
+During handling of the above exception, another exception occurred:
+
+
+EEException                               Traceback (most recent call last)
+
+&lt;ipython-input-6-b347f70f7d81&gt; in &lt;module&gt;
+----&gt; 1 props.get('CLOUD_COVER').getInfo()
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
+     93       The object can evaluate to anything.
+     94     """
+---&gt; 95     return data.computeValue(self)
+     96 
+     97   def encode(self, encoder):
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
+    708             body={'expression': serializer.encode(obj, for_cloud_api=True)},
+    709             project=_get_projects_path(),
+--&gt; 710             prettyPrint=False))['result']
+    711   return send_('/value', {
+    712       'json': obj.serialize(for_cloud_api=False),
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+--&gt; 347     raise _translate_cloud_exception(e)
+    348 
+    349
+
+
+EEException: Date: Parameter 'value' is required.
+</code></pre>
+<pre><code class="python">
+</code></pre>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 11, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Pandas And Plotting
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../020_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                NASA MODIS Earthdata
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/prof_plewis" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/proflewis/geog0111" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/UCL-EO/geog0111" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ["search.highlight", "header.hide"],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

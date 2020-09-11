@@ -102,6 +102,8 @@ class  Cylog():
 
     def _setup(self,site=False,destination_folder='.cylog'):
         site = site or self.site
+        if not site:
+           return 
 
         # make sure keyfile exists
         # should check permissions too
@@ -123,7 +125,7 @@ class  Cylog():
             username = input("Enter your username: ")
             if username == "exit":
                 print('exiting password setup')
-                return
+                break
             password = getpass("please type your password")
             password_again=getpass("please re-type your password for confirmation")
             if password_again==password:
@@ -174,6 +176,8 @@ class  Cylog():
 
         '''
         site = site or self.site
+        if not site:
+          return (None,None)
         force = force 
 
         keyfile = self.dest_path.joinpath('.cylog.npz')

@@ -16,6 +16,8 @@ import requests
 from bs4 import BeautifulSoup
 import fnmatch
 import numpy as np
+import io
+
 
 try:
   from geog0111.cylog import Cylog
@@ -42,50 +44,220 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
   '''
 
+  def _local_file(self,local_file=None,local_dir=None,noclobber=False):
+      try:
+        local_dir = local_dir or self.local_dir
+      except:
+        local_dir = local_dir
+      try:
+        local_file = local_file or self.local_file
+      except:
+        local_file = local_file
+
+      if local_dir:
+        local_file = Path(local_dir,self.name) 
+      local_file =  Path(local_file or Path('.',self.components[2]))
+      self.msg(f"local file {local_file}")
+      if local_file.exists():
+        self.msg(f"existing file {local_file}")
+        self.msg(f'noclobber: {noclobber}')
+        # delete the file if noclobber is False
+        if not noclobber:
+          self.msg(f"deleting existing file {local_file}")
+          local_file.unlink()
+      self.msg(f"opening local file {local_file}")
+      local_dir = local_file.parent
+      self.msg(f"mkdir local dir {local_dir}")
+      local_dir.mkdir(parents=True,exist_ok=True)
+      
+      return local_file
+
+  def open(self,mode='r', buffering=-1, encoding=None, errors=None, newline=None,\
+                local_dir=None,verbose=False,noclobber=False,local_file=None):
+      '''
+      Open the file pointed by this URL and return a file object, as
+      the built-in open() function does.
+      '''
+      # append, so dont clobber
+      if '+' in mode or 'a' in mode:
+        noclobber=True
+      self.verbose = verbose
+      kwargs = {'mode':mode,'buffering':buffering,'encoding':encoding,\
+                'errors':errors,'newline':newline}
+
+      if self.anchor == '':
+        self.msg(f'{self} is not a URL: interpreting as Path')
+        return Path(self).open(**kwargs)
+
+      binary = ('b' in mode) and ('t' not in mode) 
+ 
+      if 'r' in mode:
+        self.msg(f"reading data from {self}")
+        # read 
+        if binary:
+          self.msg("open() binary stream")
+          return io.BytesIO(self.read_bytes())
+        else:
+          self.msg("open() text stream")
+          return  io.StringIO(self.read_text())
+      # if we are here, then we probably 
+      # want a real file for writing or whatever
+      local_file = self._local_file(local_dir=local_dir,local_file=local_file,noclobber=noclobber)  
+
+      self.msg(f"opening file ...")
+      return local_file.open(**kwargs)
+
+  def write_text(self,data, encoding=None, errors=None,
+                      local_dir=None,verbose=False,noclobber=False,local_file=None):
+      '''Open the file in text mode, write to it, and close the file.'''
+      self.verbose = verbose 
+      if self.anchor == '':
+          self.msg(f'{self} is not a URL: interpreting as Path')
+          return Path(self).write_text(data)
+      local_file = self._local_file(local_dir=local_dir,local_file=local_file,noclobber=noclobber)   
+
+      if not local_file.exists():
+          kwargs = {'encoding':encoding,'errors':errors}
+          self.msg(f"writing data ...")
+          retval = local_file.write_text(data,**kwargs)
+      else:
+          self.msg("file exists so not writing")
+          retval = local_file.stat().st_size
+      self.msg(f"done : {retval}")
+      return retval
+
+  def write_bytes(self,data,verbose=False,
+                       local_dir=None,noclobber=False,local_file=None):
+      '''Open the file in bytes mode, write to it, and close the file.'''
+      self.verbose = verbose   
+      if self.anchor == '':
+          self.msg(f'{self} is not a URL: interpreting as Path')
+          return Path(self).write_text(data)
+      local_file = self._local_file(local_dir=local_dir,local_file=local_file,noclobber=noclobber)   
+      if not local_file.exists():
+          self.msg(f"writing data ...")
+          retval = local_file.write_bytes(data)
+          self.msg(f"done : {retval}")
+      else:
+          self.msg("file exists so not writing")
+          retval = local_file.stat().st_size
+      self.msg(f"done : {retval}")
+      return retval
+
   def _get_login(self,verbose=False):
       u = self.resolve()
+      u.verbose = verbose
       with requests.Session() as session:
-        if self.username and self.password:
-          session.auth = self.username,self.password
+        if u.username and u.password:
+          session.auth = u.username,u.password
         else:
-          uinfo = Cylog(self.anchor).login()
+          uinfo = Cylog(u.anchor).login()
+          if uinfo == (None,None):
+            return None
           session.auth = uinfo[0].decode('utf-8'),uinfo[1].decode('utf-8')
-          if verbose:
-            print(f'--> logging in to {self.anchor}')
+          u.msg(f'logging in to {u.anchor}')
         try:
           r1 = session.request('get',u)
           if r1.status_code == 200:
-            if verbose:
-              print(f'--> data read from {self.anchor}')
+            u.msg(f'data read from {u.anchor}')
             return r1
           # try encoded login
           r2 = session.get(r1.url)
-          if r2.status_code == 200 and verbose:
-            print(f'--> data read from {self.anchor}')
+          if r2.status_code == 200:
+            u.msg(f'data read from {u.anchor}')
           if type(r2) == requests.models.Response:
             return r2
         except:
-          if verbose:
-              print(f'--> failure reading data from {self.anchor}')
+          u.msg(f'failure reading data from {u.anchor}')
           return None
-      if verbose:
-          print(f'--> failure reading data from {self.anchor}')
+      u.msg(f'failure reading data from {u.anchor}')
       return None
+
+  def msg(self,*args):
+    '''msg to stderr'''
+    try:
+        if self.verbose:
+            print('-->',*args,file=sys.stderr)
+    except:
+        pass
 
   def read_text(self, encoding=None, errors=None, verbose=False):
     '''Open the URL, read in text mode and return text.'''  
+    self.verbose = verbose   
+    u = self.resolve()
+    if u.anchor == '':
+      self.msg(f'{u} is not a URL: interpreting as Path')
+      return Path(u).read_text()
+    u.verbose = verbose
     try:
-        return self.get_text()
+        u.msg(f'trying {self}')
+        return u.get_text()
     except:
       pass
 
-    r = self._get_login(verbose=verbose)
+    u.msg(f'getting login')
+    r = u._get_login(verbose=verbose)
+    if type(r) != requests.models.Response:
+      return None
     if r.status_code == 200:
+        u.msg(f'code {r.status_code}')
         return r.text
-    return r
+    if type(r) == requests.models.Response:
+        u.msg(f'code {r.status_code}')
+        return r
+    u.msg(f'failed to connect')
+    return None
 
+  def exists(self, verbose=False):
+    '''Whether this URL exists and can be accessed'''
+    return self.ping(verbose=verbose)
 
-  def read_bytes(self, login=False,verbose=False):
+  def ping(self, verbose=False):
+    '''
+    ping the URL data return True if response is 200
+
+    You should specify any required login/password with
+    with_components(username=str,password=str)
+
+    Returns:
+      True if data available
+    Or:
+      False
+    '''
+    u = self.resolve()
+    u.verbose = verbose
+    if u.anchor == '':
+      self.msg(f'{u} is not a URL: interpreting as Path')
+      # not a URL
+      u = Path(u)
+      return u.exists()
+    try:
+      u.msg(f'trying {u}')
+      r = u.get()
+      if type(r) == requests.models.Response:
+        if r.status_code == 200:
+          u.msg(f'code 200')
+          return True
+        if r.status_code == 401:
+          u.msg(f'code 401')
+          u.msg(f'trying another')
+          # unauthorised
+          # more complex session login and auth
+          # e.g. needed for NASA Earthdata login
+          u.msg(f'getting login')
+          r = u._get_login(verbose=verbose)
+          if r.status_code == 200:
+            u.msg(f'code 200')
+            return True
+        else:
+          u.msg(f'code {r.status_code}')
+          return False
+    except:
+      pass
+    u.msg(f'failed to connect')
+    return False
+
+  def read_bytes(self, verbose=False):
     '''
     Open the URL data in bytes mode, read it and return the data
 
@@ -102,23 +274,39 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       None                     : on failure 
       requests.models.Response : on connection problem
     '''
+    self.verbose = verbose   
+    u = self.resolve()
+    u.verbose = verbose
+    if u.anchor == '':
+      self.msg(f'{u} is not a URL: interpreting as Path')
+      return Path(u).read_bytes()
     try:
-      r = self.get()
+      u.msg(f'trying {u}')
+      r = u.get()
       if type(r) == requests.models.Response:
         if r.status_code == 200:
+          u.msg(f'code {r.status_code}')
           return r.content
         if r.status_code == 401:
+          u.msg(f'code {r.status_code}')
+          u.msg(f'trying another')
           # unauthorised
           # more complex session login and auth
           # e.g. needed for NASA Earthdata login
-          r = self._get_login(verbose=verbose)
+          u.msg(f'getting login')
+          r = u._get_login(verbose=verbose)
+          if type(r) != requests.models.Response:
+            return None
           if r.status_code == 200:
+            u.msg(f'code {r.status_code}')
             return r.content
         else:
+          u.msg(f'code {r.status_code}')
           return r
     except:
       pass
 
+    u.msg(f'failed to connect')
     return None 
 
 
@@ -168,26 +356,30 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
        verbose=False   : verbose feedback
  
     '''
-    url = str(self.resolve())
+    self.verbose = verbose   
+    u = self.resolve()
+    u.verbose = verbose
+    url = str(u)
     if url[-1] == '/':
       url = urls[:-1]
-    url = URL(self,pattern)
+    url = URL(url,pattern)
     uc = np.array(url.parts)
-    is_wild = np.logical_or(np.array(['*' in i for i in uc]),
-                            np.array(['?' in i for i in uc]))
+    is_wild   = np.logical_or(np.array(['*' in i for i in uc]),
+                              np.array(['?' in i for i in uc]))
+    is_wild_2 = np.logical_or(np.array(['[' in i for i in uc]),
+                              np.array([']' in i for i in uc]))
+    is_wild = np.logical_or(is_wild,is_wild_2)
     first_wild = np.where(np.cumsum(is_wild)>0)[0][0]
     base_list = [str(URL(*list(uc[:first_wild])).resolve())]
     wilds = uc[first_wild:]
-    if verbose:
-      print(f'wildcards in: {wilds}')
+    u.msg(f'wildcards in: {wilds}')
     for i,w in enumerate(wilds):
-      if verbose:
-        print(f'----> level {i}/{len(wilds)} : {w}')
+      u.msg(f'level {i}/{len(wilds)} : {w}')
       new_list = []
       for b in base_list:
-        new_list = new_list + URL(b)._glob(w,verbose=True)
-      base_list = new_list
-    yield [URL(i) for i in base_list]  
+        new_list = new_list + URL(b)._glob(w,verbose=verbose)
+      base_list = np.array(new_list).flatten()
+    return list(np.array([URL(i) for i in base_list]).flatten())
 
   def rglob(self, pattern, verbose=False):
     '''
@@ -203,7 +395,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
        verbose=False   : verbose feedback
 
     '''
-    return self.rglob(pattern, verbose=verbose)
+    u = self.resolve()
+    u.verbose = verbose
+    return u.rglob(pattern, verbose=verbose)
 
 
   def _glob(self, pattern, verbose=False):
@@ -227,8 +421,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       files = list(links[matches])
     except:
       files = []
-    if verbose:
-      print(f'--> discovered {len(files)} files with pattern {pattern} in {str(self.resolve())}')
+    self.msg(f'discovered {len(files)} files with pattern {pattern} in {str(self.resolve())}')
     return files 
 
 def main():

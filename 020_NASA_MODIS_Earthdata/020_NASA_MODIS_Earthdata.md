@@ -43,15 +43,23 @@ First, we import `cylog` from the `geog0111` library.
 Run the cell below:
 
 
+### Test
+You will need a web login to NASA Earthdata and to have stored this using `cylog` according to [004_Accounts](004_Accounts.md) for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code ius yoiu set do_test to True:
+
+
 ```python
-try:
-    from geog0111.cylog import Cylog
-    from geog0111.nasa_requests import test
-except:
-    raise SystemExit("Error loading the required uclgeog library")
+from geog0111.gurlpath import URL
+# ping small (1.3 M) test file
+site='https://e4ftl01.cr.usgs.gov'
+test_dir='MOLA/MYD11_L2.006/2002.07.04'
+test_file='MYD11_L2*0325*.hdf'
+# this interprets the wildcards to get at a suitable test file
+url = next(URL(site,test_dir).glob(test_file))[0]
+# test ping returns True
+assert url.ping(verbose=False) == True
 ```
 
-If this gave an error, there is a problem importing the `geog0111` library and you should get help on this in a support class.
+If this fails, set `verbose` to `True` to see what is going on, then if you can;'t work it out from there, go back to [004_Accounts](004_Accounts.md) and sort the login for NASA Earthdata the site `https://e4ftl01.cr.usgs.gov`.
 
 ### Earthdata login
 

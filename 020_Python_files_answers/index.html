@@ -253,16 +253,28 @@
           
 
 
+  <li class="md-nav__item">
+    <a href="../004_Accounts/" title="Accounts" class="md-nav__link">
+      Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
     
-    <label class="md-nav__link" for="nav-2-4">
+    <label class="md-nav__link" for="nav-2-5">
       Answers
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-4">
+      <label class="md-nav__title" for="nav-2-5">
         <span class="md-nav__icon md-icon"></span>
         Answers
       </label>
@@ -648,7 +660,43 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_GoogleEarthEngine/" title="Google Earth Engine" class="md-nav__link">
+    <a href="../021_Read_files/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+      Pandas And Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../024_GoogleEarthEngine/" title="Google Earth Engine" class="md-nav__link">
       Google Earth Engine
     </a>
   </li>
@@ -663,14 +711,14 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-7" type="checkbox" id="nav-4-7" checked>
     
-    <label class="md-nav__link" for="nav-4-4">
+    <label class="md-nav__link" for="nav-4-7">
       Answers
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-4">
+      <label class="md-nav__title" for="nav-4-7">
         <span class="md-nav__icon md-icon"></span>
         Answers
       </label>
@@ -747,15 +795,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-1_1" class="md-nav__link">
-    Exercise 1
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-2_1" class="md-nav__link">
-    Exercise 2
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
   </a>
   
 </li>
@@ -764,6 +805,30 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_Read_files_answers/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
   </li>
 
         
@@ -1058,15 +1123,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-1_1" class="md-nav__link">
-    Exercise 1
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-2_1" class="md-nav__link">
-    Exercise 2
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
   </a>
   
 </li>
@@ -1093,6 +1151,34 @@
                 
                 <h1 id="020-files-and-other-resources-answers-to-exercises">020 Files and other Resources : Answers to exercises</h1>
 <h4 id="exercise-1">Exercise 1</h4>
+<p>There is a file called <code>environment.yml</code> in the directory <code>copy</code>.md_checkpoints/</p>
+<ul>
+<li>use <code>Path</code> to generate the a variable <code>copy_dir</code> containing the pathname of the <code>copy</code> directory</li>
+<li>create a variable <code>env_file</code> which adds add the file <code>environment.yml</code> to this </li>
+<li>check to see if the file exists</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# There is a file called environment.yml 
+# in the directory copy.md_checkpoints/
+
+# use `Path` to generate the a variable `copy_dir` 
+# containing the pathname of the `copy` directory
+copy_dir = Path('copy')
+
+# create a variable `env_file` which adds add the file 
+# `environment.yml` to this 
+env_file = Path(copy_dir,'environment.yml')
+# or
+env_file = copy_dir/'environment.yml'
+
+# check to see if the file exists
+print(f'Does {env_file} exist? {env_file.exists()}')
+</code></pre>
+
+<pre><code>Does copy/environment.yml exist? True
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
 <ul>
 <li>Use <code>Path</code> to show the file permissions of all files that end <code>.sh</code> in the directory <code>bin</code></li>
 </ul>
@@ -1108,18 +1194,47 @@ for f in filenames:
     print(f)
 </code></pre>
 
-<h4 id="exercise-2">Exercise 2</h4>
-<ul>
-<li>print out the absolute pathname of the directory that <code>images/ucl.png</code> is in</li>
-<li>print the size of the file in KB to two decimal places</li>
-</ul>
-<p>You will need to know how many Bytes in a Kilobyte, and how to <a href="../012_Python_strings/#String-formating">format a string to two decimal places</a>.</p>
+<pre><code>bin/notebook-mkdocs.sh
+bin/setup.sh
+bin/notebook-run.sh
+bin/link-set.sh
+bin/git-remove-all.sh
+</code></pre>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>
-<li>Using <code>Path.read_text()</code> read the text from the file <code>work/easy.txt</code> and print the text returned.</li>
-<li>split the text into lines of text using <code>str.split()</code> at each newline, and print out the resulting list</li>
+<li>print out the absolute pathname of the directory that <code>images/ucl.png</code> is in</li>
+<li>check that the file exists</li>
+<li>if it does, print the size of the file in KB to two decimal places</li>
 </ul>
-<p>You learned how to split strings in <a href="../013_Python_string_methods/#split()-and-join()">013_Python_string_methods</a></p>
+<p>You will need to know how many Bytes in a Kilobyte, and how to <a href="../012_Python_strings/#String-formating">format a string to two decimal places</a>. You will also need to remember how to use <a href="../015_Python_control/#Comparison-Operators-and-if"><code>if</code> statements</a>.</p>
+<pre><code class="python"># ANSWER
+
+# print out the absolute pathname of the 
+# directory that images/ucl.png is in
+ucl = Path('images','ucl.png')
+
+# use absolute and parent
+# Use name to show how that is helpful
+print(f'The directory {ucl.name} is in is: {ucl.absolute().parent}')
+
+# check that the file exists
+# if it does ...
+if ucl.exists():
+    # print the size of the file in KB to two decimal places
+
+    # from above, use stat().st_size
+    size_in_bytes = ucl.stat().st_size
+    # 1024 Bytes -&gt; 1 KB
+    size_in_KB = size_in_bytes/1024
+    # 2 dp -&gt; : .2f
+    print(f'file size {size_in_bytes} Bytes -&gt; {size_in_KB : .2f} KB')
+else:
+    print(f'file does not exist')
+</code></pre>
+
+<pre><code>The directory ucl.png is in is: /Users/plewis/Documents/GitHub/geog0111/notebooks/images
+file size 1956 Bytes -&gt;  1.91 KB
+</code></pre>
 <pre><code class="python"># ANSWER
 # Using Path.read_text() read the text from the file work/easy.txt 
 # and print the text returned.
@@ -1136,18 +1251,33 @@ lines = read_text.split('\n')
 print(lines)
 </code></pre>
 
-<pre><code class="python"># ANSWER 
-# following from above
+<pre><code>['', 'It is easy for humans to read and write.', 'It is easy for machines to parse and generate. ', '']
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<ul>
+<li>create a <code>URL</code> object for the file <code>table.html</code> in the directory <code>psd/enso/mei/</code> on the site <code>http://www.esrl.noaa.gov/</code>.</li>
+<li>print out the url and check it is <code>table.html</code></li>
+</ul>
+<pre><code class="python"># ANSWER
 
-# set up the filename
-infile = Path('work','easy.txt')
-# read the text
-read_text = infile.read_text()
+# create a URL object for the file table.html 
+# in the directory psd/enso/mei/ on the site 
+# http://www.esrl.noaa.gov/.
 
-# print what we did
-print(f'read\n&quot;&quot;&quot;{read_text}&quot;&quot;&quot;\nfrom {infile}')
+site = 'http://www.esrl.noaa.gov/'
+site_dir = 'psd/enso/mei'
+site_file = 'table.html'
+url = URL(site,site_dir,site_file)
+
+# print out the url and check it is table.html
+print(url)
+assert url.name == site_file
+print('passed')
 </code></pre>
 
+<pre><code>http://www.esrl.noaa.gov/psd/enso/mei/table.html
+passed
+</code></pre>
 <pre><code class="python"># ANSWER
 import json
 
@@ -1162,173 +1292,129 @@ for f in [json_file,yaml_file]:
     print(f'{f} : {f.stat().st_size} bytes')
 </code></pre>
 
-<pre><code class="python"># ANSWER
-
-# read the information from bin/copy/environment.json using Path and json.load() into a variable called 
-# jenv and print the keys of the dictionary jenv
-
-# open file for read
-with json_file.open('r') as f:
-    jenv = json.load(f)
-
-print(f'jenv keys: {jenv.keys()}')
-
-# use assert to check if the keys are the same
-assert jenv.keys() == env.keys()
-print('passed assertion')
+<pre><code>bin/copy/environment.json : 791 bytes
+bin/copy/environment.yml : 856 bytes
 </code></pre>
+<pre><code class="python">from geog0111.gurlpath import URL
 
-<pre><code class="python"># ANSWER 
+# ANSWER
 
-# print out the absolute pathname of the 
-# directory that images/ucl.png is in
-abs_name = Path('images/ucl.png').absolute()
-print(abs_name)
-
-# we want the parent!
-print(f'the file {abs_name.name} is in {abs_name.parent}')
-
-# print the size of the file in bytes
-print(f'{abs_name.name} has size {abs_name.stat().st_size} bytes')
-
-# 1 KB is 1024 Bytes
-# .2f is 2 d.p. format
-print(f'{abs_name.name} has size ' +\
-      f'{abs_name.stat().st_size/1024:.2f} KB')
-</code></pre>
-
-<h4 id="exercise-1_1">Exercise 1</h4>
-<ul>
-<li>copy the code above, and modify so that datasets for months <code>['MAYJUN','JUNJUL','JULAUG']</code> are plotted on the graph</li>
-</ul>
-<p>Hint: use a for loop</p>
-<pre><code class="python"># do exercise here
-# ANSWER
-
-import requests
-import numpy as np
-import io
-
-# access dataset as above
-url = &quot;http://www.esrl.noaa.gov/psd/enso/mei.old/table.html&quot;
-txt = requests.get(url).text
-
-# copy the useful data
-start_head = txt.find('YEAR')
-start_data = txt.find('1950\t')
-stop_data  = txt.find('2018\t')
-
-header = txt[start_head:start_data].split()
-data = np.loadtxt(io.StringIO(txt[start_data:stop_data]),unpack=True)
-
-# use zip to load into a dictionary
-data_dict = dict(zip(header, data))
-
-
-'''
-Do the loop here
-'''
-for i,key in enumerate(['MAYJUN','JUNJUL','JULAUG']):
-    # plot data
+# write a function called `modis_dataset` 
+# with arguments corresponding to the settings above
+#
+# the function should return the URL objects of 
+# the NASA datasets specified by your arguments
+#
+def modis_dataset(product, tile, year, month, day,
+                  verbose=False,
+                  site='https://e4ftl01.cr.usgs.gov'):
     '''
-    Use enumeration i as figure number
+    Get URL object list for NASA MODIS products
+    for the specified product, tile, year, month, day
+
+    Positional Arguments:
+
+    product : str e.g. 'MCD15A3H'
+    tile    : str e.g. 'h08v06'
+    year    : str valid 2000-present
+    month   : str 01-12
+    day     : str 01-(28,29,30,31)
+
+    Keyword Arguments:
+
+    site     =  'https://e4ftl01.cr.usgs.gov'
+    verbose  =  False
     '''
-    plt.figure(i,figsize=(12,7))
-    plt.title('ENSO data from {0}'.format(url))
-    plt.plot(data_dict['YEAR'],data_dict[key],label=key)
-    plt.xlabel('year')
-    plt.ylabel('ENSO')
-    plt.legend(loc='best')
+    # you should put some tests in
+    site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
+
+    site_file = f'*.{tile}*.hdf'
+
+    url = URL(site,site_dir)
+    hdf_urls = url.glob(site_file,verbose=verbose)
+    return hdf_urls 
 </code></pre>
 
-<h4 id="exercise-2_1">Exercise 2</h4>
-<ul>
-<li>Using what you have learned above, access the Met Office data file <a href="https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt"><code>https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt</code></a> and create a 'data package' in a numpy<code>.npz</code> file that has keys of <code>YEAR</code> and each month in the year, with associated datasets of Monthly Southeast England precipitation (mm).</li>
-<li>confirm that tha data in your <code>npz</code> file is the same as in your original dictionary</li>
-<li>produce a plot of October rainfall using these data for the years 1900 onwards</li>
-</ul>
-<pre><code class="python"># do exercise here
-# ANSWER
+<pre><code class="python"># ANSWER 1
+# run a test of your function, and check that 
+# the file pointed to in the URL exists and is accessible
 
-'''
-Exploration of dataset shows:
-
-
-Monthly Southeast England precipitation (mm). Daily automated values used after 1996.
-Wigley &amp; Jones (J.Climatol.,1987), Gregory et al. (Int.J.Clim.,1991)
-Jones &amp; Conway (Int.J.Climatol.,1997), Alexander &amp; Jones (ASL,2001). Values may change after QC.
-YEAR   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV   DEC   ANN
- 1873  87.1  50.4  52.9  19.9  41.1  63.6  53.2  56.4  62.0  86.0  59.4  15.7  647.7
- 1874  46.8  44.9  15.8  48.4  24.1  49.9  28.3  43.6  79.4  96.1  63.9  52.3  593.5
-
-so we have 3 lines of header
-then the column titles
-then the data
-
-we can define these as before using
-
-txt.find('YEAR')
-start_data = txt.find('1873')
-stop_data = None
-
-
-Other than the filenames then, the code
-is identical
-'''
-
-import requests
-import numpy as np
-import io
-
-# access dataset as above
-url = &quot;https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt&quot;
-txt = requests.get(url).text
-
-# copy the useful data
-start_head = txt.find('YEAR')
-start_data = txt.find('1873')
-stop_data  = None
-
-header = txt[start_head:start_data].split()
-data = np.loadtxt(io.StringIO(txt[start_data:stop_data]),unpack=True)
-
-# use zip to load into a dictionary
-data_dict = dict(zip(header, data))
-
-filename = 'HadSEEP_monthly_qc.npz'
-
-# save the dataset
-np.savez_compressed(filename,**data_dict)
+args = ['MCD15A3H','h08v06','2020','06', '01']
+hdf_urls = modis_dataset(*args,verbose=True)
+# test if exist
+for u in hdf_urls:
+    print(f'{u.name} : {u.exists()}')
 </code></pre>
 
-<pre><code class="python"># ANSWER
+<pre><code>--&gt; wildcards in: ['*.h08v06*.hdf']
+--&gt; level 0/1 : *.h08v06*.hdf
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 
-loaded_data = np.load(filename)
 
-print(type(loaded_data))
+MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
+</code></pre>
+<pre><code class="python"># ANSWER 2
+# run a test of your function, and check that 
+# mis-specify date and see that it fails
+# use '1' instead of '01'
 
-# test they are the same using np.array_equal
-for k in loaded_data.keys():
-    print('\t',k,np.array_equal(data_dict[k], loaded_data[k]))
+args = ['MCD15A3H','h08v06','2020','06', '1']
+hdf_urls = modis_dataset(*args,verbose=True)
+# test if exist
+for u in hdf_urls:
+    print(f'{u.name} : {u.exists()}')
 </code></pre>
 
-<pre><code class="python"># ANSWER
+<pre><code>--&gt; wildcards in: ['*.h08v06*.hdf']
+--&gt; level 0/1 : *.h08v06*.hdf
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.1
+</code></pre>
+<pre><code class="python"># ANSWER 3
+# what happens if you use a wildcard for the date?
+args = ['MCD15A3H','h08v06','2020','06', '*']
+hdf_urls = modis_dataset(*args,verbose=True)
+# test if exist
+for u in hdf_urls:
+    print(f'{u.name} : {u.exists()}')
+</code></pre>
 
+<pre><code>--&gt; wildcards in: ['2020.06.*' '*.h08v06*.hdf']
+--&gt; level 0/2 : 2020.06.*
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; level 1/2 : *.h08v06*.hdf
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.05
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.09
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.13
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.17
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.21
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.25
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.29
+
+
+MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
+MCD15A3H.A2020157.h08v06.006.2020162035120.hdf : True
+MCD15A3H.A2020161.h08v06.006.2020167041028.hdf : True
+MCD15A3H.A2020165.h08v06.006.2020170044117.hdf : True
+MCD15A3H.A2020169.h08v06.006.2020174041553.hdf : True
+MCD15A3H.A2020173.h08v06.006.2020178032155.hdf : True
+MCD15A3H.A2020177.h08v06.006.2020182190226.hdf : True
+MCD15A3H.A2020181.h08v06.006.2020188194909.hdf : True
+</code></pre>
+<pre><code class="python"># ANSWER 4
+msg = '''
+what happens if you use a wildcard for the date?
+
+It accepts wildcards for anywhere in the directory path.
+This is very useful for gathering datasets!
 '''
-October rainfall, 1900+
-'''
+print(msg)
+</code></pre>
 
-year = loaded_data['YEAR']
+<pre><code>what happens if you use a wildcard for the date?
 
-# mask where years match
-mask = year  &gt;= 1900
-
-oct = loaded_data['OCT']
-
-# set invalid data points to nan
-oct[oct&lt;0] = np.nan
-
-plt.plot(year[mask],oct[mask])
+It accepts wildcards for anywhere in the directory path.
+This is very useful for gathering datasets!
 </code></pre>
                 
                   
@@ -1376,13 +1462,13 @@ plt.plot(year[mask],oct[mask])
           </a>
         
         
-          <a href="../031_Numpy_matplotlib/" title="Numpy Matplotlib" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../021_Read_files_answers/" title="Read Files" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Numpy Matplotlib
+                Read Files
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
