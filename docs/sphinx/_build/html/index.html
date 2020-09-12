@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to GEOG0111 Scientific Computing’s documentation! &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <title>GEOG0111 Scientific Computing &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,6 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Use of Jupyter notebooks" href="001_Notebook_use.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -31,9 +32,893 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-geog0111-scientific-computing-s-documentation">
-<h1>Welcome to GEOG0111 Scientific Computing’s documentation!<a class="headerlink" href="#welcome-to-geog0111-scientific-computing-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="geog0111-scientific-computing">
+<h1>GEOG0111 Scientific Computing<a class="headerlink" href="#geog0111-scientific-computing" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">Use of Jupyter notebooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#course-material">Course material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#course-load">Course load</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#learning">Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#timing">Timing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#some-resources">Some resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#anaconda-and-jupyter">Anaconda and Jupyter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#how-we-will-be-using-notebooks">How we will be using notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#saving-your-work">Saving your work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#cells">Cells</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#exercise-add-a-cell">Exercise: add a cell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#exercise-add-some-cell-formatting">Exercise: add some cell formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use.html#coding">Coding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#exercise">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#id1">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#id2">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use.html#id3">Exercise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="002_Unix.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="002_Unix.html#running-unix-commands">Running unix commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#id1"><code class="docutils literal notranslate"><span class="pre">~</span></code> <code class="docutils literal notranslate"><span class="pre">.</span></code> <code class="docutils literal notranslate"><span class="pre">..</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#cd-pwd"><code class="docutils literal notranslate"><span class="pre">cd</span></code> <code class="docutils literal notranslate"><span class="pre">pwd</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="002_Unix.html#exercise-1">Exercise 1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#ls-ls-lh"><code class="docutils literal notranslate"><span class="pre">ls</span></code> <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lh</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="002_Unix.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#chmod"><code class="docutils literal notranslate"><span class="pre">chmod</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#create-and-delete-a-file-cat-rm">Create and delete a file <code class="docutils literal notranslate"><span class="pre">cat</span></code> <code class="docutils literal notranslate"><span class="pre">rm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#creating-from-jupyterlab">Creating from JupyterLab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="002_Unix.html#unix">Unix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix.html#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="002_Unix.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#help-method">Help Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#id1">help()</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="003_Help.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="003_Help.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#online-help">online help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#id2">help?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#dir-and-locals"><code class="docutils literal notranslate"><span class="pre">dir()</span></code> and <code class="docutils literal notranslate"><span class="pre">locals()</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#dir"><code class="docutils literal notranslate"><span class="pre">dir</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#locals"><code class="docutils literal notranslate"><span class="pre">locals()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="003_Help.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="003_Help.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#completion">Completion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#dir-list"><code class="docutils literal notranslate"><span class="pre">dir(list)</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#id3">Completion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#learning-new-things">Learning new things</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003_Help.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">Use of Jupyter notebooks : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use_answers.html#exercise-add-a-cell">Exercise: add a cell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use_answers.html#exercise-add-some-cell-formatting">Exercise: add some cell formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="001_Notebook_use_answers.html#equation">equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#link">link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#table">table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#image">image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#html">html</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#exercise">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#id2">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#id3">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="001_Notebook_use_answers.html#id4">Exercise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="002_Unix_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002_Unix_answers.html#unix">Unix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="002_Unix_answers.html#exercise">Exercise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="003_Help_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help_answers.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help_answers.html#exercise-4">Exercise 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003_Help_answers.html#learning-new-things">Learning new things</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003_Help_answers.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction.html#some-basics">Some basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#comments">Comments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="010_Python_Introduction.html#exercise-1">Exercise 1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#print"><code class="docutils literal notranslate"><span class="pre">print()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="010_Python_Introduction.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#newline-and-tab">newline and tab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="010_Python_Introduction.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction.html#variables-and-values">Variables and Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#id1">Variables and values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="010_Python_Introduction.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#symbol-names-and-conventions">Symbol names and conventions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="010_Python_Introduction.html#invalid-names">Invalid names</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="010_Python_Introduction.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types.html#data-types">Data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#data-types-str">Data types: <code class="docutils literal notranslate"><span class="pre">str</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-1">Exercise 1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#len"><code class="docutils literal notranslate"><span class="pre">len()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#type"><code class="docutils literal notranslate"><span class="pre">type()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#data-types-float">Data types: <code class="docutils literal notranslate"><span class="pre">float</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#data-types-int">Data types: <code class="docutils literal notranslate"><span class="pre">int</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#data-types-bool">Data types: <code class="docutils literal notranslate"><span class="pre">bool</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-6">Exercise 6</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#logical-operators-not-and-or">Logical Operators: <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-7">Exercise 7</a></li>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-8">Exercise 8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="011_Python_data_types.html#exercise-9">Exercise 9</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types.html#conversion-between-data-types">Conversion between data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="011_Python_data_types.html#exercise-10">Exercise 10</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings.html#string-features">String features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#quotes-and-escapes">Quotes and escapes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="012_Python_strings.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="012_Python_strings.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings.html#string-arithmetic">String arithmetic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#id1"><code class="docutils literal notranslate"><span class="pre">*</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="012_Python_strings.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#id2"><code class="docutils literal notranslate"><span class="pre">+</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="012_Python_strings.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings.html#string-formating">String formating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#str-format"><code class="docutils literal notranslate"><span class="pre">str.format()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="012_Python_strings.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="012_Python_strings.html#f-string"><code class="docutils literal notranslate"><span class="pre">f-string</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="012_Python_strings.html#exercise-6">Exercise 6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods.html#strings">Strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#help-str"><code class="docutils literal notranslate"><span class="pre">help(str)</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods.html#object-methods">Object methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#concatenate-strings-and-len">Concatenate strings: <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">len()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods.html#id1">String methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#replace-and-strip"><code class="docutils literal notranslate"><span class="pre">replace()</span></code> and <code class="docutils literal notranslate"><span class="pre">strip()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="013_Python_string_methods.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#split-and-join"><code class="docutils literal notranslate"><span class="pre">split()</span></code> and <code class="docutils literal notranslate"><span class="pre">join()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="013_Python_string_methods.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="013_Python_string_methods.html#slice"><code class="docutils literal notranslate"><span class="pre">slice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="013_Python_string_methods.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="014_Python_groups.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="014_Python_groups.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="014_Python_groups.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups.html#groups-of-things">Groups of things</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="014_Python_groups.html#tuple"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="014_Python_groups.html#using-a-tuple">Using a <code class="docutils literal notranslate"><span class="pre">tuple</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="014_Python_groups.html#exercise-1">Exercise 1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="014_Python_groups.html#list"><code class="docutils literal notranslate"><span class="pre">list</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="014_Python_groups.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="014_Python_groups.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="014_Python_groups.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="014_Python_groups.html#multiple-dimensional-lists">multiple dimensional lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="014_Python_groups.html#dict"><code class="docutils literal notranslate"><span class="pre">dict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="014_Python_groups.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="015_Python_control.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="015_Python_control.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="015_Python_control.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="015_Python_control.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="015_Python_control.html#comparison-operators-and-if">Comparison Operators and <code class="docutils literal notranslate"><span class="pre">if</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="015_Python_control.html#comparison-operators">Comparison Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="015_Python_control.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="015_Python_control.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="015_Python_control.html#conditional-test-if-elif-else">Conditional test: <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">...</span> <span class="pre">else</span> <span class="pre">...</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="015_Python_control.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="015_Python_control.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="016_Python_for.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="016_Python_for.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="016_Python_for.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for.html#looping-with-for">Looping with <code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="016_Python_for.html#for-in"><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> <span class="pre">...</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="016_Python_for.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="016_Python_for.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for.html#range"><code class="docutils literal notranslate"><span class="pre">range()</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="016_Python_for.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for.html#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="016_Python_for.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for.html#looping-over-dictionaries-and-assert">looping over dictionaries, and <code class="docutils literal notranslate"><span class="pre">assert</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="016_Python_for.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions.html#introduction-to-functions">Introduction to Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#exercise-1">Exercise 1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions.html#function-specification">Function specification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#anatomy-of-a-function">Anatomy of a function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#code-design">Code design</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions.html#test">Test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions.html#more-on-arguments">More on arguments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#positional-arguments">Positional arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#keyword-arguments">Keyword arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="017_Functions.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="018_Packages.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="018_Packages.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="018_Packages.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="018_Packages.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="018_Packages.html#import"><code class="docutils literal notranslate"><span class="pre">import</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="018_Packages.html#conda-and-pip"><code class="docutils literal notranslate"><span class="pre">conda</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="019_Running_Python.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="019_Running_Python.html#running-python-code-in-a-file">Running Python  Code in a file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#running-a-python-script">Running a Python script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#running-python-code-from-python">Running Python code from Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#form-of-a-python-script">Form of a Python script</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="019_Running_Python.html#editing-a-file">Editing a file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#from-jupyterlab">From JupyterLab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#jupyter-notebook">Jupyter notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#use-a-text-editor">Use a text editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#create-in-bash">Create in bash</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="019_Running_Python.html#exercise">Exercise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="019_Running_Python.html#adding-command-line-arguments">Adding command line arguments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="019_Running_Python.html#exercise-submitted-practical">Exercise: Submitted Practical</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="019_Running_Python.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction_answers.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction_answers.html#exercise-4">Exercise 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="010_Python_Introduction_answers.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#answer">Answer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-4">Exercise 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-5">Exercise 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-6">Exercise 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-7">Exercise 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-9">Exercise 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="011_Python_data_types_answers.html#exercise-10">Exercise 10</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings_answers.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings_answers.html#exercise-4">Exercise 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings_answers.html#exercise-5">Exercise 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="012_Python_strings_answers.html#exercise-6">Exercise 6</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods_answers.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="013_Python_string_methods_answers.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups_answers.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups_answers.html#exercise-4">Exercise 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="014_Python_groups_answers.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="015_Python_control_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="015_Python_control_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="015_Python_control_answers.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for_answers.html#exercise-3">Exercise 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for_answers.html#exercise-4">Exercise 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="016_Python_for_answers.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="017_Functions_answers.html#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="019_Running_Python_answers.html#exercise">Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="019_Running_Python_answers.html#exercise-submitted-practical">Exercise: Submitted Practical</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#credentials">Credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#earthdata-login">Earthdata login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#code-used">Code used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#modis-lai-product">MODIS LAI product</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercise">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#accessing-nasa-modis-urls">Accessing NASA MODIS URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#data-products">Data Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#mota">MOTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#modis-filename-format">MODIS filename format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#getting-and-visualising-the-data">Getting and visualising the data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#grid">Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#download">Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#visualise">Visualise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercise-change-the-year-and-doy">Exercise: change the year and DOY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercise-change-the-location">Exercise: change the location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercise-change-the-sds">Exercise: change the SDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercise-change-the-product-to-another-on-mota">Exercise: change the product to another on MOTA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="020_Python_files.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="020_Python_files.html#data-resources">Data resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#resource-location">Resource location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#binary-and-text-data">binary and text data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="020_Python_files.html#path-import"><code class="docutils literal notranslate"><span class="pre">Path</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#posix"><code class="docutils literal notranslate"><span class="pre">posix</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="020_Python_files.html#exercise-1">Exercise 1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#glob-generators"><code class="docutils literal notranslate"><span class="pre">glob</span></code> generators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="020_Python_files.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#gurlpath"><code class="docutils literal notranslate"><span class="pre">gurlpath</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="020_Python_files.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#exists"><code class="docutils literal notranslate"><span class="pre">exists</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="020_Python_files.html#glob-and-nasa-datasets"><code class="docutils literal notranslate"><span class="pre">glob</span></code> and NASA datasets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="020_Python_files.html#exercise-5">Exercise 5</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="020_Python_files.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="021_Read_files.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="021_Read_files.html#reading-and-writing">Reading and writing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files.html#with-as-path-open-url-open-yaml-json"><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">...</span> <span class="pre">as</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">Path.open</span></code>, <code class="docutils literal notranslate"><span class="pre">URL.open</span></code>, <code class="docutils literal notranslate"><span class="pre">yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="021_Read_files.html#read-and-write-text">read and write text</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files.html#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="021_Read_files.html#read-and-write-binary-data">read and write binary data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files.html#exercise-3">Exercise 3</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="021_Read_files.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files.html#summary">1.3.5 Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#credentials">Credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#earthdata-login">Earthdata login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#code-used">Code used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#modis-lai-product">MODIS LAI product</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercise">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#accessing-nasa-modis-urls">Accessing NASA MODIS URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#data-products">Data Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#mota">MOTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#modis-filename-format">MODIS filename format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#getting-and-visualising-the-data">Getting and visualising the data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#grid">Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#download">Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#visualise">Visualise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercise-change-the-year-and-doy">Exercise: change the year and DOY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercise-change-the-location">Exercise: change the location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercise-change-the-sds">Exercise: change the SDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercise-change-the-product-to-another-on-mota">Exercise: change the product to another on MOTA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="024_GoogleEarthEngine.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="024_GoogleEarthEngine.html#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="024_GoogleEarthEngine.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="024_GoogleEarthEngine.html#timing">Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="024_GoogleEarthEngine.html#earth-engine">Earth Engine</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="024_GoogleEarthEngine.html#what-is-gee">What is GEE?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="024_GoogleEarthEngine.html#interfaces">Interfaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="024_GoogleEarthEngine.html#code-editor">Code editor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="024_GoogleEarthEngine.html#qgis">QGIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="024_GoogleEarthEngine.html#ee-and-geemap">ee and geemap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="024_GoogleEarthEngine.html#gee-datasets">GEE datasets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="024_GoogleEarthEngine.html#leaf-area-index">Leaf Area Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html#exercise">Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html#exercise-change-the-year-and-doy">Exercise: change the year and DOY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html#exercise-change-the-location">Exercise: change the location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html#exercise-change-the-sds">Exercise: change the SDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html#exercise-change-the-product-to-another-on-mota">Exercise: change the product to another on MOTA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="020_Python_files_answers.html#exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_Python_files_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020_Python_files_answers.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="021_Read_files_answers.html#exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="021_Read_files_answers.html#exercise-3">Exercise 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="021_Read_files_answers.html#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html#exercise">Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html#exercise-change-the-year-and-doy">Exercise: change the year and DOY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html#exercise-change-the-location">Exercise: change the location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html#exercise-change-the-sds">Exercise: change the SDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html#exercise-change-the-product-to-another-on-mota">Exercise: change the product to another on MOTA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="031_Numpy_matplotlib.html#functions">2.1 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="031_Numpy_matplotlib.html#numpy">2.2 <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#arrays">2.2.1 arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#more-detail-about-numpy-arrays">2.2.2 More detail about <code class="docutils literal notranslate"><span class="pre">numpy.arrays</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#array-creators">2.2.3 Array creators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#summary-statistics">2.2.4 Summary statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#summary">2.2.5 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="031_Numpy_matplotlib.html#plotting-with-matplotlib">2.3 Plotting with Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="031_Numpy_matplotlib.html#indexing-and-slicing-arrays">2.4  Indexing and slicing arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#recap">2.4.1 Recap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#data-mask">2.4.1 data mask</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="031_Numpy_matplotlib.html#reading-data">2.5  Reading data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#np-loadtxt">2.5.1 <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#accessing-online-resources">2.5.2 Accessing online resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#homework">2.5.4 Homework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="031_Numpy_matplotlib.html#exercise-e2-5-4">Exercise E2.5.4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="031_Numpy_matplotlib.html#id1">2.5.5 Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="040_GDAL.html#modis-lai-product">3.1 MODIS LAI product</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="040_GDAL.html#nasa-earthdata-access">3.1.1 NASA Earthdata access</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="040_GDAL.html#register-at-nasa-earthdata">3.1.1.1 Register at NASA Earthdata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="040_GDAL.html#gdal">3.1.2 <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="040_GDAL.html#automatic-downloading-of-nasa-modis-products">3.2 Automatic downloading of NASA MODIS products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="040_GDAL.html#gdal-masking">3.3 GDAL masking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="040_GDAL.html#gdal-stacking-and-interpolating">3.4 GDAL stacking and interpolating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="040_GDAL.html#x-summary">3.X Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#introduction">3.2.1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#accessing-nasa-modis-urls">3.2.2  Accessing NASA MODIS URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#datetime">3.2.2.1 <code class="docutils literal notranslate"><span class="pre">datetime</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="041_MODIS_download.html#html">3.2.2.2 html</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#modis-filename-format">3.2.3 MODIS filename format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#saving-binary-data-to-a-file">3.2.4 Saving binary data to a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#downloading-the-data-file">3.2.4 downloading the data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#visualisation">3.2.5 Visualisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="041_MODIS_download.html#summary">3.2.6 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="042_GDAL_masking.html#the-modis-lai-data">3.3.1 The MODIS LAI data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#try-except">3.3.1.1 <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">except</span> <span class="pre">...</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#get-data">3.3.1.2 Get data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#file-naming-convention">3.3.1.3 File Naming Convention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#dataset-naming-convention">3.3.1.2 Dataset Naming Convention</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="042_GDAL_masking.html#modis-dataset-access">3.3.2 MODIS dataset access</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#gdal-readasarray">3.3.2.1 <code class="docutils literal notranslate"><span class="pre">gdal.ReadAsArray()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#metadata">3.3.2.2 Metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="042_GDAL_masking.html#reading-and-displaying-data">3.3.3 Reading and displaying data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#glob">3.3.3.1 <code class="docutils literal notranslate"><span class="pre">glob</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#reading-and-displaying-image-data">3.3.3.2 reading and displaying image data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#subplot-plotting">3.3.3.3 subplot plotting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#tile-stitching">3.3.3.3 tile stitching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="042_GDAL_masking.html#gdal-virtual-file">3.3.3.4 <code class="docutils literal notranslate"><span class="pre">gdal</span></code> virtual file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="042_GDAL_masking.html#the-country-borders-dataset">3.3.4 The country borders dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#introduction">3.4.1 Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#test-your-login">3.4.1.1 Test your login</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#qa-data">3.4.2 QA data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#why-qa-data">3.4.2.1 Why QA data?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#set-condition-variables">3.4.2.2 Set condition variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#interpreting-qa">3.4.2.3 interpreting QA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#deriving-a-weight-from-qa">3.4.2.4 Deriving a weight from QA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#a-time-series">3.4.3 A time series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#weighted-interpolation">3.4.4 Weighted interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#smoothing">3.4.4.1 Smoothing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#making-movies">3.4.5 Making movies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#javascript-html">3.4.5.1 Javascript HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html#animated-gif">3.4.5.2 Animated gif</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#introduction">3.6.1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#projections">3.6.1.1 Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#changing-projections">3.6.1.2 Changing Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#requirements">3.6.2 Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#run-the-pre-requisite-scripts">3.6.2.1 Run the pre-requisite scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#reconcile-the-datasets">3.6.3 Reconcile the datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#load-an-exemplar-dataset">3.6.3.1 load an exemplar dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#get-information-from-source-file">3.6.3.2 get information from source file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#reprojection">3.6.3.4 reprojection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#crop">3.6.3.5 crop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#putting-this-together">3.6.3.6 Putting this together</a></li>
+<li class="toctree-l2"><a class="reference internal" href="044_GDAL_Reconciling_projections.html#summary">3.6.6 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#obtaining-the-data">Obtaining the data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="050_Linear_models.html#downloading-the-data">Downloading the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="050_Linear_models.html#exploring-the-data">Exploring the data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#loading-the-data-into-python">Loading the data into Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#a-model-for-co-2-concentration">A model for $CO_2$ concentration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="050_Linear_models.html#a-linear-trend-model">A linear trend model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="050_Linear_models.html#a-quadratic-model">A quadratic model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#solving-the-problem-using-linear-algebra">Solving the problem using linear algebra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="050_Linear_models.html#solution-using-np-linalg-lstsq">Solution using <code class="docutils literal notranslate"><span class="pre">np.linalg.lstsq</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#a-model-with-seasonality">A model with seasonality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#a-phase-shift">A phase shift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#prediction">Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="050_Linear_models.html#uncertainty">Uncertainty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="051_Modelling_and_optimisation.html#introduction">5.1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="051_Modelling_and_optimisation.html#get-datasets">5.2 Get datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="051_Modelling_and_optimisation.html#interpretation-of-the-data">5.3 Interpretation of the data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DEV_Local_Install.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DEV_Local_Install.html#purpose-of-these-notes">Purpose of these notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_Local_Install.html#sufficient-free-disk-space">Sufficient free disk space</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DEV_Local_Install.html#windows-10">Windows 10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DEV_Local_Install.html#windows-10-student-edition-1909-or-higher">Windows 10 Student Edition 1909 or higher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_Local_Install.html#required-software">Required Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_Local_Install.html#install-the-notes">Install the notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_Local_Install.html#install-the-environment">Install the environment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DEV_scripts.html#docker">Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#clean-up-docker-files">Clean up docker files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#build-docker">Build docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#run-docker">Run docker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DEV_scripts.html#id1">Scripts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#bin-setup-sh"><code class="docutils literal notranslate"><span class="pre">bin/setup.sh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#bin-postbuild"><code class="docutils literal notranslate"><span class="pre">bin/postBuild</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#bin-link-set-sh"><code class="docutils literal notranslate"><span class="pre">bin/link-set.sh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#bin-notebook-run-sh"><code class="docutils literal notranslate"><span class="pre">bin/notebook-run.sh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEV_scripts.html#bin-notebook-mkdocs-sh"><code class="docutils literal notranslate"><span class="pre">bin/notebook-mkdocs.sh</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -62,11 +947,71 @@
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="001_Notebook_use.html" title="next chapter">Use of Jupyter notebooks</a></li>
   </ul></li>
 </ul>
 </div>

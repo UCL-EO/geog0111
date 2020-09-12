@@ -15,6 +15,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="031_Plotting.html" />
+    <link rel="prev" title="NASA MODIS Earthdata : Answers to exercises" href="022_NASA_MODIS_Earthdata_answers.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -701,7 +703,7 @@ busy months
 <span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x7fcab8878310</span><span class="o">&gt;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p><img alt="png" src="031_Numpy_matplotlib_files/031_Numpy_matplotlib_55_2.png" /></p>
+<p><img alt="png" src="_images/031_Numpy_matplotlib_55_2.png" /></p>
 <p>Whilst this plot is fine, there are a few simple things we could do improve it.</p>
 <p>We will go through some of the options below, but to get a taste of improved ploitting, lets use e.g.:</p>
 <ul class="simple">
@@ -769,7 +771,7 @@ busy months
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
 </pre></div>
 </div>
-<p><img alt="png" src="031_Numpy_matplotlib_files/031_Numpy_matplotlib_57_1.png" /></p>
+<p><img alt="png" src="_images/031_Numpy_matplotlib_57_1.png" /></p>
 <p><strong>Exercise E2.3.1</strong></p>
 <ul class="simple">
 <li><p>produce a plot showing launches per year as a function of year, showing data for selected months individually.</p></li>
@@ -968,7 +970,7 @@ busy months
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">Legend</span> <span class="n">at</span> <span class="mh">0x7fcad8cc8550</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><img alt="png" src="031_Numpy_matplotlib_files/031_Numpy_matplotlib_79_1.png" /></p>
+<p><img alt="png" src="_images/031_Numpy_matplotlib_79_1.png" /></p>
 <p>You may not want to use lines to join the data points, but symbols like dots, crosses, etc.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mths</span><span class="p">,</span> <span class="n">air_travel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;1958&quot;</span><span class="p">)</span>
@@ -982,7 +984,7 @@ busy months
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">Legend</span> <span class="n">at</span> <span class="mh">0x7fcac9325a10</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><img alt="png" src="031_Numpy_matplotlib_files/031_Numpy_matplotlib_81_1.png" /></p>
+<p><img alt="png" src="_images/031_Numpy_matplotlib_81_1.png" /></p>
 <p>We can also use dots <strong>and</strong> lines. Moreover, we can change the type of line: from full lines to dashed to dash-dot…</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mths</span><span class="p">,</span> <span class="n">air_travel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;x-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;1958&quot;</span><span class="p">)</span>
@@ -996,7 +998,7 @@ busy months
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">Legend</span> <span class="n">at</span> <span class="mh">0x7fcad8ceff90</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><img alt="png" src="031_Numpy_matplotlib_files/031_Numpy_matplotlib_83_1.png" /></p>
+<p><img alt="png" src="_images/031_Numpy_matplotlib_83_1.png" /></p>
 <p><strong>Exercise 2.5.2</strong></p>
 <p>The file <a class="reference external" href="data/NOAA.csv"><code class="docutils literal notranslate"><span class="pre">NOAA.csv</span></code></a> contains data from <a class="reference external" href="http://www.aoml.noaa.gov/hrd/tcfaq/E11.html">NOAA</a> on the number of storms and hurricanes in the Atlantic basin from 1851 to 2015. The data columns are described in the first row of the file. The year is in column 1 and the number of hurricanes in column 3.</p>
 <p>For those interested, the data is pulled from the website with <a class="reference external" href="geog0111/getNOAA.py">getNOAA.py</a>.</p>
@@ -4777,7 +4779,7 @@ busy months
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="png" src="031_Numpy_matplotlib_files/031_Numpy_matplotlib_96_1.png" /></p>
+<p><img alt="png" src="_images/031_Numpy_matplotlib_96_1.png" /></p>
 <p><strong>Exercise E2.5.3</strong></p>
 <ul class="simple">
 <li><p>use the datetime approach to plot the dataset</p></li>
@@ -4803,7 +4805,7 @@ busy months
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">366.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="png" src="031_Numpy_matplotlib_files/031_Numpy_matplotlib_100_1.png" /></p>
+<p><img alt="png" src="_images/031_Numpy_matplotlib_100_1.png" /></p>
 <p>Plotting this, we can visualise the year-on-year variations in temperature for any particular day.</p>
 <p><strong>Exercise E2.5.3</strong></p>
 <ul class="simple">
@@ -4859,11 +4861,99 @@ busy months
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#functions">2.1 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numpy">2.2 <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arrays">2.2.1 arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#more-detail-about-numpy-arrays">2.2.2 More detail about <code class="docutils literal notranslate"><span class="pre">numpy.arrays</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-creators">2.2.3 Array creators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary-statistics">2.2.4 Summary statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">2.2.5 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plotting-with-matplotlib">2.3 Plotting with Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#indexing-and-slicing-arrays">2.4  Indexing and slicing arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#recap">2.4.1 Recap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-mask">2.4.1 data mask</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reading-data">2.5  Reading data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#np-loadtxt">2.5.1 <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-online-resources">2.5.2 Accessing online resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#homework">2.5.4 Homework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exercise-e2-5-4">Exercise E2.5.4</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.5.5 Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="022_NASA_MODIS_Earthdata_answers.html" title="previous chapter">NASA MODIS Earthdata : Answers to exercises</a></li>
+      <li>Next: <a href="031_Plotting.html" title="next chapter">&lt;no title&gt;</a></li>
   </ul></li>
 </ul>
 </div>

@@ -15,6 +15,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.3 GDAL, and OGR masking" href="042_GDAL_masking.html" />
+    <link rel="prev" title="3 Geospatial processing with gdal" href="040_GDAL.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -659,7 +661,7 @@ Logi
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span> <span class="n">at</span> <span class="mh">0x7f9268d39410</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><img alt="png" src="041_MODIS_download_files/041_MODIS_download_50_1.png" /></p>
+<p><img alt="png" src="_images/041_MODIS_download_50_1.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.get_modis_files</span> <span class="kn">import</span> <span class="n">get_modis_files</span>
 <span class="kn">import</span> <span class="nn">gdal</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -710,7 +712,7 @@ Logi
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span> <span class="n">at</span> <span class="mh">0x7f92589d3bd0</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><img alt="png" src="041_MODIS_download_files/041_MODIS_download_51_1.png" /></p>
+<p><img alt="png" src="_images/041_MODIS_download_51_1.png" /></p>
 <p><strong>Exercise 3.2.7 Homework</strong></p>
 <ul class="simple">
 <li><p>Have a look at the information for <a class="reference external" href="http://www.icess.ucsb.edu/modis/SnowUsrGuide/usrguide_1dtil.html"><code class="docutils literal notranslate"><span class="pre">MOD10A1</span></code> product</a>, which is the 500 m MODIS daily snow cover product.</p></li>
@@ -753,11 +755,85 @@ Logi
 
 
 <h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.2 Accessing MODIS Data products</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">3.2.1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-nasa-modis-urls">3.2.2  Accessing NASA MODIS URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datetime">3.2.2.1 <code class="docutils literal notranslate"><span class="pre">datetime</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#html">3.2.2.2 html</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modis-filename-format">3.2.3 MODIS filename format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#saving-binary-data-to-a-file">3.2.4 Saving binary data to a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-the-data-file">3.2.4 downloading the data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualisation">3.2.5 Visualisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">3.2.6 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="040_GDAL.html" title="previous chapter">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+      <li>Next: <a href="042_GDAL_masking.html" title="next chapter">3.3 GDAL, and OGR masking</a></li>
   </ul></li>
 </ul>
 </div>
