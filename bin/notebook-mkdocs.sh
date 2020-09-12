@@ -29,8 +29,22 @@ echo "--> re-making docs"
 rm -rf docs
 mkdir -p docs
 
+#
+# get the theme from config/mkdocs.yml
+# and update ${base}/config/requirements.txt
+#
+theme=$(grep 'name:' config/mkdocs.yml | grep -v '#' | tail -1 | awk '{print $NF}' | sed 's/'\''//g' | sed 's/'\"'//g')
+echo "theme: $theme"
+grep -v $theme ${base}/config/requirements.txt > tmp.$$; cp tmp.$$  ${base}/config/requirements.txt; 
+extras=$(grep $theme config/mkdocs.yml | awk '{print "mkdocs-"$NF}' | sed 's/://g' | sed 's/'\''//g' | sed 's/'\"'//g' )
+echo "installing $extras"
+echo $extras  >> ${base}/config/requirements.txt
+
 pip3 install -r ${base}/config/requirements.txt --user
-#pip install sphinx
+
+
+
+
 cd docs
 sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs
 cd $base
