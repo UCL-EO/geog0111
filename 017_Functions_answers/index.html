@@ -1,1061 +1,320 @@
-
-
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-      <link rel="shortcut icon" href="../images/ucl.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
-    
-    
-      
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Functions - GEOG0111</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
-      
-      
-    
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
-      
-    
-    
-    
-    
-      
-    
-    
-  </head>
-  
-  
-    <body dir="ltr">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#functions-in-python-answers-to-exercises" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-    </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
-    </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
-            GEOG0111
-          </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">GEOG0111</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Course Basics <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../001_Notebook_use/" class="dropdown-item">Notebook Use</a>
+</li>
+                                    
+<li>
+    <a href="../002_Unix/" class="dropdown-item">Unix</a>
+</li>
+                                    
+<li>
+    <a href="../003_Help/" class="dropdown-item">Help</a>
+</li>
+                                    
+<li>
+    <a href="../004_Accounts/" class="dropdown-item">Accounts</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Answers</a>
+    <ul class="dropdown-menu">
             
-              Functions
+<li>
+    <a href="../001_Notebook_use_answers/" class="dropdown-item">Notebook Use</a>
+</li>
             
-          </span>
+<li>
+    <a href="../002_Unix_answers/" class="dropdown-item">Unix</a>
+</li>
+            
+<li>
+    <a href="../003_Help_answers/" class="dropdown-item">Help</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Core Concepts <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../010_Python_Introduction/" class="dropdown-item">Python Introduction</a>
+</li>
+                                    
+<li>
+    <a href="../011_Python_data_types/" class="dropdown-item">Python Data Types</a>
+</li>
+                                    
+<li>
+    <a href="../012_Python_strings/" class="dropdown-item">Python Strings</a>
+</li>
+                                    
+<li>
+    <a href="../013_Python_string_methods/" class="dropdown-item">Python String Methods</a>
+</li>
+                                    
+<li>
+    <a href="../014_Python_groups/" class="dropdown-item">Python Groups</a>
+</li>
+                                    
+<li>
+    <a href="../015_Python_control/" class="dropdown-item">Python Control</a>
+</li>
+                                    
+<li>
+    <a href="../016_Python_for/" class="dropdown-item">Python For</a>
+</li>
+                                    
+<li>
+    <a href="../017_Functions/" class="dropdown-item">Functions</a>
+</li>
+                                    
+<li>
+    <a href="../018_Packages/" class="dropdown-item">Packages</a>
+</li>
+                                    
+<li>
+    <a href="../019_Running_Python/" class="dropdown-item">Running Python</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Answers</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../010_Python_Introduction_answers/" class="dropdown-item">Python Introduction</a>
+</li>
+            
+<li>
+    <a href="../011_Python_data_types_answers/" class="dropdown-item">Python Data Types</a>
+</li>
+            
+<li>
+    <a href="../012_Python_strings_answers/" class="dropdown-item">Python Strings</a>
+</li>
+            
+<li>
+    <a href="../013_Python_string_methods_answers/" class="dropdown-item">Python String Methods</a>
+</li>
+            
+<li>
+    <a href="../014_Python_groups_answers/" class="dropdown-item">Python Groups</a>
+</li>
+            
+<li>
+    <a href="../015_Python_control_answers/" class="dropdown-item">Python Control</a>
+</li>
+            
+<li>
+    <a href="../016_Python_for_answers/" class="dropdown-item">Python For</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Functions</a>
+</li>
+            
+<li>
+    <a href="../019_Running_Python_answers/" class="dropdown-item">Running Python</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Datasets <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../020_NASA_MODIS_Earthdata/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+                                    
+<li>
+    <a href="../020_Python_files/" class="dropdown-item">Python Files</a>
+</li>
+                                    
+<li>
+    <a href="../021_Read_files/" class="dropdown-item">Read Files</a>
+</li>
+                                    
+<li>
+    <a href="../022_NASA_MODIS_Earthdata/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+                                    
+<li>
+    <a href="../022_Pandas_and_plotting/" class="dropdown-item">Pandas And Plotting</a>
+</li>
+                                    
+<li>
+    <a href="../024_GoogleEarthEngine/" class="dropdown-item">Google Earth Engine</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Answers</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_NASA_MODIS_Earthdata_answers/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+            
+<li>
+    <a href="../020_Python_files_answers/" class="dropdown-item">Python Files</a>
+</li>
+            
+<li>
+    <a href="../021_Read_files_answers/" class="dropdown-item">Read Files</a>
+</li>
+            
+<li>
+    <a href="../022_NASA_MODIS_Earthdata_answers/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Image Processing <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../031_Numpy_matplotlib/" class="dropdown-item">Numpy Matplotlib</a>
+</li>
+                                    
+<li>
+    <a href="../031_Plotting/" class="dropdown-item">Plotting</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Geospatial Data <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../040_GDAL/" class="dropdown-item">GDAL</a>
+</li>
+                                    
+<li>
+    <a href="../041_MODIS_download/" class="dropdown-item">MODIS Download</a>
+</li>
+                                    
+<li>
+    <a href="../042_GDAL_masking/" class="dropdown-item">GDAL Masking</a>
+</li>
+                                    
+<li>
+    <a href="../043_GDAL_stacking_and_interpolating/" class="dropdown-item">GDAL Stacking And Interpolating</a>
+</li>
+                                    
+<li>
+    <a href="../044_GDAL_Reconciling_projections/" class="dropdown-item">GDAL Reconciling Projections</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Modelling <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../050_Linear_models/" class="dropdown-item">Linear Models</a>
+</li>
+                                    
+<li>
+    <a href="../051_Modelling_and_optimisation/" class="dropdown-item">Modelling And Optimisation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../DEV_Local_Install/" class="dropdown-item">Local Install</a>
+</li>
+                                    
+<li>
+    <a href="../DEV_scripts/" class="dropdown-item">Scripts</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../016_Python_for_answers/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../019_Running_Python_answers/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
+
     
-    
-  </nav>
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-        
-      
-      
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href=".." title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
-
-    </a>
-    GEOG0111
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
-    
-    <label class="md-nav__link" for="nav-1">
-      Course Basics
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
-      <label class="md-nav__title" for="nav-1">
-        <span class="md-nav__icon md-icon"></span>
-        Course Basics
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
-      Notebook Use
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../002_Unix/" title="Unix" class="md-nav__link">
-      Unix
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../003_Help/" title="Help" class="md-nav__link">
-      Help
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../004_Accounts/" title="Accounts" class="md-nav__link">
-      Accounts
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-5" type="checkbox" id="nav-1-5">
-    
-    <label class="md-nav__link" for="nav-1-5">
-      Answers
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-1-5">
-        <span class="md-nav__icon md-icon"></span>
-        Answers
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../001_Notebook_use_answers/" title="Notebook Use" class="md-nav__link">
-      Notebook Use
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../002_Unix_answers/" title="Unix" class="md-nav__link">
-      Unix
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../003_Help_answers/" title="Help" class="md-nav__link">
-      Help
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
-    
-    <label class="md-nav__link" for="nav-2">
-      Core Concepts
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        <span class="md-nav__icon md-icon"></span>
-        Core Concepts
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
-      Python Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
-      Python Data Types
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../012_Python_strings/" title="Python Strings" class="md-nav__link">
-      Python Strings
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
-      Python String Methods
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../014_Python_groups/" title="Python Groups" class="md-nav__link">
-      Python Groups
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../015_Python_control/" title="Python Control" class="md-nav__link">
-      Python Control
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../016_Python_for/" title="Python For" class="md-nav__link">
-      Python For
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../017_Functions/" title="Functions" class="md-nav__link">
-      Functions
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../018_Packages/" title="Packages" class="md-nav__link">
-      Packages
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../019_Running_Python/" title="Running Python" class="md-nav__link">
-      Running Python
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11" checked>
-    
-    <label class="md-nav__link" for="nav-2-11">
-      Answers
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-11">
-        <span class="md-nav__icon md-icon"></span>
-        Answers
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../010_Python_Introduction_answers/" title="Python Introduction" class="md-nav__link">
-      Python Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../011_Python_data_types_answers/" title="Python Data Types" class="md-nav__link">
-      Python Data Types
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../012_Python_strings_answers/" title="Python Strings" class="md-nav__link">
-      Python Strings
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../013_Python_string_methods_answers/" title="Python String Methods" class="md-nav__link">
-      Python String Methods
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../014_Python_groups_answers/" title="Python Groups" class="md-nav__link">
-      Python Groups
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../015_Python_control_answers/" title="Python Control" class="md-nav__link">
-      Python Control
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../016_Python_for_answers/" title="Python For" class="md-nav__link">
-      Python For
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Functions
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" title="Functions" class="md-nav__link md-nav__link--active">
-      Functions
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-1" class="md-nav__link">
-    Exercise 1
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-2" class="md-nav__link">
-    Exercise 2
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-3" class="md-nav__link">
-    Exercise 3
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../019_Running_Python_answers/" title="Running Python" class="md-nav__link">
-      Running Python
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      Datasets
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        <span class="md-nav__icon md-icon"></span>
-        Datasets
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../020_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
-      NASA MODIS Earthdata
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../020_Python_files/" title="Python Files" class="md-nav__link">
-      Python Files
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../021_Read_files/" title="Read Files" class="md-nav__link">
-      Read Files
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../022_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
-      NASA MODIS Earthdata
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
-      Pandas And Plotting
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../024_GoogleEarthEngine/" title="Google Earth Engine" class="md-nav__link">
-      Google Earth Engine
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7">
-    
-    <label class="md-nav__link" for="nav-3-7">
-      Answers
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-7">
-        <span class="md-nav__icon md-icon"></span>
-        Answers
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../020_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
-      NASA MODIS Earthdata
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../020_Python_files_answers/" title="Python Files" class="md-nav__link">
-      Python Files
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../021_Read_files_answers/" title="Read Files" class="md-nav__link">
-      Read Files
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../022_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
-      NASA MODIS Earthdata
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      Image Processing
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Image Processing" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        <span class="md-nav__icon md-icon"></span>
-        Image Processing
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../031_Numpy_matplotlib/" title="Numpy Matplotlib" class="md-nav__link">
-      Numpy Matplotlib
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../031_Plotting/" title="Plotting" class="md-nav__link">
-      Plotting
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      Geospatial Data
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        <span class="md-nav__icon md-icon"></span>
-        Geospatial Data
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../040_GDAL/" title="GDAL" class="md-nav__link">
-      GDAL
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../041_MODIS_download/" title="MODIS Download" class="md-nav__link">
-      MODIS Download
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../042_GDAL_masking/" title="GDAL Masking" class="md-nav__link">
-      GDAL Masking
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../043_GDAL_stacking_and_interpolating/" title="GDAL Stacking And Interpolating" class="md-nav__link">
-      GDAL Stacking And Interpolating
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../044_GDAL_Reconciling_projections/" title="GDAL Reconciling Projections" class="md-nav__link">
-      GDAL Reconciling Projections
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      Modelling
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        <span class="md-nav__icon md-icon"></span>
-        Modelling
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../050_Linear_models/" title="Linear Models" class="md-nav__link">
-      Linear Models
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../051_Modelling_and_optimisation/" title="Modelling And Optimisation" class="md-nav__link">
-      Modelling And Optimisation
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
-    
-    <label class="md-nav__link" for="nav-7">
-      Developers
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Developers" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
-        <span class="md-nav__icon md-icon"></span>
-        Developers
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../DEV_Local_Install/" title="Local Install" class="md-nav__link">
-      Local Install
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../DEV_scripts/" title="Scripts" class="md-nav__link">
-      Scripts
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-1" class="md-nav__link">
-    Exercise 1
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-2" class="md-nav__link">
-    Exercise 2
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-3" class="md-nav__link">
-    Exercise 3
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                  
-                
-                
-                <h1 id="functions-in-python-answers-to-exercises">Functions in Python : Answers to exercises</h1>
+            <li class="nav-item" data-level="1"><a href="#functions-in-python-answers-to-exercises" class="nav-link">Functions in Python : Answers to exercises</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="functions-in-python-answers-to-exercises">Functions in Python : Answers to exercises</h1>
 <h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>in a new code cell below, write a function called <code>my_name</code> that prints your name</li>
@@ -1589,86 +848,60 @@ test passed
 --&gt; perfoming sanity check on array lengths
 --&gt; zipping dictionary for lists of length 2
 tests passed
-</code></pre>
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
+</code></pre></div>
+            </div>
         </div>
-      </main>
-      
-        
-<footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../016_Python_for_answers/" title="Python For" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Python For
-              </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </a>
-        
-        
-          <a href="../019_Running_Python_answers/" title="Running Python" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Running Python
-              </div>
+            <div class="modal-footer">
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
+        </div>
     </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
-      
-    </div>
-  </div>
-</footer>
-      
-    </div>
-    
-      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
-      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
-      
-      <script>
-        app = initialize({
-          base: "..",
-          features: [],
-          search: Object.assign({
-            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
-      
-    
-  </body>
+</div>
+
+    </body>
 </html>
