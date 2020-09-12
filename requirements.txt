@@ -9,3 +9,5 @@ recommonmark
 sphinx-typlog-theme
 mkdocs-rtd-dropdown
 mkdocs-bootstrap
+mkdocs-bootswatch
+mkdocs-cinder

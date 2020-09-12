@@ -1,72 +1,37 @@
-html {
-    scroll-padding-top: 70px;
-}
-
 body {
     padding-top: 70px;
 }
 
-ul.nav .main {
+h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id]:before {
+    content: "";
+    display: block;
+    margin-top: -75px;
+    height: 75px;
+}
+
+p > img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul.nav li.first-level {
     font-weight: bold;
 }
 
-.source-links {
+ul.nav li.third-level {
+    padding-left: 12px;
+}
+
+div.col-md-3 {
+    padding-left: 0;
+}
+
+div.col-md-9 {
+    padding-bottom: 100px;
+}
+
+div.source-links {
     float: right;
-}
-
-.col-md-9 img {
-  max-width: 100%;
-}
-
-pre, code {
-    background: #e9ecef;
-    color: #000;
-    border: 1px solid rgba(0,0,0,0.125);
-    border-radius: 0.25rem;
-}
-
-pre {
-    padding: 0.5em;
-}
-
-code {
-    padding: 1px 3px;
-}
-
-pre code {
-    border: none;
-    /* Override styles from hljs theme */
-    background: transparent !important;
-    padding: 0 !important;
-}
-
-a code {
-    color: #008cba;
-}
-
-a:hover code {
-    color: #00526e;
-}
-
-kbd {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #fff;
-    background-color: #333;
-    border-radius: 3px;
-    -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
-}
-
-footer {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: 200;
-}
-
-.modal-dialog {
-    margin-top: 60px;
 }
 
 /*
@@ -76,26 +41,22 @@ footer {
  * sections of docs content.
  */
 
+/* By default it's not affixed in mobile views, so undo that */
 .bs-sidebar.affix {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 80px;
+    position: static;
 }
 
-.bs-sidebar.card {
+.bs-sidebar.well {
     padding: 0;
-}
-
-.bs-sidebar > .card {
-    background: #e9ecef !important;
 }
 
 /* First level of nav */
 .bs-sidenav {
+    margin-top: 30px;
+    margin-bottom: 30px;
     padding-top:    10px;
     padding-bottom: 10px;
     border-radius: 5px;
-    width: 100%;
 }
 
 /* All levels of nav */
@@ -129,35 +90,56 @@ footer {
     font-size: 90%;
 }
 
-
-.headerlink {
-    display: none;
-    padding-left: .5em;
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-sidebar.affix,
+    .bs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 80px;
+        max-height: calc(100% - 90px);
+    }
+    .bs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-sidebar.affix-bottom .bs-sidenav,
+    .bs-sidebar.affix .bs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-sidebar.affix-bottom,
+    .bs-sidebar.affix {
+        width: 263px;
+    }
 }
 
-h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .headerlink, h5:hover .headerlink, h6:hover .headerlink{
-    display:inline-block;
-}
 
-/* display submenu relative to parent*/
+/* Added to support >2 level nav in drop down */
+
 .dropdown-submenu {
     position: relative;
 }
 
-/* sub menu stlye */
 .dropdown-submenu>.dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: 0px;
-    margin-left: -1px;
+    margin-left: 0px;
 }
 
-/* display sub menu on hover*/
 .dropdown-submenu:hover>.dropdown-menu {
     display: block;
 }
 
-/* little arrow */
 .dropdown-submenu>a:after {
     display: block;
     content: " ";
@@ -172,7 +154,128 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
     margin-right: -10px;
 }
 
-/* little arrow of parent menu */
 .dropdown-submenu:hover>a:after {
     border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 00px;
+}
+/* Start Bootstrap Callouts CSS Source by Chris Pratt (https://codepen.io/chrisdpratt/pen/IAymB) MIT License*/
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    background-color: #FCFDFF;
+}
+.bs-callout h4 {
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-default {
+    border-left-color: #FA023C; /*modified from upstream default by Christopher Simpkins*/
+}
+.bs-callout-default h4 {
+    color: #FA023C; /*modified from upstream default by Christopher Simpkins*/
+}
+.bs-callout-primary {
+    border-left-color: #428bca;
+}
+.bs-callout-primary h4 {
+    color: #428bca;
+}
+.bs-callout-success {
+    border-left-color: #5cb85c;
+}
+.bs-callout-success h4 {
+    color: #5cb85c;
+}
+.bs-callout-danger {
+    border-left-color: #d9534f;
+}
+.bs-callout-danger h4 {
+    color: #d9534f;
+}
+.bs-callout-warning {
+    border-left-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+    color: #f0ad4e;
+}
+.bs-callout-info {
+    border-left-color: #5bc0de;
+}
+.bs-callout-info h4 {
+    color: #5bc0de;
+}
+/* End Bootstrap Callouts CSS Source by Chris Pratt */
+
+/* Admonitions */
+.admonition {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    background-color: #FCFDFF;
+}
+
+.admonition p:last-child {
+    margin-bottom: 0;
+}
+.admonition code {
+    border-radius: 3px;
+}
+.admonition+.admonition {
+    margin-top: -5px;
+}
+
+.admonition.note { /* csslint allow: adjoining-classes */
+    border-left-color: #428bca;
+}
+
+.admonition.warning { /* csslint allow: adjoining-classes */
+    border-left-color: #f0ad4e;
+}
+
+.admonition.danger { /* csslint allow: adjoining-classes */
+    border-left-color: #d9534f;
+}
+
+.admonition-title {
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.admonition.note > .admonition-title {
+    color: #428bca;
+}
+
+.admonition.warning > .admonition-title {
+    color: #f0ad4e;
+}
+
+.admonition.danger > .admonition-title {
+    color: #d9534f;
 }
