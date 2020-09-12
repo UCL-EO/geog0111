@@ -35,7 +35,7 @@ mkdir -p docs
 #
 theme=$(grep 'name:' config/mkdocs.yml | grep -v '#' | tail -1 | awk '{print $NF}' | sed 's/'\''//g' | sed 's/'\"'//g')
 echo "theme: $theme"
-grep -v $theme ${base}/config/requirements.txt > tmp.$$; cp tmp.$$  ${base}/config/requirements.txt; 
+grep -v $theme ${base}/config/requirements.txt > tmp.$$; mv tmp.$$  ${base}/config/requirements.txt; 
 extras=$(grep $theme config/mkdocs.yml | awk '{print "mkdocs-"$NF}' | sed 's/://g' | sed 's/'\''//g' | sed 's/'\"'//g' )
 echo "installing $extras"
 echo $extras  >> ${base}/config/requirements.txt
