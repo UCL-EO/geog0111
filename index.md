@@ -11,7 +11,7 @@ UCL Geography MSc notes.
 
 # GEOG0111 Scientific Computing
 
-[docs](https://ucl-eo.github.io/geog0111/)
+[Course Documentation](https://ucl-eo.github.io/geog0111/)
 
 [![Documentation Status](https://readthedocs.org/projects/geog0111-scientific-computing/badge/?version=latest)](https://geog0111-scientific-computing.readthedocs.io/en/latest/?badge=latest)
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/master)
