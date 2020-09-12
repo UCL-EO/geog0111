@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scripts &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="scripts">
+<h1>Scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h1>
+<p>This note describes utility scripts in <a class="reference external" href="https://docs.python.org/3/library/functions.html#bin" title="(in Python v3.8)"><a class="reference external" href="bin"><code class="docutils literal notranslate"><span class="pre">bin</span></code></a></a> and <a class="reference external" href="geog0111"><code class="docutils literal notranslate"><span class="pre">geog0111</span></code></a>.</p>
+<div class="section" id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<p>The Docker file is in <a class="reference external" href="copy/Dockerfile"><code class="docutils literal notranslate"><span class="pre">Docker/Dockerfile</span></code></a>. This is a minimal setup for running notebooks for this course, being based on <a class="reference external" href="https://hub.docker.com/r/jgomezdans/uclgeog"><code class="docutils literal notranslate"><span class="pre">jgomezdans/uclgeog</span></code></a> which is derived from <a class="reference external" href="https://github.com/jgomezdans/geog_docker"><code class="docutils literal notranslate"><span class="pre">geog_docker</span></code></a>.</p>
+<p>This docker is stored on dockerhub as <a class="reference external" href="https://hub.docker.com/r/ucleo/geog0111"><code class="docutils literal notranslate"><span class="pre">ucleo/geog0111</span></code></a> and derived from this repo <a class="reference external" href="https://github.com/UCL-EO/geog0111"><code class="docutils literal notranslate"><span class="pre">UCL-EO/geog0111</span></code></a>.</p>
+<p>It is automatically run from <a class="reference external" href="https://travis-ci.com/github/UCL-EO/geog0111">travis</a> on a new load, so you shouldn’t need to generate the docker manually.</p>
+<p>The docker cleans out the environment for <code class="docutils literal notranslate"><span class="pre">uclgeog</span></code>, as we want opne called <code class="docutils literal notranslate"><span class="pre">geog0111</span></code>, clones <a class="reference external" href="https://github.com/UCL-EO/geog0111">this repository</a> and runs <a class="reference external" href="bin/setup.sh"><code class="docutils literal notranslate"><span class="pre">bin/setup.sh</span></code></a> to install the <code class="docutils literal notranslate"><span class="pre">geog0111</span></code> environment. It activates the environment and runs <a class="reference external" href="bin/postBuild"><code class="docutils literal notranslate"><span class="pre">bin/postBuild</span></code></a>.</p>
+<div class="section" id="clean-up-docker-files">
+<h3>Clean up docker files<a class="headerlink" href="#clean-up-docker-files" title="Permalink to this headline">¶</a></h3>
+<p>The script <a class="reference external" href="bin/docker-killall"><code class="docutils literal notranslate"><span class="pre">bin/docker-killall</span></code></a> cleans up any cached dockers, kills running dockers, and cleans it all out. Use this only to make a clean slate for your docker in the repoi.
+Otherwise, use more subtle <code class="docutils literal notranslate"><span class="pre">docker</span></code> commands. It is intended onbly for developers, but is run as user.</p>
+</div>
+<div class="section" id="build-docker">
+<h3>Build docker<a class="headerlink" href="#build-docker" title="Permalink to this headline">¶</a></h3>
+<p>The script <a class="reference external" href="bin/docker-build"><code class="docutils literal notranslate"><span class="pre">bin/docker-build</span></code></a> will build and upload the docker. This is again intended just for developers, and requires a login to dockerhub.</p>
+</div>
+<div class="section" id="run-docker">
+<h3>Run docker<a class="headerlink" href="#run-docker" title="Permalink to this headline">¶</a></h3>
+<p>The script <a class="reference external" href="bin/docker-run"><code class="docutils literal notranslate"><span class="pre">bin/docker-run</span></code></a> can be used to run the docker and launch a notebook. It will attempt to map the <code class="docutils literal notranslate"><span class="pre">work</span></code> directory to the current directory or <code class="docutils literal notranslate"><span class="pre">${HOME}/OneDrive*</span></code>. It will try to re-use an existing docker image.</p>
+<p>Normal use then would be something like:</p>
+<p>cd /Users/plewis/work
+~/geog0111/bin/docker-run</p>
+<p>The first time you use this, it will show something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">running</span> <span class="nb">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">run</span> <span class="kn">from</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">work</span>
+<span class="o">--&gt;</span> <span class="n">mount</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">work</span>
+<span class="o">--&gt;</span> <span class="nb">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">run</span><span class="p">:</span> <span class="n">no</span> <span class="n">existing</span> <span class="n">docker</span> <span class="n">image</span> <span class="n">found</span>
+<span class="o">--&gt;</span> <span class="nb">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">run</span><span class="p">:</span> <span class="n">running</span> <span class="n">docker</span> <span class="k">with</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">work</span> <span class="k">as</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">jovyan</span><span class="o">/</span><span class="n">notebooks</span><span class="o">/</span><span class="n">work</span>
+</pre></div>
+</div>
+<p>So anything we save into <code class="docutils literal notranslate"><span class="pre">/home/jovyan/notebooks/work</span></code> in the notebook will go into <code class="docutils literal notranslate"><span class="pre">/Users/plewis/work</span></code>.</p>
+<p>The notebook will start with a message such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Serving notebooks from local directory: /home/jovyan/geog0111/notebooks
+1 active kernel
+The Jupyter Notebook is running at:
+http://8fbac34af2bc:8888/?token=42897db02a8f1168ae2d7fb37aa2acdfcba51d47560a96dc
+ or http://127.0.0.1:8888/?token=42897db02a8f1168ae2d7fb37aa2acdfcba51d47560a96dc
+</pre></div>
+</div>
+<p>and you can access the notebooks from this address in a browser.</p>
+<p>To end the session, type <code class="docutils literal notranslate"><span class="pre">^C</span></code> (<code class="docutils literal notranslate"><span class="pre">CONTROL</span> <span class="pre">+</span> <span class="pre">c</span></code>) in the teminal you ran the command from.</p>
+<p>If you now type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">l</span> 
+</pre></div>
+</div>
+<p>You should see an existing image e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">l</span> 
+<span class="n">CONTAINER</span> <span class="n">ID</span>        <span class="n">IMAGE</span>               <span class="n">COMMAND</span>                  <span class="n">CREATED</span>             <span class="n">STATUS</span>                     <span class="n">PORTS</span>               <span class="n">NAMES</span>
+<span class="mi">8</span><span class="n">fbac34af2bc</span>        <span class="n">ucleo</span><span class="o">/</span><span class="n">geog0111</span>      <span class="s2">&quot;tini -g -- start-no…&quot;</span>   <span class="mi">28</span> <span class="n">minutes</span> <span class="n">ago</span>      <span class="n">Exited</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">2</span> <span class="n">minutes</span> <span class="n">ago</span>                       <span class="n">jolly_maxwell</span>
+</pre></div>
+</div>
+<p>If  you really want to delete that (start again with yoiur notebooks), you can with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">rm</span> <span class="n">jolly_maxwell</span>
+</pre></div>
+</div>
+<p>but it should normally be fine to re-use.</p>
+<p>The next time you run thiis command, it should recognise an existing docker image and respind with something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">running</span> <span class="nb">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">run</span> <span class="kn">from</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">work</span>
+<span class="o">--&gt;</span> <span class="n">mount</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">work</span>
+<span class="o">--&gt;</span> <span class="nb">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">run</span><span class="p">:</span> <span class="n">using</span> <span class="n">docker</span> <span class="n">image</span> <span class="n">jolly_maxwell</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Scripts<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bin-setup-sh">
+<h3><code class="docutils literal notranslate"><span class="pre">bin/setup.sh</span></code><a class="headerlink" href="#bin-setup-sh" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="bin/setup.sh"><code class="docutils literal notranslate"><span class="pre">bin/setup.sh</span></code></a> is the core setup script. It is run for example from <a class="reference external" href="copy/Dockerfile"><code class="docutils literal notranslate"><span class="pre">Docker/Dockerfile</span></code></a>
+but may also be run on the repository. It should usually be run by the user and should work from any operating system.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="o">|</span> <span class="o">--</span><span class="n">remove</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="o">|--</span><span class="n">force</span><span class="p">]</span> <span class="o">|</span> <span class="p">[</span><span class="o">-</span><span class="n">n</span><span class="o">|--</span><span class="n">no_force</span><span class="p">]</span> 
+</pre></div>
+</div>
+<p>The main purpose of the script is to run the <code class="docutils literal notranslate"><span class="pre">conda</span></code> setup to make the conda environment <code class="docutils literal notranslate"><span class="pre">geog0111</span></code> from <a class="reference external" href="copy/environment.yml">Docker/environment.yml</a>.
+It will detect if windows is being used (so run <code class="docutils literal notranslate"><span class="pre">conda.bat</span></code>) and test to see if the environment <code class="docutils literal notranslate"><span class="pre">geog0111</span></code> already exists. If it does, it can be removed (<code class="docutils literal notranslate"><span class="pre">--remove</span></code>) or a foce install done (<code class="docutils literal notranslate"><span class="pre">--force</span></code>). Otherwise, it will try to update the environment from <a class="reference external" href="copy/environment.yml">Docker/environment.yml</a>.</p>
+<p>It generates a file <a class="reference external" href="copy/dockenvrc"><code class="docutils literal notranslate"><span class="pre">~/.dockenvrc</span></code></a> to be run on shell startup to activate the environment.</p>
+<p>After running this script, you should manually activate the environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activcate</span> <span class="n">geog0111</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bin-postbuild">
+<h3><code class="docutils literal notranslate"><span class="pre">bin/postBuild</span></code><a class="headerlink" href="#bin-postbuild" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="bin/postBuild"><code class="docutils literal notranslate"><span class="pre">bin/postBuild</span></code></a> is run after <a class="reference external" href="bin/setup.sh"><code class="docutils literal notranslate"><span class="pre">bin/setup.sh</span></code></a> and does jobs such as setting up the jupyter notebook extensions, installing the <code class="docutils literal notranslate"><span class="pre">geog0111</span></code> package locally (using <a class="reference external" href="copy/setup.py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code></a>) and ensuring shell initialisation is properly done for subsequent sessions. It should be run the the user, and woul;d normally be run after any new run of <a class="reference external" href="bin/setup.sh"><code class="docutils literal notranslate"><span class="pre">bin/setup.sh</span></code></a>.</p>
+</div>
+<div class="section" id="bin-link-set-sh">
+<h3><code class="docutils literal notranslate"><span class="pre">bin/link-set.sh</span></code><a class="headerlink" href="#bin-link-set-sh" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="bin/link-set.sh"><code class="docutils literal notranslate"><span class="pre">bin/link-set.sh</span></code></a> is the directory linking script.
+It should usually be run by the user.</p>
+<p>Users may work in any of several directories, so we need to put in symbolic links
+from common directories (<code class="docutils literal notranslate"><span class="pre">data</span></code> <code class="docutils literal notranslate"><span class="pre">$repo</span></code> <code class="docutils literal notranslate"><span class="pre">images</span></code>) in each of these to ensure
+correct operation. This script does that: It goes into each of <code class="docutils literal notranslate"><span class="pre">notebooks</span></code>
+<code class="docutils literal notranslate"><span class="pre">notebooks/work</span></code> <code class="docutils literal notranslate"><span class="pre">docs</span></code> <code class="docutils literal notranslate"><span class="pre">notebooks_lab</span></code> <code class="docutils literal notranslate"><span class="pre">notebooks_lab/work</span></code> <code class="docutils literal notranslate"><span class="pre">docs/work</span></code> and puts a
+symbolic link to <code class="docutils literal notranslate"><span class="pre">data</span></code> <code class="docutils literal notranslate"><span class="pre">$repo</span></code> <code class="docutils literal notranslate"><span class="pre">images</span></code> in <code class="docutils literal notranslate"><span class="pre">..</span></code>. Since relative paths are used,
+this is portable.</p>
+<p>In addition, it puts a link in from <code class="docutils literal notranslate"><span class="pre">~/$repo</span></code> to <code class="docutils literal notranslate"><span class="pre">$repo</span></code> for convenience (unless this
+already exists). It also puts a link in from <code class="docutils literal notranslate"><span class="pre">$UCLDATA</span></code> to <code class="docutils literal notranslate"><span class="pre">data/ucl</span></code> (default <code class="docutils literal notranslate"><span class="pre">${HOME}/geog0111/work</span></code>)
+so that a system-wide data directory can be put in, and referred to asd <code class="docutils literal notranslate"><span class="pre">data/ucl</span></code> from
+scripts.</p>
+<p>This is called <a class="reference external" href="bin/setup.sh"><code class="docutils literal notranslate"><span class="pre">bin/setup.sh</span></code></a>, but may be run independently to fix any broken links.</p>
+</div>
+<div class="section" id="bin-notebook-run-sh">
+<h3><code class="docutils literal notranslate"><span class="pre">bin/notebook-run.sh</span></code><a class="headerlink" href="#bin-notebook-run-sh" title="Permalink to this headline">¶</a></h3>
+<p>This script runs all notebooks in <a class="reference external" href="notebooks"><code class="docutils literal notranslate"><span class="pre">notebooks</span></code></a> using <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">nbconvert</span></code>. The files are saved as <code class="docutils literal notranslate"><span class="pre">*.nbconvert.md</span></code>. The running is tolerant to errors. If the file is no different to the original, the original is kept. Otherwise the user is prompted to see if you want to replace the original notebook with the one that has been executed. You are provided with information on file sizes, which should help with this decision: you might not want to save a notebook that is (much) smaller than the original. Backups are stored in <code class="docutils literal notranslate"><span class="pre">backup.$$</span></code> which you need to manually clear.</p>
+<p>You might run this as a pre-cursor to <a class="reference external" href="bin/notebook-mkdocs.sh"><code class="docutils literal notranslate"><span class="pre">bin/notebook-mkdocs.sh</span></code></a>.</p>
+</div>
+<div class="section" id="bin-notebook-mkdocs-sh">
+<h3><code class="docutils literal notranslate"><span class="pre">bin/notebook-mkdocs.sh</span></code><a class="headerlink" href="#bin-notebook-mkdocs-sh" title="Permalink to this headline">¶</a></h3>
+<p>This script <a class="reference external" href="bin/notebook-mkdocs.sh"><code class="docutils literal notranslate"><span class="pre">bin/notebook-mkdocs.sh</span></code></a> filters notebooks in <a class="reference external" href="notebooks"><code class="docutils literal notranslate"><span class="pre">notebooks</span></code></a> into <a class="reference external" href="notebooks_lab"><code class="docutils literal notranslate"><span class="pre">notebooks_lab</span></code></a> using <a class="reference external" href="geog0111/edit_notebook.py"><code class="docutils literal notranslate"><span class="pre">geog0111/edit_notebook.py</span></code></a>. This filters out noteboom extensions and other features, and makes the notebooks suitable for running in <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>, rather than just <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">noteboook</span></code>. It strips out exercises defiuned in <code class="docutils literal notranslate"><span class="pre">exercise2</span></code> cells, into new notebooks with the pattern <code class="docutils literal notranslate"><span class="pre">_answers.md</span></code>.</p>
+<p>The script takes the <a class="reference external" href="notebooks_lab"><code class="docutils literal notranslate"><span class="pre">notebooks_lab</span></code></a> notebooks, and converts to markdown in <a class="reference external" href="docs"><code class="docutils literal notranslate"><span class="pre">docs</span></code></a> and prepares the environment for the document generator <code class="docutils literal notranslate"><span class="pre">mkdocs</span></code> using <a class="reference external" href="geog0111/mkdocs_prep.py"><code class="docutils literal notranslate"><span class="pre">geog0111/mkdocs_prep.py</span></code></a>.
+It runs <code class="docutils literal notranslate"><span class="pre">mkdocs</span> <span class="pre">build</span></code> locally. The documents can be viewed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdocs</span> <span class="n">serve</span>
+</pre></div>
+</div>
+<p>and/or uploaded to the document server (by the developer) using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdocs</span> <span class="n">gh</span><span class="o">-</span><span class="n">deploy</span> <span class="o">--</span><span class="n">force</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/DEV_scripts.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

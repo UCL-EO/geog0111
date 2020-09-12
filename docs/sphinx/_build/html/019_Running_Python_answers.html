@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>019 Python codes : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="python-codes-answers-to-exercises">
+<h1>019 Python codes : Answers to exercises<a class="headerlink" href="#python-codes-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Create a Python file in your <a class="reference external" href="work"><code class="docutils literal notranslate"><span class="pre">work</span></code></a> folder based on the example above and call it <code class="docutils literal notranslate"><span class="pre">work/myFirstCode.py</span></code></p></li>
+<li><p>Modify the code to achieve the following:</p>
+<ul>
+<li><p>make a function called <code class="docutils literal notranslate"><span class="pre">myFirstCode</span></code> that prints out a greeting message</p></li>
+<li><p>update the document strings in the file as appropriate</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="c1"># ANSWER : create the Python file with the code we want</span>
+
+<span class="c1"># Instructions:</span>
+<span class="c1">#</span>
+<span class="c1"># Create a Python file in your work</span>
+<span class="c1"># folder based on the example in geog0111/helloWorld.py</span>
+<span class="c1"># and call it `work/myFirstCode.py`</span>
+<span class="c1">#</span>
+<span class="c1"># Modify the code to achieve the following:</span>
+<span class="c1"># make a function called myFirstCode that prints out a greeting message</span>
+<span class="c1"># update the document strings in the file as appropriate</span>
+
+<span class="c1"># code between the next line and the </span>
+<span class="c1"># End Of File (EOF) marker will be saved in </span>
+<span class="c1"># to the file work/myFirstCode.py</span>
+cat <span class="s">&lt;&lt; EOF &gt; work/myFirstCode.py</span>
+<span class="s">#!/usr/bin/env python</span>
+<span class="s"># -*- coding: utf-8 -*- </span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">myFirstCode</span>
+
+<span class="s">Purpose:</span>
+
+<span class="s">  function to print a greeting</span>
+<span class="s">  </span>
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">__author__    = &quot;P Lewis&quot;</span>
+<span class="s">__copyright__ = &quot;Copyright 2020 P Lewis&quot;</span>
+<span class="s">__license__   = &quot;GPLv3&quot;</span>
+<span class="s">__email__     = &quot;p.lewis@ucl.ac.uk&quot;</span>
+
+<span class="s">def myFirstCode():</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    function to print a greeting</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    print(&#39;hello from me&#39;)</span>
+<span class="s">    </span>
+<span class="s">    </span>
+<span class="s"># example calling the function    </span>
+<span class="s">def main():</span>
+<span class="s">    myFirstCode()</span>
+
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    # execute only if run as a script</span>
+<span class="s">    main()</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Chmod 755 to make the file executable</span>
+chmod <span class="m">755</span> work/myFirstCode.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">myFirstCode</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-submitted-practical">
+<h2>Exercise: Submitted Practical<a class="headerlink" href="#exercise-submitted-practical" title="Permalink to this headline">¶</a></h2>
+<p>Although we provide access to answers for this exercise, we want you to submit the codes you generate via Moodle, so that we can provide feedback. You should avoid looking at the answers before you submit your work. This submitted work does not count towards your course assessment, it is purely to allow us to provide some rapid feedback to you on how you are doing. You will need to put together a few elements from the notes so far to do all prts of this practical, but yoiu should all be capable of doing it well. Pay attention to writing tidy code, with useful, clear comments and document strings.</p>
+<ul>
+<li><p>Create a Python code in a file called <code class="docutils literal notranslate"><span class="pre">work/greet.py</span></code> that does the following:</p>
+<ul>
+<li><p>define a function <code class="docutils literal notranslate"><span class="pre">greet(name)</span></code> that prints out a greeting from the name in the argument  <code class="docutils literal notranslate"><span class="pre">name</span></code></p></li>
+<li><p>define a function <code class="docutils literal notranslate"><span class="pre">main()</span> <span class="pre">that</span> <span class="pre">passes</span> <span class="pre">a</span> <span class="pre">string</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">script</span> <span class="pre">command</span> <span class="pre">line</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">function</span> </code>greet(name)`</p></li>
+<li><p>calls <code class="docutils literal notranslate"><span class="pre">main()</span></code> if the file is run as a Python script</p></li>
+<li><p>show a test of the script working</p></li>
+<li><p>has plentiful commenting and document strings</p></li>
+<li><p>As a test, when you run the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Fred</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>you would expect to get a response of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">greetings</span> <span class="kn">from</span> <span class="nn">Fred</span>
+</pre></div>
+</div>
+<p>and if you run:
+%run work/greet.py Hermione</p>
+<p>then
+greetings from Hermione</p>
+</li>
+<li><p>To go further with this exercise, you might test to see that the length of <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> is as long as you expect it to be, so you can tell the user when they forget toi include the name</p></li>
+<li><p>To go even further with this exercise, you might attempt to make the script function so that if you run it as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Fred</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<p>it responds:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">greetings</span> <span class="kn">from</span> <span class="nn">Fred</span>
+  <span class="n">greetings</span> <span class="kn">from</span> <span class="nn">Hermione</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="c1"># ANSWER 1</span>
+<span class="c1">#</span>
+
+<span class="c1"># code between the next line and the </span>
+<span class="c1"># End Of File (EOF) marker will be saved in </span>
+<span class="c1"># to the file work/greet.py</span>
+cat <span class="s">&lt;&lt; EOF &gt; work/greet.py</span>
+<span class="s">#!/usr/bin/env python</span>
+<span class="s"># -*- coding: utf-8 -*- </span>
+
+<span class="s">import sys</span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">greet</span>
+
+<span class="s">Purpose:</span>
+
+<span class="s">  script to print hello from name</span>
+<span class="s">  </span>
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">__author__    = &quot;P Lewis&quot;</span>
+<span class="s">__copyright__ = &quot;Copyright 2020 P Lewis&quot;</span>
+<span class="s">__license__   = &quot;GPLv3&quot;</span>
+<span class="s">__email__     = &quot;p.lewis@ucl.ac.uk&quot;</span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">Instructions:</span>
+<span class="s">Create a Python code in a file called work/greet.py that does the following:</span>
+<span class="s">define a function greet(name) that prints out a greeting from the name </span>
+<span class="s">  in the argument name</span>
+<span class="s">define a function main() that passes a string from the script command </span>
+<span class="s">  line to a function greet(name)</span>
+<span class="s">calls main() if the file is run as a Python script</span>
+<span class="s">has plentiful commenting and document strings</span>
+<span class="s">&#39;&#39;&#39;</span>
+
+<span class="s"># define a function greet(name) that prints </span>
+<span class="s">#   out a greeting from the name in the argument name</span>
+<span class="s">def greet(name):</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    function to print &quot;greetings from {name}&quot;</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    print(f&#39;greetings from {name}&#39;)</span>
+<span class="s">    </span>
+<span class="s">    </span>
+<span class="s"># define a function main() that passes a string </span>
+<span class="s">#   from the script command line to a function greet(name)</span>
+
+<span class="s"># call name with a string </span>
+<span class="s"># name that we pass to greet(name)</span>
+<span class="s">def main(name):</span>
+<span class="s">    greet(name)</span>
+
+<span class="s"># calls main() if the file is run as a Python script</span>
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    # execute only if run as a script</span>
+<span class="s">    # we pass the first command line argument argv[1]</span>
+<span class="s">    # remembering that argv[0[ is the program name</span>
+<span class="s">    main(sys.argv[1])</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Chmod 755 to make the file executable</span>
+chmod <span class="m">755</span> work/greet.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">As a test, when you run the script:</span>
+
+<span class="s1">  </span><span class="si">%r</span><span class="s1">un work/greet.py Fred</span>
+<span class="s1">you would expect to get a response of the form:</span>
+
+<span class="s1">  greetings from Fred</span>
+<span class="s1">and if you run:</span>
+
+<span class="s1">  </span><span class="si">%r</span><span class="s1">un work/greet.py Hermione</span>
+<span class="s1">then</span>
+
+<span class="s1">  greetings from Hermione</span>
+
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;work/greet.py Fred -&gt;&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Fred</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;work/greet.py Hermione -&gt;&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="c1"># ANSWER 2</span>
+<span class="c1">#</span>
+<span class="c1"># To go further with this exercise, you might test to see that the length of sys.argv is as long as you expect it to be, </span>
+<span class="c1"># so you can tell the user when they forget to include the name</span>
+
+<span class="c1"># code between the next line and the </span>
+<span class="c1"># End Of File (EOF) marker will be saved in </span>
+<span class="c1"># to the file work/greet.py</span>
+cat <span class="s">&lt;&lt; EOF &gt; work/greet.py</span>
+<span class="s">#!/usr/bin/env python</span>
+<span class="s"># -*- coding: utf-8 -*- </span>
+
+<span class="s"># import required package(s)</span>
+<span class="s">import sys</span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">greet</span>
+
+<span class="s">Purpose:</span>
+
+<span class="s">  script to print hello from name</span>
+<span class="s">  </span>
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">__author__    = &quot;P Lewis&quot;</span>
+<span class="s">__copyright__ = &quot;Copyright 2020 P Lewis&quot;</span>
+<span class="s">__license__   = &quot;GPLv3&quot;</span>
+<span class="s">__email__     = &quot;p.lewis@ucl.ac.uk&quot;</span>
+
+
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">Instructions:</span>
+
+<span class="s">Create a Python code in a file called work/greet.py that does the following:</span>
+<span class="s">define a function greet(name) that prints out a greeting from the name </span>
+<span class="s">  in the argument name</span>
+<span class="s">define a function main() that passes a string from the script command </span>
+<span class="s">  line to a function greet(name)</span>
+<span class="s">calls main() if the file is run as a Python script</span>
+<span class="s">has plentiful commenting and document strings</span>
+<span class="s">&#39;&#39;&#39;</span>
+
+<span class="s"># define a function greet(name) that prints </span>
+<span class="s">#   out a greeting from the name in the argument name</span>
+<span class="s">def greet(name):</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    function to print &quot;greetings from {name}&quot;</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    print(f&#39;greetings from {name}&#39;)</span>
+<span class="s">    </span>
+<span class="s">    </span>
+<span class="s"># define a function main() that passes a string </span>
+<span class="s">#   from the script command line to a function greet(name)</span>
+
+<span class="s"># call name with a string </span>
+<span class="s"># name that we pass to greet(name)</span>
+<span class="s">def main(name):</span>
+<span class="s">    greet(name)</span>
+
+<span class="s"># calls main() if the file is run as a Python script</span>
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    # execute only if run as a script</span>
+<span class="s">    # we pass the first command line argument argv[1]</span>
+<span class="s">    # remembering that argv[0[ is the program name</span>
+<span class="s">    </span>
+<span class="s">    # TEST for string length in here:</span>
+<span class="s">    # To go further with this exercise, you might test to see that the length of sys.argv is as long as you expect it to be, </span>
+<span class="s">    # so you can tell the user when they forget to include the name</span>
+<span class="s">    if len(sys.argv) &gt; 1:</span>
+<span class="s">      main(sys.argv[1])</span>
+<span class="s">    else:</span>
+<span class="s">      print(f&#39;{sys.argv[0]}: error - no command line name given&#39;)</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Chmod 755 to make the file executable</span>
+chmod <span class="m">755</span> work/greet.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;work/greet.py  -&gt;&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;work/greet.py Hermione -&gt;&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="c1"># ANSWER 3</span>
+<span class="c1">#</span>
+<span class="c1"># To go even further with this exercise, you might attempt to </span>
+<span class="c1"># make the script function so that if you run it as:</span>
+<span class="c1"># %run work/greet.py Fred Hermione</span>
+<span class="c1"># it responds:</span>
+<span class="c1">#   greetings from Fred</span>
+<span class="c1">#   greetings from Hermione</span>
+<span class="c1"># in many ways, this is easier than answer 2</span>
+<span class="c1"># as we just use a loop</span>
+
+<span class="c1"># code between the next line and the </span>
+<span class="c1"># End Of File (EOF) marker will be saved in </span>
+<span class="c1"># to the file work/greet.py</span>
+cat <span class="s">&lt;&lt; EOF &gt; work/greet.py</span>
+<span class="s">#!/usr/bin/env python</span>
+<span class="s"># -*- coding: utf-8 -*- </span>
+
+<span class="s"># import required package(s)</span>
+<span class="s">import sys</span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">greet</span>
+
+<span class="s">Purpose:</span>
+
+<span class="s">  script to print hello from name</span>
+<span class="s">  </span>
+<span class="s">Author: P. Lewis</span>
+<span class="s">Email:  p.lewis@ucl.ac.uk</span>
+<span class="s">Date:   28 Aug 2020</span>
+
+<span class="s">Instructions:</span>
+<span class="s">Create a Python code in a file called work/greet.py that does the following:</span>
+<span class="s">define a function greet(name) that prints out a greeting from the name </span>
+<span class="s">  in the argument name</span>
+<span class="s">define a function main() that passes a string from the script command </span>
+<span class="s">  line to a function greet(name)</span>
+<span class="s">calls main() if the file is run as a Python script</span>
+<span class="s">has plentiful commenting and document strings</span>
+<span class="s">&#39;&#39;&#39;</span>
+
+<span class="s"># define a function greet(name) that prints </span>
+<span class="s">#   out a greeting from the name in the argument name</span>
+<span class="s">def greet(name):</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    function to print &quot;greetings from {name}&quot;</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    print(f&#39;greetings from {name}&#39;)</span>
+<span class="s">    </span>
+<span class="s">    </span>
+<span class="s"># define a function main() that passes a string </span>
+<span class="s">#   from the script command line to a function greet(name)</span>
+
+<span class="s"># call name with a string </span>
+<span class="s"># name that we pass to greet(name)</span>
+<span class="s">def main(name):</span>
+<span class="s">    greet(name)</span>
+
+<span class="s"># calls main() if the file is run as a Python script</span>
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    # execute only if run as a script</span>
+<span class="s">    # we pass the first command line argument argv[1]</span>
+<span class="s">    # remembering that argv[0[ is the program name</span>
+<span class="s">    </span>
+<span class="s">    # To go even further with this exercise, you might attempt to </span>
+<span class="s">    # make the script function so that if you run it as:</span>
+<span class="s">    # %run work/greet.py Fred Hermione</span>
+<span class="s">    # it responds:</span>
+<span class="s">    #   greetings from Fred</span>
+<span class="s">    #   greetings from Hermione</span>
+<span class="s">    # in many ways, this is easier than answer 2</span>
+<span class="s">    # as we just use a loop</span>
+<span class="s">    for n in sys.argv[1:]:</span>
+<span class="s">      # and call main() with n</span>
+<span class="s">      main(n)</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Chmod 755 to make the file executable</span>
+chmod <span class="m">755</span> work/greet.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test</span>
+<span class="c1"># separate the responses to see them easier</span>
+<span class="n">dash</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">10</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dash</span><span class="si">}</span><span class="se">\n</span><span class="s1">work/greet.py  -&gt;</span><span class="si">{</span><span class="n">dash</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dash</span><span class="si">}</span><span class="se">\n</span><span class="s1">work/greet.py Hermione -&gt;</span><span class="si">{</span><span class="n">dash</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dash</span><span class="si">}</span><span class="se">\n</span><span class="s1">work/greet.py Hermione Fred -&gt;</span><span class="si">{</span><span class="n">dash</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span> <span class="n">Fred</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/019_Running_Python_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

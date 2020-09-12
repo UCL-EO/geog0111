@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>019 Python codes &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="python-codes">
+<h1>019 Python codes<a class="headerlink" href="#python-codes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Whilst writing codes in Jupyter notebooks is useful and powerful, you will find over the course of GEOG0111 that you will need to develop your own codes as Python scripts. These are more portable than codes embedded in notebooks, and can also be used to develop your own code libraries.</p>
+<p>In this session, you will learn how to generate and use Python scripts from a notebook. In particular, you will learn the typical format of such scripts, and generate some simple scripts around some basic functions.</p>
+<p>At the end of the session, there is a practical exercise for you to do and submit. It does not provide part of your formal assessment, but it is important that you do the work and submit it, so we know if you are on track or need further help. If you do not submit the work, we cannot help you in this way.</p>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="003_Help.html"><span class="doc">003 Getting help</span></a></p></li>
+<li><p><a class="reference internal" href="010_Python_Introduction.html"><span class="doc">010 Variables, comments and print()</span></a></p></li>
+<li><p><a class="reference internal" href="011_Python_data_types.html"><span class="doc">011 Data types</span></a></p></li>
+<li><p><a class="reference internal" href="012_Python_strings.html"><span class="doc">012 String formatting</span></a></p></li>
+<li><p><a class="reference internal" href="013_Python_string_methods.html"><span class="doc">013_Python_string_methods</span></a></p></li>
+<li><p><a class="reference internal" href="014_Python_groups.html"><span class="doc">014_Python_groups</span></a></p></li>
+<li><p><a class="reference internal" href="015_Python_control.html"><span class="doc">015_Python_control</span></a></p></li>
+<li><p><a class="reference internal" href="016_Python_for.html"><span class="doc">016_Python_for</span></a></p></li>
+<li><p><a class="reference internal" href="017_Functions.html"><span class="doc">017_Functions</span></a></p></li>
+</ul>
+<p>In particular, you will need to recall how to use:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="002_Unix.html"><span class="doc">unix commands</span></a>: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l;</span> <span class="pre">chmod</span></code></p></li>
+<li><p><a class="reference internal" href="017_Functions.html"><span class="doc">functions</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="running-python-code-in-a-file">
+<h2>Running Python  Code in a file<a class="headerlink" href="#running-python-code-in-a-file" title="Permalink to this headline">¶</a></h2>
+<p>We will generally use these Jupyter notebooks for running you Python codes, but you should also learn how to develop and run Python codes outside of the notebook. We provide a quick example of that here.</p>
+<div class="section" id="running-a-python-script">
+<h3>Running a Python script<a class="headerlink" href="#running-a-python-script" title="Permalink to this headline">¶</a></h3>
+<p>Python codes are written in files with the suffix <code class="docutils literal notranslate"><span class="pre">.py</span></code>, e.g. <a class="reference external" href="geog0111/helloWorld.py"><code class="docutils literal notranslate"><span class="pre">geog0111/helloWorld.py</span></code></a>.</p>
+<p>If the file is defined as a Python script, then we can run. it from a shell in the same way we would run any other <code class="docutils literal notranslate"><span class="pre">unix</span></code> command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!geog0111/helloWorld.py
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+<p>A Python script is a Python code file that contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+</pre></div>
+</div>
+<p>as the first line in the file, and is executable. We can see if a file is executable by getting a ‘long’ listing using the <code class="docutils literal notranslate"><span class="pre">unix</span></code> command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!ls -l geog0111/helloWorld.py
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>-rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 [31mgeog0111/helloWorld.py[m[m
+</pre></div>
+</div>
+<p>The first field gives us the file permissions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>
+</pre></div>
+</div>
+<p>with the <code class="docutils literal notranslate"><span class="pre">x</span></code> bit telling us that it is executable. The permissions for this file are set to <code class="docutils literal notranslate"><span class="pre">755</span></code> (<code class="docutils literal notranslate"><span class="pre">111</span></code> <code class="docutils literal notranslate"><span class="pre">101</span></code> <code class="docutils literal notranslate"><span class="pre">101</span></code> in octal) which we can set with the <code class="docutils literal notranslate"><span class="pre">unix</span></code>  command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+chmod <span class="m">755</span> geog0111/helloWorld.py
+ls -l geog0111/helloWorld.py
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">514</span>  <span class="mi">6</span> <span class="n">Sep</span> <span class="mi">22</span><span class="p">:</span><span class="mi">34</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">helloWorld</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-python-code-from-python">
+<h3>Running Python code from Python<a class="headerlink" href="#running-python-code-from-python" title="Permalink to this headline">¶</a></h3>
+<p>We can also run the Python code contained in <a class="reference external" href="geog0111/helloWorld.py"><code class="docutils literal notranslate"><span class="pre">geog0111/helloWorld.py</span></code></a> from a <code class="docutils literal notranslate"><span class="pre">notebook</span></code> cell using <code class="docutils literal notranslate"><span class="pre">%run</span></code> (or from an <code class="docutils literal notranslate"><span class="pre">ipython</span></code> prompt using just <code class="docutils literal notranslate"><span class="pre">run</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">helloWorld</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+<p>Another thing we can do is to <code class="docutils literal notranslate"><span class="pre">import</span></code> the code from the Python file into Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;geog0111&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">as_posix</span><span class="p">())</span>
+
+
+<span class="kn">from</span> <span class="nn">helloWorld</span> <span class="kn">import</span> <span class="n">helloWorld</span>
+<span class="n">helloWorld</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">helloWorld</span><span class="o">.</span><span class="n">helloWorld</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This import statement imports the module <code class="docutils literal notranslate"><span class="pre">helloWorld</span></code> from the library <code class="docutils literal notranslate"><span class="pre">geog0111</span></code> (w</p>
+</div>
+<div class="section" id="form-of-a-python-script">
+<h3>Form of a Python script<a class="headerlink" href="#form-of-a-python-script" title="Permalink to this headline">¶</a></h3>
+<p>We will go into more details on this in later classes, but the main format of a Python file should be along the lines of the following example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*- </span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">helloWorld</span>
+
+<span class="sd">Purpose:</span>
+
+<span class="sd">  function print the string &#39;hello world&#39;</span>
+<span class="sd">  </span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">__author__</span>    <span class="o">=</span> <span class="s2">&quot;P Lewis&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright 2020 P Lewis&quot;</span>
+<span class="n">__license__</span>   <span class="o">=</span> <span class="s2">&quot;GPLv3&quot;</span>
+<span class="n">__email__</span>     <span class="o">=</span> <span class="s2">&quot;p.lewis@ucl.ac.uk&quot;</span>
+
+<span class="k">def</span> <span class="nf">helloWorld</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    function to print the string &#39;hello world&#39;</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+   
+   
+<span class="c1"># example calling the function</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">helloWorld</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># execute only if run as a script</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This same code is contained in the file <a class="reference external" href="geog0111/helloWorld.py">geog0111/helloWorld.py</a>. Although the amount of comments and code in there might seem a little overkill just to print out <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>, it is good for you to get into the habit of writing your Python codes in this way.</p>
+<p>To briefly explain the blocks of code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*- </span>
+</pre></div>
+</div>
+<p>This first line of the file allows the shell to know that this file should be interpreted with Python. It is good practice for you to include this as the first line of your Python codes so they can be run as scripts. The second line here is optional, but provides information on the python file encoding.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">helloWorld</span>
+
+<span class="sd">Purpose:</span>
+
+<span class="sd">  function print the string &#39;hello world&#39;</span>
+<span class="sd">  </span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">__author__</span>    <span class="o">=</span> <span class="s2">&quot;P Lewis&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright 2020 P Lewis&quot;</span>
+<span class="n">__license__</span>   <span class="o">=</span> <span class="s2">&quot;GPLv3&quot;</span>
+<span class="n">__email__</span>     <span class="o">=</span> <span class="s2">&quot;p.lewis@ucl.ac.uk&quot;</span>
+</pre></div>
+</div>
+<p>We then have a document string (contained within pairs of triple quotes) describing the purpose and some features of the code in this file. We provide some further information as variables written in the form <code class="docutils literal notranslate"><span class="pre">__var__</span></code> as relevant metadata for the file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">helloWorld</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    function to print the string &#39;hello world&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we define a <em>function</em> containing the code we want. In this case, the main body of the code is simply:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>as in the examples above. The syntax <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">helloWorld():</span></code> defines a function called <code class="docutils literal notranslate"><span class="pre">helloWorld</span></code> with no arguments (there is nothing defined here in the brackets). The code for the function is indented (4 spaces).</p>
+<p>After defining the function, we give a document string to associate with it and give users help information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">helloWorld</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the last part of the file, we provide some utilities that allow the file to be run as a script.</p>
+<p>First, we define a function called <code class="docutils literal notranslate"><span class="pre">main()</span></code> that provides an example of calling the function we have created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example calling the function    </span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">helloWorld</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This should be accompanied by some comments of doc-string explaining what we are doing in the code.</p>
+<p>The final part of the file contains the code that allows this file to be run as a script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># execute only if run as a script</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is pretty standard syntax, so we will not go into details now, other than to note that this is the mechanism by which running this file as a script makes the call to <code class="docutils literal notranslate"><span class="pre">main()</span></code>, which then calls our example code running <code class="docutils literal notranslate"><span class="pre">helloWorld()</span></code>.</p>
+<p>The final thing we need to do is to make our script executable. This involves setting some permissions on the file with the function <code class="docutils literal notranslate"><span class="pre">Path().chmod()</span></code>. The code to do this, for the file  <a class="reference external" href="geog0111/helloWorld.py">geog0111/helloWorld.py</a> from Python is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">Path</span><span class="p">(</span><span class="s1">&#39;geog0111/helloWorld.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s1">&#39;755&#39;</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Sometimes, we might use the <code class="docutils literal notranslate"><span class="pre">unix</span></code> (<code class="docutils literal notranslate"><span class="pre">bash</span></code>) shell equivalent command to do this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+chmod <span class="m">755</span> geog0111/helloWorld.py
+</pre></div>
+</div>
+<p>Now we can run the Python code from a code cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">helloWorld</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Note that using <code class="docutils literal notranslate"><span class="pre">%run</span></code> in the code cell (or just <code class="docutils literal notranslate"><span class="pre">run</span></code> in other Python codes) allows us to run a python command from a Python file in the cell, rather than the usual Python codes.</p>
+<p>An alternative is to make the whole cell into one to run bash commands with <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+geog0111/helloWorld.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="editing-a-file">
+<h2>Editing a file<a class="headerlink" href="#editing-a-file" title="Permalink to this headline">¶</a></h2>
+<p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. There are several ways you can do this, depending on how you are using these notebooks.</p>
+<div class="section" id="from-jupyterlab">
+<h3>From JupyterLab<a class="headerlink" href="#from-jupyterlab" title="Permalink to this headline">¶</a></h3>
+<p>If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:</p>
+<p><img alt="JupyterLab tools" src="_images/jl.png" /></p>
+<p>Among these you will see ‘text file’. Launch a text file, write your Python code into the file, and save it (<code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Save</span> <span class="pre">As</span></code>) to the Python file name you want in your <code class="docutils literal notranslate"><span class="pre">work</span> <span class="pre">directory</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">work/test.py</span></code>).</p>
+<p>Alternatively, use the menu item <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">New</span> <span class="pre">-&gt;</span> <span class="pre">Text</span> <span class="pre">File</span></code> to open a new text file.</p>
+<p>To change the permissions on the file from JupyterLab, open a shell (e.g. using
+<code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">New</span> <span class="pre">-&gt;</span> <span class="pre">Terminal</span></code>) and in there, type (assuming your file is called <code class="docutils literal notranslate"><span class="pre">work/test.py</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="mi">755</span> <span class="n">work</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p><img alt="JupyterLab terminal" src="_images/term.png" /></p>
+</div>
+<div class="section" id="jupyter-notebook">
+<h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://localhost:8888/edit/notebooks/geog0111/helloWorld.py">geog0111/helloWorld.py</a></p>
+</div>
+<div class="section" id="use-a-text-editor">
+<h3>Use a text editor<a class="headerlink" href="#use-a-text-editor" title="Permalink to this headline">¶</a></h3>
+<p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. Ideally, you should learn to do this outside of the notebook: invoke a text editor on your computer, put your Python code into the file, and save it to the desired location.</p>
+</div>
+<div class="section" id="create-in-bash">
+<h3>Create in bash<a class="headerlink" href="#create-in-bash" title="Permalink to this headline">¶</a></h3>
+<p>We can simply create a file in a bash script by following the example below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+
+<span class="c1"># code between the next line and the </span>
+<span class="c1"># End Of File (EOF) marker will be saved in </span>
+<span class="c1"># to the file work/myHelloWorld.py</span>
+cat <span class="s">&lt;&lt; EOF &gt; work/myHelloWorld.py</span>
+<span class="s">#!/usr/bin/env python</span>
+<span class="s"># -*- coding: utf-8 -*- </span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">helloWorld</span>
+
+<span class="s">Purpose:</span>
+
+<span class="s">  function print the string &#39;hello world&#39;</span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">__author__    = &quot;P Lewis&quot;</span>
+<span class="s">__copyright__ = &quot;Copyright 2020 P Lewis&quot;</span>
+<span class="s">__license__   = &quot;GPLv3&quot;</span>
+<span class="s">__email__     = &quot;p.lewis@ucl.ac.uk&quot;</span>
+
+<span class="s">def helloWorld():</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    function to print the string &#39;hello world&#39;</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    print(&#39;hello world&#39;)</span>
+<span class="s">    </span>
+<span class="s">    </span>
+<span class="s"># example calling the function    </span>
+<span class="s">def main():</span>
+<span class="s">    helloWorld()</span>
+
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    # execute only if run as a script</span>
+<span class="s">    main()</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Chmod 755 to make the file executable</span>
+chmod <span class="m">755</span> work/myHelloWorld.py
+</pre></div>
+</div>
+<p>This should have created a file called <code class="docutils literal notranslate"><span class="pre">work/myHelloWorld.py</span></code> and made it executable (using bash to call chmod, rather than doing it in Python as above).</p>
+<p>Now run it as above:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">myHelloWorld</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>You should now be able to load this Python file directly in Jupyter, using <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Open</span></code> then click through to the Python file you generated.</p>
+<p>Once you save the file, run the Python code again (<code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">work/myHelloWorld.py</span></code>).</p>
+<div class="section" id="exercise">
+<h4>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Create a Python file in your <a class="reference external" href="work"><code class="docutils literal notranslate"><span class="pre">work</span></code></a> folder based on the example above and call it <code class="docutils literal notranslate"><span class="pre">work/myFirstCode.py</span></code></p></li>
+<li><p>Modify the code to achieve the following:</p>
+<ul>
+<li><p>make a function called <code class="docutils literal notranslate"><span class="pre">myFirstCode</span></code> that prints out a greeting message</p></li>
+<li><p>update the document strings in the file as appropriate</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="adding-command-line-arguments">
+<h2>Adding command line arguments<a class="headerlink" href="#adding-command-line-arguments" title="Permalink to this headline">¶</a></h2>
+<p>We have achieved something today, in creating a Python code in a file, making it executable, and running it. However, it is a little limited in scope: it just prints out the message the we <strong>hard wired</strong> into it.</p>
+<p>It is better to design codes to have some more flexibility than this. Suppose we want to be able to run our code <code class="docutils literal notranslate"><span class="pre">work/myFirstCode.py</span></code> so that we can pass a name though to the script and print out, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="kn">from</span> <span class="nn">Fred</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="kn">from</span> <span class="nn">Hermione</span>
+</pre></div>
+</div>
+<p>How could we achieve that?</p>
+<p>The answer, as we have seen before, is to pass an argument to our function. So, instead of having:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">helloWorld</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    function to print the string &#39;hello world&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello from me&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>we pass an argument that we might call <code class="docutils literal notranslate"><span class="pre">name</span></code>, and conveniently pass this through to the <code class="docutils literal notranslate"><span class="pre">print()</span></code> statement using an <code class="docutils literal notranslate"><span class="pre">f-string</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">helloWorld</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    function to print the string &#39;hello world&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;hello from </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s test that before going further:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    function to print &#39;hello from {name}&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;hello from </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="c1"># call the function with some argument</span>
+<span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Fred&#39;</span><span class="p">)</span>
+<span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Hermione&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We have seen that that code operates correctly – it is very good practice to test any small incremental developments in your code in this way.</p>
+<p>Next, let’s think about how to embed that modified function in our code in our file. We will call the code <code class="docutils literal notranslate"><span class="pre">work/hello.py</span></code> and copy most of it from the previous example. We need to make sure we update any document strings, and also take care that we are calling the correct function (it is <code class="docutils literal notranslate"><span class="pre">hello()</span></code> now, not <code class="docutils literal notranslate"><span class="pre">helloWorld()</span></code> as previously).</p>
+<p>Last then, when we make the call to <code class="docutils literal notranslate"><span class="pre">hello()</span></code> from the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function, we need to make sure we pass it a string that it can print out, For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Fred&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Otherwise, if we leeave <code class="docutils literal notranslate"><span class="pre">main()</span></code> as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">hello</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>the code would not run and give a <code class="docutils literal notranslate"><span class="pre">TypeError:</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">TypeError</span><span class="p">:</span> <span class="n">hello</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">1</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">argument</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span>
+</pre></div>
+</div>
+<p>Again, this is an incremental change, so let’s test the new code before going any further:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+
+<span class="c1"># code between the next line and the </span>
+<span class="c1"># End Of File (EOF) marker will be saved in </span>
+<span class="c1"># to the file work/hello.py</span>
+cat <span class="s">&lt;&lt; EOF &gt; work/hello.py</span>
+<span class="s">#!/usr/bin/env python</span>
+<span class="s"># -*- coding: utf-8 -*- </span>
+
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">hello</span>
+
+<span class="s">Purpose:</span>
+
+<span class="s">  function to print &#39;hello from {name}&#39;</span>
+<span class="s">  </span>
+<span class="s">&#39;&#39;&#39;</span>
+<span class="s">__author__    = &quot;P Lewis&quot;</span>
+<span class="s">__copyright__ = &quot;Copyright 2020 P Lewis&quot;</span>
+<span class="s">__license__   = &quot;GPLv3&quot;</span>
+<span class="s">__email__     = &quot;p.lewis@ucl.ac.uk&quot;</span>
+
+<span class="s">def hello(name):</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    function to print &#39;hello from {name}&#39;</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="s">    print(f&#39;hello from {name}&#39;)</span>
+<span class="s">    </span>
+<span class="s"># example calling the function    </span>
+<span class="s">def main():</span>
+<span class="s">    hello(&#39;Fred&#39;)</span>
+
+<span class="s">if __name__ == &quot;__main__&quot;:</span>
+<span class="s">    # execute only if run as a script</span>
+<span class="s">    main()</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Chmod 755 to make the file executable</span>
+chmod <span class="m">755</span> work/hello.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># run coxde</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>We now have a more flexible function <code class="docutils literal notranslate"><span class="pre">hello(name)</span></code>, but when we run the script <code class="docutils literal notranslate"><span class="pre">work/hello.py</span></code> we will always be running the same code in <code class="docutils literal notranslate"><span class="pre">main()</span></code>, so we can only ever get a hello from Fred.</p>
+<p>When we write a Python script, we often will want to make that more flexible too. We can do this by passing a command-line argument through to the script. What we want to happen is that when we run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<p>we get the response:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="kn">from</span> <span class="nn">Hermione</span>
+</pre></div>
+</div>
+<p>That isn’t too much of a step from where we are. We simply need to pass the command line argument through the script. In a Python script, we do this using the list</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+</pre></div>
+</div>
+<p>Let’s just see how that works:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Running from the notebook, we get to see the full command that is run when we launch this notebook. Since <code class="docutils literal notranslate"><span class="pre">sys</span></code> is a package, we first import it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+</pre></div>
+</div>
+<p>Then we can access the list of arguments <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>. The first item in the list, <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code>  is the name of the program being run (<code class="docutils literal notranslate"><span class="pre">ipykernel_launcher.py</span></code>). The other items in the list are the command line arguments for running the notebook.</p>
+<p>Lets see how this applies to running our own code. We generate a short test script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cat <span class="s">&lt;&lt; EOF &gt; work/test.py</span>
+<span class="s">#!/usr/bin/env python</span>
+<span class="s">import sys</span>
+
+<span class="s">print(sys.argv)</span>
+<span class="s">EOF</span>
+
+<span class="c1"># Chmod 755 to make the file executable</span>
+chmod <span class="m">755</span> work/test.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<p>We see that running the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">work</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<p>means trhat <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> inside the script contains the liust <code class="docutils literal notranslate"><span class="pre">['work/test.py',</span> <span class="pre">'Hermione']</span></code>.</p>
+<div class="section" id="exercise-submitted-practical">
+<h3>Exercise: Submitted Practical<a class="headerlink" href="#exercise-submitted-practical" title="Permalink to this headline">¶</a></h3>
+<p>Although we provide access to answers for this exercise, we want you to submit the codes you generate via Moodle, so that we can provide feedback. You should avoid looking at the answers before you submit your work. This submitted work does not count towards your course assessment, it is purely to allow us to provide some rapid feedback to you on how you are doing. You will need to put together a few elements from the notes so far to do all prts of this practical, but yoiu should all be capable of doing it well. Pay attention to writing tidy code, with useful, clear comments and document strings.</p>
+<ul>
+<li><p>Create a Python code in a file called <code class="docutils literal notranslate"><span class="pre">work/greet.py</span></code> that does the following:</p>
+<ul>
+<li><p>define a function <code class="docutils literal notranslate"><span class="pre">greet(name)</span></code> that prints out a greeting from the name in the argument  <code class="docutils literal notranslate"><span class="pre">name</span></code></p></li>
+<li><p>define a function <code class="docutils literal notranslate"><span class="pre">main()</span> <span class="pre">that</span> <span class="pre">passes</span> <span class="pre">a</span> <span class="pre">string</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">script</span> <span class="pre">command</span> <span class="pre">line</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">function</span> </code>greet(name)`</p></li>
+<li><p>calls <code class="docutils literal notranslate"><span class="pre">main()</span></code> if the file is run as a Python script</p></li>
+<li><p>show a test of the script working</p></li>
+<li><p>has plentiful commenting and document strings</p></li>
+<li><p>As a test, when you run the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Fred</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>you would expect to get a response of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">greetings</span> <span class="kn">from</span> <span class="nn">Fred</span>
+</pre></div>
+</div>
+<p>and if you run:
+%run work/greet.py Hermione</p>
+<p>then
+greetings from Hermione</p>
+</li>
+<li><p>To go further with this exercise, you might test to see that the length of <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> is as long as you expect it to be, so you can tell the user when they forget toi include the name</p></li>
+<li><p>To go even further with this exercise, you might attempt to make the script function so that if you run it as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">greet</span><span class="o">.</span><span class="n">py</span> <span class="n">Fred</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<p>it responds:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">greetings</span> <span class="kn">from</span> <span class="nn">Fred</span>
+  <span class="n">greetings</span> <span class="kn">from</span> <span class="nn">Hermione</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this session, we have learned the usual form of a Python script, including the <code class="docutils literal notranslate"><span class="pre">#!</span> <span class="pre">/usr/bin/env</span> <span class="pre">python</span></code>  on the first line of the file to call the Python interpreter. We have seen how to include document strings telling any user how to use the codes we develop, and well as providing lots of comments with <code class="docutils literal notranslate"><span class="pre">#</span></code> lines to describe what we are doing in the code, and why. We have seen that a Python script will typically finish with something along the lines of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+  <span class="c1"># call or demonstrate our function</span>
+  <span class="n">hello</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># execute only if run as a script</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function serving to provide a call to the codes we have developed, as well as any interface to the command line. We have seen that <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code> contains command line parameters (and the program name) which we can use to modify the behaviour of the script.</p>
+<p>We have also seen how we can use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">file</span><span class="o">.</span><span class="n">py</span>
+<span class="n">EOF</span>
+</pre></div>
+</div>
+<p>in a bash script to generate and document our Python files, though we would also typically edits the file through some text editor.</p>
+<p>We have seen how to run a Python script from a notebook, using <code class="docutils literal notranslate"><span class="pre">%run</span></code> or via a bash shell with <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. We have seen that to ‘run’ a Python script, we need to change the file permissions iusing <code class="docutils literal notranslate"><span class="pre">chmod</span></code>, either in <code class="docutils literal notranslate"><span class="pre">bash</span></code> or using <code class="docutils literal notranslate"><span class="pre">Path().chmod()</span></code>. We have used the octal code <code class="docutils literal notranslate"><span class="pre">755</span></code> to change the file permissions for execution.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/019_Running_Python.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

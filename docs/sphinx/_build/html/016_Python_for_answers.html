@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>016 More control in Python: for : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="more-control-in-python-for-answers-to-exercises">
+<h1>016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises<a class="headerlink" href="#more-control-in-python-for-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>generate a list of strings called <code class="docutils literal notranslate"><span class="pre">group</span></code> with the names of (some of) the items in your pocket or bag (or make some up!)</p></li>
+<li><p>set up a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop with <code class="docutils literal notranslate"><span class="pre">group</span></code>, setting the variable <code class="docutils literal notranslate"><span class="pre">item</span></code></p></li>
+<li><p>within the loop, print each value of item in turn</p></li>
+<li><p>at the end of the loop, print <code class="docutils literal notranslate"><span class="pre">I'm</span> <span class="pre">done</span></code></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd"># ANSWER </span>
+
+<span class="sd">for loop</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># generate a list of strings called `group` with the names </span>
+<span class="c1"># of (some of) the items in your pocket or bag (or make some up!)</span>
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span><span class="s1">&#39;hat&#39;</span><span class="p">,</span><span class="s1">&#39;💄&#39;</span><span class="p">,</span><span class="s1">&#39;🌴&#39;</span><span class="p">]</span>
+
+<span class="c1"># set up a `for` loop with `group`, </span>
+<span class="c1"># setting the variable `item`</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+    <span class="c1"># within the loop, print </span>
+    <span class="c1"># each value of item in turn</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    
+<span class="c1"># at the end of the loop, print done</span>
+<span class="c1"># note the quote types</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I&#39;m done&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>keys
+hat
+💄
+🌴
+I&#39;m done
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>copy the code above</p></li>
+<li><p>check to see if the value of <code class="docutils literal notranslate"><span class="pre">count</span></code> at the end of the loop is the same as the length of the list.</p></li>
+<li><p>Why should this be so?</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd"># ANSWER</span>
+
+<span class="sd">for loop with enumeration</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># copy the code above</span>
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;fish&#39;</span><span class="p">,</span> <span class="s1">&#39;🦄&#39;</span><span class="p">,</span> <span class="s1">&#39;house&#39;</span><span class="p">]</span>
+
+<span class="c1"># Before we enter the loop, we initialise the `count` to zero.</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+    <span class="c1"># print the count value and item</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;count: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># increment count by 1</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># check to see if the value of `count` at the end </span>
+<span class="c1"># of the loop is the same as the length of the list. </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;count is now </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the length of the list group is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    Why should this be so?</span>
+
+<span class="s1">    There are 4 items in the list group.</span>
+<span class="s1">    We initially set count to be 0, then add 1 to it</span>
+<span class="s1">    after we print each item in the for loop. So, after the </span>
+<span class="s1">    first item, it is 1, then 2 etc.</span>
+
+<span class="s1">    At the end of all 4 items, count will then be 4, the length</span>
+<span class="s1">    of the list we looped over</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>count: 0 : cat
+count: 1 : fish
+count: 2 : 🦄
+count: 3 : house
+----------
+count is now 4
+the length of the list group is 4
+
+    Why should this be so?
+
+    There are 4 items in the list group.
+    We initially set count to be 0, then add 1 to it
+    after we print each item in the for loop. So, after the 
+    first item, it is 1, then 2 etc.
+
+    At the end of all 4 items, count will then be 4, the length
+    of the list we looped over
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">range()</span></code> to print numbers counting down from 10 to 1 (<strong>inclusive</strong>)</p></li>
+<li><p>include comments to explain your answer</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># use range() to print numbers counting down from 10 to 1 (inclusive)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="c1"># include comments to explain your answer</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">from the instructions, it is clear that start is 10</span>
+<span class="s1">end should be 0, since the count is only up to (but not including) </span>
+<span class="s1">this value.</span>
+
+<span class="s1">To count down, we use a step of -1</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span>
+<span class="mi">9</span>
+<span class="mi">8</span>
+<span class="mi">7</span>
+<span class="mi">6</span>
+<span class="mi">5</span>
+<span class="mi">4</span>
+<span class="mi">3</span>
+<span class="mi">2</span>
+<span class="mi">1</span>
+
+<span class="kn">from</span> <span class="nn">the</span> <span class="n">instructions</span><span class="p">,</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">clear</span> <span class="n">that</span> <span class="n">start</span> <span class="ow">is</span> <span class="mi">10</span>
+<span class="n">end</span> <span class="n">should</span> <span class="n">be</span> <span class="mi">0</span><span class="p">,</span> <span class="n">since</span> <span class="n">the</span> <span class="n">count</span> <span class="ow">is</span> <span class="n">only</span> <span class="n">up</span> <span class="n">to</span> <span class="p">(</span><span class="n">but</span> <span class="ow">not</span> <span class="n">including</span><span class="p">)</span> 
+<span class="n">this</span> <span class="n">value</span><span class="o">.</span>
+
+<span class="n">To</span> <span class="n">count</span> <span class="n">down</span><span class="p">,</span> <span class="n">we</span> <span class="n">use</span> <span class="n">a</span> <span class="n">step</span> <span class="n">of</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-4">
+<h2>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>copy the code above</p></li>
+<li><p>as in the previous exercise, check to see if the value of <code class="docutils literal notranslate"><span class="pre">count</span></code> at the end of the loop is the same as the length of the list.</p></li>
+<li><p>Explain why you get the result you do</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd"># ANSWER</span>
+
+<span class="sd">for loop with enumerate()</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># copy the code above</span>
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hat&#39;</span><span class="p">,</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span><span class="s1">&#39;keys&#39;</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">count</span><span class="p">,</span><span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+    <span class="c1"># print counter in loop</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;item </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="c1"># as in the previous exercise, </span>
+<span class="c1"># check to see if the value of `count` </span>
+<span class="c1"># at the end of the loop is the same as the length of the list. </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;count is now </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the length of the list group is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    Explain why you get the result you do</span>
+
+<span class="s1">    There are 4 items in the list group. </span>
+<span class="s1">    when we use enumerate to loop over the list</span>
+<span class="s1">    count is incremented by 1 each time we enter the loop.</span>
+<span class="s1">    In the previous example, in was incremented after</span>
+<span class="s1">    the print statement.</span>
+<span class="s1">    </span>
+<span class="s1">    So now, at the end of all 4 items, count will only be 3, the length</span>
+<span class="s1">    of the list we looped over, minus 1</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">item</span> <span class="mi">0</span> <span class="ow">is</span> <span class="n">hat</span>
+<span class="n">item</span> <span class="mi">1</span> <span class="ow">is</span> <span class="n">dog</span>
+<span class="n">item</span> <span class="mi">2</span> <span class="ow">is</span> <span class="n">keys</span>
+<span class="o">----------</span>
+<span class="n">count</span> <span class="ow">is</span> <span class="n">now</span> <span class="mi">2</span>
+<span class="n">the</span> <span class="n">length</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">group</span> <span class="ow">is</span> <span class="mi">3</span>
+
+    <span class="n">Explain</span> <span class="n">why</span> <span class="n">you</span> <span class="n">get</span> <span class="n">the</span> <span class="n">result</span> <span class="n">you</span> <span class="n">do</span>
+
+    <span class="n">There</span> <span class="n">are</span> <span class="mi">4</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">group</span><span class="o">.</span> 
+    <span class="n">when</span> <span class="n">we</span> <span class="n">use</span> <span class="nb">enumerate</span> <span class="n">to</span> <span class="n">loop</span> <span class="n">over</span> <span class="n">the</span> <span class="nb">list</span>
+    <span class="n">count</span> <span class="ow">is</span> <span class="n">incremented</span> <span class="n">by</span> <span class="mi">1</span> <span class="n">each</span> <span class="n">time</span> <span class="n">we</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">loop</span><span class="o">.</span>
+    <span class="n">In</span> <span class="n">the</span> <span class="n">previous</span> <span class="n">example</span><span class="p">,</span> <span class="ow">in</span> <span class="n">was</span> <span class="n">incremented</span> <span class="n">after</span>
+    <span class="n">the</span> <span class="nb">print</span> <span class="n">statement</span><span class="o">.</span>
+    
+    <span class="n">So</span> <span class="n">now</span><span class="p">,</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="nb">all</span> <span class="mi">4</span> <span class="n">items</span><span class="p">,</span> <span class="n">count</span> <span class="n">will</span> <span class="n">only</span> <span class="n">be</span> <span class="mi">3</span><span class="p">,</span> <span class="n">the</span> <span class="n">length</span>
+    <span class="n">of</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">we</span> <span class="n">looped</span> <span class="n">over</span><span class="p">,</span> <span class="n">minus</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-5">
+<h2>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>set up  list of numbers (years) from 2008 to 2019 <strong>inclusive</strong>,</p></li>
+<li><p>set up a list of corresponding chinese zodiac names as the items (look <a class="reference external" href="https://www.chinahighlights.com/travelguide/chinese-zodiac/#:~:text=In%20order%2C%20the%2012%20Chinese,a%20year%20of%20the%20Rat.">online</a> for this information).</p></li>
+<li><p>check that the lists have the same length</p></li>
+<li><p>form a dictionary from the two lists, using <code class="docutils literal notranslate"><span class="pre">dict(zip())</span></code> as in the examples above</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">.items()</span></code> as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: <code class="docutils literal notranslate"><span class="pre">f'{y}</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">year</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">{z}'</span></code>, assuming <code class="docutils literal notranslate"><span class="pre">y</span></code> is the key and <code class="docutils literal notranslate"><span class="pre">z</span></code> the item.</p></li>
+<li><p>Describe what you are doing at each step</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+
+<span class="c1"># Set up list of numbers (years) from 2008 to 2019 inclusive,</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2008</span><span class="p">,</span><span class="mi">2009</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">2011</span><span class="p">,</span><span class="mi">2012</span><span class="p">,</span><span class="mi">2013</span><span class="p">,</span><span class="mi">2014</span><span class="p">,</span><span class="mi">2015</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2018</span><span class="p">,</span><span class="mi">2019</span><span class="p">]</span>
+<span class="c1"># set up a list of corresponding chinese zodiac names as the items </span>
+<span class="c1"># (look online for this information).</span>
+<span class="n">zodiac</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rat&#39;</span><span class="p">,</span> <span class="s1">&#39;ox&#39;</span><span class="p">,</span> <span class="s1">&#39;tiger&#39;</span><span class="p">,</span> <span class="s1">&#39;rabbit&#39;</span><span class="p">,</span> \
+          <span class="s1">&#39;dragon&#39;</span><span class="p">,</span> <span class="s1">&#39;snake&#39;</span><span class="p">,</span> <span class="s1">&#39;horse&#39;</span><span class="p">,</span> <span class="s1">&#39;goat&#39;</span><span class="p">,</span>\
+          <span class="s1">&#39;monkey&#39;</span><span class="p">,</span><span class="s1">&#39;rooster&#39;</span><span class="p">,</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span><span class="s1">&#39;pig&#39;</span><span class="p">]</span>
+
+<span class="c1"># check that the lists have the same length</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">years</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">zodiac</span><span class="p">)</span>
+
+<span class="c1"># form a dictionary from the two lists, using dict(zip()) as in the examples above</span>
+<span class="c1"># we want years as the key and zodiac as the items, so we use zip(years,zodiac)</span>
+<span class="c1"># then convert (cast) it to a dictionary called zodiacYear</span>
+<span class="n">zodiacYear</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">years</span><span class="p">,</span><span class="n">zodiac</span><span class="p">))</span>
+
+<span class="c1"># use .items() as above to loop over each year, and </span>
+<span class="c1"># print the year name and the zodiac name</span>
+<span class="c1"># with an f-string of the form: `f&#39;{y} is the year of the {z}&#39;`</span>
+<span class="c1"># assuming y is the key and z the item.</span>
+
+<span class="c1"># do the loop so that y is the key and z the item</span>
+<span class="k">for</span> <span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="ow">in</span> <span class="n">zodiacYear</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s1"> is the year of the </span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="c1"># it prints the results fine</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2008</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">rat</span>
+<span class="mi">2009</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">ox</span>
+<span class="mi">2010</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">tiger</span>
+<span class="mi">2011</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">rabbit</span>
+<span class="mi">2012</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">dragon</span>
+<span class="mi">2013</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">snake</span>
+<span class="mi">2014</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">horse</span>
+<span class="mi">2015</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">goat</span>
+<span class="mi">2016</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">monkey</span>
+<span class="mi">2017</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">rooster</span>
+<span class="mi">2018</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">dog</span>
+<span class="mi">2019</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">year</span> <span class="n">of</span> <span class="n">the</span> <span class="n">pig</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/016_Python_for_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

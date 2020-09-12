@@ -46,8 +46,8 @@ rm -rf "$base/docs/sphinx"
 mkdir -p "$base/docs/sphinx"
 cd "$base"
 sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs/sphinx
-mv docs/sphinx/* docs
-rmdir docs/sphinx
+cp "$base/config/conf.py" docs/sphinx
+
 
 echo "--> re-making notebooks_lab"
 rm -rf site
@@ -97,9 +97,22 @@ geog0111/mkdocs_prep.py --dev
 echo "--> building mkdocs"
 #rm -r docs/index.md
 mkdocs build -v
-cd docs
+cd $base/docs
 cp ../config/requirements.txt .
+cd $base/docs/sphinx
+ln -s ../bin bin
+ln -s ../images images
+ln -s ../data data
+ln -s ../work work
+ln -s ../geog0111 geog0111
+ln -s ../copy copy
+mv index.md docindex.md
+sed < index.rst 's/index.md/docindex.md/' > tmp.$$
+mv tmp.$$ index.rst
+
+cp ../*.md ../*.html .
+#cp ../index.rst .
 make clean html
-cd ..
+cd $base
 echo "----> done running $0 from $base"
 echo "to upload, run:  mkdocs gh-deploy --force"

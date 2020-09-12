@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>010 Introduction to Python &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction-to-python">
+<h1>010 Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.python.org/">Python</a> is a high level programming language that is freely available, relatively easy to learn and portable across different computing systems. In Python, you can rapidly develop solutions for the sorts of problems you might need to solve in your MSc courses and in the world beyond. Code written in Python is also easy to maintain, is (or should be) self-documented, and can easily be linked to code written in other languages.</p>
+<p>Relevant features include:</p>
+<ul class="simple">
+<li><p>it is automatically compiled and executed</p></li>
+<li><p>code is portable provided you have the appropriate Python modules.</p></li>
+<li><p>for compute intensive tasks, you can easily make calls to methods written in (faster) lower-level languages such as C or FORTRAN</p></li>
+<li><p>there is an active user and development community, which means that new capabilities appear over time and there are many existing extensions and enhancements easily available to you.</p></li>
+</ul>
+<p>For further background on Python, look over the material on <a class="reference external" href="https://python.g-node.org/wiki/schedule">Advanced Scientific Programming in Python</a> and/or the <a class="reference external" href="http://software-carpentry.org/v3/py01.html">software-carpentry.org</a> and <a class="reference external" href="http://www.python.org/">python.org</a> web sites.</p>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>In this section we will learn some of the fundamental concepts in Python concerning variables, as well as writing comments and the use of the function <code class="docutils literal notranslate"><span class="pre">print()</span></code> and newline and tab characters.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="003_Help.html"><span class="doc">003 Getting help</span></a></p></li>
+</ul>
+<p>Remember that you can ‘run’ the code in a code block using the ‘run’ widget (above) or hitting the keys (‘typing’) <shift> and <return> at the same time.</p>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 15 minutes.</p>
+</div>
+</div>
+<div class="section" id="some-basics">
+<h2>Some basics<a class="headerlink" href="#some-basics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="comments">
+<h3>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
+<p>Comments are statements ignored by the language interpreter.</p>
+<p>Any text after a <code class="docutils literal notranslate"><span class="pre">#</span></code> in a <em>code block</em> is a comment.</p>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Try running the code block below</p></li>
+<li><p>Explain what happened (‘what the computer did’)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="print">
+<h3><code class="docutils literal notranslate"><span class="pre">print()</span></code><a class="headerlink" href="#print" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">print</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="n">Prints</span> <span class="n">the</span> <span class="n">values</span> <span class="n">to</span> <span class="n">a</span> <span class="n">stream</span><span class="p">,</span> <span class="ow">or</span> <span class="n">to</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="n">by</span> <span class="n">default</span><span class="o">.</span>
+    <span class="n">Optional</span> <span class="n">keyword</span> <span class="n">arguments</span><span class="p">:</span>
+    <span class="n">file</span><span class="p">:</span>  <span class="n">a</span> <span class="n">file</span><span class="o">-</span><span class="n">like</span> <span class="nb">object</span> <span class="p">(</span><span class="n">stream</span><span class="p">);</span> <span class="n">defaults</span> <span class="n">to</span> <span class="n">the</span> <span class="n">current</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span>
+    <span class="n">sep</span><span class="p">:</span>   <span class="n">string</span> <span class="n">inserted</span> <span class="n">between</span> <span class="n">values</span><span class="p">,</span> <span class="n">default</span> <span class="n">a</span> <span class="n">space</span><span class="o">.</span>
+    <span class="n">end</span><span class="p">:</span>   <span class="n">string</span> <span class="n">appended</span> <span class="n">after</span> <span class="n">the</span> <span class="n">last</span> <span class="n">value</span><span class="p">,</span> <span class="n">default</span> <span class="n">a</span> <span class="n">newline</span><span class="o">.</span>
+    <span class="n">flush</span><span class="p">:</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">forcibly</span> <span class="n">flush</span> <span class="n">the</span> <span class="n">stream</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>To print some value (by default, to the terminal you are using, knows as the standard output <code class="docutils literal notranslate"><span class="pre">stdout</span></code>), use the <code class="docutils literal notranslate"><span class="pre">print(...)</span></code> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For example, to print the string &#39;hello world&#39;:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+
+<span class="c1"># to print the list (&#39;hello&#39;,&#39;world&#39;):</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+<span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>Print out the string <code class="docutils literal notranslate"><span class="pre">Today</span> <span class="pre">I</span> <span class="pre">am</span> <span class="pre">learning</span> <span class="pre">Python</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="newline-and-tab">
+<h3>newline and tab<a class="headerlink" href="#newline-and-tab" title="Permalink to this headline">¶</a></h3>
+<p>We can gain more control over our printing by understanding some special characters we use in print formatting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">newline</span> \<span class="n">n</span>
+<span class="n">tab</span>     \<span class="n">t</span>
+</pre></div>
+</div>
+<p>When we specify these characters in a print statement, they have the impact of starting text on the following time, and aligning text the next tab location respectively. These are concepts you will be familiar with from word processing, although you may not have thought about them explicitly.</p>
+<p>Any time we place these characters in a string that we print out, they will affect the formatting out our printed statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For example, to print the string &#39;hello world&#39;</span>
+<span class="c1"># with a simple space</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+
+<span class="c1"># with a newline in the middle</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello</span><span class="se">\n</span><span class="s1">world&#39;</span><span class="p">)</span>
+
+<span class="c1"># with a tab in the middle</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello</span><span class="se">\t</span><span class="s1">world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+<span class="n">hello</span>
+<span class="n">world</span>
+<span class="n">hello</span>	<span class="n">world</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>print a string <code class="docutils literal notranslate"><span class="pre">&quot;all</span> <span class="pre">the</span> <span class="pre">world's</span> <span class="pre">a</span> <span class="pre">stage</span> <span class="pre">and</span> <span class="pre">all</span> <span class="pre">the</span> <span class="pre">men</span> <span class="pre">and</span> <span class="pre">women</span> <span class="pre">merely</span> <span class="pre">players&quot;</span></code></p></li>
+<li><p>print this same string, but with each word on a new line</p></li>
+<li><p>print this same string with two columns of words, for as many lines as needed</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="variables-and-values">
+<h2>Variables and Values<a class="headerlink" href="#variables-and-values" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Variables and values<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The idea of <strong>variables</strong> is fundamental to any programming.</p>
+<p>You can think of this as the <em>name</em> of <em>something</em>, so it is a way of allowing us to refer to some object in the language. A related idea we will find useful is to think of the variable name as a <strong>key</strong>. What the variable <em>is</em> set to is called its <strong>value</strong>.</p>
+<p>Putting these ideas together, we can think of the variable name and its value as a <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pair:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">key</span><span class="p">:</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>We can say that the <code class="docutils literal notranslate"><span class="pre">value</span></code> is <strong>assigned to</strong> the <code class="docutils literal notranslate"><span class="pre">key</span></code>.</p>
+<p><strong>Remember: the <code class="docutils literal notranslate"><span class="pre">key</span></code> is the name of the variable, the <code class="docutils literal notranslate"><span class="pre">value</span></code> is what is stored in the variable.</strong></p>
+<p>So let’s start with a variable we will call (<em>declare to be</em>) <code class="docutils literal notranslate"><span class="pre">my_store</span></code>.</p>
+<p>We will give a <em>value</em> of the string <code class="docutils literal notranslate"><span class="pre">'one'</span></code> to this variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign the value &#39;one&#39; to the variable (key) my_store</span>
+<span class="n">my_store</span> <span class="o">=</span> <span class="s1">&#39;one&#39;</span>
+
+<span class="c1"># Print the value of my_store</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_store</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">one</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-4">
+<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>set a variable called <code class="docutils literal notranslate"><span class="pre">message</span></code> to contain the string <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code></p></li>
+<li><p>print the value of the variable <code class="docutils literal notranslate"><span class="pre">message</span></code></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="symbol-names-and-conventions">
+<h3>Symbol names and conventions<a class="headerlink" href="#symbol-names-and-conventions" title="Permalink to this headline">¶</a></h3>
+<p>Symbol names, such as those used for variables, in Python can contain the usual character set <code class="docutils literal notranslate"><span class="pre">a-z</span></code>, <code class="docutils literal notranslate"><span class="pre">A-Z</span></code>, <code class="docutils literal notranslate"><span class="pre">0-9</span></code>, as well as <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p>
+<p>Symbol names cannot start with a number.</p>
+<p>Normal variables start with a letter. Those starting and ending with double underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> have <a class="reference external" href="https://docs.python.org/3.8/reference/lexical_analysis.html#reserved-classes-of-identifiers">special meaning</a> and should only be used in those special contexts (e.g. <code class="docutils literal notranslate"><span class="pre">__doc__</span></code>, or <code class="docutils literal notranslate"><span class="pre">__main__</span></code>).</p>
+<p>The convention is that variables start with a lower case character and <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">classes</a> start with capitals. e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">my_var</span> <span class="o">=</span> <span class="mi">10</span>
+
+        <span class="k">class</span> <span class="nc">ClassName</span><span class="p">:</span>
+            <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+            <span class="o">.</span>
+            <span class="o">.</span>
+            <span class="o">.</span>
+            <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="invalid-names">
+<h3>Invalid names<a class="headerlink" href="#invalid-names" title="Permalink to this headline">¶</a></h3>
+<p>The following are <em>not</em> valid in names and will result in an error:</p>
+<ul>
+<li><p>characters liable to intepretation (<code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">invalid</span> <span class="pre">syntax</span></code>), including (comma! <code class="docutils literal notranslate"><span class="pre">,</span></code>) and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  +, -, *, **, =, $, !  etc.
+</pre></div>
+</div>
+</li>
+<li><p>extended characters (<code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">invalid</span> <span class="pre">character</span> <span class="pre">in</span> <span class="pre">identifier</span></code>) such as emojis</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  😀, 我在这里 etc.
+</pre></div>
+</div>
+</li>
+</ul>
+<p><a class="reference external" href="https://docs.python.org/3.8/reference/lexical_analysis.html#keywords">Reserved keywords</a> cannot be used as variable names:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="kc">False</span>      <span class="k">class</span>      <span class="nc">finally</span>    <span class="ow">is</span>         <span class="k">return</span>
+        <span class="kc">None</span>       <span class="k">continue</span>   <span class="k">for</span>        <span class="k">lambda</span>     <span class="k">try</span>
+        <span class="kc">True</span>       <span class="k">def</span>        <span class="nf">from</span>       <span class="k">nonlocal</span>   <span class="k">while</span>
+        <span class="ow">and</span>        <span class="k">del</span>        <span class="k">global</span>     <span class="ow">not</span>        <span class="k">with</span>
+        <span class="k">as</span>         <span class="k">elif</span>       <span class="k">if</span>         <span class="ow">or</span>         <span class="k">yield</span>
+        <span class="k">assert</span>     <span class="k">else</span>       <span class="kn">import</span>     <span class="nn">pass</span>
+        <span class="k">break</span>      <span class="k">except</span>     <span class="ow">in</span>         <span class="k">raise</span>
+</pre></div>
+</div>
+<p>as these have particular meanings in Python syntax.</p>
+<p>All of these can obviously be used as <code class="docutils literal notranslate"><span class="pre">values</span></code> in strings, just not as <code class="docutils literal notranslate"><span class="pre">key</span></code> names.</p>
+<p>See <a class="reference external" href="https://docs.python.org/3.4/reference/lexical_analysis.html">https://docs.python.org/3.4/reference/lexical_analysis.html</a> for further details.</p>
+<div class="section" id="exercise-5">
+<h4>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>Make a code cell below</p></li>
+<li><p>declare the variable <code class="docutils literal notranslate"><span class="pre">dash='\n----------'</span></code> and print it</p></li>
+<li><p>declare your own variables to contain the following values, trying to use a range of allowed names</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;1</span><span class="se">\n</span><span class="s1">2</span><span class="se">\n</span><span class="s1">3</span><span class="se">\t</span><span class="s1"> 4 5 6</span><span class="se">\n</span><span class="s1">😀, 我在这里&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>print the variables to see if they contain what you expect, followed in each instance by <code class="docutils literal notranslate"><span class="pre">dash</span></code> (to space the answers out)</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this section, you have had an introduction to the Python programming language, running in a <a class="reference external" href="http://jupyter.org"><code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code></a> environment.</p>
+<p>You have seen how to write comments in code, how to form <code class="docutils literal notranslate"><span class="pre">print</span></code> statements, <code class="docutils literal notranslate"><span class="pre">\n</span></code> and <code class="docutils literal notranslate"><span class="pre">\t</span></code> and basic concepts of variables and values.</p>
+<p>We have outlined some rules and conventions for symbol names.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/010_Python_Introduction.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

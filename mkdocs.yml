@@ -85,4 +85,4 @@ site_name: GEOG0111
 site_url: https://ucl-eo.github.io/geog0111
 theme:
   favicon: images/ucl.png
-  name: rtd-dropdown
+  name: material

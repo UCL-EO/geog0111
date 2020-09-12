@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>015 Control in Python: if &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="control-in-python-if">
+<h1>015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#control-in-python-if" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>In this section we will learn how to add conditional control to our codes. We will cover the conditional statement: <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="003_Help.html"><span class="doc">003 Getting help</span></a></p></li>
+<li><p><a class="reference internal" href="010_Python_Introduction.html"><span class="doc">010 Variables, comments and print()</span></a></p></li>
+<li><p><a class="reference internal" href="011_Python_data_types.html"><span class="doc">011 Data types</span></a></p></li>
+<li><p><a class="reference internal" href="012_Python_strings.html"><span class="doc">012 String formatting</span></a></p></li>
+<li><p><a class="reference internal" href="013_Python_string_methods.html"><span class="doc">013_Python_string_methods</span></a></p></li>
+<li><p><a class="reference internal" href="014_Python_groups.html"><span class="doc">014_Python_groups</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 15 minutes.</p>
+</div>
+</div>
+<div class="section" id="comparison-operators-and-if">
+<h2>Comparison Operators and <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#comparison-operators-and-if" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="comparison-operators">
+<h3>Comparison Operators<a class="headerlink" href="#comparison-operators" title="Permalink to this headline">¶</a></h3>
+<p>A comparison operator ‘compares’ two terms (e.g. the contents of variables) and returns a boolean data type (<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+<p>For example, to see if the value of some variable <code class="docutils literal notranslate"><span class="pre">a</span></code> has ‘the same value as’ (‘equivalent to’) the value of some variable <code class="docutils literal notranslate"><span class="pre">b</span></code>, we use the equivalence operator (<code class="docutils literal notranslate"><span class="pre">==</span></code>). To test for non equivalence, we use the not equivalent operator <code class="docutils literal notranslate"><span class="pre">!=</span></code> (read the <code class="docutils literal notranslate"><span class="pre">!</span></code> as ‘not’):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1">#</span>
+<span class="c1"># These are *not* the same, so we expect </span>
+<span class="c1"># a == b : False</span>
+
+<span class="c1"># Note the use of \n and \t in here</span>
+<span class="c1"># from 010 for formatting</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> and b is </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is equivalent to b? </span><span class="si">{</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a is 100 and b is 10
+a is equivalent to b? False
+</pre></div>
+</div>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>insert a new cell below here. Use f-strings in forming strings.</p></li>
+<li><p>copy the code above</p></li>
+<li><p>add a <code class="docutils literal notranslate"><span class="pre">print</span></code> statement to your code that tests for non equivalence of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p>repeat this in a new cell, but now change the values (or type) of the variables <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> to <code class="docutils literal notranslate"><span class="pre">float</span></code> or <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+</ul>
+<p>A fuller set of comparison operators allows greater or less than tests:</p>
+<p>|symbol| meaning|
+|:—:|:—:|
+| == | is equivalent to |
+| != | is not equivalent to |
+| &gt; | greater than |
+|&gt;= | greater than or equal to|
+|&lt;  | less than|
+|&lt;=  | less than or equal to    |</p>
+<p>so that, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparison examples</span>
+
+<span class="c1"># is one plus one list equal to two list?</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;1 + 1 == 2    : </span><span class="si">{</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># is one less than or equal to 0.999?</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;1 &lt;= 0.999    : </span><span class="si">{</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="mf">0.999</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># is one plus one not equal to two?</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;1 + 1 != 2    : </span><span class="si">{</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># &quot;is 100 less than 2?&quot;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;100 &lt; 2       : </span><span class="si">{</span><span class="mi">100</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>    <span class="p">:</span> <span class="kc">True</span>
+<span class="mi">1</span> <span class="o">&lt;=</span> <span class="mf">0.999</span>    <span class="p">:</span> <span class="kc">False</span>
+<span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">2</span>    <span class="p">:</span> <span class="kc">False</span>
+<span class="mi">100</span> <span class="o">&lt;</span> <span class="mi">2</span>       <span class="p">:</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>insert a new cell below here</p></li>
+<li><p>create variables <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> and set them to types and values of your choice</p></li>
+<li><p>create a variable called <code class="docutils literal notranslate"><span class="pre">gt_test</span></code> and set it to the result of <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code></p></li>
+<li><p>print a statement of what you have used, and the value of <code class="docutils literal notranslate"><span class="pre">gt_test</span></code></p></li>
+<li><p>explain why you get the result you do</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="conditional-test-if-elif-else">
+<h3>Conditional test: <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">...</span> <span class="pre">else</span> <span class="pre">...</span></code><a class="headerlink" href="#conditional-test-if-elif-else" title="Permalink to this headline">¶</a></h3>
+<p>A common use of comparisons is for program control, using an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
+    <span class="c1"># do this 1</span>
+    <span class="n">doit1</span><span class="p">()</span>
+    <span class="o">...</span>
+<span class="k">elif</span> <span class="n">condition2</span><span class="p">:</span>
+    <span class="c1"># do this 2</span>
+    <span class="n">doit2</span><span class="p">()</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do this 3</span>
+    <span class="n">doit3</span><span class="p">()</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Implicit in these statements is that the conditions return <code class="docutils literal notranslate"><span class="pre">True</span></code> to pass the tests, i.e. we could more fully write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition1</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># do this 1</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>This form of conditional statement allows us to run blocks of code <em>only under a particular condition</em> (or set of conditions).</p>
+<p>In Python, the statement(s) we run on condition are <em>indented</em>.</p>
+<p>The indent can be one or more spaces or a <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code> character, the choice is up to the programmer. However, it <strong>must be consistent</strong>. It is generally best to use spaces rather than tab characters, it is all too easy to mistake one for the other.</p>
+<p><span class="burk">Pay attention to indentation in conditional statements. Getting it wrong is one of the more common errors new Python coders make.</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test result is&#39;</span><span class="p">,</span><span class="n">test</span><span class="p">)</span>
+
+<span class="c1"># initialise retval</span>
+<span class="n">retval</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># conduct some tests, and set the </span>
+<span class="c1"># variable retval to True if we pass</span>
+<span class="c1"># any test</span>
+
+<span class="k">if</span> <span class="n">test</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">retval</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;passed test 1: &quot;if test &gt;= 1&quot;&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">retval</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;passed test 2: &quot;if test == 0&quot;&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">retval</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;failed both tests&#39;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;retval is&#39;</span><span class="p">,</span><span class="n">retval</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="n">result</span> <span class="ow">is</span> <span class="mi">3</span>
+<span class="n">passed</span> <span class="n">test</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;if test &gt;= 1&quot;</span>
+<span class="n">retval</span> <span class="ow">is</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>insert a new cell below here</p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">doy</span></code> to represent the day of year and initialise it to some integer between 1 and 365 inclusive</p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">month</span></code> to be <code class="docutils literal notranslate"><span class="pre">'January'</span></code></p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">year</span></code> to be <code class="docutils literal notranslate"><span class="pre">'2020'</span></code></p></li>
+<li><p>Write a series of conditional statements that set the variable <code class="docutils literal notranslate"><span class="pre">month</span></code> to the correct month for the value of <code class="docutils literal notranslate"><span class="pre">doy</span></code></p></li>
+<li><p>Print the month for the given doy</p></li>
+<li><p>Test that you get the right result for several <code class="docutils literal notranslate"><span class="pre">doy</span></code> values</p></li>
+</ul>
+<p>You should assume that <code class="docutils literal notranslate"><span class="pre">doy</span></code> value <code class="docutils literal notranslate"><span class="pre">1</span></code> represents January 1st.</p>
+<p>You might find a <a class="reference external" href="https://www.esrl.noaa.gov/gmd/grad/neubrew/Calendar.jsp">DOY calendar</a> helpful here.</p>
+<p><img alt="DOY calendar" src="_images/doycal.png" /></p>
+<p>We will see later that this is not the best way to do calculations of this sort. First, it is all too easy to make mistakes in typing in both the <code class="docutils literal notranslate"><span class="pre">doy</span></code> boundaries and the month names. Second, it is not very flexible: for instance, consider how would you need to change it for leap or non-leap years. Third, it is not at all <a class="reference external" href="https://stackoverflow.com/questions/25011078/what-does-pythonic-mean#:~:text=Pythonic%20means%20code%20that%20doesn,is%20intended%20to%20be%20used.">pythonic</a>, i.e. doesn’t make use of the features of Python that could make it clear and concise.</p>
+<p>That said, it is an easily-understandable exercise to try out using conditional statements.</p>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>We should know know how to use <code class="docutils literal notranslate"><span class="pre">if</span></code> statements in Python to control program flow. We can make choices as to what happens in the code, depending on whether or not one or more tests are passed. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.</p>
+<p>We know that conditions inside <code class="docutils literal notranslate"><span class="pre">if</span></code> statements use indentation in Python, and we know to be careful in our use of this.</p>
+<p>There are additional notes in <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#the-range-function">docs.python.org</a> you can foloow up to deepen your understanding of these topics.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/015_Python_control.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
