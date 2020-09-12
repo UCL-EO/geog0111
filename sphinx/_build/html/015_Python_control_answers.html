@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>015 Control in Python: if : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="016 More control in Python: for : Answers to exercises" href="016_Python_for_answers.html" />
+    <link rel="prev" title="014 Groups : Answers to exercises" href="014_Python_groups_answers.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="control-in-python-if-answers-to-exercises">
+<h1>015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises<a class="headerlink" href="#control-in-python-if-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>insert a new cell below here. Use f-strings in forming strings.</p></li>
+<li><p>copy the code above</p></li>
+<li><p>add a <code class="docutils literal notranslate"><span class="pre">print</span></code> statement to your code that tests for non equivalence of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p>repeat this in a new cell, but now change the values (or type) of the variables <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> to <code class="docutils literal notranslate"><span class="pre">float</span></code> or <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+
+<span class="c1"># copy the code above </span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1">#</span>
+<span class="c1"># These are *not* the same, so we expect </span>
+<span class="c1"># a == b : False</span>
+
+<span class="c1"># Note the use of \n and \t in here</span>
+<span class="c1"># from 010 for formatting</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> and b is </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is equivalent to b? </span><span class="si">{</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># add a print statement to your code that tests </span>
+<span class="c1"># for non equivalence of a and b</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is not equivalent to b? </span><span class="si">{</span><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a is 100 and b is 10
+a is equivalent to b? False
+a is not equivalent to b? True
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+
+<span class="c1"># repeat this in a new cell, but now change the values </span>
+<span class="c1"># (or type) of the variables `a` and `b` to `float` or `bool`</span>
+<span class="c1"># FLOAT</span>
+
+<span class="c1"># copy the code above </span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="c1">#</span>
+<span class="c1"># These are *not* the same, so we expect </span>
+<span class="c1"># a == b : False</span>
+
+<span class="c1"># Note the use of \n and \t in here</span>
+<span class="c1"># from 010 for formatting</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> and b is </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is equivalent to b? </span><span class="si">{</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># add a print statement to your code that tests </span>
+<span class="c1"># for non equivalence of a and b</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is not equivalent to b? </span><span class="si">{</span><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a is 100.0 and b is 10.0
+a is equivalent to b? False
+a is not equivalent to b? True
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+
+<span class="c1"># repeat this in a new cell, but now change the values </span>
+<span class="c1"># (or type) of the variables `a` and `b` to `float` or `bool`</span>
+<span class="c1"># BOOL</span>
+
+<span class="c1"># copy the code above </span>
+<span class="n">a</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">b</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1">#</span>
+<span class="c1"># These are *not* the same, so we expect </span>
+<span class="c1"># a == b : False</span>
+
+<span class="c1"># Note the use of \n and \t in here</span>
+<span class="c1"># from 010 for formatting</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> and b is </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is equivalent to b? </span><span class="si">{</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># add a print statement to your code that tests </span>
+<span class="c1"># for non equivalence of a and b</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a is not equivalent to b? </span><span class="si">{</span><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a is True and b is True
+a is equivalent to b? True
+a is not equivalent to b? False
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>insert a new cell below here</p></li>
+<li><p>create variables <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> and set them to types and values of your choice</p></li>
+<li><p>create a variable called <code class="docutils literal notranslate"><span class="pre">gt_test</span></code> and set it to the result of <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code></p></li>
+<li><p>print a statement of what you have used, and the value of <code class="docutils literal notranslate"><span class="pre">gt_test</span></code></p></li>
+<li><p>explain why you get the result you do</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+
+<span class="c1"># create variables a and b and set them to values of your choice</span>
+<span class="c1"># here, we choose int values 2 and 4 respectively</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># create a variable called `gt_test` and set it to the result of `a &gt; b`</span>
+<span class="n">gt_test</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>
+
+<span class="c1"># print the statement you have used, and the value of `gt_test`</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a &gt; b test for a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> and b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> :   </span><span class="si">{</span><span class="n">gt_test</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># explain why you get the result you do</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">  explain why you get the result you do</span>
+<span class="s1">  </span>
+<span class="s1">  gt_test is False here, because the statement that a &gt; b</span>
+<span class="s1">  is not True since a is 2 and b is 4 </span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="n">test</span> <span class="k">for</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">:</span>   <span class="kc">False</span>
+
+  <span class="n">explain</span> <span class="n">why</span> <span class="n">you</span> <span class="n">get</span> <span class="n">the</span> <span class="n">result</span> <span class="n">you</span> <span class="n">do</span>
+  
+  <span class="n">gt_test</span> <span class="ow">is</span> <span class="kc">False</span> <span class="n">here</span><span class="p">,</span> <span class="n">because</span> <span class="n">the</span> <span class="n">statement</span> <span class="n">that</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>
+  <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span> <span class="n">since</span> <span class="n">a</span> <span class="ow">is</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">b</span> <span class="ow">is</span> <span class="mi">4</span> 
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>insert a new cell below here</p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">doy</span></code> to represent the day of year and initialise it to some integer between 1 and 365 inclusive</p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">month</span></code> to be <code class="docutils literal notranslate"><span class="pre">'January'</span></code></p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">year</span></code> to be <code class="docutils literal notranslate"><span class="pre">'2020'</span></code></p></li>
+<li><p>Write a series of conditional statements that set the variable <code class="docutils literal notranslate"><span class="pre">month</span></code> to the correct month for the value of <code class="docutils literal notranslate"><span class="pre">doy</span></code></p></li>
+<li><p>Print the month for the given doy</p></li>
+<li><p>Test that you get the right result for several <code class="docutils literal notranslate"><span class="pre">doy</span></code> values</p></li>
+</ul>
+<p>You should assume that <code class="docutils literal notranslate"><span class="pre">doy</span></code> value <code class="docutils literal notranslate"><span class="pre">1</span></code> represents January 1st.</p>
+<p>You might find a <a class="reference external" href="https://www.esrl.noaa.gov/gmd/grad/neubrew/Calendar.jsp">DOY calendar</a> helpful here.</p>
+<p><img alt="DOY calendar" src="_images/doycal.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># set a variable doy to represent the day of year and </span>
+<span class="c1"># initialise it to some integer between 1 and 365 inclusive</span>
+<span class="n">doy</span> <span class="o">=</span> <span class="mi">230</span>
+
+<span class="c1"># set a variable month to be &#39;January&#39;</span>
+<span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;January&#39;</span>
+
+<span class="c1"># set a variable year to be &#39;2020&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="s1">&#39;2020&#39;</span>
+
+<span class="c1"># Write a series of conditional statements that set the </span>
+<span class="c1"># variable month to the correct month for the value of doy</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">doy</span> <span class="o">&gt;</span> <span class="mi">366</span><span class="p">):</span>
+    <span class="c1"># good to catch errors</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;out of bounds error: doy=&#39;</span><span class="o">+</span><span class="n">doy</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">31</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;January&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">60</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;February&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">91</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;March&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">121</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;April&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">152</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;May&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">182</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;June&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">213</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;July&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">244</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;August&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">274</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;September&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">305</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;October&#39;</span>
+<span class="k">elif</span> <span class="p">(</span> <span class="n">doy</span> <span class="o">&lt;=</span> <span class="mi">335</span> <span class="p">):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;November&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># it must be December !</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;December&#39;</span>
+
+<span class="c1"># Print the month for the given doy</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;for doy </span><span class="si">{</span><span class="n">doy</span><span class="si">}</span><span class="s1"> year </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1"> the month is </span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Test that you get the right result for several doy values</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">doy</span> <span class="mi">230</span> <span class="n">year</span> <span class="mi">2020</span> <span class="n">the</span> <span class="n">month</span> <span class="ow">is</span> <span class="n">August</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="014_Python_groups_answers.html" title="previous chapter">014 Groups : Answers to exercises</a></li>
+      <li>Next: <a href="016_Python_for_answers.html" title="next chapter">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/015_Python_control_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

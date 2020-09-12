@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GEOG0111 &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="001 Use of Jupyter notebooks" href="001_Notebook_use.html" />
+    <link rel="prev" title="GEOG0111 Scientific Computing" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p><img alt="UCL" src="_images/ucl_logo.png" /></p>
+<div class="section" id="geog0111">
+<h1>GEOG0111<a class="headerlink" href="#geog0111" title="Permalink to this headline">¶</a></h1>
+<p>UCL Geography MSc notes.</p>
+<p>|   |   |   |   |   |
+|—|—|—|—|—|
+|Author: <a class="reference external" href="mailto:p&#46;lewis&#37;&#52;&#48;ucl&#46;ac&#46;uk">Prof<span>&#46;</span> P<span>&#46;</span> Lewis</a>|version 1.0.1||||</p>
+</div>
+<div class="section" id="geog0111-scientific-computing">
+<h1>GEOG0111 Scientific Computing<a class="headerlink" href="#geog0111-scientific-computing" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://ucl-eo.github.io/geog0111/">Course Documentation</a></p>
+<p><a class="reference external" href="https://geog0111-scientific-computing.readthedocs.io/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/geog0111-scientific-computing/badge/?version=latest" /></a>
+<a class="reference external" href="https://mybinder.org/v2/gh/UCL-EO/geog0111/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a>
+<a class="reference external" href="https://travis-ci.com/github/UCL-EO/geog0111"><img alt="Travis-CI" src="https://travis-ci.com/UCL-EO/geog0111.svg?branch=master" /></a></p>
+<div class="section" id="course-information">
+<h2>Course information<a class="headerlink" href="#course-information" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="course-convenor">
+<h3>Course Convenor<a class="headerlink" href="#course-convenor" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.geog.ucl.ac.uk/~plewis">Prof P. Lewis</a></p>
+</div>
+<div class="section" id="teaching-staff-2020-2021">
+<h3>Teaching Staff 2020-2021<a class="headerlink" href="#teaching-staff-2020-2021" title="Permalink to this headline">¶</a></h3>
+<p>|   |  |
+|—|—|
+|<a class="reference external" href="http://www.geog.ucl.ac.uk/~plewis">Prof P. Lewis</a>|<a class="reference external" href="http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/">Dr Qingling Wu</a>|</p>
+</div>
+<div class="section" id="contributing-staff">
+<h3>Contributing Staff<a class="headerlink" href="#contributing-staff" title="Permalink to this headline">¶</a></h3>
+<p>|   |   |   |
+|—|—|—|
+|<a class="reference external" href="http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/">Dr Qingling Wu</a>| <a class="reference external" href="http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/">Dr. Jose Gomez-Dans</a>|<a class="reference external" href="https://www.geog.ucl.ac.uk/people/research-students/feng-yin">Feng Yin</a>|</p>
+</div>
+<div class="section" id="purpose-of-this-course">
+<h3>Purpose of this course<a class="headerlink" href="#purpose-of-this-course" title="Permalink to this headline">¶</a></h3>
+<p>This course, GEOG0111 Scientific Computing, is a term 1 MSc module worth 15 credits (25% of the term 1 credits) that aims to:</p>
+<ul class="simple">
+<li><p>impart an understanding of scientific computing</p></li>
+<li><p>give students a grounding in the basic principles of algorithm development and program construction</p></li>
+<li><p>to introduce principles of computer-based image analysis and model development</p></li>
+</ul>
+<p>It is open to students from a number of MSc courses run by the Department of Geography UCL, but the material should be of wider value to others wishing to make use of scientific computing.</p>
+<p>The module will cover:</p>
+<ul class="simple">
+<li><p>Computing in Python</p></li>
+<li><p>Computing for image analysis</p></li>
+<li><p>Computing for environmental modelling</p></li>
+<li><p>Data visualisation for scientific applications</p></li>
+</ul>
+</div>
+<div class="section" id="learning-outcomes">
+<h3>Learning Outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h3>
+<p>At the end of the module, students should:</p>
+<ul class="simple">
+<li><p>have an understanding of the Python programmibng language and experience of its use</p></li>
+<li><p>have an understanding of algorithm development and be able to use widely used scientific computing software to manipulate datasets and accomplish analytical tasks</p></li>
+<li><p>have an understanding of the technical issues specific to image-based analysis, model implementation and scientific visualisation</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="timetable">
+<h2>Timetable<a class="headerlink" href="#timetable" title="Permalink to this headline">¶</a></h2>
+<p>The course takes place over 10 weeks in term 1, usually in the Geography Department Unix Computing Lab (PB110) in the <a class="reference external" href="http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003">Northwest wing</a>, UCL.</p>
+<p>Due to covid restrictions, it is being run online in the 2020-21 session.</p>
+<p>Classes take place from the second week of term to the final week of term, other than Reading week. See UCL <a class="reference external" href="http://www.ucl.ac.uk/staff/term-dates">term dates</a> for further information.</p>
+<p>The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Wednesday mornings.</p>
+<div class="section" id="assessment">
+<h3>Assessment<a class="headerlink" href="#assessment" title="Permalink to this headline">¶</a></h3>
+<p>Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle.</p>
+<p>See the <a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=2796">Moodle page</a> for more details.</p>
+</div>
+<div class="section" id="useful-links">
+<h3>Useful links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=2796">Course Moodle page</a></p>
+</div>
+<div class="section" id="using-the-course-notes">
+<h3>Using the course notes<a class="headerlink" href="#using-the-course-notes" title="Permalink to this headline">¶</a></h3>
+<p>We will generally use <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> notebooks for running interactive Python programs.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">GEOG0111 Scientific Computing</a></li>
+      <li>Next: <a href="001_Notebook_use.html" title="next chapter">001 Use of Jupyter notebooks</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/docindex.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

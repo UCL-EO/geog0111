@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>003 Help : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="010 Introduction to Python" href="010_Python_Introduction.html" />
+    <link rel="prev" title="002 Some basic UNIX : Answers to exercises" href="002_Unix_answers.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="help-answers-to-exercises">
+<h1>003 Help : Answers to exercises<a class="headerlink" href="#help-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>In a new code cell, type <code class="docutils literal notranslate"><span class="pre">help(list)</span></code> and look through the information provided.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="k">class</span> <span class="nc">list</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
+
+<span class="k">class</span> <span class="nc">list</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+ <span class="o">|</span>  <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="o">=</span><span class="p">(),</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">Built</span><span class="o">-</span><span class="ow">in</span> <span class="n">mutable</span> <span class="n">sequence</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">If</span> <span class="n">no</span> <span class="n">argument</span> <span class="ow">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">the</span> <span class="n">constructor</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">empty</span> <span class="nb">list</span><span class="o">.</span>
+ <span class="o">|</span>  <span class="n">The</span> <span class="n">argument</span> <span class="n">must</span> <span class="n">be</span> <span class="n">an</span> <span class="n">iterable</span> <span class="k">if</span> <span class="n">specified</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">Methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">+</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Delete</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">==</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&gt;=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__getitem__</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">x</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;==&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&gt;</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Implement</span> <span class="bp">self</span><span class="o">+=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__imul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Implement</span> <span class="bp">self</span><span class="o">*=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Initialize</span> <span class="bp">self</span><span class="o">.</span>  <span class="n">See</span> <span class="n">help</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="k">for</span> <span class="n">accurate</span> <span class="n">signature</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Implement</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&lt;=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&lt;</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">*</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">!=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">a</span> <span class="n">reverse</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="nb">list</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">value</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Set</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="n">to</span> <span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">__sizeof__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">the</span> <span class="n">size</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">list</span> <span class="ow">in</span> <span class="n">memory</span><span class="p">,</span> <span class="ow">in</span> <span class="nb">bytes</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Append</span> <span class="nb">object</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">list</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Remove</span> <span class="nb">all</span> <span class="n">items</span> <span class="kn">from</span> <span class="nn">list.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">a</span> <span class="n">shallow</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">list</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">number</span> <span class="n">of</span> <span class="n">occurrences</span> <span class="n">of</span> <span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Extend</span> <span class="nb">list</span> <span class="n">by</span> <span class="n">appending</span> <span class="n">elements</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">iterable</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">9223372036854775807</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">first</span> <span class="n">index</span> <span class="n">of</span> <span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>      
+ <span class="o">|</span>      <span class="n">Raises</span> <span class="ne">ValueError</span> <span class="k">if</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">present</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Insert</span> <span class="nb">object</span> <span class="n">before</span> <span class="n">index</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Remove</span> <span class="ow">and</span> <span class="k">return</span> <span class="n">item</span> <span class="n">at</span> <span class="n">index</span> <span class="p">(</span><span class="n">default</span> <span class="n">last</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>      
+ <span class="o">|</span>      <span class="n">Raises</span> <span class="ne">IndexError</span> <span class="k">if</span> <span class="nb">list</span> <span class="ow">is</span> <span class="n">empty</span> <span class="ow">or</span> <span class="n">index</span> <span class="ow">is</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Remove</span> <span class="n">first</span> <span class="n">occurrence</span> <span class="n">of</span> <span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>      
+ <span class="o">|</span>      <span class="n">Raises</span> <span class="ne">ValueError</span> <span class="k">if</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">present</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Reverse</span> <span class="o">*</span><span class="n">IN</span> <span class="n">PLACE</span><span class="o">*.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="n">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Stable</span> <span class="n">sort</span> <span class="o">*</span><span class="n">IN</span> <span class="n">PLACE</span><span class="o">*.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="o">----------------------------------------------------------------------</span>
+ <span class="o">|</span>  <span class="n">Static</span> <span class="n">methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__new__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">builtins.type</span>
+ <span class="o">|</span>      <span class="n">Create</span> <span class="ow">and</span> <span class="k">return</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">object</span><span class="o">.</span>  <span class="n">See</span> <span class="n">help</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span> <span class="k">for</span> <span class="n">accurate</span> <span class="n">signature</span><span class="o">.</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="o">----------------------------------------------------------------------</span>
+ <span class="o">|</span>  <span class="n">Data</span> <span class="ow">and</span> <span class="n">other</span> <span class="n">attributes</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>  
+ <span class="o">|</span>  <span class="fm">__hash__</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Read through the help information for list, above.</p></li>
+<li><p>In a new cell, create lists called <code class="docutils literal notranslate"><span class="pre">alist</span></code> and <code class="docutils literal notranslate"><span class="pre">blist</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">]</span>
+  <span class="n">blist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span><span class="s1">&#39;six&#39;</span><span class="p">,</span><span class="s1">&#39;zero&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>print the lists with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="nb">print</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span><span class="n">blist</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Using the help information, work out how to:</p>
+<ul class="simple">
+<li><p>extend <code class="docutils literal notranslate"><span class="pre">alist</span></code> with <code class="docutils literal notranslate"><span class="pre">blist</span></code> to create <code class="docutils literal notranslate"><span class="pre">['one','three','two','four','six','zero']</span></code>. N.B. This is not quite the same as our use of <code class="docutils literal notranslate"><span class="pre">append()</span></code> above.</p></li>
+<li><p>sort the new <code class="docutils literal notranslate"><span class="pre">alist</span></code> into <strong>alpabetical order</strong> and print the results</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWERS</span>
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">]</span>
+<span class="n">blist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">blist</span><span class="p">)</span>
+
+<span class="c1"># join: </span>
+<span class="c1"># extend(self, iterable, /)</span>
+<span class="c1">#      Extend list by appending elements from the iterable.</span>
+<span class="n">alist</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">blist</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;extended&quot;</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
+
+<span class="c1"># sort</span>
+<span class="c1"># sort(self, /, *, key=None, reverse=False)</span>
+<span class="c1">#       Stable sort *IN PLACE*.</span>
+<span class="n">alist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sorted&quot;</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">]</span> <span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">]</span>
+<span class="n">extended</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">]</span>
+<span class="nb">sorted</span> <span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># Print the value of my_var using print(my_var)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
+
+<span class="c1"># Print the value of my_var using print(locals()[&#39;my_var&#39;])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">locals</span><span class="p">()[</span><span class="s1">&#39;my_var&#39;</span><span class="p">])</span>
+
+<span class="c1"># confirm that they give the same answer</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">I can see they are the same</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">NameError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">a8b1461bf99a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">1</span> <span class="c1"># ANSWER</span>
+      <span class="mi">2</span> <span class="c1"># Print the value of my_var using print(my_var)</span>
+<span class="o">----&gt;</span> <span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
+      <span class="mi">4</span> 
+      <span class="mi">5</span> <span class="c1"># Print the value of my_var using print(locals()[&#39;my_var&#39;])</span>
+
+
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;my_var&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="learning-new-things">
+<h2>Learning new things<a class="headerlink" href="#learning-new-things" title="Permalink to this headline">¶</a></h2>
+<p>Let’s use that knowledge to learn something new:</p>
+<ul class="simple">
+<li><p>Use online material from <a class="reference external" href="https://www.w3schools.com/python">https://www.w3schools.com</a> or elsewhere to learn the basics of <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p></li>
+</ul>
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Find help for the class <code class="docutils literal notranslate"><span class="pre">range</span></code> to understand how to use this to generate a sequence of integers from 10 to 1 in steps of -1</p></li>
+<li><p>Use what you have learned to write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop below that counts backwards from 10 to 0</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># Use what you have learned to write a </span>
+<span class="c1"># `for` loop below that counts backwards from 10 to 0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="002_Unix_answers.html" title="previous chapter">002 Some basic UNIX : Answers to exercises</a></li>
+      <li>Next: <a href="010_Python_Introduction.html" title="next chapter">010 Introduction to Python</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/003_Help_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

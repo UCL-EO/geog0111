@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>010 Introduction to Python : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="011 Python data types : Answers to exercises" href="011_Python_data_types_answers.html" />
+    <link rel="prev" title="019 Python codes" href="019_Running_Python.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction-to-python-answers-to-exercises">
+<h1>010 Introduction to Python : Answers to exercises<a class="headerlink" href="#introduction-to-python-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Try running the code block below</p></li>
+<li><p>Explain what happened (‘what the computer did’)</p></li>
+</ul>
+<p><mark><strong>ANSWER</strong></p>
+<p><mark>Nothing ‘apparently’ happened, but really, the code block was interpreted as a set of Python commands and executed. As there is only a comment, there was no output.</p>
+</div>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>Print out the string <code class="docutils literal notranslate"><span class="pre">Today</span> <span class="pre">I</span> <span class="pre">am</span> <span class="pre">learning</span> <span class="pre">Python</span></code>.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Today I am learning Python&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Today</span> <span class="n">I</span> <span class="n">am</span> <span class="n">learning</span> <span class="n">Python</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>print a string <code class="docutils literal notranslate"><span class="pre">&quot;all</span> <span class="pre">the</span> <span class="pre">world's</span> <span class="pre">a</span> <span class="pre">stage</span> <span class="pre">and</span> <span class="pre">all</span> <span class="pre">the</span> <span class="pre">men</span> <span class="pre">and</span> <span class="pre">women</span> <span class="pre">merely</span> <span class="pre">players&quot;</span></code></p></li>
+<li><p>print this same string, but with each word on a new line</p></li>
+<li><p>print this same string with two columns of words, for as many lines as needed</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#ANSWER</span>
+
+<span class="c1"># print a string &quot;all the world&#39;s a stage&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;all the world&#39;s a stage and all the men and women merely players&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span> <span class="n">the</span> <span class="n">world</span><span class="s1">&#39;s a stage and all the men and women merely players</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#ANSWER</span>
+
+<span class="c1"># print this same string, but with each word on a new line</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;all</span><span class="se">\n</span><span class="s2">the</span><span class="se">\n</span><span class="s2">world&#39;s</span><span class="se">\n</span><span class="s2">a</span><span class="se">\n</span><span class="s2">stage</span><span class="se">\n</span><span class="s2">and</span><span class="se">\n</span><span class="s2">all</span><span class="se">\n</span><span class="s2">the</span><span class="se">\n</span><span class="s2">men</span><span class="se">\n</span><span class="s2">and</span><span class="se">\n</span><span class="s2">women</span><span class="se">\n</span><span class="s2">merely</span><span class="se">\n</span><span class="s2">players&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span>
+<span class="n">the</span>
+<span class="n">world</span><span class="s1">&#39;s</span>
+<span class="n">a</span>
+<span class="n">stage</span>
+<span class="ow">and</span>
+<span class="nb">all</span>
+<span class="n">the</span>
+<span class="n">men</span>
+<span class="ow">and</span>
+<span class="n">women</span>
+<span class="n">merely</span>
+<span class="n">players</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># print this same string with two columns of words, for as many lines as needed</span>
+<span class="c1"># This needs alternating newline and tab</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;all</span><span class="se">\t</span><span class="s2">the</span><span class="se">\n</span><span class="s2">world&#39;s</span><span class="se">\t</span><span class="s2">a</span><span class="se">\n</span><span class="s2">stage</span><span class="se">\t</span><span class="s2">and</span><span class="se">\n</span><span class="s2">all</span><span class="se">\t</span><span class="s2">the</span><span class="se">\n</span><span class="s2">men</span><span class="se">\t</span><span class="s2">and</span><span class="se">\n</span><span class="s2">women</span><span class="se">\t</span><span class="s2">merely</span><span class="se">\n</span><span class="s2">players&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span>	<span class="n">the</span>
+<span class="n">world</span><span class="s1">&#39;s	a</span>
+<span class="n">stage</span>	<span class="ow">and</span>
+<span class="nb">all</span>	<span class="n">the</span>
+<span class="n">men</span>	<span class="ow">and</span>
+<span class="n">women</span>	<span class="n">merely</span>
+<span class="n">players</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-4">
+<h2>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>set a variable called <code class="docutils literal notranslate"><span class="pre">message</span></code> to contain the string <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code></p></li>
+<li><p>print the value of the variable <code class="docutils literal notranslate"><span class="pre">message</span></code></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+
+<span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-5">
+<h2>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Make a code cell below</p></li>
+<li><p>declare the variable <code class="docutils literal notranslate"><span class="pre">dash='\n----------'</span></code> and print it</p></li>
+<li><p>declare your own variables to contain the following values, trying to use a range of allowed names</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;1</span><span class="se">\n</span><span class="s1">2</span><span class="se">\n</span><span class="s1">3</span><span class="se">\t</span><span class="s1"> 4 5 6</span><span class="se">\n</span><span class="s1">😀, 我在这里&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>print the variables to see if they contain what you expect, followed in each instance by <code class="docutils literal notranslate"><span class="pre">dash</span></code> (to space the answers out)</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+
+<span class="c1"># Make a code cell below</span>
+<span class="c1"># declare the variable dash=&#39;\n----------&#39; and print it</span>
+<span class="n">dash</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">----------&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dash</span><span class="p">)</span>
+
+<span class="c1"># declare your own variables to contain the following values, trying to use a range of allowed names</span>
+<span class="c1">#      1, 2, &#39;one&#39;, &#39;hello world&#39;, &#39;1\n2\n3\t 4 5 6\n😀, 我在这里&#39;</span>
+
+<span class="n">avar</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">bvar</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">one</span> <span class="o">=</span> <span class="s1">&#39;one&#39;</span>
+<span class="n">Hello</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="n">string_thing</span> <span class="o">=</span> <span class="s1">&#39;1</span><span class="se">\n</span><span class="s1">2</span><span class="se">\n</span><span class="s1">3</span><span class="se">\t</span><span class="s1"> 4 5 6</span><span class="se">\n</span><span class="s1">😀, 我在这里&#39;</span>
+
+<span class="c1">#print the variables to see if they contain what you expect, followed in each instance by dash (to space the answers out)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avar</span><span class="p">,</span><span class="n">dash</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bvar</span><span class="p">,</span><span class="n">dash</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">one</span><span class="p">,</span><span class="n">dash</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Hello</span><span class="p">,</span><span class="n">dash</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_thing</span><span class="p">,</span><span class="n">dash</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>----------
+1 
+----------
+2 
+----------
+one 
+----------
+hello world 
+----------
+1
+2
+3	 4 5 6
+😀, 我在这里 
+----------
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="019_Running_Python.html" title="previous chapter">019 Python codes</a></li>
+      <li>Next: <a href="011_Python_data_types_answers.html" title="next chapter">011 Python data types : Answers to exercises</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/010_Python_Introduction_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

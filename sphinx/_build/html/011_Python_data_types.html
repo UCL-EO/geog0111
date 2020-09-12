@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>011 Python data types &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="012 String formatting" href="012_Python_strings%203.html" />
+    <link rel="prev" title="010 Introduction to Python" href="010_Python_Introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="python-data-types">
+<h1>011 Python data types<a class="headerlink" href="#python-data-types" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>In this section we will learn some of the fundamental data types in Python (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>), how to convert between data types, and use of the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="003_Help.html"><span class="doc">003 Getting help</span></a></p></li>
+<li><p><a class="reference internal" href="010_Python_Introduction.html"><span class="doc">010 Variables, comments and print()</span></a></p></li>
+</ul>
+<p>Remember that you can ‘run’ the code in a code block using the ‘run’ widget (above) or hitting the keys (‘typing’) <shift> and <return> at the same time.</p>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 30 minutes.</p>
+</div>
+</div>
+<div class="section" id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-types-str">
+<h3>Data types: <code class="docutils literal notranslate"><span class="pre">str</span></code><a class="headerlink" href="#data-types-str" title="Permalink to this headline">¶</a></h3>
+<p>Recall how we can print out a message by first storing the text in a variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set a variable called message to contain the string hello world</span>
+<span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
+
+<span class="c1"># print the value of the variable message</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+<p>Above, we set the variable to be a string <code class="docutils literal notranslate"><span class="pre">str</span></code> type, because we wanted to use it to represent a string.</p>
+<p>In a string, each character is represented by an <a class="reference external" href="http://www.asciitable.com">ASCII</a> codes.</p>
+<p>So the <a class="reference external" href="https://en.wikibooks.org/wiki/Python_Programming/Text">string</a> <code class="docutils literal notranslate"><span class="pre">one</span></code> is built up of <code class="docutils literal notranslate"><span class="pre">o</span></code> + <code class="docutils literal notranslate"><span class="pre">n</span></code> + <code class="docutils literal notranslate"><span class="pre">e</span></code>, represented by the ASCII codes <code class="docutils literal notranslate"><span class="pre">111</span></code>, <code class="docutils literal notranslate"><span class="pre">110</span></code> and <code class="docutils literal notranslate"><span class="pre">101</span></code> respectively.</p>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>If the ASCII code for <code class="docutils literal notranslate"><span class="pre">e</span></code> is <code class="docutils literal notranslate"><span class="pre">101</span></code> and the code for <code class="docutils literal notranslate"><span class="pre">n</span></code> is <code class="docutils literal notranslate"><span class="pre">110</span></code>, what is the code for <code class="docutils literal notranslate"><span class="pre">a</span></code>?</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="len">
+<h3><code class="docutils literal notranslate"><span class="pre">len()</span></code><a class="headerlink" href="#len" title="Permalink to this headline">¶</a></h3>
+<p>We can find the length of the string using the function <code class="docutils literal notranslate"><span class="pre">len()</span></code>, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set a variable called message to contain the string hello world</span>
+<span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
+
+<span class="c1"># print the value of the variable message</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span> <span class="mi">11</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>in a code cell below, create a variable called <code class="docutils literal notranslate"><span class="pre">name</span></code> and set it to your name</p></li>
+<li><p>print the string name, and its length</p></li>
+<li><p>comment on why the length is the value you find</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="type">
+<h3><code class="docutils literal notranslate"><span class="pre">type()</span></code><a class="headerlink" href="#type" title="Permalink to this headline">¶</a></h3>
+<p>In a computing language, the <em>sort of thing</em> the variable can be set to is called its <strong>data type</strong>.  In Python, we can access this with the function <code class="docutils literal notranslate"><span class="pre">type()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign the value &#39;one&#39; to the variable (key) my_store</span>
+<span class="n">my_store</span> <span class="o">=</span> <span class="s1">&#39;one&#39;</span>
+
+<span class="c1"># Print the value of my_store</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this has type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">my_store</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>this has type &lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>insert a new cell below here</p></li>
+<li><p>set a variable called message to contain the string <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code></p></li>
+<li><p>print the value and data type of the variable message</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="data-types-float">
+<h3>Data types: <code class="docutils literal notranslate"><span class="pre">float</span></code><a class="headerlink" href="#data-types-float" title="Permalink to this headline">¶</a></h3>
+<p>Another fundamental data type is <code class="docutils literal notranslate"><span class="pre">float</span></code>, used to store decimal numbers such as <code class="docutils literal notranslate"><span class="pre">120.23</span></code>.</p>
+<p>Not surprisingly, we can use floating point numbers (and other number representations) to do arithmetic. We can use <code class="docutils literal notranslate"><span class="pre">print()</span></code> similarly to above to print an integer value.</p>
+<p>Sometimes, such as for very large or very small floating point values, we use <a class="reference external" href="https://en.wikibooks.org/wiki/A-level_Computing/AQA/Paper_2/Fundamentals_of_data_representation/Floating_point_numbers">scientific notation</a>, e.g. to represent Plank’s constant:</p>
+<p>$$h = 6.62607015 \times 10^{−34} J \dot s $$</p>
+<p>we would not want to have to write out over zero values after the decimal point. Instead, we use the <strong>mantissa</strong> $6.62607015$ and <strong>exponent</strong> $-34$ directly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">h</span> <span class="o">=</span> <span class="mf">6.62607015e-34</span>
+</pre></div>
+</div>
+<p>You will sometimes see float numbers represented in this way. It is of additional interest because it is related more closely to how floating point numbers are <a class="reference external" href="https://users.cs.fiu.edu/~downeyt/cop2400/float.htm#:~:text=Eight%20digits%20are%20used%20to,means%20negative%2C%200%20means%20positive.">stored on a computer</a>.</p>
+<p>As an example of floating point arithmetic, let us consider the energy associated with a photon of a given wavelength $\lambda$ (nm) using the <a class="reference external" href="https://web.archive.org/web/20160712123152/http://pveducation.org/pvcdrom/2-properties-sunlight/energy-photon">Planck-Einstein equation</a>:</p>
+<p>$$ E = \frac{hc}{\lambda}$$</p>
+<p>with:</p>
+<ul class="simple">
+<li><p>$h$ as above, $=6.62607015 \times 10^{−34} J \dot s$</p></li>
+<li><p>$c$ the speed of light $= 2.99792458 \times 10^8 m/s$</p></li>
+<li><p>$E$ the photon energy (in $J$)</p></li>
+</ul>
+<p>Given light with a wavelength of 1024 nanometers ($nm$), calculate the energy in $J$.</p>
+<p>First, since</p>
+<p>$$1\ nm = 1 \times 10^{−9} m$$</p>
+<p>we calculate the wavelength in $m$:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l_m</span> <span class="o">=</span> <span class="n">l_nm</span> <span class="o">*</span> <span class="mf">1e-9</span>
+</pre></div>
+</div>
+<p>Then, implement the Planck-Einstein equation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="n">l_m</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># values of c and h</span>
+<span class="c1"># in scientific notation</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">2.99792458e8</span>       <span class="c1"># m/s</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.62607015e-34</span>     <span class="c1"># J s</span>
+
+<span class="c1"># wavelength in nm</span>
+<span class="n">l_nm</span> <span class="o">=</span> <span class="mf">1024.0</span>          <span class="c1"># nm</span>
+
+<span class="c1"># wavelength in m</span>
+<span class="n">l_m</span> <span class="o">=</span> <span class="n">l_nm</span> <span class="o">*</span> <span class="mf">1e-9</span>      <span class="c1"># m</span>
+
+<span class="c1"># Planck-Einstein in J</span>
+<span class="n">E_J</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="n">l_m</span>      <span class="c1"># J</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Photon of wavelength&#39;</span><span class="p">,</span> <span class="n">l_nm</span><span class="p">,</span> <span class="s1">&#39;nm&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;has an energy of&#39;</span><span class="p">,</span> <span class="n">E_J</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Photon</span> <span class="n">of</span> <span class="n">wavelength</span> <span class="mf">1024.0</span> <span class="n">nm</span>
+<span class="n">has</span> <span class="n">an</span> <span class="n">energy</span> <span class="n">of</span> <span class="mf">1.9398885323720004e-19</span> <span class="n">J</span>
+</pre></div>
+</div>
+<p>We can compare the value of energy we get in $J$ with that using a <a class="reference external" href="http://www.calctool.org/CALC/other/converters/e_of_photon">web calculator</a> and confirm the value of <code class="docutils literal notranslate"><span class="pre">1.93989e-19</span></code> for Near Infrared light (<code class="docutils literal notranslate"><span class="pre">1024</span></code> nm).</p>
+<div class="section" id="exercise-4">
+<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
+<p>Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:</p>
+<p>$$
+1\ Electron\ volt\ (eV) = 1.602176565 \times 10^{-19} J
+$$</p>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>calculate the energy associated with a blue photon at 450 nm, in eV</p></li>
+<li><p>confirm your answer using a <a class="reference external" href="http://www.calctool.org/CALC/other/converters/e_of_photon">web calculator</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="data-types-int">
+<h3>Data types: <code class="docutils literal notranslate"><span class="pre">int</span></code><a class="headerlink" href="#data-types-int" title="Permalink to this headline">¶</a></h3>
+<p>Another fundamental data type is <code class="docutils literal notranslate"><span class="pre">int</span></code>, used to store integer (whole) numbers (in base 10). We often use them for counting and similar tasks.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;this has type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="c1"># increment i by 1</span>
+<span class="c1"># same as i = i + 1</span>
+<span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;increment i:&#39;</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;increment i:&#39;</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>0 this has type &lt;class &#39;int&#39;&gt;
+increment i: 1
+increment i: 2
+</pre></div>
+</div>
+<p>Not surprisingly, we can also use integers to do all sorts of arithmetic. Because of potential rounding issues though, we have to pay a little attention to whether we want the result of division to remain an integer or become a floating point number.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">print()</span></code> similarly to above to print an integer value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the variable x,m and c to integer</span>
+<span class="c1"># values</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># calculate y from the formula</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+
+<span class="c1"># print the value of y</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y =&#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mi">206</span>
+</pre></div>
+</div>
+<p>We have seen examples of addition <code class="docutils literal notranslate"><span class="pre">+</span></code> and multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code>. We use <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">**</span> <span class="pre">y</span></code> to represent <code class="docutils literal notranslate"><span class="pre">x</span></code> to the power of <code class="docutils literal notranslate"><span class="pre">y</span></code>. For division, we use <code class="docutils literal notranslate"><span class="pre">//</span></code> to enforce integer division (<a class="reference external" href="https://python-reference.readthedocs.io/en/latest/docs/operators/floor_division.html">floor division</a>).</p>
+<div class="section" id="exercise-5">
+<h4>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>insert a new cell below here</p></li>
+<li><p>using integer arithmetic, print the result of:</p>
+<ul>
+<li><p>2 to the power of 8</p></li>
+<li><p>1024 divided by 2</p></li>
+</ul>
+</li>
+<li><p>set a variable called <code class="docutils literal notranslate"><span class="pre">x</span></code> to the result of 7 (floor) divided by 3.</p>
+<ul>
+<li><p>print the value of <code class="docutils literal notranslate"><span class="pre">x</span></code>, and confirm its data type is <code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="data-types-bool">
+<h3>Data types: <code class="docutils literal notranslate"><span class="pre">bool</span></code><a class="headerlink" href="#data-types-bool" title="Permalink to this headline">¶</a></h3>
+<p>The last fundamental data type we will deal with here is the Boolean or ‘logical’ type <code class="docutils literal notranslate"><span class="pre">bool</span></code>. Here, a variable can represent the value of <code class="docutils literal notranslate"><span class="pre">True</span></code> (equivalent to <code class="docutils literal notranslate"><span class="pre">1</span></code>) or <code class="docutils literal notranslate"><span class="pre">False</span></code> (equivalent to <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p>
+<p>There are a great many uses for this in using logic in coding.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># examples of bool type</span>
+<span class="n">is_set</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">is_ready</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-6">
+<h4>Exercise 6<a class="headerlink" href="#exercise-6" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>Set a variable called <code class="docutils literal notranslate"><span class="pre">is_class_today</span></code> to the value <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p>print the variable name, its value, and its data type</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="logical-operators-not-and-or">
+<h3>Logical Operators: <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code><a class="headerlink" href="#logical-operators-not-and-or" title="Permalink to this headline">¶</a></h3>
+<p>Logical operators combine boolean variables. Recall from above:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span><span class="nb">type</span><span class="p">(</span><span class="kc">False</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;bool&#39;&gt; &lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+<p>The three main logical operators you will use are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span><span class="p">,</span> <span class="ow">and</span><span class="p">,</span> <span class="ow">or</span>
+</pre></div>
+</div>
+<p>The impact of the <code class="docutils literal notranslate"><span class="pre">not</span></code> operator should be straightforward to understand, though we can first write it in a ‘truth table’:</p>
+<p>| A  | not A  |
+|:—:|:—:|
+|  T | F |
+|   F |  T |</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not True is&#39;</span><span class="p">,</span><span class="ow">not</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not False is&#39;</span><span class="p">,</span><span class="ow">not</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="kc">True</span> <span class="ow">is</span> <span class="kc">False</span>
+<span class="ow">not</span> <span class="kc">False</span> <span class="ow">is</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-7">
+<h4>Exercise 7<a class="headerlink" href="#exercise-7" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Insert a new cell below here</p></li>
+<li><p>write a statement to set a variable <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> and print the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">x</span></code></p></li>
+<li><p>what does <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">not</span> <span class="pre">x</span></code> give? Make sure you understand why</p></li>
+</ul>
+<p>The operators <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> should also be quite straightforward to understand: they have the same meaning as in normal english. Note that <code class="docutils literal notranslate"><span class="pre">or</span></code> is ‘inclusive’ (so, read <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">or</span> <span class="pre">B</span></code> as ‘either A or B or both of them’).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True and True is&#39;</span><span class="p">,</span> <span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True and False is&#39;</span><span class="p">,</span> <span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;False and True is&#39;</span><span class="p">,</span> <span class="kc">False</span> <span class="ow">and</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;False and False is&#39;</span><span class="p">,</span> <span class="kc">False</span> <span class="ow">and</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span> <span class="ow">is</span> <span class="kc">True</span>
+<span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span> <span class="ow">is</span> <span class="kc">False</span>
+<span class="kc">False</span> <span class="ow">and</span> <span class="kc">True</span> <span class="ow">is</span> <span class="kc">False</span>
+<span class="kc">False</span> <span class="ow">and</span> <span class="kc">False</span> <span class="ow">is</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>So, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, if and only if both <code class="docutils literal notranslate"><span class="pre">A</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>. Otherwise, it is <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+<p>We can represent this in a ‘truth table’:</p>
+<p>| A  | B  | A and B  |
+|:—:|:—:|:—:|
+|  T |  T |  T |
+|  T |  F |  F |
+|  F |  T |  F |
+|  F |  F |  F |</p>
+</div>
+<div class="section" id="exercise-8">
+<h4>Exercise 8<a class="headerlink" href="#exercise-8" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>draw a truth table <em>on some paper</em>, label the columns <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> and <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code> and fill in the columns <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> as above</p></li>
+<li><p>without looking at the example above, write the value of <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code> in the third column.</p></li>
+<li><p>draw another truth table <em>on some paper</em>, label the columns <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> and <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code> and fill in the columns <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> as above</p></li>
+<li><p>write the value of <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">or</span> <span class="pre">B</span></code> in the third column.</p></li>
+</ul>
+<p>If you are unsure, test the response using code, below:</p>
+<p>We can apply these principles to more complex compound statements. In building a truth table, we must state all of the possible permutations for the variables.</p>
+<p>For two variables (<code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>) we had:</p>
+<p>| A  | B  |
+|:—:|:—:
+|  T |  T |
+|  T |  F |<br />|  F |  T |<br />|  F |  F | `</p>
+<p>Notice the pattern of alternating <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">F</span></code> in the columns.</p>
+<p>For three variables, the equivalent table is:</p>
+<p>| A  | B  | C |
+|:—:|:—:|:—:|
+| T|  T |  T |<br />| T|  T |  F |<br />| T|  F |  T |
+| T |  F |  F |<br />| F|  T |  T |<br />| F|  T |  F |<br />| F|  F |  T |<br />| F|  F |  F |</p>
+<p>Again, notice the alternating patterns in the columns so that we cover all permutations.</p>
+</div>
+<div class="section" id="exercise-9">
+<h4>Exercise 9<a class="headerlink" href="#exercise-9" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Copy the 3 variable truth table from above onto paper</p></li>
+<li><p>fill out a column with <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code></p></li>
+<li><p>fill out a column with <code class="docutils literal notranslate"><span class="pre">((A</span> <span class="pre">and</span> <span class="pre">B)</span> <span class="pre">or</span> <span class="pre">C)</span> </code></p></li>
+<li><p>Try some other compound statements</p></li>
+</ul>
+<p>If you are unsure, or to check your answers, test the response using code, below.</p>
+</div>
+</div>
+</div>
+<div class="section" id="conversion-between-data-types">
+<h2>Conversion between data types<a class="headerlink" href="#conversion-between-data-types" title="Permalink to this headline">¶</a></h2>
+<p>You can explicitly convert between data types <strong>where this makes sense</strong> using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">()</span>
+<span class="nb">float</span><span class="p">()</span>
+<span class="nb">str</span><span class="p">()</span>
+<span class="nb">bool</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start_number</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;starting with&quot;</span><span class="p">,</span><span class="n">start_number</span><span class="p">)</span>
+
+<span class="n">int_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">start_number</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;int_number&#39;</span><span class="p">,</span><span class="n">int_number</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">int_number</span><span class="p">))</span>
+
+<span class="c1"># now convert to float</span>
+<span class="n">float_number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">start_number</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;float_number&#39;</span><span class="p">,</span><span class="n">float_number</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">float_number</span><span class="p">))</span>
+
+<span class="c1"># now convert to str</span>
+<span class="n">str_number</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_number</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;str_number&#39;</span><span class="p">,</span><span class="n">str_number</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">str_number</span><span class="p">))</span>
+
+<span class="c1"># now convert to bool</span>
+<span class="n">bool_number</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">start_number</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;bool_number&#39;</span><span class="p">,</span><span class="n">bool_number</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">bool_number</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>starting with 1
+int_number 1 &lt;class &#39;int&#39;&gt;
+float_number 1.0 &lt;class &#39;float&#39;&gt;
+str_number 1 &lt;class &#39;str&#39;&gt;
+bool_number True &lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+<div class="section" id="exercise-10">
+<h3>Exercise 10<a class="headerlink" href="#exercise-10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>insert a new cell below here</p></li>
+<li><p>copy the code in the cell above, set <code class="docutils literal notranslate"><span class="pre">start_number</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code>, and run</p>
+<ul>
+<li><p>What are the boolean representations of <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>?</p></li>
+</ul>
+</li>
+<li><p>What would happen if you set <code class="docutils literal notranslate"><span class="pre">start_number</span></code> to the string <code class="docutils literal notranslate"><span class="pre">'zero'</span></code>, and why?</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we have been introduced to the core data types in Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span>
+<span class="nb">float</span>
+<span class="nb">str</span>
+<span class="nb">bool</span>
+</pre></div>
+</div>
+<p>and how to convert between then, where this is feasible:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">()</span>
+<span class="nb">float</span><span class="p">()</span>
+<span class="nb">str</span><span class="p">()</span>
+<span class="nb">bool</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We have also learned the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function to return the data type, and <code class="docutils literal notranslate"><span class="pre">len()</span></code> to find the length of a string.</p>
+<p>We should also know how to do logical combinations of boolean variables, and visualise this with truth tables.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="010_Python_Introduction.html" title="previous chapter">010 Introduction to Python</a></li>
+      <li>Next: <a href="012_Python_strings%203.html" title="next chapter">012 String formatting</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/011_Python_data_types.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

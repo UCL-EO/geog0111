@@ -356,20 +356,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-3" class="md-nav__link">
-    Exercise 3
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-4" class="md-nav__link">
-    Exercise 4
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#learning-new-things" class="md-nav__link">
     Learning new things
   </a>
@@ -378,8 +364,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#exercise-5" class="md-nav__link">
-    Exercise 5
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
   </a>
   
 </li>
@@ -457,8 +443,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../012_Python_strings%203/" title="Python Strings 3" class="md-nav__link">
+      Python Strings 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../012_Python_strings/" title="Python Strings" class="md-nav__link">
       Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings_answers%203/" title="Python Strings Answers 3" class="md-nav__link">
+      Python Strings Answers 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods%203/" title="Python String Methods 3" class="md-nav__link">
+      Python String Methods 3
     </a>
   </li>
 
@@ -554,14 +576,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-11" type="checkbox" id="nav-3-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-14" type="checkbox" id="nav-3-14">
     
-    <label class="md-nav__link" for="nav-3-11">
+    <label class="md-nav__link" for="nav-3-14">
       Answers
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-11">
+      <label class="md-nav__title" for="nav-3-14">
         <span class="md-nav__icon md-icon"></span>
         Answers
       </label>
@@ -1132,20 +1154,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-3" class="md-nav__link">
-    Exercise 3
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-4" class="md-nav__link">
-    Exercise 4
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#learning-new-things" class="md-nav__link">
     Learning new things
   </a>
@@ -1154,8 +1162,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#exercise-5" class="md-nav__link">
-    Exercise 5
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
   </a>
   
 </li>
@@ -1363,35 +1371,6 @@ print(&quot;sorted&quot;, alist)
 extended ['one', 'three', 'two', 'four', 'six', 'zero']
 sorted ['four', 'one', 'six', 'three', 'two', 'zero']
 </code></pre>
-<h4 id="exercise-3">Exercise 3</h4>
-<ul>
-<li>Create a code cell below and assign the variable <code>my_var</code> the value of <code>10</code> (hint: <code>my_var = 10</code>)</li>
-<li>Run <code>dir()</code> again and confirm that <code>my_var</code> now appears in the list</li>
-</ul>
-<pre><code class="python"># ANSWER
-# Create a code cell below and assign the variable my_var the value of 10 (hint: my_var = 10)
-my_var = 10
-
-# Run dir() again 
-print(dir())
-
-# confirm that my_var now appears in the list
-msg = '''
-I can see my_var in the list printed out
-'''
-print(msg)
-</code></pre>
-
-<pre><code>['In', 'Out', '_', '__', '___', '__builtin__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__', '_dh', '_i', '_i1', '_i10', '_i11', '_i12', '_i2', '_i3', '_i4', '_i5', '_i6', '_i7', '_i8', '_i9', '_ih', '_ii', '_iii', '_oh', 'alist', 'blist', 'exit', 'get_ipython', 'json', 'my_var', 'quit', 'yapf_reformat']
-
-I can see my_var in the list printed out
-</code></pre>
-<h4 id="exercise-4">Exercise 4</h4>
-<ul>
-<li>Print the value of <code>my_var</code> using <code>print(my_var)</code></li>
-<li>Print the value of <code>my_var</code> using <code>print(locals()['my_var'])</code></li>
-<li>confirm that they give the same answer</li>
-</ul>
 <pre><code class="python"># ANSWER
 # Print the value of my_var using print(my_var)
 print(my_var)
@@ -1406,17 +1385,26 @@ I can see they are the same
 print(msg)
 </code></pre>
 
-<pre><code>10
-10
+<pre><code>---------------------------------------------------------------------------
 
-I can see they are the same
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-7-a8b1461bf99a&gt; in &lt;module&gt;
+      1 # ANSWER
+      2 # Print the value of my_var using print(my_var)
+----&gt; 3 print(my_var)
+      4 
+      5 # Print the value of my_var using print(locals()['my_var'])
+
+
+NameError: name 'my_var' is not defined
 </code></pre>
 <h3 id="learning-new-things">Learning new things</h3>
 <p>Let's use that knowledge to learn something new:</p>
 <ul>
 <li>Use online material from <a href="https://www.w3schools.com/python">https://www.w3schools.com</a> or elsewhere to learn the basics of <code>for</code> loops.</li>
 </ul>
-<h4 id="exercise-5">Exercise 5</h4>
+<h4 id="exercise-3">Exercise 3</h4>
 <ul>
 <li>Find help for the class <code>range</code> to understand how to use this to generate a sequence of integers from 10 to 1 in steps of -1</li>
 <li>Use what you have learned to write a <code>for</code> loop below that counts backwards from 10 to 0</li>
@@ -1427,18 +1415,6 @@ I can see they are the same
 
 for i in range(10,0,-1):
     print(i)
-</code></pre>
-
-<pre><code>10
-9
-8
-7
-6
-5
-4
-3
-2
-1
 </code></pre>
                 
                   

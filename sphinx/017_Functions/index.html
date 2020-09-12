@@ -1,0 +1,1775 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://ucl-eo.github.io/geog0111/sphinx/017_Functions/">
+      
+      
+        <meta name="author" content="Prof P. Lewis">
+      
+      <link rel="shortcut icon" href="../../images/ucl.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Functions in Python - GEOG0111</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#functions-in-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            GEOG0111
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Functions in Python
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    GEOG0111
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Course Basics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Course Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../002_Unix/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../003_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../004_Accounts/" title="Accounts" class="md-nav__link">
+      Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../001_Notebook_use_answers/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../002_Unix_answers/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../003_Help_answers/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Core Concepts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Core Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings%203/" title="Python Strings 3" class="md-nav__link">
+      Python Strings 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings_answers%203/" title="Python Strings Answers 3" class="md-nav__link">
+      Python Strings Answers 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../013_Python_string_methods%203/" title="Python String Methods 3" class="md-nav__link">
+      Python String Methods 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../014_Python_groups/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../015_Python_control/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../016_Python_for/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../017_Functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../018_Packages/" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../019_Running_Python/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-14" type="checkbox" id="nav-3-14">
+    
+    <label class="md-nav__link" for="nav-3-14">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-14">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../010_Python_Introduction_answers/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../011_Python_data_types_answers/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings_answers/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../013_Python_string_methods_answers/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../014_Python_groups_answers/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../015_Python_control_answers/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../016_Python_for_answers/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../017_Functions_answers/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../019_Running_Python_answers/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_Python_files/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../021_Read_files/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../022_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+      Pandas And Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../024_GoogleEarthEngine/" title="Google Earth Engine" class="md-nav__link">
+      Google Earth Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-7" type="checkbox" id="nav-4-7">
+    
+    <label class="md-nav__link" for="nav-4-7">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-7">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_Python_files_answers/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../021_Read_files_answers/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../022_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Image Processing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Image Processing" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Image Processing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../031_Numpy_matplotlib/" title="Numpy Matplotlib" class="md-nav__link">
+      Numpy Matplotlib
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../031_Plotting/" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Geospatial Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Geospatial Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../040_GDAL/" title="GDAL" class="md-nav__link">
+      GDAL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../041_MODIS_download/" title="MODIS Download" class="md-nav__link">
+      MODIS Download
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../042_GDAL_masking/" title="GDAL Masking" class="md-nav__link">
+      GDAL Masking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../043_GDAL_stacking_and_interpolating/" title="GDAL Stacking And Interpolating" class="md-nav__link">
+      GDAL Stacking And Interpolating
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../044_GDAL_Reconciling_projections/" title="GDAL Reconciling Projections" class="md-nav__link">
+      GDAL Reconciling Projections
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Modelling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Modelling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../050_Linear_models/" title="Linear Models" class="md-nav__link">
+      Linear Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../051_Modelling_and_optimisation/" title="Modelling And Optimisation" class="md-nav__link">
+      Modelling And Optimisation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Developers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developers" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        Developers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DEV_Local_Install/" title="Local Install" class="md-nav__link">
+      Local Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DEV_scripts/" title="Scripts" class="md-nav__link">
+      Scripts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    Purpose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timing" class="md-nav__link">
+    Timing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-functions" class="md-nav__link">
+    Introduction to Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-specification" class="md-nav__link">
+    Function specification
+  </a>
+  
+    <nav class="md-nav" aria-label="Function specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anatomy-of-a-function" class="md-nav__link">
+    Anatomy of a function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-design" class="md-nav__link">
+    Code design
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+    <nav class="md-nav" aria-label="Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-on-arguments" class="md-nav__link">
+    More on arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="More on arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#positional-arguments" class="md-nav__link">
+    Positional arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyword-arguments" class="md-nav__link">
+    Keyword arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/sphinx/017_Functions.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="functions-in-python">Functions in Python</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="purpose">Purpose</h3>
+<p>In this session, we will learn about Functions in Python. In essence, a function allows us to write better, more compact and re-usable code. This is a concept we will use a lot in later sessions, so make sure you fully familiarise yourself with the material.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+<li><a href="../011_Python_data_types/">011 Data types</a> </li>
+<li><a href="../012_Python_strings/">012 String formatting</a></li>
+<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
+<li><a href="../014_Python_groups/">014_Python_groups</a></li>
+<li><a href="../015_Python_control/">015_Python_control</a></li>
+<li><a href="../016_Python_for/">016_Python_for</a></li>
+</ul>
+<p>In particular, you will need to recall how to use:</p>
+<ul>
+<li><a href="../016_Python_for/#looping-over-dictionaries,-and-assert"><code>assert</code></a></li>
+<li><a href="../013_Python_string_methods/#split()-and-join()"><code>str.join()</code></a></li>
+<li><a href="../014_Python_groups/#dict"><code>zip</code></a></li>
+</ul>
+<h3 id="timing">Timing</h3>
+<p>The session should take around 30 minutes to go through the first time. The exercises will take longer than that.</p>
+<h2 id="introduction-to-functions">Introduction to Functions</h2>
+<p>A <a href="https://docs.python.org/3/glossary.html#term-function">function</a> is a block of code statements that we can use to carry out a specific purpose. </p>
+<p>The simplest form of function has no inputs or outputs, but simply performs some task when we call it:</p>
+<p><img alt="function" src="../images/no_in_out.png" /></p>
+<p>An example of a simple function in Python is:</p>
+<pre><code class="python">def hello_world():
+    '''
+    Purpose:
+      print the string 'hello world'
+    '''
+    print('hello world')
+</code></pre>
+
+<p>This is designed to print the string <code>hello world</code> when we call it.</p>
+<p>Notice the formatting here: the function is declared:</p>
+<pre><code>def hello_world():
+</code></pre>
+<p>and the <em>contents</em> of the function are indented in (by 4 spaces here).</p>
+<p>We use the function in Python code as:</p>
+<pre><code class="python">hello_world()
+</code></pre>
+
+<pre><code>hello world
+</code></pre>
+<p>and access the function document string by:</p>
+<pre><code class="python">help(hello_world)
+</code></pre>
+
+<pre><code>Help on function hello_world in module __main__:
+
+hello_world()
+    Purpose:
+      print the string 'hello world'
+</code></pre>
+<h3 id="exercise-1">Exercise 1</h3>
+<ul>
+<li>in a new code cell below, write a function called <code>my_name</code> that prints your name</li>
+<li>demonstrate that your code works (i.e. run it in a code cell)</li>
+<li>show the doc string using <code>help()</code> </li>
+</ul>
+<p><strong>Advice</strong>: make sure it has an appropriate document string, based on the example in the notes, and also check that you have the indentation correct for the code in the function. Notice the semicolon <code>:</code> at the end of the <code>def</code> statement.</p>
+<h2 id="function-specification">Function specification</h2>
+<p>More generally, we could think of the the function as <strong>a sort of filter</strong>: it takes some <strong>inputs</strong> (specified in the arguments), makes some calculation based on these, i.e. that is a <em>function</em> of these inputs, and returns an <strong>output</strong>.</p>
+<p><img alt="function" src="../images/in_out.png" /></p>
+<p>In this sense:</p>
+<ul>
+<li>It will generally have one or more <a href="https://docs.python.org/3/glossary.html#argument">arguments</a>: <code>(arg1, arg2, ...)</code> that form the <strong>inputs</strong>.</li>
+<li>It will often return some value (or set of values) as the <strong>output</strong>: <code>retval</code></li>
+<li>It will have a name: <code>my_function</code></li>
+</ul>
+<p><img alt="function io" src="../images/im_funct.png" /></p>
+<h3 id="anatomy-of-a-function">Anatomy of a function</h3>
+<p>The format of a function in Python is:</p>
+<pre><code>def my_function(arg1,arg2,...):
+  '''
+  Document string 
+  '''
+
+  # comments
+
+  retval =  ...
+
+  # return
+  return retval
+</code></pre>
+<p>The keyword <code>def</code> defines a function, followed by the function name, a list (actually, a <a href="https://docs.python.org/3/library/stdtypes.html?highlight=tuple#tuple"><code>tuple</code></a>) of arguments, then a semicolon <code>:</code>.</p>
+<p>The contents of the function are indented to a consistent level of spaces.</p>
+<p>The function will typically have a document string, generally a multi-line string defined within triple quotes. We use this to document information about the function, such as its author, purpose, and inputs and outputs.</p>
+<p>Within the function, we can refer to the arguments (<code>arg1</code> and <code>arg2</code> here, though they will generally have more meaningful names), make some calculation based on these, and generally, return some value (<code>retval</code> here).</p>
+<h3 id="code-design">Code design</h3>
+<p>This idea of a <em>filter</em> can be useful when thinking how to design a function. We can see that we need to define:</p>
+<pre><code>* purpose
+* inputs
+* output
+</code></pre>
+<p>Let's suppose we need to design a function that will take a first name and last name, and combine them into your full name (assuming for now that you have two names).</p>
+<p>The <em>purpose</em> of our function could be stated as:</p>
+<pre><code>purpose:
+
+    generate a name string from list of strings
+</code></pre>
+<p>The inputs could be:</p>
+<pre><code>inputs:
+  - name_list : list of names
+</code></pre>
+<p>And the output:</p>
+<pre><code>return:
+  - the full name
+</code></pre>
+<p>Without knowing any real coding then, we could develop the template for this function, along with an initial document string. </p>
+<p>We do need to give the function a name, so let's use <code>full_name</code> here.</p>
+<p>We have started with the idea of some purpose for our code, then defined what the expected inputs and outputs would be. We can call coding at that level of generalisation <a href="https://en.wikipedia.org/wiki/Pseudocode">pseudocode</a>. We could have written our task is a form of pseudocode such as:</p>
+<pre><code>algorithm full_name is
+    input: List of strings in variable name_list
+    output: string in variable retval
+
+    purpose: generate a name string from list of strings
+
+    # CODE BLOCK to achieve aim (NOT DONE)
+    # test by passing input to output
+    retval = name_list
+</code></pre>
+<p>where we have left the <code>CODE BLOCK</code> blank at the moment, and replaced it by simply sending the function input to the output so we can test the code structure. It can be of value when designing codes to first develop some pseudocode such as above, but in reality such statements are very closely related to what we would write in high-level codes like Python:</p>
+<pre><code class="python">def full_name(name_list):
+    '''
+
+    purpose: 
+      generate a name string from list of strings 
+
+    inputs:
+    - name_list : list of names
+
+    return:
+    - the full name
+    '''
+    # CODE BLOCK to achieve aim (NOT DONE)
+    # test by passing input to output
+    retval = name_list
+
+    # return
+    return retval
+</code></pre>
+
+<p>That's a good start, and it allows us to develop a function that we can run and test. </p>
+<p>To test, we can set a list of example strings. We then <em>call</em> the function <code>full_name()</code> with this argument, and set the value returned in the variable <code>full</code>.</p>
+<pre><code class="python">names = ['Fred','Bloggs']
+
+full = full_name(names)
+print(full)
+</code></pre>
+
+<pre><code>['Fred', 'Bloggs']
+</code></pre>
+<p>From our test, we can see that the function doesn't yet achieve what we wanted: it simply returns the input list, rather than the full name.</p>
+<p>To proceed, we need to know how to make a combined string. It can be useful to test our understanding of the code we will need to achieve the aim of the function. We do not need to do that inside the function, but can instead try to think of some examples we could use to test the ideas.</p>
+<p>One way to achieve the aim of the function this would be to use the string <a href="https://docs.python.org/3/library/stdtypes.html#str.join"><code>join</code></a> operation that we came across the in <a href="../013_Python_string_methods/#split()-and-join()">Python string methods</a> notes.</p>
+<p>This works by placing a key string between string items in a list. For example, if we want to separate strings by <code>:</code>, we would use:</p>
+<pre><code>':'.join(names)
+</code></pre>
+<pre><code class="python">':'.join(names)
+</code></pre>
+
+<pre><code>'Fred:Bloggs'
+</code></pre>
+<p>In our function, we want to use a single 'whitespace' value, so <code>' '</code> as the key:</p>
+<pre><code class="python">' '.join(names)
+</code></pre>
+
+<pre><code>'Fred Bloggs'
+</code></pre>
+<p>Now we are sure of the coding concept to achieve what we want in the filter, we can write the function:</p>
+<pre><code class="python">def full_name(name_list):
+    '''
+
+    purpose: 
+      generate a name string from list of strings 
+
+    inputs:
+    - name_list : list of names
+
+    return:
+    - the full name
+    '''
+    # join the names in name_list together
+    retval = ' '.join(name_list)
+
+    # return
+    return retval
+</code></pre>
+
+<p>we try to make the docstring useful and test what it shows:</p>
+<pre><code class="python">help(full_name)
+</code></pre>
+
+<pre><code>Help on function full_name in module __main__:
+
+full_name(name_list)
+    purpose: 
+      generate a name string from list of strings
+
+    inputs:
+    - name_list : list of names
+
+    return:
+    - the full name
+</code></pre>
+<p>then run our code:</p>
+<pre><code class="python">full = full_name(['Fred','Bloggs'])
+print(full)
+</code></pre>
+
+<pre><code>Fred Bloggs
+</code></pre>
+<h2 id="test">Test</h2>
+<p>It is a good idea if we can write a test for our function. This should cover some typical case or cases, and check that we get the correct output for a particular input. We can use the <a href="https://www.w3schools.com/python/ref_keyword_assert.asp">assert</a> method that we have seen in the <a href="../016_Python_for/#looping-over-dictionaries,-and-assert">Python for</a> notes:</p>
+<pre><code>assert True
+</code></pre>
+<p>For example:</p>
+<pre><code class="python">assert full_name(['Fred','Bloggs']) == &quot;Fred Bloggs&quot;
+print('test passed')
+</code></pre>
+
+<pre><code>test passed
+</code></pre>
+<p>remember that if this assertion fails, we get an <code>AssertionError</code> (you can try that out by putting something incorrect in the assertion above and re-running the cell). If the error is raised, our code will strop running and report the error.  </p>
+<p>We will learn more about code testing later, but for the moment, we suggest that you use one or more <code>assert</code> statements that try out different inputs-output matches with your function. </p>
+<h3 id="exercise-2">Exercise 2</h3>
+<p>We assume for this exercise that you know how to create a dictionary from two lists of the same length. This was covered in the <a href="../014_Python_groups/#dict">Python_Groups</a> notes.</p>
+<p>In this exercise, we suggest that you follow the design approach we took above:</p>
+<ul>
+<li>Think first what you will use as inputs and outputs to the function, and come up with some examples of inputs and outputs</li>
+<li>Then consider the Python code you would need to go from the inputs to the outputs<ul>
+<li>Develop and test the core code to achieve the function purpose in a notebook cell with an example input</li>
+<li>Consider what you might use as a test for your code</li>
+</ul>
+</li>
+<li>Develop skeleton<ul>
+<li>Write a skeleton function defining the purpose, inputs and outputs. In the skeleton code, you can just pass the inputs straight to the outputs. </li>
+<li>Confirm that that works before going further.</li>
+<li>Confirm that your document string is useful.</li>
+<li>Write a test</li>
+</ul>
+</li>
+<li>Implement the core code in the function <ul>
+<li>Confirm that that works</li>
+<li>Confirm that your document string is useful.</li>
+<li>Write a test</li>
+</ul>
+</li>
+<li>Consider any flaws in your code and how you might improve it</li>
+</ul>
+<p><strong>Your task for the exercise is:</strong></p>
+<ul>
+<li>design a function to convert two lists of the same length into a dictionary</li>
+<li>the design must include relevant comments, document strings and tests</li>
+</ul>
+<h2 id="more-on-arguments">More on arguments</h2>
+<p>Python functions can take <a href="https://book.pythontips.com/en/latest/args_and_kwargs.html">two types of arguments</a>:</p>
+<ul>
+<li>positional arguments</li>
+<li>keyword arguments</li>
+</ul>
+<h3 id="positional-arguments">Positional arguments</h3>
+<p>The arguments we have used above are positional arguments, in that their definition in the function depends on the order they are specified in. For example:</p>
+<pre><code class="python">def hello(s1,s2):
+    '''
+    Purpose:
+      print out positional arguments
+
+    Inputs:
+      s1 : first argument
+      s2 : secopnd argument
+    '''
+    print(f'argument 0 is {s1}')
+    print(f'argument 1 is {s2}')
+
+hello('hello','world')
+</code></pre>
+
+<pre><code>argument 0 is hello
+argument 1 is world
+</code></pre>
+<p>Sometimes in Python documentation, you will see the arguments specified simply as:</p>
+<pre><code>example(*args, *kwargs)
+</code></pre>
+<p>This is the most general way of specifying function arguments. The first item in this case <code>*args</code> are the positional arguments. Although we generally specify them explicitly as above, we can also use</p>
+<pre><code>*args
+</code></pre>
+<p>to specify them, where <code>args</code> is a list-like object. In this form, the example above becomes:</p>
+<pre><code class="python">def hello(*args):
+    '''
+    print out positional arguments
+
+    Inputs:
+        *args : list of positional arguments
+    '''
+    # loop over the list
+    for i,s in enumerate(args):
+        print(f'argument {i} is {s}')
+
+hello('hello','world','again')
+</code></pre>
+
+<pre><code>argument 0 is hello
+argument 1 is world
+argument 2 is again
+</code></pre>
+<pre><code class="python"># or using *args where args is a list
+l = ['hello','world','again','as','list']
+hello(*l)
+</code></pre>
+
+<pre><code>argument 0 is hello
+argument 1 is world
+argument 2 is again
+argument 3 is as
+argument 4 is list
+</code></pre>
+<p>In this example, we have not specified how many positional arguments there are, but obviously we need to attach some meaning to each of them in the order supplied. Sometimes this is useful in code, where we just want to loop over a list of arguments, but you should mostly be wary about using it unless you really need to. </p>
+<p>A good example of the use of <code>*args</code> is the <code>print()</code> statement. It will print out however many positional arguments we specify:</p>
+<pre><code class="python">print('hello','world','again')
+
+l = ['hello','world','again','as','list']
+# print the list, specifying l as a single positional argument
+print(l)
+# print the list passing each list item as a positional argument
+print(*l)
+</code></pre>
+
+<pre><code>hello world again
+['hello', 'world', 'again', 'as', 'list']
+hello world again as list
+</code></pre>
+<h3 id="keyword-arguments">Keyword arguments</h3>
+<p>The second type of argument we mentioned above was keyword arguments. These are typically used to modify the behaviour of a function are are of the form:</p>
+<pre><code>verbose=True
+sep=' '
+</code></pre>
+<p>We can see examples of these with the <code>print</code> function:</p>
+<pre><code class="python">help(print)
+</code></pre>
+
+<pre><code>Help on built-in function print in module builtins:
+
+print(...)
+    print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+
+    Prints the values to a stream, or to sys.stdout by default.
+    Optional keyword arguments:
+    file:  a file-like object (stream); defaults to the current sys.stdout.
+    sep:   string inserted between values, default a space.
+    end:   string appended after the last value, default a newline.
+    flush: whether to forcibly flush the stream.
+</code></pre>
+<p>where a set of optional keyword arguments are specified. All keyword arguments are specified with a default value (<code>sep=' ', end='\n', file=sys.stdout, flush=False</code> above). If we do not specify a keyword when we call the function, this is the value that that variable will take within the function.</p>
+<p>Note that keywords must be specified <strong>after</strong> positional arguments. The keywords can be in any order (they are not positional). Keywords can only be given once.</p>
+<p>But, if we want, we can override the defaults by setting the keyword when we call the function:</p>
+<pre><code class="python">l = ['hello','world','again','as','list']
+# print the list passing each list item as a positional argument
+# default with sep as ' '
+print(*l)
+# with sep as 'X'
+print(*l,sep='X')
+# with sep as ':'
+print(*l,sep=':')
+</code></pre>
+
+<pre><code>hello world again as list
+helloXworldXagainXasXlist
+hello:world:again:as:list
+</code></pre>
+<p>This is a very useful feature for functions: we can set default behaviour, but the user cxan modify this when they call the function. </p>
+<p>For example, let's add a <code>verbose</code> keyword to our <code>hello()</code> function. The behaviour we want is that if the verbose flag is set, we print lots of information to the user. In this case:</p>
+<pre><code>print(f'argument {i}:',end=' ')
+</code></pre>
+<p>which will print the index <code>i</code>. We have used the <code>kwarg</code> <code>end=''</code> for <code>print()</code> so that if this is called, it does not print a newline, but a space instead.</p>
+<pre><code class="python">def hello(*args,verbose=False):
+    '''
+    print out positional arguments
+
+    Inputs:
+        *args : list of positional arguments
+
+    Optional keyword arguments:
+        verbose : print the index 
+    '''
+    # loop over the list
+    for i,s in enumerate(args):
+        # if the verbose flag is set
+        # then print detailed information
+        if verbose:
+            print(f'argument {i}:',end=' ')
+        print(f'{s}')
+
+</code></pre>
+
+<pre><code class="python">dash='='*5
+
+# call without verbose
+print(f'{dash} verbose=False {dash}')
+hello('hello','world','again')
+
+# call with verbose
+print(f'{dash} verbose=False {dash}')
+hello('hello','world','again',verbose=True)
+</code></pre>
+
+<pre><code>===== verbose=False =====
+hello
+world
+again
+===== verbose=False =====
+argument 0: hello
+argument 1: world
+argument 2: again
+</code></pre>
+<h3 id="exercise-3">Exercise 3</h3>
+<ul>
+<li>Starting from the function <code>list2dict(keys,values)</code> that you developed above, add keyword arguments to the code to achieve the following:<ul>
+<li>if check=True   : perform checks on the input data</li>
+<li>if verbose=True : print out information on what is going on in the function</li>
+<li>set all default keywords to False</li>
+</ul>
+</li>
+<li>Make sure you perform tests as above, and that you update document strings</li>
+</ul>
+<p>As a final point of <code>kwargs</code>, you might still be wondering why this was specified as:</p>
+<pre><code>   example(*args,**kwargs)
+</code></pre>
+<p>above. We have seen what the <code>*args</code> part means: if <code>args</code> is a list, then each item in the list is passed as a positional argument. The same idea applies to <code>**kwargs</code> but instead of a list, <code>kwargs</code> refers to a dictionary. If you think about the information you need to pass for keword arguments, you would understand why this is the case. </p>
+<p>By using <code>**kwargs</code>, where <code>kwargs</code> is a dictionary, the key-value pairs in the dictionary are passed as <code>key=value</code>. For example:</p>
+<pre><code class="python">args = ['hello','world','again','as','list']
+# set up dictionary for kwargs
+# with X as sep and a string at the end oif the line
+kwargs = {'sep' : 'X', 'end' : '&lt;- end of the line\n'}
+
+print(*args,**kwargs)
+</code></pre>
+
+<pre><code>helloXworldXagainXasXlist&lt;- end of the line
+</code></pre>
+<p>The use of <code>**kwargs</code> can be useful sometimes, as you can more easily keep track of keywords for some particular configuration of running a code. For that reason, and because you will see it sometimes in documentation, you should be aware of it. Most likely you won't be using it a lot in your early code development though.</p>
+<h2 id="summary">Summary</h2>
+<p>In this section, we have learned about writing a function. We have seen that they generally will have zero or more input positional arguments and zero or more keyword arguments. They will typically return some value. We have also seen how we can define a <code>doc string</code> to give the user information on how to use the function, and also how we can use <code>assert</code> to build tests for our codes. We have been through some design considerations, and seen that it is best to plan you functions by thinking about the purpose, the inputs and the outputs. Then, for the core code, you just need to develop a skeleton code and docstring structure, test that, and insert your core code. You should think about modifications using keyword arguments that you might want to include, but these will often come in a second pass of development.</p>
+<p>When we write Python codes from now on, we will often make use of functions.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 12, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/prof_plewis" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/proflewis/geog0111" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/UCL-EO/geog0111" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

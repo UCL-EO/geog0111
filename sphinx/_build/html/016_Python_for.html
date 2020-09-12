@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>016 More control in Python: for &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Functions in Python" href="017_Functions.html" />
+    <link rel="prev" title="015 Control in Python: if" href="015_Python_control.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="more-control-in-python-for">
+<h1>016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#more-control-in-python-for" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>In this section we will learn how to add more control to our code by using loops. We will mainly be using the <code class="docutils literal notranslate"><span class="pre">for</span></code> statements for this. We will also learn about the use of <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements to check our code is operating as intended.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="003_Help.html"><span class="doc">003 Getting help</span></a></p></li>
+<li><p><a class="reference internal" href="010_Python_Introduction.html"><span class="doc">010 Variables, comments and print()</span></a></p></li>
+<li><p><a class="reference internal" href="011_Python_data_types.html"><span class="doc">011 Data types</span></a></p></li>
+<li><p><a class="reference internal" href="012_Python_strings.html"><span class="doc">012 String formatting</span></a></p></li>
+<li><p><a class="reference internal" href="013_Python_string_methods.html"><span class="doc">013_Python_string_methods</span></a></p></li>
+<li><p><a class="reference internal" href="014_Python_groups.html"><span class="doc">014_Python_groups</span></a></p></li>
+<li><p><a class="reference internal" href="015_Python_control.html"><span class="doc">015_Python_control</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 40 minutes.</p>
+</div>
+</div>
+<div class="section" id="looping-with-for">
+<h2>Looping with <code class="docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#looping-with-for" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="for-in">
+<h3><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> <span class="pre">...</span></code><a class="headerlink" href="#for-in" title="Permalink to this headline">¶</a></h3>
+<p>Very commonly, we need to iterate or ‘loop’ over some set of items.</p>
+<p>The basic stucture for doing this (in Python, and many other languages) is <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">group:</span></code>, where <code class="docutils literal notranslate"><span class="pre">item</span></code> is the name of some variable and <code class="docutils literal notranslate"><span class="pre">group</span></code> is a set of values.</p>
+<p>The loop is run so that <code class="docutils literal notranslate"><span class="pre">item</span></code> takes on the first value in <code class="docutils literal notranslate"><span class="pre">group</span></code>, then the second, etc. Notice in the code below that the expressions inside the loop use indentation to indicate the loop. As when we discussed indentation in <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, be careful to align your statements or the code will fail.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">for loop</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+    <span class="c1"># print item in loop</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;blast off!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>4
+3
+2
+1
+blast off!
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">group</span></code> in this example is the list of integer numbers <code class="docutils literal notranslate"><span class="pre">[4,3,2,1]</span></code>. A <code class="docutils literal notranslate"><span class="pre">list</span></code> is a group of comma-separated items contained in square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> as we have seen before.</p>
+<p>In Python, the statement(s) we run whilst looping (here <code class="docutils literal notranslate"><span class="pre">print(item)</span></code>) are <em>indented</em>.</p>
+<p>The indent can be one or more spaces, the choice is up to the programmer. You can use <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code> but should probably avoid it. Whatever you use, it <strong>must be consistent</strong>. We suggest you use 4 spaces.</p>
+<p>It is important to note the difference between the code above and:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">for loop</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+    <span class="c1"># print item in loop</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;blast off!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>4
+blast off!
+3
+blast off!
+2
+blast off!
+1
+blast off!
+</pre></div>
+</div>
+<p>In the second case, we have the <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">('blast</span> <span class="pre">off!')</span></code> statement inside the loop as it is indented. So it is executed each time we are in the loop. In the first case, it is outside the loop and is only run once the loop is completed.</p>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>generate a list of strings called <code class="docutils literal notranslate"><span class="pre">group</span></code> with the names of (some of) the items in your pocket or bag (or make some up!)</p></li>
+<li><p>set up a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop with <code class="docutils literal notranslate"><span class="pre">group</span></code>, setting the variable <code class="docutils literal notranslate"><span class="pre">item</span></code></p></li>
+<li><p>within the loop, print each value of item in turn</p></li>
+<li><p>at the end of the loop, print <code class="docutils literal notranslate"><span class="pre">I'm</span> <span class="pre">done</span></code></p></li>
+</ul>
+<p>Quite often, we want to keep track of the ‘index’ of the item in the loop (the ‘item number’).</p>
+<p>One way to do this would be to use a variable (called <code class="docutils literal notranslate"><span class="pre">count</span></code> here).</p>
+<p>Before we enter the loop, we initialise the <code class="docutils literal notranslate"><span class="pre">count</span></code> to zero. Then, within the loop, we would need to increment <code class="docutils literal notranslate"><span class="pre">count</span></code> b y one each time (i.e. add <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">count</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">for loop with enumeration</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;fish&#39;</span><span class="p">,</span> <span class="s1">&#39;🦄&#39;</span><span class="p">,</span> <span class="s1">&#39;house&#39;</span><span class="p">]</span>
+
+<span class="c1"># Before we enter the loop, we initialise the `count` to zero.</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+    <span class="c1"># print the count value and item</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;count: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># increment count by 1</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>count: 0 : cat
+count: 1 : fish
+count: 2 : 🦄
+count: 3 : house
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>copy the code above</p></li>
+<li><p>check to see if the value of <code class="docutils literal notranslate"><span class="pre">count</span></code> at the end of the loop is the same as the length of the list.</p></li>
+<li><p>Why should this be so?</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="range">
+<h2><code class="docutils literal notranslate"><span class="pre">range()</span></code><a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h2>
+<p>If we want to use in index to count explicitly, we can use the <code class="docutils literal notranslate"><span class="pre">range()</span></code> function. The arguments of this are <code class="docutils literal notranslate"><span class="pre">(stop)</span></code>,  <code class="docutils literal notranslate"><span class="pre">(start,stop)</span></code> or <code class="docutils literal notranslate"><span class="pre">(start,stop,step)</span></code>. If not sepcified, the default values os <code class="docutils literal notranslate"><span class="pre">start</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>, and <code class="docutils literal notranslate"><span class="pre">step</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, so <code class="docutils literal notranslate"><span class="pre">range(10)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">range(0,10,1)</span></code>.</p>
+<p>The function returns an object similar to a <code class="docutils literal notranslate"><span class="pre">list</span></code> type, but known as an iterator. An iterator can be thought of as a list that returns a single item at a time. We generally use them in a for loop or similar structure. The iterator returns integers starting at <code class="docutils literal notranslate"><span class="pre">start</span></code>, up to (but not including) <code class="docutils literal notranslate"><span class="pre">stop</span></code>, in steps of <code class="docutils literal notranslate"><span class="pre">step</span></code>.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># (0,6,1) -&gt; 0 to 6 (but not 6) in steps of 1</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># (2,10,2) -&gt; 0 to 10 (but not 10) in steps of 2</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>
+<span class="mi">4</span>
+<span class="mi">6</span>
+<span class="mi">8</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">range()</span></code> to print numbers counting down from 10 to 1 (<strong>inclusive</strong>)</p></li>
+<li><p>include comments to explain your answer</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="enumerate">
+<h2><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code><a class="headerlink" href="#enumerate" title="Permalink to this headline">¶</a></h2>
+<p>Since counting in loops is a common task, we can use the built in method <a class="reference external" href="https://docs.python.org/3/library/functions.html#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></a> to achieve the same thing as above.</p>
+<p>The syntax to achieve the same as the code above is then:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">for loop with enumerate()</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hat&#39;</span><span class="p">,</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span><span class="s1">&#39;keys&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">count</span><span class="p">,</span><span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+    <span class="c1"># print counter in loop</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;item </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">item</span> <span class="mi">0</span> <span class="ow">is</span> <span class="n">hat</span>
+<span class="n">item</span> <span class="mi">1</span> <span class="ow">is</span> <span class="n">dog</span>
+<span class="n">item</span> <span class="mi">2</span> <span class="ow">is</span> <span class="n">keys</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-4">
+<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>copy the code above</p></li>
+<li><p>as in the previous exercise, check to see if the value of <code class="docutils literal notranslate"><span class="pre">count</span></code> at the end of the loop is the same as the length of the list.</p></li>
+<li><p>Explain why you get the result you do</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="looping-over-dictionaries-and-assert">
+<h2>looping over dictionaries, and <code class="docutils literal notranslate"><span class="pre">assert</span></code><a class="headerlink" href="#looping-over-dictionaries-and-assert" title="Permalink to this headline">¶</a></h2>
+<p>Let’s set up a dictionary with the names of the months as keys, and the n umber of days in. each month as the item.</p>
+<p>We will introduce a new term <code class="docutils literal notranslate"><span class="pre">assert</span></code> to test that the lengths of the lists are equal before we proceed. This takes the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">asset</span> <span class="n">statement</span>
+</pre></div>
+</div>
+<p>If statement is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the assertion passes (the code flow continues). If it is <code class="docutils literal notranslate"><span class="pre">false</span></code>, the code execution will stop at that point. It is very useful for error checking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Using the months exercise from 014_Python_groups</span>
+
+<span class="sd">first construct the dictionary we want: days_in_month</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;January&quot;</span><span class="p">,</span><span class="s2">&quot;February&quot;</span><span class="p">,</span><span class="s2">&quot;March&quot;</span><span class="p">,</span><span class="s2">&quot;April&quot;</span><span class="p">,</span><span class="s2">&quot;May&quot;</span><span class="p">,</span>\
+         <span class="s2">&quot;June&quot;</span><span class="p">,</span><span class="s2">&quot;July&quot;</span><span class="p">,</span><span class="s2">&quot;August&quot;</span><span class="p">,</span><span class="s2">&quot;September&quot;</span><span class="p">,</span><span class="s2">&quot;October&quot;</span><span class="p">,</span>\
+         <span class="s2">&quot;November&quot;</span><span class="p">,</span><span class="s2">&quot;December&quot;</span><span class="p">]</span>
+<span class="c1"># create a list called `ndays` with the number of days in each month (for this year)</span>
+<span class="n">ndays</span> <span class="o">=</span> <span class="p">[</span><span class="mi">31</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">31</span><span class="p">]</span>
+
+<span class="c1"># now use assert to test if the lengths are equal:</span>
+<span class="c1"># we will do that by making the statement:</span>
+<span class="c1">#    len(months) == len(ndays)</span>
+<span class="c1"># which can be True or False</span>
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">months</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ndays</span><span class="p">)</span>
+
+<span class="c1"># Use these two lists to make a dictionary called `days_in_month` </span>
+<span class="c1"># with the key as month name and value as the number of days in that month.</span>
+<span class="n">days_in_month</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">months</span><span class="p">,</span><span class="n">ndays</span><span class="p">))</span>
+
+<span class="c1"># what are the keys</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the keys are: </span><span class="si">{</span><span class="n">days_in_month</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">the</span> <span class="n">keys</span> <span class="n">are</span><span class="p">:</span> <span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> <span class="pre">...</span></code> structure we saw above applies to any group of items (or more formally, any <a class="reference external" href="https://www.w3schools.com/python/python_iterators.asp">iterable item</a>). How could we apply this to looping over dictionaries for instance?</p>
+<p>One straightforward way would be to simply loop over the dictionary keys:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">loop over the keys and print key and value</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">days_in_month</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">days_in_month</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Month </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1"> has </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Month</span> <span class="n">January</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">February</span> <span class="n">has</span> <span class="mi">29</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">March</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">April</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">May</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">June</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">July</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">August</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">September</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">October</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">November</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">December</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+</pre></div>
+</div>
+<p>This works fine, but we can simplify the structure by looping over the iterable object <code class="docutils literal notranslate"><span class="pre">items()</span></code> instead of `keys().</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">days_in_month</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="mi">29</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;December&#39;</span><span class="p">,</span> <span class="mi">31</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">items()</span></code> returns a set of tuples containing (<code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code>). So we can directly loop over that to have the much simpler code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">use items</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="n">days_in_month</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Month </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1"> has </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Month</span> <span class="n">January</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">February</span> <span class="n">has</span> <span class="mi">29</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">March</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">April</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">May</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">June</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">July</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">August</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">September</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">October</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">November</span> <span class="n">has</span> <span class="mi">30</span> <span class="n">days</span>
+<span class="n">Month</span> <span class="n">December</span> <span class="n">has</span> <span class="mi">31</span> <span class="n">days</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-5">
+<h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>set up  list of numbers (years) from 2008 to 2019 <strong>inclusive</strong>,</p></li>
+<li><p>set up a list of corresponding chinese zodiac names as the items (look <a class="reference external" href="https://www.chinahighlights.com/travelguide/chinese-zodiac/#:~:text=In%20order%2C%20the%2012%20Chinese,a%20year%20of%20the%20Rat.">online</a> for this information).</p></li>
+<li><p>check that the lists have the same length</p></li>
+<li><p>form a dictionary from the two lists, using <code class="docutils literal notranslate"><span class="pre">dict(zip())</span></code> as in the examples above</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">.items()</span></code> as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: <code class="docutils literal notranslate"><span class="pre">f'{y}</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">year</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">{z}'</span></code>, assuming <code class="docutils literal notranslate"><span class="pre">y</span></code> is the key and <code class="docutils literal notranslate"><span class="pre">z</span></code> the item.</p></li>
+<li><p>Describe what you are doing at each step</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>We should know know how to use <code class="docutils literal notranslate"><span class="pre">if</span></code> statements in Python to control program flow. We can make choices as to what happens in the code, depending on whether or not one or more tests are passed. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.</p>
+<p>We know that conditions inside <code class="docutils literal notranslate"><span class="pre">if</span></code> statements use indentation in Python, and we know to be careful in our use of this. We have learnt about <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> and <code class="docutils literal notranslate"><span class="pre">range()</span></code>.</p>
+<p>We have also seen the use of <code class="docutils literal notranslate"><span class="pre">assert</span></code> to do some checking that our code is correct.</p>
+<p>There are additional notes in <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#the-range-function">docs.python.org</a> you can follow up to deepen your understanding of these topics. You can get more practice with <code class="docutils literal notranslate"><span class="pre">assert</span></code> at <a class="reference external" href="https://www.w3schools.com/python/ref_keyword_assert.asp">w3schools</a>.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="015_Python_control.html" title="previous chapter">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+      <li>Next: <a href="017_Functions.html" title="next chapter">Functions in Python</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/016_Python_for.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

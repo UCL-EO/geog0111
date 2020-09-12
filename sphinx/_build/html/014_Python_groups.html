@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>014 Groups &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="015 Control in Python: if" href="015_Python_control.html" />
+    <link rel="prev" title="013 String methods" href="013_Python_string_methods.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="groups">
+<h1>014 Groups<a class="headerlink" href="#groups" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>In this section we will learn how use groups of objects in Python.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="003_Help.html"><span class="doc">003 Getting help</span></a></p></li>
+<li><p><a class="reference internal" href="010_Python_Introduction.html"><span class="doc">010 Variables, comments and print()</span></a></p></li>
+<li><p><a class="reference internal" href="011_Python_data_types.html"><span class="doc">011 Data types</span></a> In particular, you should be understand strings.</p></li>
+<li><p><a class="reference internal" href="012_Python_strings.html"><span class="doc">012 String formatting</span></a></p></li>
+<li><p><a class="reference internal" href="013_Python_string_methods.html"><span class="doc">013_Python_string_methods</span></a></p></li>
+</ul>
+<p>In the exercises below, make use of f-strings when building statements to print.</p>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 30 minutes.</p>
+</div>
+</div>
+<div class="section" id="groups-of-things">
+<h2>Groups of things<a class="headerlink" href="#groups-of-things" title="Permalink to this headline">¶</a></h2>
+<p>Very often, we will want to group items together. There are several main mechanisms for doing this in Python, known as:</p>
+<ul class="simple">
+<li><p>string e.g. <code class="docutils literal notranslate"><span class="pre">hello</span></code></p></li>
+<li><p>tuple, e.g. <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></code></p></li>
+<li><p>list, e.g. <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p></li>
+</ul>
+<p>A slightly different form of group is a dictionary:</p>
+<ul class="simple">
+<li><p>dict, e.g. <code class="docutils literal notranslate"><span class="pre">{1:'one',</span> <span class="pre">2:'two',</span> <span class="pre">3:'three'}</span></code></p></li>
+</ul>
+<p>You will notice that each of the grouping structures <code class="docutils literal notranslate"><span class="pre">tuple</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">dict</span></code> use a different form of bracket and that quotes are used to bracket a string.</p>
+<p>We have seen that a string is an ordered collection in the material above, so will deal with the others here.</p>
+<p>We noted the concept of length (<code class="docutils literal notranslate"><span class="pre">len()</span></code>), that elements of the ordered collection could be accessed via an index or slice. All of these same ideas apply to the first set of groups (string, tuple, list, numpy array) as they are all ordered collections.</p>
+<p>A dictionary is not (by default) ordered, however, so indices have no role. Instead, we use ‘keys’.</p>
+<div class="section" id="tuple">
+<h3><code class="docutils literal notranslate"><span class="pre">tuple</span></code><a class="headerlink" href="#tuple" title="Permalink to this headline">¶</a></h3>
+<p>A tuple is a group of items separated by commas. In the case of a tuple, the brackets are optional.
+You can have a group of differnt types in a tuple (e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>)</p>
+<div class="section" id="using-a-tuple">
+<h4>Using a <code class="docutils literal notranslate"><span class="pre">tuple</span></code><a class="headerlink" href="#using-a-tuple" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># for spacing</span>
+<span class="n">dash</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">----------&#39;</span>
+
+<span class="c1"># load into the tuple</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># unload from the tuple</span>
+<span class="c1"># notice we must have the same number of items</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">t</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">dash</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">dash</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;the type of t is&#39;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(1, 2, &#39;three&#39;, False) 
+----------
+1 2 three False 
+----------
+the type of t is &lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+<p>If there is only one element in a tuple, you must put a comma , at the end, otherwise it is not interpreted as a tuple:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1 &lt;class &#39;int&#39;&gt;
+(1,) &lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+<p>You can have an empty tuple though:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>() &lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a tuple called <code class="docutils literal notranslate"><span class="pre">t</span></code> that contains the integers <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code> inclusive</p></li>
+<li><p>print out the value of <code class="docutils literal notranslate"><span class="pre">t</span></code></p></li>
+<li><p>use the tuple to set variables <code class="docutils literal notranslate"><span class="pre">a1</span></code>,<code class="docutils literal notranslate"><span class="pre">a2</span></code>,<code class="docutils literal notranslate"><span class="pre">a3</span></code>,<code class="docutils literal notranslate"><span class="pre">a4</span></code>,<code class="docutils literal notranslate"><span class="pre">a5</span></code></p></li>
+<li><p>print  <code class="docutils literal notranslate"><span class="pre">a1</span></code>,<code class="docutils literal notranslate"><span class="pre">a2</span></code>,<code class="docutils literal notranslate"><span class="pre">a3</span></code>,<code class="docutils literal notranslate"><span class="pre">a4</span></code>,<code class="docutils literal notranslate"><span class="pre">a5</span></code></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="list">
+<h3><code class="docutils literal notranslate"><span class="pre">list</span></code><a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">list</span></code> is similar to a <code class="docutils literal notranslate"><span class="pre">tuple</span></code>. One main difference is that you can <strong>change individual elements in a list but not in a tuple</strong>.
+To convert between a list and tuple, use the ‘casting’ methods <code class="docutils literal notranslate"><span class="pre">list()</span></code> and <code class="docutils literal notranslate"><span class="pre">tuple()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># a tuple</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># cast to a list</span>
+<span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">t0</span><span class="p">)</span>
+
+<span class="c1"># cast to a tuple</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;type of </span><span class="si">{}</span><span class="s1"> is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;type of </span><span class="si">{}</span><span class="s1"> is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">l</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>type of (1, 2, 3) is &lt;class &#39;tuple&#39;&gt;
+type of [1, 2, 3] is &lt;class &#39;list&#39;&gt;
+</pre></div>
+</div>
+<p>You can concatenate (join) lists or tuples with the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="n">l0</span> <span class="o">+</span> <span class="n">l1</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;joint list:&#39;</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">joint</span> <span class="nb">list</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>A common method associated with lists or tuples is:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index()</span></code></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
+
+<span class="c1"># print the index of the item integer 4 </span>
+<span class="c1"># in the tuple / list</span>
+
+<span class="n">item_number</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Note the dot . here</span>
+<span class="c1"># as index is a method of the class list</span>
+<span class="n">ind</span>  <span class="o">=</span> <span class="n">l0</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">item_number</span><span class="p">)</span>
+
+<span class="c1"># notice that this is different</span>
+<span class="c1"># as len() is not a list method, but </span>
+<span class="c1"># does operatate on lists/tuples</span>
+<span class="c1"># Note: do not use len as a variable name!</span>
+<span class="n">llen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the index of </span><span class="si">{</span><span class="n">item_number</span><span class="si">}</span><span class="s1"> in </span><span class="si">{</span><span class="n">l0</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">ind</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the length of the </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">l0</span><span class="p">)</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">l0</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">llen</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>the index of 4 in [2, 8, 4, 32, 16] is 2
+the length of the &lt;class &#39;list&#39;&gt; [2, 8, 4, 32, 16] is 5
+</pre></div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>copy the code to a new code block below, and test that this works with lists, as well as tuples</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>set a list called <code class="docutils literal notranslate"><span class="pre">l0</span></code> with <code class="docutils literal notranslate"><span class="pre">l0</span> <span class="pre">=</span> <span class="pre">[2,8,4,32,16]</span></code></p></li>
+<li><p>find the index of the integer 16 in the tuple/list</p></li>
+<li><p>what is the index of the first item?</p></li>
+<li><p>what is the length of the tuple/list?</p></li>
+<li><p>what is the index of the last item?</p></li>
+</ul>
+<p>A list has a much richer set of methods than a tuple. This is because we can add or remove list items (but not tuple).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">insert(i,j)</span></code> : insert <code class="docutils literal notranslate"><span class="pre">j</span></code> beore item <code class="docutils literal notranslate"><span class="pre">i</span></code> in the list</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">append(j)</span></code> : append <code class="docutils literal notranslate"><span class="pre">j</span></code> to the end of the list</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sort()</span></code> : sort the list</p></li>
+</ul>
+<p>Recall from <a class="reference external" href="003_Help.md#Exercise">003_Help</a> that <code class="docutils literal notranslate"><span class="pre">sort()</span></code> is an <code class="docutils literal notranslate"><span class="pre">in-place</span></code> operation, and remeber the consequences of that. Notice that <code class="docutils literal notranslate"><span class="pre">insert()</span></code> and <code class="docutils literal notranslate"><span class="pre">append()</span></code> are also <code class="docutils literal notranslate"><span class="pre">in-place</span></code> operations.</p>
+<p>This list of methods suggests that tuples and lists are ‘ordered’ (i.e. they maintain the order they are loaded in) so that indiviual elements may be accessed through an ‘index’. The index values start at 0 as we saw above. The index of the last element in a list/tuple is the length of the group, minus 1. This can also be referred to an index <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
+
+<span class="c1"># insert 64 at the begining (before item 0)</span>
+<span class="c1"># Note that this inserts &#39;in place&#39;</span>
+<span class="c1"># i.e. the list is changed by calling this</span>
+<span class="n">l0</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">64</span><span class="p">)</span>
+
+<span class="c1"># insert 128 *before* the last item (item -1)</span>
+<span class="n">l0</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+
+<span class="c1"># append 256 on the end</span>
+<span class="n">l0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1"># copy the list and sort the copy</span>
+<span class="c1"># Note the use of the copy() method here</span>
+<span class="c1"># to create a copy because the in-place method</span>
+<span class="c1"># will change l0</span>
+<span class="n">l1</span> <span class="o">=</span> <span class="n">l0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Note that this sorts &#39;in place&#39;</span>
+<span class="c1"># i.e. the list is changed by calling this</span>
+<span class="n">l1</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the list </span><span class="si">{</span><span class="n">l0</span><span class="si">}</span><span class="s1"> once sorted is </span><span class="si">{</span><span class="n">l1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">the</span> <span class="nb">list</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">256</span><span class="p">]</span> <span class="n">once</span> <span class="nb">sorted</span> <span class="ow">is</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-4">
+<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>set a list called <code class="docutils literal notranslate"><span class="pre">l0</span></code> with <code class="docutils literal notranslate"><span class="pre">l0</span> <span class="pre">=</span> <span class="pre">[2,8,4,32,16]</span></code></p></li>
+<li><p>find the index of <code class="docutils literal notranslate"><span class="pre">16</span></code> in this list</p></li>
+<li><p>use this insert the number <code class="docutils literal notranslate"><span class="pre">128</span></code> between the entries for <code class="docutils literal notranslate"><span class="pre">32</span></code> and <code class="docutils literal notranslate"><span class="pre">16</span></code></p></li>
+<li><p>take a copy of <code class="docutils literal notranslate"><span class="pre">l0</span></code>, call it <code class="docutils literal notranslate"><span class="pre">l0_test</span></code> and insert the string <code class="docutils literal notranslate"><span class="pre">'hello</span> <span class="pre">world'</span></code> at index <code class="docutils literal notranslate"><span class="pre">-2</span></code></p></li>
+<li><p>what positive index number could we have used in place of <code class="docutils literal notranslate"><span class="pre">-2</span></code> here?</p></li>
+<li><p>why?</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="multiple-dimensional-lists">
+<h3>multiple dimensional lists<a class="headerlink" href="#multiple-dimensional-lists" title="Permalink to this headline">¶</a></h3>
+<p>Lists and tuples are not limited to a single dimension. Sometimes we will want to define multi-dimensional lists, e.g.:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],[</span><span class="mi">9</span><span class="p">,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span><span class="mi">8</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="mi">6</span>
+</pre></div>
+</div>
+<p>but the structure and parsing of this is now quite complicated.</p>
+<p>Using multiple dimensions is sometime necessary, but can cause complications. Often we can find a simpler alternative.</p>
+<p>One time we may want them is in associating one list with another, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">,</span><span class="s1">&#39;four&#39;</span><span class="p">]</span>
+
+<span class="n">combined</span> <span class="o">=</span> <span class="p">[</span><span class="n">values</span><span class="p">,</span><span class="n">keys</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>This is a <em>regular</em> list, because the length of the sub-list is the same in both cases.</p>
+</div>
+<div class="section" id="dict">
+<h3><code class="docutils literal notranslate"><span class="pre">dict</span></code><a class="headerlink" href="#dict" title="Permalink to this headline">¶</a></h3>
+<p>The collections we have used so far have all been ordered. This means that we can refer to a particular element in the group by an index, e.g. <code class="docutils literal notranslate"><span class="pre">array[10]</span></code>.</p>
+<p>A dictionary is not (by default) ordered. Instead of indices, we use ‘keys’ to refer to elements: each element has a key associated with it. It can be very useful for data organisation (e.g. databases) to have a key to refer to, rather than e.g. some arbitrary column number in a gridded dataset.</p>
+<p>A dictionary is defined as a group in braces (curley brackets). For each elerment, we specify the key and then the value, separated by <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="c1"># we then refer to the keys and values in the dict as:</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a:</span><span class="se">\n\t</span><span class="s1"> </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a.keys():</span><span class="se">\n\t</span><span class="s1"> </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>     <span class="c1"># the keys</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a.values():</span><span class="se">\n\t</span><span class="s1"> </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># returns the values</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a.items():</span><span class="se">\n\t</span><span class="s1"> </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>   <span class="c1"># returns a list of tuples</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">:</span>
+	 <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+	 <span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">])</span>
+<span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+	 <span class="n">dict_values</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+	 <span class="n">dict_items</span><span class="p">([(</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>We refer to specific items using the key e.g.:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>You can add to a dictionary using the in-place operator <code class="docutils literal notranslate"><span class="pre">update</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">update</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">method_descriptor</span><span class="p">:</span>
+
+<span class="n">update</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">D</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">E</span><span class="p">,</span> <span class="p">]</span><span class="o">**</span><span class="n">F</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="o">.</span>  <span class="n">Update</span> <span class="n">D</span> <span class="kn">from</span> <span class="nn">dict</span><span class="o">/</span><span class="n">iterable</span> <span class="n">E</span> <span class="ow">and</span> <span class="n">F</span><span class="o">.</span>
+    <span class="n">If</span> <span class="n">E</span> <span class="ow">is</span> <span class="n">present</span> <span class="ow">and</span> <span class="n">has</span> <span class="n">a</span> <span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="n">method</span><span class="p">,</span> <span class="n">then</span> <span class="n">does</span><span class="p">:</span>  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">E</span><span class="p">:</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">If</span> <span class="n">E</span> <span class="ow">is</span> <span class="n">present</span> <span class="ow">and</span> <span class="n">lacks</span> <span class="n">a</span> <span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="n">method</span><span class="p">,</span> <span class="n">then</span> <span class="n">does</span><span class="p">:</span>  <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">E</span><span class="p">:</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">In</span> <span class="n">either</span> <span class="n">case</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">followed</span> <span class="n">by</span><span class="p">:</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">F</span><span class="p">:</span>  <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;four&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;five&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># or for a single value</span>
+<span class="n">a</span><span class="p">[</span><span class="s1">&#39;six&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;five&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;five&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Quite often, you find that you have the keys you want to use in a dictionary as a list or array, and the values in another list.</p>
+<p>In such a case, we can use the method <code class="docutils literal notranslate"><span class="pre">zip(keys,values)</span></code> to load into the dictionary. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">,</span><span class="s1">&#39;four&#39;</span><span class="p">]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span><span class="n">values</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-5">
+<h4>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a list called <code class="docutils literal notranslate"><span class="pre">months</span></code> with the names of the months of the year</p></li>
+<li><p>create a list called <code class="docutils literal notranslate"><span class="pre">ndays</span></code> with the number of days in each month (for this year)</p></li>
+<li><p>confirm that the two lists have the same length (12)</p></li>
+<li><p>Use these two lists to make a dictionary called <code class="docutils literal notranslate"><span class="pre">days_in_month</span></code> with the key as month name and value as the number of days in that month.</p></li>
+<li><p>print out the dictionary and confirm it is as expected</p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">m</span></code> to be the name of a month</p></li>
+<li><p>using <code class="docutils literal notranslate"><span class="pre">m</span></code> and your dictionary, print out the number of days in month <code class="docutils literal notranslate"><span class="pre">m</span></code></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we have extended the types of data we might come across to include groups. We dealt with ordered groups of various types (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>). We saw dictionaries as collections with which we refer to individual items with a key. We saw how we can use <code class="docutils literal notranslate"><span class="pre">zip()</span></code> to help load a dataset from arrays into a dictionary.</p>
+<p>You should know how to build, access and modify strings, lists, tuples and dictionaries. You should be very familiar with formatted print statements by now.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="013_Python_string_methods.html" title="previous chapter">013 String methods</a></li>
+      <li>Next: <a href="015_Python_control.html" title="next chapter">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/014_Python_groups.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>002 Some basic UNIX &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="003 Help" href="003_Help.html" />
+    <link rel="prev" title="001 Use of Jupyter notebooks" href="001_Notebook_use.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="some-basic-unix">
+<h1>002 Some basic UNIX<a class="headerlink" href="#some-basic-unix" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>Although this course is about coding in Python, it can be of great value to you to learn at least some basic concepts and commands of the operating system. To that end, in this session we will learn some basic <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands. You will be able to use these in almost any modern computing operating system may use: the <code class="docutils literal notranslate"><span class="pre">unix</span></code> shell is a core part of <a class="reference external" href="https://www.linux.org/"><code class="docutils literal notranslate"><span class="pre">linux</span></code></a> and <a class="reference external" href="https://en.wikipedia.org/wiki/MacOS">macOS</a> and is directly available to you even in <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows 10</a>. If you use these notes through the <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code></a> interface, even from a mobile device, you will have access to a <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash"><code class="docutils literal notranslate"><span class="pre">unix</span></code> shell</a> to run commands.</p>
+<p>There are many online tutorials on unix. A good place to start backup material and some more features for the material we will cover today is <a class="reference external" href="https://v4.software-carpentry.org/shell/index.html">software-carpentry.org</a>.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+</ul>
+<p>Remember that you can ‘run’ the code in a code block using the ‘run’ widget (above) or hitting the keys (‘typing’) <shift> and <return> at the same time.</p>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 15 minutes.</p>
+</div>
+</div>
+<div class="section" id="running-unix-commands">
+<h2>Running unix commands<a class="headerlink" href="#running-unix-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unix-in-code-cells">
+<h3>Unix in code cells<a class="headerlink" href="#unix-in-code-cells" title="Permalink to this headline">¶</a></h3>
+<p>The code cells in this notebook take Python commands by default, but we can run <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands either by pre-pending a single command with <code class="docutils literal notranslate"><span class="pre">!</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pwd
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
+</pre></div>
+</div>
+<p>or by using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+
+<span class="c1"># comment is after #</span>
+<span class="nb">pwd</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
+</pre></div>
+</div>
+<p>If you are using these notes through the <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code></a> interface you have access to a <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash">terminal</a> to run unix commands.</p>
+<p>### Navigating the file system</p>
+</div>
+<div class="section" id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">~</span></code>, <code class="docutils literal notranslate"><span class="pre">.</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>You will be used to the idea of navigating the filesystem from any previous computing you have ever done. You may have done this by clicking your way to a certain ‘location’ using <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">explorer</span></code> (in Windows 10) or <code class="docutils literal notranslate"><span class="pre">Finder</span></code> (in MacOS), but you will have some familiarity with the tree-like nature of a filesystem: you go up or down in the system to find your way to the files and directories you want.</p>
+<p>When we do this typing command in the <code class="docutils literal notranslate"><span class="pre">unix</span></code> shell, the concepts are exactly the same, but we have some new symbols to learn to help us navigate:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="o">~</span> <span class="p">(</span><span class="n">tilde</span><span class="o">/</span><span class="n">twiddle</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">.</span> <span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">..</span> <span class="p">(</span><span class="n">dot</span><span class="o">-</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The tilde symbol <code class="docutils literal notranslate"><span class="pre">~</span></code> is a shorthand to refer to your home directory (this would generally be <code class="docutils literal notranslate"><span class="pre">C:\Users\username</span></code> on windows, <code class="docutils literal notranslate"><span class="pre">/Users/username</span></code> on MacOS or <code class="docutils literal notranslate"><span class="pre">/home/username</span></code> in linux, where <code class="docutils literal notranslate"><span class="pre">username</span></code> is your username). On windows, the file separator is <code class="docutils literal notranslate"><span class="pre">\</span></code> (backslash), but on <a class="reference external" href="https://en.wikipedia.org/wiki/POSIX#:~:text=The%20Portable%20Operating%20System%20Interface,maintaining%20compatibility%20between%20operating%20systems.">posix</a> (<code class="docutils literal notranslate"><span class="pre">unix</span></code>-like) systems it is ‘/’, forward slash. This can cause some issues when changing operating system. You should try to use the posix ‘/’ whenever you can as this is more portable.</p>
+<p>The symbol <code class="docutils literal notranslate"><span class="pre">.</span></code> means the current directory, and <code class="docutils literal notranslate"><span class="pre">..</span></code> refers to one level up in the directory tree.</p>
+</div>
+<div class="section" id="cd-pwd">
+<h3><code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">pwd</span></code><a class="headerlink" href="#cd-pwd" title="Permalink to this headline">¶</a></h3>
+<p>The command <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">filepath</span></code> is used in the shell to change from one directory to another. Typically, when you start a shell, you will be in your home directory. We can explicitly ‘go to’ (i.e. <code class="docutils literal notranslate"><span class="pre">cd</span></code> to) your home with <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code>. We use the command <code class="docutils literal notranslate"><span class="pre">pwd</span></code> to print the current working directory.</p>
+<p>So the following sequence:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="nb">cd</span> ~
+<span class="nb">pwd</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span>
+</pre></div>
+</div>
+<p>changes directory to our home, and prints the directory name.</p>
+<p>In the following command, we use <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code> to go up one directory. Notice that each time we start a new shell here, the location is re-set to the location of these notebooks (e.g. <code class="docutils literal notranslate"><span class="pre">geog0111/notebooks</span></code> or <code class="docutils literal notranslate"><span class="pre">geog0111/notebooks_lab</span></code> depending on where you run the notebook from).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="nb">pwd</span>
+<span class="nb">cd</span> ..
+<span class="nb">pwd</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">cd</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span></code> to move one directory at a time to your home directory. Check where you are at each stage using <code class="docutils literal notranslate"><span class="pre">pwd</span></code>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">cd</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> to go straight to your home directory. Then go from there back to the notebook directory. Check where you are at each stage using <code class="docutils literal notranslate"><span class="pre">pwd</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="ls-ls-lh">
+<h3><code class="docutils literal notranslate"><span class="pre">ls</span></code> <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lh</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code><a class="headerlink" href="#ls-ls-lh" title="Permalink to this headline">¶</a></h3>
+<p>The command <code class="docutils literal notranslate"><span class="pre">ls</span></code> lists the files specified. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="nb">cd</span> ~/geog0111
+ls R*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">R*</span></code> uses the wildcard <code class="docutils literal notranslate"><span class="pre">*</span></code>, so <code class="docutils literal notranslate"><span class="pre">R*</span></code> means <code class="docutils literal notranslate"><span class="pre">R</span></code> followed by zero or more characters.</p>
+<p>If we specify the option <code class="docutils literal notranslate"><span class="pre">-lh</span></code> then it provides a long listing (<code class="docutils literal notranslate"><span class="pre">-l</span></code>) with file size in ‘human-readable’ format (<code class="docutils literal notranslate"><span class="pre">-h</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="nb">cd</span> ~/geog0111
+ls -lh README.md
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">3.3</span><span class="n">K</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+<p>Here, the file size if <code class="docutils literal notranslate"><span class="pre">321B</span></code> (321 Bytes), and the file is owned by the user <code class="docutils literal notranslate"><span class="pre">plewis</span></code>. The field <code class="docutils literal notranslate"><span class="pre">-rw-r--r--</span></code> provides information on file permissions. Ignoring the first <code class="docutils literal notranslate"><span class="pre">-</span></code>, it is in 3 sets of 3 bits:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rw</span><span class="o">-</span>  <span class="n">r</span><span class="o">--</span>  <span class="n">r</span><span class="o">--</span>
+</pre></div>
+</div>
+<p>which refer to permissions for the user, group, and everyone, respectively. The permission fields are <code class="docutils literal notranslate"><span class="pre">rwx</span></code>, meaning permissions of read, write, and execute, respectively. Execute here means that we can run the file as a script. In the example above, the no execute permission is set (it is not a script file), the user has read and write permission, and group and everyone have only read permissions. So, only the user can write to this file, but everyone can read it.</p>
+<p>These fields <code class="docutils literal notranslate"><span class="pre">rwx</span></code> can be viewed as 3 bits which we can interpret as a <a class="reference external" href="https://en.wikipedia.org/wiki/Octal">base-8 (octal) number</a> (i.e. between 0 and 7) where:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span> <span class="o">-&gt;</span> <span class="mi">0</span>
+<span class="o">--</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="mi">1</span>
+<span class="o">-</span><span class="n">w</span><span class="o">-</span> <span class="o">-&gt;</span> <span class="mi">2</span>
+<span class="o">-</span><span class="n">wx</span> <span class="o">-&gt;</span> <span class="mi">3</span>
+<span class="n">r</span><span class="o">--</span> <span class="o">-&gt;</span> <span class="mi">4</span>
+<span class="n">r</span><span class="o">-</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="mi">5</span>
+<span class="n">rw</span><span class="o">-</span> <span class="o">-&gt;</span> <span class="mi">6</span>
+<span class="n">rwx</span> <span class="o">-&gt;</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>Following that, we interpret the field <code class="docutils literal notranslate"><span class="pre">rw-r--r--</span></code> from above as <code class="docutils literal notranslate"><span class="pre">644</span></code>. The most common file permissions you will likely see or need are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">644</span> <span class="o">-&gt;</span> <span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>
+<span class="mi">755</span> <span class="o">-&gt;</span> <span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>examine the file permissions for files <code class="docutils literal notranslate"><span class="pre">bin/*</span></code> (in the directory <code class="docutils literal notranslate"><span class="pre">bin</span></code>)</p></li>
+<li><p>what do you notice about these?</p></li>
+<li><p>why do you think this is so?</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+
+<span class="c1"># pwd</span>
+<span class="nb">pwd</span>
+
+<span class="c1"># * examine the file permissions in the directory bin</span>
+ls -lh bin/*
+
+<span class="c1"># * what do you notice about these?</span>
+cat <span class="s">&lt;&lt; EOF</span>
+<span class="s">===============================</span>
+<span class="s">* what do you notice about these?</span>
+<span class="s">===============================</span>
+<span class="s">Most of them are -rwxr-xr-x, which is 755 so they have read write </span>
+<span class="s">and execute for the user (7) but only read and execute for others.</span>
+<span class="s">The file bin/README has 644: read and write for the user (6) but</span>
+<span class="s">just read for others.</span>
+<span class="s">EOF</span>
+
+cat <span class="s">&lt;&lt; EOF</span>
+<span class="s">===============================</span>
+<span class="s">* why do you think this is so?</span>
+<span class="s">===============================</span>
+<span class="s">Most of these are executable commands (scripts to run).</span>
+<span class="s">The ones that end with .sh will be sh or bash scripts</span>
+
+<span class="s">The README file is not executable: its just a text file.</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/Users/plewis/Documents/GitHub/geog0111/notebooks
+-rw-r--r--  1 plewis  staff    16B  9 Sep 11:22 bin/README
+lrwxr-xr-x  1 plewis  staff     7B 12 Sep 12:34 bin/copy -&gt; ../copy
+-rwxr-xr-x  1 plewis  staff   217B  9 Sep 10:28 bin/docker-build
+-rwxr-xr-x  1 plewis  staff   428B  9 Sep 10:28 bin/docker-killall
+-rwxr-xr-x  1 plewis  staff   1.0K  9 Sep 10:28 bin/docker-run
+-rwxr-xr-x  1 plewis  staff   569B  9 Sep 10:28 bin/git-remove-all.sh
+-rwxr-xr-x  1 plewis  staff   2.0K 11 Sep 08:26 bin/link-set.sh
+-rwxr-xr-x  1 plewis  staff   3.4K 12 Sep 12:29 bin/notebook-mkdocs.sh
+-rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/notebook-run.sh
+-rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/postBuild
+-rwxr-xr-x  1 plewis  staff   3.4K  9 Sep 10:28 bin/setup.sh
+===============================
+* what do you notice about these?
+===============================
+Most of them are -rwxr-xr-x, which is 755 so they have read write 
+and execute for the user (7) but only read and execute for others.
+The file bin/README has 644: read and write for the user (6) but
+just read for others.
+===============================
+* why do you think this is so?
+===============================
+Most of these are executable commands (scripts to run).
+The ones that end with .sh will be sh or bash scripts
+
+The README file is not executable: its just a text file.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="chmod">
+<h3><code class="docutils literal notranslate"><span class="pre">chmod</span></code><a class="headerlink" href="#chmod" title="Permalink to this headline">¶</a></h3>
+<p>We can change file permissions with the command <code class="docutils literal notranslate"><span class="pre">chmod</span></code>. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+ls -lh ../README.md
+chmod <span class="m">755</span> ../README.md
+ls -lh ../README.md
+chmod <span class="m">644</span> ../README.md
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">3.3</span><span class="n">K</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="o">@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">3.3</span><span class="n">K</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+<p>First the permissions of the file are 644 as we saw above, then we use <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">755</span></code> to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="mi">755</span> <span class="n">filename</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="absolute-and-relative-pathnames">
+<h3>absolute and relative pathnames<a class="headerlink" href="#absolute-and-relative-pathnames" title="Permalink to this headline">¶</a></h3>
+<p>A posix directory name that <strong>starts with</strong> the file separator ‘/’ is called an <strong>absolute</strong> pathname: it is addressed from the root of the file system (<code class="docutils literal notranslate"><span class="pre">/</span></code>). An example of an absolute filename is <code class="docutils literal notranslate"><span class="pre">/home/jovyan/geog0111/README.md</span></code>. If the filename starts with <code class="docutils literal notranslate"><span class="pre">~</span></code>, it is in effect an absolute pathname. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+ls -l ~/geog0111/README.md
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">3390</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+<p>A <em>relative pathname</em> is one that does not start with <code class="docutils literal notranslate"><span class="pre">/</span></code>  or <code class="docutils literal notranslate"><span class="pre">~</span></code>. It is specified relative to where we are in the filesystem in the current shell. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+ls -l ../README.md
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">3390</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+<p>Recall that we use <code class="docutils literal notranslate"><span class="pre">..</span></code> to specify ‘up one level’. Then:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="c1"># cd to absolute path ~/geog0111/images</span>
+<span class="nb">cd</span> ~/geog0111/images
+<span class="nb">pwd</span>
+
+<span class="c1"># now relatuve cd up one and down to bin</span>
+<span class="nb">cd</span> ../bin
+<span class="nb">pwd</span>
+
+<span class="c1"># now relative cd up one level</span>
+<span class="nb">cd</span> ..
+<span class="nb">pwd</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">images</span>
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-and-delete-a-file-cat-rm">
+<h3>Create and delete a file, <code class="docutils literal notranslate"><span class="pre">cat</span></code>, <code class="docutils literal notranslate"><span class="pre">rm</span></code><a class="headerlink" href="#create-and-delete-a-file-cat-rm" title="Permalink to this headline">¶</a></h3>
+<p>We can use the command <code class="docutils literal notranslate"><span class="pre">cat</span></code> to create a text files from a shell, for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+
+<span class="c1"># code between the next line and the </span>
+<span class="c1"># End Of File (EOF) marker will be saved in </span>
+<span class="c1"># to the file work/newfile.dat</span>
+<span class="c1"># the symbols &lt;&lt; and &gt; involve </span>
+<span class="c1"># redirection </span>
+cat <span class="s">&lt;&lt; EOF &gt; work/newererfile.dat</span>
+
+<span class="s"># this will go into the file</span>
+<span class="s">hello world - this is some text in a file</span>
+
+<span class="s">EOF</span>
+
+<span class="c1"># ls -l to see what we have: 73 Bytes here</span>
+ls -lh work/n*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>    <span class="mi">73</span><span class="n">B</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">12</span><span class="p">:</span><span class="mi">38</span> <span class="n">work</span><span class="o">/</span><span class="n">newererfile</span><span class="o">.</span><span class="n">dat</span>
+</pre></div>
+</div>
+<p>We can also use <code class="docutils literal notranslate"><span class="pre">cat</span></code> to see what is in a file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+cat work/newererfile.dat
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># this will go into the file</span>
+<span class="n">hello</span> <span class="n">world</span> <span class="o">-</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">file</span>
+</pre></div>
+</div>
+<p>We can use the command <code class="docutils literal notranslate"><span class="pre">rm</span></code> to delete a file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+rm work/newererfile.dat
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-from-jupyterlab">
+<h3>Creating from JupyterLab<a class="headerlink" href="#creating-from-jupyterlab" title="Permalink to this headline">¶</a></h3>
+<p>If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:</p>
+<p><img alt="JupyterLab tools" src="_images/jl.png" /></p>
+<p>Among these you will see ‘text file’. Launch a text file, write your Python code into the file, and save it (<code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Save</span> <span class="pre">As</span></code>) to the Python file name you want in your <code class="docutils literal notranslate"><span class="pre">work</span> <span class="pre">directory</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">work/test.py</span></code>).</p>
+<p>Alternatively, use the menu item <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">New</span> <span class="pre">-&gt;</span> <span class="pre">Text</span> <span class="pre">File</span></code> to open a new text file.</p>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Create a file <code class="docutils literal notranslate"><span class="pre">work/newfile.dat</span></code> using cat and check the new file size.</p></li>
+<li><p>Use the menu item <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Open</span></code> to edit the file you have created and print the new file size</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">cat</span></code> to show the new file content</p></li>
+<li><p>delete the file</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-4">
+<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands and ideas from above:</p>
+<ul class="simple">
+<li><p>show a listing of the files in the relative directory <code class="docutils literal notranslate"><span class="pre">geog0111</span></code> that start with the letter <code class="docutils literal notranslate"><span class="pre">f</span></code></p></li>
+<li><p>interpret the file permissions and sizes of the files in there</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we have learned the following <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands and symbols:</p>
+<p>| cmd  |  meaning  | example use |
+|—|—|–|
+| <code class="docutils literal notranslate"><span class="pre">~</span></code>  |  twiddle / tilde -  home | <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/geog0111</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">.</span></code>  |  dot  - current directory | <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">*</span></code>  | wildcard   | <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">R*</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">cd</span></code>  | change directory   | <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/geog0111</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">pwd</span></code>  | print working directory | <code class="docutils literal notranslate"><span class="pre">pwd</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">ls</span></code>  | list | <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">README.md</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>  | long list | <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">README.md</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lh</span></code>  | human-readable long list |<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lh</span> <span class="pre">README.md</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">chmod</span></code>  | change mode (permissions) | <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">644</span> <span class="pre">README.md</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">rm</span></code> | remove | <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">work/n*</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">755</span></code> | <code class="docutils literal notranslate"><span class="pre">rwxr-xr-x</span></code> | <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">755</span> <span class="pre">bin/*</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">644</span></code> | <code class="docutils literal notranslate"><span class="pre">rw-r--r--</span></code> | <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">644</span> <span class="pre">README.md</span></code> |</p>
+<p>We have seen that we can use the cell magic <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> or <code class="docutils literal notranslate"><span class="pre">!</span></code> to use <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands in Python code cells in a notebook. This is a very basic introduction to unix, but it will allow you to make better use of the operating system and these notebooks.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="001_Notebook_use.html" title="previous chapter">001 Use of Jupyter notebooks</a></li>
+      <li>Next: <a href="003_Help.html" title="next chapter">003 Help</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/002_Unix.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

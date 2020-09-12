@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>001 Use of Jupyter notebooks &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="002 Some basic UNIX" href="002_Unix.html" />
+    <link rel="prev" title="GEOG0111" href="docindex.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="use-of-jupyter-notebooks">
+<h1>001 Use of Jupyter notebooks<a class="headerlink" href="#use-of-jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
+<p>This is a Jupyter notebook designed to let you get used to notebooks, and to test your python and notebooks installation.</p>
+<p>You can find much information on using notebooks on the <a class="reference external" href="https://jupyter.org/">web</a>, so you might start by exploring some of that.</p>
+<p>You should do the tasks in this notebook before the first class. We need to assume at that class that you have the basic familiarity with notebooks you will gain here.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This is your first Jupyter notebook of the class. Jupyter notebooks will form the primary teaching and learning tool in this course. The format of the notebooks will be similar for all sessions.</p>
+<div class="section" id="course-material">
+<h3>Course material<a class="headerlink" href="#course-material" title="Permalink to this headline">¶</a></h3>
+<p>You will find full, up to date information on this course GEOG0111 on the <a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=21495">UCL course moodle page</a>.</p>
+</div>
+<div class="section" id="course-load">
+<h3>Course load<a class="headerlink" href="#course-load" title="Permalink to this headline">¶</a></h3>
+<p>This course is intended to be 25 % of your course load for the term. You will find fuller information on the <a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=21495">GEOG0111 course moodle page</a>, but that percentage should give you some idea of the amount of effort we are expecting you to put in (on average) per week.</p>
+</div>
+<div class="section" id="learning">
+<h3>Learning<a class="headerlink" href="#learning" title="Permalink to this headline">¶</a></h3>
+<p>You will be expected to learn from what we present in these notebooks and by following up material referenced and wider resources.</p>
+<p>Learning is mostly blocked into two-week chunks, with a test you need to submit at the end of the block. You will receive feedback from your test submission to help you learn from what you have done well and not so well. It is important that you submit materials for these tests. It is not about ‘getting the right answer’, but giving us the opportunity to regularly gauge your progress.</p>
+<p>There will be two pieces of work that you submit for formal assessment on the course: one half way through, and one at the end. Again, we will provide you with feedback on these.</p>
+<p>You will be covering a number of notebooks per week in a learning chunk, and you will need to keep up. If you find you are having problems, or there are reasons you cannot work, you must let us know so we can help you.</p>
+<p>We will provide more information on learning in this course and the resources you have access to on the course moodle page.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>There are no prerequisites for this notebook.</p>
+<p>Note that you can ‘run’ the code in a code block using the ‘run’ widget (above) or hitting the keys (‘typing’) <shift> and <return> at the same time.</p>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 20 minutes though you will spend longer on follow-up material and exercises.</p>
+</div>
+<div class="section" id="some-resources">
+<h3>Some resources<a class="headerlink" href="#some-resources" title="Permalink to this headline">¶</a></h3>
+<p>There is a useful <a class="reference external" href="https://www.anaconda.com/wp-content/uploads/2019/03/11-2018-JupyterLab-Notebook-Cheatsheet.pdf">cheatsheet</a> on using Jupyter, and <a class="reference external" href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf">another, on markdown syntax</a> for you to use.</p>
+</div>
+<div class="section" id="anaconda-and-jupyter">
+<h3>Anaconda and Jupyter<a class="headerlink" href="#anaconda-and-jupyter" title="Permalink to this headline">¶</a></h3>
+<p>We will be using software from the <a class="reference external" href="https://anaconda.org/anaconda/python">anaconda distribution of python</a>. This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (<code class="docutils literal notranslate"><span class="pre">&gt;|</span> <span class="pre">Run</span></code>) should give, the following, or higher:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.0</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.12</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.1</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">6</span>
+<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">6</span>
+</pre></div>
+</div>
+<p>If that is not the case, then make a copy of what it does produce, and contact the course organisers through <a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=21495">moodle</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash 
+<span class="c1"># tests </span>
+jupyter --version
+conda -V
+python -V
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">qtconsole</span>        <span class="p">:</span> <span class="mf">4.7</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.18</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">2.2</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">8</span>
+</pre></div>
+</div>
+<p>The code cell above that we ran is a <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"><code class="docutils literal notranslate"><span class="pre">unix</span></code> (<code class="docutils literal notranslate"><span class="pre">bash</span></code>) shell</a>, indicated by the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> on the first line. This is a mechanism that lets us run unix commands in a Python notebook.</p>
+</div>
+</div>
+<div class="section" id="how-we-will-be-using-notebooks">
+<h2>How we will be using notebooks<a class="headerlink" href="#how-we-will-be-using-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>We will be using Jupyter notebooks to present course notes and view and run exercises.</p>
+<div class="section" id="saving-your-work">
+<h3>Saving your work<a class="headerlink" href="#saving-your-work" title="Permalink to this headline">¶</a></h3>
+<p>The first thing we want you to do when you open a new notebook is to <strong>make a copy of it in the <a class="reference external" href="work"><code class="docutils literal notranslate"><span class="pre">work</span></code></a> folder</strong>.</p>
+<p><strong>You should make a copy of each new notebook when you start.</strong> If you don’t, then any work you do may not be there the next time you run the notebook. When you come back to run a notebook again, in a new session, you should run the saved notebook (unless you want to start afresh).</p>
+</div>
+<div class="section" id="cells">
+<h3>Cells<a class="headerlink" href="#cells" title="Permalink to this headline">¶</a></h3>
+<p>The notebook is made up of a series of <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/notebook.html#:~:text=A%20cell%20is%20a%20multiline,markdown%20cells%2C%20and%20raw%20cells">cells</a>. Some cells, such as the one this is written in, are ‘text’ cells, where we format the text in a language called <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html">markdown</a>.</p>
+<p>Take a few minutes to explore the notebook menu, and note how to do things like:</p>
+<ul class="simple">
+<li><p>save the notebook</p></li>
+<li><p>save the notebook with a checkpoint: useful for exercises, as you can go back to previous versions!</p></li>
+<li><p>make a copy of the notebook and rename it</p></li>
+<li><p>download the notebook as a pdf</p></li>
+<li><p>restart the kernel (the ‘engine’ running this notebook)</p></li>
+<li><p>restart the kernel and clear output</p></li>
+</ul>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
+<p>We can add new cells to this document via the <code class="docutils literal notranslate"><span class="pre">Insert</span> <span class="pre">-&gt;</span> <span class="pre">Insert</span> <span class="pre">Cell</span> <span class="pre">Below</span></code> menu in the menu bar at the top of this document.</p>
+<p>Notice that you can double click on a cell to edit its contents.</p>
+<p>Add a cell now, below, and use the <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">-&gt;</span> <span class="pre">Cell</span> <span class="pre">Type</span></code> menu to make this cell type <code class="docutils literal notranslate"><span class="pre">markdown</span></code>. Add some text in there … lyrics from your favourite song, whatever you like …</p>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<p>Add another cell now, below, and use the Cell -&gt; Cell Type menu to make this cell type markdown.</p>
+<p>Read up on the <a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">features of markdown</a>, and this time, include one or more of the following in your cell:</p>
+<ul class="simple">
+<li><p>a heading</p></li>
+<li><p>a sub-heading</p></li>
+<li><p>and equation</p></li>
+<li><p>links to a web page</p></li>
+<li><p>a table</p></li>
+<li><p>a image</p></li>
+<li><p>some html</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="coding">
+<h2>Coding<a class="headerlink" href="#coding" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hello-world">
+<h3>hello world<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h3>
+<p>Next, let’s try a code cell below and do our first python coding. You should notice that it indicates this in the cell type box on the menu.</p>
+<p>We will use the method <code class="docutils literal notranslate"><span class="pre">print()</span></code> to print out a <code class="docutils literal notranslate"><span class="pre">string</span></code> (a list of characters) called <code class="docutils literal notranslate"><span class="pre">first_string</span></code>.</p>
+<p>We <em>execute</em> (‘run’) the code in the cell, either with the <code class="docutils literal notranslate"><span class="pre">&gt;|</span> <span class="pre">Run</span></code> button above, or by pressing the <code class="docutils literal notranslate"><span class="pre">SHIFT</span> <span class="pre">RETURN</span></code> keys at the same time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># comment with a hash</span>
+
+<span class="c1"># set a string variable</span>
+<span class="n">first_string</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
+
+<span class="c1"># print this</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first_string</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+<p>The type of cell we use is <code class="docutils literal notranslate"><span class="pre">Code</span></code> (rather than <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> above).</p>
+<p>Remember that we <em>execute</em> (‘run’) the code in the cell, either with the <code class="docutils literal notranslate"><span class="pre">&gt;|</span> <span class="pre">Run</span></code> button above, or by pressing the <code class="docutils literal notranslate"><span class="pre">SHIFT</span> <span class="pre">RETURN</span></code> keys at the same time.</p>
+<p>Try that out, running the code cell above.</p>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<p>Now:</p>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p>create a string called <code class="docutils literal notranslate"><span class="pre">second_string</span></code> with the text <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">again</span></code></p></li>
+<li><p>call the <code class="docutils literal notranslate"><span class="pre">print()</span></code> method with this as an <a class="reference external" href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)">argument</a></p></li>
+<li><p>run the cell</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-4">
+<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p>print the values of <code class="docutils literal notranslate"><span class="pre">first_string</span></code> and <code class="docutils literal notranslate"><span class="pre">second_string</span></code>  that we created above.</p></li>
+<li><p>what does that tell you about information we create in one cell and try to use in another?</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-5">
+<h4>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p>try to print a variable <code class="docutils literal notranslate"><span class="pre">third_string</span></code> (that you haven’t yet created)</p></li>
+<li><p>run the cell</p></li>
+<li><p>what does this tell you about trying to print variables we haven’t created?</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-6">
+<h4>Exercise 6<a class="headerlink" href="#exercise-6" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p><em>now</em> create a string called <code class="docutils literal notranslate"><span class="pre">third_string</span></code> with the text <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">once</span> <span class="pre">more</span></code></p></li>
+<li><p>run the cell, then the <strong>cell above</strong></p></li>
+<li><p>what does that tell you about information we create in one cell and try to use in another above?</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This notebook has introduced you to using jupyter notebooks.</p>
+<p>To make sure you understand it all, it is worthwhile restarting the kernel with cleared output (<code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">&amp;</span> <span class="pre">Clear</span> <span class="pre">Output</span></code>() and running it all again. Once you are happy with that, you might try (<code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">&amp;</span> <span class="pre">Run</span> <span class="pre">All</span></code>().</p>
+<p>We have explored the notebook menu, and seen how to run cells, create new cells, and change the cell type to something appropriate (<code class="docutils literal notranslate"><span class="pre">Markdown</span></code> or <code class="docutils literal notranslate"><span class="pre">Code</span></code> here).</p>
+<p>We have seen how to set a string variable and print the value of that variable.</p>
+<p>We have noticed that variables are persistent between cells, so if we define a variable in one cell, we can use it <em>later on</em>. We have seen that if we try to access a variable before we have declared it, it will throw a <code class="docutils literal notranslate"><span class="pre">NameError</span></code>, telling us this. Having seen this type of error once, and understanding why it occurred should prepare us for the next time we see one similar.</p>
+<p>We have seen one of the <em>dangers</em> of a notebook: it allows you to go back and forth running cells. This can lead to confusion, as the next time you run the same notebook in cell order, you may not get the same result! It is one of the most common mistakes for a beginner to make, so be aware of this, and try to always run the cells in the same order. <strong>You can test for this type of error by restarting the kernel, clearing the output, and running all cells.</strong></p>
+<p>We have written our very first <code class="docutils literal notranslate"><span class="pre">python</span></code> codes!</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="docindex.html" title="previous chapter">GEOG0111</a></li>
+      <li>Next: <a href="002_Unix.html" title="next chapter">002 Some basic UNIX</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/001_Notebook_use.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

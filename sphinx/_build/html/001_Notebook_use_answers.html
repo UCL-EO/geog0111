@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>001 Use of Jupyter notebooks : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="002 Some basic UNIX : Answers to exercises" href="002_Unix_answers.html" />
+    <link rel="prev" title="004 Accounts and logins" href="004_Accounts.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="use-of-jupyter-notebooks-answers-to-exercises">
+<h1>001 Use of Jupyter notebooks : Answers to exercises<a class="headerlink" href="#use-of-jupyter-notebooks-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<p>We can add new cells to this document via the <code class="docutils literal notranslate"><span class="pre">Insert</span> <span class="pre">-&gt;</span> <span class="pre">Insert</span> <span class="pre">Cell</span> <span class="pre">Below</span></code> menu in the menu bar at the top of this document.</p>
+<p>Notice that you can double click on a cell to edit its contents.</p>
+<p>Add a cell now, below, and use the <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">-&gt;</span> <span class="pre">Cell</span> <span class="pre">Type</span></code> menu to make this cell type <code class="docutils literal notranslate"><span class="pre">markdown</span></code>. Add some text in there … lyrics from your favourite song, whatever you like …</p>
+</div>
+</div>
+<div class="section" id="answer">
+<h1>ANSWER<a class="headerlink" href="#answer" title="Permalink to this headline">¶</a></h1>
+<p>This is a markdown cell …</p>
+<p>Hello world is traditionally the first coding you do.</p>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<p>Add another cell now, below, and use the Cell -&gt; Cell Type menu to make this cell type markdown.</p>
+<p>Read up on the <a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">features of markdown</a>, and this time, include one or more of the following in your cell:</p>
+<ul class="simple">
+<li><p>a heading</p></li>
+<li><p>a sub-heading</p></li>
+<li><p>and equation</p></li>
+<li><p>links to a web page</p></li>
+<li><p>a table</p></li>
+<li><p>a image</p></li>
+<li><p>some html</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id1">
+<h1>ANSWER<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="main-heading">
+<h1>Main Heading<a class="headerlink" href="#main-heading" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="equation">
+<h2>equation<a class="headerlink" href="#equation" title="Permalink to this headline">¶</a></h2>
+<p>Equations</p>
+<p>\begin{equation*}
+\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+\end{equation*}</p>
+<div class="section" id="link">
+<h3>link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.google.com">click me and I will pop up a google search window</a></p>
+</div>
+<div class="section" id="table">
+<h3>table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h3>
+<p>| a | b | c | d | e |
+|:-:|:-:|:-:|:-:|-|
+| 🙈 | 💥 | 🦧 | 🐇 | 🐪 |
+| f | g | h | i | j |
+| 🙈 | 💥 | 🦧 | 🐇 | 🐪 |</p>
+</div>
+<div class="section" id="image">
+<h3>image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
+<p><img alt="ucl logo" src="_images/ucl_logo.png" /></p>
+</div>
+<div class="section" id="html">
+<h3>html<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h3>
+<html>
+<body>
+<h2>HTML</h2><p>Hey, I'm a paragraph!</p></body>
+</html><div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<p>Now:</p>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p>create a string called <code class="docutils literal notranslate"><span class="pre">second_string</span></code> with the text <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">again</span></code></p></li>
+<li><p>call the <code class="docutils literal notranslate"><span class="pre">print()</span></code> method with this as an <a class="reference external" href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)">argument</a></p></li>
+<li><p>run the cell</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># create a code cell below</span>
+<span class="c1"># create a string called `second_string` with the text `hello again`</span>
+
+<span class="n">second_string</span> <span class="o">=</span> <span class="s1">&#39;hello again&#39;</span>
+
+<span class="c1"># call the `print()` method with this as an argument</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">second_string</span><span class="p">)</span>
+
+<span class="c1"># run the cell </span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">again</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-4">
+<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p>print the values of <code class="docutils literal notranslate"><span class="pre">first_string</span></code> and <code class="docutils literal notranslate"><span class="pre">second_string</span></code>  that we created above.</p></li>
+<li><p>what does that tell you about information we create in one cell and try to use in another?</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># create a code cell below</span>
+<span class="c1"># print the values of first_string and second_string that we created above.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">first_string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">second_string</span><span class="p">)</span>
+
+<span class="c1"># or</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">first_string</span><span class="p">,</span><span class="n">second_string</span><span class="p">)</span>
+
+<span class="c1"># what does that tell you about information we create in one cell and try to use in another?</span>
+<span class="c1"># </span>
+<span class="c1"># It tells us that the informnation is persistent, i.e. once we have created the </span>
+<span class="c1"># variables, we can use them in running any cells later.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+<span class="n">hello</span> <span class="n">again</span>
+<span class="n">hello</span> <span class="n">world</span> <span class="n">hello</span> <span class="n">again</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-5">
+<h4>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p>try to print a variable <code class="docutils literal notranslate"><span class="pre">third_string</span></code> (that you haven’t yet created)</p></li>
+<li><p>run the cell</p></li>
+<li><p>what does this tell you about trying to print variables we haven’t created?</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># create a code cell below</span>
+
+<span class="c1"># try to print a variable `third_string` that you haven&#39;t yet created</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">third_string</span><span class="p">)</span>
+
+<span class="c1"># The first time we run it</span>
+<span class="c1"># it comes up with an error</span>
+<span class="c1"># NameError: name &#39;third_string&#39; is not defined</span>
+<span class="c1"># telling us that we have tried to access a variable name that</span>
+<span class="c1"># we have not yet defined. Be aware of this type of error.</span>
+
+<span class="c1"># what does that tell you about trying to print variables we haven&#39;t created?</span>
+<span class="c1">#</span>
+<span class="c1"># if we try to use a variable before we create it, the code will fail and throw</span>
+<span class="c1"># an error. This is useful information: learn to read the errors and understand what</span>
+<span class="c1"># it is telling you. </span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">NameError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">6</span><span class="n">c032710a348</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">3</span> 
+      <span class="mi">4</span> <span class="c1"># try to print a variable `third_string` that you haven&#39;t yet created</span>
+<span class="o">----&gt;</span> <span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">third_string</span><span class="p">)</span>
+      <span class="mi">6</span> 
+      <span class="mi">7</span> <span class="c1"># The first time we run it</span>
+
+
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;third_string&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-6">
+<h4>Exercise 6<a class="headerlink" href="#exercise-6" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>create a code cell below</p></li>
+<li><p><em>now</em> create a string called <code class="docutils literal notranslate"><span class="pre">third_string</span></code> with the text <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">once</span> <span class="pre">more</span></code></p></li>
+<li><p>run the cell, then the <strong>cell above</strong></p></li>
+<li><p>what does that tell you about information we create in one cell and try to use in another above?</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># create a code cell below</span>
+<span class="c1"># now create a string called third_string with the text hello once more</span>
+<span class="n">third_string</span> <span class="o">=</span> <span class="s1">&#39;hello once more&#39;</span>
+
+<span class="c1"># run the cell above</span>
+<span class="c1"># same as ...</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">third_string</span><span class="p">)</span>
+
+<span class="c1"># what does that tell you about information we create in one cell and </span>
+<span class="c1"># try to use in another above?</span>
+<span class="c1">#</span>
+<span class="c1"># we can run cells in any order. Once we had created third_string, the </span>
+<span class="c1"># previous exercise print(third_string) executed as we expected.</span>
+<span class="c1"># The *Danger* is that the next time we run this notebook in cell order</span>
+<span class="c1"># the cell above will fail again. Learn from the mistakes we make.</span>
+<span class="c1"># Remember what this type of error can mean.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="004_Accounts.html" title="previous chapter">004 Accounts and logins</a></li>
+      <li>Next: <a href="002_Unix_answers.html" title="next chapter">002 Some basic UNIX : Answers to exercises</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/001_Notebook_use_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

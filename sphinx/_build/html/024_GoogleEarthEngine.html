@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>201 Google Earth Engine &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NASA MODIS Earthdata : Answers to exercises" href="020_NASA_MODIS_Earthdata_answers.html" />
+    <link rel="prev" title="pandas" href="022_Pandas_and_plotting.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="google-earth-engine">
+<h1>201 Google Earth Engine<a class="headerlink" href="#google-earth-engine" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>In this notebook, we introduce the python interface to <a class="reference external" href="https://earthengine.google.com">Google Earth Engine</a> (GEE) using the <a class="reference external" href="https://github.com/giswqs/geemap"><code class="docutils literal notranslate"><span class="pre">geemap</span></code></a> package.</p>
+<p>We use GEE to explore some Earth Observation datasets and their characteristics and learn about interpreting quality control data.</p>
+<p>We do not intend this to be a complete course on using GEE, and we do not want you spending all of your time developing in GEE at the moment: this is a course in scientific programming using Python and so needs to be more general. This then, it is a one-session introduction to some important datasets, the core ideas of processing in GEE, and some of the core methods you might use. When you want to develop your own codes, you will find the <a class="reference external" href="https://github.com/giswqs/geemap"><code class="docutils literal notranslate"><span class="pre">geemap</span></code> documentation</a> and <a class="reference external" href="https://github.com/giswqs/earthengine-py-notebooks">examples</a> of great use.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>You will need some understanding Python basics from part 1 of this course (notebooks with the code XXX )</p>
+<p>You will also need to make sure you have a <a class="reference external" href="https://support.google.com/accounts/answer/27441?hl=en">google account</a> to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at <a class="reference external" href="https://signup.earthengine.google.com/">signup.earthengine.google.com</a>. <strong>You will need to do this before we start the class</strong> as you will need to wait for approval from Google.</p>
+</div>
+<div class="section" id="timing">
+<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
+<p>The session should take around 30 minutes to initially explore, though you could spend a lifetime looking at all of the datasets!</p>
+</div>
+</div>
+<div class="section" id="earth-engine">
+<h2>Earth Engine<a class="headerlink" href="#earth-engine" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-gee">
+<h3>What is GEE?<a class="headerlink" href="#what-is-gee" title="Permalink to this headline">¶</a></h3>
+<p>Google Earth Engine (GEE) is a facility for access to vast quantities of Earth Observation (EO) data, as well as many other geospatial datasets. It is a hugely valuable resource for scientists, as well as making a significant contribution to the democratisation of EO: anyone can sign up for a google account and use these resources to both access and process data. With a little coding experience, anyone can develop their own products or analyses.</p>
+<p>You will find an increasingly large range of projects and <a class="reference external" href="https://earthengine.google.com/case_studies/">examples</a> available. For more information on GEE, see the <a class="reference external" href="https://earthengine.google.com/faq/">GEE FAQ</a>. You can develop and deploy your own apps either using GEE on google Cloud <a class="reference external" href="https://plewis.users.earthengine.app/view/nceo-united-kingdom">example</a>, or hosted on other resources such as <a class="reference external" href="https://github.com/giswqs/earthengine-apps">heroku</a> (<a class="reference external" href="https://geemap-demo.herokuapp.com">example</a>).</p>
+<p>There are some complexities and limitations to GEE that you should understand as well. In particular, whilst you can do some truly amazing things using GEE resources, they are provided free to you, and so there are limits to the amount of processing you can do at any one time, as well as quite strict limits on the amount of GEE local storage made available to you. You can certainly do great science within GEE, but to be a good coder, you will need wider exposure to accessing datasets than just through GEE.</p>
+</div>
+<div class="section" id="interfaces">
+<h3>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="code-editor">
+<h4>Code editor<a class="headerlink" href="#code-editor" title="Permalink to this headline">¶</a></h4>
+<p>The main interface to GEE is through the <a class="reference external" href="https://code.earthengine.google.com/">web-based code editor</a>. There is a good set of <a class="reference external" href="https://developers.google.com/earth-engine/guides/getstarted">documentation on this</a> that you can browse through at a later date. In the code editor, you can run and develop <a class="reference external" href="https://www.javascript.com/">JavaScript</a> codes, access saved datasets and documentation, and gain some basic experience of using GEE. Although we have not taught you JavaScript, you will notice that it is a high-level language with many similarities to Python. The GEE <a class="reference external" href="https://developers.google.com/earth-engine/guides/python_install">guide for Python installation</a> provides some succinct advice and examples of common syntax differences between JavaScript and Python. In addition, there are resources available to allow you to <a class="reference external" href="https://github.com/giswqs/geemap/blob/master/examples/notebooks/15_convert_js_to_py">translate GEE JavaScript codes into Python</a>.</p>
+<p>As a follow-up to this class, we suggest that you look in the <code class="docutils literal notranslate"><span class="pre">Scripts</span></code> tab of the <a class="reference external" href="https://code.earthengine.google.com/">code editor</a>, and try out one or more of the examples under the <code class="docutils literal notranslate"><span class="pre">Examples</span></code> list, for example, <code class="docutils literal notranslate"><span class="pre">Examples</span> <span class="pre">-&gt;</span> <span class="pre">ImageCollection</span> <span class="pre">-&gt;</span> <span class="pre">Landsat</span> <span class="pre">Simple</span> <span class="pre">Composite</span></code>. To use this, you need do no more than load the code by clicking on it, then click on the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button. This example is a good one to start with: if you pan out in the viewer window you will see that GEE can process this 30 m resolution dataset <em>anywhere in the world</em> for you, in near real-time. It is showing a composite of all of the Landsat images over 6 months in 2015, between the dates <code class="docutils literal notranslate"><span class="pre">2015-1-1</span></code> and <code class="docutils literal notranslate"><span class="pre">2015-7-1</span></code>. To do this requires only around 4 lines of code. This is an amazing feat.</p>
+</div>
+<div class="section" id="qgis">
+<h4>QGIS<a class="headerlink" href="#qgis" title="Permalink to this headline">¶</a></h4>
+<p>Users of the popular <a class="reference external" href="https://qgis.org/en/site/"><code class="docutils literal notranslate"><span class="pre">QGIS</span></code></a> tool will be interested to know that GEE is available as a plugin. One version of this using the Python package <a class="reference external" href="https://anaconda.org/conda-forge/earthengine-api"><code class="docutils literal notranslate"><span class="pre">ee</span></code></a> is <a class="reference external" href="https://gee-community.github.io/qgis-earthengine-plugin/">plugin to QGIS</a>.</p>
+</div>
+<div class="section" id="ee-and-geemap">
+<h4>ee and geemap<a class="headerlink" href="#ee-and-geemap" title="Permalink to this headline">¶</a></h4>
+<p>We will also be using the <a class="reference external" href="https://anaconda.org/conda-forge/earthengine-api"><code class="docutils literal notranslate"><span class="pre">ee</span></code></a> Python package to access GEE, but with the <a class="reference external" href="https://github.com/giswqs/geemap"><code class="docutils literal notranslate"><span class="pre">geemap</span></code></a> package providing the mapping front-end.  <a class="reference external" href="https://github.com/giswqs/geemap"><code class="docutils literal notranslate"><span class="pre">geemap</span></code></a> has very good documentation and an excellent range of <a class="reference external" href="https://github.com/giswqs/earthengine-py-notebooks">examples</a>. This should make it much easier for you to access GEE.</p>
+</div>
+</div>
+<div class="section" id="gee-datasets">
+<h3>GEE datasets<a class="headerlink" href="#gee-datasets" title="Permalink to this headline">¶</a></h3>
+<p>A fundamental part of GEE is the vast quantities of data that it gives access to. The core datasets are described in the <a class="reference external" href="https://developers.google.com/earth-engine/datasets">GEE data catalog</a>. The GEE code that you write has straightforward access to any or all of these datasets and, importantly, is able to process them using GEE resources.</p>
+<p>You do not need to download the datasets, and do not need to know great details of what goes on internally in the engine to use GEE. But, as we will see, you still need to think carefully about any interpretation of the data.</p>
+<p>You should spend some time after the class exploring the GEE datasets in the <a class="reference external" href="https://developers.google.com/earth-engine/datasets">data catalog</a>, but for this session, we will concentrate on the following quantities:</p>
+<ul class="simple">
+<li><p>Surface Reflectance</p></li>
+<li><p>Leaf Area Index</p></li>
+</ul>
+<div class="section" id="leaf-area-index">
+<h4>Leaf Area Index<a class="headerlink" href="#leaf-area-index" title="Permalink to this headline">¶</a></h4>
+<p>The data product <a class="reference external" href="https://modis.gsfc.nasa.gov/data/dataprod/mod15.php">MOD15</a> LAI/FPAR has been generated from NASA MODIS sensors Terra and Aqua data since 2002. We are now in dataset collection 6 (the data version to use).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LAI</span> <span class="ow">is</span> <span class="n">defined</span> <span class="k">as</span> <span class="n">the</span> <span class="n">one</span><span class="o">-</span><span class="n">sided</span> <span class="n">green</span> <span class="n">leaf</span> <span class="n">area</span> <span class="n">per</span> <span class="n">unit</span> <span class="n">ground</span> <span class="n">area</span> <span class="ow">in</span> <span class="n">broadleaf</span> <span class="n">canopies</span> <span class="ow">and</span> <span class="k">as</span> <span class="n">half</span> <span class="n">the</span> <span class="n">total</span> <span class="n">needle</span> <span class="n">surface</span> <span class="n">area</span> <span class="n">per</span> <span class="n">unit</span> <span class="n">ground</span> <span class="n">area</span> <span class="ow">in</span> <span class="n">coniferous</span> <span class="n">canopies</span><span class="o">.</span> <span class="n">FPAR</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">fraction</span> <span class="n">of</span> <span class="n">photosynthetically</span> <span class="n">active</span> <span class="n">radiation</span> <span class="p">(</span><span class="mi">400</span><span class="o">-</span><span class="mi">700</span> <span class="n">nm</span><span class="p">)</span> <span class="n">absorbed</span> <span class="n">by</span> <span class="n">green</span> <span class="n">vegetation</span><span class="o">.</span> <span class="n">Both</span> <span class="n">variables</span> <span class="n">are</span> <span class="n">used</span> <span class="k">for</span> <span class="n">calculating</span> <span class="n">surface</span> <span class="n">photosynthesis</span><span class="p">,</span> <span class="n">evapotranspiration</span><span class="p">,</span> <span class="ow">and</span> <span class="n">net</span> <span class="n">primary</span> <span class="n">production</span><span class="p">,</span> <span class="n">which</span> <span class="ow">in</span> <span class="n">turn</span> <span class="n">are</span> <span class="n">used</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">terrestrial</span> <span class="n">energy</span><span class="p">,</span> <span class="n">carbon</span><span class="p">,</span> <span class="n">water</span> <span class="n">cycle</span> <span class="n">processes</span><span class="p">,</span> <span class="ow">and</span> <span class="n">biogeochemistry</span> <span class="n">of</span> <span class="n">vegetation</span><span class="o">.</span> <span class="n">Algorithm</span> <span class="n">refinements</span> <span class="n">have</span> <span class="n">improved</span> <span class="n">quality</span> <span class="n">of</span> <span class="n">retrievals</span> <span class="ow">and</span> <span class="n">consistency</span> <span class="k">with</span> <span class="n">field</span> <span class="n">measurements</span> <span class="n">over</span> <span class="nb">all</span> <span class="n">biomes</span><span class="p">,</span> <span class="k">with</span> <span class="n">a</span> <span class="n">focus</span> <span class="n">on</span> <span class="n">woody</span> <span class="n">vegetation</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>https://developers.google.com/earth-engine/datasets/tags/lai</p>
+<p>https://developers.google.com/earth-engine/datasets/tags/crop</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ee</span>
+<span class="kn">import</span> <span class="nn">geemap</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">Map</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Map(center=[40, -100], controls=(WidgetControl(options=[&#39;position&#39;], widget=HBox(children=(ToggleButton(value=…
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">87.7719</span><span class="p">,</span> <span class="mf">41.8799</span><span class="p">])</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;MODIS/006/MCD15A3H&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-12-31&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">max</span><span class="p">()</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Lai&#39;</span><span class="p">)</span>
+
+<span class="n">vis_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Lai&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">Map</span><span class="o">.</span><span class="n">centerObject</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">Map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">vis_params</span><span class="p">,</span> <span class="s2">&quot;MODIS LAI&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">props</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">image_props</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">props</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+
+HttpError                                 Traceback (most recent call last)
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    344   try:
+--&gt; 345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
+    133                     logger.warning(message)
+--&gt; 134             return wrapped(*args, **kwargs)
+    135 
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
+    906         if resp.status &gt;= 300:
+--&gt; 907             raise HttpError(resp, content, uri=self.uri)
+    908         return self.postproc(resp, content)
+
+
+HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned &quot;Date: Parameter &#39;value&#39; is required.&quot;&gt;
+
+
+During handling of the above exception, another exception occurred:
+
+
+EEException                               Traceback (most recent call last)
+
+&lt;ipython-input-4-02ced7a4e17a&gt; in &lt;module&gt;
+      1 props = geemap.image_props(image)
+----&gt; 2 props.getInfo()
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
+     93       The object can evaluate to anything.
+     94     &quot;&quot;&quot;
+---&gt; 95     return data.computeValue(self)
+     96 
+     97   def encode(self, encoder):
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
+    708             body={&#39;expression&#39;: serializer.encode(obj, for_cloud_api=True)},
+    709             project=_get_projects_path(),
+--&gt; 710             prettyPrint=False))[&#39;result&#39;]
+    711   return send_(&#39;/value&#39;, {
+    712       &#39;json&#39;: obj.serialize(for_cloud_api=False),
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+--&gt; 347     raise _translate_cloud_exception(e)
+    348 
+    349 
+
+
+EEException: Date: Parameter &#39;value&#39; is required.
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IMAGE_DATE&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+
+HttpError                                 Traceback (most recent call last)
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    344   try:
+--&gt; 345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
+    133                     logger.warning(message)
+--&gt; 134             return wrapped(*args, **kwargs)
+    135 
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
+    906         if resp.status &gt;= 300:
+--&gt; 907             raise HttpError(resp, content, uri=self.uri)
+    908         return self.postproc(resp, content)
+
+
+HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned &quot;Date: Parameter &#39;value&#39; is required.&quot;&gt;
+
+
+During handling of the above exception, another exception occurred:
+
+
+EEException                               Traceback (most recent call last)
+
+&lt;ipython-input-5-3c50e153c167&gt; in &lt;module&gt;
+----&gt; 1 props.get(&#39;IMAGE_DATE&#39;).getInfo()
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
+     93       The object can evaluate to anything.
+     94     &quot;&quot;&quot;
+---&gt; 95     return data.computeValue(self)
+     96 
+     97   def encode(self, encoder):
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
+    708             body={&#39;expression&#39;: serializer.encode(obj, for_cloud_api=True)},
+    709             project=_get_projects_path(),
+--&gt; 710             prettyPrint=False))[&#39;result&#39;]
+    711   return send_(&#39;/value&#39;, {
+    712       &#39;json&#39;: obj.serialize(for_cloud_api=False),
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+--&gt; 347     raise _translate_cloud_exception(e)
+    348 
+    349 
+
+
+EEException: Date: Parameter &#39;value&#39; is required.
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+
+HttpError                                 Traceback (most recent call last)
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    344   try:
+--&gt; 345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
+    133                     logger.warning(message)
+--&gt; 134             return wrapped(*args, **kwargs)
+    135 
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
+    906         if resp.status &gt;= 300:
+--&gt; 907             raise HttpError(resp, content, uri=self.uri)
+    908         return self.postproc(resp, content)
+
+
+HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned &quot;Date: Parameter &#39;value&#39; is required.&quot;&gt;
+
+
+During handling of the above exception, another exception occurred:
+
+
+EEException                               Traceback (most recent call last)
+
+&lt;ipython-input-6-b347f70f7d81&gt; in &lt;module&gt;
+----&gt; 1 props.get(&#39;CLOUD_COVER&#39;).getInfo()
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
+     93       The object can evaluate to anything.
+     94     &quot;&quot;&quot;
+---&gt; 95     return data.computeValue(self)
+     96 
+     97   def encode(self, encoder):
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
+    708             body={&#39;expression&#39;: serializer.encode(obj, for_cloud_api=True)},
+    709             project=_get_projects_path(),
+--&gt; 710             prettyPrint=False))[&#39;result&#39;]
+    711   return send_(&#39;/value&#39;, {
+    712       &#39;json&#39;: obj.serialize(for_cloud_api=False),
+
+
+~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
+    345     return call.execute(num_retries=num_retries)
+    346   except googleapiclient.errors.HttpError as e:
+--&gt; 347     raise _translate_cloud_exception(e)
+    348 
+    349 
+
+
+EEException: Date: Parameter &#39;value&#39; is required.
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="022_Pandas_and_plotting.html" title="previous chapter"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+      <li>Next: <a href="020_NASA_MODIS_Earthdata_answers.html" title="next chapter">NASA MODIS Earthdata : Answers to exercises</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/024_GoogleEarthEngine.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
