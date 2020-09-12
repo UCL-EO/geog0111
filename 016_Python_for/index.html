@@ -9,309 +9,357 @@
         <link rel="canonical" href="https://ucl-eo.github.io/geog0111/016_Python_for/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Python For - GEOG0111</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-        <script src="../js/jquery-1.10.2.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        
+    <script src="../js/jquery-1.10.2.min.js" defer></script>
+    <script src="../js/bootstrap-3.3.7.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
             ga('create', 'UA-1347772-1', 'auto');
             ga('send', 'pageview');
-        </script>
-        
+        </script> 
     </head>
 
     <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">GEOG0111</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Introduction</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Course Basics <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../001_Notebook_use/" class="dropdown-item">Notebook Use</a>
+</li>
+                                    
+<li>
+    <a href="../002_Unix/" class="dropdown-item">Unix</a>
+</li>
+                                    
+<li>
+    <a href="../003_Help/" class="dropdown-item">Help</a>
+</li>
+                                    
+<li>
+    <a href="../004_Accounts/" class="dropdown-item">Accounts</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Answers</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../001_Notebook_use_answers/" class="dropdown-item">Notebook Use</a>
+</li>
+            
+<li>
+    <a href="../002_Unix_answers/" class="dropdown-item">Unix</a>
+</li>
+            
+<li>
+    <a href="../003_Help_answers/" class="dropdown-item">Help</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Core Concepts <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../010_Python_Introduction/" class="dropdown-item">Python Introduction</a>
+</li>
+                                    
+<li>
+    <a href="../011_Python_data_types/" class="dropdown-item">Python Data Types</a>
+</li>
+                                    
+<li>
+    <a href="../012_Python_strings/" class="dropdown-item">Python Strings</a>
+</li>
+                                    
+<li>
+    <a href="../013_Python_string_methods/" class="dropdown-item">Python String Methods</a>
+</li>
+                                    
+<li>
+    <a href="../014_Python_groups/" class="dropdown-item">Python Groups</a>
+</li>
+                                    
+<li>
+    <a href="../015_Python_control/" class="dropdown-item">Python Control</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Python For</a>
+</li>
+                                    
+<li>
+    <a href="../017_Functions/" class="dropdown-item">Functions</a>
+</li>
+                                    
+<li>
+    <a href="../018_Packages/" class="dropdown-item">Packages</a>
+</li>
+                                    
+<li>
+    <a href="../019_Running_Python/" class="dropdown-item">Running Python</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Answers</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../010_Python_Introduction_answers/" class="dropdown-item">Python Introduction</a>
+</li>
+            
+<li>
+    <a href="../011_Python_data_types_answers/" class="dropdown-item">Python Data Types</a>
+</li>
+            
+<li>
+    <a href="../012_Python_strings_answers/" class="dropdown-item">Python Strings</a>
+</li>
+            
+<li>
+    <a href="../013_Python_string_methods_answers/" class="dropdown-item">Python String Methods</a>
+</li>
+            
+<li>
+    <a href="../014_Python_groups_answers/" class="dropdown-item">Python Groups</a>
+</li>
+            
+<li>
+    <a href="../015_Python_control_answers/" class="dropdown-item">Python Control</a>
+</li>
+            
+<li>
+    <a href="../016_Python_for_answers/" class="dropdown-item">Python For</a>
+</li>
+            
+<li>
+    <a href="../017_Functions_answers/" class="dropdown-item">Functions</a>
+</li>
+            
+<li>
+    <a href="../019_Running_Python_answers/" class="dropdown-item">Running Python</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Datasets <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../020_NASA_MODIS_Earthdata/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+                                    
+<li>
+    <a href="../020_Python_files/" class="dropdown-item">Python Files</a>
+</li>
+                                    
+<li>
+    <a href="../021_Read_files/" class="dropdown-item">Read Files</a>
+</li>
+                                    
+<li>
+    <a href="../022_NASA_MODIS_Earthdata/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+                                    
+<li>
+    <a href="../022_Pandas_and_plotting/" class="dropdown-item">Pandas And Plotting</a>
+</li>
+                                    
+<li>
+    <a href="../024_GoogleEarthEngine/" class="dropdown-item">Google Earth Engine</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Answers</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_NASA_MODIS_Earthdata_answers/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+            
+<li>
+    <a href="../020_Python_files_answers/" class="dropdown-item">Python Files</a>
+</li>
+            
+<li>
+    <a href="../021_Read_files_answers/" class="dropdown-item">Read Files</a>
+</li>
+            
+<li>
+    <a href="../022_NASA_MODIS_Earthdata_answers/" class="dropdown-item">NASA MODIS Earthdata</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Image Processing <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../031_Numpy_matplotlib/" class="dropdown-item">Numpy Matplotlib</a>
+</li>
+                                    
+<li>
+    <a href="../031_Plotting/" class="dropdown-item">Plotting</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Geospatial Data <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../040_GDAL/" class="dropdown-item">GDAL</a>
+</li>
+                                    
+<li>
+    <a href="../041_MODIS_download/" class="dropdown-item">MODIS Download</a>
+</li>
+                                    
+<li>
+    <a href="../042_GDAL_masking/" class="dropdown-item">GDAL Masking</a>
+</li>
+                                    
+<li>
+    <a href="../043_GDAL_stacking_and_interpolating/" class="dropdown-item">GDAL Stacking And Interpolating</a>
+</li>
+                                    
+<li>
+    <a href="../044_GDAL_Reconciling_projections/" class="dropdown-item">GDAL Reconciling Projections</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Modelling <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../050_Linear_models/" class="dropdown-item">Linear Models</a>
+</li>
+                                    
+<li>
+    <a href="../051_Modelling_and_optimisation/" class="dropdown-item">Modelling And Optimisation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../DEV_Local_Install/" class="dropdown-item">Local Install</a>
+</li>
+                                    
+<li>
+    <a href="../DEV_scripts/" class="dropdown-item">Scripts</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="..">GEOG0111</a>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../015_Python_control/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../017_Functions/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/016_Python_for.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-            
-            
-                <li >
-                    <a href="..">Introduction</a>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Course Basics <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../001_Notebook_use/">Notebook Use</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../002_Unix/">Unix</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../003_Help/">Help</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../004_Accounts/">Accounts</a>
-                        </li>
-                    
-                        <li >
-                            <a href="..">Answers</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Core Concepts <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../010_Python_Introduction/">Python Introduction</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../011_Python_data_types/">Python Data Types</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../012_Python_strings/">Python Strings</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../013_Python_string_methods/">Python String Methods</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../014_Python_groups/">Python Groups</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../015_Python_control/">Python Control</a>
-                        </li>
-                    
-                        <li class="active">
-                            <a href="./">Python For</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../017_Functions/">Functions</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../018_Packages/">Packages</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../019_Running_Python/">Running Python</a>
-                        </li>
-                    
-                        <li >
-                            <a href="..">Answers</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datasets <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../020_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../020_Python_files/">Python Files</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../021_Read_files/">Read Files</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../022_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../022_Pandas_and_plotting/">Pandas And Plotting</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../024_GoogleEarthEngine/">Google Earth Engine</a>
-                        </li>
-                    
-                        <li >
-                            <a href="..">Answers</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Image Processing <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../031_Numpy_matplotlib/">Numpy Matplotlib</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../031_Plotting/">Plotting</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Geospatial Data <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../040_GDAL/">GDAL</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../041_MODIS_download/">MODIS Download</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../042_GDAL_masking/">GDAL Masking</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../043_GDAL_stacking_and_interpolating/">GDAL Stacking And Interpolating</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../044_GDAL_Reconciling_projections/">GDAL Reconciling Projections</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modelling <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../050_Linear_models/">Linear Models</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../051_Modelling_and_optimisation/">Modelling And Optimisation</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developers <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="../DEV_Local_Install/">Local Install</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../DEV_scripts/">Scripts</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            </ul>
-
-            <!-- Search, Navigation and Repo links -->
-            <ul class="nav navbar-nav navbar-right">
-                    <li >
-                        <a rel="next" href="../015_Python_control/">
-                            <i class="fa fa-arrow-left"></i> Previous
-                        </a>
-                    </li>
-                    <li >
-                        <a rel="prev" href="../017_Functions/">
-                            Next <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </li>
-                
-                <li>
-                    <a href="https://github.com/UCL-EO/geog0111/">
-                        
-                            <i class="fa fa-github"></i>
-                        
-                        GitHub
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
-</div>
 
         <div class="container">
-                <div class="row">
-                    <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-      
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
     
-        <li class="main active"><a href="#016-more-control-in-python-for">016 More control in Python: for</a></li>
-        
-            <li><a href="#introduction">Introduction</a></li>
-        
-            <li><a href="#looping-with-for">Looping with for</a></li>
-        
-            <li><a href="#range">range()</a></li>
-        
-            <li><a href="#enumerate">enumerate()</a></li>
-        
-            <li><a href="#looping-over-dictionaries-and-assert">looping over dictionaries, and assert</a></li>
-        
-            <li><a href="#summary">Summary</a></li>
-        
-    
-    
-    </ul>
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#016-more-control-in-python-for" class="nav-link">016 More control in Python: for</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#looping-with-for" class="nav-link">Looping with for</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#range" class="nav-link">range()</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#enumerate" class="nav-link">enumerate()</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#looping-over-dictionaries-and-assert" class="nav-link">looping over dictionaries, and assert</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#summary" class="nav-link">Summary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
@@ -574,14 +622,83 @@ Month December has 31 days
 <p>We know that conditions inside <code>if</code> statements use indentation in Python, and we know to be careful in our use of this. We have learnt about <code>enumerate()</code> and <code>range()</code>.</p>
 <p>We have also seen the use of <code>assert</code> to do some checking that our code is correct.</p>
 <p>There are additional notes in <a href="https://docs.python.org/3/tutorial/controlflow.html#the-range-function">docs.python.org</a> you can follow up to deepen your understanding of these topics. You can get more practice with <code>assert</code> at <a href="https://www.w3schools.com/python/ref_keyword_assert.asp">w3schools</a>.</p></div>
-                </div>
+            </div>
         </div>
 
-    <hr>
-    <footer class="container">
-        
-        <center>Documentation built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="http://kristopolous.github.io/BOOTSTRA.386">BOOTSTRA.386</a>.</center>
-    </footer>
-        <script src="../../search/main.js"></script>
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
     </body>
 </html>

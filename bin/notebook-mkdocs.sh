@@ -102,4 +102,4 @@ cp ../config/requirements.txt .
 #sphinx build html latexpdf
 cd ..
 echo "----> done running $0 from $base"
-echo "now run:  mkdocs gh-deploy --force"
+echo "to upload, run:  mkdocs gh-deploy --force"
