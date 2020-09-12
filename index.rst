@@ -42,6 +42,30 @@ GEOG0111 Scientific Computing
  017_Functions_answers.md
  019_Running_Python_answers.md
 
+ 020_NASA_MODIS_Earthdata.md
+ 020_Python_files.md
+ 021_Read_files.md
+ 022_NASA_MODIS_Earthdata.md
+ 022_Pandas_and_plotting.md
+ 024_GoogleEarthEngine.md
+
+ 020_NASA_MODIS_Earthdata_answers.md
+ 020_Python_files_answers.md
+ 021_Read_files_answers.md
+ 022_NASA_MODIS_Earthdata_answers.md
+
+ 031_Numpy_matplotlib.md
+ 031_Plotting.md
+
+ 040_GDAL.md
+ 041_MODIS_download.md
+ 042_GDAL_masking.md
+ 043_GDAL_stacking_and_interpolating.md
+ 044_GDAL_Reconciling_projections.md
+
+ 050_Linear_models.md
+ 051_Modelling_and_optimisation.md
+
  DEV_Local_Install.md
  DEV_scripts.md
 

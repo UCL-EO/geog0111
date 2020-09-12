@@ -29,8 +29,8 @@ echo "--> re-making docs"
 rm -rf docs
 mkdir -p docs
 
-
-pip install sphinx
+pip3 install -r ${base}/config/requirements.txt --user
+#pip install sphinx
 cd docs
 sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs
 cd $base
