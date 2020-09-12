@@ -38,7 +38,7 @@ echo "theme: $theme"
 grep -v $theme ${base}/config/requirements.txt > tmp.$$; mv tmp.$$  ${base}/config/requirements.txt; 
 extras=$(grep $theme config/mkdocs.yml | awk '{print "mkdocs-"$NF}' | sed 's/://g' | sed 's/'\''//g' | sed 's/'\"'//g' )
 echo "installing $extras"
-echo $extras  >> ${base}/config/requirements.txt
+echo $extras | awk '{for(i=1;i<=NF;i++)x[$i]=$i} END{for(i in x)print i}'  >> ${base}/config/requirements.txt
 
 pip3 install -r ${base}/config/requirements.txt --user
 

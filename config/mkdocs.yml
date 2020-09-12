@@ -56,8 +56,7 @@ site_url: https://ucl-eo.github.io/geog0111
 #  name: material
 theme:
    favicon: images/ucl.png
-#   name: cinder
-   name: rtd-dropdown
+   name: material
 #   features:
 #   - search.highlight
 #   - header.hide
