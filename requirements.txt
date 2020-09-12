@@ -7,3 +7,4 @@ mkdocs-exclude
 mkdocs-git-revision-date-localized-plugin
 recommonmark
 sphinx-typlog-theme
+mkdocs-rtd-dropdown
