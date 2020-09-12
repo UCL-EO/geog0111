@@ -1,5 +1,5 @@
 .. GEOG0111 Scientific Computing documentation master file, created by
-   sphinx-quickstart on Fri Sep 11 18:59:14 2020.
+   sphinx-quickstart on Sat Sep 12 11:04:51 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

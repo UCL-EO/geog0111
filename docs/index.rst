@@ -15,6 +15,7 @@ GEOG0111 Scientific Computing
  001_Notebook_use.md
  002_Unix.md
  003_Help.md
+ 004_Accounts.md
 
  001_Notebook_use_answers.md
  002_Unix_answers.md
@@ -43,10 +44,15 @@ GEOG0111 Scientific Computing
 
  020_NASA_MODIS_Earthdata.md
  020_Python_files.md
- 021_GoogleEarthEngine.md
+ 021_Read_files.md
+ 022_NASA_MODIS_Earthdata.md
+ 022_Pandas_and_plotting.md
+ 024_GoogleEarthEngine.md
 
  020_NASA_MODIS_Earthdata_answers.md
  020_Python_files_answers.md
+ 021_Read_files_answers.md
+ 022_NASA_MODIS_Earthdata_answers.md
 
  031_Numpy_matplotlib.md
  031_Plotting.md

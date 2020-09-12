@@ -11,6 +11,8 @@ UCL Geography MSc notes.
 
 # GEOG0111 Scientific Computing
 
+[Course Documentation](https://ucl-eo.github.io/geog0111/)
+
 [![Documentation Status](https://readthedocs.org/projects/geog0111-scientific-computing/badge/?version=latest)](https://geog0111-scientific-computing.readthedocs.io/en/latest/?badge=latest)
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/master)
  [![Travis-CI](https://travis-ci.com/UCL-EO/geog0111.svg?branch=master)](https://travis-ci.com/github/UCL-EO/geog0111)
@@ -18,14 +20,21 @@ UCL Geography MSc notes.
 
 ## Course information
 
-### Course Convenor and Contributing Staff
+### Course Convenor 
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
+### Teaching Staff 2020-2021
+
+|   |  | 
+|---|---|
+|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| 
+
+### Contributing Staff
+
 |   |   |   |
 |---|---|---|
-|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)| 
-
+|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
 
 ### Purpose of this course
 
