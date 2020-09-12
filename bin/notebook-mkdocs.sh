@@ -38,16 +38,16 @@ echo "theme: $theme"
 grep -v $theme ${base}/config/requirements.txt > tmp.$$; mv tmp.$$  ${base}/config/requirements.txt; 
 extras=$(grep $theme config/mkdocs.yml | awk '{print "mkdocs-"$NF}' | sed 's/://g' | sed 's/'\''//g' | sed 's/'\"'//g' )
 echo "installing $extras"
-echo $extras  >> ${base}/config/requirements.txt
+echo $extras | awk '{for(i=1;i<=NF;i++)x[$i]=$i} END{for(i in x)print i}'  >> ${base}/config/requirements.txt
 
 pip3 install -r ${base}/config/requirements.txt --user
 
-
-
-
-cd docs
-sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs
-cd $base
+rm -rf "$base/docs/sphinx"
+mkdir -p "$base/docs/sphinx"
+cd "$base"
+sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs/sphinx
+mv docs/sphinx/* docs
+rmdir docs/sphinx
 
 echo "--> re-making notebooks_lab"
 rm -rf site
@@ -99,7 +99,7 @@ echo "--> building mkdocs"
 mkdocs build -v
 cd docs
 cp ../config/requirements.txt .
-#sphinx build html latexpdf
+make clean html
 cd ..
 echo "----> done running $0 from $base"
 echo "to upload, run:  mkdocs gh-deploy --force"
