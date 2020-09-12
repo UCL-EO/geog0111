@@ -1,12 +1,12 @@
-# Use of Jupyter notebooks
+# 001 Use of Jupyter notebooks
 
-This is a jupyter notebook designed to let you get used to notebooks, and to test your python and notebooks installation.
+This is a Jupyter notebook designed to let you get used to notebooks, and to test your python and notebooks installation.
 
 You can find much information on using notebooks on the [web](https://jupyter.org/), so you might start by exploring some of that.
 
 You should do the tasks in this notebook before the first class. We need to assume at that class that you have the basic familiarity with notebooks you will gain here.
 
-## Introduction
+## Introduction
 
 This is your first Jupyter notebook of the class. Jupyter notebooks will form the primary teaching and learning tool in this course. The format of the notebooks will be similar for all sessions. 
 
@@ -93,8 +93,6 @@ python -V
 
 The code cell above that we ran is a [`unix` (`bash`) shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), indicated by the [cell magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html) `%%bash` on the first line. This is a mechanism that lets us run unix commands in a Python notebook.
 
-
-
 ## How we will be using notebooks
 
 We will be using Jupyter notebooks to present course notes and view and run exercises. 
@@ -120,7 +118,7 @@ Take a few minutes to explore the notebook menu, and note how to do things like:
 * restart the kernel (the 'engine' running this notebook)
 * restart the kernel and clear output
 
-### Exercise: add a cell
+#### Exercise 1
 
 We can add new cells to this document via the `Insert -> Insert Cell Below` menu in the menu bar at the top of this document.
 
@@ -129,7 +127,7 @@ Notice that you can double click on a cell to edit its contents.
 Add a cell now, below, and use the `Cell -> Cell Type` menu to make this cell type `markdown`. Add some text in there ... lyrics from your favourite song, whatever you like ...
 
 
-### Exercise: add some cell formatting
+#### Exercise 2
 
 
 Add another cell now, below, and use the Cell -> Cell Type menu to make this cell type markdown. 
@@ -145,6 +143,9 @@ Read up on the [features of markdown](https://github.com/adam-p/markdown-here/wi
 * some html
 
 ## Coding
+
+
+###  hello world
 
 Next, let's try a code cell below and do our first python coding. You should notice that it indicates this in the cell type box on the menu.
 
@@ -174,7 +175,7 @@ Try that out, running the code cell above.
 
 
 
-### Exercise
+#### Exercise 3
 
 Now:
 
@@ -183,27 +184,27 @@ Now:
 * call the `print()` method with this as an [argument](https://en.wikipedia.org/wiki/Parameter_(computer_programming))
 * run the cell 
 
-### Exercise
+#### Exercise 4
 
 * create a code cell below
 * print the values of `first_string` and `second_string`  that we created above. 
 * what does that tell you about information we create in one cell and try to use in another?
 
-### Exercise
+#### Exercise 5
 
 * create a code cell below
 * try to print a variable `third_string` (that you haven't yet created)
 * run the cell
 * what does this tell you about trying to print variables we haven't created?
 
-### Exercise
+#### Exercise 6
 
 * create a code cell below
 * *now* create a string called `third_string` with the text `hello once more`
 * run the cell, then the **cell above**
 * what does that tell you about information we create in one cell and try to use in another above?
 
-# Summary
+## Summary
 
 This notebook has introduced you to using jupyter notebooks.
 

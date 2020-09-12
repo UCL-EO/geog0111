@@ -120,6 +120,8 @@ sed < $base/docs/index.rst 's/index.md/docindex.md/' > tmp.$$
 mv tmp.$$ index.rst
 rm -f index.md
 cp ../*.md ../*.html .
+
+# dont confuse index.md with index.rst
 if [ -f "index.md" ]; then
   mv index.md docindex.md
 else
