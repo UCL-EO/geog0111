@@ -1,6 +1,8 @@
-# Accounts and logins
+# 004 Accounts and logins
 
-## login and password
+## Introduction
+
+## login and password
 
 Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.
 

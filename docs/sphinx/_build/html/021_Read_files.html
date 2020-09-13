@@ -76,22 +76,66 @@
 <div class="section" id="reading-and-writing">
 <h2>Reading and writing<a class="headerlink" href="#reading-and-writing" title="Permalink to this headline">¶</a></h2>
 <p>We can conveniently use <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> to deal with file input and output. The main methods to be aware of are:</p>
-<p>|command|  purpose|
-|—|—|
-|<code class="docutils literal notranslate"><span class="pre">Path.open()</span></code>| open a file and return a file descriptor|
-|<code class="docutils literal notranslate"><span class="pre">Path.read_text()</span></code>|  read text|
-|<code class="docutils literal notranslate"><span class="pre">Path.write_text()</span></code>| write text|
-|<code class="docutils literal notranslate"><span class="pre">Path.read_bytes()</span></code>| read byte data|
-|<code class="docutils literal notranslate"><span class="pre">Path.write_bytes()</span></code>| write byte data|</p>
-<p>For <code class="docutils literal notranslate"><span class="pre">gurlpath</span></code> we have the following equivalent functions:</p>
-<p>|command|  purpose|
-|—|—|
-|<code class="docutils literal notranslate"><span class="pre">URL.open()</span></code>| open a file descriptor with data from a URL|
-|<code class="docutils literal notranslate"><span class="pre">URL.read_text()</span></code>|  read text from URL|
-|<code class="docutils literal notranslate"><span class="pre">URL.write_text()</span></code>| write text to file|
-|<code class="docutils literal notranslate"><span class="pre">URL.read_bytes()</span></code>| read byte data from URL|
-|<code class="docutils literal notranslate"><span class="pre">URL.write_bytes()</span></code>| write byte data to file|</p>
-<p>Notice that the <code class="docutils literal notranslate"><span class="pre">write</span></code> functions (and <code class="docutils literal notranslate"><span class="pre">open</span></code> when used for write) write to local files, not to the URL.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.open()</code></td>
+<td>open a file and return a file descriptor</td>
+</tr>
+<tr>
+<td><code>Path.read_text()</code></td>
+<td>read text</td>
+</tr>
+<tr>
+<td><code>Path.write_text()</code></td>
+<td>write text</td>
+</tr>
+<tr>
+<td><code>Path.read_bytes()</code></td>
+<td>read byte data</td>
+</tr>
+<tr>
+<td><code>Path.write_bytes()</code></td>
+<td>write byte data</td>
+</tr>
+</tbody>
+</table><p>For <code class="docutils literal notranslate"><span class="pre">gurlpath</span></code> we have the following equivalent functions:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>URL.open()</code></td>
+<td>open a file descriptor with data from a URL</td>
+</tr>
+<tr>
+<td><code>URL.read_text()</code></td>
+<td>read text from URL</td>
+</tr>
+<tr>
+<td><code>URL.write_text()</code></td>
+<td>write text to file</td>
+</tr>
+<tr>
+<td><code>URL.read_bytes()</code></td>
+<td>read byte data from URL</td>
+</tr>
+<tr>
+<td><code>URL.write_bytes()</code></td>
+<td>write byte data to file</td>
+</tr>
+</tbody>
+</table><p>Notice that the <code class="docutils literal notranslate"><span class="pre">write</span></code> functions (and <code class="docutils literal notranslate"><span class="pre">open</span></code> when used for write) write to local files, not to the URL.</p>
 <p>They have a keyword argument <code class="docutils literal notranslate"><span class="pre">local_file</span></code> to set the location to write the file to. If this is not given, the the directory structure of the URL is used (relative to the current directory). Alternatively, you can settrhe keyword <code class="docutils literal notranslate"><span class="pre">local_dr</span></code>, or set <code class="docutils literal notranslate"><span class="pre">URL.local_file</span></code> or <code class="docutils literal notranslate"><span class="pre">URL.local_dir</span></code> as appropriate.</p>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">URL</span></code> is tolerant of calling with a <code class="docutils literal notranslate"><span class="pre">Path</span></code>: if we call <code class="docutils literal notranslate"><span class="pre">URL</span></code> with a local file, most operations will continue and apply the appropriate <code class="docutils literal notranslate"><span class="pre">Path</span></code> function.</p>
 <div class="section" id="with-as-path-open-url-open-yaml-json">
@@ -351,9 +395,7 @@ env keys: dict_keys([&#39;name&#39;, &#39;channels&#39;, &#39;dependencies&#39;]
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
@@ -383,28 +425,7 @@ env keys: dict_keys([&#39;name&#39;, &#39;channels&#39;, &#39;dependencies&#39;]
 <li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">021 Read Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test">Test</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#reading-and-writing">Reading and writing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#with-as-path-open-url-open-yaml-json"><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">...</span> <span class="pre">as</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">Path.open</span></code>, <code class="docutils literal notranslate"><span class="pre">URL.open</span></code>, <code class="docutils literal notranslate"><span class="pre">yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#read-and-write-text">read and write text</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#read-and-write-binary-data">read and write binary data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#summary">1.3.5 Summary</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">021 Read Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
 <li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>

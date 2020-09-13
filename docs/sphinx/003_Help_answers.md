@@ -182,40 +182,6 @@ print("sorted", alist)
     sorted ['four', 'one', 'six', 'three', 'two', 'zero']
 
 
-#### Exercise 3
-
-* Create a code cell below and assign the variable `my_var` the value of `10` (hint: `my_var = 10`)
-* Run `dir()` again and confirm that `my_var` now appears in the list
-
-
-
-```python
-# ANSWER
-# Create a code cell below and assign the variable my_var the value of 10 (hint: my_var = 10)
-my_var = 10
-
-# Run dir() again 
-print(dir())
-
-# confirm that my_var now appears in the list
-msg = '''
-I can see my_var in the list printed out
-'''
-print(msg)
-```
-
-    ['In', 'Out', '_', '__', '___', '__builtin__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__', '_dh', '_i', '_i1', '_i10', '_i11', '_i12', '_i2', '_i3', '_i4', '_i5', '_i6', '_i7', '_i8', '_i9', '_ih', '_ii', '_iii', '_oh', 'alist', 'blist', 'exit', 'get_ipython', 'json', 'my_var', 'quit', 'yapf_reformat']
-    
-    I can see my_var in the list printed out
-    
-
-
-#### Exercise 4
-
-* Print the value of `my_var` using `print(my_var)`
-* Print the value of `my_var` using `print(locals()['my_var'])`
-* confirm that they give the same answer
-
 
 ```python
 # ANSWER
@@ -232,11 +198,20 @@ I can see they are the same
 print(msg)
 ```
 
-    10
-    10
-    
-    I can see they are the same
-    
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-7-a8b1461bf99a> in <module>
+          1 # ANSWER
+          2 # Print the value of my_var using print(my_var)
+    ----> 3 print(my_var)
+          4 
+          5 # Print the value of my_var using print(locals()['my_var'])
+
+
+    NameError: name 'my_var' is not defined
 
 
 ### Learning new things
@@ -245,7 +220,7 @@ Let's use that knowledge to learn something new:
 
 * Use online material from [https://www.w3schools.com](https://www.w3schools.com/python) or elsewhere to learn the basics of `for` loops.
 
-#### Exercise 5
+#### Exercise 3
 
 * Find help for the class `range` to understand how to use this to generate a sequence of integers from 10 to 1 in steps of -1
 * Use what you have learned to write a `for` loop below that counts backwards from 10 to 0
@@ -259,15 +234,3 @@ Let's use that knowledge to learn something new:
 for i in range(10,0,-1):
     print(i)
 ```
-
-    10
-    9
-    8
-    7
-    6
-    5
-    4
-    3
-    2
-    1
-

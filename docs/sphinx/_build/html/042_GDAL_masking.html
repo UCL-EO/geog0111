@@ -180,33 +180,104 @@
 <p><code class="docutils literal notranslate"><span class="pre">data/MOD10A1.A2000055.h15v01.006.2016061160800.hdf</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">FOLDER/MOD[PID].A[YYYY][DDD].h[NN]v[NN].[VVV].[yyyy][ddd][hhmmss].hdf</span></code></p>
 <p>Refer to Table 3.3.1 for descriptions of the file name variables listed above.</p>
-<p>|  Variable | Description  |<br />|—|—|
-| FOLDER| folder/directory name of file|
-| MOD  |  MODIS/Terra  (<code class="docutils literal notranslate"><span class="pre">MCD</span></code> means combined)|
-|  PID |   Product ID|<br />| A	|Acquisition date follows|
-|YYYY	|Acquisition year|
-|DDD	|Acquisition day of year|
-|h[NN]v[NN]	|Horizontal tile number and vertical tile number (see Grid for details.)|
-|VVV	|Version (Collection) number|
-|yyyy	|Production year|
-|ddd	|Production day of year|
-|hhmmss	|Production hour/minute/second in GMT|
-|.hdf	|HDF-EOS formatted data file|
-Table 3.3.1. Variables in the MODIS File Naming Convention</p>
-<p><img alt="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" src="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" /></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FOLDER</td>
+<td>folder/directory name of file</td>
+</tr>
+<tr>
+<td>MOD</td>
+<td>MODIS/Terra  (<code>MCD</code> means combined)</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Product ID</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Acquisition date follows</td>
+</tr>
+<tr>
+<td>YYYY</td>
+<td>Acquisition year</td>
+</tr>
+<tr>
+<td>DDD</td>
+<td>Acquisition day of year</td>
+</tr>
+<tr>
+<td>h[NN]v[NN]</td>
+<td>Horizontal tile number and vertical tile number (see Grid for details.)</td>
+</tr>
+<tr>
+<td>VVV</td>
+<td>Version (Collection) number</td>
+</tr>
+<tr>
+<td>yyyy</td>
+<td>Production year</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>Production day of year</td>
+</tr>
+<tr>
+<td>hhmmss</td>
+<td>Production hour/minute/second in GMT</td>
+</tr>
+<tr>
+<td>.hdf</td>
+<td>HDF-EOS formatted data file</td>
+</tr>
+<tr>
+<td>Table 3.3.1. Variables in the MODIS File Naming Convention</td>
+<td></td>
+</tr>
+</tbody>
+</table><p><img alt="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" src="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" /></p>
 </div>
 <div class="section" id="dataset-naming-convention">
 <h3>3.3.1.2 Dataset Naming Convention<a class="headerlink" href="#dataset-naming-convention" title="Permalink to this headline">¶</a></h3>
 <p>Example Dataset Name:</p>
 <p><code class="docutils literal notranslate"><span class="pre">HDF4_EOS:EOS_GRID:&quot;data/MCD15A3H.A2018273.h18v03.006.2018278143633.hdf&quot;:MOD_Grid_MCD15A3H:Lai_500m</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">FORMAT:&quot;FILENAME&quot;:MOD_Grid_PRODUCT:LAYER</span></code></p>
-<p>|  Variable | Description  |<br />|—|—|
-|FORMAT| file format, <code class="docutils literal notranslate"><span class="pre">HDF4_EOS:EOS_GRID</span></code>|
-|FILENAME| dataset file name, see below|
-|PRODUCT| MODIS product code e.g. <code class="docutils literal notranslate"><span class="pre">MCD15A3H</span></code>|
-|LAYER| sub-dataset name e.g. <code class="docutils literal notranslate"><span class="pre">Lai_500m</span></code>|
-Table 3.3.2. Variables in the MODIS Dataset Naming Convention</p>
-<p><strong>Exercise E3.3.1</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FORMAT</td>
+<td>file format, <code>HDF4_EOS:EOS_GRID</code></td>
+</tr>
+<tr>
+<td>FILENAME</td>
+<td>dataset file name, see below</td>
+</tr>
+<tr>
+<td>PRODUCT</td>
+<td>MODIS product code e.g. <code>MCD15A3H</code></td>
+</tr>
+<tr>
+<td>LAYER</td>
+<td>sub-dataset name e.g. <code>Lai_500m</code></td>
+</tr>
+<tr>
+<td>Table 3.3.2. Variables in the MODIS Dataset Naming Convention</td>
+<td></td>
+</tr>
+</tbody>
+</table><p><strong>Exercise E3.3.1</strong></p>
 <ul class="simple">
 <li><p>Check you’re happy that the other datasets (e.g. <code class="docutils literal notranslate"><span class="pre">LaiStdDev_500m</span></code>) follow the same convention as <code class="docutils literal notranslate"><span class="pre">Lai_500m</span></code></p></li>
 <li><p>work out what the dataset/layer name would be for the dataset product <code class="docutils literal notranslate"><span class="pre">MOD10A1</span></code> version <code class="docutils literal notranslate"><span class="pre">6</span></code> for the $1^{st}$ January 2018, for tile <code class="docutils literal notranslate"><span class="pre">h25v06</span></code> for the layer <code class="docutils literal notranslate"><span class="pre">NDSI_Snow_Cover</span></code>. You will find product information <a class="reference external" href="https://nsidc.org/data/mod10a1">on the relevant NASA page</a>. You may not be able to access the production date/time, but just put a placeholder for that now.</p></li>
@@ -2563,9 +2634,7 @@ OGRFeature(TM_WORLD_BORDERS-0.3):206
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
@@ -2608,30 +2677,7 @@ OGRFeature(TM_WORLD_BORDERS-0.3):206
 <li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3.3 GDAL, and OGR masking</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-modis-lai-data">3.3.1 The MODIS LAI data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#try-except">3.3.1.1 <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">except</span> <span class="pre">...</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#get-data">3.3.1.2 Get data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#file-naming-convention">3.3.1.3 File Naming Convention</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dataset-naming-convention">3.3.1.2 Dataset Naming Convention</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#modis-dataset-access">3.3.2 MODIS dataset access</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gdal-readasarray">3.3.2.1 <code class="docutils literal notranslate"><span class="pre">gdal.ReadAsArray()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#metadata">3.3.2.2 Metadata</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#reading-and-displaying-data">3.3.3 Reading and displaying data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#glob">3.3.3.1 <code class="docutils literal notranslate"><span class="pre">glob</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reading-and-displaying-image-data">3.3.3.2 reading and displaying image data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#subplot-plotting">3.3.3.3 subplot plotting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tile-stitching">3.3.3.3 tile stitching</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gdal-virtual-file">3.3.3.4 <code class="docutils literal notranslate"><span class="pre">gdal</span></code> virtual file</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#the-country-borders-dataset">3.3.4 The country borders dataset</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.3 GDAL, and OGR masking</a></li>
 <li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>

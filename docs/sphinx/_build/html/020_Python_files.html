@@ -119,18 +119,62 @@ that gives:</p>
 <p>The main class we will use from <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> is <code class="docutils literal notranslate"><span class="pre">Path</span></code>. This provides an object-oriented way of dealing with files and paths, that is portable to any operating system. Recall from <a class="reference internal" href="002_Unix.html"><span class="doc">002 Unix</span></a> that unix-like operating systems use <code class="docutils literal notranslate"><span class="pre">posix</span></code> filenames, separated by forward slash <code class="docutils literal notranslate"><span class="pre">/</span></code> (or just <em>slash</em>). Windows uses a backslash <code class="docutils literal notranslate"><span class="pre">\</span></code>. But <em>we</em> want to write Python codes that are generic and shouldn’t need to greatly worry about such issues. Using <code class="docutils literal notranslate"><span class="pre">Path</span></code> greatly helps in this regard, though there will always the occasional time we do need to distinguish <code class="docutils literal notranslate"><span class="pre">posix</span></code> and non-<code class="docutils literal notranslate"><span class="pre">posix</span></code> systems.</p>
 <p>### Common <code class="docutils literal notranslate"><span class="pre">Path</span></code> methods</p>
 <p>We can start with a table of <a class="reference external" href="https://stackabuse.com/introduction-to-the-python-pathlib-module/#:~:text=The%20Pathlib%20module%20can%20deal,(usually%20the%20current%20directory).">commonly-used methods</a> using <code class="docutils literal notranslate"><span class="pre">Path</span></code> and give their <a class="reference internal" href="002_Unix.html"><span class="doc">Unix equivalents</span></a>, most of which we have already learned.</p>
-<p>|command| unix-equivalent | purpose|
-|—|—|—|
-|<code class="docutils literal notranslate"><span class="pre">Path.cwd()</span></code>| <code class="docutils literal notranslate"><span class="pre">pwd</span></code> |Return path object representing the current working directory|
-|<code class="docutils literal notranslate"><span class="pre">Path.home()</span></code>| <code class="docutils literal notranslate"><span class="pre">~</span></code>| Return path object representing the home directory|
-|<code class="docutils literal notranslate"><span class="pre">Path.stat()</span></code>| <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>* | return info about the path|
-|<code class="docutils literal notranslate"><span class="pre">Path.chmod()</span></code>| <code class="docutils literal notranslate"><span class="pre">chmod</span></code> | change file mode and permissions|
-|<code class="docutils literal notranslate"><span class="pre">Path.glob(pattern)</span></code>| <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*</span></code> | Glob the pattern given in the directory that is represented by the path, yielding matching files of any kind|
-|<code class="docutils literal notranslate"><span class="pre">Path.mkdir()</span></code>| <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> | to create a new directory at the given path|
-|<code class="docutils literal notranslate"><span class="pre">Path.rename()</span></code>| <code class="docutils literal notranslate"><span class="pre">mv</span></code> | Rename a file or directory to the given target|
-|<code class="docutils literal notranslate"><span class="pre">Path.rmdir()</span></code>| <code class="docutils literal notranslate"><span class="pre">rmdir</span></code> | Remove the empty directory|
-|<code class="docutils literal notranslate"><span class="pre">Path.unlink()</span></code>| <code class="docutils literal notranslate"><span class="pre">rm</span></code> | Remove the file or symbolic link|</p>
-<p><code class="docutils literal notranslate"><span class="pre">*</span></code> Really, <code class="docutils literal notranslate"><span class="pre">Path.stat()</span></code> equates to the <code class="docutils literal notranslate"><span class="pre">unix</span></code> command <code class="docutils literal notranslate"><span class="pre">stat</span></code>, but this contains the information we access using <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>command</th>
+<th>unix-equivalent</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.cwd()</code></td>
+<td><code>pwd</code></td>
+<td>Return path object representing the current working directory</td>
+</tr>
+<tr>
+<td><code>Path.home()</code></td>
+<td><code>~</code></td>
+<td>Return path object representing the home directory</td>
+</tr>
+<tr>
+<td><code>Path.stat()</code></td>
+<td><code>ls -l</code>*</td>
+<td>return info about the path</td>
+</tr>
+<tr>
+<td><code>Path.chmod()</code></td>
+<td><code>chmod</code></td>
+<td>change file mode and permissions</td>
+</tr>
+<tr>
+<td><code>Path.glob(pattern)</code></td>
+<td><code>ls *</code></td>
+<td>Glob the pattern given in the directory that is represented by the path, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>Path.mkdir()</code></td>
+<td><code>mkdir</code></td>
+<td>to create a new directory at the given path</td>
+</tr>
+<tr>
+<td><code>Path.rename()</code></td>
+<td><code>mv</code></td>
+<td>Rename a file or directory to the given target</td>
+</tr>
+<tr>
+<td><code>Path.rmdir()</code></td>
+<td><code>rmdir</code></td>
+<td>Remove the empty directory</td>
+</tr>
+<tr>
+<td><code>Path.unlink()</code></td>
+<td><code>rm</code></td>
+<td>Remove the file or symbolic link</td>
+</tr>
+</tbody>
+</table><p><code class="docutils literal notranslate"><span class="pre">*</span></code> Really, <code class="docutils literal notranslate"><span class="pre">Path.stat()</span></code> equates to the <code class="docutils literal notranslate"><span class="pre">unix</span></code> command <code class="docutils literal notranslate"><span class="pre">stat</span></code>, but this contains the information we access using <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>.</p>
 <p>Since we are already familiar with most of these commands in <code class="docutils literal notranslate"><span class="pre">unix</span></code>, we can get straight into using them:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
@@ -344,15 +388,40 @@ that gives:</p>
 <li><p>print out the url and check it is <code class="docutils literal notranslate"><span class="pre">table.html</span></code></p></li>
 </ul>
 <p>For accessing URLs, will mostly make use of the following functions in <code class="docutils literal notranslate"><span class="pre">URL</span></code> that you will see are similat to those for <code class="docutils literal notranslate"><span class="pre">Path</span></code>:</p>
-<p>|function| purpose|
-|—|—|
-|<code class="docutils literal notranslate"><span class="pre">URL.name</span></code>|  filename |
-|<code class="docutils literal notranslate"><span class="pre">URL.parent</span></code>|  parent |
-|<code class="docutils literal notranslate"><span class="pre">URL.parts</span></code>|  parts |
-|<code class="docutils literal notranslate"><span class="pre">URL.glob(pattern)</span></code>| Glob the pattern given in the URL directory, yielding matching files of any kind|
-|<code class="docutils literal notranslate"><span class="pre">URL.exists()</span></code>|  test to see if a url is accessible |
-|<code class="docutils literal notranslate"><span class="pre">URL.with_userinfo()</span></code> | add username and password |</p>
-<p>### login and password</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>URL.name</code></td>
+<td>filename</td>
+</tr>
+<tr>
+<td><code>URL.parent</code></td>
+<td>parent</td>
+</tr>
+<tr>
+<td><code>URL.parts</code></td>
+<td>parts</td>
+</tr>
+<tr>
+<td><code>URL.glob(pattern)</code></td>
+<td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>URL.exists()</code></td>
+<td>test to see if a url is accessible</td>
+</tr>
+<tr>
+<td><code>URL.with_userinfo()</code></td>
+<td>add username and password</td>
+</tr>
+</tbody>
+</table><p>### login and password</p>
 <p>Some web resources require you to use a login and password. This can be specified for the <code class="docutils literal notranslate"><span class="pre">URL</span></code> class by with the functiuon <code class="docutils literal notranslate"><span class="pre">with_userinfo</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">URL</span><span class="o">.</span><span class="n">with_userinfo</span><span class="p">)</span>
 </pre></div>
@@ -537,32 +606,116 @@ that gives:</p>
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>In this section, we have considered URLs and filenames in some detail, and made use of functions from <a class="reference external" href="https://docs.python.org/3/library/pathlib.html"><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a> and <a class="reference external" href="geog0111/gurlpath.py">gurlpath</a> to access them.</p>
 <p>The first batch of <code class="docutils literal notranslate"><span class="pre">Path</span></code> commands we saw had much commonality with the core <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands we had previously come across for moving around the file system and finding file information:</p>
-<p>|command| unix-equivalent | purpose|
-|—|—|—|
-|<code class="docutils literal notranslate"><span class="pre">Path.cwd()</span></code>| <code class="docutils literal notranslate"><span class="pre">pwd</span></code> |Return path object representing the current working directory|
-|<code class="docutils literal notranslate"><span class="pre">Path.home()</span></code>| <code class="docutils literal notranslate"><span class="pre">~</span></code>| Return path object representing the home directory|
-|<code class="docutils literal notranslate"><span class="pre">Path.stat()</span></code>| <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>* | return info about the path|
-|<code class="docutils literal notranslate"><span class="pre">Path.chmod()</span></code>| <code class="docutils literal notranslate"><span class="pre">chmod</span></code> | change file mode and permissions|
-|<code class="docutils literal notranslate"><span class="pre">Path.mkdir()</span></code>| <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> | to create a new directory at the given path|
-|<code class="docutils literal notranslate"><span class="pre">Path.rename()</span></code>| <code class="docutils literal notranslate"><span class="pre">mv</span></code> | Rename a file or directory to the given target|
-|<code class="docutils literal notranslate"><span class="pre">Path.rmdir()</span></code>| <code class="docutils literal notranslate"><span class="pre">rmdir</span></code> | Remove the empty directory|
-|<code class="docutils literal notranslate"><span class="pre">Path.unlink()</span></code>| <code class="docutils literal notranslate"><span class="pre">rm</span></code> | Remove the file or symbolic link|</p>
-<p>The second set is common to both <code class="docutils literal notranslate"><span class="pre">Path</span></code> and <code class="docutils literal notranslate"><span class="pre">URL</span></code>, and involves queries on the <code class="docutils literal notranslate"><span class="pre">Path</span></code> (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) name, testing for file existence, and using wildcards to access a list of files matching a pattern:</p>
-<p>|function| purpose|
-|—|—|
-|<code class="docutils literal notranslate"><span class="pre">Path.name</span></code>|  filename |
-|<code class="docutils literal notranslate"><span class="pre">Path.parent</span></code>|  parent |
-|<code class="docutils literal notranslate"><span class="pre">Path.parts</span></code>|  parts |
-|<code class="docutils literal notranslate"><span class="pre">Path.glob(pattern)</span></code>| Glob the pattern given in the URL directory, yielding matching files of any kind|
-|<code class="docutils literal notranslate"><span class="pre">Path.exists()</span></code>|  test to see if a url is accessible |</p>
-<p>|function| purpose|
-|—|—|
-|<code class="docutils literal notranslate"><span class="pre">URL.name</span></code>|  filename |
-|<code class="docutils literal notranslate"><span class="pre">URL.parent</span></code>|  parent |
-|<code class="docutils literal notranslate"><span class="pre">URL.parts</span></code>|  parts |
-|<code class="docutils literal notranslate"><span class="pre">URL.glob(pattern)</span></code>| Glob the pattern given in the URL directory, yielding matching files of any kind|
-|<code class="docutils literal notranslate"><span class="pre">URL.exists()</span></code>|  test to see if a url is accessible |</p>
-</div>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>command</th>
+<th>unix-equivalent</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.cwd()</code></td>
+<td><code>pwd</code></td>
+<td>Return path object representing the current working directory</td>
+</tr>
+<tr>
+<td><code>Path.home()</code></td>
+<td><code>~</code></td>
+<td>Return path object representing the home directory</td>
+</tr>
+<tr>
+<td><code>Path.stat()</code></td>
+<td><code>ls -l</code>*</td>
+<td>return info about the path</td>
+</tr>
+<tr>
+<td><code>Path.chmod()</code></td>
+<td><code>chmod</code></td>
+<td>change file mode and permissions</td>
+</tr>
+<tr>
+<td><code>Path.mkdir()</code></td>
+<td><code>mkdir</code></td>
+<td>to create a new directory at the given path</td>
+</tr>
+<tr>
+<td><code>Path.rename()</code></td>
+<td><code>mv</code></td>
+<td>Rename a file or directory to the given target</td>
+</tr>
+<tr>
+<td><code>Path.rmdir()</code></td>
+<td><code>rmdir</code></td>
+<td>Remove the empty directory</td>
+</tr>
+<tr>
+<td><code>Path.unlink()</code></td>
+<td><code>rm</code></td>
+<td>Remove the file or symbolic link</td>
+</tr>
+</tbody>
+</table><p>The second set is common to both <code class="docutils literal notranslate"><span class="pre">Path</span></code> and <code class="docutils literal notranslate"><span class="pre">URL</span></code>, and involves queries on the <code class="docutils literal notranslate"><span class="pre">Path</span></code> (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) name, testing for file existence, and using wildcards to access a list of files matching a pattern:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.name</code></td>
+<td>filename</td>
+</tr>
+<tr>
+<td><code>Path.parent</code></td>
+<td>parent</td>
+</tr>
+<tr>
+<td><code>Path.parts</code></td>
+<td>parts</td>
+</tr>
+<tr>
+<td><code>Path.glob(pattern)</code></td>
+<td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>Path.exists()</code></td>
+<td>test to see if a url is accessible</td>
+</tr>
+</tbody>
+</table><table border="1" class="docutils">
+<thead>
+<tr>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>URL.name</code></td>
+<td>filename</td>
+</tr>
+<tr>
+<td><code>URL.parent</code></td>
+<td>parent</td>
+</tr>
+<tr>
+<td><code>URL.parts</code></td>
+<td>parts</td>
+</tr>
+<tr>
+<td><code>URL.glob(pattern)</code></td>
+<td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>URL.exists()</code></td>
+<td>test to see if a url is accessible</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 
 
@@ -589,9 +742,7 @@ that gives:</p>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
@@ -620,30 +771,7 @@ that gives:</p>
 <li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">020 Files and other Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test">Test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#timing">Timing</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#data-resources">Data resources</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#resource-location">Resource location</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#binary-and-text-data">binary and text data</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#path-import"><code class="docutils literal notranslate"><span class="pre">Path</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#posix"><code class="docutils literal notranslate"><span class="pre">posix</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#glob-generators"><code class="docutils literal notranslate"><span class="pre">glob</span></code> generators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gurlpath"><code class="docutils literal notranslate"><span class="pre">gurlpath</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exists"><code class="docutils literal notranslate"><span class="pre">exists</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#glob-and-nasa-datasets"><code class="docutils literal notranslate"><span class="pre">glob</span></code> and NASA datasets</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">020 Files and other Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
 <li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>

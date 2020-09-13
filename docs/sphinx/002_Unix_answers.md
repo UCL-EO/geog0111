@@ -58,7 +58,7 @@ pwd
     /Users/plewis/Documents/GitHub/geog0111/notebooks
 
 
-### Exercise
+#### Exercise 3
 
 * Create a file `work/newfile.dat` using cat and check the new file size.
 * Use the menu item `File -> Open` to edit the file you have created and print the new file size
@@ -79,7 +79,7 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73  9 Sep 11:10 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73 12 Sep 12:38 work/newfile.dat
 
 
 
@@ -95,7 +95,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73  9 Sep 11:10 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73 12 Sep 12:38 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
@@ -110,9 +110,7 @@ cat work/newfile.dat
 rm work/newfile.dat
 ```
 
-## Unix
-
-### Exercise
+#### Exercise 4
 
 Using the `unix` commands and ideas from above:
 
@@ -135,7 +133,7 @@ ls -lh geog0111/f*
 # and only read for others
 ```
 
-    -rw-r--r--  1 plewis  staff   2.2K  6 Sep 22:34 geog0111/fire_practical_model.py
-    -rw-r--r--  1 plewis  staff   4.3K  6 Sep 22:34 geog0111/fire_practical_satellite.py
-    -rw-r--r--  1 plewis  staff   1.9K  6 Sep 22:34 geog0111/fire_practical_telecon.py
+    -rw-r--r--  1 plewis  staff   2.2K  9 Sep 10:28 geog0111/fire_practical_model.py
+    -rw-r--r--  1 plewis  staff   4.3K  9 Sep 10:28 geog0111/fire_practical_satellite.py
+    -rw-r--r--  1 plewis  staff   1.9K  9 Sep 10:28 geog0111/fire_practical_telecon.py
 

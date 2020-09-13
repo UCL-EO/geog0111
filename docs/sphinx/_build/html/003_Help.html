@@ -15,7 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Accounts and logins" href="004_Accounts.html" />
+    <link rel="next" title="004 Accounts and logins" href="004_Accounts.html" />
     <link rel="prev" title="002 Some basic UNIX" href="002_Unix.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -41,7 +41,6 @@
 <h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
 <p>In this notebook, we will learn how to get useful information on python commands using <code class="docutils literal notranslate"><span class="pre">help()</span></code> and associated methods.</p>
 <p>We will use <code class="docutils literal notranslate"><span class="pre">help(list)</span></code> as an example to learn about the class <code class="docutils literal notranslate"><span class="pre">list</span></code> from the help material. You are not expected to learn everything about <code class="docutils literal notranslate"><span class="pre">lists</span></code> here, as we will return to it later in the course. But you should find this useful in learning how to learn.</p>
-<p>We will learn how completion can help us understand our options.</p>
 <p>We will learn how to access some on-line resources.</p>
 </div>
 <div class="section" id="prerequisites">
@@ -146,155 +145,24 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>list?
 </pre></div>
 </div>
-</div>
-<div class="section" id="dir-and-locals">
-<h2><code class="docutils literal notranslate"><span class="pre">dir()</span></code> and <code class="docutils literal notranslate"><span class="pre">locals()</span></code><a class="headerlink" href="#dir-and-locals" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="dir">
-<h3><code class="docutils literal notranslate"><span class="pre">dir</span></code><a class="headerlink" href="#dir" title="Permalink to this headline">¶</a></h3>
-<p>We can use the function <code class="docutils literal notranslate"><span class="pre">dir</span></code> to get a list of attributes for some class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
-
-<span class="nb">dir</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="nb">dir</span><span class="p">([</span><span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">strings</span>
-    
-    <span class="n">If</span> <span class="n">called</span> <span class="n">without</span> <span class="n">an</span> <span class="n">argument</span><span class="p">,</span> <span class="k">return</span> <span class="n">the</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">current</span> <span class="n">scope</span><span class="o">.</span>
-    <span class="n">Else</span><span class="p">,</span> <span class="k">return</span> <span class="n">an</span> <span class="n">alphabetized</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">names</span> <span class="n">comprising</span> <span class="p">(</span><span class="n">some</span> <span class="n">of</span><span class="p">)</span> <span class="n">the</span> <span class="n">attributes</span>
-    <span class="n">of</span> <span class="n">the</span> <span class="n">given</span> <span class="nb">object</span><span class="p">,</span> <span class="ow">and</span> <span class="n">of</span> <span class="n">attributes</span> <span class="n">reachable</span> <span class="kn">from</span> <span class="nn">it.</span>
-    <span class="n">If</span> <span class="n">the</span> <span class="nb">object</span> <span class="n">supplies</span> <span class="n">a</span> <span class="n">method</span> <span class="n">named</span> <span class="fm">__dir__</span><span class="p">,</span> <span class="n">it</span> <span class="n">will</span> <span class="n">be</span> <span class="n">used</span><span class="p">;</span> <span class="n">otherwise</span>
-    <span class="n">the</span> <span class="n">default</span> <span class="nb">dir</span><span class="p">()</span> <span class="n">logic</span> <span class="ow">is</span> <span class="n">used</span> <span class="ow">and</span> <span class="n">returns</span><span class="p">:</span>
-      <span class="k">for</span> <span class="n">a</span> <span class="n">module</span> <span class="nb">object</span><span class="p">:</span> <span class="n">the</span> <span class="n">module</span><span class="s1">&#39;s attributes.</span>
-      <span class="k">for</span> <span class="n">a</span> <span class="k">class</span> <span class="nc">object</span><span class="p">:</span>  <span class="n">its</span> <span class="n">attributes</span><span class="p">,</span> <span class="ow">and</span> <span class="n">recursively</span> <span class="n">the</span> <span class="n">attributes</span>
-        <span class="n">of</span> <span class="n">its</span> <span class="n">bases</span><span class="o">.</span>
-      <span class="k">for</span> <span class="nb">any</span> <span class="n">other</span> <span class="nb">object</span><span class="p">:</span> <span class="n">its</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">its</span> <span class="n">class</span><span class="s1">&#39;s attributes, and</span>
-        <span class="n">recursively</span> <span class="n">the</span> <span class="n">attributes</span> <span class="n">of</span> <span class="n">its</span> <span class="n">class</span><span class="s1">&#39;s base classes.</span>
-</pre></div>
-</div>
-<p>If we use <code class="docutils literal notranslate"><span class="pre">dir()</span></code> with no arguments, we will see a list of the names of variables defined in this notebook:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">())</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;In&#39;</span><span class="p">,</span> <span class="s1">&#39;Out&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;__&#39;</span><span class="p">,</span> <span class="s1">&#39;___&#39;</span><span class="p">,</span> <span class="s1">&#39;__builtin__&#39;</span><span class="p">,</span> <span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__loader__&#39;</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">,</span> <span class="s1">&#39;__package__&#39;</span><span class="p">,</span> <span class="s1">&#39;__spec__&#39;</span><span class="p">,</span> <span class="s1">&#39;_dh&#39;</span><span class="p">,</span> <span class="s1">&#39;_i&#39;</span><span class="p">,</span> <span class="s1">&#39;_i1&#39;</span><span class="p">,</span> <span class="s1">&#39;_i2&#39;</span><span class="p">,</span> <span class="s1">&#39;_i3&#39;</span><span class="p">,</span> <span class="s1">&#39;_i4&#39;</span><span class="p">,</span> <span class="s1">&#39;_i5&#39;</span><span class="p">,</span> <span class="s1">&#39;_i6&#39;</span><span class="p">,</span> <span class="s1">&#39;_i7&#39;</span><span class="p">,</span> <span class="s1">&#39;_i8&#39;</span><span class="p">,</span> <span class="s1">&#39;_ih&#39;</span><span class="p">,</span> <span class="s1">&#39;_ii&#39;</span><span class="p">,</span> <span class="s1">&#39;_iii&#39;</span><span class="p">,</span> <span class="s1">&#39;_oh&#39;</span><span class="p">,</span> <span class="s1">&#39;alist&#39;</span><span class="p">,</span> <span class="s1">&#39;blist&#39;</span><span class="p">,</span> <span class="s1">&#39;exit&#39;</span><span class="p">,</span> <span class="s1">&#39;get_ipython&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;quit&#39;</span><span class="p">,</span> <span class="s1">&#39;yapf_reformat&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>You might notice that we see the variable names <code class="docutils literal notranslate"><span class="pre">alist</span></code> and <code class="docutils literal notranslate"><span class="pre">blist</span></code> in here, as we created them in an earlier cell.</p>
-</div>
-<div class="section" id="locals">
-<h3><code class="docutils literal notranslate"><span class="pre">locals()</span></code><a class="headerlink" href="#locals" title="Permalink to this headline">¶</a></h3>
-<p>The function <code class="docutils literal notranslate"><span class="pre">locals()</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">dir()</span></code> used as above, but it contains the <em>values</em> that the variables are set to. So, we recall that there is a variable with the name <code class="docutils literal notranslate"><span class="pre">alist</span></code> from above.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">locals</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">locals</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
-
-<span class="nb">locals</span><span class="p">()</span>
-    <span class="n">Return</span> <span class="n">a</span> <span class="n">dictionary</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">current</span> <span class="n">scope</span><span class="s1">&#39;s local variables.</span>
-    
-    <span class="n">NOTE</span><span class="p">:</span> <span class="n">Whether</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">updates</span> <span class="n">to</span> <span class="n">this</span> <span class="n">dictionary</span> <span class="n">will</span> <span class="n">affect</span> <span class="n">name</span> <span class="n">lookups</span> <span class="ow">in</span>
-    <span class="n">the</span> <span class="n">local</span> <span class="n">scope</span> <span class="ow">and</span> <span class="n">vice</span><span class="o">-</span><span class="n">versa</span> <span class="ow">is</span> <span class="o">*</span><span class="n">implementation</span> <span class="n">dependent</span><span class="o">*</span> <span class="ow">and</span> <span class="ow">not</span>
-    <span class="n">covered</span> <span class="n">by</span> <span class="nb">any</span> <span class="n">backwards</span> <span class="n">compatibility</span> <span class="n">guarantees</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>We could of course just print this as above via:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>but sometimes, we want to access the variable through its name <code class="docutils literal notranslate"><span class="pre">alias</span></code>. In this case, we can type:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">locals</span><span class="p">()[</span><span class="s1">&#39;alist&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Use of <code class="docutils literal notranslate"><span class="pre">dir()</span></code> and <code class="docutils literal notranslate"><span class="pre">locals()</span></code> in this way can be very useful if you want to see what variables have been set to.</p>
-<div class="section" id="exercise-3">
-<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li><p>Create a code cell below and assign the variable <code class="docutils literal notranslate"><span class="pre">my_var</span></code> the value of <code class="docutils literal notranslate"><span class="pre">10</span></code> (hint: <code class="docutils literal notranslate"><span class="pre">my_var</span> <span class="pre">=</span> <span class="pre">10</span></code>)</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">dir()</span></code> again and confirm that <code class="docutils literal notranslate"><span class="pre">my_var</span></code> now appears in the list</p></li>
-</ul>
-</div>
-<div class="section" id="exercise-4">
-<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li><p>Print the value of <code class="docutils literal notranslate"><span class="pre">my_var</span></code> using <code class="docutils literal notranslate"><span class="pre">print(my_var)</span></code></p></li>
-<li><p>Print the value of <code class="docutils literal notranslate"><span class="pre">my_var</span></code> using <code class="docutils literal notranslate"><span class="pre">print(locals()['my_var'])</span></code></p></li>
-<li><p>confirm that they give the same answer</p></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section" id="completion">
-<h2>Completion<a class="headerlink" href="#completion" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="dir-list">
-<h3><code class="docutils literal notranslate"><span class="pre">dir(list)</span></code><a class="headerlink" href="#dir-list" title="Permalink to this headline">¶</a></h3>
-<p>If we type <code class="docutils literal notranslate"><span class="pre">dir(list)</span></code> you will see that it gives the list of methods we can use for the class <code class="docutils literal notranslate"><span class="pre">list</span></code>. You should notice that this is the same as the list of methods we saw when we used <code class="docutils literal notranslate"><span class="pre">help(list)</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="nb">list</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iadd__&#39;</span><span class="p">,</span> <span class="s1">&#39;__imul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__mul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reversed__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> <span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="s1">&#39;clear&#39;</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;extend&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="s1">&#39;reverse&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id3">
-<h3>Completion<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Another useful thing is to see a list of potential methods in a class or e.g. to know what variables already declared start with <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
-<p>Modern editors, <a class="reference external" href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a> and related tools often have features for completion of filenames, variables etc. This can help you minimise typing errors (especially for variables), and also help you to keep track of filenames, functions etc.</p>
-<p>The Jupyter notebooks we are using have this sort of completion feature. Exactly how it works depends on the browser and the server used, but it will usually involve using the <code class="docutils literal notranslate"><span class="pre">&lt;TAB&gt;</span></code> key (either once or twice), and/or spacebar and/or hovering over the text.</p>
-<p>The information this gives is similar to what youy get using <code class="docutils literal notranslate"><span class="pre">dir</span></code> as above.</p>
-<p>Try this out now, broadly following the guidelines below. Note down what works for you and get used to using it.</p>
-<p>If you are using a jupyter hub server (or similar), copy the information in the cell below.
-Then place the cursor after the <code class="docutils literal notranslate"><span class="pre">.</span></code> below. hit the <tab> key, rather than <return> in this cell.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dont run this cell: use for completion</span>
-<span class="nb">list</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>Really, this is just using the fact that <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code> key performs variable name completion.</p>
-<p>This means that if you e.g. have variables called <code class="docutils literal notranslate"><span class="pre">the_long_one</span></code> and <code class="docutils literal notranslate"><span class="pre">the_long_two</span></code> set:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">the_long_one</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">the_long_two</span> <span class="o">=</span> <span class="mi">2</span>
-</pre></div>
-</div>
-<p>The next time you want to refer to this string in code, you need only type as many letters needed to distinguish this from other variable names, then hit <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code> to complete the name as far as possible.</p>
-<ul class="simple">
-<li><p>copy the information in the cell below into a new code cell</p></li>
-<li><p>place the cursor after the letter t and hit <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code>. It should show you a list of things that begin with <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p></li>
-<li><p>Use this to write the line of code <code class="docutils literal notranslate"><span class="pre">the_long_one</span> <span class="pre">=</span> <span class="pre">1000</span></code></p></li>
-<li><p>in the cell below, place the cursor after the letters <code class="docutils literal notranslate"><span class="pre">th</span></code> and hit <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code>. It should show you a list of things that begin with <code class="docutils literal notranslate"><span class="pre">th</span></code>. In this case it should just give you the options of <code class="docutils literal notranslate"><span class="pre">the_long_one</span></code> or <code class="docutils literal notranslate"><span class="pre">the_long_two</span></code>.</p></li>
-<li><p>If you hit <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code> again, the variable name will be completed as far as it can, here, up to <code class="docutils literal notranslate"><span class="pre">the_long_</span></code>. Use this to write the line of code <code class="docutils literal notranslate"><span class="pre">the_long_two</span> <span class="pre">=</span> <span class="pre">2000</span></code></p></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section" id="do-exercise-here-put-the-cursor-after-the-t-or-th-and">
-<h1>do exercise here … put the cursor after the t or th and<a class="headerlink" href="#do-exercise-here-put-the-cursor-after-the-t-or-th-and" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="section" id="use-tab-for-completion-dont-run-this-cell">
-<h1>use <tab> for completion. Dont run this cell<a class="headerlink" href="#use-tab-for-completion-dont-run-this-cell" title="Permalink to this headline">¶</a></h1>
-<p>t
-th</p>
 <div class="section" id="learning-new-things">
-<h2>Learning new things<a class="headerlink" href="#learning-new-things" title="Permalink to this headline">¶</a></h2>
+<h3>Learning new things<a class="headerlink" href="#learning-new-things" title="Permalink to this headline">¶</a></h3>
 <p>Let’s use that knowledge to learn something new:</p>
 <ul class="simple">
 <li><p>Use online material from <a class="reference external" href="https://www.w3schools.com/python">https://www.w3schools.com</a> or elsewhere to learn the basics of <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p></li>
 </ul>
-<div class="section" id="exercise-5">
-<h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Find help for the class <code class="docutils literal notranslate"><span class="pre">range</span></code> to understand how to use this to generate a sequence of integers from 10 to 1 in steps of -1</p></li>
 <li><p>Use what you have learned to write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop below that counts backwards from 10 to 0</p></li>
 </ul>
 </div>
 </div>
+</div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this session, we  have learned some different ways to access help on the operation and options for python commands. These include: <code class="docutils literal notranslate"><span class="pre">help()</span></code>, use of <code class="docutils literal notranslate"><span class="pre">?</span></code>, completion, and using online help. Practically, you may use one or more of these methods to find out how something works, or get some examples.</p>
+<p>In this session, we  have learned some different ways to access help on the operation and options for python commands. These include: <code class="docutils literal notranslate"><span class="pre">help()</span></code>, use of <code class="docutils literal notranslate"><span class="pre">?</span></code> and using online help. Practically, you may use one or more of these methods to find out how something works, or get some examples.</p>
 <p>You might notice that there are many online forums you can post to to get advice on coding, and we mention  <a class="reference external" href="https://stackoverflow.com">https://stackoverflow.com</a> as an example. Remember that not all posts are equally useful: pay attention to comments from other users on any answer, as well as post votes. Do not look on <code class="docutils literal notranslate"><span class="pre">stackoverflow</span></code> until you have exhausted simpler help methods. You should <em>not</em> generally be posting on these in this course. You will find answers to all that you need in these notes or on existing online pages. You most certainly must <em>not</em> post on forums asking questions about anyt exercises you need to complete or work you need to submit. The course administrators may monitor this</p>
 </div>
 </div>
@@ -322,41 +190,8 @@ th</p>
 <li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">003 Help</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#timing">Timing</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#help-method">Help Method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">help()</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#online-help">online help</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">help?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dir-and-locals"><code class="docutils literal notranslate"><span class="pre">dir()</span></code> and <code class="docutils literal notranslate"><span class="pre">locals()</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dir"><code class="docutils literal notranslate"><span class="pre">dir</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#locals"><code class="docutils literal notranslate"><span class="pre">locals()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#completion">Completion</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dir-list"><code class="docutils literal notranslate"><span class="pre">dir(list)</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Completion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#learning-new-things">Learning new things</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercise-5">Exercise 5</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
@@ -414,7 +249,7 @@ th</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="002_Unix.html" title="previous chapter">002 Some basic UNIX</a></li>
-      <li>Next: <a href="004_Accounts.html" title="next chapter">Accounts and logins</a></li>
+      <li>Next: <a href="004_Accounts.html" title="next chapter">004 Accounts and logins</a></li>
   </ul></li>
 </ul>
 </div>

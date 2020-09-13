@@ -10,15 +10,15 @@ You should do the tasks in this notebook before the first class. We need to assu
 
 This is your first Jupyter notebook of the class. Jupyter notebooks will form the primary teaching and learning tool in this course. The format of the notebooks will be similar for all sessions. 
 
-### Course material
+#### Course material
 
 You will find full, up to date information on this course GEOG0111 on the [UCL course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495). 
 
-### Course load
+#### Course load
 
 This course is intended to be 25 % of your course load for the term. You will find fuller information on the [GEOG0111 course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495), but that percentage should give you some idea of the amount of effort we are expecting you to put in (on average) per week.
 
-### Learning 
+#### Learning 
 
 You will be expected to learn from what we present in these notebooks and by following up material referenced and wider resources. 
 
@@ -30,23 +30,25 @@ You will be covering a number of notebooks per week in a learning chunk, and you
 
 We will provide more information on learning in this course and the resources you have access to on the course moodle page.
 
-### Prerequisites
+#### Prerequisites
 
 There are no prerequisites for this notebook.
 
 Note that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
 
-### Timing
+
+
+#### Timing
 
 The session should take around 20 minutes though you will spend longer on follow-up material and exercises. 
     
 
-## Some resources
+### Some resources
 
 There is a useful [cheatsheet](https://www.anaconda.com/wp-content/uploads/2019/03/11-2018-JupyterLab-Notebook-Cheatsheet.pdf) on using Jupyter, and [another, on markdown syntax](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) for you to use.
 
     
-## Anaconda and Jupyter
+### Anaconda and Jupyter
     
 We will be using software from the [anaconda distribution of python](https://anaconda.org/anaconda/python). This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (`>| Run`) should give, the following, or higher:
     
@@ -78,11 +80,11 @@ python -V
 
     jupyter core     : 4.6.3
     jupyter-notebook : 6.1.3
-    qtconsole        : 4.7.6
+    qtconsole        : 4.7.7
     ipython          : 7.18.1
     ipykernel        : 5.3.4
     jupyter client   : 6.1.7
-    jupyter lab      : 2.2.6
+    jupyter lab      : 2.2.7
     nbconvert        : 5.6.1
     ipywidgets       : 7.5.1
     nbformat         : 5.0.7

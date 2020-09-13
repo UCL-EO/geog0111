@@ -197,6 +197,3 @@ print(third_string)
 # the cell above will fail again. Learn from the mistakes we make.
 # Remember what this type of error can mean.
 ```
-
-    hello once more
-

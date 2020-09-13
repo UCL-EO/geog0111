@@ -7,7 +7,7 @@ GEOG0111 Scientific Computing
 =============================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :caption: Contents:
 
    docindex.md

@@ -90,7 +90,9 @@
 <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
 </pre></div>
 </div>
-<p>### Exercise</p>
+</div>
+<div class="section" id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Create a file <code class="docutils literal notranslate"><span class="pre">work/newfile.dat</span></code> using cat and check the new file size.</p></li>
 <li><p>Use the menu item <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Open</span></code> to edit the file you have created and print the new file size</p></li>
@@ -109,7 +111,7 @@ cat <span class="s">&lt;&lt; EOF &gt; work/newfile.dat</span>
 ls -l work/newfile.dat
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">73</span>  <span class="mi">9</span> <span class="n">Sep</span> <span class="mi">11</span><span class="p">:</span><span class="mi">10</span> <span class="n">work</span><span class="o">/</span><span class="n">newfile</span><span class="o">.</span><span class="n">dat</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">73</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">12</span><span class="p">:</span><span class="mi">38</span> <span class="n">work</span><span class="o">/</span><span class="n">newfile</span><span class="o">.</span><span class="n">dat</span>
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
@@ -123,7 +125,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">73</span>  <span class="mi">9</span> <span class="n">Sep</span> <span class="mi">11</span><span class="p">:</span><span class="mi">10</span> <span class="n">work</span><span class="o">/</span><span class="n">newfile</span><span class="o">.</span><span class="n">dat</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">73</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">12</span><span class="p">:</span><span class="mi">38</span> <span class="n">work</span><span class="o">/</span><span class="n">newfile</span><span class="o">.</span><span class="n">dat</span>
 
 <span class="c1"># this will go into the file</span>
 <span class="n">hello</span> <span class="n">world</span> <span class="o">-</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">file</span>
@@ -136,10 +138,8 @@ rm work/newfile.dat
 </pre></div>
 </div>
 </div>
-<div class="section" id="unix">
-<h2>Unix<a class="headerlink" href="#unix" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-4">
+<h2>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h2>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands and ideas from above:</p>
 <ul class="simple">
 <li><p>show a listing of the files in the relative directory <code class="docutils literal notranslate"><span class="pre">geog0111</span></code> that start with the letter <code class="docutils literal notranslate"><span class="pre">f</span></code></p></li>
@@ -159,11 +159,10 @@ ls -lh geog0111/f*
 <span class="c1"># and only read for others</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">2.2</span><span class="n">K</span>  <span class="mi">6</span> <span class="n">Sep</span> <span class="mi">22</span><span class="p">:</span><span class="mi">34</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">fire_practical_model</span><span class="o">.</span><span class="n">py</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">4.3</span><span class="n">K</span>  <span class="mi">6</span> <span class="n">Sep</span> <span class="mi">22</span><span class="p">:</span><span class="mi">34</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">fire_practical_satellite</span><span class="o">.</span><span class="n">py</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">1.9</span><span class="n">K</span>  <span class="mi">6</span> <span class="n">Sep</span> <span class="mi">22</span><span class="p">:</span><span class="mi">34</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">fire_practical_telecon</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">2.2</span><span class="n">K</span>  <span class="mi">9</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">28</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">fire_practical_model</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">4.3</span><span class="n">K</span>  <span class="mi">9</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">28</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">fire_practical_satellite</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">1.9</span><span class="n">K</span>  <span class="mi">9</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">28</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">fire_practical_telecon</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -192,21 +191,12 @@ ls -lh geog0111/f*
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#do-exercise-here-put-the-cursor-after-the-t-or-th-and">do exercise here … put the cursor after the t or th and</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_Help.html#use-tab-for-completion-dont-run-this-cell">use <tab> for completion. Dont run this cell</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">002 Some basic UNIX : Answers to exercises</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#exercise-1">Exercise 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#unix">Unix</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercise">Exercise</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
