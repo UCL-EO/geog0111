@@ -42,6 +42,21 @@ echo $extras | awk '{for(i=1;i<=NF;i++)x[$i]=$i} END{for(i in x)print i}'  >> ${
 
 pip3 install -r ${base}/config/requirements.txt --user
 
+# now add these to "${base}"/Docker/small_environment.yml
+req=$(grep -v pip < ${base}/config/requirements.txt)
+cp "${base}"/config/small_environment.yml "${base}"/Docker/small_environment.yml 
+for n in ${req[@]}
+do
+  grep -v $n < "${base}"/Docker/small_environment.yml > /tmp/tmp2.$$
+  mv /tmp/tmp2.$$ "${base}"/Docker/small_environment.yml
+done
+awk < ${base}/config/requirements.txt '{print "    - "$0}' >> "${base}"/Docker/small_environment.yml
+
+# test it
+conda env create -n small  --force -f "${base}"/Docker/small_environment.yml
+
+
+
 rm -rf "$base/docs/sphinx"
 mkdir -p "$base/docs/sphinx"
 cd "$base"

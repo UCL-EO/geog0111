@@ -1,0 +1,17 @@
+name: geog0111
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.7
+  - jupyter
+  - mkdocs
+  - sphinx
+  - pip
+  - pip:
+    - mkdocs-jupyter
+    - jupyter_contrib_nbextensions
+    - mknotebooks
+    - mkdocs-material
+    - mkdocs-exclude
+    - mkdocs-git-revision-date-localized-plugin

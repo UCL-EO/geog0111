@@ -36,12 +36,14 @@ release = '1.0.1'
 extensions = [
     'recommonmark',
     'sphinx_markdown_tables',
+    'sphinx.ext.imgmath',
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx.ext.intersphinx',
 ]
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

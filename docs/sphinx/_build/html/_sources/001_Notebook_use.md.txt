@@ -47,53 +47,7 @@ The session should take around 20 minutes though you will spend longer on follow
 
 There is a useful [cheatsheet](https://www.anaconda.com/wp-content/uploads/2019/03/11-2018-JupyterLab-Notebook-Cheatsheet.pdf) on using Jupyter, and [another, on markdown syntax](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) for you to use.
 
-    
-### Anaconda and Jupyter
-    
-We will be using software from the [anaconda distribution of python](https://anaconda.org/anaconda/python). This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (`>| Run`) should give, the following, or higher:
-    
-    jupyter core     : 4.6.1
-    jupyter-notebook : 6.0.3
-    ipython          : 7.12.0
-    ipykernel        : 5.1.4
-    jupyter client   : 5.3.4
-    jupyter lab      : 1.2.6
-    nbconvert        : 5.6.1
-    ipywidgets       : 7.5.1
-    nbformat         : 5.0.4
-    traitlets        : 4.3.3
-    conda 4.8.2
-    Python 3.7.6
-    
-If that is not the case, then make a copy of what it does produce, and contact the course organisers through [moodle](https://moodle.ucl.ac.uk/course/view.php?id=21495). 
 
-
-
-
-```bash
-%%bash 
-# tests 
-jupyter --version
-conda -V
-python -V
-```
-
-    jupyter core     : 4.6.3
-    jupyter-notebook : 6.1.3
-    qtconsole        : 4.7.7
-    ipython          : 7.18.1
-    ipykernel        : 5.3.4
-    jupyter client   : 6.1.7
-    jupyter lab      : 2.2.7
-    nbconvert        : 5.6.1
-    ipywidgets       : 7.5.1
-    nbformat         : 5.0.7
-    traitlets        : 4.3.3
-    conda 4.8.4
-    Python 3.7.8
-
-
-The code cell above that we ran is a [`unix` (`bash`) shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), indicated by the [cell magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html) `%%bash` on the first line. This is a mechanism that lets us run unix commands in a Python notebook.
 
 ## How we will be using notebooks
 
@@ -165,9 +119,6 @@ first_string = "hello world"
 # print this
 print(first_string)
 ```
-
-    hello world
-
 
 The type of cell we use is `Code` (rather than `Markdown` above).
 

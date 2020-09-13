@@ -9,7 +9,15 @@ Notice that you can double click on a cell to edit its contents.
 Add a cell now, below, and use the `Cell -> Cell Type` menu to make this cell type `markdown`. Add some text in there ... lyrics from your favourite song, whatever you like ...
 
 
-# ANSWER
+    
+The markdown will be text, something like:
+    
+    This is a markdown cell ...
+
+    Hello world is traditionally the first coding you do.
+    
+to produce:
+
 This is a markdown cell ...
 
 Hello world is traditionally the first coding you do.
@@ -29,23 +37,64 @@ Read up on the [features of markdown](https://github.com/adam-p/markdown-here/wi
 * a image
 * some html
 
-# ANSWER
+Use:
 
-# Main Heading
+        # Main Heading
 
-## equation
+for a heading called 'Main Heading'
 
-Equations 
+Use:
+
+        ## equation
+
+For a sub-heading called 'equation' etc
+
+Equations are of the form:
+
+For example:
+
+        \begin{equation*}
+        \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+        \end{equation*}
+
+A link is specified for link text in square brackets, followed by the the link URL in round brackets. For example:
+
+        [click me and I will pop up a google search window](https://www.google.com)
+
+
+A table  is formatted in columns defined by `|`. The first line of the table gives headings (e.g. `| a | b | `).  The second defines alignment (e.g. `|:-:|-|`). The rest if data columns separated by `|`. An example is:
+
+        | a | b | c | d | e |
+        |:-:|:-:|:-:|:-:|-|
+        | 🙈 | 💥 | 🦧 | 🐇 | 🐪 |
+        | f | g | h | i | j |
+        | 🙈 | 💥 | 🦧 | 🐇 | 🐪 |
+
+An image is similar syntax to a link, but with `!` in front. The text in the square bracket is `alt` text, and the link in round brackets points to the image, as a file or URL.
+
+        ![ucl logo](images/ucl_logo.png)
+
+
+You can enter blocks of HTML code, such as:
+
+        <html>
+        <body>
+        <h2>HTML</h2>
+
+        <p>Hey, I'm a paragraph!</p>
+
+
+        </body>
+        </html>
+
 
 \begin{equation*}
 \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
 \end{equation*}
 
-### link
 
 [click me and I will pop up a google search window](https://www.google.com)
 
-### table
 
 | a | b | c | d | e |
 |:-:|:-:|:-:|:-:|-|
@@ -53,12 +102,9 @@ Equations
 | f | g | h | i | j |
 | 🙈 | 💥 | 🦧 | 🐇 | 🐪 |
 
-### image
 
 ![ucl logo](images/ucl_logo.png)
 
-
-### html
 
 <html>
 <body>
@@ -138,34 +184,49 @@ print(first_string,second_string)
 # ANSWER
 # create a code cell below
 
+msg='''
+The first time we run it, it comes up with an error
+NameError: name 'third_string' is not defined
+telling us that we have tried to access a variable name that
+we have not yet defined. Be aware of this type of error.
+
+what does that tell you about trying to print variables we haven't created?
+
+if we try to use a variable before we create it, the code will fail and throw
+an error. This is useful information: learn to read the errors and understand what
+it is telling you. 
+'''
+print(msg)
+
+
 # try to print a variable `third_string` that you haven't yet created
 print(third_string)
-
-# The first time we run it
-# it comes up with an error
-# NameError: name 'third_string' is not defined
-# telling us that we have tried to access a variable name that
-# we have not yet defined. Be aware of this type of error.
-
-# what does that tell you about trying to print variables we haven't created?
-#
-# if we try to use a variable before we create it, the code will fail and throw
-# an error. This is useful information: learn to read the errors and understand what
-# it is telling you. 
 ```
+
+    
+    The first time we run it, it comes up with an error
+    NameError: name 'third_string' is not defined
+    telling us that we have tried to access a variable name that
+    we have not yet defined. Be aware of this type of error.
+    
+    what does that tell you about trying to print variables we haven't created?
+    
+    if we try to use a variable before we create it, the code will fail and throw
+    an error. This is useful information: learn to read the errors and understand what
+    it is telling you. 
+    
+
 
 
     ---------------------------------------------------------------------------
 
     NameError                                 Traceback (most recent call last)
 
-    <ipython-input-5-6c032710a348> in <module>
-          3 
-          4 # try to print a variable `third_string` that you haven't yet created
-    ----> 5 print(third_string)
-          6 
-          7 # The first time we run it
-
+    <ipython-input-4-178aa48b468c> in <module>
+         18 
+         19 # try to print a variable `third_string` that you haven't yet created
+    ---> 20 print(third_string)
+    
 
     NameError: name 'third_string' is not defined
 
@@ -188,12 +249,15 @@ third_string = 'hello once more'
 # same as ...
 print(third_string)
 
-# what does that tell you about information we create in one cell and 
-# try to use in another above?
-#
-# we can run cells in any order. Once we had created third_string, the 
-# previous exercise print(third_string) executed as we expected.
-# The *Danger* is that the next time we run this notebook in cell order
-# the cell above will fail again. Learn from the mistakes we make.
-# Remember what this type of error can mean.
+msg = '''
+what does that tell you about information we create in one cell and 
+try to use in another above?
+
+we can run cells in any order. Once we had created third_string, the 
+previous exercise print(third_string) executed as we expected.
+The *Danger* is that the next time we run this notebook in cell order
+the cell above will fail again. Learn from the mistakes we make.
+Remember what this type of error can mean.
+'''
+print(msg)
 ```

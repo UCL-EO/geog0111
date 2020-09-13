@@ -3,20 +3,19 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - git
   - python>=3.7
-  - numpy
-  - geemap
   - jupyter
-  - nbgitpuller
-  - mkdocs
-  - pycodestyle
-  - sphinx
+  - pip
   - pip:
-    - mkdocs-jupyter
-    - urlpath
     - jupyter_contrib_nbextensions
+    - mkdocs
+    - sphinx
+    - mkdocs-jupyter
     - mknotebooks
-    - mkdocs-material
     - mkdocs-exclude
     - mkdocs-git-revision-date-localized-plugin
+    - recommonmark
+    - sphinx-markdown-tables
+    - sphinx-typlog-theme
+    - mkdocs-rtd-dropdown
+    - mkdocs-material

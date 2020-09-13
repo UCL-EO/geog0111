@@ -1,8 +1,14 @@
-# 004 Accounts and logins
+# 004 Setup, Accounts and logins
 
 ## Introduction
 
-## login and password
+### Google Earth Engine
+
+
+You will also need to make sure you have a [google account](https://support.google.com/accounts/answer/27441?hl=en) to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at [signup.earthengine.google.com]( https://signup.earthengine.google.com/). **You will need to do this before we start the class** as you will need to wait for approval from Google.
+
+
+### NASA Earthdata login and password
 
 Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.
 
@@ -57,6 +63,54 @@ assert url.ping(verbose=False) == True
 ```python
 
 ```
+
+    
+### Anaconda and Jupyter
+    
+We will be using software from the [anaconda distribution of python](https://anaconda.org/anaconda/python). This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (`>| Run`) should give, the following, or higher:
+    
+    jupyter core     : 4.6.1
+    jupyter-notebook : 6.0.3
+    ipython          : 7.12.0
+    ipykernel        : 5.1.4
+    jupyter client   : 5.3.4
+    jupyter lab      : 1.2.6
+    nbconvert        : 5.6.1
+    ipywidgets       : 7.5.1
+    nbformat         : 5.0.4
+    traitlets        : 4.3.3
+    conda 4.8.2
+    Python 3.7.6
+    
+If that is not the case, then make a copy of what it does produce, and contact the course organisers through [moodle](https://moodle.ucl.ac.uk/course/view.php?id=21495). 
+
+
+
+
+```bash
+%%bash 
+# tests 
+jupyter --version
+conda -V
+python -V
+```
+
+    jupyter core     : 4.6.3
+    jupyter-notebook : 6.1.3
+    qtconsole        : 4.7.7
+    ipython          : 7.18.1
+    ipykernel        : 5.3.4
+    jupyter client   : 6.1.7
+    jupyter lab      : 2.2.7
+    nbconvert        : 5.6.1
+    ipywidgets       : 7.5.1
+    nbformat         : 5.0.7
+    traitlets        : 4.3.3
+    conda 4.8.4
+    Python 3.7.8
+
+
+The code cell above that we ran is a [`unix` (`bash`) shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), indicated by the [cell magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html) `%%bash` on the first line. This is a mechanism that lets us run unix commands in a Python notebook.
 
 
 ```python

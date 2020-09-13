@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>004 Accounts and logins &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <title>004 Setup, Accounts and logins &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -33,13 +33,16 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="accounts-and-logins">
-<h1>004 Accounts and logins<a class="headerlink" href="#accounts-and-logins" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="setup-accounts-and-logins">
+<h1>004 Setup, Accounts and logins<a class="headerlink" href="#setup-accounts-and-logins" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="google-earth-engine">
+<h3>Google Earth Engine<a class="headerlink" href="#google-earth-engine" title="Permalink to this headline">¶</a></h3>
+<p>You will also need to make sure you have a <a class="reference external" href="https://support.google.com/accounts/answer/27441?hl=en">google account</a> to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at <a class="reference external" href="https://signup.earthengine.google.com/">signup.earthengine.google.com</a>. <strong>You will need to do this before we start the class</strong> as you will need to wait for approval from Google.</p>
 </div>
-<div class="section" id="login-and-password">
-<h2>login and password<a class="headerlink" href="#login-and-password" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nasa-earthdata-login-and-password">
+<h3>NASA Earthdata login and password<a class="headerlink" href="#nasa-earthdata-login-and-password" title="Permalink to this headline">¶</a></h3>
 <p>Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.</p>
 <p>To that in these notes we can make use of stored passwords and usernames using the local <a class="reference external" href="geog0111/cylog.py">cylog</a> package.</p>
 <p>Information is encrypted in a user read-only file in your home directory (mode <code class="docutils literal notranslate"><span class="pre">400</span></code>) and accessed through the <code class="docutils literal notranslate"><span class="pre">Cylog</span></code>  <code class="docutils literal notranslate"><span class="pre">login</span></code> function.</p>
@@ -81,8 +84,51 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="anaconda-and-jupyter">
+<h3>Anaconda and Jupyter<a class="headerlink" href="#anaconda-and-jupyter" title="Permalink to this headline">¶</a></h3>
+<p>We will be using software from the <a class="reference external" href="https://anaconda.org/anaconda/python">anaconda distribution of python</a>. This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (<code class="docutils literal notranslate"><span class="pre">&gt;|</span> <span class="pre">Run</span></code>) should give, the following, or higher:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.0</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.12</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.1</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">6</span>
+<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">6</span>
+</pre></div>
+</div>
+<p>If that is not the case, then make a copy of what it does produce, and contact the course organisers through <a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=21495">moodle</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash 
+<span class="c1"># tests </span>
+jupyter --version
+conda -V
+python -V
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">qtconsole</span>        <span class="p">:</span> <span class="mf">4.7</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.18</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">2.2</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">8</span>
+</pre></div>
+</div>
+<p>The code cell above that we ran is a <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"><code class="docutils literal notranslate"><span class="pre">unix</span></code> (<code class="docutils literal notranslate"><span class="pre">bash</span></code>) shell</a>, indicated by the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> on the first line. This is a mechanism that lets us run unix commands in a Python notebook.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -111,11 +157,8 @@
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">004 Accounts and logins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
