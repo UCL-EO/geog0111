@@ -1,6 +1,6 @@
-# 002 Some basic UNIX : Answers to exercises
+## 002 Some basic UNIX : Answers to exercises
 
-#### Exercise 1
+##### Exercise 1
 
 * Use `cd` and `..` to move one directory at a time to your home directory. Check where you are at each stage using `pwd`.
 * Use `cd` and `~` to go straight to your home directory. Then go from there back to the notebook directory. Check where you are at each stage using `pwd`.
@@ -58,7 +58,7 @@ pwd
     /Users/plewis/Documents/GitHub/geog0111/notebooks
 
 
-#### Exercise 3
+##### Exercise 3
 
 * Create a file `work/newfile.dat` using cat and check the new file size.
 * Use the menu item `File -> Open` to edit the file you have created and print the new file size
@@ -79,7 +79,7 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73 12 Sep 12:38 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73 13 Sep 22:11 work/newfile.dat
 
 
 
@@ -95,7 +95,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73 12 Sep 12:38 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73 13 Sep 22:11 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
@@ -110,7 +110,7 @@ cat work/newfile.dat
 rm work/newfile.dat
 ```
 
-#### Exercise 4
+##### Exercise 4
 
 Using the `unix` commands and ideas from above:
 

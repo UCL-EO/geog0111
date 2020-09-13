@@ -1,13 +1,13 @@
-# 014 Groups
+## 014 Groups
 
-## Introduction
+### Introduction
 
-### Purpose
+#### Purpose
 
 In this section we will learn how use groups of objects in Python.
 
 
-### Prerequisites
+#### Prerequisites
 
 You will need some understanding of the following:
 
@@ -21,13 +21,13 @@ You will need some understanding of the following:
 
 In the exercises below, make use of f-strings when building statements to print.
 
-### Timing
+#### Timing
 
 The session should take around 30 minutes.
 
 
 
-## Groups of things
+### Groups of things
 Very often, we will want to group items together. There are several main mechanisms for doing this in Python, known as:
 
 * string e.g. `hello`
@@ -46,11 +46,11 @@ We noted the concept of length (`len()`), that elements of the ordered collectio
 
 A dictionary is not (by default) ordered, however, so indices have no role. Instead, we use 'keys'.
 
-###  `tuple`
+####  `tuple`
 A tuple is a group of items separated by commas. In the case of a tuple, the brackets are optional.
 You can have a group of differnt types in a tuple (e.g. `int`, `float`, `str`, `bool`)
 
-#### Using a `tuple`
+##### Using a `tuple`
 
 
 ```python
@@ -115,7 +115,7 @@ print (t,type(t))
 * print  `a1`,`a2`,`a3`,`a4`,`a5`
 
 
-### `list`
+#### `list`
 A `list` is similar to a `tuple`. One main difference is that you can **change individual elements in a list but not in a tuple**.
 To convert between a list and tuple, use the 'casting' methods `list()` and `tuple()`:
 
@@ -185,11 +185,11 @@ print(f'the length of the {type(l0)} {l0} is {llen}')
     the length of the <class 'list'> [2, 8, 4, 32, 16] is 5
 
 
-#### Exercise 2
+##### Exercise 2
 
 * copy the code to a new code block below, and test that this works with lists, as well as tuples
 
-#### Exercise 3
+##### Exercise 3
 
 * set a list called `l0` with `l0 = [2,8,4,32,16]`
 * find the index of the integer 16 in the tuple/list
@@ -238,7 +238,7 @@ print(f'the list {l0} once sorted is {l1}')
     the list [64, 2, 8, 4, 32, 128, 16, 256] once sorted is [2, 4, 8, 16, 32, 64, 128, 256]
 
 
-#### Exercise 4
+##### Exercise 4
 
 * set a list called `l0` with `l0 = [2,8,4,32,16]`
 * find the index of `16` in this list
@@ -247,7 +247,7 @@ print(f'the list {l0} once sorted is {l1}')
 * what positive index number could we have used in place of `-2` here?
 * why?
 
-### multiple dimensional lists
+#### multiple dimensional lists
 
 Lists and tuples are not limited to a single dimension. Sometimes we will want to define multi-dimensional lists, e.g.:         
 
@@ -284,7 +284,7 @@ print(combined)
 
 This is a *regular* list, because the length of the sub-list is the same in both cases. 
 
-###  `dict`
+####  `dict`
 
 
 
@@ -374,7 +374,7 @@ print(a)
     {'one': 1, 'two': 2, 'three': 3, 'four': 4}
 
 
-#### Exercise 5
+##### Exercise 5
 
 * create a list called `months` with the names of the months of the year
 * create a list called `ndays` with the number of days in each month (for this year)
@@ -384,7 +384,7 @@ print(a)
 * set a variable `m` to be the name of a month
 * using `m` and your dictionary, print out the number of days in month `m`
 
-## Summary
+### Summary
 
 In this section, we have extended the types of data we might come across to include groups. We dealt with ordered groups of various types (`tuple`, `list`). We saw dictionaries as collections with which we refer to individual items with a key. We saw how we can use `zip()` to help load a dataset from arrays into a dictionary.
 

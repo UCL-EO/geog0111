@@ -1,6 +1,6 @@
-# 003 Help : Answers to exercises
+## 003 Help : Answers to exercises
 
-#### Exercise 1
+##### Exercise 1
 
 * In a new code cell, type `help(list)` and look through the information provided.
 
@@ -139,7 +139,7 @@ help(list)
     
 
 
-#### Exercise 2
+##### Exercise 2
 
 * Read through the help information for list, above.
 * In a new cell, create lists called `alist` and `blist`:
@@ -214,13 +214,13 @@ print(msg)
     NameError: name 'my_var' is not defined
 
 
-### Learning new things
+#### Learning new things
 
 Let's use that knowledge to learn something new:
 
 * Use online material from [https://www.w3schools.com](https://www.w3schools.com/python) or elsewhere to learn the basics of `for` loops.
 
-#### Exercise 3
+##### Exercise 3
 
 * Find help for the class `range` to understand how to use this to generate a sequence of integers from 10 to 1 in steps of -1
 * Use what you have learned to write a `for` loop below that counts backwards from 10 to 0

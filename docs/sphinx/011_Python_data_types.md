@@ -1,14 +1,14 @@
-# 011 Python data types
+## 011 Python data types
 
-## Introduction
+### Introduction
 
 
-### Purpose
+#### Purpose
 
 In this section we will learn some of the fundamental data types in Python (`int`, `float`, `str`, `bool`), how to convert between data types, and use of the `type()` function.
 
 
-### Prerequisites
+#### Prerequisites
 
 You will need some understanding of the following:
 
@@ -18,13 +18,15 @@ You will need some understanding of the following:
 
 Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
 
-### Timing
+
+
+#### Timing
 
 The session should take around 30 minutes.
 
-## Data types
+### Data types
 
-### Data types: `str`
+#### Data types: `str`
 
 Recall how we can print out a message by first storing the text in a variable:
 
@@ -48,11 +50,11 @@ In a string, each character is represented by an [ASCII](http://www.asciitable.c
 So the [string](https://en.wikibooks.org/wiki/Python_Programming/Text) `one` is built up of `o` + `n` + `e`, represented by the ASCII codes `111`, `110` and `101` respectively.
 
 
-#### Exercise 1
+##### Exercise 1
 
 * If the ASCII code for `e` is `101` and the code for `n` is `110`, what is the code for `a`?
 
-### `len()`
+#### `len()`
 
 We can find the length of the string using the function `len()`, for example:
 
@@ -68,13 +70,13 @@ print(message,len(message))
     hello world 11
 
 
-#### Exercise 2
+##### Exercise 2
 
 * in a code cell below, create a variable called `name` and set it to your name
 * print the string name, and its length
 * comment on why the length is the value you find
 
-### `type()`
+#### `type()`
 
 In a computing language, the *sort of thing* the variable can be set to is called its **data type**.  In Python, we can access this with the function `type()`:
 
@@ -92,13 +94,13 @@ print('this has type', type(my_store))
     this has type <class 'str'>
 
 
-#### Exercise 3
+##### Exercise 3
 
 * insert a new cell below here
 * set a variable called message to contain the string `hello world`
 * print the value and data type of the variable message
 
-### Data types: `float`
+#### Data types: `float`
 
 Another fundamental data type is `float`, used to store decimal numbers such as `120.23`.
 
@@ -166,7 +168,7 @@ print('has an energy of', E_J, 'J')
 
  We can compare the value of energy we get in $J$ with that using a [web calculator](http://www.calctool.org/CALC/other/converters/e_of_photon) and confirm the value of `1.93989e-19` for Near Infrared light (`1024` nm).
 
-#### Exercise 4
+##### Exercise 4
 
 Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:
 
@@ -178,7 +180,7 @@ $$
 * calculate the energy associated with a blue photon at 450 nm, in eV
 * confirm your answer using a [web calculator](http://www.calctool.org/CALC/other/converters/e_of_photon)
 
-### Data types: `int`
+#### Data types: `int`
 
 Another fundamental data type is `int`, used to store integer (whole) numbers (in base 10). We often use them for counting and similar tasks.
 
@@ -226,7 +228,7 @@ We have seen examples of addition `+` and multiplication `*`. We use `x ** y` to
 
 
 
-#### Exercise 5
+##### Exercise 5
 
 * insert a new cell below here
 * using integer arithmetic, print the result of:
@@ -235,7 +237,7 @@ We have seen examples of addition `+` and multiplication `*`. We use `x ** y` to
 * set a variable called `x` to the result of 7 (floor) divided by 3.
   - print the value of `x`, and confirm its data type is `int`
 
-### Data types: `bool`
+#### Data types: `bool`
 
 The last fundamental data type we will deal with here is the Boolean or 'logical' type `bool`. Here, a variable can represent the value of `True` (equivalent to `1`) or `False` (equivalent to `0`).
 
@@ -248,13 +250,13 @@ is_set = True
 is_ready = False
 ```
 
-#### Exercise 6
+##### Exercise 6
 
 * Insert a new cell below here
 * Set a variable called `is_class_today` to the value `True`
 * print the variable name, its value, and its data type
 
-### Logical Operators: `not`, `and`, `or`
+#### Logical Operators: `not`, `and`, `or`
 
 Logical operators combine boolean variables. Recall from above:
 
@@ -289,7 +291,7 @@ print('not False is',not False)
     not False is True
 
 
-#### Exercise 7
+##### Exercise 7
    
 * Insert a new cell below here
 * write a statement to set a variable `x` to `True` and print the value of `x` and `not x` 
@@ -326,7 +328,7 @@ We can represent this in a 'truth table':
 
 
 
-#### Exercise 8
+##### Exercise 8
 
 * draw a truth table *on some paper*, label the columns `A`, `B` and `A and B` and fill in the columns `A` and `B` as above
 * without looking at the example above, write the value of `A and B` in the third column.
@@ -370,7 +372,7 @@ Again, notice the alternating patterns in the columns so that we cover all permu
 
 
 
-#### Exercise 9
+##### Exercise 9
 
 * Copy the 3 variable truth table from above onto paper 
 * fill out a column with `A and B`
@@ -379,7 +381,7 @@ Again, notice the alternating patterns in the columns so that we cover all permu
 
 If you are unsure, or to check your answers, test the response using code, below.
 
-## Conversion between data types
+### Conversion between data types
 
 You can explicitly convert between data types **where this makes sense** using:
 
@@ -424,7 +426,7 @@ print('bool_number',bool_number,type(bool_number))
     * What are the boolean representations of `0` and `1`?
 * What would happen if you set `start_number` to the string `'zero'`, and why?
 
-## Summary
+### Summary
 
 In this section, we have been introduced to the core data types in Python:
 

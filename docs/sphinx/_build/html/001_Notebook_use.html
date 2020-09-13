@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="002 Some basic UNIX" href="002_Unix.html" />
-    <link rel="prev" title="GEOG0111" href="docindex.html" />
+    <link rel="prev" title="Part 1" href="000_Part1.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -129,6 +129,9 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">first_string</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
 <p>The type of cell we use is <code class="docutils literal notranslate"><span class="pre">Code</span></code> (rather than <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> above).</p>
 <p>Remember that we <em>execute</em> (‘run’) the code in the cell, either with the <code class="docutils literal notranslate"><span class="pre">&gt;|</span> <span class="pre">Run</span></code> button above, or by pressing the <code class="docutils literal notranslate"><span class="pre">SHIFT</span> <span class="pre">RETURN</span></code> keys at the same time.</p>
 <p>Try that out, running the code cell above.</p>
@@ -170,8 +173,9 @@
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
 <p>This notebook has introduced you to using jupyter notebooks.</p>
 <p>To make sure you understand it all, it is worthwhile restarting the kernel with cleared output (<code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">&amp;</span> <span class="pre">Clear</span> <span class="pre">Output</span></code>() and running it all again. Once you are happy with that, you might try (<code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">&amp;</span> <span class="pre">Run</span> <span class="pre">All</span></code>().</p>
 <p>We have explored the notebook menu, and seen how to run cells, create new cells, and change the cell type to something appropriate (<code class="docutils literal notranslate"><span class="pre">Markdown</span></code> or <code class="docutils literal notranslate"><span class="pre">Code</span></code> here).</p>
@@ -179,7 +183,6 @@
 <p>We have noticed that variables are persistent between cells, so if we define a variable in one cell, we can use it <em>later on</em>. We have seen that if we try to access a variable before we have declared it, it will throw a <code class="docutils literal notranslate"><span class="pre">NameError</span></code>, telling us this. Having seen this type of error once, and understanding why it occurred should prepare us for the next time we see one similar.</p>
 <p>We have seen one of the <em>dangers</em> of a notebook: it allows you to go back and forth running cells. This can lead to confusion, as the next time you run the same notebook in cell order, you may not get the same result! It is one of the most common mistakes for a beginner to make, so be aware of this, and try to always run the cells in the same order. <strong>You can test for this type of error by restarting the kernel, clearing the output, and running all cells.</strong></p>
 <p>We have written our very first <code class="docutils literal notranslate"><span class="pre">python</span></code> codes!</p>
-</div>
 </div>
 
 
@@ -203,13 +206,17 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="000_Part1.html">Part 1</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#summary">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Part2.html">Part 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
@@ -217,9 +224,8 @@
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Packages.html">Packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="019_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">017 Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
@@ -227,31 +233,27 @@
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="019_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="020_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="031_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="041_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
-<li class="toctree-l1"><a class="reference internal" href="042_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="043_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="044_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html">Table of Contents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="050_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
-<li class="toctree-l1"><a class="reference internal" href="051_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">017 Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Part3.html">Part 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Python_files.html">021 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_files.html">022 Read Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html">023 <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">024 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">025 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">026 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Python_files_answers.html">021 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_files_answers.html">022 Read Files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">024 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_Part4.html">Part 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_GDAL.html">041 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_MODIS_download.html">Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
 </ul>
@@ -260,7 +262,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="docindex.html" title="previous chapter">GEOG0111</a></li>
+      <li>Previous: <a href="000_Part1.html" title="previous chapter">Part 1</a></li>
       <li>Next: <a href="002_Unix.html" title="next chapter">002 Some basic UNIX</a></li>
   </ul></li>
 </ul>

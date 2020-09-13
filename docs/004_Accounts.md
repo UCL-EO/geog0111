@@ -1,14 +1,14 @@
-# 004 Setup, Accounts and logins
+## 004 Setup, Accounts and logins
 
-## Introduction
+### Introduction
 
-### Google Earth Engine
+#### Google Earth Engine
 
 
 You will also need to make sure you have a [google account](https://support.google.com/accounts/answer/27441?hl=en) to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at [signup.earthengine.google.com]( https://signup.earthengine.google.com/). **You will need to do this before we start the class** as you will need to wait for approval from Google.
 
 
-### NASA Earthdata login and password
+#### NASA Earthdata login and password
 
 Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.
 

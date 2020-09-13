@@ -9,15 +9,18 @@ extra:
 nav:
 - Introduction: index.md
 - Course Basics:
+  - Part1: 000_Part1.md
   - Notebook Use: 001_Notebook_use.md
   - Unix: 002_Unix.md
   - Help: 003_Help.md
   - Accounts: 004_Accounts.md
+  - Packages: 005_Packages.md
   - Answers:
     - Notebook Use: 001_Notebook_use_answers.md
     - Unix: 002_Unix_answers.md
     - Help: 003_Help_answers.md
 - Core Concepts:
+  - Part2: 010_Part2.md
   - Python Introduction: 010_Python_Introduction.md
   - Python Data Types: 011_Python_data_types.md
   - Python Strings: 012_Python_strings.md
@@ -26,8 +29,7 @@ nav:
   - Python Control: 015_Python_control.md
   - Python For: 016_Python_for.md
   - Functions: 017_Functions.md
-  - Packages: 018_Packages.md
-  - Running Python: 019_Running_Python.md
+  - Running Python: 018_Running_Python.md
   - Answers:
     - Python Introduction: 010_Python_Introduction_answers.md
     - Python Data Types: 011_Python_data_types_answers.md
@@ -37,31 +39,29 @@ nav:
     - Python Control: 015_Python_control_answers.md
     - Python For: 016_Python_for_answers.md
     - Functions: 017_Functions_answers.md
-    - Running Python: 019_Running_Python_answers.md
+    - Running Python: 018_Running_Python_answers.md
 - Datasets:
-  - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata.md
-  - Python Files: 020_Python_files.md
-  - Read Files: 021_Read_files.md
-  - NASA MODIS Earthdata: 022_NASA_MODIS_Earthdata.md
-  - Pandas And Plotting: 022_Pandas_and_plotting.md
-  - Google Earth Engine: 024_GoogleEarthEngine.md
+  - Part3: 020_Part3.md
+  - Python Files: 021_Python_files.md
+  - Read Files: 022_Read_files.md
+  - Pandas And Plotting: 023_Pandas_and_plotting.md
+  - NASA MODIS Earthdata: 024_NASA_MODIS_Earthdata.md
+  - Google Earth Engine: 025_GoogleEarthEngine.md
+  - Numpy Matplotlib: 026_Numpy_matplotlib.md
   - Answers:
-    - NASA MODIS Earthdata: 020_NASA_MODIS_Earthdata_answers.md
-    - Python Files: 020_Python_files_answers.md
-    - Read Files: 021_Read_files_answers.md
-    - NASA MODIS Earthdata: 022_NASA_MODIS_Earthdata_answers.md
-- Image Processing:
-  - Numpy Matplotlib: 031_Numpy_matplotlib.md
-  - Plotting: 031_Plotting.md
+    - Python Files: 021_Python_files_answers.md
+    - Read Files: 022_Read_files_answers.md
+    - NASA MODIS Earthdata: 024_NASA_MODIS_Earthdata_answers.md
 - Geospatial Data:
-  - GDAL: 040_GDAL.md
-  - MODIS Download: 041_MODIS_download.md
-  - GDAL Masking: 042_GDAL_masking.md
-  - GDAL Stacking And Interpolating: 043_GDAL_stacking_and_interpolating.md
-  - GDAL Reconciling Projections: 044_GDAL_Reconciling_projections.md
+  - Part4: 030_Part4.md
+  - GDAL: 031_GDAL.md
+  - MODIS Download: 032_MODIS_download.md
+  - GDAL Stacking And Interpolating: 033_GDAL_stacking_and_interpolating.md
+  - GDAL Reconciling Projections: 034_GDAL_Reconciling_projections.md
+  - GDAL Masking: 034_GDAL_masking.md
 - Modelling:
-  - Linear Models: 050_Linear_models.md
-  - Modelling And Optimisation: 051_Modelling_and_optimisation.md
+  - Linear Models: 041_Linear_models.md
+  - Modelling And Optimisation: 042_Modelling_and_optimisation.md
 - Developers:
   - Local Install: DEV_Local_Install.md
   - Scripts: DEV_scripts.md

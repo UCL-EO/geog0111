@@ -1,6 +1,6 @@
-# 015 Control in Python: `if` : Answers to exercises
+## 015 Control in Python: `if` : Answers to exercises
 
-#### Exercise 1
+##### Exercise 1
  
 * insert a new cell below here. Use f-strings in forming strings.
 * copy the code above 
@@ -94,7 +94,7 @@ print (f'a is not equivalent to b? {a != b}')
     a is not equivalent to b? False
 
 
-#### Exercise 2
+##### Exercise 2
 
 * insert a new cell below here
 * create variables `a` and `b` and set them to types and values of your choice
@@ -136,7 +136,7 @@ print(msg)
     
 
 
-#### Exercise 3
+##### Exercise 3
 
 * insert a new cell below here
 * set a variable `doy` to represent the day of year and initialise it to some integer between 1 and 365 inclusive

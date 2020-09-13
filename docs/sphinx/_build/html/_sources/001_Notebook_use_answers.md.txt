@@ -1,6 +1,6 @@
-# 001 Use of Jupyter notebooks : Answers to exercises
+## 001 Use of Jupyter notebooks : Answers to exercises
 
-#### Exercise 1
+##### Exercise 1
 
 We can add new cells to this document via the `Insert -> Insert Cell Below` menu in the menu bar at the top of this document.
 
@@ -22,7 +22,7 @@ This is a markdown cell ...
 
 Hello world is traditionally the first coding you do.
 
-#### Exercise 2
+##### Exercise 2
 
 
 Add another cell now, below, and use the Cell -> Cell Type menu to make this cell type markdown. 
@@ -116,7 +116,7 @@ You can enter blocks of HTML code, such as:
 </body>
 </html>
 
-#### Exercise 3
+##### Exercise 3
 
 Now:
 
@@ -142,7 +142,7 @@ print(second_string)
     hello again
 
 
-#### Exercise 4
+##### Exercise 4
 
 * create a code cell below
 * print the values of `first_string` and `second_string`  that we created above. 
@@ -172,7 +172,7 @@ print(first_string,second_string)
     hello world hello again
 
 
-#### Exercise 5
+##### Exercise 5
 
 * create a code cell below
 * try to print a variable `third_string` (that you haven't yet created)
@@ -231,7 +231,7 @@ print(third_string)
     NameError: name 'third_string' is not defined
 
 
-#### Exercise 6
+##### Exercise 6
 
 * create a code cell below
 * *now* create a string called `third_string` with the text `hello once more`

@@ -1,13 +1,13 @@
-# 013 String methods
+## 013 String methods
 
-## Introduction
+### Introduction
 
-### Purpose
+#### Purpose
 
 In this section we will learn some about strings, in particular, string methods.
 
 
-### Prerequisites
+#### Prerequisites
 
 You will need some understanding of the following:
 
@@ -18,15 +18,15 @@ You will need some understanding of the following:
 * [011 Data types](011_Python_data_types.md) In particular, you should be understand strings.
 * [012 String formatting](012_Python_strings.md)
 
-### Timing
+#### Timing
 
 The session should take around 20 minutes.
 
 
 
-## Strings
+### Strings
 
-###  `help(str)`
+####  `help(str)`
 
 We can get a list of the string methods and associated information on how to use them from `help(str)`. We will go through some of these in this notebook, but you should be aware of the wider set of methods available. You don't need to go through all of these now, but notice how to get this information.
 
@@ -433,9 +433,9 @@ help(str)
     
 
 
-## Object methods
+### Object methods
 
-### Concatenate strings: `+` and `len()`
+#### Concatenate strings: `+` and `len()`
 
 We can do a number of things with strings which are very useful. These methods are defined on generic objects by Python, but we can use them with strings as an example.
 
@@ -489,16 +489,16 @@ print (f'the length of {s} is {len(s)}')
     the length of Hellothereeveryone is 18
 
 
-#### Exercise 1
+##### Exercise 1
 
 * insert a new cell below here
 * what might a zero-length string look like? Try to generate one, and check its length.
 * the `Hello there everyone` example above has no spaces between the words. Copy the code and modify it to have spaces.
 * confirm that you get the expected increase in length.
 
-## String methods
+### String methods
 
-### `replace()` and `strip()`
+#### `replace()` and `strip()`
 
 
 ```python
@@ -575,7 +575,7 @@ print(new_string)
     😀:😀:😀
 
 
-#### Exercise 2
+##### Exercise 2
 
 * Insert a new cell below here
 * Take the multi-line string:
@@ -591,7 +591,7 @@ satellite or aircraft).----
   and use it to generate a single line string, without the `-` characters at either end.
     
 
-### `split()` and `join()`
+#### `split()` and `join()`
 
 
 ```python
@@ -673,7 +673,7 @@ print(string)
     Remote sensing is the process of detecting and monitoring the physical characteristics of an area by measuring its reflected and emitted radiation at a distance (typically from satellite or aircraft).
 
 
-#### Exercise 3
+##### Exercise 3
  
 * Insert a new cell below here
 * Take the string 
@@ -687,7 +687,7 @@ print(string)
 * Then re-construct the string, separating each word by a colon character `':'`
 * Print out the list of sub-strings and the re-constructed string
 
-### `slice` 
+#### `slice` 
 
 A string can be thought of as an ordered 'array' of characters. 
 
@@ -723,7 +723,7 @@ print('character',i,'of',string,'is',string[i])
     character 4 of hello is o
 
 
-#### Exercise 4
+##### Exercise 4
 
 * Insert a new cell below here
 * copy the code above, and see what happens if you set `i` to be the value of length of the string. 
@@ -781,7 +781,7 @@ skip  = 1
 print (s[start:stop:skip])
 ```
 
-#### Exercise 5
+##### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.
 
@@ -790,7 +790,7 @@ The example above allows us to access an individual character(s) of the array.
 * write code to print out the 4$^{th}$ letter (character) of the string `s`. This should be `l`.
 
 
-## Summary
+### Summary
 
 In this section, we have introduced some more detail on string, especially string methods. There are many more methods you can use, but we have tried to cover the main ones here, but there are many [resources](https://www.w3schools.com/python/python_strings.asp#:~:text=Strings%20are%20Arrays,access%20elements%20of%20the%20string.) you can use to follow up.
 

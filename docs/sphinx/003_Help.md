@@ -1,6 +1,6 @@
-# 003 Help
+## 003 Help
 
-## Introduction
+### Introduction
 
 #### Purpose
 
@@ -21,9 +21,9 @@ You will need some understanding of the following:
 
 The session should take around 20 minutes.
 
-## Help Method
+### Help Method
 
-### help()
+#### help()
 
 You can get help on an object using the `help()` method. This will return a full manual page of the class documentation. You need to gain some experience in reading these and understanding some of the terminology. 
 
@@ -41,7 +41,7 @@ help(list.append)
     
 
 
-#### Exercise 1
+##### Exercise 1
 
 * In a new code cell, type `help(list)` and look through the information provided.
 
@@ -82,7 +82,7 @@ print('blist =', blist)
     blist = []
 
 
-#### Exercise 2
+##### Exercise 2
 
 * Read through the help information for list, above.
 * In a new cell, create lists called `alist` and `blist`:
@@ -100,7 +100,7 @@ Using the help information, work out how to:
 * sort the new `alist` into **alpabetical order** and print the results
 
 
-## online help
+### online help
 
 Not surprisingly, there is lots of help online. A key resource is [www.python.org](https://www.python.org/). Another useful one is [www.w3schools.com/python](https://www.w3schools.com/python):
 
@@ -110,7 +110,7 @@ Not surprisingly, there is lots of help online. A key resource is [www.python.or
 
 A useful forum you can search for help on coding problems is [https://stackoverflow.com](https://stackoverflow.com), for example [https://stackoverflow.com/search?q=help+on+python+lists](https://stackoverflow.com/search?q=help+on+python+lists), but not all posts are equally useful: pay attention to comments from other users on any answer, as well as post votes. Do not look on `stackoverflow` until you have exhausted simpler help methods.
 
-## help?
+### help?
 
 You can get a shorter set of basic help by putting `?` after the object. 
 
@@ -121,18 +121,18 @@ In a notebook, this will show in a new window at the bottom of the book. You can
 list?
 ```
 
-### Learning new things
+#### Learning new things
 
 Let's use that knowledge to learn something new:
 
 * Use online material from [https://www.w3schools.com](https://www.w3schools.com/python) or elsewhere to learn the basics of `for` loops.
 
-#### Exercise 3
+##### Exercise 3
 
 * Find help for the class `range` to understand how to use this to generate a sequence of integers from 10 to 1 in steps of -1
 * Use what you have learned to write a `for` loop below that counts backwards from 10 to 0
 
-## Summary
+### Summary
 
 In this session, we  have learned some different ways to access help on the operation and options for python commands. These include: `help()`, use of `?` and using online help. Practically, you may use one or more of these methods to find out how something works, or get some examples. 
 
