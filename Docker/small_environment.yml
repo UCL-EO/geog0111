@@ -4,10 +4,9 @@ channels:
   - defaults
 dependencies:
   - python>=3.7
-  - jupyter
   - pip
   - pip:
-    - jupyter_contrib_nbextensions
+#    - jupyter_contrib_nbextensions
     - mkdocs
     - sphinx
     - mkdocs-jupyter

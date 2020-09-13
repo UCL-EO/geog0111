@@ -53,7 +53,7 @@ done
 awk < ${base}/config/requirements.txt '{print "    - "$0}' >> "${base}"/Docker/small_environment.yml
 
 # test it
-conda env create -n small  --force -f "${base}"/Docker/small_environment.yml
+#conda env create -n small  --force -f "${base}"/Docker/small_environment.yml
 
 
 

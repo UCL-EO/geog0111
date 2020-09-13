@@ -4,14 +4,13 @@ channels:
   - defaults
 dependencies:
   - python>=3.7
-  - jupyter
-  - mkdocs
+#  - mkdocs
   - sphinx
   - pip
   - pip:
-    - mkdocs-jupyter
-    - jupyter_contrib_nbextensions
-    - mknotebooks
-    - mkdocs-material
-    - mkdocs-exclude
-    - mkdocs-git-revision-date-localized-plugin
+#    - mkdocs-jupyter
+#    - jupyter_contrib_nbextensions
+#    - mknotebooks
+#    - mkdocs-material
+#    - mkdocs-exclude
+#    - mkdocs-git-revision-date-localized-plugin
