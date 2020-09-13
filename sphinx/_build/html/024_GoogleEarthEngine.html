@@ -123,198 +123,14 @@
 <span class="n">Map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">vis_params</span><span class="p">,</span> <span class="s2">&quot;MODIS LAI&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">props</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">image_props</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="n">props</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#props = geemap.image_props(image)</span>
+<span class="c1">#props.getInfo()</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-
-HttpError                                 Traceback (most recent call last)
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-    344   try:
---&gt; 345     return call.execute(num_retries=num_retries)
-    346   except googleapiclient.errors.HttpError as e:
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
-    133                     logger.warning(message)
---&gt; 134             return wrapped(*args, **kwargs)
-    135 
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
-    906         if resp.status &gt;= 300:
---&gt; 907             raise HttpError(resp, content, uri=self.uri)
-    908         return self.postproc(resp, content)
-
-
-HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned &quot;Date: Parameter &#39;value&#39; is required.&quot;&gt;
-
-
-During handling of the above exception, another exception occurred:
-
-
-EEException                               Traceback (most recent call last)
-
-&lt;ipython-input-4-02ced7a4e17a&gt; in &lt;module&gt;
-      1 props = geemap.image_props(image)
-----&gt; 2 props.getInfo()
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
-     93       The object can evaluate to anything.
-     94     &quot;&quot;&quot;
----&gt; 95     return data.computeValue(self)
-     96 
-     97   def encode(self, encoder):
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
-    708             body={&#39;expression&#39;: serializer.encode(obj, for_cloud_api=True)},
-    709             project=_get_projects_path(),
---&gt; 710             prettyPrint=False))[&#39;result&#39;]
-    711   return send_(&#39;/value&#39;, {
-    712       &#39;json&#39;: obj.serialize(for_cloud_api=False),
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-    345     return call.execute(num_retries=num_retries)
-    346   except googleapiclient.errors.HttpError as e:
---&gt; 347     raise _translate_cloud_exception(e)
-    348 
-    349 
-
-
-EEException: Date: Parameter &#39;value&#39; is required.
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#props.get(&#39;IMAGE_DATE&#39;).getInfo()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IMAGE_DATE&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-
-HttpError                                 Traceback (most recent call last)
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-    344   try:
---&gt; 345     return call.execute(num_retries=num_retries)
-    346   except googleapiclient.errors.HttpError as e:
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
-    133                     logger.warning(message)
---&gt; 134             return wrapped(*args, **kwargs)
-    135 
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
-    906         if resp.status &gt;= 300:
---&gt; 907             raise HttpError(resp, content, uri=self.uri)
-    908         return self.postproc(resp, content)
-
-
-HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned &quot;Date: Parameter &#39;value&#39; is required.&quot;&gt;
-
-
-During handling of the above exception, another exception occurred:
-
-
-EEException                               Traceback (most recent call last)
-
-&lt;ipython-input-5-3c50e153c167&gt; in &lt;module&gt;
-----&gt; 1 props.get(&#39;IMAGE_DATE&#39;).getInfo()
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
-     93       The object can evaluate to anything.
-     94     &quot;&quot;&quot;
----&gt; 95     return data.computeValue(self)
-     96 
-     97   def encode(self, encoder):
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
-    708             body={&#39;expression&#39;: serializer.encode(obj, for_cloud_api=True)},
-    709             project=_get_projects_path(),
---&gt; 710             prettyPrint=False))[&#39;result&#39;]
-    711   return send_(&#39;/value&#39;, {
-    712       &#39;json&#39;: obj.serialize(for_cloud_api=False),
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-    345     return call.execute(num_retries=num_retries)
-    346   except googleapiclient.errors.HttpError as e:
---&gt; 347     raise _translate_cloud_exception(e)
-    348 
-    349 
-
-
-EEException: Date: Parameter &#39;value&#39; is required.
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-
-HttpError                                 Traceback (most recent call last)
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-    344   try:
---&gt; 345     return call.execute(num_retries=num_retries)
-    346   except googleapiclient.errors.HttpError as e:
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
-    133                     logger.warning(message)
---&gt; 134             return wrapped(*args, **kwargs)
-    135 
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
-    906         if resp.status &gt;= 300:
---&gt; 907             raise HttpError(resp, content, uri=self.uri)
-    908         return self.postproc(resp, content)
-
-
-HttpError: &lt;HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&amp;alt=json returned &quot;Date: Parameter &#39;value&#39; is required.&quot;&gt;
-
-
-During handling of the above exception, another exception occurred:
-
-
-EEException                               Traceback (most recent call last)
-
-&lt;ipython-input-6-b347f70f7d81&gt; in &lt;module&gt;
-----&gt; 1 props.get(&#39;CLOUD_COVER&#39;).getInfo()
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
-     93       The object can evaluate to anything.
-     94     &quot;&quot;&quot;
----&gt; 95     return data.computeValue(self)
-     96 
-     97   def encode(self, encoder):
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
-    708             body={&#39;expression&#39;: serializer.encode(obj, for_cloud_api=True)},
-    709             project=_get_projects_path(),
---&gt; 710             prettyPrint=False))[&#39;result&#39;]
-    711   return send_(&#39;/value&#39;, {
-    712       &#39;json&#39;: obj.serialize(for_cloud_api=False),
-
-
-~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-    345     return call.execute(num_retries=num_retries)
-    346   except googleapiclient.errors.HttpError as e:
---&gt; 347     raise _translate_cloud_exception(e)
-    348 
-    349 
-
-
-EEException: Date: Parameter &#39;value&#39; is required.
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#props.get(&#39;CLOUD_COVER&#39;).getInfo()</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
@@ -349,19 +165,13 @@ EEException: Date: Parameter &#39;value&#39; is required.
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>

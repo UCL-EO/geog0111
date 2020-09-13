@@ -374,44 +374,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../012_Python_strings%203/" title="Python Strings 3" class="md-nav__link">
-      Python Strings 3
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../012_Python_strings/" title="Python Strings" class="md-nav__link">
       Python Strings
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../012_Python_strings_answers%203/" title="Python Strings Answers 3" class="md-nav__link">
-      Python Strings Answers 3
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../013_Python_string_methods%203/" title="Python String Methods 3" class="md-nav__link">
-      Python String Methods 3
     </a>
   </li>
 
@@ -507,14 +471,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-14" type="checkbox" id="nav-3-14">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-11" type="checkbox" id="nav-3-11">
     
-    <label class="md-nav__link" for="nav-3-14">
+    <label class="md-nav__link" for="nav-3-11">
       Answers
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-14">
+      <label class="md-nav__title" for="nav-3-11">
         <span class="md-nav__icon md-icon"></span>
         Answers
       </label>
@@ -1077,6 +1041,41 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-5" class="md-nav__link">
+    Exercise 5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-6" class="md-nav__link">
+    Exercise 6
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1102,7 +1101,12 @@
 <p>We can add new cells to this document via the <code>Insert -&gt; Insert Cell Below</code> menu in the menu bar at the top of this document.</p>
 <p>Notice that you can double click on a cell to edit its contents.</p>
 <p>Add a cell now, below, and use the <code>Cell -&gt; Cell Type</code> menu to make this cell type <code>markdown</code>. Add some text in there ... lyrics from your favourite song, whatever you like ...</p>
-<h1 id="answer">ANSWER</h1>
+<p>The markdown will be text, something like:</p>
+<pre><code>This is a markdown cell ...
+
+Hello world is traditionally the first coding you do.
+</code></pre>
+<p>to produce:</p>
 <p>This is a markdown cell ...</p>
 <p>Hello world is traditionally the first coding you do.</p>
 <h4 id="exercise-2">Exercise 2</h4>
@@ -1117,16 +1121,48 @@
 <li>a image</li>
 <li>some html</li>
 </ul>
-<h1 id="answer_1">ANSWER</h1>
-<h1 id="main-heading">Main Heading</h1>
-<h2 id="equation">equation</h2>
-<p>Equations </p>
+<p>Use:</p>
+<pre><code>    # Main Heading
+</code></pre>
+<p>for a heading called 'Main Heading'</p>
+<p>Use:</p>
+<pre><code>    ## equation
+</code></pre>
+<p>For a sub-heading called 'equation' etc</p>
+<p>Equations are of the form:</p>
+<p>For example:</p>
+<pre><code>    \begin{equation*}
+    \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+    \end{equation*}
+</code></pre>
+<p>A link is specified for link text in square brackets, followed by the the link URL in round brackets. For example:</p>
+<pre><code>    [click me and I will pop up a google search window](https://www.google.com)
+</code></pre>
+<p>A table  is formatted in columns defined by <code>|</code>. The first line of the table gives headings (e.g. <code>| a | b |</code>).  The second defines alignment (e.g. <code>|:-:|-|</code>). The rest if data columns separated by <code>|</code>. An example is:</p>
+<pre><code>    | a | b | c | d | e |
+    |:-:|:-:|:-:|:-:|-|
+    | 🙈 | 💥 | 🦧 | 🐇 | 🐪 |
+    | f | g | h | i | j |
+    | 🙈 | 💥 | 🦧 | 🐇 | 🐪 |
+</code></pre>
+<p>An image is similar syntax to a link, but with <code>!</code> in front. The text in the square bracket is <code>alt</code> text, and the link in round brackets points to the image, as a file or URL.</p>
+<pre><code>    ![ucl logo](images/ucl_logo.png)
+</code></pre>
+<p>You can enter blocks of HTML code, such as:</p>
+<pre><code>    &lt;html&gt;
+    &lt;body&gt;
+    &lt;h2&gt;HTML&lt;/h2&gt;
+
+    &lt;p&gt;Hey, I'm a paragraph!&lt;/p&gt;
+
+
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
 <p>\begin{equation<em>}
 \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
 \end{equation</em>}</p>
-<h3 id="link">link</h3>
 <p><a href="https://www.google.com">click me and I will pop up a google search window</a></p>
-<h3 id="table">table</h3>
 <table>
 <thead>
 <tr>
@@ -1161,9 +1197,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="image">image</h3>
 <p><img alt="ucl logo" src="../images/ucl_logo.png" /></p>
-<h3 id="html">html</h3>
 <p><html>
 <body>
 <h2>HTML</h2></p>
@@ -1230,32 +1264,47 @@ hello world hello again
 <pre><code class="python"># ANSWER
 # create a code cell below
 
+msg='''
+The first time we run it, it comes up with an error
+NameError: name 'third_string' is not defined
+telling us that we have tried to access a variable name that
+we have not yet defined. Be aware of this type of error.
+
+what does that tell you about trying to print variables we haven't created?
+
+if we try to use a variable before we create it, the code will fail and throw
+an error. This is useful information: learn to read the errors and understand what
+it is telling you. 
+'''
+print(msg)
+
+
 # try to print a variable `third_string` that you haven't yet created
 print(third_string)
-
-# The first time we run it
-# it comes up with an error
-# NameError: name 'third_string' is not defined
-# telling us that we have tried to access a variable name that
-# we have not yet defined. Be aware of this type of error.
-
-# what does that tell you about trying to print variables we haven't created?
-#
-# if we try to use a variable before we create it, the code will fail and throw
-# an error. This is useful information: learn to read the errors and understand what
-# it is telling you. 
 </code></pre>
 
-<pre><code>---------------------------------------------------------------------------
+<pre><code>The first time we run it, it comes up with an error
+NameError: name 'third_string' is not defined
+telling us that we have tried to access a variable name that
+we have not yet defined. Be aware of this type of error.
+
+what does that tell you about trying to print variables we haven't created?
+
+if we try to use a variable before we create it, the code will fail and throw
+an error. This is useful information: learn to read the errors and understand what
+it is telling you.
+
+
+
+
+---------------------------------------------------------------------------
 
 NameError                                 Traceback (most recent call last)
 
-&lt;ipython-input-5-6c032710a348&gt; in &lt;module&gt;
-      3 
-      4 # try to print a variable `third_string` that you haven't yet created
-----&gt; 5 print(third_string)
-      6 
-      7 # The first time we run it
+&lt;ipython-input-4-178aa48b468c&gt; in &lt;module&gt;
+     18 
+     19 # try to print a variable `third_string` that you haven't yet created
+---&gt; 20 print(third_string)
 
 
 NameError: name 'third_string' is not defined
@@ -1276,14 +1325,17 @@ third_string = 'hello once more'
 # same as ...
 print(third_string)
 
-# what does that tell you about information we create in one cell and 
-# try to use in another above?
-#
-# we can run cells in any order. Once we had created third_string, the 
-# previous exercise print(third_string) executed as we expected.
-# The *Danger* is that the next time we run this notebook in cell order
-# the cell above will fail again. Learn from the mistakes we make.
-# Remember what this type of error can mean.
+msg = '''
+what does that tell you about information we create in one cell and 
+try to use in another above?
+
+we can run cells in any order. Once we had created third_string, the 
+previous exercise print(third_string) executed as we expected.
+The *Danger* is that the next time we run this notebook in cell order
+the cell above will fail again. Learn from the mistakes we make.
+Remember what this type of error can mean.
+'''
+print(msg)
 </code></pre>
                 
                   
@@ -1293,7 +1345,7 @@ print(third_string)
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 12, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 13, 2020</span>
     
   </small>
 </div>

@@ -15,7 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="012 String formatting" href="012_Python_strings%203.html" />
+    <link rel="next" title="012 String formatting" href="012_Python_strings.html" />
     <link rel="prev" title="010 Introduction to Python" href="010_Python_Introduction.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -279,11 +279,24 @@ increment i: 2
 </pre></div>
 </div>
 <p>The impact of the <code class="docutils literal notranslate"><span class="pre">not</span></code> operator should be straightforward to understand, though we can first write it in a ‘truth table’:</p>
-<p>| A  | not A  |
-|:—:|:—:|
-|  T | F |
-|   F |  T |</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not True is&#39;</span><span class="p">,</span><span class="ow">not</span> <span class="kc">True</span><span class="p">)</span>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">not A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not True is&#39;</span><span class="p">,</span><span class="ow">not</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not False is&#39;</span><span class="p">,</span><span class="ow">not</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -313,13 +326,37 @@ increment i: 2
 </div>
 <p>So, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, if and only if both <code class="docutils literal notranslate"><span class="pre">A</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>. Otherwise, it is <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 <p>We can represent this in a ‘truth table’:</p>
-<p>| A  | B  | A and B  |
-|:—:|:—:|:—:|
-|  T |  T |  T |
-|  T |  F |  F |
-|  F |  T |  F |
-|  F |  F |  F |</p>
-</div>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">A and B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table></div>
 <div class="section" id="exercise-8">
 <h4>Exercise 8<a class="headerlink" href="#exercise-8" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -331,17 +368,84 @@ increment i: 2
 <p>If you are unsure, test the response using code, below:</p>
 <p>We can apply these principles to more complex compound statements. In building a truth table, we must state all of the possible permutations for the variables.</p>
 <p>For two variables (<code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>) we had:</p>
-<p>| A  | B  |
-|:—:|:—:
-|  T |  T |
-|  T |  F |<br />|  F |  T |<br />|  F |  F | `</p>
-<p>Notice the pattern of alternating <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">F</span></code> in the columns.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table><p>Notice the pattern of alternating <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">F</span></code> in the columns.</p>
 <p>For three variables, the equivalent table is:</p>
-<p>| A  | B  | C |
-|:—:|:—:|:—:|
-| T|  T |  T |<br />| T|  T |  F |<br />| T|  F |  T |
-| T |  F |  F |<br />| F|  T |  T |<br />| F|  T |  F |<br />| F|  F |  T |<br />| F|  F |  F |</p>
-<p>Again, notice the alternating patterns in the columns so that we cover all permutations.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table><p>Again, notice the alternating patterns in the columns so that we cover all permutations.</p>
 </div>
 <div class="section" id="exercise-9">
 <h4>Exercise 9<a class="headerlink" href="#exercise-9" title="Permalink to this headline">¶</a></h4>
@@ -448,19 +552,13 @@ bool_number True &lt;class &#39;bool&#39;&gt;
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">011 Python data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
@@ -509,7 +607,7 @@ bool_number True &lt;class &#39;bool&#39;&gt;
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="010_Python_Introduction.html" title="previous chapter">010 Introduction to Python</a></li>
-      <li>Next: <a href="012_Python_strings%203.html" title="next chapter">012 String formatting</a></li>
+      <li>Next: <a href="012_Python_strings.html" title="next chapter">012 String formatting</a></li>
   </ul></li>
 </ul>
 </div>

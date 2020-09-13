@@ -70,48 +70,6 @@
 <h3>Some resources<a class="headerlink" href="#some-resources" title="Permalink to this headline">¶</a></h3>
 <p>There is a useful <a class="reference external" href="https://www.anaconda.com/wp-content/uploads/2019/03/11-2018-JupyterLab-Notebook-Cheatsheet.pdf">cheatsheet</a> on using Jupyter, and <a class="reference external" href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf">another, on markdown syntax</a> for you to use.</p>
 </div>
-<div class="section" id="anaconda-and-jupyter">
-<h3>Anaconda and Jupyter<a class="headerlink" href="#anaconda-and-jupyter" title="Permalink to this headline">¶</a></h3>
-<p>We will be using software from the <a class="reference external" href="https://anaconda.org/anaconda/python">anaconda distribution of python</a>. This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (<code class="docutils literal notranslate"><span class="pre">&gt;|</span> <span class="pre">Run</span></code>) should give, the following, or higher:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.0</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.12</span><span class="o">.</span><span class="mi">0</span>
-<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.1</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">6</span>
-<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">2</span>
-<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">6</span>
-</pre></div>
-</div>
-<p>If that is not the case, then make a copy of what it does produce, and contact the course organisers through <a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=21495">moodle</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash 
-<span class="c1"># tests </span>
-jupyter --version
-conda -V
-python -V
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">qtconsole</span>        <span class="p">:</span> <span class="mf">4.7</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.18</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">2.2</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">8</span>
-</pre></div>
-</div>
-<p>The code cell above that we ran is a <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"><code class="docutils literal notranslate"><span class="pre">unix</span></code> (<code class="docutils literal notranslate"><span class="pre">bash</span></code>) shell</a>, indicated by the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> on the first line. This is a mechanism that lets us run unix commands in a Python notebook.</p>
-</div>
 </div>
 <div class="section" id="how-we-will-be-using-notebooks">
 <h2>How we will be using notebooks<a class="headerlink" href="#how-we-will-be-using-notebooks" title="Permalink to this headline">¶</a></h2>
@@ -169,9 +127,6 @@ python -V
 
 <span class="c1"># print this</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">first_string</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
 </pre></div>
 </div>
 <p>The type of cell we use is <code class="docutils literal notranslate"><span class="pre">Code</span></code> (rather than <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> above).</p>
@@ -251,19 +206,13 @@ python -V
 <li class="toctree-l1 current"><a class="current reference internal" href="#">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>

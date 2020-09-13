@@ -19,7 +19,7 @@
     
     
       
-        <title>004 Accounts and logins - GEOG0111</title>
+        <title>004 Setup, Accounts and logins - GEOG0111</title>
       
     
     
@@ -53,7 +53,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#004-accounts-and-logins" class="md-skip">
+        <a href="#004-setup-accounts-and-logins" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              004 Accounts and logins
+              004 Setup, Accounts and logins
             
           </span>
         </div>
@@ -374,44 +374,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../012_Python_strings%203/" title="Python Strings 3" class="md-nav__link">
-      Python Strings 3
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../012_Python_strings/" title="Python Strings" class="md-nav__link">
       Python Strings
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../012_Python_strings_answers%203/" title="Python Strings Answers 3" class="md-nav__link">
-      Python Strings Answers 3
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../013_Python_string_methods%203/" title="Python String Methods 3" class="md-nav__link">
-      Python String Methods 3
     </a>
   </li>
 
@@ -507,14 +471,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-14" type="checkbox" id="nav-3-14">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-11" type="checkbox" id="nav-3-11">
     
-    <label class="md-nav__link" for="nav-3-14">
+    <label class="md-nav__link" for="nav-3-11">
       Answers
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Answers" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-14">
+      <label class="md-nav__title" for="nav-3-11">
         <span class="md-nav__icon md-icon"></span>
         Answers
       </label>
@@ -1075,12 +1039,32 @@
     Introduction
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#login-and-password" class="md-nav__link">
-    login and password
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-earth-engine" class="md-nav__link">
+    Google Earth Engine
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nasa-earthdata-login-and-password" class="md-nav__link">
+    NASA Earthdata login and password
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anaconda-and-jupyter" class="md-nav__link">
+    Anaconda and Jupyter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1104,9 +1088,11 @@
                   
                 
                 
-                <h1 id="004-accounts-and-logins">004 Accounts and logins</h1>
+                <h1 id="004-setup-accounts-and-logins">004 Setup, Accounts and logins</h1>
 <h2 id="introduction">Introduction</h2>
-<h2 id="login-and-password">login and password</h2>
+<h3 id="google-earth-engine">Google Earth Engine</h3>
+<p>You will also need to make sure you have a <a href="https://support.google.com/accounts/answer/27441?hl=en">google account</a> to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at <a href="https://signup.earthengine.google.com/">signup.earthengine.google.com</a>. <strong>You will need to do this before we start the class</strong> as you will need to wait for approval from Google.</p>
+<h3 id="nasa-earthdata-login-and-password">NASA Earthdata login and password</h3>
 <p>Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.</p>
 <p>To that in these notes we can make use of stored passwords and usernames using the local <a href="../geog0111/cylog.py">cylog</a> package. </p>
 <p>Information is encrypted in a user read-only file in your home directory (mode <code>400</code>) and accessed through the <code>Cylog</code>  <code>login</code> function.</p>
@@ -1147,6 +1133,44 @@ assert url.ping(verbose=False) == True
 <pre><code class="python">
 </code></pre>
 
+<h3 id="anaconda-and-jupyter">Anaconda and Jupyter</h3>
+<p>We will be using software from the <a href="https://anaconda.org/anaconda/python">anaconda distribution of python</a>. This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (<code>&gt;| Run</code>) should give, the following, or higher:</p>
+<pre><code>jupyter core     : 4.6.1
+jupyter-notebook : 6.0.3
+ipython          : 7.12.0
+ipykernel        : 5.1.4
+jupyter client   : 5.3.4
+jupyter lab      : 1.2.6
+nbconvert        : 5.6.1
+ipywidgets       : 7.5.1
+nbformat         : 5.0.4
+traitlets        : 4.3.3
+conda 4.8.2
+Python 3.7.6
+</code></pre>
+<p>If that is not the case, then make a copy of what it does produce, and contact the course organisers through <a href="https://moodle.ucl.ac.uk/course/view.php?id=21495">moodle</a>. </p>
+<pre><code class="bash">%%bash 
+# tests 
+jupyter --version
+conda -V
+python -V
+</code></pre>
+
+<pre><code>jupyter core     : 4.6.3
+jupyter-notebook : 6.1.3
+qtconsole        : 4.7.7
+ipython          : 7.18.1
+ipykernel        : 5.3.4
+jupyter client   : 6.1.7
+jupyter lab      : 2.2.7
+nbconvert        : 5.6.1
+ipywidgets       : 7.5.1
+nbformat         : 5.0.7
+traitlets        : 4.3.3
+conda 4.8.4
+Python 3.7.8
+</code></pre>
+<p>The code cell above that we ran is a <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"><code>unix</code> (<code>bash</code>) shell</a>, indicated by the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code>%%bash</code> on the first line. This is a mechanism that lets us run unix commands in a Python notebook.</p>
 <pre><code class="python">
 </code></pre>
                 
@@ -1157,7 +1181,7 @@ assert url.ping(verbose=False) == True
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 12, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 13, 2020</span>
     
   </small>
 </div>

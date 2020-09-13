@@ -217,15 +217,82 @@ has this worked? True
 <li><p>the remaining fields specify the product version number (<code class="docutils literal notranslate"><span class="pre">006</span></code>) and a code representing the processing date.</p></li>
 </ul>
 <p>If we look at the <a class="reference external" href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">product specification page</a> we see that the data product has multiple data layers. In the case of MCD15A3H, this is:</p>
-<p>|SDS Name	|Description	| Units	|Data Type	|Fill Value|	No Data Value	|Valid Range|	Scale Factor
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|-|
-| Fpar_500m |	Fraction of Photosynthetically Active Radiation	|Percent|	8-bit unsigned integer	|249 to 255	|N/A	|0 to 100	|0.01
-|Lai_500m	|Leaf Area Index|	m²/m²|	8-bit unsigned integer|	249 to 255	|N/A|	0 to 100|	0.1|
-|FparLai_QC	|Quality for  FPAR and LAI	|Class Flag	|8-bit unsigned integer	|255|	N/A	|0 to 254	|N/A
-| FparExtra_QC	|Extra detail Quality for  FPAR and LAI	|Class Flag|	8-bit unsigned integer|	255	|N/A	|0 to 254	|N/A
-|FparStdDev_500m|	Standard deviation of  FPAR	|Percent|	8-bit unsigned integer|	248 to 255	|N/A|	0 to 100	|0.01
-|LaiStdDev_500m|	Standard deviation of LAI	|m²/m²|	8-bit unsigned integer|	248 to 255|	N/A	|0 to 100	|0.1</p>
-</div>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">SDS Name</th>
+<th align="center">Description</th>
+<th align="center">Units</th>
+<th align="center">Data Type</th>
+<th align="center">Fill Value</th>
+<th align="center">No Data Value</th>
+<th align="center">Valid Range</th>
+<th>Scale Factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Fpar_500m</td>
+<td align="center">Fraction of Photosynthetically Active Radiation</td>
+<td align="center">Percent</td>
+<td align="center">8-bit unsigned integer</td>
+<td align="center">249 to 255</td>
+<td align="center">N/A</td>
+<td align="center">0 to 100</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td align="center">Lai_500m</td>
+<td align="center">Leaf Area Index</td>
+<td align="center">m²/m²</td>
+<td align="center">8-bit unsigned integer</td>
+<td align="center">249 to 255</td>
+<td align="center">N/A</td>
+<td align="center">0 to 100</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td align="center">FparLai_QC</td>
+<td align="center">Quality for  FPAR and LAI</td>
+<td align="center">Class Flag</td>
+<td align="center">8-bit unsigned integer</td>
+<td align="center">255</td>
+<td align="center">N/A</td>
+<td align="center">0 to 254</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td align="center">FparExtra_QC</td>
+<td align="center">Extra detail Quality for  FPAR and LAI</td>
+<td align="center">Class Flag</td>
+<td align="center">8-bit unsigned integer</td>
+<td align="center">255</td>
+<td align="center">N/A</td>
+<td align="center">0 to 254</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td align="center">FparStdDev_500m</td>
+<td align="center">Standard deviation of  FPAR</td>
+<td align="center">Percent</td>
+<td align="center">8-bit unsigned integer</td>
+<td align="center">248 to 255</td>
+<td align="center">N/A</td>
+<td align="center">0 to 100</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td align="center">LaiStdDev_500m</td>
+<td align="center">Standard deviation of LAI</td>
+<td align="center">m²/m²</td>
+<td align="center">8-bit unsigned integer</td>
+<td align="center">248 to 255</td>
+<td align="center">N/A</td>
+<td align="center">0 to 100</td>
+<td>0.1</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="section" id="getting-and-visualising-the-data">
 <h2>Getting and visualising the data<a class="headerlink" href="#getting-and-visualising-the-data" title="Permalink to this headline">¶</a></h2>
@@ -470,19 +537,13 @@ has this worked? True
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>

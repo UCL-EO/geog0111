@@ -357,21 +357,77 @@ rm work/newererfile.dat
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>In this section, we have learned the following <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands and symbols:</p>
-<p>| cmd  |  meaning  | example use |
-|—|—|–|
-| <code class="docutils literal notranslate"><span class="pre">~</span></code>  |  twiddle / tilde -  home | <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/geog0111</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">.</span></code>  |  dot  - current directory | <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">*</span></code>  | wildcard   | <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">R*</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">cd</span></code>  | change directory   | <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/geog0111</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">pwd</span></code>  | print working directory | <code class="docutils literal notranslate"><span class="pre">pwd</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">ls</span></code>  | list | <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">README.md</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>  | long list | <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">README.md</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lh</span></code>  | human-readable long list |<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lh</span> <span class="pre">README.md</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">chmod</span></code>  | change mode (permissions) | <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">644</span> <span class="pre">README.md</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">rm</span></code> | remove | <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">work/n*</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">755</span></code> | <code class="docutils literal notranslate"><span class="pre">rwxr-xr-x</span></code> | <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">755</span> <span class="pre">bin/*</span></code> |
-| <code class="docutils literal notranslate"><span class="pre">644</span></code> | <code class="docutils literal notranslate"><span class="pre">rw-r--r--</span></code> | <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">644</span> <span class="pre">README.md</span></code> |</p>
-<p>We have seen that we can use the cell magic <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> or <code class="docutils literal notranslate"><span class="pre">!</span></code> to use <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands in Python code cells in a notebook. This is a very basic introduction to unix, but it will allow you to make better use of the operating system and these notebooks.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>cmd</th>
+<th>meaning</th>
+<th>example use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~</code></td>
+<td>twiddle / tilde -  home</td>
+<td><code>cd ~/geog0111</code></td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>dot  - current directory</td>
+<td><code>cd .</code></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>wildcard</td>
+<td><code>ls R*</code></td>
+</tr>
+<tr>
+<td><code>cd</code></td>
+<td>change directory</td>
+<td><code>cd ~/geog0111</code></td>
+</tr>
+<tr>
+<td><code>pwd</code></td>
+<td>print working directory</td>
+<td><code>pwd</code></td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td>list</td>
+<td><code>ls README.md</code></td>
+</tr>
+<tr>
+<td><code>ls -l</code></td>
+<td>long list</td>
+<td><code>ls -l README.md</code></td>
+</tr>
+<tr>
+<td><code>ls -lh</code></td>
+<td>human-readable long list</td>
+<td><code>ls -lh README.md</code></td>
+</tr>
+<tr>
+<td><code>chmod</code></td>
+<td>change mode (permissions)</td>
+<td><code>chmod 644 README.md</code></td>
+</tr>
+<tr>
+<td><code>rm</code></td>
+<td>remove</td>
+<td><code>rm work/n*</code></td>
+</tr>
+<tr>
+<td><code>755</code></td>
+<td><code>rwxr-xr-x</code></td>
+<td><code>chmod 755 bin/*</code></td>
+</tr>
+<tr>
+<td><code>644</code></td>
+<td><code>rw-r--r--</code></td>
+<td><code>chmod 644 README.md</code></td>
+</tr>
+</tbody>
+</table><p>We have seen that we can use the cell magic <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> or <code class="docutils literal notranslate"><span class="pre">!</span></code> to use <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands in Python code cells in a notebook. This is a very basic introduction to unix, but it will allow you to make better use of the operating system and these notebooks.</p>
 </div>
 </div>
 
@@ -399,19 +455,13 @@ rm work/newererfile.dat
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>

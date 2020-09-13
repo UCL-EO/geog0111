@@ -115,208 +115,21 @@ Map.addLayer(image, vis_params, "MODIS LAI")
 
 
 ```python
-props = geemap.image_props(image)
-props.getInfo()
+#props = geemap.image_props(image)
+#props.getInfo()
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    HttpError                                 Traceback (most recent call last)
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-        344   try:
-    --> 345     return call.execute(num_retries=num_retries)
-        346   except googleapiclient.errors.HttpError as e:
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
-        133                     logger.warning(message)
-    --> 134             return wrapped(*args, **kwargs)
-        135 
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
-        906         if resp.status >= 300:
-    --> 907             raise HttpError(resp, content, uri=self.uri)
-        908         return self.postproc(resp, content)
-
-
-    HttpError: <HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&alt=json returned "Date: Parameter 'value' is required.">
-
-    
-    During handling of the above exception, another exception occurred:
-
-
-    EEException                               Traceback (most recent call last)
-
-    <ipython-input-4-02ced7a4e17a> in <module>
-          1 props = geemap.image_props(image)
-    ----> 2 props.getInfo()
-    
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
-         93       The object can evaluate to anything.
-         94     """
-    ---> 95     return data.computeValue(self)
-         96 
-         97   def encode(self, encoder):
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
-        708             body={'expression': serializer.encode(obj, for_cloud_api=True)},
-        709             project=_get_projects_path(),
-    --> 710             prettyPrint=False))['result']
-        711   return send_('/value', {
-        712       'json': obj.serialize(for_cloud_api=False),
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-        345     return call.execute(num_retries=num_retries)
-        346   except googleapiclient.errors.HttpError as e:
-    --> 347     raise _translate_cloud_exception(e)
-        348 
-        349 
-
-
-    EEException: Date: Parameter 'value' is required.
-
 
 
 ```python
-props.get('IMAGE_DATE').getInfo()
+#props.get('IMAGE_DATE').getInfo()
 
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    HttpError                                 Traceback (most recent call last)
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-        344   try:
-    --> 345     return call.execute(num_retries=num_retries)
-        346   except googleapiclient.errors.HttpError as e:
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
-        133                     logger.warning(message)
-    --> 134             return wrapped(*args, **kwargs)
-        135 
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
-        906         if resp.status >= 300:
-    --> 907             raise HttpError(resp, content, uri=self.uri)
-        908         return self.postproc(resp, content)
-
-
-    HttpError: <HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&alt=json returned "Date: Parameter 'value' is required.">
-
-    
-    During handling of the above exception, another exception occurred:
-
-
-    EEException                               Traceback (most recent call last)
-
-    <ipython-input-5-3c50e153c167> in <module>
-    ----> 1 props.get('IMAGE_DATE').getInfo()
-    
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
-         93       The object can evaluate to anything.
-         94     """
-    ---> 95     return data.computeValue(self)
-         96 
-         97   def encode(self, encoder):
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
-        708             body={'expression': serializer.encode(obj, for_cloud_api=True)},
-        709             project=_get_projects_path(),
-    --> 710             prettyPrint=False))['result']
-        711   return send_('/value', {
-        712       'json': obj.serialize(for_cloud_api=False),
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-        345     return call.execute(num_retries=num_retries)
-        346   except googleapiclient.errors.HttpError as e:
-    --> 347     raise _translate_cloud_exception(e)
-        348 
-        349 
-
-
-    EEException: Date: Parameter 'value' is required.
-
 
 
 ```python
-props.get('CLOUD_COVER').getInfo()
+#props.get('CLOUD_COVER').getInfo()
 
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    HttpError                                 Traceback (most recent call last)
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-        344   try:
-    --> 345     return call.execute(num_retries=num_retries)
-        346   except googleapiclient.errors.HttpError as e:
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/_helpers.py in positional_wrapper(*args, **kwargs)
-        133                     logger.warning(message)
-    --> 134             return wrapped(*args, **kwargs)
-        135 
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/googleapiclient/http.py in execute(self, http, num_retries)
-        906         if resp.status >= 300:
-    --> 907             raise HttpError(resp, content, uri=self.uri)
-        908         return self.postproc(resp, content)
-
-
-    HttpError: <HttpError 400 when requesting https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/value:compute?prettyPrint=false&alt=json returned "Date: Parameter 'value' is required.">
-
-    
-    During handling of the above exception, another exception occurred:
-
-
-    EEException                               Traceback (most recent call last)
-
-    <ipython-input-6-b347f70f7d81> in <module>
-    ----> 1 props.get('CLOUD_COVER').getInfo()
-    
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/computedobject.py in getInfo(self)
-         93       The object can evaluate to anything.
-         94     """
-    ---> 95     return data.computeValue(self)
-         96 
-         97   def encode(self, encoder):
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in computeValue(obj)
-        708             body={'expression': serializer.encode(obj, for_cloud_api=True)},
-        709             project=_get_projects_path(),
-    --> 710             prettyPrint=False))['result']
-        711   return send_('/value', {
-        712       'json': obj.serialize(for_cloud_api=False),
-
-
-    ~/anaconda3/envs/geog0111/lib/python3.7/site-packages/ee/data.py in _execute_cloud_call(call, num_retries)
-        345     return call.execute(num_retries=num_retries)
-        346   except googleapiclient.errors.HttpError as e:
-    --> 347     raise _translate_cloud_exception(e)
-        348 
-        349 
-
-
-    EEException: Date: Parameter 'value' is required.
-
 
 
 ```python

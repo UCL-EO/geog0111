@@ -23,10 +23,7 @@ GEOG0111 Scientific Computing
   
    010_Python_Introduction.md
    011_Python_data_types.md
-   012_Python_strings 3.md
    012_Python_strings.md
-   012_Python_strings_answers 3.md
-   013_Python_string_methods 3.md
    013_Python_string_methods.md
    014_Python_groups.md
    015_Python_control.md

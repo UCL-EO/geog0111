@@ -86,20 +86,77 @@
 </pre></div>
 </div>
 <p>Recall that land cover is interpreted as:</p>
-<p>| Name | Value | Description |<br />|——|——-|————-|
-|Water Bodies|0|At least 60% of area is covered by permanent water bodies.|
-|Grasslands|1|Dominated by herbaceous annuals (&lt;2m) includ- ing cereal croplands.|
-|Shrublands|2|Shrub (1-2m) cover &gt;10%.|
-|Broadleaf Croplands|3|Dominated by herbaceous annuals (&lt;2m) that are cultivated with broadleaf crops.|
-|Savannas|4|Between 10-60% tree cover (&gt;2m).|
-|Evergreen Broadleaf Forests|5|Dominated by evergreen broadleaf and palmate trees (&gt;2m). Tree cover &gt;60%.|
-|Deciduous Broadleaf Forests|6|Dominated by deciduous broadleaf trees (&gt;2m). Tree cover &gt;60%.|
-|Evergreen Needleleaf Forests|7|Dominated by evergreen conifer trees (&gt;2m). Tree cover &gt;60%.|
-|Deciduous Needleleaf Forests|8|Dominated by deciduous needleleaf (larch) trees (&gt;2m). Tree cover &gt;60%.|
-|Non-Vegetated Lands|9|At least 60% of area is non-vegetated barren (sand, rock, soil) or permanent snow and ice with less than 10% vegetation.|
-|Urban and Built-up Lands|10|At least 30% impervious surface area including building materials, asphalt, and vehicles.|
-|Unclassified|255|Has not received a map label because of missing inputs.|</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Water Bodies</td>
+<td>0</td>
+<td>At least 60% of area is covered by permanent water bodies.</td>
+</tr>
+<tr>
+<td>Grasslands</td>
+<td>1</td>
+<td>Dominated by herbaceous annuals (&lt;2m) includ- ing cereal croplands.</td>
+</tr>
+<tr>
+<td>Shrublands</td>
+<td>2</td>
+<td>Shrub (1-2m) cover &gt;10%.</td>
+</tr>
+<tr>
+<td>Broadleaf Croplands</td>
+<td>3</td>
+<td>Dominated by herbaceous annuals (&lt;2m) that are cultivated with broadleaf crops.</td>
+</tr>
+<tr>
+<td>Savannas</td>
+<td>4</td>
+<td>Between 10-60% tree cover (&gt;2m).</td>
+</tr>
+<tr>
+<td>Evergreen Broadleaf Forests</td>
+<td>5</td>
+<td>Dominated by evergreen broadleaf and palmate trees (&gt;2m). Tree cover &gt;60%.</td>
+</tr>
+<tr>
+<td>Deciduous Broadleaf Forests</td>
+<td>6</td>
+<td>Dominated by deciduous broadleaf trees (&gt;2m). Tree cover &gt;60%.</td>
+</tr>
+<tr>
+<td>Evergreen Needleleaf Forests</td>
+<td>7</td>
+<td>Dominated by evergreen conifer trees (&gt;2m). Tree cover &gt;60%.</td>
+</tr>
+<tr>
+<td>Deciduous Needleleaf Forests</td>
+<td>8</td>
+<td>Dominated by deciduous needleleaf (larch) trees (&gt;2m). Tree cover &gt;60%.</td>
+</tr>
+<tr>
+<td>Non-Vegetated Lands</td>
+<td>9</td>
+<td>At least 60% of area is non-vegetated barren (sand, rock, soil) or permanent snow and ice with less than 10% vegetation.</td>
+</tr>
+<tr>
+<td>Urban and Built-up Lands</td>
+<td>10</td>
+<td>At least 30% impervious surface area including building materials, asphalt, and vehicles.</td>
+</tr>
+<tr>
+<td>Unclassified</td>
+<td>255</td>
+<td>Has not received a map label because of missing inputs.</td>
+</tr>
+</tbody>
+</table><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Load the prepared landcover data</span>
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="c1"># read in the LAI data for given country code</span>
@@ -303,19 +360,13 @@
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>

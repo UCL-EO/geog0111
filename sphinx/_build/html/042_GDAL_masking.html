@@ -180,33 +180,104 @@
 <p><code class="docutils literal notranslate"><span class="pre">data/MOD10A1.A2000055.h15v01.006.2016061160800.hdf</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">FOLDER/MOD[PID].A[YYYY][DDD].h[NN]v[NN].[VVV].[yyyy][ddd][hhmmss].hdf</span></code></p>
 <p>Refer to Table 3.3.1 for descriptions of the file name variables listed above.</p>
-<p>|  Variable | Description  |<br />|—|—|
-| FOLDER| folder/directory name of file|
-| MOD  |  MODIS/Terra  (<code class="docutils literal notranslate"><span class="pre">MCD</span></code> means combined)|
-|  PID |   Product ID|<br />| A	|Acquisition date follows|
-|YYYY	|Acquisition year|
-|DDD	|Acquisition day of year|
-|h[NN]v[NN]	|Horizontal tile number and vertical tile number (see Grid for details.)|
-|VVV	|Version (Collection) number|
-|yyyy	|Production year|
-|ddd	|Production day of year|
-|hhmmss	|Production hour/minute/second in GMT|
-|.hdf	|HDF-EOS formatted data file|
-Table 3.3.1. Variables in the MODIS File Naming Convention</p>
-<p><img alt="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" src="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" /></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FOLDER</td>
+<td>folder/directory name of file</td>
+</tr>
+<tr>
+<td>MOD</td>
+<td>MODIS/Terra  (<code>MCD</code> means combined)</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Product ID</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Acquisition date follows</td>
+</tr>
+<tr>
+<td>YYYY</td>
+<td>Acquisition year</td>
+</tr>
+<tr>
+<td>DDD</td>
+<td>Acquisition day of year</td>
+</tr>
+<tr>
+<td>h[NN]v[NN]</td>
+<td>Horizontal tile number and vertical tile number (see Grid for details.)</td>
+</tr>
+<tr>
+<td>VVV</td>
+<td>Version (Collection) number</td>
+</tr>
+<tr>
+<td>yyyy</td>
+<td>Production year</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>Production day of year</td>
+</tr>
+<tr>
+<td>hhmmss</td>
+<td>Production hour/minute/second in GMT</td>
+</tr>
+<tr>
+<td>.hdf</td>
+<td>HDF-EOS formatted data file</td>
+</tr>
+<tr>
+<td>Table 3.3.1. Variables in the MODIS File Naming Convention</td>
+<td></td>
+</tr>
+</tbody>
+</table><p><img alt="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" src="https://nsidc.org/sites/nsidc.org/files/images/modis-sin-grid.png" /></p>
 </div>
 <div class="section" id="dataset-naming-convention">
 <h3>3.3.1.2 Dataset Naming Convention<a class="headerlink" href="#dataset-naming-convention" title="Permalink to this headline">¶</a></h3>
 <p>Example Dataset Name:</p>
 <p><code class="docutils literal notranslate"><span class="pre">HDF4_EOS:EOS_GRID:&quot;data/MCD15A3H.A2018273.h18v03.006.2018278143633.hdf&quot;:MOD_Grid_MCD15A3H:Lai_500m</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">FORMAT:&quot;FILENAME&quot;:MOD_Grid_PRODUCT:LAYER</span></code></p>
-<p>|  Variable | Description  |<br />|—|—|
-|FORMAT| file format, <code class="docutils literal notranslate"><span class="pre">HDF4_EOS:EOS_GRID</span></code>|
-|FILENAME| dataset file name, see below|
-|PRODUCT| MODIS product code e.g. <code class="docutils literal notranslate"><span class="pre">MCD15A3H</span></code>|
-|LAYER| sub-dataset name e.g. <code class="docutils literal notranslate"><span class="pre">Lai_500m</span></code>|
-Table 3.3.2. Variables in the MODIS Dataset Naming Convention</p>
-<p><strong>Exercise E3.3.1</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FORMAT</td>
+<td>file format, <code>HDF4_EOS:EOS_GRID</code></td>
+</tr>
+<tr>
+<td>FILENAME</td>
+<td>dataset file name, see below</td>
+</tr>
+<tr>
+<td>PRODUCT</td>
+<td>MODIS product code e.g. <code>MCD15A3H</code></td>
+</tr>
+<tr>
+<td>LAYER</td>
+<td>sub-dataset name e.g. <code>Lai_500m</code></td>
+</tr>
+<tr>
+<td>Table 3.3.2. Variables in the MODIS Dataset Naming Convention</td>
+<td></td>
+</tr>
+</tbody>
+</table><p><strong>Exercise E3.3.1</strong></p>
 <ul class="simple">
 <li><p>Check you’re happy that the other datasets (e.g. <code class="docutils literal notranslate"><span class="pre">LaiStdDev_500m</span></code>) follow the same convention as <code class="docutils literal notranslate"><span class="pre">Lai_500m</span></code></p></li>
 <li><p>work out what the dataset/layer name would be for the dataset product <code class="docutils literal notranslate"><span class="pre">MOD10A1</span></code> version <code class="docutils literal notranslate"><span class="pre">6</span></code> for the $1^{st}$ January 2018, for tile <code class="docutils literal notranslate"><span class="pre">h25v06</span></code> for the layer <code class="docutils literal notranslate"><span class="pre">NDSI_Snow_Cover</span></code>. You will find product information <a class="reference external" href="https://nsidc.org/data/mod10a1">on the relevant NASA page</a>. You may not be able to access the production date/time, but just put a placeholder for that now.</p></li>
@@ -2563,19 +2634,13 @@ OGRFeature(TM_WORLD_BORDERS-0.3):206
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#answer">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#id1">ANSWER</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html#main-heading">Main Heading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings%203.html">012 String formatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers%203.html">012 String formatting : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods%203.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
