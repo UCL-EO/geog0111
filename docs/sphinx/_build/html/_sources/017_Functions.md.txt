@@ -1,13 +1,13 @@
-## 017 Functions in Python
+# Functions in Python
 
-### Introduction
+## Introduction
 
-#### Purpose
+### Purpose
 
 In this session, we will learn about Functions in Python. In essence, a function allows us to write better, more compact and re-usable code. This is a concept we will use a lot in later sessions, so make sure you fully familiarise yourself with the material.
 
 
-#### Prerequisites
+### Prerequisites
 
 You will need some understanding of the following:
 
@@ -27,12 +27,12 @@ In particular, you will need to recall how to use:
    - [`str.join()`](013_Python_string_methods.md#split()-and-join())
    - [`zip`](014_Python_groups.md#dict)
 
-#### Timing
+### Timing
 
 The session should take around 30 minutes to go through the first time. The exercises will take longer than that.
 
 
-### Introduction to Functions
+## Introduction to Functions
 
 A [function](https://docs.python.org/3/glossary.html#term-function) is a block of code statements that we can use to carry out a specific purpose. 
 
@@ -87,7 +87,7 @@ help(hello_world)
     
 
 
-##### Exercise 1
+### Exercise 1
 
 * in a new code cell below, write a function called `my_name` that prints your name
 * demonstrate that your code works (i.e. run it in a code cell)
@@ -95,7 +95,7 @@ help(hello_world)
 
 **Advice**: make sure it has an appropriate document string, based on the example in the notes, and also check that you have the indentation correct for the code in the function. Notice the semicolon `:` at the end of the `def` statement.
 
-### Function specification
+## Function specification
 
 
 More generally, we could think of the the function as **a sort of filter**: it takes some **inputs** (specified in the arguments), makes some calculation based on these, i.e. that is a *function* of these inputs, and returns an **output**.
@@ -112,7 +112,7 @@ In this sense:
 
 ![function io](images/im_funct.png)
 
-#### Anatomy of a function
+### Anatomy of a function
 
 The format of a function in Python is:
 
@@ -136,7 +136,7 @@ The function will typically have a document string, generally a multi-line strin
 
 Within the function, we can refer to the arguments (`arg1` and `arg2` here, though they will generally have more meaningful names), make some calculation based on these, and generally, return some value (`retval` here).
 
-#### Code design 
+### Code design 
 
 This idea of a *filter* can be useful when thinking how to design a function. We can see that we need to define:
 
@@ -308,7 +308,7 @@ print(full)
     Fred Bloggs
 
 
-### Test 
+## Test 
 
 It is a good idea if we can write a test for our function. This should cover some typical case or cases, and check that we get the correct output for a particular input. We can use the [assert](https://www.w3schools.com/python/ref_keyword_assert.asp) method that we have seen in the [Python for](016_Python_for.md#looping-over-dictionaries,-and-assert) notes:
 
@@ -329,7 +329,7 @@ remember that if this assertion fails, we get an `AssertionError` (you can try t
 
 We will learn more about code testing later, but for the moment, we suggest that you use one or more `assert` statements that try out different inputs-output matches with your function. 
 
-##### Exercise 2
+### Exercise 2
 
 We assume for this exercise that you know how to create a dictionary from two lists of the same length. This was covered in the [Python_Groups](014_Python_groups.md#dict) notes.
 
@@ -355,14 +355,14 @@ In this exercise, we suggest that you follow the design approach we took above:
 * design a function to convert two lists of the same length into a dictionary
 * the design must include relevant comments, document strings and tests
 
-### More on arguments
+## More on arguments
 
 Python functions can take [two types of arguments](https://book.pythontips.com/en/latest/args_and_kwargs.html):
 
 * positional arguments
 * keyword arguments
 
-#### Positional arguments
+### Positional arguments
 
 The arguments we have used above are positional arguments, in that their definition in the function depends on the order they are specified in. For example:
 
@@ -454,7 +454,7 @@ print(*l)
     hello world again as list
 
 
-#### Keyword arguments
+### Keyword arguments
 
 The second type of argument we mentioned above was keyword arguments. These are typically used to modify the behaviour of a function are are of the form:
 
@@ -559,7 +559,7 @@ hello('hello','world','again',verbose=True)
     argument 2: again
 
 
-##### Exercise 3
+### Exercise 3
 
 * Starting from the function `list2dict(keys,values)` that you developed above, add keyword arguments to the code to achieve the following:
      - if check=True   : perform checks on the input data
@@ -590,7 +590,7 @@ print(*args,**kwargs)
 
 The use of `**kwargs` can be useful sometimes, as you can more easily keep track of keywords for some particular configuration of running a code. For that reason, and because you will see it sometimes in documentation, you should be aware of it. Most likely you won't be using it a lot in your early code development though.
 
-### Summary
+## Summary
 
 In this section, we have learned about writing a function. We have seen that they generally will have zero or more input positional arguments and zero or more keyword arguments. They will typically return some value. We have also seen how we can define a `doc string` to give the user information on how to use the function, and also how we can use `assert` to build tests for our codes. We have been through some design considerations, and seen that it is best to plan you functions by thinking about the purpose, the inputs and the outputs. Then, for the core code, you just need to develop a skeleton code and docstring structure, test that, and insert your core code. You should think about modifications using keyword arguments that you might want to include, but these will often come in a second pass of development.
 

@@ -1,12 +1,12 @@
-## 016 More control in Python: `for`
+# 016 More control in Python: `for`
 
-### Introduction
+## Introduction
 
-#### Purpose
+### Purpose
 
 In this section we will learn how to add more control to our code by using loops. We will mainly be using the `for` statements for this. We will also learn about the use of `assert` statements to check our code is operating as intended.
 
-#### Prerequisites
+### Prerequisites
 
 You will need some understanding of the following:
 
@@ -20,13 +20,13 @@ You will need some understanding of the following:
 * [014_Python_groups](014_Python_groups.md)
 * [015_Python_control](015_Python_control.md)
 
-#### Timing
+### Timing
 
 The session should take around 40 minutes.
 
-### Looping with `for`
+## Looping with `for`
 
-#### `for ... in ...`
+### `for ... in ...`
 
 Very commonly, we need to iterate or 'loop' over some set of items.
 
@@ -90,7 +90,7 @@ for item in group:
 
 In the second case, we have the `print ('blast off!')` statement inside the loop as it is indented. So it is executed each time we are in the loop. In the first case, it is outside the loop and is only run once the loop is completed.
 
-##### Exercise 1
+#### Exercise 1
 
 * generate a list of strings called `group` with the names of (some of) the items in your pocket or bag (or make some up!)
 * set up a `for` loop with `group`, setting the variable `item`
@@ -128,13 +128,13 @@ for item in group:
     count: 3 : house
 
 
-##### Exercise 2
+#### Exercise 2
 
 * copy the code above
 * check to see if the value of `count` at the end of the loop is the same as the length of the list. 
 * Why should this be so?
 
-### `range()`
+## `range()`
 
 If we want to use in index to count explicitly, we can use the `range()` function. The arguments of this are `(stop)`,  `(start,stop)` or `(start,stop,step)`. If not sepcified, the default values os `start` is `0`, and `step`, `1`, so `range(10)` is equivalent to `range(0,10,1)`.
 
@@ -171,12 +171,12 @@ for i in range(2,10,2):
     8
 
 
-##### Exercise 3
+#### Exercise 3
 
 * use `range()` to print numbers counting down from 10 to 1 (**inclusive**)
 * include comments to explain your answer
 
-### `enumerate()`
+## `enumerate()`
 
 Since counting in loops is a common task, we can use the built in method [`enumerate()`](https://docs.python.org/3/library/functions.html#enumerate) to achieve the same thing as above. 
 
@@ -200,13 +200,13 @@ for count,item in enumerate(group):
     item 2 is keys
 
 
-##### Exercise 4
+#### Exercise 4
 
 * copy the code above
 * as in the previous exercise, check to see if the value of `count` at the end of the loop is the same as the length of the list. 
 * Explain why you get the result you do
 
-### looping over dictionaries, and `assert`
+## looping over dictionaries, and `assert`
 
 Let's set up a dictionary with the names of the months as keys, and the n umber of days in. each month as the item.
 
@@ -310,7 +310,7 @@ for k,d in days_in_month.items():
     Month December has 31 days
 
 
-##### Exercise 5
+#### Exercise 5
 
 * set up  list of numbers (years) from 2008 to 2019 **inclusive**,
 * set up a list of corresponding chinese zodiac names as the items (look [online](https://www.chinahighlights.com/travelguide/chinese-zodiac/#:~:text=In%20order%2C%20the%2012%20Chinese,a%20year%20of%20the%20Rat.) for this information). 
@@ -319,7 +319,7 @@ for k,d in days_in_month.items():
 * use `.items()` as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: `f'{y} is the year of the {z}'`, assuming `y` is the key and `z` the item.
 * Describe what you are doing at each step
 
-### Summary
+## Summary
 
 We should know know how to use `if` statements in Python to control program flow. We can make choices as to what happens in the code, depending on whether or not one or more tests are passed. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.
 

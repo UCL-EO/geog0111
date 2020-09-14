@@ -1,6 +1,6 @@
-## 011 Python data types : Answers to exercises
+# 011 Python data types : Answers to exercises
 
-##### Exercise 1
+#### Exercise 1
 
 * If the ASCII code for `e` is `101` and the code for `n` is `110`, what is the code for `a`?
 
@@ -38,7 +38,7 @@ print(msg)
     
 
 
-##### Exercise 2
+#### Exercise 2
 
 * in a code cell below, create a variable called `name` and set it to your name
 * print the string name, and its length
@@ -94,7 +94,7 @@ print("the ASCII code for 'a' is",ord('a'))
 
 Alternatively, we might notice that `n` is the 14th letter of the alphabet, and `e`the 5th, so the code seems to be `97 + N` where `N` is the order the letter appears in the alphabet. We can confirm this with the 15th letter `o` which we see from above has the code `111`. 
 
-##### Exercise 3
+#### Exercise 3
 
 * insert a new cell below here
 * set a variable called message to contain the string `hello world`
@@ -114,7 +114,7 @@ print(message,type(message))
     hello world <class 'str'>
 
 
-##### Exercise 4
+#### Exercise 4
 
 Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:
 
@@ -158,7 +158,7 @@ print('has an energy of', E_eV, 'eV')
     has an energy of 2.7552045282834468 eV
 
 
-##### Exercise 5
+#### Exercise 5
 
 * insert a new cell below here
 * using integer arithmetic, print the result of:
@@ -195,7 +195,7 @@ print('7 divided by 3 is', x, type(x))
     7 divided by 3 is 2.3333333333333335 <class 'float'>
 
 
-##### Exercise 6
+#### Exercise 6
 
 * Insert a new cell below here
 * Set a variable called `is_class_today` to the value `True`
@@ -217,7 +217,7 @@ print('is_class_today',is_class_today,type(is_class_today))
     is_class_today True <class 'bool'>
 
 
-##### Exercise 7
+#### Exercise 7
    
 * Insert a new cell below here
 * write a statement to set a variable `x` to `True` and print the value of `x` and `not x` 
@@ -276,7 +276,7 @@ print (True or False)
 
 
 
-##### Exercise 9
+#### Exercise 9
 
 * Copy the 3 variable truth table from above onto paper 
 * fill out a column with `A and B`

@@ -1,6 +1,6 @@
-## 010 Introduction to Python
+# 010 Introduction to Python
 
-### Introduction
+## Introduction
 
 [Python](http://www.python.org/) is a high level programming language that is freely available, relatively easy to learn and portable across different computing systems. In Python, you can rapidly develop solutions for the sorts of problems you might need to solve in your MSc courses and in the world beyond. Code written in Python is also easy to maintain, is (or should be) self-documented, and can easily be linked to code written in other languages.
 
@@ -14,11 +14,11 @@ Relevant features include:
 For further background on Python, look over the material on [Advanced Scientific Programming in Python](https://python.g-node.org/wiki/schedule) and/or the [software-carpentry.org](http://software-carpentry.org/v3/py01.html) and [python.org](http://www.python.org/) web sites.
 
 
-#### Purpose
+### Purpose
 
 In this section we will learn some of the fundamental concepts in Python concerning variables, as well as writing comments and the use of the function `print()` and newline and tab characters.
 
-#### Prerequisites
+### Prerequisites
 
 You will need some understanding of the following:
 
@@ -27,28 +27,24 @@ You will need some understanding of the following:
 
 Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
 
-
-
-#### Prerequisites
+### Timing
 
 The session should take around 15 minutes.
-    
 
+## Some basics
 
-### Some basics
-
-#### Comments 
+### Comments 
 
 Comments are statements ignored by the language interpreter.
 
 Any text after a `#` in a *code block* is a comment.
 
-##### Exercise 1
+#### Exercise 1
 
 * Try running the code block below
 * Explain what happened ('what the computer did')
 
-#### `print()`
+### `print()`
 
 
 
@@ -87,12 +83,12 @@ print('hello', 'world')
     hello world
 
 
-##### Exercise 2
+#### Exercise 2
 
 * Insert a new cell below here
 * Print out the string `Today I am learning Python`.
 
-#### newline and tab
+### newline and tab
 
 We can gain more control over our printing by understanding some special characters we use in print formatting:
 
@@ -122,16 +118,16 @@ print('hello\tworld')
     hello	world
 
 
-##### Exercise 3
+#### Exercise 3
 
 * Insert a new cell below here
 * print a string `"all the world's a stage and all the men and women merely players"`
 * print this same string, but with each word on a new line
 * print this same string with two columns of words, for as many lines as needed
 
-### Variables and Values 
+## Variables and Values 
 
-#### Variables and values
+### Variables and values
 
 The idea of **variables** is fundamental to any programming. 
 
@@ -161,13 +157,13 @@ print(my_store)
     one
 
 
-##### Exercise 4
+#### Exercise 4
 
 * Insert a new cell below here
 * set a variable called `message` to contain the string `hello world`
 * print the value of the variable `message`
 
-#### Symbol names and conventions
+### Symbol names and conventions
 
 Symbol names, such as those used for variables, in Python can contain the usual character set `a-z`, `A-Z`, `0-9`, as well as `_`. 
 
@@ -186,7 +182,7 @@ The convention is that variables start with a lower case character and [classes]
                 .
                 <statement-N>
 
-#### Invalid names
+### Invalid names
 
 The following are *not* valid in names and will result in an error:
 
@@ -214,7 +210,7 @@ All of these can obviously be used as `values` in strings, just not as `key` nam
 
 See [https://docs.python.org/3.4/reference/lexical_analysis.html](https://docs.python.org/3.4/reference/lexical_analysis.html) for further details.
 
-##### Exercise 5
+#### Exercise 5
 
 * Make a code cell below
 * declare the variable `dash='\n----------'` and print it
@@ -224,7 +220,7 @@ See [https://docs.python.org/3.4/reference/lexical_analysis.html](https://docs.p
             
 * print the variables to see if they contain what you expect, followed in each instance by `dash` (to space the answers out)
 
-### Summary
+## Summary
 
 In this section, you have had an introduction to the Python programming language, running in a [`jupyter notebook`](http://jupyter.org) environment.
 

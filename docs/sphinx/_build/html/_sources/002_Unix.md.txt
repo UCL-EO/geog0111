@@ -1,7 +1,7 @@
-## 002 Some basic UNIX
+# 002 Some basic UNIX
 
 
-### Introduction
+## Introduction
 
 
 #### Purpose
@@ -25,9 +25,9 @@ Remember that you can 'run' the code in a code block using the 'run' widget (abo
 
 The session should take around 15 minutes.
 
-### Running unix commands 
+## Running unix commands 
 
-#### Unix in code cells 
+### Unix in code cells 
 
 The code cells in this notebook take Python commands by default, but we can run `unix` commands either by pre-pending a single command with `!`:
 
@@ -54,9 +54,9 @@ pwd
 
 If you are using these notes through the [`JupyterLab`](https://jupyterlab.readthedocs.io/en/stable/) interface you have access to a [terminal](https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash) to run unix commands.
 
-### Navigating the file system
+### Navigating the file system
 
-#### `~`, `.`, `..`
+### `~`, `.`, `..`
 
 You will be used to the idea of navigating the filesystem from any previous computing you have ever done. You may have done this by clicking your way to a certain 'location' using `File explorer` (in Windows 10) or `Finder` (in MacOS), but you will have some familiarity with the tree-like nature of a filesystem: you go up or down in the system to find your way to the files and directories you want.
 
@@ -71,7 +71,7 @@ The tilde symbol `~` is a shorthand to refer to your home directory (this would 
 
 The symbol `.` means the current directory, and `..` refers to one level up in the directory tree.
 
-#### `cd`, `pwd`
+### `cd`, `pwd`
 
 The command `cd filepath` is used in the shell to change from one directory to another. Typically, when you start a shell, you will be in your home directory. We can explicitly 'go to' (i.e. `cd` to) your home with `cd ~`. We use the command `pwd` to print the current working directory.
 
@@ -103,12 +103,12 @@ pwd
     /Users/plewis/Documents/GitHub/geog0111
 
 
-##### Exercise 1
+#### Exercise 1
 
 * Use `cd` and `..` to move one directory at a time to your home directory. Check where you are at each stage using `pwd`.
 * Use `cd` and `~` to go straight to your home directory. Then go from there back to the notebook directory. Check where you are at each stage using `pwd`.
 
-#### `ls` `ls -lh` `*`
+### `ls` `ls -lh` `*`
 
 The command `ls` lists the files specified. For example:
 
@@ -134,7 +134,7 @@ cd ~/geog0111
 ls -lh README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff   3.3K 13 Sep 21:54 README.md
+    -rw-r--r--@ 1 plewis  staff   3.3K 12 Sep 10:40 README.md
 
 
 Here, the file size if `321B` (321 Bytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
@@ -161,7 +161,7 @@ Following that, we interpret the field `rw-r--r--` from above as `644`. The most
     
  
 
-##### Exercise 2
+#### Exercise 2
 
 * examine the file permissions for files `bin/*` (in the directory `bin`)
 * what do you notice about these? 
@@ -201,13 +201,13 @@ EOF
 
     /Users/plewis/Documents/GitHub/geog0111/notebooks
     -rw-r--r--  1 plewis  staff    16B  9 Sep 11:22 bin/README
-    lrwxr-xr-x  1 plewis  staff     7B 13 Sep 21:40 bin/copy -> ../copy
+    lrwxr-xr-x  1 plewis  staff     7B 12 Sep 12:34 bin/copy -> ../copy
     -rwxr-xr-x  1 plewis  staff   217B  9 Sep 10:28 bin/docker-build
     -rwxr-xr-x  1 plewis  staff   428B  9 Sep 10:28 bin/docker-killall
     -rwxr-xr-x  1 plewis  staff   1.0K  9 Sep 10:28 bin/docker-run
     -rwxr-xr-x  1 plewis  staff   569B  9 Sep 10:28 bin/git-remove-all.sh
     -rwxr-xr-x  1 plewis  staff   2.0K 11 Sep 08:26 bin/link-set.sh
-    -rwxr-xr-x  1 plewis  staff   3.9K 13 Sep 21:40 bin/notebook-mkdocs.sh
+    -rwxr-xr-x  1 plewis  staff   3.4K 12 Sep 12:29 bin/notebook-mkdocs.sh
     -rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/notebook-run.sh
     -rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/postBuild
     -rwxr-xr-x  1 plewis  staff   3.4K  9 Sep 10:28 bin/setup.sh
@@ -227,7 +227,7 @@ EOF
     The README file is not executable: its just a text file.
 
 
-#### `chmod`
+### `chmod`
 
 We can change file permissions with the command `chmod`. For example:
 
@@ -240,15 +240,15 @@ ls -lh ../README.md
 chmod 644 ../README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff   3.3K 13 Sep 21:54 ../README.md
-    -rwxr-xr-x@ 1 plewis  staff   3.3K 13 Sep 21:54 ../README.md
+    -rw-r--r--@ 1 plewis  staff   3.3K 12 Sep 10:40 ../README.md
+    -rwxr-xr-x@ 1 plewis  staff   3.3K 12 Sep 10:40 ../README.md
 
 
 First the permissions of the file are 644 as we saw above, then we use `chmod 755` to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:
 
     chmod 755 filename
 
-#### absolute and relative pathnames
+### absolute and relative pathnames
 
 A posix directory name that **starts with** the file separator '/' is called an **absolute** pathname: it is addressed from the root of the file system (`/`). An example of an absolute filename is `/home/jovyan/geog0111/README.md`. If the filename starts with `~`, it is in effect an absolute pathname. For example:
 
@@ -259,7 +259,7 @@ A posix directory name that **starts with** the file separator '/' is called an 
 ls -l ~/geog0111/README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff  3390 13 Sep 21:54 /Users/plewis/geog0111/README.md
+    -rw-r--r--@ 1 plewis  staff  3390 12 Sep 10:40 /Users/plewis/geog0111/README.md
 
 
 
@@ -271,7 +271,7 @@ A *relative pathname* is one that does not start with `/`  or `~`. It is specifi
 ls -l ../README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff  3390 13 Sep 21:54 ../README.md
+    -rw-r--r--@ 1 plewis  staff  3390 12 Sep 10:40 ../README.md
 
 
 Recall that we use `..` to specify 'up one level'. Then:
@@ -297,7 +297,7 @@ pwd
     /Users/plewis/geog0111
 
 
-#### Create and delete a file, `cat`, `rm`
+### Create and delete a file, `cat`, `rm`
 
 We can use the command `cat` to create a text files from a shell, for example:
 
@@ -321,7 +321,7 @@ EOF
 ls -lh work/n*
 ```
 
-    -rw-r--r--  1 plewis  staff    73B 13 Sep 22:11 work/newererfile.dat
+    -rw-r--r--  1 plewis  staff    73B 12 Sep 12:38 work/newererfile.dat
 
 
 We can also use `cat` to see what is in a file:
@@ -346,7 +346,7 @@ We can use the command `rm` to delete a file:
 rm work/newererfile.dat
 ```
 
-#### Creating from JupyterLab
+### Creating from JupyterLab
 
 If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:
 
@@ -356,21 +356,21 @@ Among these you will see 'text file'. Launch a text file, write your Python code
 
 Alternatively, use the menu item `File -> New -> Text File` to open a new text file.
 
-##### Exercise 3
+#### Exercise 3
 
 * Create a file `work/newfile.dat` using cat and check the new file size.
 * Use the menu item `File -> Open` to edit the file you have created and print the new file size
 * Use `cat` to show the new file content
 * delete the file
 
-##### Exercise 4
+#### Exercise 4
 
 Using the `unix` commands and ideas from above:
 
 * show a listing of the files in the relative directory `geog0111` that start with the letter `f`
 * interpret the file permissions and sizes of the files in there
 
-### Summary
+## Summary
 
 In this section, we have learned the following `unix` commands and symbols:
 

@@ -1,12 +1,12 @@
-## 015 Control in Python: `if`
+# 015 Control in Python: `if`
 
-### Introduction
+## Introduction
 
-#### Purpose
+### Purpose
 
 In this section we will learn how to add conditional control to our codes. We will cover the conditional statement: `if`.
 
-#### Prerequisites
+### Prerequisites
 
 You will need some understanding of the following:
 
@@ -19,13 +19,13 @@ You will need some understanding of the following:
 * [013_Python_string_methods](013_Python_string_methods.md)
 * [014_Python_groups](014_Python_groups.md)
 
-#### Timing
+### Timing
 
 The session should take around 15 minutes.
 
-### Comparison Operators and `if`
+## Comparison Operators and `if`
 
-#### Comparison Operators
+### Comparison Operators
 
 A comparison operator 'compares' two terms (e.g. the contents of variables) and returns a boolean data type (`True` or `False`).
 
@@ -50,7 +50,7 @@ print (f'a is equivalent to b? {a == b}')
     a is equivalent to b? False
 
 
-##### Exercise 1
+#### Exercise 1
  
 * insert a new cell below here. Use f-strings in forming strings.
 * copy the code above 
@@ -95,7 +95,7 @@ print (f'100 < 2       : {100 < 2}')
     100 < 2       : False
 
 
-##### Exercise 2
+#### Exercise 2
 
 * insert a new cell below here
 * create variables `a` and `b` and set them to types and values of your choice
@@ -103,7 +103,7 @@ print (f'100 < 2       : {100 < 2}')
 * print a statement of what you have used, and the value of `gt_test`
 * explain why you get the result you do
 
-#### Conditional test: `if ... elif ... else ...`
+### Conditional test: `if ... elif ... else ...`
 
 A common use of comparisons is for program control, using an `if` statement of the form:
 
@@ -165,7 +165,7 @@ print('retval is',retval)
     retval is True
 
 
-##### Exercise 3
+#### Exercise 3
 
 * insert a new cell below here
 * set a variable `doy` to represent the day of year and initialise it to some integer between 1 and 365 inclusive
@@ -185,7 +185,7 @@ We will see later that this is not the best way to do calculations of this sort.
 
 That said, it is an easily-understandable exercise to try out using conditional statements.
 
-### Summary
+## Summary
 
 We should know know how to use `if` statements in Python to control program flow. We can make choices as to what happens in the code, depending on whether or not one or more tests are passed. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.
 

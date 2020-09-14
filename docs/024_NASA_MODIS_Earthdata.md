@@ -1,9 +1,9 @@
-## 024 NASA MODIS Earthdata
+# NASA MODIS Earthdata
 
 
-### Introduction
+## Introduction
 
-#### Purpose 
+### Purpose 
 
 In this notebook, we will use high-level codes from `geog0111` to familiarise ourselves with downloading and interpreting NASA MODIS datasets from [`NASA EarthData`](https://urs.earthdata.nasa.gov). We will also be visualising these data in this notebook.
 
@@ -15,11 +15,7 @@ Neither is it to develop or use an [API](https://en.wikipedia.org/wiki/Applicati
 
 Students who take the [GEOG0111 course](https://github.com/UCL-EO/geog0111) will develop codes along similar lines to this later in the term, so for them, these notes also illustrate some of the things they will be able to do when you have finished this course. For them, we will *look under the bonnet* of such codes, and learn how to develop them. For others, they can use these codes as they stand to access MODIS data via Earthdata.
 
-#### Prerequisites
-
-Before you can use the material in this notebook, you will need to register as a user at the [`NASA EarthData`](https://urs.earthdata.nasa.gov/users/new).
-
-Once you have done that, make sure you know your `username` and `password` ready for below.
+### Prerequisites
 
 The are no assumptions that you know any python code at this point: the use of code should be high enough level that you can easily understand what is going on, and use the constructs shown to modify the codes to your purpose.
 
@@ -27,61 +23,13 @@ For completeness, we list the python and other codes below.
 
 We do assume that you have basic familiarity with using [Jupyter notebooks](001_Notebook_use.md).
 
-You should run through the [Credentials](#Credentials) section below before proceeding further with these notes.
+### Test
 
-#### Credentials
-
-We will store your credentials for [`NASA EarthData`] (https://urs.earthdata.nasa.gov/users/new) to allow easier data downloading. 
-
-**N.B. using `cylog().login()` is only intended to work with access to NASA Earthdata and to prevent you having to expose your username and password in these notes**.
-
-
-In the `geog0111` library, we have a Python class called `cylog`, written to allow easier persistent interface to NASA download servers.
-
-First, we import `cylog` from the `geog0111` library.
-
-Run the cell below:
-
-
-#### Test
-You will need a web login to NASA Earthdata and to have stored this using `cylog` according to [004_Accounts](004_Accounts.md) for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code ius yoiu set do_test to True:
-
-
-```python
-from geog0111.gurlpath import URL
-# ping small (1.3 M) test file
-site='https://e4ftl01.cr.usgs.gov'
-test_dir='MOLA/MYD11_L2.006/2002.07.04'
-test_file='MYD11_L2*0325*.hdf'
-# this interprets the wildcards to get at a suitable test file
-url = URL(site,test_dir).glob(test_file)[0]
-# test ping returns True
-assert url.ping(verbose=False) == True
-```
-
-If this fails, set `verbose` to `True` to see what is going on, then if you can;'t work it out from there, go back to [004_Accounts](004_Accounts.md) and sort the login for NASA Earthdata the site `https://e4ftl01.cr.usgs.gov`.
-
-#### Earthdata login
-
-Run the cell below, and enter your `username` and `password` if prompted.
-
-
-```python
-site='https://e4ftl01.cr.usgs.gov'
-# uncomment these lines to force re-entry
-#cy = Cylog(site,init=True,verbose=True)
-#done=cy.login(force=True)
-```
-
-If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:
-
-    cy = cylog(force=True)
-    
-and re-run.
+You should run a [NASA account test](notebooks/004_Accounts.md#Test) if you have not already done so.
 
 `cylog` stores your username and password in a file that only you can read. We can use this as a convenient way to pull some NASA MODIS data.
 
-#### Code used
+### Code used
 
 
 
@@ -99,7 +47,7 @@ In the code below, we use the following python constructs:
 
 Their meaning should be quite obvious from their context, but we provide links here to materiual at [https://www.w3schools.com/](https://www.w3schools.com/) should you wish to understand them further here.
 
-### MODIS LAI product 
+## MODIS LAI product 
 
 To introduce geospatial processing, we will use a dataset from the MODIS LAI product over the UK. 
 
@@ -115,7 +63,7 @@ The raster data are arranged in tiles, indexed by row and column, to cover the g
 ![MODIS tiles](https://www.researchgate.net/profile/J_Townshend/publication/220473201/figure/fig5/AS:277546596880390@1443183673583/The-global-MODIS-Sinusoidal-tile-grid.png)
 
 
-##### Exercise 1
+### Exercise
 
 The pattern on the tile names is `hXXvYY` where `XX` is the horizontal coordinate and `YY` the vertical.
 
@@ -128,7 +76,7 @@ For example, for the two tiles covering Madagascar, we would set:
     tiles = ['h22v10','h22v11']
 
 
-#### Accessing NASA MODIS URLs
+### Accessing NASA MODIS URLs
 
 <span class="burk">**Warning: The NASA data servers tend to be down for maintainance on Wednesday morning EST**</span>
 
@@ -150,7 +98,7 @@ as well as `xml` files and `hdf` datasets.
 
 
 
-#### Data Products
+### Data Products
 
 If we look at the dataserver we hae specified [https://e4ftl01.cr.usgs.gov](https://e4ftl01.cr.usgs.gov), we will see that a number of sub-directories exist. Each of these 'server directories' points to a different data stream:
 
@@ -166,7 +114,7 @@ If we look at the dataserver we hae specified [https://e4ftl01.cr.usgs.gov](http
 
 For example, we might notice [VIIRS](https://e4ftl01.cr.usgs.gov/VIIRS) which takes us to the [VIIRS data products](https://viirsland.gsfc.nasa.gov), or [GEDI](https://e4ftl01.cr.usgs.gov/GEDI) [spaceborne lidar](https://gedi.umd.edu/) data. Each of these data streams will have their own properties that we need to appreciate before using them.
 
-#### MOTA
+### MOTA
 
 The URL we have used above, [https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/](https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/) starts with a call to the server directory `MOTA`, so we can think of `https://e4ftl01.cr.usgs.gov/MOTA` as the base level URL.
 
@@ -180,7 +128,7 @@ The rest of the directory information `MCD15A3H.006/2018.09.30` tells us:
 
 There are several ways we could specify the date information. The most 'human readable' is probably `YYYY.MM.DD` as given here. 
 
-#### MODIS filename format
+### MODIS filename format
 
 If we vist the link to a particular date for this dataset  [https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/](https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/), we see some files that have the suffix `hdf`.
 
@@ -207,9 +155,9 @@ If we look at the [product specification page](https://lpdaac.usgs.gov/products/
 |LaiStdDev_500m|	Standard deviation of LAI	|m²/m²|	8-bit unsigned integer|	248 to 255|	N/A	|0 to 100	|0.1
 
 
-### Getting and visualising the data
+## Getting and visualising the data
 
-#### Grid
+### Grid
 
 One thing we might need sometimes is to specify the `grid` used by the data product. Mostly, this is just the same as the product name (this is the default in our codes by just setting `grid` to the same as the product name). 
 
@@ -223,7 +171,7 @@ For example, lets try using the default grid:
 
 
 ```python
-#from geog0111.process_timeseries import mosaic, visualise
+from uclgeog.process_timeseries import mosaic, visualise
 # libraries we need
 
 #######################
@@ -253,22 +201,6 @@ except AssertionError:
 else:
     print("\nThis worked")
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-6-bd4a2725b343> in <module>
-         22 # and trap errors
-         23 try:
-    ---> 24     data = mosaic(params)
-         25     assert data is not None
-         26 except AssertionError:
-
-
-    NameError: name 'mosaic' is not defined
-
 
 The code exits with the message:
     
@@ -333,7 +265,7 @@ else:
     print("\nThis worked")
 ```
 
-#### Download
+### Download
 
 So, other than some terms (e.g. version number) we can take as defaults, when we want to access a MODIS product as tile data, we need to specify:
 
@@ -404,7 +336,7 @@ else:
 
 ```
 
-#### Visualise
+### Visualise
 
 We have now generated a dataset, stored in a variable `lai`. We are likely to want to perform some analysis on this, but we might also like to visualise the dataset.
 
@@ -421,9 +353,9 @@ title = 'product {product} SDS {layer}\n'.format(**params) + \
 plot=visualise(data,title=title,vmax=3.0)
 ```
 
-### Exercises
+# Exercises
 
-##### Exercise 2: change the year and DOY
+### Exercise: change the year and DOY
 
 Using the lines of code above, download and visualise the LAI dataset for a different DOY and year. Remember that it is a 4-day synthesis, so there are only datasets on doy 1,5,9, ...
 
@@ -431,7 +363,7 @@ Put comments in your code using `#` to start a comment, to describe what you are
 
 You might want to set `verbose` to `True` to get some feedback on what is going on.
 
-##### Exercise 3: change the location
+### Exercise: change the location
 
 Using the lines of code above, download and visualise the LAI dataset for a different location.
 
@@ -441,13 +373,13 @@ As before, put comments in your code using `#` to start a comment, to describe w
 
 You might want to set `verbose` to `True` to get some feedback on what is going on.
 
-##### Exercise 4: change the SDS
+### Exercise: change the SDS
 
 Using the lines of code above, download and visualise the LAI dataset for a different location. 
 
 Now, instead of using the data layer `Lai_500m`, visualise another data layer in the LAI dataset. See the table above of [the product specification](https://lpdaac.usgs.gov/products/mcd15a3hv006/) for details.
 
-##### Exercise 5: change the product to another on MOTA
+### Exercise: change the product to another on MOTA
 
 Using the lines of code above, download and visualise a different MODIS product.
 
@@ -455,19 +387,19 @@ You can see the option codes on the server we have been using by [looking in the
 
 You get get the meanings of the codes from simply googling them, or you can look them up on the [MODIS data product page](https://modis.gsfc.nasa.gov/data/dataprod/).
 
-##### Exercise 6: Snow
-
+### Exercise: Snow
+    
 The MODIS snow products are on a different server to the one we used above, [`https://n5eil01u.ecs.nsidc.org/MOST`](https://n5eil01u.ecs.nsidc.org/MOST) for MODIS Terra data and [`https://n5eil01u.ecs.nsidc.org/MOSA`](https://n5eil01u.ecs.nsidc.org/MOSA) for MODIS Aqua. Product information is available on the [product website](https://nsidc.org/data/myd10a1). Note that there is not combined Terra and Aqua product.
 
 Use the codes above to explore, download, and plot a snow dataset from the `MOD10A1` product.
 
-##### Exercise: Land Cover
-
+### Exercise: Land Cover
+    
 The MODIS land cover product is `MCD12Q1`.
 
 Use the codes above to explore, download, and plot a  land cover dataset from the `MCD12Q1` product.
 
-### Summary
+# Summary
 
 In these notes, we have introduced the characteristics of MODIS data products, and learned how to specify, access, and display them for a few servers. You will have accessed a number of products under a number of conditions in the exercises, but you are encouraged to explore this further.
 

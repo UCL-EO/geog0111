@@ -1,9 +1,9 @@
-## 025 Google Earth Engine
+# 201 Google Earth Engine
 
-### Introduction
+## Introduction
 
 
-#### Purpose
+### Purpose
 
 In this notebook, we introduce the python interface to [Google Earth Engine](https://earthengine.google.com) (GEE) using the [`geemap`](https://github.com/giswqs/geemap) package.
 
@@ -15,19 +15,19 @@ We do not intend this to be a complete course on using GEE, and we do not want y
 
 
 
-#### Prerequisites
+### Prerequisites
 
 You will need some understanding Python basics from part 1 of this course (notebooks with the code XXX )
 
 You will also need to make sure you have a [google account](https://support.google.com/accounts/answer/27441?hl=en) to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at [signup.earthengine.google.com]( https://signup.earthengine.google.com/). **You will need to do this before we start the class** as you will need to wait for approval from Google.
 
-#### Timing
+### Timing
 
 The session should take around 30 minutes to initially explore, though you could spend a lifetime looking at all of the datasets!
 
-### Earth Engine
+## Earth Engine
 
-#### What is GEE?
+### What is GEE?
 
 Google Earth Engine (GEE) is a facility for access to vast quantities of Earth Observation (EO) data, as well as many other geospatial datasets. It is a hugely valuable resource for scientists, as well as making a significant contribution to the democratisation of EO: anyone can sign up for a google account and use these resources to both access and process data. With a little coding experience, anyone can develop their own products or analyses.
 
@@ -35,26 +35,26 @@ You will find an increasingly large range of projects and [examples](https://ear
 
 There are some complexities and limitations to GEE that you should understand as well. In particular, whilst you can do some truly amazing things using GEE resources, they are provided free to you, and so there are limits to the amount of processing you can do at any one time, as well as quite strict limits on the amount of GEE local storage made available to you. You can certainly do great science within GEE, but to be a good coder, you will need wider exposure to accessing datasets than just through GEE.
 
-#### Interfaces
+### Interfaces
 
-##### Code editor
+#### Code editor
 
 The main interface to GEE is through the [web-based code editor](https://code.earthengine.google.com/). There is a good set of [documentation on this](https://developers.google.com/earth-engine/guides/getstarted) that you can browse through at a later date. In the code editor, you can run and develop [JavaScript](https://www.javascript.com/) codes, access saved datasets and documentation, and gain some basic experience of using GEE. Although we have not taught you JavaScript, you will notice that it is a high-level language with many similarities to Python. The GEE [guide for Python installation](https://developers.google.com/earth-engine/guides/python_install) provides some succinct advice and examples of common syntax differences between JavaScript and Python. In addition, there are resources available to allow you to [translate GEE JavaScript codes into Python](https://github.com/giswqs/geemap/blob/master/examples/notebooks/15_convert_js_to_py.md).
 
 As a follow-up to this class, we suggest that you look in the `Scripts` tab of the [code editor](https://code.earthengine.google.com/), and try out one or more of the examples under the `Examples` list, for example, `Examples -> ImageCollection -> Landsat Simple Composite`. To use this, you need do no more than load the code by clicking on it, then click on the `Run` button. This example is a good one to start with: if you pan out in the viewer window you will see that GEE can process this 30 m resolution dataset *anywhere in the world* for you, in near real-time. It is showing a composite of all of the Landsat images over 6 months in 2015, between the dates `2015-1-1` and `2015-7-1`. To do this requires only around 4 lines of code. This is an amazing feat.
 
-##### QGIS
+#### QGIS
 
 Users of the popular [`QGIS`](https://qgis.org/en/site/) tool will be interested to know that GEE is available as a plugin. One version of this using the Python package [`ee`](https://anaconda.org/conda-forge/earthengine-api) is [plugin to QGIS](https://gee-community.github.io/qgis-earthengine-plugin/).
 
-##### ee and geemap
+#### ee and geemap
 
 We will also be using the [`ee`](https://anaconda.org/conda-forge/earthengine-api) Python package to access GEE, but with the [`geemap`](https://github.com/giswqs/geemap) package providing the mapping front-end.  [`geemap`](https://github.com/giswqs/geemap) has very good documentation and an excellent range of [examples](https://github.com/giswqs/earthengine-py-notebooks). This should make it much easier for you to access GEE.
 
 
 
 
-#### GEE datasets
+### GEE datasets
 
 A fundamental part of GEE is the vast quantities of data that it gives access to. The core datasets are described in the [GEE data catalog](https://developers.google.com/earth-engine/datasets). The GEE code that you write has straightforward access to any or all of these datasets and, importantly, is able to process them using GEE resources. 
 
@@ -66,7 +66,7 @@ You should spend some time after the class exploring the GEE datasets in the [da
 * Leaf Area Index
 
 
-##### Leaf Area Index
+#### Leaf Area Index
 
 The data product [MOD15](https://modis.gsfc.nasa.gov/data/dataprod/mod15.php) LAI/FPAR has been generated from NASA MODIS sensors Terra and Aqua data since 2002. We are now in dataset collection 6 (the data version to use).
 

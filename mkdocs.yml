@@ -9,7 +9,6 @@ extra:
 nav:
 - Introduction: index.md
 - Course Basics:
-  - Part1: 000_Part1.md
   - Notebook Use: 001_Notebook_use.md
   - Unix: 002_Unix.md
   - Help: 003_Help.md
@@ -20,7 +19,6 @@ nav:
     - Unix: 002_Unix_answers.md
     - Help: 003_Help_answers.md
 - Core Concepts:
-  - Part2: 010_Part2.md
   - Python Introduction: 010_Python_Introduction.md
   - Python Data Types: 011_Python_data_types.md
   - Python Strings: 012_Python_strings.md
@@ -41,27 +39,27 @@ nav:
     - Functions: 017_Functions_answers.md
     - Running Python: 018_Running_Python_answers.md
 - Datasets:
-  - Part3: 020_Part3.md
-  - Python Files: 021_Python_files.md
-  - Read Files: 022_Read_files.md
+  - Python Files: 020_Python_files.md
+  - Read Text Files: 021_Read_text_files.md
+  - Read Write Files: 022_Read_write_files.md
   - Pandas And Plotting: 023_Pandas_and_plotting.md
   - NASA MODIS Earthdata: 024_NASA_MODIS_Earthdata.md
   - Google Earth Engine: 025_GoogleEarthEngine.md
   - Numpy Matplotlib: 026_Numpy_matplotlib.md
   - Answers:
-    - Python Files: 021_Python_files_answers.md
-    - Read Files: 022_Read_files_answers.md
+    - Python Files: 020_Python_files_answers.md
+    - Read Text Files: 021_Read_text_files_answers.md
+    - Read Write Files: 022_Read_write_files_answers.md
     - NASA MODIS Earthdata: 024_NASA_MODIS_Earthdata_answers.md
 - Geospatial Data:
-  - Part4: 030_Part4.md
-  - GDAL: 031_GDAL.md
-  - MODIS Download: 032_MODIS_download.md
-  - GDAL Stacking And Interpolating: 033_GDAL_stacking_and_interpolating.md
+  - GDAL: 030_GDAL.md
+  - MODIS Download: 031_MODIS_download.md
+  - GDAL Stacking And Interpolating: 032_GDAL_stacking_and_interpolating.md
+  - GDAL Masking: 033_GDAL_masking.md
   - GDAL Reconciling Projections: 034_GDAL_Reconciling_projections.md
-  - GDAL Masking: 034_GDAL_masking.md
 - Modelling:
-  - Linear Models: 041_Linear_models.md
-  - Modelling And Optimisation: 042_Modelling_and_optimisation.md
+  - Linear Models: 040_Linear_models.md
+  - Modelling And Optimisation: 041_Modelling_and_optimisation.md
 - Developers:
   - Local Install: DEV_Local_Install.md
   - Scripts: DEV_scripts.md

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>026 Manipulating data: numpy &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <title>Manipulating data: numpy &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="021 Files and other Resources : Answers to exercises" href="021_Python_files_answers.html" />
-    <link rel="prev" title="025 Google Earth Engine" href="025_GoogleEarthEngine.html" />
+    <link rel="next" title="020 Files and other Resources : Answers to exercises" href="020_Python_files_answers.html" />
+    <link rel="prev" title="201 Google Earth Engine" href="025_GoogleEarthEngine.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,11 +34,11 @@
           <div class="body" role="main">
             
   <div class="section" id="manipulating-data-numpy">
-<h1>026 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#manipulating-data-numpy" title="Permalink to this headline">¶</a></h1>
+<h1>Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#manipulating-data-numpy" title="Permalink to this headline">¶</a></h1>
 <p>While Python has a rich set of modules and data types by default, for numerical computing you’ll be using two main libraries that conform the backbone of the <a class="reference external" href="https://scipy.org/about.html">Python scientific stack</a>. These libraries implement a great deal of functionality related to mathematical operations and efficient computations on large data volumes. These libraries are <a class="reference external" href="http://numpy.org"><code class="docutils literal notranslate"><span class="pre">numpy</span></code></a> and <a class="reference external" href="http://scipy.org"><code class="docutils literal notranslate"><span class="pre">scipy</span></code></a>. <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, which we will concentrate on in this section, deals with efficient arrays, similar to lists, that simplify many common processing operations. Of course, just doing calculations isn’t much fun if you can’t plot some results. To do this, we use the <a class="reference external" href="http://matplotlib.org"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a> library.</p>
 <p>But first, we’ll see the concept of <em>functions</em>….</p>
 <div class="section" id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<h2>2.1 Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <p>A function is a collection of Python statements that do something (usually on some data). For example, you may want to convert from Fahrenheit to Centigrade. The conversion is</p>
 <p>$$
 ^{\circ}C = \left(^{\circ}F -32\right)\cdot\frac{5}{9}
@@ -82,8 +82,7 @@ $$</p>
     <span class="n">Temperature</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">degrees</span> <span class="n">C</span>
 </pre></div>
 </div>
-<div class="section" id="exercise-1">
-<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<p><strong>E2.1.1 Exercise</strong></p>
 <ul class="simple">
 <li><p>In the vein of converting units, write functions that convert from</p>
 <ul>
@@ -98,11 +97,10 @@ $$</p>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="numpy">
-<h2><code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
+<h2>2.2 <code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="arrays">
-<h3>arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.1 arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">¶</a></h3>
 <p>You import the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -196,7 +194,7 @@ $$</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> documenation is huge. There’s an <a class="reference external" href="https://docs.scipy.org/doc/numpy/user/index.html">user’s guide</a>, as well as a reference to all the <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/index.html">contents of the library</a>. There’s even <a class="reference external" href="https://docs.scipy.org/doc/numpy/user/quickstart.html">a tutorial availabe</a> if you get bored with this one.</p>
 </div>
 <div class="section" id="more-detail-about-numpy-arrays">
-<h3>More detail about <code class="docutils literal notranslate"><span class="pre">numpy.arrays</span></code><a class="headerlink" href="#more-detail-about-numpy-arrays" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.2 More detail about <code class="docutils literal notranslate"><span class="pre">numpy.arrays</span></code><a class="headerlink" href="#more-detail-about-numpy-arrays" title="Permalink to this headline">¶</a></h3>
 <p>So far, we have seen a 1D array, which is the equivalent to a vector. But arrays can have more dimensions: a 2D array would be equivalent to a matrix (or an image, with rows and columns), and a 3D array would be a volume split into voxels, as seen below</p>
 <p><img alt="numpy arrays" src="https://cdn-images-1.medium.com/max/1120/1*Ikn1J6siiiCSk4ivYUhdgw.png" /></p>
 <p>So a 1D array has one axis, a 2D array has 2 axes, a 3D array 3, and so on. The <code class="docutils literal notranslate"><span class="pre">shape</span></code> of the array provides a tuple with the number of elements along each axis. Let’s see this with some generally useful array creation options:</p>
@@ -222,7 +220,7 @@ $$</p>
 </div>
 </div>
 <div class="section" id="array-creators">
-<h3>Array creators<a class="headerlink" href="#array-creators" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.3 Array creators<a class="headerlink" href="#array-creators" title="Permalink to this headline">¶</a></h3>
 <p>Quite often, we will want to initialise an array to be all the same number. The methods for doing this as 0,1 and unspecified in <code class="docutils literal notranslate"><span class="pre">numpy</span></code> are <code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code>, <code class="docutils literal notranslate"><span class="pre">np.ones()</span></code>, <code class="docutils literal notranslate"><span class="pre">np.empty()</span></code> respectively.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creates a 3*4 array of 0s</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -257,8 +255,7 @@ $$</p>
  <span class="p">[</span><span class="mf">4.</span>  <span class="mf">5.</span>  <span class="mf">6.</span> <span class="p">]]</span>
 </pre></div>
 </div>
-<div class="section" id="exercise-2">
-<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<p><strong>Exercise E2.2.2</strong></p>
 <ul class="simple">
 <li><p>write a function that does the following:</p>
 <ul>
@@ -282,7 +279,7 @@ $$</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
 </pre></div>
 </div>
-<p>##### Exercise 3</p>
+<p><strong>Exercise 2.2.3</strong></p>
 <ul class="simple">
 <li><p>write a more flexible version of you function above where <code class="docutils literal notranslate"><span class="pre">indices</span></code>, the value you want to set (<code class="docutils literal notranslate"><span class="pre">1</span></code> above) and the desired shape of <code class="docutils literal notranslate"><span class="pre">data</span></code> are specified through function keyword arguments (e.g. <code class="docutils literal notranslate"><span class="pre">indices=((0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4),(5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9)),value=1,shape=(5,10)</span></code>)</p></li>
 </ul>
@@ -323,7 +320,7 @@ $$</p>
 <span class="n">array</span><span class="p">([</span><span class="mf">34.</span>  <span class="p">,</span> <span class="mf">29.75</span><span class="p">,</span> <span class="mf">25.5</span> <span class="p">,</span> <span class="mf">21.25</span><span class="p">,</span> <span class="mf">17.</span>  <span class="p">,</span> <span class="mf">12.75</span><span class="p">,</span>  <span class="mf">8.5</span> <span class="p">,</span>  <span class="mf">4.25</span><span class="p">,</span>  <span class="mf">0.</span>  <span class="p">])</span>
 </pre></div>
 </div>
-<p>##### Exercise 4</p>
+<p><strong>Exercise E2.2.4</strong></p>
 <ul class="simple">
 <li><p>print an array of integer numbers from 100 to 1</p></li>
 <li><p>print an array with 9 numbers equally spaced between 100 and 1</p></li>
@@ -333,9 +330,8 @@ $$</p>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="summary-statistics">
-<h3>Summary statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.4 Summary statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this headline">¶</a></h3>
 <p>Below are some typical arithmetic operations that you can use on arrays. Remember that they happen <strong>elementwise</strong> (i.e. to the whole array).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">^2 = </span><span class="si">{</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -392,7 +388,7 @@ $$</p>
 <span class="n">The</span> <span class="n">mean</span> <span class="n">number</span> <span class="n">of</span> <span class="n">launches</span> <span class="ow">is</span> <span class="mf">58.617</span> <span class="n">per</span> <span class="n">month</span>
 </pre></div>
 </div>
-<p>##### Exercise 5</p>
+<p><strong>Exercise E2.2.5</strong></p>
 <ul class="simple">
 <li><p>copy the code above but generate a fuller set of summary statistics including the standard deviation, minimum and maximum.</p></li>
 </ul>
@@ -460,8 +456,7 @@ $$</p>
  <span class="p">[</span>  <span class="mi">3</span>  <span class="mi">11</span>  <span class="mi">22</span>  <span class="mi">52</span> <span class="mi">207</span> <span class="mi">246</span> <span class="mi">277</span> <span class="mi">243</span> <span class="mi">209</span> <span class="mi">192</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="section" id="exercise-6">
-<h4>Exercise 6<a class="headerlink" href="#exercise-6" title="Permalink to this headline">¶</a></h4>
+<p><strong>Exercise E2.2.6</strong></p>
 <ul class="simple">
 <li><p>copy the code above, and modify it to find the total launches <em>per month</em> (over all years)</p></li>
 <li><p>show these data in a table</p></li>
@@ -583,7 +578,7 @@ busy months
 ***********************
 </pre></div>
 </div>
-<p>##### Exercise 7</p>
+<p><strong>Exercise E2.2.7</strong></p>
 <ul class="simple">
 <li><p>Using code from the sections above, print out a table with the busiest launch months with an additional column stating the number of launches</p></li>
 </ul>
@@ -643,7 +638,7 @@ busy months
 <span class="n">months</span> <span class="ow">in</span> <span class="n">year</span> <span class="n">order</span><span class="p">:</span> <span class="p">[</span><span class="mi">9</span> <span class="mi">3</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">4</span> <span class="mi">9</span> <span class="mi">8</span> <span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>##### Exercise 8</p>
+<p><strong>Exercise E2.2.8</strong></p>
 <ul class="simple">
 <li><p>Use this example of <code class="docutils literal notranslate"><span class="pre">argsort()</span></code> to redo Exercise E2.2.7, putting the data in correct year order</p></li>
 </ul>
@@ -651,15 +646,14 @@ busy months
 </pre></div>
 </div>
 </div>
-</div>
-</div>
 <div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h3>2.2.5 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
 <p>In this section, you have been introduced to more detail on arrays in <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. The big advantages of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> are that you can easily perform array operators (such as adding two arrays together), and that <code class="docutils literal notranslate"><span class="pre">numpy</span></code> has a large number of useful functions for manipulating N-dimensional data in array form. This makes it particularly appropriate for raster geospatial data processing.</p>
 <p>We have seen how to create various forms of array (e.g. <code class="docutils literal notranslate"><span class="pre">np.ones()</span></code>, <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code>), how to calculate some basic statistics (<code class="docutils literal notranslate"><span class="pre">min()</span></code>, <code class="docutils literal notranslate"><span class="pre">max()</span></code> etc), and finding the array index where some pattern occurs (e.g. <code class="docutils literal notranslate"><span class="pre">argmin()</span></code>, <code class="docutils literal notranslate"><span class="pre">argsort()</span></code> or <code class="docutils literal notranslate"><span class="pre">where()</span></code>).</p>
 </div>
+</div>
 <div class="section" id="plotting-with-matplotlib">
-<h2>Plotting with Matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">¶</a></h2>
+<h2>2.3 Plotting with Matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">¶</a></h2>
 <p>There are <a class="reference external" href="https://scipy.org/topical-software.html#plotting-data-visualization-3-d-programming">quite a few graphical libraries for Python</a>, but <a class="reference external" href="http://matplotlib.org">matplotlib</a> is probably the most famous one. It does pretty much all you need in terms of 2D plots, and simple 3D plots, and is fairly straightforward to use. Have a look at the <a class="reference external" href="https://matplotlib.org/gallery/index.html">matplotlib gallery</a> for a fairly comprehensive list of examples of what the library can do as well as the code that was used in the examples.</p>
 <p><strong>Importing matplotlib</strong></p>
 <p>You can import matplotlib with</p>
@@ -778,7 +772,7 @@ busy months
 </pre></div>
 </div>
 <p><img alt="png" src="_images/026_Numpy_matplotlib_57_1.png" /></p>
-<p>##### Exercise 1</p>
+<p><strong>Exercise E2.3.1</strong></p>
 <ul class="simple">
 <li><p>produce a plot showing launches per year as a function of year, showing data for selected months individually.</p></li>
 </ul>
@@ -786,7 +780,7 @@ busy months
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
 </pre></div>
 </div>
-<p>##### Exercise 2</p>
+<p><strong>Exercise 2.3.2</strong></p>
 <p>Putting together some ideas from above to look at some turning points in a function:</p>
 <ul class="simple">
 <li><p>generate a numpy array called <code class="docutils literal notranslate"><span class="pre">x</span></code> with 100 equally spaced numbers between 0 and 5</p></li>
@@ -800,9 +794,9 @@ busy months
 </div>
 </div>
 <div class="section" id="indexing-and-slicing-arrays">
-<h2>Indexing and slicing arrays<a class="headerlink" href="#indexing-and-slicing-arrays" title="Permalink to this headline">¶</a></h2>
+<h2>2.4  Indexing and slicing arrays<a class="headerlink" href="#indexing-and-slicing-arrays" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="recap">
-<h3>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.1 Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h3>
 <p>Selecting different elements of the array to operate in them is a very common task. <code class="docutils literal notranslate"><span class="pre">numpy</span></code> has a very rich syntax for selecting different bits of the array. We have come across slicing before, but it is so important to array processing, we will go over some of it again.</p>
 <p>Similar to lists, you can refer to elements in the array by their position. You can also use the <code class="docutils literal notranslate"><span class="pre">:</span></code> symbol to specify a range (a <strong>slice</strong>) of positions <code class="docutils literal notranslate"><span class="pre">first_element:(last_element+1</span></code>. If you want to start counting from the end of the array, use negative numbers: <code class="docutils literal notranslate"><span class="pre">-1</span></code> refers to the last element of the array, <code class="docutils literal notranslate"><span class="pre">-2</span></code> the one before last and so on. In a slice, you can also specify a step as the third element in <code class="docutils literal notranslate"><span class="pre">first_element:(last_element+1:step</span></code>. If the step is negative you count from the back.</p>
 <p>All this probably appears mind bogging, but it’s easier shown in practice. You’ll get used to it quite quickly once you start using it</p>
@@ -854,7 +848,7 @@ busy months
 </div>
 </div>
 <div class="section" id="data-mask">
-<h3>data mask<a class="headerlink" href="#data-mask" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.1 data mask<a class="headerlink" href="#data-mask" title="Permalink to this headline">¶</a></h3>
 <p>A useful way to select elements is by using what’s called a mask as we saw above: an array of logical (boolean) elements that only selects the elements that are <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">select_me</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">7</span>
@@ -876,8 +870,7 @@ busy months
  <span class="mi">70</span> <span class="mi">71</span> <span class="mi">72</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="section" id="id1">
-<h4>Exercise 2<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><strong>Exercise 2.4.2</strong></p>
 <ul class="simple">
 <li><p>generate a numpy array called <code class="docutils literal notranslate"><span class="pre">x</span></code> with 100 equally spaced numbers between 0 and 5</p></li>
 <li><p>generate a numpy array called <code class="docutils literal notranslate"><span class="pre">y</span></code> which contains $x^3 - 9 x^2 + 26 x - 24$</p></li>
@@ -888,11 +881,10 @@ busy months
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="reading-data">
-<h2>Reading data<a class="headerlink" href="#reading-data" title="Permalink to this headline">¶</a></h2>
+<h2>2.5  Reading data<a class="headerlink" href="#reading-data" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="np-loadtxt">
-<h3><code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code><a class="headerlink" href="#np-loadtxt" title="Permalink to this headline">¶</a></h3>
+<h3>2.5.1 <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code><a class="headerlink" href="#np-loadtxt" title="Permalink to this headline">¶</a></h3>
 <p>It’s a bit tedious just making up numbers to play with them, but it’s easy to load up data from external files. The most common data interchange format is <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV (comma-seperated values)</a>, a plain text format. Think of CSV as a plain text table. Each element in each row is separated by a comma (although other symbols, such as white space, semicolons <code class="docutils literal notranslate"><span class="pre">;</span></code>, tabs <code class="docutils literal notranslate"><span class="pre">\t</span></code> or pipe <code class="docutils literal notranslate"><span class="pre">|</span></code> symbols are often found as delimiters). The first few lines might contain some metadata that describes the dataset, and the first line will also contain the names of the headers of the different columns.  Lines starting with <code class="docutils literal notranslate"><span class="pre">#</span></code> tend to be ignored. An example file might look like this</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monthly transatlantic airtravel, in thousands of passengers, for 1958-1960. </span>
 <span class="c1"># There are 4 fields, &quot;Month&quot;, &quot;1958&quot;, &quot;1959&quot; and &quot;1960&quot; and 12 records, &quot;JAN&quot; through &quot;DEC&quot;. </span>
@@ -943,7 +935,7 @@ busy months
 </div>
 <p>While <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code> is quite flexible for dealing with text files, <a class="reference external" href="https://pandas.pydata.org"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> absolutely shines at working with tabular data. You can find a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/10min.html">pandas quickstart tutorial here</a> if you are curious about it!</p>
 <p>Before we go into plotting, we can do some fun calculations (yay!) using our airtravel data</p>
-<p>##### Exercise 1</p>
+<p><strong>Exercise 2.5.1</strong></p>
 <ul class="simple">
 <li><p>Calculate the total number of passengers per year</p></li>
 <li><p>Calculate the average number of passengers per month</p></li>
@@ -1007,7 +999,7 @@ busy months
 </pre></div>
 </div>
 <p><img alt="png" src="_images/026_Numpy_matplotlib_83_1.png" /></p>
-<p>##### Exercise 2</p>
+<p><strong>Exercise 2.5.2</strong></p>
 <p>The file <a class="reference external" href="data/NOAA.csv"><code class="docutils literal notranslate"><span class="pre">NOAA.csv</span></code></a> contains data from <a class="reference external" href="http://www.aoml.noaa.gov/hrd/tcfaq/E11.html">NOAA</a> on the number of storms and hurricanes in the Atlantic basin from 1851 to 2015. The data columns are described in the first row of the file. The year is in column 1 and the number of hurricanes in column 3.</p>
 <p>For those interested, the data is pulled from the website with <a class="reference external" href="geog0111/getNOAA.py">getNOAA.py</a>.</p>
 <ul class="simple">
@@ -1022,7 +1014,7 @@ busy months
 </div>
 </div>
 <div class="section" id="accessing-online-resources">
-<h3>Accessing online resources<a class="headerlink" href="#accessing-online-resources" title="Permalink to this headline">¶</a></h3>
+<h3>2.5.2 Accessing online resources<a class="headerlink" href="#accessing-online-resources" title="Permalink to this headline">¶</a></h3>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code> or similar functions to load tabular data that we have stored locally in e.g. csv format.</p>
 <p>Sometimes we will need pull a data file from a <a class="reference external" href="https://en.wikipedia.org/wiki/URL">URL</a>. We have used this idea previously to ‘scrape’ data from a web page, but often the task is more straightforward, and we effectively need only to ‘download’ the data in the file.</p>
 <p>We will use the standard Python <code class="docutils literal notranslate"><span class="pre">urllib.request</span></code> package to do this and pull the data. The data is returned as a string, which needs to be decoded. We can then split it by lines (<code class="docutils literal notranslate"><span class="pre">\n</span></code> character) and pass the resulting list of strings to <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html"><code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code></a>, which allows us to read in the data from memory without first saving it to disk.</p>
@@ -4788,8 +4780,7 @@ busy months
 </pre></div>
 </div>
 <p><img alt="png" src="_images/026_Numpy_matplotlib_96_1.png" /></p>
-<div class="section" id="exercise-3">
-<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<p><strong>Exercise E2.5.3</strong></p>
 <ul class="simple">
 <li><p>use the datetime approach to plot the dataset</p></li>
 <li><p>print out the value of <code class="docutils literal notranslate"><span class="pre">dates</span></code> for the first 10 entries to see what the format looks like</p></li>
@@ -4816,9 +4807,7 @@ busy months
 </div>
 <p><img alt="png" src="_images/026_Numpy_matplotlib_100_1.png" /></p>
 <p>Plotting this, we can visualise the year-on-year variations in temperature for any particular day.</p>
-</div>
-<div class="section" id="id2">
-<h4>Exercise 3<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p><strong>Exercise E2.5.3</strong></p>
 <ul class="simple">
 <li><p>using the reshaped datasets above, calculate and plot the mean value of <code class="docutils literal notranslate"><span class="pre">tmax</span></code> as a function of day of year</p></li>
 <li><p>calculate standard deviation of <code class="docutils literal notranslate"><span class="pre">tmax</span></code> as a function of day of year, and plot dashed lines at mean +/- 1.96 standard deviations</p></li>
@@ -4826,11 +4815,10 @@ busy months
 </ul>
 <p>Hint: use <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> when calculating the mean/std over <code class="docutils literal notranslate"><span class="pre">doy</span></code> of <code class="docutils literal notranslate"><span class="pre">tmax</span></code> and <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> for processing over <code class="docutils literal notranslate"><span class="pre">year</span></code>.</p>
 </div>
-</div>
 <div class="section" id="homework">
-<h3>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="exercise-4">
-<h4>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h4>
+<h3>2.5.4 Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-e2-5-4">
+<h4>Exercise E2.5.4<a class="headerlink" href="#exercise-e2-5-4" title="Permalink to this headline">¶</a></h4>
 <p>Select 4 locations in different regions of North America (e.g. Anchorage, Albuquerque, Seattle, Chicago). Request data on maximum temperature, precipitation and incident solar radiation for the years between 1981 to 2010, and plot in 3 different figures:</p>
 <ul class="simple">
 <li><p>Figure 1: The <em>mean daily temperature</em> and the variation (a shaded area around the mean going from mean value <strong>minus</strong> 1.96 times the standard deviation to mean value <strong>plus</strong> 1.96 times the standard deviation). Use a subplot or panel for each site</p></li>
@@ -4849,10 +4837,10 @@ busy months
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id3">
-<h2>Summary<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>2.5.5 Summary<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>In this section, we have learned about reading data from csv files from the local disc or that we have pulled from the web (given a URL). We have gone into a little more detail and sophistication on plotting graphs, and you now should be able to produce sensible plots of datasets or summaries of datasets (e.g. mean standard deviation).</p>
+</div>
 </div>
 </div>
 
@@ -4877,17 +4865,14 @@ busy months
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="000_Part1.html">Part 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html#summary">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">Packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="010_Part2.html">Part 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
@@ -4895,8 +4880,8 @@ busy months
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">017 Functions in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">019 Python codes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
@@ -4904,27 +4889,29 @@ busy months
 <li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">017 Functions in Python : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="020_Part3.html">Part 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Python_files.html">021 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_files.html">022 Read Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html">023 <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and plotting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">024 NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">025 Google Earth Engine</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">026 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Python_files_answers.html">021 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_files_answers.html">022 Read Files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">024 NASA MODIS Earthdata : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="030_Part4.html">Part 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="031_GDAL.html">041 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="032_MODIS_download.html">Accessing MODIS Data products</a></li>
-<li class="toctree-l1"><a class="reference internal" href="033_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
 <li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="034_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="041_Linear_models.html">Table of Contents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="041_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
-<li class="toctree-l1"><a class="reference internal" href="042_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
 </ul>
@@ -4933,8 +4920,8 @@ busy months
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="025_GoogleEarthEngine.html" title="previous chapter">025 Google Earth Engine</a></li>
-      <li>Next: <a href="021_Python_files_answers.html" title="next chapter">021 Files and other Resources : Answers to exercises</a></li>
+      <li>Previous: <a href="025_GoogleEarthEngine.html" title="previous chapter">201 Google Earth Engine</a></li>
+      <li>Next: <a href="020_Python_files_answers.html" title="next chapter">020 Files and other Resources : Answers to exercises</a></li>
   </ul></li>
 </ul>
 </div>

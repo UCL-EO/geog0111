@@ -12,7 +12,6 @@ GEOG0111 Scientific Computing
 
    index.md
   
-   000_Part1.md
    001_Notebook_use.md
    002_Unix.md
    003_Help.md
@@ -23,7 +22,6 @@ GEOG0111 Scientific Computing
    002_Unix_answers.md
    003_Help_answers.md
   
-   010_Part2.md
    010_Python_Introduction.md
    011_Python_data_types.md
    012_Python_strings.md
@@ -44,27 +42,27 @@ GEOG0111 Scientific Computing
    017_Functions_answers.md
    018_Running_Python_answers.md
   
-   020_Part3.md
-   021_Python_files.md
-   022_Read_files.md
+   020_Python_files.md
+   021_Read_text_files.md
+   022_Read_write_files.md
    023_Pandas_and_plotting.md
    024_NASA_MODIS_Earthdata.md
    025_GoogleEarthEngine.md
    026_Numpy_matplotlib.md
   
-   021_Python_files_answers.md
-   022_Read_files_answers.md
+   020_Python_files_answers.md
+   021_Read_text_files_answers.md
+   022_Read_write_files_answers.md
    024_NASA_MODIS_Earthdata_answers.md
   
-   030_Part4.md
-   031_GDAL.md
-   032_MODIS_download.md
-   033_GDAL_stacking_and_interpolating.md
+   030_GDAL.md
+   031_MODIS_download.md
+   032_GDAL_stacking_and_interpolating.md
+   033_GDAL_masking.md
    034_GDAL_Reconciling_projections.md
-   034_GDAL_masking.md
   
-   041_Linear_models.md
-   042_Modelling_and_optimisation.md
+   040_Linear_models.md
+   041_Modelling_and_optimisation.md
   
    DEV_Local_Install.md
    DEV_scripts.md

@@ -1,6 +1,6 @@
-## 013 String methods : Answers to exercises
+# 013 String methods : Answers to exercises
 
-##### Exercise 1
+#### Exercise 1
 
 * insert a new cell below here
 * what might a zero-length string look like? Try to generate one, and check its length.
@@ -39,7 +39,7 @@ print(msg)
     
 
 
-##### Exercise 2
+#### Exercise 2
 
 * Insert a new cell below here
 * Take the multi-line string:
@@ -84,7 +84,7 @@ print(new_string)
     Remote sensing is the process of detecting and monitoring the physical characteristics of an area by measuring its reflected and emitted radiation at a distance (typically from satellite or aircraft).
 
 
-##### Exercise 3
+#### Exercise 3
  
 * Insert a new cell below here
 * Take the string 
@@ -148,7 +148,7 @@ print ('the length of',quote+s+quote,'is',len(s))
     the length of "Hello there everyone" is 20
 
 
-##### Exercise 4
+#### Exercise 4
 
 * Insert a new cell below here
 * copy the code above, and see what happens if you set `i` to be the value of length of the string. 
@@ -205,7 +205,7 @@ print(msg)
 
 ```
 
-##### Exercise 5
+#### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.
 

@@ -1,4 +1,4 @@
-## 026 Manipulating data: `numpy`
+# Manipulating data: `numpy`
 
 
 
@@ -8,7 +8,7 @@ While Python has a rich set of modules and data types by default, for numerical 
 But first, we'll see the concept of *functions*....
 
 
-### Functions
+## 2.1 Functions
 
 A function is a collection of Python statements that do something (usually on some data). For example, you may want to convert from Fahrenheit to Centigrade. The conversion is 
 
@@ -66,7 +66,7 @@ help(fahrenheit_to_centigrade)
     
 
 
-##### Exercise 1
+**E2.1.1 Exercise**
 
 * In the vein of converting units, write functions that convert from
 
@@ -83,9 +83,9 @@ Hint: A stone is equal to 14 pounds, and a pound is equal to 0.45359237 kg.
 ```
 
 
-### `numpy`
+## 2.2 `numpy`
 
-#### arrays
+### 2.2.1 arrays
 
 You import the `numpy` library using
 
@@ -193,7 +193,7 @@ print("arr2: ", arr2.shape)
 
 The `numpy` documenation is huge. There's an [user's guide](https://docs.scipy.org/doc/numpy/user/index.html), as well as a reference to all the [contents of the library](https://docs.scipy.org/doc/numpy/reference/index.html). There's even [a tutorial availabe](https://docs.scipy.org/doc/numpy/user/quickstart.html) if you get bored with this one.
 
-#### More detail about `numpy.arrays` 
+### 2.2.2 More detail about `numpy.arrays` 
 
 So far, we have seen a 1D array, which is the equivalent to a vector. But arrays can have more dimensions: a 2D array would be equivalent to a matrix (or an image, with rows and columns), and a 3D array would be a volume split into voxels, as seen below
 
@@ -224,7 +224,7 @@ print(arr2)
      [4.  5.  6. ]]
 
 
-#### Array creators
+### 2.2.3 Array creators
 
 Quite often, we will want to initialise an array to be all the same number. The methods for doing this as 0,1 and unspecified in `numpy` are `np.zeros()`, `np.ones()`, `np.empty()` respectively.
 
@@ -263,7 +263,7 @@ print(arr)
      [4.  5.  6. ]]
 
 
-##### Exercise 2
+**Exercise E2.2.2**
 
 * write a function that does the following:
     * create a 2-D tuple called `indices` containing the integers `((0, 1, 2, 3, 4),(5, 6, 7, 8, 9))`
@@ -287,7 +287,7 @@ The result should look like:
 # do exercise here
 ```
 
-##### Exercise 3
+**Exercise 2.2.3**
 
 * write a more flexible version of you function above where `indices`, the value you want to set (`1` above) and the desired shape of `data` are specified through function keyword arguments (e.g. `indices=((0, 1, 2, 3, 4),(5, 6, 7, 8, 9)),value=1,shape=(5,10)`)
 
@@ -336,7 +336,7 @@ np.linspace(stop, start, 9)
 
 
 
-##### Exercise 4
+**Exercise E2.2.4**
 
 * print an array of integer numbers from 100 to 1
 * print an array with 9 numbers equally spaced between 100 and 1
@@ -348,7 +348,7 @@ Hint: what value of skip would be appropriate here? what about `start` and `stop
 # do exercise here
 ```
 
-#### Summary statistics
+### 2.2.4 Summary statistics
 
 Below are some typical arithmetic operations that you can use on arrays. Remember that they happen **elementwise** (i.e. to the whole array).
 
@@ -413,7 +413,7 @@ print(f'The mean number of launches is {data.mean():.3f} per month')
     The mean number of launches is 58.617 per month
 
 
-##### Exercise 5
+**Exercise E2.2.5**
 
 * copy the code above but generate a fuller set of summary statistics including the standard deviation, minimum and maximum.
 
@@ -489,7 +489,7 @@ print(year_array[low], '\nvalues:\n', sum_per_year[low])
      [  3  11  22  52 207 246 277 243 209 192]
 
 
-##### Exercise 6
+**Exercise E2.2.6**
 
 * copy the code above, and modify it to find the total launches *per month* (over all years)
 * show these data in a table
@@ -624,7 +624,7 @@ print('*'*23)
     ***********************
 
 
-##### Exercise 7
+**Exercise E2.2.7**
 
 * Using code from the sections above, print out a table with the busiest launch months with an additional column stating the number of launches
 
@@ -691,7 +691,7 @@ print(f'months in year order: {unsorted_months[year_order]}')
     months in year order: [9 3 6 5 1 5 4 8 4 9 8 5]
 
 
-##### Exercise 8
+**Exercise E2.2.8**
 
 * Use this example of `argsort()` to redo Exercise E2.2.7, putting the data in correct year order
 
@@ -700,13 +700,13 @@ print(f'months in year order: {unsorted_months[year_order]}')
 # do exercise here
 ```
 
-### Summary
+### 2.2.5 Summary
 
 In this section, you have been introduced to more detail on arrays in `numpy`. The big advantages of `numpy` are that you can easily perform array operators (such as adding two arrays together), and that `numpy` has a large number of useful functions for manipulating N-dimensional data in array form. This makes it particularly appropriate for raster geospatial data processing.
 
 We have seen how to create various forms of array (e.g. `np.ones()`, `np.arange()`), how to calculate some basic statistics (`min()`, `max()` etc), and finding the array index where some pattern occurs (e.g. `argmin()`, `argsort()` or `where()`). 
 
-### Plotting with Matplotlib
+## 2.3 Plotting with Matplotlib
 
 There are [quite a few graphical libraries for Python](https://scipy.org/topical-software.html#plotting-data-visualization-3-d-programming), but [matplotlib](http://matplotlib.org) is probably the most famous one. It does pretty much all you need in terms of 2D plots, and simple 3D plots, and is fairly straightforward to use. Have a look at the [matplotlib gallery](https://matplotlib.org/gallery/index.html) for a fairly comprehensive list of examples of what the library can do as well as the code that was used in the examples.
 
@@ -830,7 +830,7 @@ plt.semilogy()
 ![png](026_Numpy_matplotlib_files/026_Numpy_matplotlib_57_1.png)
 
 
-##### Exercise 1
+**Exercise E2.3.1**
 
 * produce a plot showing launches per year as a function of year, showing data for selected months individually.
 
@@ -841,7 +841,7 @@ Hint: do a simple plot first, then add some improvements gradually. You might se
 # do exercise here
 ```
 
-##### Exercise 2
+**Exercise 2.3.2**
 
 Putting together some ideas from above to look at some turning points in a function:
 
@@ -857,9 +857,9 @@ Hint: to plot with red and green line `plot(x,y,'r')` and `plot(x,y,'g')`
 # do exercise here
 ```
 
-###  Indexing and slicing arrays
+## 2.4  Indexing and slicing arrays
 
-#### Recap
+### 2.4.1 Recap
 
 Selecting different elements of the array to operate in them is a very common task. `numpy` has a very rich syntax for selecting different bits of the array. We have come across slicing before, but it is so important to array processing, we will go over some of it again. 
 
@@ -921,7 +921,7 @@ Hint: Don't use looping, instead work out how to define the slice of the central
 # do exercise here
 ```
 
-#### data mask
+### 2.4.1 data mask
 
 
 A useful way to select elements is by using what's called a mask as we saw above: an array of logical (boolean) elements that only selects the elements that are `True`:
@@ -952,7 +952,7 @@ print(a[np.logical_and(sel1, sel2)])
      70 71 72]
 
 
-##### Exercise 2
+**Exercise 2.4.2**
 
 * generate a numpy array called `x` with 100 equally spaced numbers between 0 and 5
 * generate a numpy array called `y` which contains $x^3 - 9 x^2 + 26 x - 24$
@@ -963,9 +963,9 @@ print(a[np.logical_and(sel1, sel2)])
 # do exercise here
 ```
 
-### Reading data
+## 2.5  Reading data
 
-#### `np.loadtxt`
+### 2.5.1 `np.loadtxt`
 
 It's a bit tedious just making up numbers to play with them, but it's easy to load up data from external files. The most common data interchange format is [CSV (comma-seperated values)](https://en.wikipedia.org/wiki/Comma-separated_values), a plain text format. Think of CSV as a plain text table. Each element in each row is separated by a comma (although other symbols, such as white space, semicolons `;`, tabs `\t` or pipe `|` symbols are often found as delimiters). The first few lines might contain some metadata that describes the dataset, and the first line will also contain the names of the headers of the different columns.  Lines starting with `#` tend to be ignored. An example file might look like this
 ```
@@ -1022,7 +1022,7 @@ While `np.loadtxt` is quite flexible for dealing with text files, [`pandas`](htt
 
 Before we go into plotting, we can do some fun calculations (yay!) using our airtravel data
 
-##### Exercise 1
+**Exercise 2.5.1**
 
 * Calculate the total number of passengers per year
 * Calculate the average number of passengers per month
@@ -1121,7 +1121,7 @@ plt.legend(loc="best")
 ![png](026_Numpy_matplotlib_files/026_Numpy_matplotlib_83_1.png)
 
 
-##### Exercise 2
+**Exercise 2.5.2**
 
 The file [`NOAA.csv`](data/NOAA.csv) contains data from [NOAA](http://www.aoml.noaa.gov/hrd/tcfaq/E11.html) on the number of storms and hurricanes in the Atlantic basin from 1851 to 2015. The data columns are described in the first row of the file. The year is in column 1 and the number of hurricanes in column 3.
 
@@ -1139,7 +1139,7 @@ Hint: the options on `np.loadtxt` you probably want to use are: `skiprows`, `del
 # do exercise here
 ```
 
-#### Accessing online resources
+### 2.5.2 Accessing online resources
 
 We can use `np.loadtxt` or similar functions to load tabular data that we have stored locally in e.g. csv format.
 
@@ -4941,7 +4941,7 @@ plt.xlabel('year')
 ![png](026_Numpy_matplotlib_files/026_Numpy_matplotlib_96_1.png)
 
 
-##### Exercise 3
+**Exercise E2.5.3**
 
 * use the datetime approach to plot the dataset
 * print out the value of `dates` for the first 10 entries to see what the format looks like
@@ -4982,7 +4982,7 @@ plt.xlim([1, 366])
 
 Plotting this, we can visualise the year-on-year variations in temperature for any particular day.
 
-##### Exercise 3
+**Exercise E2.5.3**
 
 * using the reshaped datasets above, calculate and plot the mean value of `tmax` as a function of day of year
 * calculate standard deviation of `tmax` as a function of day of year, and plot dashed lines at mean +/- 1.96 standard deviations
@@ -4990,9 +4990,9 @@ Plotting this, we can visualise the year-on-year variations in temperature for a
 
 Hint: use `axis=0` when calculating the mean/std over `doy` of `tmax` and `axis=1` for processing over `year`.
 
-#### Homework
+### 2.5.4 Homework
 
-##### Exercise 4
+#### Exercise E2.5.4
 
 Select 4 locations in different regions of North America (e.g. Anchorage, Albuquerque, Seattle, Chicago). Request data on maximum temperature, precipitation and incident solar radiation for the years between 1981 to 2010, and plot in 3 different figures:
 
@@ -5015,6 +5015,6 @@ Label each plot with a title, units and so on. Some useful functions to consider
 # do exercise here
 ```
 
-### Summary
+### 2.5.5 Summary
 
 In this section, we have learned about reading data from csv files from the local disc or that we have pulled from the web (given a URL). We have gone into a little more detail and sophistication on plotting graphs, and you now should be able to produce sensible plots of datasets or summaries of datasets (e.g. mean standard deviation).

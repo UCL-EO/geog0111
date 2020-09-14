@@ -1,8 +1,0 @@
-# Part 3
-
-*  [021_Python_files](021_Python_files.md)
-*  [022_Read_files](022_Read_files.md)
-* [023_Pandas_and_plotting](022_Pandas_and_plotting.md)
-* [024_NASA_MODIS_Earthdata](023_NASA_MODIS_Earthdata.md)
-* [025_GoogleEarthEngine](025_GoogleEarthEngine.md)
-* [026_Numpy_matplotlib](026_Numpy_matplotlib.md)

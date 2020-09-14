@@ -1,6 +1,6 @@
-## 018 Python codes : Answers to exercises
+# 019 Python codes : Answers to exercises
 
-##### Exercise 1
+#### Exercise
 
 * Create a Python file in your [`work`](work) folder based on the example above and call it `work/myFirstCode.py`
 * Modify the code to achieve the following:
@@ -68,7 +68,7 @@ chmod 755 work/myFirstCode.py
 %run work/myFirstCode.py
 ```
 
-#### Exercise: Submitted Practical
+### Exercise: Submitted Practical
 
 Although we provide access to answers for this exercise, we want you to submit the codes you generate via Moodle, so that we can provide feedback. You should avoid looking at the answers before you submit your work. This submitted work does not count towards your course assessment, it is purely to allow us to provide some rapid feedback to you on how you are doing. You will need to put together a few elements from the notes so far to do all prts of this practical, but yoiu should all be capable of doing it well. Pay attention to writing tidy code, with useful, clear comments and document strings.
 

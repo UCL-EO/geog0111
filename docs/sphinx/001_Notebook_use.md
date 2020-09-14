@@ -1,4 +1,4 @@
-## 001 Use of Jupyter notebooks
+# 001 Use of Jupyter notebooks
 
 This is a Jupyter notebook designed to let you get used to notebooks, and to test your python and notebooks installation.
 
@@ -6,7 +6,7 @@ You can find much information on using notebooks on the [web](https://jupyter.or
 
 You should do the tasks in this notebook before the first class. We need to assume at that class that you have the basic familiarity with notebooks you will gain here.
 
-### Introduction
+## Introduction
 
 This is your first Jupyter notebook of the class. Jupyter notebooks will form the primary teaching and learning tool in this course. The format of the notebooks will be similar for all sessions. 
 
@@ -43,17 +43,17 @@ Note that you can 'run' the code in a code block using the 'run' widget (above) 
 The session should take around 20 minutes though you will spend longer on follow-up material and exercises. 
     
 
-#### Some resources
+### Some resources
 
 There is a useful [cheatsheet](https://www.anaconda.com/wp-content/uploads/2019/03/11-2018-JupyterLab-Notebook-Cheatsheet.pdf) on using Jupyter, and [another, on markdown syntax](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) for you to use.
 
 
 
-### How we will be using notebooks
+## How we will be using notebooks
 
 We will be using Jupyter notebooks to present course notes and view and run exercises. 
 
-#### Saving your work
+### Saving your work
    
 The first thing we want you to do when you open a new notebook is to **make a copy of it in the [`work`](work) folder**. 
 
@@ -61,7 +61,7 @@ The first thing we want you to do when you open a new notebook is to **make a co
 
 
     
-#### Cells
+### Cells
     
 The notebook is made up of a series of [cells](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html#:~:text=A%20cell%20is%20a%20multiline,markdown%20cells%2C%20and%20raw%20cells). Some cells, such as the one this is written in, are 'text' cells, where we format the text in a language called [markdown](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html).
 
@@ -74,7 +74,7 @@ Take a few minutes to explore the notebook menu, and note how to do things like:
 * restart the kernel (the 'engine' running this notebook)
 * restart the kernel and clear output
 
-##### Exercise 1
+#### Exercise 1
 
 We can add new cells to this document via the `Insert -> Insert Cell Below` menu in the menu bar at the top of this document.
 
@@ -83,7 +83,7 @@ Notice that you can double click on a cell to edit its contents.
 Add a cell now, below, and use the `Cell -> Cell Type` menu to make this cell type `markdown`. Add some text in there ... lyrics from your favourite song, whatever you like ...
 
 
-##### Exercise 2
+#### Exercise 2
 
 
 Add another cell now, below, and use the Cell -> Cell Type menu to make this cell type markdown. 
@@ -98,10 +98,10 @@ Read up on the [features of markdown](https://github.com/adam-p/markdown-here/wi
 * a image
 * some html
 
-### Coding
+## Coding
 
 
-####  hello world
+###  hello world
 
 Next, let's try a code cell below and do our first python coding. You should notice that it indicates this in the cell type box on the menu.
 
@@ -120,9 +120,6 @@ first_string = "hello world"
 print(first_string)
 ```
 
-    hello world
-
-
 The type of cell we use is `Code` (rather than `Markdown` above).
 
 Remember that we *execute* ('run') the code in the cell, either with the `>| Run` button above, or by pressing the `SHIFT RETURN` keys at the same time. 
@@ -131,7 +128,7 @@ Try that out, running the code cell above.
 
 
 
-##### Exercise 3
+#### Exercise 3
 
 Now:
 
@@ -140,20 +137,20 @@ Now:
 * call the `print()` method with this as an [argument](https://en.wikipedia.org/wiki/Parameter_(computer_programming))
 * run the cell 
 
-##### Exercise 4
+#### Exercise 4
 
 * create a code cell below
 * print the values of `first_string` and `second_string`  that we created above. 
 * what does that tell you about information we create in one cell and try to use in another?
 
-##### Exercise 5
+#### Exercise 5
 
 * create a code cell below
 * try to print a variable `third_string` (that you haven't yet created)
 * run the cell
 * what does this tell you about trying to print variables we haven't created?
 
-##### Exercise 6
+#### Exercise 6
 
 * create a code cell below
 * *now* create a string called `third_string` with the text `hello once more`

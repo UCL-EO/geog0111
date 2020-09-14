@@ -1,6 +1,6 @@
-## 024 NASA MODIS Earthdata : Answers to exercises
+# NASA MODIS Earthdata : Answers to exercises
 
-##### Exercise 1
+### Exercise
 
 The pattern on the tile names is `hXXvYY` where `XX` is the horizontal coordinate and `YY` the vertical.
 
@@ -19,7 +19,7 @@ For example, for the two tiles covering Madagascar, we would set:
 tiles = ['h17v03', 'h17v04', 'h18v03', 'h18v04']
 ```
 
-##### Exercise 2: change the year and DOY
+### Exercise: change the year and DOY
 
 Using the lines of code above, download and visualise the LAI dataset for a different DOY and year. Remember that it is a 4-day synthesis, so there are only datasets on doy 1,5,9, ...
 
@@ -100,7 +100,7 @@ else:
     plot=visualise(lai,title=title,vmax=3.0)
 ```
 
-##### Exercise 3: change the location
+### Exercise: change the location
 
 Using the lines of code above, download and visualise the LAI dataset for a different location.
 
@@ -144,7 +144,7 @@ else:
     plot=visualise(data,title=title,vmax=3.0)
 ```
 
-##### Exercise 4: change the SDS
+### Exercise: change the SDS
 
 Using the lines of code above, download and visualise the LAI dataset for a different location. 
 
@@ -192,7 +192,7 @@ else:
     plot=visualise(data,title=title)
 ```
 
-##### Exercise 5: change the product to another on MOTA
+### Exercise: change the product to another on MOTA
 
 Using the lines of code above, download and visualise a different MODIS product.
 
@@ -250,8 +250,8 @@ else:
     plot=visualise(data,title=title)
 ```
 
-##### Exercise 6: Snow
-
+### Exercise: Snow
+    
 The MODIS snow products are on a different server to the one we used above, [`https://n5eil01u.ecs.nsidc.org/MOST`](https://n5eil01u.ecs.nsidc.org/MOST) for MODIS Terra data and [`https://n5eil01u.ecs.nsidc.org/MOSA`](https://n5eil01u.ecs.nsidc.org/MOSA) for MODIS Aqua. Product information is available on the [product website](https://nsidc.org/data/myd10a1). Note that there is not combined Terra and Aqua product.
 
 Use the codes above to explore, download, and plot a snow dataset from the `MOD10A1` product.
@@ -310,8 +310,8 @@ else:
 !gdalinfo data/MOD10A1.A2010001.h19v03.006.2016083014706.hdf | grep NDSI_Snow_Cover
 ```
 
-##### Exercise: Land Cover
-
+### Exercise: Land Cover
+    
 The MODIS land cover product is `MCD12Q1`.
 
 Use the codes above to explore, download, and plot a  land cover dataset from the `MCD12Q1` product.

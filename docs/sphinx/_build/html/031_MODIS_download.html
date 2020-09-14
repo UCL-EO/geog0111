@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.2 Accessing MODIS Data products &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.4 Stacking and interpolating data" href="032_GDAL_stacking_and_interpolating.html" />
+    <link rel="prev" title="3 Geospatial processing with gdal" href="030_GDAL.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="accessing-modis-data-products">
+<h1>3.2 Accessing MODIS Data products<a class="headerlink" href="#accessing-modis-data-products" title="Permalink to this headline">¶</a></h1>
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#3.2-Accessing-MODIS-Data-products" data-toc-modified-id="3.2-Accessing-MODIS-Data-products-1">3.2 Accessing MODIS Data products</a></span><ul class="toc-item"><li><span><a href="#3.2.1-Introduction" data-toc-modified-id="3.2.1-Introduction-1.1">3.2.1 Introduction</a></span></li><li><span><a href="#3.2.2--Accessing-NASA-MODIS-URLs" data-toc-modified-id="3.2.2--Accessing-NASA-MODIS-URLs-1.2">3.2.2  Accessing NASA MODIS URLs</a></span></li><li><span><a href="#3.2.2.1-datetime" data-toc-modified-id="3.2.2.1-datetime-1.3">3.2.2.1 <code>datetime</code></a></span><ul class="toc-item"><li><span><a href="#3.2.2.2-html" data-toc-modified-id="3.2.2.2-html-1.3.1">3.2.2.2 html</a></span></li></ul></li><li><span><a href="#3.2.3-MODIS-filename-format" data-toc-modified-id="3.2.3-MODIS-filename-format-1.4">3.2.3 MODIS filename format</a></span></li><li><span><a href="#3.2.4-Saving-binary-data-to-a-file" data-toc-modified-id="3.2.4-Saving-binary-data-to-a-file-1.5">3.2.4 Saving binary data to a file</a></span></li><li><span><a href="#3.2.4-downloading-the-data-file" data-toc-modified-id="3.2.4-downloading-the-data-file-1.6">3.2.4 downloading the data file</a></span></li><li><span><a href="#3.2.5-Visualisation" data-toc-modified-id="3.2.5-Visualisation-1.7">3.2.5 Visualisation</a></span></li><li><span><a href="#3.2.6-Summary" data-toc-modified-id="3.2.6-Summary-1.8">3.2.6 Summary</a></span></li></ul></li></ul></div><div class="section" id="introduction">
+<h2>3.2.1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this section, you will learn how to:</p>
+<ul class="simple">
+<li><p>scan the directories (on the Earthdata server) where the MODIS data are stored</p></li>
+<li><p>get the dataset filename for a given tile, date and product</p></li>
+<li><p>get to URL associated with the dataset</p></li>
+<li><p>use the URL to pull the dataset over to store in the local file system</p></li>
+</ul>
+<p>You should already know:</p>
+<ul>
+<li><p>basic use of Python (sections 1 and 2)</p></li>
+<li><p>the MODIS product grid system</p></li>
+<li><p>the two tiles needed to cover the UK</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>what LAI is and the code for the MODIS LAI/FPAR product <a class="reference external" href="https://modis.gsfc.nasa.gov/data/dataprod/mod15.php">MOD15</a></p></li>
+<li><p>your username and password for <a class="reference external" href="https://urs.earthdata.nasa.gov/home">NASA Earthdata</a>, or have previously entered this with <a class="reference external" href="geog0111/cylog.py"><code class="docutils literal notranslate"><span class="pre">cylog</span></code></a>.</p></li>
+</ul>
+<p>Let’s first just test your NASA login:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geog0111.nasa_requests</span> <span class="k">as</span> <span class="nn">nasa_requests</span>
+<span class="kn">from</span> <span class="nn">geog0111.cylog</span> <span class="kn">import</span> <span class="n">cylog</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/&#39;</span> 
+        
+<span class="c1"># grab the HTML information</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">nasa_requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="c1"># test a few lines of the html</span>
+    <span class="k">if</span> <span class="n">html</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&lt;!DOCTYPE HTML PUBLI&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this seems to be ok ... &#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;use cylog().login() anywhere you need to specify the tuple (username,password)&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;login error ... try entering your username password again&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;then re-run this cell until it works&#39;</span><span class="p">)</span>
+    <span class="n">cylog</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span> <span class="n">seems</span> <span class="n">to</span> <span class="n">be</span> <span class="n">ok</span> <span class="o">...</span> 
+<span class="n">use</span> <span class="n">cylog</span><span class="p">()</span><span class="o">.</span><span class="n">login</span><span class="p">()</span> <span class="n">anywhere</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">specify</span> <span class="n">the</span> <span class="nb">tuple</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We use the local class <code class="docutils literal notranslate"><span class="pre">geog0111.nrequests</span></code> here, in place of the usual <code class="docutils literal notranslate"><span class="pre">requests</span></code> as this lets the user avoid exposure to some of the tricky bits of getting data from the NASA server.</p>
+</div>
+<div class="section" id="accessing-nasa-modis-urls">
+<h2>3.2.2  Accessing NASA MODIS URLs<a class="headerlink" href="#accessing-nasa-modis-urls" title="Permalink to this headline">¶</a></h2>
+<p>Although you can access MODIS datasets through the <a class="reference external" href="https://urs.earthdata.nasa.gov/home">NASA Earthdata</a> interface, there are many occasions that we would want to just automatically pull datasets. This is particularly true when you want a time series of data that might involve many files. For example, for analysing LAI or other variables over space/time) we will want to write code that pulls the time series of data.</p>
+<p>This is also something you will need to do the your assessed practical.</p>
+<p>If the data we want to use are accessible to us as a URL, we can simply use <code class="docutils literal notranslate"><span class="pre">requests</span></code> as in previous exercises.</p>
+<p>Sometimes, we will be able to specify the parameters of the dataset we want, e.g. using <a class="reference external" href="https://www.json.org">JSON</a>. At othertimes (as in the case here) we might need to do a little work ourselves to construct the particular URL we want.</p>
+<p>If you visit the site <a class="reference external" href="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006">https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006</a>, you will see ‘date’ style links (e.g. <code class="docutils literal notranslate"><span class="pre">2018.09.30</span></code>) through to sub-directories.</p>
+<p>In these, e.g. <a class="reference external" href="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/">https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/</a> you will find URLs of a set of files.</p>
+<p>The files pointed to by the URLs are the MODIS MOD15 4-day composite 500 m LAI/FPAR product <a class="reference external" href="https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd15a3h_v006">MCD15A3H</a>.</p>
+<p>There are links to several datasets on the page, including ‘quicklook files’ that are jpeg format images of the datasets, e.g.:</p>
+<p><img alt="MCD15A3H.A2018273.h17v03" src="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/BROWSE.MCD15A3H.A2018273.h17v03.006.2018278143630.1.jpg" /></p>
+<p>as well as <code class="docutils literal notranslate"><span class="pre">xml</span></code> files and <code class="docutils literal notranslate"><span class="pre">hdf</span></code> datasets.</p>
+</div>
+<div class="section" id="datetime">
+<h2>3.2.2.1 <code class="docutils literal notranslate"><span class="pre">datetime</span></code><a class="headerlink" href="#datetime" title="Permalink to this headline">¶</a></h2>
+<p>The URL we have used above, <a class="reference external" href="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/">https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/</a> starts with a call to the server directory <code class="docutils literal notranslate"><span class="pre">MOTA</span></code>, so we can think of <code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov/MOTA</span></code> asd the base level URL.</p>
+<p>The rest of the directoy information <code class="docutils literal notranslate"><span class="pre">MCD15A3H.006/2018.09.30</span></code> tells us:</p>
+<ul class="simple">
+<li><p>the product name <code class="docutils literal notranslate"><span class="pre">MCD15A3H</span></code></p></li>
+<li><p>the product version <code class="docutils literal notranslate"><span class="pre">006</span></code></p></li>
+<li><p>the date of the dataset <code class="docutils literal notranslate"><span class="pre">2018.09.30</span></code></p></li>
+</ul>
+<p>There are several ways we could specify the date information. The most ‘human readable’ is probably <code class="docutils literal notranslate"><span class="pre">YYYY.MM.DD</span></code> as given here.</p>
+<p>Sometimes we will want to refer to it by ‘day of year’ (<code class="docutils literal notranslate"><span class="pre">doy</span></code>) (sometimes mistakenly referred to as <a class="reference external" href="https://en.wikipedia.org/wiki/Julian_day">Julian day</a>) for a particular year. Day of year will be an integer that goes from 1 to 365 or 366 (inclusive).</p>
+<p>We can use the Python <code class="docutils literal notranslate"><span class="pre">datetime</span></code> to do this:</p>
+<p>import datetime</p>
+<p>year = 2018</p>
+<p>for doy in [1,60,365,366]:
+# set it up as Jan 1st, plus doy - 1
+d = datetime.datetime(year,1,1) + datetime.timedelta(doy-1)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># note the careful formatting to include zeros in datestr</span>
+<span class="n">datestr</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">year</span><span class="si">:</span><span class="s1">4d</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">month</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">day</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;doy </span><span class="si">{</span><span class="n">doy</span><span class="si">:</span><span class="s1">3d</span><span class="si">}</span><span class="s1"> in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">datestr</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Exercise 3.2.1</strong></p>
+<ul class="simple">
+<li><p>copy the above code, and change the year to a leap year to see if it works as expected</p></li>
+<li><p>write some code that loops over each day in the year and converts from <code class="docutils literal notranslate"><span class="pre">doy</span></code> to the format of <code class="docutils literal notranslate"><span class="pre">datestr</span></code> above.</p></li>
+<li><p>modify the code so that it forms the full directory URL for the MODIS dataset, e.g. <code class="docutils literal notranslate"> <span class="pre">https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/</span></code> for each <code class="docutils literal notranslate"><span class="pre">doy</span></code></p></li>
+<li><p>use what you have learned to write a function called <code class="docutils literal notranslate"><span class="pre">get_url()</span></code>, which you give the year and day of year and which returns the full URL. It should use keywords to define <code class="docutils literal notranslate"><span class="pre">product</span></code>, <code class="docutils literal notranslate"><span class="pre">version</span></code> and <code class="docutils literal notranslate"><span class="pre">base_url</span></code>.</p></li>
+<li><p>For homework, tidy up your function, making sure you document it properly. Think aboiut what might happen if you enter incorrect information.</p></li>
+</ul>
+<p><strong>Hint</strong>:</p>
+<ol>
+<li><p>number of days in year</p>
+<p>ndays_in_year = (datetime.datetime(year,12,31) - datetime.datetime(year,1,1)).days + 1</p>
+</li>
+</ol>
+<p>Remember that <code class="docutils literal notranslate"><span class="pre">doy</span></code> goes from 1 to 365 or 366 (inclusive).</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">datestr</span></code> format</p></li>
+</ol>
+<p>We use <code class="docutils literal notranslate"><span class="pre">datestr</span> <span class="pre">=</span> <span class="pre">f'{d.year:4d}.{d.month:02d}.{d.day:02d}'</span></code> as the date string format. The elements such as <code class="docutils literal notranslate"><span class="pre">{d.year:4d}</span></code> mean that <code class="docutils literal notranslate"><span class="pre">d.year</span></code> is interpreted as an integer (<code class="docutils literal notranslate"><span class="pre">d</span></code>) of length <code class="docutils literal notranslate"><span class="pre">4</span></code>. When we put a <code class="docutils literal notranslate"><span class="pre">0</span></code> in front, such as in <code class="docutils literal notranslate"><span class="pre">02d</span></code> the resultant string is ‘padded’ with <code class="docutils literal notranslate"><span class="pre">0</span></code>. Try something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">X10f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>some bigger hints …</p></li>
+</ol>
+<p>To get the full URL, you will probably want to define something along the lines of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">product</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">version</span><span class="si">:</span><span class="s1">03d</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">datestr</span><span class="si">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>assuming version is an integer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+<div class="section" id="html">
+<h3>3.2.2.2 html<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h3>
+<p>When we access this ‘listing’ (directory links such as <a class="reference external" href="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/">https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/</a>) from Python, we will obtain the information in <a class="reference external" href="https://www.w3schools.com/html/">HTML</a>. We don’t expect you to know this language in any great depth, but knowing some of the basics is oftem useful.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geog0111.nasa_requests</span> <span class="k">as</span> <span class="nn">nasa_requests</span>
+<span class="kn">from</span> <span class="nn">geog0111.get_url</span> <span class="kn">import</span> <span class="n">get_url</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="c1"># use your get_url function</span>
+<span class="c1"># or the one supplied in geog0111</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">get_url</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">url</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># pull the html</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">nasa_requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+
+<span class="c1"># print a few lines of the html</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="p">[:</span><span class="mi">951</span><span class="p">])</span>
+<span class="c1"># etc</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span><span class="s1">&#39;etc&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">30</span><span class="p">)</span>
+<span class="c1"># at the end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">html</span><span class="p">[</span><span class="o">-</span><span class="mi">964</span><span class="p">:])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Index of /MOTA/MCD15A3H.006/2018.09.30&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+&lt;script src=&quot;https://status.earthdata.nasa.gov/assets/banner_widget.js&quot;&gt;&lt;/script&gt;
+&lt;!-- Add the Status banner --&gt;
+&lt;div id=&quot;earthdata-notification-banner&quot;&gt;&lt;/div&gt;
+&lt;!-- End Status banner --&gt;
+&lt;pre&gt;
+********************************************************************************
+
+                         U.S. GOVERNMENT COMPUTER
+
+This is the NASA Land Processes Distributed Active Archive Center (LP DAAC) 
+Distribution Server hosted at the USGS Earth Resources Observation and Science 
+(EROS) Center.  The purpose of this server is to provide NASA data products to 
+the public.  The directory listing is exposed intentionally for user navigation 
+to the NASA data products.  Large data downloads (not jpeg browse) requires 
+user authentication through the NASA Earthdata Login. To obtain a NASA Earthdata 
+Logi
+
+ ------------------------------ etc ------------------------------
+
+&lt;img src=&quot;/icons/unknown.gif&quot; alt=&quot;[   ]&quot;&gt; &lt;a href=&quot;MCD15A3H.A2018273.h35v08.006.2018278143649.hdf.xml&quot;&gt;MCD15A3H.A2018273.h35v08.006.2018278143649.hdf.xml&lt;/a&gt;      2018-10-05 09:42  7.6K  
+&lt;img src=&quot;/icons/unknown.gif&quot; alt=&quot;[   ]&quot;&gt; &lt;a href=&quot;MCD15A3H.A2018273.h35v09.006.2018278143649.hdf&quot;&gt;MCD15A3H.A2018273.h35v09.006.2018278143649.hdf&lt;/a&gt;          2018-10-05 09:42  207K  
+&lt;img src=&quot;/icons/unknown.gif&quot; alt=&quot;[   ]&quot;&gt; &lt;a href=&quot;MCD15A3H.A2018273.h35v09.006.2018278143649.hdf.xml&quot;&gt;MCD15A3H.A2018273.h35v09.006.2018278143649.hdf.xml&lt;/a&gt;      2018-10-05 09:42  7.6K  
+&lt;img src=&quot;/icons/unknown.gif&quot; alt=&quot;[   ]&quot;&gt; &lt;a href=&quot;MCD15A3H.A2018273.h35v10.006.2018278143650.hdf&quot;&gt;MCD15A3H.A2018273.h35v10.006.2018278143650.hdf&lt;/a&gt;          2018-10-05 09:42  298K  
+&lt;img src=&quot;/icons/unknown.gif&quot; alt=&quot;[   ]&quot;&gt; &lt;a href=&quot;MCD15A3H.A2018273.h35v10.006.2018278143650.hdf.xml&quot;&gt;MCD15A3H.A2018273.h35v10.006.2018278143650.hdf.xml&lt;/a&gt;      2018-10-05 09:42  7.6K  
+&lt;hr&gt;&lt;/pre&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></div>
+</div>
+<p>In HTML the code text such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;MCD15A3H.A2018273.h35v10.006.2018278143650.hdf&quot;</span><span class="o">&gt;</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h35v10</span><span class="o">.</span><span class="mf">006.2018278143650</span><span class="o">.</span><span class="n">hdf</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>  
+</pre></div>
+</div>
+<p>specifies an HTML link, that will appear as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h35v10</span><span class="o">.</span><span class="mf">006.2018278143650</span><span class="o">.</span><span class="n">hdf</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">05</span> <span class="mi">09</span><span class="p">:</span><span class="mi">42</span>  <span class="mf">7.6</span><span class="n">K</span> 
+</pre></div>
+</div>
+<p>and link to the URL specified in the <code class="docutils literal notranslate"><span class="pre">href</span></code> field: <code class="docutils literal notranslate"><span class="pre">MCD15A3H.A2018273.h35v10.006.2018278143650.hdf</span></code>.</p>
+<p>We could interpret this information by searching for strings etc., but the package <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> can help us a lot in this.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geog0111.nasa_requests</span> <span class="k">as</span> <span class="nn">nasa_requests</span>
+<span class="kn">from</span> <span class="nn">geog0111.get_url</span> <span class="kn">import</span> <span class="n">get_url</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">get_url</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">url</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">nasa_requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+
+<span class="c1"># use BeautifulSoup</span>
+<span class="c1"># to get all urls referenced with</span>
+<span class="c1"># html code &lt;a href=&quot;some_url&quot;&gt;</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">mylink</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">mylink</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p><strong>Exercise E3.2.2</strong></p>
+<ul class="simple">
+<li><p>copy the code in the block above and print out some of the linformation in the list <code class="docutils literal notranslate"><span class="pre">links</span></code> (e.g. the last 20 entries)</p></li>
+<li><p>using an implicit loop, make a list called <code class="docutils literal notranslate"><span class="pre">hdf_filenames</span></code> of only those filenames (links) that have <code class="docutils literal notranslate"><span class="pre">hdf</span></code> as their filename extension.</p></li>
+</ul>
+<p><strong>Hint 1</strong>: first you might select an example item from the <code class="docutils literal notranslate"><span class="pre">links</span></code> list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">item</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;item is&#39;</span><span class="p">,</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and print:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+</div>
+<p>but maybe better (why would this be?) is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Hint 2</strong>: An implicit loop is a construct of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">links</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In an implicit for loop, we can actually add a conditional statement if we like, e.g. try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hdf_filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">links</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;4&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This will print out <code class="docutils literal notranslate"><span class="pre">item</span></code> if the condition <code class="docutils literal notranslate"><span class="pre">item[-5]</span> <span class="pre">==</span> <span class="pre">'4'</span></code> is met. That’s a bit of a pointless test, but illustrates the pattern required. Try this now with the condition you want to use to select <code class="docutils literal notranslate"><span class="pre">hdf</span></code> files.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="modis-filename-format">
+<h2>3.2.3 MODIS filename format<a class="headerlink" href="#modis-filename-format" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">hdf</span></code> filenames are of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h35v10</span><span class="o">.</span><span class="mf">006.2018278143650</span><span class="o">.</span><span class="n">hdf</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>the first field (<code class="docutils literal notranslate"><span class="pre">MCD15A3H</span></code>) gives the product code</p></li>
+<li><p>the second (<code class="docutils literal notranslate"><span class="pre">A2018273</span></code>) gives the observation date: day of year <code class="docutils literal notranslate"><span class="pre">273</span></code>, <code class="docutils literal notranslate"><span class="pre">2018</span></code> here</p></li>
+<li><p>the third (<code class="docutils literal notranslate"><span class="pre">h35v10</span></code>) gives the ‘MODIS tile’ code for the data location</p></li>
+<li><p>the remaining fields specify the product version number (<code class="docutils literal notranslate"><span class="pre">006</span></code>) and a code representing the processing date.</p></li>
+</ul>
+<p>If we want a particular dataset, we would assume then that we know the information to construct the first four fields.</p>
+<p>We then have the task remaining of finding an address of the pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h17v03</span><span class="o">.</span><span class="mf">006.</span><span class="o">*.</span><span class="n">hdf</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">*</span></code> represents a wildcard (unknown element of the URL/filename).</p>
+<p>Putting together the code from above to get a list of the <code class="docutils literal notranslate"><span class="pre">hdf</span></code> files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#from geog0111.nasa_requests import nasa_requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">geog0111.get_url</span> <span class="kn">import</span> <span class="n">get_url</span>
+<span class="kn">import</span> <span class="nn">geog0111.nasa_requests</span> <span class="k">as</span> <span class="nn">nasa_requests</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">get_url</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">url</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">nasa_requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">mylink</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">mylink</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span>
+
+<span class="c1"># get all files that end &#39;hdf&#39; as in example above</span>
+<span class="n">hdf_filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">links</span> <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;hdf&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We now want to specify a particular tile or tiles to access.</p>
+<p>In this case, we want to look at the field <code class="docutils literal notranslate"><span class="pre">item.split('.')[-4]</span></code> and check to see if it is the list <code class="docutils literal notranslate"><span class="pre">tiles</span></code>.</p>
+<p><strong>Exercise 3.2.3</strong></p>
+<ul class="simple">
+<li><p>copy the code above and print out the first 10 values in the list <code class="docutils literal notranslate"><span class="pre">hdf_filenames</span></code>. Can you recognise where the tile information is in the string?</p></li>
+</ul>
+<p>Now, let’s check what we get when we look at <code class="docutils literal notranslate"><span class="pre">item.split('.')[-4]</span></code>.</p>
+<ul class="simple">
+<li><p>set a variable called <code class="docutils literal notranslate"><span class="pre">tiles</span></code> containing the names of the UK tiles (as in Exercise 3.1.1)</p></li>
+<li><p>write a loop <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">links:</span></code> to loop over each item in the list <code class="docutils literal notranslate"><span class="pre">links</span></code></p></li>
+<li><p>inside this loop set the condition <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">item.split('.')[-1]</span> <span class="pre">==</span> <span class="pre">'hdf':</span></code> to select only <code class="docutils literal notranslate"><span class="pre">hdf</span></code> files, as above</p></li>
+<li><p>inside this conditional statement, print out <code class="docutils literal notranslate"><span class="pre">item.split('.')[-4]</span></code> to see if it looks like the tile names</p></li>
+<li><p>having confirmed that you are getting the right information, add another conditional statement to see if <code class="docutils literal notranslate"><span class="pre">item.split('.')[-4]</span> <span class="pre">in</span> <span class="pre">tiles</span></code>, and then print only those filenames that pass both of your tests</p></li>
+<li><p>see if you can combine the two tests (the two <code class="docutils literal notranslate"><span class="pre">if</span></code> statements) into a single one</p></li>
+</ul>
+<p><strong>Hint 1</strong>: if you print all of the tilenames, this will go on for quite some time. Instead it may be better to use <code class="docutils literal notranslate"><span class="pre">print(item.split('.')[-4],end='</span> <span class="pre">')</span></code>, which will put a space, rather than a newline between each item printed.</p>
+<p><strong>Hint 2</strong>: recall what the logical statement <code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">and</span> <span class="pre">B)</span></code> gives when thinking about the combined <code class="docutils literal notranslate"><span class="pre">if</span></code> statement</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+<p>You should end up with something like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geog0111.nasa_requests</span> <span class="k">as</span> <span class="nn">nasa_requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">geog0111.get_url</span> <span class="kn">import</span> <span class="n">get_url</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">get_url</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">url</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">nasa_requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">mylink</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">mylink</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span>
+
+<span class="n">tile_filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">links</span> \
+                      <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;hdf&#39;</span><span class="p">)</span> <span class="ow">and</span> \
+                         <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p><strong>Exercise E3.2.4</strong></p>
+<ul class="simple">
+<li><p>print out the first 10 items in <code class="docutils literal notranslate"><span class="pre">tile_filenames</span></code> and check the result is as you expect.</p></li>
+<li><p>write a function called <code class="docutils literal notranslate"><span class="pre">modis_tiles()</span></code> that takes as input <code class="docutils literal notranslate"><span class="pre">doy</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">tiles</span></code> and returns a list of the modis tile <strong>urls</strong>.</p></li>
+</ul>
+<p><strong>Hint</strong></p>
+<ol>
+<li><p>Don’t forget to put in a mechanism to allow you to change the default <code class="docutils literal notranslate"><span class="pre">base_url</span></code>, <code class="docutils literal notranslate"><span class="pre">product</span></code> and <code class="docutils literal notranslate"><span class="pre">version</span></code> (as you did for the function <code class="docutils literal notranslate"><span class="pre">get_url()</span></code>)</p></li>
+<li><p>In some circumstances, yopu can get repeats of filenames in the list. One way to get around this is to convert the list to a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array, and use <a class="reference external" href="https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.unique.html"><code class="docutils literal notranslate"><span class="pre">np.unique()</span></code></a> to remove duplicates.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="n">tile_filenames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tile_filenames</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+<p>You should end up with something like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.modis_tiles</span> <span class="kn">import</span> <span class="n">modis_tiles</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+
+<span class="n">tile_urls</span> <span class="o">=</span> <span class="n">modis_tiles</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">tiles</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Exercise E3.2.5</strong></p>
+<ul class="simple">
+<li><p>print out the first 10 items in <code class="docutils literal notranslate"><span class="pre">tile_urls</span></code> and check the result is as you expect.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-binary-data-to-a-file">
+<h2>3.2.4 Saving binary data to a file<a class="headerlink" href="#saving-binary-data-to-a-file" title="Permalink to this headline">¶</a></h2>
+<p>We suppose that we want to save the dataset to a local file on the system.</p>
+<p>To do that, we need to know how to save a binary dataset to a file. To do this well, we should also consider factors such as whether we want to save a file we already have.</p>
+<p>Before we go any further we should check:</p>
+<ul class="simple">
+<li><p>that the directory exists (if not, create it)</p></li>
+<li><p>that the file doesn’t already exist (else, don’t bother)</p></li>
+</ul>
+<p>We can conveniently use methods in <a class="reference external" href="https://docs.python.org/3/library/pathlib.html"><code class="docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a> for this.</p>
+<p>So, import <code class="docutils literal notranslate"><span class="pre">Path</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</pre></div>
+</div>
+<p>We suppose we might want to put a file (variable <code class="docutils literal notranslate"><span class="pre">filename</span></code>) into the directory <code class="docutils literal notranslate"><span class="pre">destination_folder</span></code>:</p>
+<p>To test if a directory exists and create if not:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dest_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">destination_folder</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">dest_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">dest_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To make a compound name of <code class="docutils literal notranslate"><span class="pre">dest_path</span></code> and <code class="docutils literal notranslate"><span class="pre">filename</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_fname</span> <span class="o">=</span> <span class="n">dest_path</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To test if a file exists:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">output_fname</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">output_fname</span><span class="p">))</span><span class="si">}</span><span class="s2"> doesn&#39;t exist yet ...&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p><strong>Exercise E3.2.6</strong></p>
+<ul class="simple">
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">destination_folder</span></code> to <code class="docutils literal notranslate"><span class="pre">data</span></code> and write code to create this folder (‘directory’) if it doesn’t already exist.</p></li>
+<li><p>set a variable <code class="docutils literal notranslate"><span class="pre">filename</span></code> to <code class="docutils literal notranslate"><span class="pre">test.bin</span></code> and write code to check to see if this file is in the folder <code class="docutils literal notranslate"><span class="pre">destination_folder</span></code>. If not, print a message to say so.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+<p>We now try to read the binary file <code class="docutils literal notranslate"><span class="pre">data/test_image.bin</span></code>.</p>
+<p>This involves opening a binary file for reading:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then reading the data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then close <code class="docutils literal notranslate"><span class="pre">fp</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">input_fname</span> <span class="o">=</span> <span class="s1">&#39;data/test_image.bin&#39;</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data read is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s1"> bytes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="n">read</span> <span class="ow">is</span> <span class="mi">9136806</span> <span class="nb">bytes</span>
+</pre></div>
+</div>
+<p>And now, write the data as <code class="docutils literal notranslate"><span class="pre">data/test.bin</span></code>.</p>
+<p>This involves opening a binary file for writing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_fname</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then reading the data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and closing as before:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_fname</span> <span class="o">=</span> <span class="s1">&#39;data/test.bin&#39;</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_fname</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data written is </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1"> bytes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="n">written</span> <span class="ow">is</span> <span class="mi">9136806</span> <span class="nb">bytes</span>
+</pre></div>
+</div>
+<p>We can avoid the need for the <code class="docutils literal notranslate"><span class="pre">close</span></code> by using the construct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_fname</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_fname</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data written is </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1"> bytes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="n">written</span> <span class="ow">is</span> <span class="mi">9136806</span> <span class="nb">bytes</span>
+</pre></div>
+</div>
+<p><strong>Exercise E3.2.7</strong></p>
+<p>With the ideas above, write some code to:</p>
+<ul class="simple">
+<li><p>check to see if the output directory <code class="docutils literal notranslate"><span class="pre">data</span></code> exists</p></li>
+<li><p>if not, create it</p></li>
+<li><p>check to see if the input file <code class="docutils literal notranslate"><span class="pre">data/test_image.bin</span></code> exists</p></li>
+<li><p>if so, read it in to <code class="docutils literal notranslate"><span class="pre">data</span></code></p></li>
+<li><p>check to see if the output file <code class="docutils literal notranslate"><span class="pre">data/test.bin</span></code> exists</p></li>
+<li><p>if not (and if you read data), save <code class="docutils literal notranslate"><span class="pre">data</span></code> to this file</p></li>
+<li><p>once you are happy with the code operation, write a function: <code class="docutils literal notranslate"><span class="pre">save_data(data,filename,destination_folder)</span></code> that takes the binary dataset <code class="docutils literal notranslate"><span class="pre">data</span></code> and writes it to the file <code class="docutils literal notranslate"><span class="pre">filename</span></code> in directory <code class="docutils literal notranslate"><span class="pre">destination_folder</span></code>. It should return the n umber of bytes written, and should check to see if files / directories exist and act accordingly.</p></li>
+<li><p>add a keyword option to <code class="docutils literal notranslate"><span class="pre">save_data()</span></code> that will overwrite the filename, even if it already exists.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+<p>You should now know how to save a binary data file.</p>
+</div>
+<div class="section" id="downloading-the-data-file">
+<h2>3.2.4 downloading the data file<a class="headerlink" href="#downloading-the-data-file" title="Permalink to this headline">¶</a></h2>
+<p>The following code uses the <code class="docutils literal notranslate"><span class="pre">nasa_requests</span></code> library to pull some binary data from a URL.</p>
+<p>The response is tested (<code class="docutils literal notranslate"><span class="pre">r.ok</span></code>), and if it is ok, then we split the url to derive the filename, and print this out.</p>
+<p>The binary dataset is available as <code class="docutils literal notranslate"><span class="pre">r.content</span></code>, which we store to the variable <code class="docutils literal notranslate"><span class="pre">data</span></code> here:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geog0111.nasa_requests</span> <span class="k">as</span> <span class="nn">nasa_requests</span>
+<span class="kn">from</span> <span class="nn">geog0111.modis_tiles</span> <span class="kn">import</span> <span class="n">modis_tiles</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+<span class="n">destination_folder</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+
+<span class="n">tile_urls</span> <span class="o">=</span> <span class="n">modis_tiles</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">tiles</span><span class="p">)</span>
+
+<span class="c1"># loop over urls</span>
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">tile_urls</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">nasa_requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    
+    <span class="c1"># check response</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="c1"># get the filename from the url</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># get the binary data</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;response from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1"> not good&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2018.09</span><span class="o">.</span><span class="mi">30</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h17v03</span><span class="o">.</span><span class="mf">006.2018278143630</span><span class="o">.</span><span class="n">hdf</span> <span class="ow">not</span> <span class="n">good</span>
+<span class="n">response</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2018.09</span><span class="o">.</span><span class="mi">30</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h18v03</span><span class="o">.</span><span class="mf">006.2018278143633</span><span class="o">.</span><span class="n">hdf</span> <span class="ow">not</span> <span class="n">good</span>
+</pre></div>
+</div>
+<p><strong>Exercise E3.2.8</strong></p>
+<ul class="simple">
+<li><p>use the code above to write a function <code class="docutils literal notranslate"><span class="pre">get_modis_files()</span></code> that takes as input <code class="docutils literal notranslate"><span class="pre">doy</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">tiles</span></code>, has a default <code class="docutils literal notranslate"><span class="pre">destination_folder</span></code> of <code class="docutils literal notranslate"><span class="pre">data</span></code>, that downloads the appropriate datasets (if they don’t already exist). It should have similar defaults to <code class="docutils literal notranslate"><span class="pre">modis_tiles()</span></code>. It should return a list of the output filenames.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+<p>You should end up with something like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geog0111.nasa_requests</span> <span class="k">as</span> <span class="nn">nasa_requests</span>
+<span class="kn">from</span> <span class="nn">geog0111.save_data</span> <span class="kn">import</span> <span class="n">save_data</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+<span class="n">destination_folder</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+
+<span class="n">tile_urls</span> <span class="o">=</span> <span class="n">modis_tiles</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">tiles</span><span class="p">)</span>
+
+<span class="c1"># loop over urls</span>
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">tile_urls</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">nasa_requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    
+    <span class="c1"># check response</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="c1"># get the filename from the url</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># get the binary data</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">save_data</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">,</span><span class="n">filename</span><span class="p">,</span><span class="n">destination_folder</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;response from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1"> not good&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2018.09</span><span class="o">.</span><span class="mi">30</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h17v03</span><span class="o">.</span><span class="mf">006.2018278143630</span><span class="o">.</span><span class="n">hdf</span> <span class="ow">not</span> <span class="n">good</span>
+<span class="n">response</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2018.09</span><span class="o">.</span><span class="mi">30</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2018273</span><span class="o">.</span><span class="n">h18v03</span><span class="o">.</span><span class="mf">006.2018278143633</span><span class="o">.</span><span class="n">hdf</span> <span class="ow">not</span> <span class="n">good</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="visualisation">
+<h2>3.2.5 Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">¶</a></h2>
+<p>We will learn more fully how to visualise these later, but just to show that the datasets exist.</p>
+<p>You might want to look at the <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_FIPS_country_codes">FIPS</a> country codes for selecting boundary data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">shutil</span> 
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Get the world borders shapefile that we will need</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">tm_borders_url</span> <span class="o">=</span> <span class="s2">&quot;http://thematicmapping.org/downloads/TM_WORLD_BORDERS-0.3.zip&quot;</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tm_borders_url</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/TM_WORLD_BORDERS-0.3.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="n">shutil</span><span class="o">.</span><span class="n">unpack_archive</span><span class="p">(</span><span class="s2">&quot;data/TM_WORLD_BORDERS-0.3.zip&quot;</span><span class="p">,</span>
+                     <span class="n">extract_dir</span><span class="o">=</span><span class="s2">&quot;data/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="n">ReadError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="mf">6e327</span><span class="n">a94488d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+     <span class="mi">11</span> 
+     <span class="mi">12</span> <span class="n">shutil</span><span class="o">.</span><span class="n">unpack_archive</span><span class="p">(</span><span class="s2">&quot;data/TM_WORLD_BORDERS-0.3.zip&quot;</span><span class="p">,</span>
+<span class="o">---&gt;</span> <span class="mi">13</span>                      <span class="n">extract_dir</span><span class="o">=</span><span class="s2">&quot;data/&quot;</span><span class="p">)</span>
+
+
+<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">shutil</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">unpack_archive</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">extract_dir</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+   <span class="mi">1000</span>         <span class="n">func</span> <span class="o">=</span> <span class="n">_UNPACK_FORMATS</span><span class="p">[</span><span class="nb">format</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mi">1001</span>         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">_UNPACK_FORMATS</span><span class="p">[</span><span class="nb">format</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+<span class="o">-&gt;</span> <span class="mi">1002</span>         <span class="n">func</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">extract_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+   <span class="mi">1003</span> 
+   <span class="mi">1004</span> 
+
+
+<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">shutil</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_unpack_zipfile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">extract_dir</span><span class="p">)</span>
+    <span class="mi">897</span> 
+    <span class="mi">898</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">is_zipfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="o">--&gt;</span> <span class="mi">899</span>         <span class="k">raise</span> <span class="n">ReadError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is not a zip file&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="mi">900</span> 
+    <span class="mi">901</span>     <span class="nb">zip</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+
+<span class="n">ReadError</span><span class="p">:</span> <span class="n">data</span><span class="o">/</span><span class="n">TM_WORLD_BORDERS</span><span class="o">-</span><span class="mf">0.3</span><span class="o">.</span><span class="n">zip</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="nb">zip</span> <span class="n">file</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.get_modis_files</span> <span class="kn">import</span> <span class="n">get_modis_files</span>
+<span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">mosaic_and_mask_data</span><span class="p">(</span><span class="n">gdal_fnames</span><span class="p">,</span> <span class="n">vector_file</span><span class="p">,</span> <span class="n">vector_where</span><span class="p">):</span>
+    <span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">BuildVRT</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">gdal_fnames</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Warp</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">stitch_vrt</span><span class="p">,</span>
+                 <span class="nb">format</span> <span class="o">=</span> <span class="s1">&#39;MEM&#39;</span><span class="p">,</span> <span class="n">dstNodata</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                  <span class="n">cutlineDSName</span> <span class="o">=</span> <span class="n">vector_file</span><span class="p">,</span>
+                  <span class="n">cutlineWhere</span> <span class="o">=</span> <span class="n">vector_where</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">g</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+<span class="n">destination_folder</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">get_modis_files</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">tiles</span><span class="p">,</span><span class="n">base_url</span><span class="o">=</span><span class="s1">&#39;https://e4ftl01.cr.usgs.gov/MOTA&#39;</span><span class="p">,</span>\
+                                           <span class="n">version</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>\
+                                           <span class="n">product</span><span class="o">=</span><span class="s1">&#39;MCD15A3H&#39;</span><span class="p">)</span>
+
+<span class="c1"># this part is to access a particular dataset in the file</span>
+<span class="n">gdal_fnames</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;HDF4_EOS:EOS_GRID:&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">:</span><span class="s1">s</span><span class="si">}</span><span class="s1">&quot;:MOD_Grid_MCD15A3H:Lai_500m&#39;</span>
+               <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">mosaic_and_mask_data</span><span class="p">(</span><span class="n">gdal_fnames</span><span class="p">,</span> <span class="s2">&quot;data/TM_WORLD_BORDERS-0.3.shp&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;FIPS=&#39;UK&#39;&quot;</span><span class="p">)</span>
+
+<span class="n">lai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="c1"># for LAI scaling</span>
+<span class="c1"># valid data mask</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">lai</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">min_y</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_y</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">min_x</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_x</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">lai</span> <span class="o">=</span> <span class="n">lai</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">,</span>
+               <span class="n">min_x</span><span class="p">:</span><span class="n">max_x</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lai</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;LAI&#39;</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">tiles</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">((</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span> <span class="n">at</span> <span class="mh">0x7f9268d39410</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/031_MODIS_download_50_1.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.get_modis_files</span> <span class="kn">import</span> <span class="n">get_modis_files</span>
+<span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">mosaic_and_mask_data</span><span class="p">(</span><span class="n">gdal_fnames</span><span class="p">,</span> <span class="n">vector_file</span><span class="p">,</span> <span class="n">vector_where</span><span class="p">):</span>
+    <span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">BuildVRT</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">gdal_fnames</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Warp</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">stitch_vrt</span><span class="p">,</span>
+                 <span class="nb">format</span> <span class="o">=</span> <span class="s1">&#39;MEM&#39;</span><span class="p">,</span> <span class="n">dstNodata</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                  <span class="n">cutlineDSName</span> <span class="o">=</span> <span class="n">vector_file</span><span class="p">,</span>
+                  <span class="n">cutlineWhere</span> <span class="o">=</span> <span class="n">vector_where</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">g</span>
+
+<span class="n">doy</span><span class="p">,</span><span class="n">year</span> <span class="o">=</span> <span class="mi">273</span><span class="p">,</span><span class="mi">2018</span>
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+<span class="n">destination_folder</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">get_modis_files</span><span class="p">(</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">,</span><span class="n">tiles</span><span class="p">,</span><span class="n">base_url</span><span class="o">=</span><span class="s1">&#39;https://e4ftl01.cr.usgs.gov/MOTA&#39;</span><span class="p">,</span>\
+                                           <span class="n">version</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>\
+                                           <span class="n">product</span><span class="o">=</span><span class="s1">&#39;MCD15A3H&#39;</span><span class="p">)</span>
+
+<span class="c1"># this part is to access a particular dataset in the file</span>
+<span class="n">gdal_fnames</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;HDF4_EOS:EOS_GRID:&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">:</span><span class="s1">s</span><span class="si">}</span><span class="s1">&quot;:MOD_Grid_MCD15A3H:Lai_500m&#39;</span>
+               <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">mosaic_and_mask_data</span><span class="p">(</span><span class="n">gdal_fnames</span><span class="p">,</span> <span class="s2">&quot;data/TM_WORLD_BORDERS-0.3.shp&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;FIPS=&#39;NL&#39;&quot;</span><span class="p">)</span>
+
+<span class="n">lai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="c1"># for LAI scaling</span>
+<span class="c1"># valid data mask</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">lai</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">min_y</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_y</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">min_x</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_x</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">lai</span> <span class="o">=</span> <span class="n">lai</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">,</span>
+               <span class="n">min_x</span><span class="p">:</span><span class="n">max_x</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">lai</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;LAI&#39;</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">tiles</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">((</span><span class="n">doy</span><span class="p">,</span><span class="n">year</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span> <span class="n">at</span> <span class="mh">0x7f92589d3bd0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/031_MODIS_download_51_1.png" /></p>
+<p><strong>Exercise 3.2.7 Homework</strong></p>
+<ul class="simple">
+<li><p>Have a look at the information for <a class="reference external" href="http://www.icess.ucsb.edu/modis/SnowUsrGuide/usrguide_1dtil.html"><code class="docutils literal notranslate"><span class="pre">MOD10A1</span></code> product</a>, which is the 500 m MODIS daily snow cover product.</p></li>
+<li><p>Use what you have learned here to download the MOD10A product over the UK</p></li>
+</ul>
+<p><strong>Hint</strong>:</p>
+<ul class="simple">
+<li><p>The data are on a different server <code class="docutils literal notranslate"><span class="pre">https://n5eil01u.ecs.nsidc.org/MOST</span></code></p></li>
+<li><p>the template for the snow cover dataxset is <code class="docutils literal notranslate"><span class="pre">f'HDF4_EOS:EOS_GRID:&quot;{file_name:s}&quot;:MOD_Grid_Snow_500m:NDSI_Snow_Cover'</span></code></p></li>
+<li><p>today-10 may not be the best example doy: choose something in winter</p></li>
+<li><p>valid snow cover values are 0 to 100 (use this to set <code class="docutils literal notranslate"><span class="pre">vmin=0,</span> <span class="pre">vmax=100</span></code> when plotting)</p></li>
+</ul>
+<p><strong>N.B. You will be required to download this dataset for your assessed practical, so it is a good idea to sort code for this now</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do exercise here</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>3.2.6 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this session, we have learned how to download MODIS datasets from NASA Earthdata.</p>
+<p>We have developed and tested functions that group together the commands we want, ultimately arriving at the function <code class="docutils literal notranslate"><span class="pre">get_modis_files(doy,year,tiles,**kwargs)</span></code>.</p>
+<p>We have seen ((if you’ve done the homework) that such code is re-useable and can directly be used for your assessed practical.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="030_GDAL.html" title="previous chapter">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+      <li>Next: <a href="032_GDAL_stacking_and_interpolating.html" title="next chapter">3.4 Stacking and interpolating data</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/031_MODIS_download.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

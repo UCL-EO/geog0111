@@ -1,6 +1,6 @@
-## 017 Functions in Python : Answers to exercises
+# Functions in Python : Answers to exercises
 
-##### Exercise 1
+### Exercise 1
 
 * in a new code cell below, write a function called `my_name` that prints your name
 * demonstrate that your code works (i.e. run it in a code cell)
@@ -46,7 +46,7 @@ help(my_name)
     
 
 
-##### Exercise 2
+### Exercise 2
 
 We assume for this exercise that you know how to create a dictionary from two lists of the same length. This was covered in the [Python_Groups](014_Python_groups.md#dict) notes.
 
@@ -417,7 +417,7 @@ print('test passed')
     test passed
 
 
-##### Exercise 3
+### Exercise 3
 
 * Starting from the function `list2dict(keys,values)` that you developed above, add keyword arguments to the code to achieve the following:
      - if check=True   : perform checks on the input data

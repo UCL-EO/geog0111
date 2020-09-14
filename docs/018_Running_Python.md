@@ -1,6 +1,6 @@
-## 018 Python codes
+# 019 Python codes
 
-### Introduction
+## Introduction
 
 
 Whilst writing codes in Jupyter notebooks is useful and powerful, you will find over the course of GEOG0111 that you will need to develop your own codes as Python scripts. These are more portable than codes embedded in notebooks, and can also be used to develop your own code libraries. 
@@ -10,32 +10,27 @@ In this session, you will learn how to generate and use Python scripts from a no
 At the end of the session, there is a practical exercise for you to do and submit. It does not provide part of your formal assessment, but it is important that you do the work and submit it, so we know if you are on track or need further help. If you do not submit the work, we cannot help you in this way.
 
 
-#### Prerequisites
+### Prerequisites
 
 You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [003 Getting help](003_Help.md)
-* [010 Variables, comments and print()](010_Python_Introduction.md)
-* [011 Data types](011_Python_data_types.md) 
-* [012 String formatting](012_Python_strings.md)
-* [013_Python_string_methods](013_Python_string_methods.md)
-* [014_Python_groups](014_Python_groups.md)
-* [015_Python_control](015_Python_control.md)
-* [016_Python_for](016_Python_for.md)
-* [017_Functions](017_Functions.md)
+* [002 Unix](002_Unix.md)
+* [005 Packages](005_Packages.md)
+* [017 Functions](017_Functions.md)
 
 In particular, you will need to recall how to use:
 
    - [`unix` commands](002_Unix.md): `ls -l; chmod`
    - [`functions`](017_Functions.md)
+   - [`import`](005_Packages.md)
  
 
-### Running Python  Code in a file
+## Running Python  Code in a file
 
 We will generally use these Jupyter notebooks for running you Python codes, but you should also learn how to develop and run Python codes outside of the notebook. We provide a quick example of that here.
 
-#### Running a Python script
+### Running a Python script
 
 Python codes are written in files with the suffix `.py`, e.g. [`geog0111/helloWorld.py`](geog0111/helloWorld.py).
 
@@ -60,7 +55,7 @@ as the first line in the file, and is executable. We can see if a file is execut
 !ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x  1 plewis  staff  514  9 Sep 10:28 [31mgeog0111/helloWorld.py[m[m
+    -rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 [31mgeog0111/helloWorld.py[m[m
 
 
 The first field gives us the file permissions:
@@ -76,10 +71,10 @@ chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x  1 plewis  staff  514  9 Sep 10:28 geog0111/helloWorld.py
+    -rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 geog0111/helloWorld.py
 
 
-#### Running Python code from Python
+### Running Python code from Python
 
 We can also run the Python code contained in [`geog0111/helloWorld.py`](geog0111/helloWorld.py) from a `notebook` cell using `%run` (or from an `ipython` prompt using just `run`):
 
@@ -95,39 +90,17 @@ Another thing we can do is to `import` the code from the Python file into Python
 
 
 ```python
-import sys
-from pathlib import Path
-sys.path.insert(0,Path().cwd().joinpath('geog0111').as_posix())
+from geog0111.helloWorld import helloWorld
 
-
-from helloWorld import helloWorld
 helloWorld()
 ```
 
     hello world
 
 
-
-```python
-
-helloWorld.helloWorld()
-```
-
-
-    ---------------------------------------------------------------------------
-
-    AttributeError                            Traceback (most recent call last)
-
-    <ipython-input-6-9dc09e8f2875> in <module>
-    ----> 1 helloWorld.helloWorld()
-    
-
-    AttributeError: 'function' object has no attribute 'helloWorld'
-
-
 This import statement imports the module `helloWorld` from the library `geog0111` (w
 
-#### Form of a Python script
+### Form of a Python script
 
 We will go into more details on this in later classes, but the main format of a Python file should be along the lines of the following example:
 
@@ -265,11 +238,11 @@ geog0111/helloWorld.py
 ```
 
 
-### Editing a file
+## Editing a file
 
 To do the task below, you will need to invoke a text editor of some sort to create the Python file. There are several ways you can do this, depending on how you are using these notebooks.
 
-#### From JupyterLab
+### From JupyterLab
 
 If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:
 
@@ -287,17 +260,17 @@ To change the permissions on the file from JupyterLab, open a shell (e.g. using
     
 ![JupyterLab terminal](images/term.png)
 
-#### Jupyter notebook
+### Jupyter notebook
 
 
 [geog0111/helloWorld.py](http://localhost:8888/edit/notebooks/geog0111/helloWorld.py)
 
 
-#### Use a text editor
+### Use a text editor
 
 To do the task below, you will need to invoke a text editor of some sort to create the Python file. Ideally, you should learn to do this outside of the notebook: invoke a text editor on your computer, put your Python code into the file, and save it to the desired location.
 
-#### Create in bash
+### Create in bash
 
 We can simply create a file in a bash script by following the example below:
 
@@ -358,14 +331,14 @@ You should now be able to load this Python file directly in Jupyter, using `File
 
 Once you save the file, run the Python code again (`%run work/myHelloWorld.py`).
 
-##### Exercise 1
+#### Exercise
 
 * Create a Python file in your [`work`](work) folder based on the example above and call it `work/myFirstCode.py`
 * Modify the code to achieve the following:
     - make a function called `myFirstCode` that prints out a greeting message
     - update the document strings in the file as appropriate
 
-### Adding command line arguments
+## Adding command line arguments
 
 We have achieved something today, in creating a Python code in a file, making it executable, and running it. However, it is a little limited in scope: it just prints out the message the we **hard wired** into it.
 
@@ -537,7 +510,7 @@ We see that running the script:
     
 means trhat `sys.argv` inside the script contains the liust `['work/test.py', 'Hermione']`.
 
-#### Exercise: Submitted Practical
+### Exercise: Submitted Practical
 
 Although we provide access to answers for this exercise, we want you to submit the codes you generate via Moodle, so that we can provide feedback. You should avoid looking at the answers before you submit your work. This submitted work does not count towards your course assessment, it is purely to allow us to provide some rapid feedback to you on how you are doing. You will need to put together a few elements from the notes so far to do all prts of this practical, but yoiu should all be capable of doing it well. Pay attention to writing tidy code, with useful, clear comments and document strings.
 
@@ -572,7 +545,7 @@ Although we provide access to answers for this exercise, we want you to submit t
         greetings from Fred
         greetings from Hermione
 
-### Summary
+## Summary
 
 In this session, we have learned the usual form of a Python script, including the `#! /usr/bin/env python`  on the first line of the file to call the Python interpreter. We have seen how to include document strings telling any user how to use the codes we develop, and well as providing lots of comments with `#` lines to describe what we are doing in the code, and why. We have seen that a Python script will typically finish with something along the lines of:
 
