@@ -1,0 +1,1885 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://ucl-eo.github.io/geog0111/018_Running_Python/">
+      
+      
+        <meta name="author" content="Prof P. Lewis">
+      
+      <link rel="shortcut icon" href="../images/ucl.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Running Python - GEOG0111</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#019-python-codes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            GEOG0111
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Running Python
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    GEOG0111
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Course Basics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Course Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../002_Unix/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../004_Accounts/" title="Accounts" class="md-nav__link">
+      Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../005_Packages/" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../001_Notebook_use_answers/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../002_Unix_answers/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Help_answers/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Core Concepts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Core Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../014_Python_groups/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../015_Python_control/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../016_Python_for/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../017_Functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Running Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Running Python" class="md-nav__link md-nav__link--active">
+      Running Python
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-python-code-in-a-file" class="md-nav__link">
+    Running Python  Code in a file
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Python  Code in a file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-a-python-script" class="md-nav__link">
+    Running a Python script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-python-code-from-python" class="md-nav__link">
+    Running Python code from Python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-of-a-python-script" class="md-nav__link">
+    Form of a Python script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-a-file" class="md-nav__link">
+    Editing a file
+  </a>
+  
+    <nav class="md-nav" aria-label="Editing a file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-jupyterlab" class="md-nav__link">
+    From JupyterLab
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook" class="md-nav__link">
+    Jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-a-text-editor" class="md-nav__link">
+    Use a text editor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-in-bash" class="md-nav__link">
+    Create in bash
+  </a>
+  
+    <nav class="md-nav" aria-label="Create in bash">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-command-line-arguments" class="md-nav__link">
+    Adding command line arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding command line arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-submitted-practical" class="md-nav__link">
+    Exercise: Submitted Practical
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
+    
+    <label class="md-nav__link" for="nav-3-10">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-10">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../010_Python_Introduction_answers/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../011_Python_data_types_answers/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings_answers/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods_answers/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../014_Python_groups_answers/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../015_Python_control_answers/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../016_Python_for_answers/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../017_Functions_answers/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../018_Running_Python_answers/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_Python_files/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_Read_files/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_PandasExtra_and_plotting/" title="Pandasextra And Plotting" class="md-nav__link">
+      Pandasextra And Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+      Pandas And Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../023_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../025_GoogleEarthEngine/" title="Google Earth Engine" class="md-nav__link">
+      Google Earth Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../026_Numpy_matplotlib/" title="Numpy Matplotlib" class="md-nav__link">
+      Numpy Matplotlib
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-8" type="checkbox" id="nav-4-8">
+    
+    <label class="md-nav__link" for="nav-4-8">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-8">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_Python_files_answers/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_Read_files_answers/" title="Read Files" class="md-nav__link">
+      Read Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../023_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Geospatial Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Geospatial Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../030_GDAL/" title="GDAL" class="md-nav__link">
+      GDAL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../031_MODIS_download/" title="MODIS Download" class="md-nav__link">
+      MODIS Download
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../032_GDAL_stacking_and_interpolating/" title="GDAL Stacking And Interpolating" class="md-nav__link">
+      GDAL Stacking And Interpolating
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../033_GDAL_masking/" title="GDAL Masking" class="md-nav__link">
+      GDAL Masking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../034_GDAL_Reconciling_projections/" title="GDAL Reconciling Projections" class="md-nav__link">
+      GDAL Reconciling Projections
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Modelling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Modelling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../040_Linear_models/" title="Linear Models" class="md-nav__link">
+      Linear Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../041_Modelling_and_optimisation/" title="Modelling And Optimisation" class="md-nav__link">
+      Modelling And Optimisation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Developers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developers" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Developers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DEV_Local_Install/" title="Local Install" class="md-nav__link">
+      Local Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DEV_scripts/" title="Scripts" class="md-nav__link">
+      Scripts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-python-code-in-a-file" class="md-nav__link">
+    Running Python  Code in a file
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Python  Code in a file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-a-python-script" class="md-nav__link">
+    Running a Python script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-python-code-from-python" class="md-nav__link">
+    Running Python code from Python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-of-a-python-script" class="md-nav__link">
+    Form of a Python script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-a-file" class="md-nav__link">
+    Editing a file
+  </a>
+  
+    <nav class="md-nav" aria-label="Editing a file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-jupyterlab" class="md-nav__link">
+    From JupyterLab
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook" class="md-nav__link">
+    Jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-a-text-editor" class="md-nav__link">
+    Use a text editor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-in-bash" class="md-nav__link">
+    Create in bash
+  </a>
+  
+    <nav class="md-nav" aria-label="Create in bash">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-command-line-arguments" class="md-nav__link">
+    Adding command line arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding command line arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-submitted-practical" class="md-nav__link">
+    Exercise: Submitted Practical
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/018_Running_Python.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="019-python-codes">019 Python codes</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Whilst writing codes in Jupyter notebooks is useful and powerful, you will find over the course of GEOG0111 that you will need to develop your own codes as Python scripts. These are more portable than codes embedded in notebooks, and can also be used to develop your own code libraries. </p>
+<p>In this session, you will learn how to generate and use Python scripts from a notebook. In particular, you will learn the typical format of such scripts, and generate some simple scripts around some basic functions.</p>
+<p>At the end of the session, there is a practical exercise for you to do and submit. It does not provide part of your formal assessment, but it is important that you do the work and submit it, so we know if you are on track or need further help. If you do not submit the work, we cannot help you in this way.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+<li><a href="../011_Python_data_types/">011 Data types</a> </li>
+<li><a href="../012_Python_strings/">012 String formatting</a></li>
+<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
+<li><a href="../014_Python_groups/">014_Python_groups</a></li>
+<li><a href="../015_Python_control/">015_Python_control</a></li>
+<li><a href="../016_Python_for/">016_Python_for</a></li>
+<li><a href="../017_Functions/">017_Functions</a></li>
+</ul>
+<p>In particular, you will need to recall how to use:</p>
+<ul>
+<li><a href="../002_Unix/"><code>unix</code> commands</a>: <code>ls -l; chmod</code></li>
+<li><a href="../017_Functions/"><code>functions</code></a></li>
+</ul>
+<h2 id="running-python-code-in-a-file">Running Python  Code in a file</h2>
+<p>We will generally use these Jupyter notebooks for running you Python codes, but you should also learn how to develop and run Python codes outside of the notebook. We provide a quick example of that here.</p>
+<h3 id="running-a-python-script">Running a Python script</h3>
+<p>Python codes are written in files with the suffix <code>.py</code>, e.g. <a href="../geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a>.</p>
+<p>If the file is defined as a Python script, then we can run. it from a shell in the same way we would run any other <code>unix</code> command:</p>
+<pre><code class="python">!geog0111/helloWorld.py
+</code></pre>
+
+<pre><code>hello world
+</code></pre>
+<p>A Python script is a Python code file that contains:</p>
+<pre><code>#!/usr/bin/env python
+</code></pre>
+<p>as the first line in the file, and is executable. We can see if a file is executable by getting a 'long' listing using the <code>unix</code> command <code>ls -l</code>:</p>
+<pre><code class="python">!ls -l geog0111/helloWorld.py
+</code></pre>
+
+<pre><code>-rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 [31mgeog0111/helloWorld.py[m[m
+</code></pre>
+<p>The first field gives us the file permissions:</p>
+<pre><code>-rwxr-xr-x
+</code></pre>
+<p>with the <code>x</code> bit telling us that it is executable. The permissions for this file are set to <code>755</code> (<code>111</code> <code>101</code> <code>101</code> in octal) which we can set with the <code>unix</code>  command:</p>
+<pre><code class="bash">%%bash
+chmod 755 geog0111/helloWorld.py
+ls -l geog0111/helloWorld.py
+</code></pre>
+
+<pre><code>-rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 geog0111/helloWorld.py
+</code></pre>
+<h3 id="running-python-code-from-python">Running Python code from Python</h3>
+<p>We can also run the Python code contained in <a href="../geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a> from a <code>notebook</code> cell using <code>%run</code> (or from an <code>ipython</code> prompt using just <code>run</code>):</p>
+<pre><code class="python">%run geog0111/helloWorld.py
+</code></pre>
+
+<pre><code>hello world
+</code></pre>
+<p>Another thing we can do is to <code>import</code> the code from the Python file into Python:</p>
+<pre><code class="python">import sys
+from pathlib import Path
+sys.path.insert(0,Path().cwd().joinpath('geog0111').as_posix())
+
+
+from helloWorld import helloWorld
+helloWorld()
+</code></pre>
+
+<pre><code>hello world
+</code></pre>
+<pre><code class="python">
+helloWorld.helloWorld()
+</code></pre>
+
+<p>This import statement imports the module <code>helloWorld</code> from the library <code>geog0111</code> (w</p>
+<h3 id="form-of-a-python-script">Form of a Python script</h3>
+<p>We will go into more details on this in later classes, but the main format of a Python file should be along the lines of the following example:</p>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
+'''
+helloWorld
+
+Purpose:
+
+  function print the string 'hello world'
+
+'''
+
+__author__    = &quot;P Lewis&quot;
+__copyright__ = &quot;Copyright 2020 P Lewis&quot;
+__license__   = &quot;GPLv3&quot;
+__email__     = &quot;p.lewis@ucl.ac.uk&quot;
+
+def helloWorld():
+    '''
+    function to print the string 'hello world'
+
+    '''
+    print('hello world')
+
+
+# example calling the function
+def main():
+    helloWorld()
+
+if __name__ == &quot;__main__&quot;:
+    # execute only if run as a script
+    main()
+
+</code></pre>
+
+<p>This same code is contained in the file <a href="../geog0111/helloWorld.py">geog0111/helloWorld.py</a>. Although the amount of comments and code in there might seem a little overkill just to print out <code>hello world</code>, it is good for you to get into the habit of writing your Python codes in this way. </p>
+<p>To briefly explain the blocks of code:</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+</code></pre>
+<p>This first line of the file allows the shell to know that this file should be interpreted with Python. It is good practice for you to include this as the first line of your Python codes so they can be run as scripts. The second line here is optional, but provides information on the python file encoding.</p>
+<pre><code>'''
+helloWorld
+
+Purpose:
+
+  function print the string 'hello world'
+
+'''
+__author__    = "P Lewis"
+__copyright__ = "Copyright 2020 P Lewis"
+__license__   = "GPLv3"
+__email__     = "p.lewis@ucl.ac.uk"
+</code></pre>
+<p>We then have a document string (contained within pairs of triple quotes) describing the purpose and some features of the code in this file. We provide some further information as variables written in the form <code>__var__</code> as relevant metadata for the file.  </p>
+<pre><code>def helloWorld():
+    '''
+    function to print the string 'hello world'
+    '''
+    print('hello world')
+</code></pre>
+<p>Next, we define a <em>function</em> containing the code we want. In this case, the main body of the code is simply:</p>
+<pre><code>print('hello world')
+</code></pre>
+<p>as in the examples above. The syntax <code>def helloWorld():</code> defines a function called <code>helloWorld</code> with no arguments (there is nothing defined here in the brackets). The code for the function is indented (4 spaces). </p>
+<p>After defining the function, we give a document string to associate with it and give users help information:</p>
+<pre><code class="python">help(helloWorld)
+</code></pre>
+
+<p>In the last part of the file, we provide some utilities that allow the file to be run as a script.</p>
+<p>First, we define a function called <code>main()</code> that provides an example of calling the function we have created:</p>
+<pre><code># example calling the function    
+def main():
+    helloWorld()
+</code></pre>
+<p>This should be accompanied by some comments of doc-string explaining what we are doing in the code.</p>
+<p>The final part of the file contains the code that allows this file to be run as a script:</p>
+<pre><code>if __name__ == "__main__":
+    # execute only if run as a script
+    main()
+</code></pre>
+<p>This is pretty standard syntax, so we will not go into details now, other than to note that this is the mechanism by which running this file as a script makes the call to <code>main()</code>, which then calls our example code running <code>helloWorld()</code>.</p>
+<p>The final thing we need to do is to make our script executable. This involves setting some permissions on the file with the function <code>Path().chmod()</code>. The code to do this, for the file  <a href="../geog0111/helloWorld.py">geog0111/helloWorld.py</a> from Python is:</p>
+<pre><code class="python">from pathlib import Path
+Path('geog0111/helloWorld.py').chmod(int('755', base=8))
+</code></pre>
+
+<p>Sometimes, we might use the <code>unix</code> (<code>bash</code>) shell equivalent command to do this:</p>
+<pre><code class="bash">%%bash
+chmod 755 geog0111/helloWorld.py
+</code></pre>
+
+<p>Now we can run the Python code from a code cell:</p>
+<pre><code class="python">%run geog0111/helloWorld.py
+</code></pre>
+
+<p>Note that using <code>%run</code> in the code cell (or just <code>run</code> in other Python codes) allows us to run a python command from a Python file in the cell, rather than the usual Python codes.</p>
+<p>An alternative is to make the whole cell into one to run bash commands with <code>%%bash</code>:</p>
+<pre><code class="bash">%%bash
+geog0111/helloWorld.py
+</code></pre>
+
+<h2 id="editing-a-file">Editing a file</h2>
+<p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. There are several ways you can do this, depending on how you are using these notebooks.</p>
+<h3 id="from-jupyterlab">From JupyterLab</h3>
+<p>If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:</p>
+<p><img alt="JupyterLab tools" src="../images/jl.png" /></p>
+<p>Among these you will see 'text file'. Launch a text file, write your Python code into the file, and save it (<code>File -&gt; Save As</code>) to the Python file name you want in your <code>work directory</code> (e.g. <code>work/test.py</code>).</p>
+<p>Alternatively, use the menu item <code>File -&gt; New -&gt; Text File</code> to open a new text file.</p>
+<p>To change the permissions on the file from JupyterLab, open a shell (e.g. using 
+<code>File -&gt; New -&gt; Terminal</code>) and in there, type (assuming your file is called <code>work/test.py</code>):</p>
+<pre><code>chmod 755 work/test.py
+</code></pre>
+<p><img alt="JupyterLab terminal" src="../images/term.png" /></p>
+<h3 id="jupyter-notebook">Jupyter notebook</h3>
+<p><a href="http://localhost:8888/edit/notebooks/geog0111/helloWorld.py">geog0111/helloWorld.py</a></p>
+<h3 id="use-a-text-editor">Use a text editor</h3>
+<p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. Ideally, you should learn to do this outside of the notebook: invoke a text editor on your computer, put your Python code into the file, and save it to the desired location.</p>
+<h3 id="create-in-bash">Create in bash</h3>
+<p>We can simply create a file in a bash script by following the example below:</p>
+<pre><code class="bash">%%bash
+
+# code between the next line and the 
+# End Of File (EOF) marker will be saved in 
+# to the file work/myHelloWorld.py
+cat &lt;&lt; EOF &gt; work/myHelloWorld.py
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
+'''
+helloWorld
+
+Purpose:
+
+  function print the string 'hello world'
+
+'''
+__author__    = &quot;P Lewis&quot;
+__copyright__ = &quot;Copyright 2020 P Lewis&quot;
+__license__   = &quot;GPLv3&quot;
+__email__     = &quot;p.lewis@ucl.ac.uk&quot;
+
+def helloWorld():
+    '''
+    function to print the string 'hello world'
+    '''
+    print('hello world')
+
+
+# example calling the function    
+def main():
+    helloWorld()
+
+if __name__ == &quot;__main__&quot;:
+    # execute only if run as a script
+    main()
+EOF
+
+# Chmod 755 to make the file executable
+chmod 755 work/myHelloWorld.py
+</code></pre>
+
+<p>This should have created a file called <code>work/myHelloWorld.py</code> and made it executable (using bash to call chmod, rather than doing it in Python as above). </p>
+<p>Now run it as above:</p>
+<pre><code class="python">%run work/myHelloWorld.py
+</code></pre>
+
+<p>You should now be able to load this Python file directly in Jupyter, using <code>File -&gt; Open</code> then click through to the Python file you generated. </p>
+<p>Once you save the file, run the Python code again (<code>%run work/myHelloWorld.py</code>).</p>
+<h4 id="exercise">Exercise</h4>
+<ul>
+<li>Create a Python file in your <a href="work"><code>work</code></a> folder based on the example above and call it <code>work/myFirstCode.py</code></li>
+<li>Modify the code to achieve the following:<ul>
+<li>make a function called <code>myFirstCode</code> that prints out a greeting message</li>
+<li>update the document strings in the file as appropriate</li>
+</ul>
+</li>
+</ul>
+<h2 id="adding-command-line-arguments">Adding command line arguments</h2>
+<p>We have achieved something today, in creating a Python code in a file, making it executable, and running it. However, it is a little limited in scope: it just prints out the message the we <strong>hard wired</strong> into it.</p>
+<p>It is better to design codes to have some more flexibility than this. Suppose we want to be able to run our code <code>work/myFirstCode.py</code> so that we can pass a name though to the script and print out, e.g.:</p>
+<pre><code>hello from Fred
+</code></pre>
+<p>or</p>
+<pre><code>hello from Hermione
+</code></pre>
+<p>How could we achieve that?</p>
+<p>The answer, as we have seen before, is to pass an argument to our function. So, instead of having:</p>
+<pre><code>def helloWorld():
+    '''
+    function to print the string 'hello world'
+    '''
+    print('hello from me')
+</code></pre>
+<p>we pass an argument that we might call <code>name</code>, and conveniently pass this through to the <code>print()</code> statement using an <code>f-string</code>.</p>
+<pre><code>def helloWorld(name):
+    '''
+    function to print the string 'hello world'
+    '''
+    print(f'hello from {name}')
+</code></pre>
+<p>Let's test that before going further:</p>
+<pre><code class="python">def hello(name):
+    '''
+    function to print 'hello from {name}'
+    '''
+    print(f'hello from {name}')
+
+# call the function with some argument
+hello('Fred')
+hello('Hermione')
+</code></pre>
+
+<p>We have seen that that code operates correctly -- it is very good practice to test any small incremental developments in your code in this way.</p>
+<p>Next, let's think about how to embed that modified function in our code in our file. We will call the code <code>work/hello.py</code> and copy most of it from the previous example. We need to make sure we update any document strings, and also take care that we are calling the correct function (it is <code>hello()</code> now, not <code>helloWorld()</code> as previously).</p>
+<p>Last then, when we make the call to <code>hello()</code> from the <code>main()</code> function, we need to make sure we pass it a string that it can print out, For example:</p>
+<pre><code>def main():
+    hello('Fred')
+</code></pre>
+<p>Otherwise, if we leeave <code>main()</code> as:</p>
+<pre><code>def main():
+    hello()
+</code></pre>
+<p>the code would not run and give a <code>TypeError:</code></p>
+<pre><code>TypeError: hello() missing 1 required positional argument: 'name'
+</code></pre>
+<p>Again, this is an incremental change, so let's test the new code before going any further:</p>
+<pre><code class="bash">%%bash
+
+# code between the next line and the 
+# End Of File (EOF) marker will be saved in 
+# to the file work/hello.py
+cat &lt;&lt; EOF &gt; work/hello.py
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
+'''
+hello
+
+Purpose:
+
+  function to print 'hello from {name}'
+
+'''
+__author__    = &quot;P Lewis&quot;
+__copyright__ = &quot;Copyright 2020 P Lewis&quot;
+__license__   = &quot;GPLv3&quot;
+__email__     = &quot;p.lewis@ucl.ac.uk&quot;
+
+def hello(name):
+    '''
+    function to print 'hello from {name}'
+    '''
+    print(f'hello from {name}')
+
+# example calling the function    
+def main():
+    hello('Fred')
+
+if __name__ == &quot;__main__&quot;:
+    # execute only if run as a script
+    main()
+EOF
+
+# Chmod 755 to make the file executable
+chmod 755 work/hello.py
+</code></pre>
+
+<pre><code class="python"># run coxde
+%run work/hello.py
+</code></pre>
+
+<p>We now have a more flexible function <code>hello(name)</code>, but when we run the script <code>work/hello.py</code> we will always be running the same code in <code>main()</code>, so we can only ever get a hello from Fred.</p>
+<p>When we write a Python script, we often will want to make that more flexible too. We can do this by passing a command-line argument through to the script. What we want to happen is that when we run:</p>
+<pre><code>%run work/hello.py Hermione
+</code></pre>
+<p>we get the response:</p>
+<pre><code>hello from Hermione
+</code></pre>
+<p>That isn't too much of a step from where we are. We simply need to pass the command line argument through the script. In a Python script, we do this using the list</p>
+<pre><code>sys.argv
+</code></pre>
+<p>Let's just see how that works:</p>
+<pre><code class="python">import sys
+
+print(sys.argv)
+</code></pre>
+
+<p>Running from the notebook, we get to see the full command that is run when we launch this notebook. Since <code>sys</code> is a package, we first import it:</p>
+<pre><code>import sys
+</code></pre>
+<p>Then we can access the list of arguments <code>sys.argv</code>. The first item in the list, <code>sys.argv[0]</code>  is the name of the program being run (<code>ipykernel_launcher.py</code>). The other items in the list are the command line arguments for running the notebook.</p>
+<p>Lets see how this applies to running our own code. We generate a short test script:</p>
+<pre><code class="bash">%%bash
+
+cat &lt;&lt; EOF &gt; work/test.py
+#!/usr/bin/env python
+import sys
+
+print(sys.argv)
+EOF
+
+# Chmod 755 to make the file executable
+chmod 755 work/test.py
+</code></pre>
+
+<pre><code class="python">%run work/test.py Hermione
+</code></pre>
+
+<p>We see that running the script:</p>
+<pre><code>work/test.py Hermione
+</code></pre>
+<p>means trhat <code>sys.argv</code> inside the script contains the liust <code>['work/test.py', 'Hermione']</code>.</p>
+<h3 id="exercise-submitted-practical">Exercise: Submitted Practical</h3>
+<p>Although we provide access to answers for this exercise, we want you to submit the codes you generate via Moodle, so that we can provide feedback. You should avoid looking at the answers before you submit your work. This submitted work does not count towards your course assessment, it is purely to allow us to provide some rapid feedback to you on how you are doing. You will need to put together a few elements from the notes so far to do all prts of this practical, but yoiu should all be capable of doing it well. Pay attention to writing tidy code, with useful, clear comments and document strings.</p>
+<ul>
+<li>
+<p>Create a Python code in a file called <code>work/greet.py</code> that does the following:</p>
+<ul>
+<li>define a function <code>greet(name)</code> that prints out a greeting from the name in the argument  <code>name</code></li>
+<li>define a function <code>main() that passes a string from the script command line to a function</code>greet(name)`</li>
+<li>calls <code>main()</code> if the file is run as a Python script </li>
+<li>show a test of the script working</li>
+<li>
+<p>has plentiful commenting and document strings</p>
+</li>
+<li>
+<p>As a test, when you run the script:</p>
+<pre><code>%run work/greet.py Fred
+</code></pre>
+</li>
+</ul>
+<p>you would expect to get a response of the form:</p>
+<pre><code>    greetings from Fred
+</code></pre>
+<p>and if you run:
+        %run work/greet.py Hermione</p>
+<p>then
+        greetings from Hermione</p>
+</li>
+<li>
+<p>To go further with this exercise, you might test to see that the length of <code>sys.argv</code> is as long as you expect it to be, so you can tell the user when they forget toi include the name</p>
+</li>
+<li>
+<p>To go even further with this exercise, you might attempt to make the script function so that if you run it as:</p>
+<pre><code>%run work/greet.py Fred Hermione
+</code></pre>
+<p>it responds:</p>
+<pre><code>greetings from Fred
+greetings from Hermione
+</code></pre>
+</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>In this session, we have learned the usual form of a Python script, including the <code>#! /usr/bin/env python</code>  on the first line of the file to call the Python interpreter. We have seen how to include document strings telling any user how to use the codes we develop, and well as providing lots of comments with <code>#</code> lines to describe what we are doing in the code, and why. We have seen that a Python script will typically finish with something along the lines of:</p>
+<pre><code>def main(args):
+  # call or demonstrate our function
+  hello(args)
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main(sys.argv)
+</code></pre>
+<p>the <code>main()</code> function serving to provide a call to the codes we have developed, as well as any interface to the command line. We have seen that <code>sys.argv</code> contains command line parameters (and the program name) which we can use to modify the behaviour of the script. </p>
+<p>We have also seen how we can use </p>
+<pre><code>cat &lt;&lt; EOF &gt; file.py
+EOF
+</code></pre>
+<p>in a bash script to generate and document our Python files, though we would also typically edits the file through some text editor.</p>
+<p>We have seen how to run a Python script from a notebook, using <code>%run</code> or via a bash shell with <code>%%bash</code>. We have seen that to 'run' a Python script, we need to change the file permissions iusing <code>chmod</code>, either in <code>bash</code> or using <code>Path().chmod()</code>. We have used the octal code <code>755</code> to change the file permissions for execution.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 13, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../017_Functions/" title="Functions" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Functions
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../010_Python_Introduction_answers/" title="Python Introduction" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Python Introduction
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/prof_plewis" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/proflewis/geog0111" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/UCL-EO/geog0111" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
