@@ -642,8 +642,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../021_Read_files/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../../021_Read_text_files/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -654,8 +654,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../022_PandasExtra_and_plotting/" title="Pandasextra And Plotting" class="md-nav__link">
-      Pandasextra And Plotting
+    <a href="../../022_Read_write_files/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
     </a>
   </li>
 
@@ -666,7 +666,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+    <a href="../../023_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
       Pandas And Plotting
     </a>
   </li>
@@ -678,7 +678,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../023_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../../024_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -747,8 +747,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../021_Read_files_answers/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../../021_Read_text_files_answers/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -759,7 +759,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../../023_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../../022_Read_write_files_answers/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../024_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -1012,6 +1024,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise-5" class="md-nav__link">
+    Exercise 5
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1034,12 +1053,32 @@
                 
                 <h1 id="020-files-and-other-resources-answers-to-exercises">020 Files and other Resources : Answers to exercises</h1>
 <h4 id="exercise-1">Exercise 1</h4>
-<p>There is a file called <code>environment.yml</code> in the directory <code>copy</code>.md_checkpoints/</p>
+<p>There is a file called <code>environment.yml</code> in the directory <code>copy</code>.</p>
 <ul>
 <li>use <code>Path</code> to generate the a variable <code>copy_dir</code> containing the pathname of the <code>copy</code> directory</li>
 <li>create a variable <code>env_file</code> which adds add the file <code>environment.yml</code> to this </li>
 <li>check to see if the file exists</li>
 </ul>
+<pre><code class="python">from pathlib import Path
+# ANSWER
+
+# There is a file called environment.yml in the directory copy.
+# use Path to generate the a variable copy_dir containing the 
+# pathname of the copy directory
+copy_dir = Path('copy')
+
+# create a variable env_file which adds add the file 
+# environment.yml to this
+env_file = copy_dir / 'environment.yml'
+# or
+env_file = Path(copy_dir,'environment.yml')
+
+# check to see if the file exists
+print(f'does {env_file} exist? {env_file.exists()}')
+</code></pre>
+
+<pre><code>does copy/environment.yml exist? True
+</code></pre>
 <pre><code class="python"># ANSWER
 
 # There is a file called environment.yml 
@@ -1065,6 +1104,20 @@ print(f'Does {env_file} exist? {env_file.exists()}')
 <ul>
 <li>Use <code>Path</code> to show the file permissions of all files that end <code>.sh</code> in the directory <code>bin</code></li>
 </ul>
+<pre><code class="python"># ANSWER
+# use glob to get a list of filenames in the directory bin 
+# that end with .sh -&gt; pattern n* using a wildcard
+filenames = Path('bin').glob('n*')
+
+# loop over the filenames and print the permissions
+# as octal. Note how we use :25s to line items up
+for f in filenames:
+    print(f'{str(f):25s} : {oct(f.stat().st_mode)}')
+</code></pre>
+
+<pre><code>bin/notebook-mkdocs.sh    : 0o100755
+bin/notebook-run.sh       : 0o100755
+</code></pre>
 <pre><code class="python"># ANSWER
 # Use Path to show the file permissions of
 # all files that end .sh in the directory bin
@@ -1118,24 +1171,6 @@ else:
 <pre><code>The directory ucl.png is in is: /Users/plewis/Documents/GitHub/geog0111/notebooks/images
 file size 1956 Bytes -&gt;  1.91 KB
 </code></pre>
-<pre><code class="python"># ANSWER
-# Using Path.read_text() read the text from the file work/easy.txt 
-# and print the text returned.
-
-# set up the filename
-infile = Path('work','easy.txt')
-# read the text
-read_text = infile.read_text()
-
-# split the text into lines of 
-# text using str.split() at each newline, 
-# and print out the resulting list
-lines = read_text.split('\n')
-print(lines)
-</code></pre>
-
-<pre><code>['', 'It is easy for humans to read and write.', 'It is easy for machines to parse and generate. ', '']
-</code></pre>
 <h4 id="exercise-4">Exercise 4</h4>
 <ul>
 <li>create a <code>URL</code> object for the file <code>table.html</code> in the directory <code>psd/enso/mei/</code> on the site <code>http://www.esrl.noaa.gov/</code>.</li>
@@ -1161,26 +1196,32 @@ print('passed')
 <pre><code>http://www.esrl.noaa.gov/psd/enso/mei/table.html
 passed
 </code></pre>
-<pre><code class="python"># ANSWER
-import json
+<h4 id="exercise-5">Exercise 5</h4>
+<p>based on the code from above:</p>
+<pre><code># settings
+product = 'MCD15A3H'
+year, month, day = '2020', '06', '01'
+tile = 'h08v06'
 
-# show the size of the files 
-# bin/copy/environment.json and bin/copy/environment.yml
+# url with wildcards
+site = 'https://e4ftl01.cr.usgs.gov'
+site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
+site_file = f'*.{tile}*.hdf'
 
-# form the file names
-json_file = Path('bin','copy','environment.json')
-yaml_file = Path('bin','copy','environment.yml')
-# loop and print size
-for f in [json_file,yaml_file]:
-    print(f'{f} : {f.stat().st_size} bytes')
+# get the information
+url = URL(site,site_dir)
+hdf_urls = list(url.glob(site_file,verbose=True))[0]
 </code></pre>
-
-<pre><code>bin/copy/environment.json : 791 bytes
-bin/copy/environment.yml : 856 bytes
-</code></pre>
+<ul>
+<li>write a function called <code>modis_dataset</code> with arguments corresponding to the settings above</li>
+<li>the function should return the URL objects of the NASA datasets specified by your arguments</li>
+<li>your function should be fully documented and include some error checks</li>
+<li>run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places</li>
+<li>what happens if you use a wildcard for the date?</li>
+</ul>
 <pre><code class="python">from geog0111.gurlpath import URL
 
-# ANSWER
+# ANSWER 1
 
 # write a function called `modis_dataset` 
 # with arguments corresponding to the settings above
@@ -1218,15 +1259,22 @@ def modis_dataset(product, tile, year, month, day,
     return hdf_urls 
 </code></pre>
 
-<pre><code class="python"># ANSWER 1
-# run a test of your function, and check that 
-# the file pointed to in the URL exists and is accessible
+<pre><code class="python"># ANSWER 2
+# run a test of your function, 
+# and print the file size in MB 
+# for the file pointed to in the URL
+# to 2 decimal places
+
+msg = '''
+Note: 1 MB = 1024 * 1024 Bytes
+'''
+print(msg)
 
 args = ['MCD15A3H','h08v06','2020','06', '01']
 hdf_urls = modis_dataset(*args,verbose=True)
 # test if exist
 for u in hdf_urls:
-    print(f'{u.name} : {u.exists()}')
+    print(f'{u.name} : {u.stat().st_size/(1024*1024): .2f} MB')
 </code></pre>
 
 <pre><code>--&gt; wildcards in: ['*.h08v06*.hdf']
@@ -1234,70 +1282,53 @@ for u in hdf_urls:
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 
 
-MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
-</code></pre>
-<pre><code class="python"># ANSWER 2
-# run a test of your function, and check that 
-# mis-specify date and see that it fails
-# use '1' instead of '01'
 
-args = ['MCD15A3H','h08v06','2020','06', '1']
-hdf_urls = modis_dataset(*args,verbose=True)
-# test if exist
-for u in hdf_urls:
-    print(f'{u.name} : {u.exists()}')
-</code></pre>
+Note: 1 MB = 1024 * 1024 Bytes
 
-<pre><code>--&gt; wildcards in: ['*.h08v06*.hdf']
---&gt; level 0/1 : *.h08v06*.hdf
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.1
+
+
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+
+
+MCD15A3H.A2020153.h08v06.006.2020160231732.hdf :  9.66 MB
 </code></pre>
 <pre><code class="python"># ANSWER 3
 # what happens if you use a wildcard for the date?
-args = ['MCD15A3H','h08v06','2020','06', '*']
+msg = '''
+Note: 1 MB = 1024 * 1024 Bytes
+'''
+print(msg)
+
+args = ['MCD15A3H','h08v06','2020','*', '01']
 hdf_urls = modis_dataset(*args,verbose=True)
 # test if exist
 for u in hdf_urls:
-    print(f'{u.name} : {u.exists()}')
+    print(f'{u.name} : {u.stat().st_size/(1024*1024): .2f} MB')
 </code></pre>
 
-<pre><code>--&gt; wildcards in: ['2020.06.*' '*.h08v06*.hdf']
---&gt; level 0/2 : 2020.06.*
+<pre><code>Note: 1 MB = 1024 * 1024 Bytes
+
+
+
+--&gt; wildcards in: ['2020.*.01' '*.h08v06*.hdf']
+--&gt; level 0/2 : 2020.*.01
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; discovered 4 files with pattern 2020.*.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
 --&gt; level 1/2 : *.h08v06*.hdf
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.05
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.09
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.13
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.17
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.21
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.25
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.29
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
 
 
-MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
-MCD15A3H.A2020157.h08v06.006.2020162035120.hdf : True
-MCD15A3H.A2020161.h08v06.006.2020167041028.hdf : True
-MCD15A3H.A2020165.h08v06.006.2020170044117.hdf : True
-MCD15A3H.A2020169.h08v06.006.2020174041553.hdf : True
-MCD15A3H.A2020173.h08v06.006.2020178032155.hdf : True
-MCD15A3H.A2020177.h08v06.006.2020182190226.hdf : True
-MCD15A3H.A2020181.h08v06.006.2020188194909.hdf : True
-</code></pre>
-<pre><code class="python"># ANSWER 4
-msg = '''
-what happens if you use a wildcard for the date?
-
-It accepts wildcards for anywhere in the directory path.
-This is very useful for gathering datasets!
-'''
-print(msg)
-</code></pre>
-
-<pre><code>what happens if you use a wildcard for the date?
-
-It accepts wildcards for anywhere in the directory path.
-This is very useful for gathering datasets!
+MCD15A3H.A2020001.h08v06.006.2020006032951.hdf :  8.65 MB
+MCD15A3H.A2020061.h08v06.006.2020066032716.hdf :  8.63 MB
+MCD15A3H.A2020153.h08v06.006.2020160231732.hdf :  9.66 MB
+MCD15A3H.A2020245.h08v06.006.2020253152835.hdf :  10.46 MB
 </code></pre>
                 
                   

@@ -810,8 +810,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Read_files/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../021_Read_text_files/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -822,8 +822,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_PandasExtra_and_plotting/" title="Pandasextra And Plotting" class="md-nav__link">
-      Pandasextra And Plotting
+    <a href="../022_Read_write_files/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
     </a>
   </li>
 
@@ -834,7 +834,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+    <a href="../023_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
       Pandas And Plotting
     </a>
   </li>
@@ -846,7 +846,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../023_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../024_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -915,8 +915,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Read_files_answers/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../021_Read_text_files_answers/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -927,7 +927,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../023_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../022_Read_write_files_answers/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../024_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -1316,20 +1328,15 @@
 <p>You will need some understanding of the following:</p>
 <ul>
 <li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
-<li><a href="../003_Help/">003 Getting help</a></li>
-<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
-<li><a href="../011_Python_data_types/">011 Data types</a> </li>
-<li><a href="../012_Python_strings/">012 String formatting</a></li>
-<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
-<li><a href="../014_Python_groups/">014_Python_groups</a></li>
-<li><a href="../015_Python_control/">015_Python_control</a></li>
-<li><a href="../016_Python_for/">016_Python_for</a></li>
-<li><a href="../017_Functions/">017_Functions</a></li>
+<li><a href="../002_Unix/">002 Unix</a></li>
+<li><a href="../005_Packages/">005 Packages</a></li>
+<li><a href="../017_Functions/">017 Functions</a></li>
 </ul>
 <p>In particular, you will need to recall how to use:</p>
 <ul>
 <li><a href="../002_Unix/"><code>unix</code> commands</a>: <code>ls -l; chmod</code></li>
 <li><a href="../017_Functions/"><code>functions</code></a></li>
+<li><a href="../005_Packages/"><code>import</code></a></li>
 </ul>
 <h2 id="running-python-code-in-a-file">Running Python  Code in a file</h2>
 <p>We will generally use these Jupyter notebooks for running you Python codes, but you should also learn how to develop and run Python codes outside of the notebook. We provide a quick example of that here.</p>
@@ -1369,21 +1376,13 @@ ls -l geog0111/helloWorld.py
 <pre><code>hello world
 </code></pre>
 <p>Another thing we can do is to <code>import</code> the code from the Python file into Python:</p>
-<pre><code class="python">import sys
-from pathlib import Path
-sys.path.insert(0,Path().cwd().joinpath('geog0111').as_posix())
+<pre><code class="python">from geog0111.helloWorld import helloWorld
 
-
-from helloWorld import helloWorld
 helloWorld()
 </code></pre>
 
 <pre><code>hello world
 </code></pre>
-<pre><code class="python">
-helloWorld.helloWorld()
-</code></pre>
-
 <p>This import statement imports the module <code>helloWorld</code> from the library <code>geog0111</code> (w</p>
 <h3 id="form-of-a-python-script">Form of a Python script</h3>
 <p>We will go into more details on this in later classes, but the main format of a Python file should be along the lines of the following example:</p>

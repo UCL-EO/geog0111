@@ -10,6 +10,11 @@ You will also need to make sure you have a [google account](https://support.goog
 
 ### NASA Earthdata login and password
 
+
+Before you can use the material in these notebooks, you will need to register as a user at the [`NASA EarthData`](https://urs.earthdata.nasa.gov/users/new).
+
+Once you have done that, make sure you know your `username` and `password` ready for below.
+
 Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.
 
 To that in these notes we can make use of stored passwords and usernames using the local [cylog](geog0111/cylog.py) package. 
@@ -111,6 +116,25 @@ python -V
 
 
 The code cell above that we ran is a [`unix` (`bash`) shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), indicated by the [cell magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html) `%%bash` on the first line. This is a mechanism that lets us run unix commands in a Python notebook.
+
+### Test
+
+You will need a web login to NASA Earthdata and to have stored this using `cylog` according to [004_Accounts](004_Accounts.md) for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code if you set do_test to True:
+
+
+```python
+from geog0111.modis import test_login
+do_test = False
+assert test_login(do_test,verbose=False)
+```
+
+If this fails, set `verbose` to `True` to see what is going on, then if you can;'t work it out from there, go back to [004_Accounts](004_Accounts.md) and sort the login for NASA Earthdata the site `https://e4ftl01.cr.usgs.gov`.
+
+If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:
+
+    cy = cylog(site,force=True)
+    
+and re-run.
 
 
 ```python

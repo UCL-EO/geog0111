@@ -15,20 +15,15 @@ At the end of the session, there is a practical exercise for you to do and submi
 You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
-* [003 Getting help](003_Help.md)
-* [010 Variables, comments and print()](010_Python_Introduction.md)
-* [011 Data types](011_Python_data_types.md) 
-* [012 String formatting](012_Python_strings.md)
-* [013_Python_string_methods](013_Python_string_methods.md)
-* [014_Python_groups](014_Python_groups.md)
-* [015_Python_control](015_Python_control.md)
-* [016_Python_for](016_Python_for.md)
-* [017_Functions](017_Functions.md)
+* [002 Unix](002_Unix.md)
+* [005 Packages](005_Packages.md)
+* [017 Functions](017_Functions.md)
 
 In particular, you will need to recall how to use:
 
    - [`unix` commands](002_Unix.md): `ls -l; chmod`
    - [`functions`](017_Functions.md)
+   - [`import`](005_Packages.md)
  
 
 ## Running Python  Code in a file
@@ -95,23 +90,13 @@ Another thing we can do is to `import` the code from the Python file into Python
 
 
 ```python
-import sys
-from pathlib import Path
-sys.path.insert(0,Path().cwd().joinpath('geog0111').as_posix())
+from geog0111.helloWorld import helloWorld
 
-
-from helloWorld import helloWorld
 helloWorld()
 ```
 
     hello world
 
-
-
-```python
-
-helloWorld.helloWorld()
-```
 
 This import statement imports the module `helloWorld` from the library `geog0111` (w
 

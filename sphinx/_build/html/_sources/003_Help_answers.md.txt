@@ -182,38 +182,6 @@ print("sorted", alist)
     sorted ['four', 'one', 'six', 'three', 'two', 'zero']
 
 
-
-```python
-# ANSWER
-# Print the value of my_var using print(my_var)
-print(my_var)
-
-# Print the value of my_var using print(locals()['my_var'])
-print(locals()['my_var'])
-
-# confirm that they give the same answer
-msg = '''
-I can see they are the same
-'''
-print(msg)
-```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-7-a8b1461bf99a> in <module>
-          1 # ANSWER
-          2 # Print the value of my_var using print(my_var)
-    ----> 3 print(my_var)
-          4 
-          5 # Print the value of my_var using print(locals()['my_var'])
-
-
-    NameError: name 'my_var' is not defined
-
-
 ### Learning new things
 
 Let's use that knowledge to learn something new:

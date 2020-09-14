@@ -7,7 +7,7 @@
 
 ### Purpose
 
-In this session, we will learn about files and similar resources. We will introduce the standard Python library [`pathlib`](https://docs.python.org/3/library/pathlib.html) which is how we deal with file paths, as well as the local package [gurlpath](geog0111/gurlpath.py) that allows a similar object-oriented approach with files and other objects on the web. We will also cover opening and closing files, and some simple read- and write-operations.
+In this session, we will learn about files and similar resources. We will introduce the standard Python library [`pathlib`](https://docs.python.org/3/library/pathlib.html) which is how we deal with file paths, as well as the local package [gurlpath](geog0111/gurlpath.py) that allows a similar object-oriented approach with files and other objects on the web. The treatment is intentionally high-level. If you need to go deeper into calls to URLs, you should look at the Python packages: [urllib.parse](https://docs.python.org/3.7/library/urllib.parse.html), [requests](https://requests.readthedocs.io/en/master/) and [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/).
 
 
 
@@ -26,24 +26,9 @@ You will need some understanding of the following:
 * [013_Python_string_methods](013_Python_string_methods.md)
 * [018_Packages](018_Packages.md)
 
-
 ### Test
-You will need a web login to NASA Earthdata and to have stored this using `cylog` according to [004_Accounts](004_Accounts.md) for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code ius yoiu set do_test to True:
 
-
-```python
-from geog0111.gurlpath import URL
-# ping small (1.3 M) test file
-site='https://e4ftl01.cr.usgs.gov/'
-test_dir='MOLA/MYD11_L2.006/2002.07.04'
-test_file='MYD11_L2*0325*.hdf'
-# this glob interprets the wildcards to get at a suitable test file
-url = URL(site,test_dir).glob(test_file,verbose=False)[0]
-# test ping returns True
-assert url.ping(verbose=False) == True
-```
-
-If this fails, set `verbose` to `True` to see what is going on, then if you can;'t work it out from there, go back to [004_Accounts](004_Accounts.md) and sort the login for NASA Earthdata the site `https://e4ftl01.cr.usgs.gov`.
+You should run a [NASA account test](notebooks/004_Accounts.md#Test) if you have not already done so.
 
 ### Timing
 
@@ -90,7 +75,7 @@ We will be also using `yaml`, `json` and [`pandas`](https://pandas.pydata.org/) 
 
 ## `Path`, `import`
 
-`Path` is part of the `pathlib` package, so in any Python codes, we first must import this into our workspace:
+We have come across the idea of packages in [005 Packages](005_Packages.md). `Path` is part of the `pathlib` package, so in any Python codes, we first must import this into our workspace:
 
 
 ```python
@@ -115,7 +100,7 @@ We can start with a table of [commonly-used methods](https://stackabuse.com/intr
 |---|---|---|
 |`Path.cwd()`| `pwd` |Return path object representing the current working directory|
 |`Path.home()`| `~`| Return path object representing the home directory|
-|`Path.stat()`| `ls -l`* | return info about the path|
+|`Path.stat()`| `ls -l`* | return info about the path. File size is `Path.stat().st_size` |
 |`Path.chmod()`| `chmod` | change file mode and permissions|
 |`Path.glob(pattern)`| `ls *` | Glob the pattern given in the directory that is represented by the path, yielding matching files of any kind|
 |`Path.mkdir()`| `mkdir` | to create a new directory at the given path|
@@ -165,6 +150,8 @@ To add a sub-directory or file to a `Path` object, we can use the list form, or 
 
 
 ```python
+from pathlib import Path
+
 # the relative directory bin
 bindir = Path('bin')
 print(f'starting from the relative directory "bin": {bindir}')
@@ -185,11 +172,53 @@ print(f'README file is: {readme_file}')
 
 #### Exercise 1
 
-There is a file called `environment.yml` in the directory `copy`.md_checkpoints/
+There is a file called `environment.yml` in the directory `copy`.
 
 * use `Path` to generate the a variable `copy_dir` containing the pathname of the `copy` directory
 * create a variable `env_file` which adds add the file `environment.yml` to this 
 * check to see if the file exists
+
+To create a directory, use:
+
+    Path().mkdir()
+    
+We can use the options:
+
+    Path().mkdir(parents=True,exist_ok=True)
+    
+which will make all of the sub-directories needed, and also no fail if the directory already exists. This is often the safest way to make a directory in your code, provided you are sure that your path will be reasonable.
+
+To remove an empty directory, use:
+
+    Path().rmdir()
+    
+Note that there is no recursive delete in `pathlib`: you have to delete files and directories explicitly.
+
+
+```python
+# make a temp directory
+tmp = Path('tmp')
+tmp.mkdir(parents=True,exist_ok=True)
+
+# look inside tmp
+print(f'files in {tmp}: {list(tmp.glob("*"))}')
+
+# generate directory inside
+inside = tmp / 'inside'
+# create this
+inside.mkdir(parents=True,exist_ok=True)
+# look inside tmp
+print(f'files in {tmp}: {list(tmp.glob("*"))}')
+
+# delete inside if it is a directory
+inside.is_dir and inside.rmdir()
+# then delete tmp
+tmp.is_dir and tmp.rmdir()
+```
+
+    files in tmp: []
+    files in tmp: [PosixPath('tmp/inside')]
+
 
 ### File information
 
@@ -199,6 +228,8 @@ The file permissions format we are used to from `ls -l` is accessed through `fil
 
 
 ```python
+from pathlib import Path
+
 # similar information to ls -l
 readme=Path('bin','README')
 print(f'README file is {readme}')
@@ -259,15 +290,12 @@ Let's use `glob` now to get the file permissions of each file `n*` in the direct
 # use glob to get a list of filenames in the directory bin 
 # that end with .sh -> pattern n* using a wildcard
 filenames = Path('bin').glob('n*')
-
-# loop over the filenames and print the permissions
-# as octal. Note how we use :25s to line items up
 for f in filenames:
-    print(f'{str(f):25s} : {oct(f.stat().st_mode)}')
+    print(f'{str(f):25s}')
 ```
 
-    bin/notebook-mkdocs.sh    : 0o100755
-    bin/notebook-run.sh       : 0o100755
+    bin/notebook-mkdocs.sh   
+    bin/notebook-run.sh      
 
 
 #### Exercise 2
@@ -339,7 +367,7 @@ You will need to know how many Bytes in a Kilobyte, and how to [format a string 
 
 ## Resources from a URL
 
-### `gurlpath`
+### `gurlpath`, `st_size`
 
 The library [`gurlpath`](geog0111/gurlpath.py) in [geog0111](geog0111) is designed to operate in a similar manner to `pathlib` for reading data from URLs. It is derived from [`urlpath`](https://github.com/chrono-meter/urlpath)  which in turn is based on [urllib.parse](https://docs.python.org/3/library/urllib.parse.html) and [requests](https://requests.readthedocs.io/en/master/). It uses [`BeautifulSoup`](https://www.crummy.com/software/BeautifulSoup/) for parsing `html` data. At some point you may wish to learn how to use these lower-level packages, but for learning on this course, you will find it convenient to use this higher-level package.
 
@@ -353,13 +381,32 @@ site_dir = 'hadobs/hadukp/data/monthly'
 site_file = 'HadSEEP_monthly_qc.txt'
 
 url = URL(site,site_dir,site_file)
-print(url)
+print(f'remote file {url}')
+print(f'size is {url.stat().st_size/1024 :.2f} KB')
 ```
 
-    https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
+    remote file https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
+    size is 4.77 KB
 
 
-We have similar functionality for manipulating filenames, but more limited file information:
+
+```python
+from geog0111.gurlpath import URL
+
+site = 'https://e4ftl01.cr.usgs.gov'
+site_dir = 'MOTA/MCD15A3H.006/2020.01.01'
+site_file = 'MCD15A3H.A2020001.h08v06.006.2020006032951.hdf'
+
+url = URL(site,site_dir,site_file)
+print(f'remote file {url}')
+print(f'size is {url.stat().st_size/1024 :.2f} KB')
+```
+
+    remote file https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+    size is 8854.67 KB
+
+
+We have similar functionality in `URL` to `Path` for manipulating filenames, but more limited file information:
 
 
 ```python
@@ -368,9 +415,23 @@ print(f'name   : {url.name}')
 print(f'parent : {url.parent}')
 ```
 
-    URL    : https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
-    name   : HadSEEP_monthly_qc.txt
-    parent : https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly
+    URL    : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+    name   : MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+    parent : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+
+
+but also some other helpful ones on the URL:
+
+
+```python
+print(f'anchor   : {url.anchor}')
+print(f'hostname : {url.hostinfo}')
+print(f'scheme   : {url.scheme}')
+```
+
+    anchor   : https://e4ftl01.cr.usgs.gov
+    hostname : e4ftl01.cr.usgs.gov
+    scheme   : https
 
 
 #### Exercise 4
@@ -378,7 +439,7 @@ print(f'parent : {url.parent}')
 * create a `URL` object for the file `table.html` in the directory `psd/enso/mei/` on the site `http://www.esrl.noaa.gov/`.
 * print out the url and check it is `table.html`
 
-For accessing URLs, will mostly make use of the following functions in `URL` that you will see are similat to those for `Path`:
+For accessing URLs, will mostly make use of the following functions in `URL` that you will see are very similar to those for `Path`:
 
 
 |function| purpose|
@@ -386,13 +447,14 @@ For accessing URLs, will mostly make use of the following functions in `URL` tha
 |`URL.name`|  filename |
 |`URL.parent`|  parent |
 |`URL.parts`|  parts |
+|`URL.stat()`| return info about the file. N.B. Only `URL.stat().st_size` is used for remote files|
 |`URL.glob(pattern)`| Glob the pattern given in the URL directory, yielding matching files of any kind| 
 |`URL.exists()`|  test to see if a url is accessible |
-|`URL.with_userinfo()` | add username and password |
+
 
 ### login and password
 
-Some web resources require you to use a login and password. This can be specified for the `URL` class by with the functiuon `with_userinfo`:
+Some web resources require you to use a login and password. This can be specified for the `URL` class by with the functiuon `URL.with_userinfo`:
 
 
 ```python
@@ -409,6 +471,8 @@ help(URL.with_userinfo)
 This is the main way you can pass your username and password to the relevant functions. However, in any public information (like these notebooks) we do not want to expose sensitive information such as usernames and passwords.
 
 To that end `URL` can make use of stored passwords and usernames using the local [cylog](geog0111/cylog.py) package that was covered in [004_Accounts](004_Accounts.md). You should have already tested that your NASA Earthdata login works for files on the site `https://e4ftl01.cr.usgs.gov`.
+
+
 
 ### `exists`
 
@@ -432,6 +496,12 @@ else:
     print(f'I cannot access {url}')
 ```
 
+    --> testing to see if we are a local file
+    --> we are not a file ...
+    --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+    --> trying get
+    --> testing to see if we are a local file
+    --> we are not a file ...
     --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
     --> code 401
     --> trying another
@@ -439,11 +509,11 @@ else:
     --> logging in to https://e4ftl01.cr.usgs.gov/
 
 
-    I cannot access https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+    I can access https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
 
 
-    --> failure reading data from https://e4ftl01.cr.usgs.gov/
-    --> failed to connect
+    --> data read from https://e4ftl01.cr.usgs.gov/
+    --> code 200
 
 
 When we try to access a datafile on the site [`https://e4ftl01.cr.usgs.gov`](https://e4ftl01.cr.usgs.gov) we need to use our NASA Earthdata login and password. This is done automatically withing the call to `url.exists()` or for any function requiring passwords.
@@ -498,6 +568,9 @@ for u in hdf_urls:
     https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
 
 
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+
+
 This is extremely useful for dataset discovery.
 
 #### Exercise 5
@@ -521,11 +594,8 @@ based on the code from above:
  * write a function called `modis_dataset` with arguments corresponding to the settings above
  * the function should return the URL objects of the NASA datasets specified by your arguments
  * your function should be fully documented and include some error checks
- * run a test of your function, and check that the file pointed to in the URL exists and is accessible
+ * run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places
  * what happens if you use a wildcard for the date?
-
-The utility function 
-
 
 The utility function `modis_dataset` we have developed here is available as `get_url` in the `Modis` class in  `geog0111.modis`:
 
@@ -567,16 +637,26 @@ for u in hdf_urls:
     --> wildcards in: ['2020.*.0[1-4]' '*.h08v06*.hdf']
     --> level 0/2 : 2020.*.0[1-4]
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> discovered 9 files with pattern 2020.*.0[1-4] in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
     --> level 1/2 : *.h08v06*.hdf
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.02.02
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.02.02
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.04.02
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.04.02
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.05.04
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.05.04
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.07.03
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.07.03
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.08.04
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.08.04
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
 
 
     MCD15A3H.A2020001.h08v06.006.2020006032951.hdf : True
@@ -593,7 +673,7 @@ for u in hdf_urls:
 ## Summary
 
 
-In this section, we have considered URLs and filenames in some detail, and made use of functions from [`pathlib`](https://docs.python.org/3/library/pathlib.html) and [gurlpath](geog0111/gurlpath.py) to access them. 
+In this section, we have considered URLs and filenames in some detail, and made use of functions from [`pathlib`](https://docs.python.org/3/library/pathlib.html) and [gurlpath](geog0111/gurlpath.py) to access them. These high-level routines will work for a large number of cases. If you need to go deeper into calls to URLs, you should look at the Python packages: [urllib.parse](https://docs.python.org/3.7/library/urllib.parse.html), [requests](https://requests.readthedocs.io/en/master/) and [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/).
 
 The first batch of `Path` commands we saw had much commonality with the core `unix` commands we had previously come across for moving around the file system and finding file information:
 
@@ -602,7 +682,7 @@ The first batch of `Path` commands we saw had much commonality with the core `un
 |---|---|---|
 |`Path.cwd()`| `pwd` |Return path object representing the current working directory|
 |`Path.home()`| `~`| Return path object representing the home directory|
-|`Path.stat()`| `ls -l`* | return info about the path|
+|`Path.stat()`| `ls -l`* | return info about the path. File size is `Path.stat().st_size` |
 |`Path.chmod()`| `chmod` | change file mode and permissions|
 |`Path.mkdir()`| `mkdir` | to create a new directory at the given path|
 |`Path.rename()`| `mv` | Rename a file or directory to the given target|
@@ -616,6 +696,7 @@ The second set is common to both `Path` and `URL`, and involves queries on the `
 |`Path.name`|  filename |
 |`Path.parent`|  parent |
 |`Path.parts`|  parts |
+|`Path.stat()`| return info about the path|
 |`Path.glob(pattern)`| Glob the pattern given in the URL directory, yielding matching files of any kind| 
 |`Path.exists()`|  test to see if a url is accessible |
 
@@ -624,6 +705,7 @@ The second set is common to both `Path` and `URL`, and involves queries on the `
 |`URL.name`|  filename |
 |`URL.parent`|  parent |
 |`URL.parts`|  parts |
+|`URL.stat()`| return info about the file. N.B. Only `URL.stat().st_size` is used for remote files|
 |`URL.glob(pattern)`| Glob the pattern given in the URL directory, yielding matching files of any kind| 
 |`URL.exists()`|  test to see if a url is accessible |
 

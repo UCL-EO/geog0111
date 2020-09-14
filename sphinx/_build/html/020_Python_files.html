@@ -15,7 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="021 Read Files" href="021_Read_files.html" />
+    <link rel="next" title="021 Read and Write: Streams" href="021_Read_text_files.html" />
     <link rel="prev" title="019 Python codes : Answers to exercises" href="018_Running_Python_answers.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -39,7 +39,7 @@
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="purpose">
 <h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
-<p>In this session, we will learn about files and similar resources. We will introduce the standard Python library <a class="reference external" href="https://docs.python.org/3/library/pathlib.html"><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a> which is how we deal with file paths, as well as the local package <a class="reference external" href="geog0111/gurlpath.py">gurlpath</a> that allows a similar object-oriented approach with files and other objects on the web. We will also cover opening and closing files, and some simple read- and write-operations.</p>
+<p>In this session, we will learn about files and similar resources. We will introduce the standard Python library <a class="reference external" href="https://docs.python.org/3/library/pathlib.html"><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a> which is how we deal with file paths, as well as the local package <a class="reference external" href="geog0111/gurlpath.py">gurlpath</a> that allows a similar object-oriented approach with files and other objects on the web. The treatment is intentionally high-level. If you need to go deeper into calls to URLs, you should look at the Python packages: <a class="reference external" href="https://docs.python.org/3.7/library/urllib.parse.html">urllib.parse</a>, <a class="reference external" href="https://requests.readthedocs.io/en/master/">requests</a> and <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>.</p>
 </div>
 <div class="section" id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
@@ -58,19 +58,7 @@
 </div>
 <div class="section" id="test">
 <h3>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h3>
-<p>You will need a web login to NASA Earthdata and to have stored this using <code class="docutils literal notranslate"><span class="pre">cylog</span></code> according to <a class="reference internal" href="004_Accounts.html"><span class="doc">004_Accounts</span></a> for the site <code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov</span></code>. We can test this with the following code ius yoiu set do_test to True:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
-<span class="c1"># ping small (1.3 M) test file</span>
-<span class="n">site</span><span class="o">=</span><span class="s1">&#39;https://e4ftl01.cr.usgs.gov/&#39;</span>
-<span class="n">test_dir</span><span class="o">=</span><span class="s1">&#39;MOLA/MYD11_L2.006/2002.07.04&#39;</span>
-<span class="n">test_file</span><span class="o">=</span><span class="s1">&#39;MYD11_L2*0325*.hdf&#39;</span>
-<span class="c1"># this glob interprets the wildcards to get at a suitable test file</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">test_dir</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="c1"># test ping returns True</span>
-<span class="k">assert</span> <span class="n">url</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
-</pre></div>
-</div>
-<p>If this fails, set <code class="docutils literal notranslate"><span class="pre">verbose</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> to see what is going on, then if you can;’t work it out from there, go back to <a class="reference internal" href="004_Accounts.html"><span class="doc">004_Accounts</span></a> and sort the login for NASA Earthdata the site <code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov</span></code>.</p>
+<p>You should run a <a class="reference external" href="notebooks/004_Accounts.md#Test">NASA account test</a> if you have not already done so.</p>
 </div>
 <div class="section" id="timing">
 <h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
@@ -108,7 +96,7 @@ that gives:</p>
 </div>
 <div class="section" id="path-import">
 <h2><code class="docutils literal notranslate"><span class="pre">Path</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span></code><a class="headerlink" href="#path-import" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">Path</span></code> is part of the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> package, so in any Python codes, we first must import this into our workspace:</p>
+<p>We have come across the idea of packages in <a class="reference internal" href="005_Packages.html"><span class="doc">005 Packages</span></a>. <code class="docutils literal notranslate"><span class="pre">Path</span></code> is part of the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> package, so in any Python codes, we first must import this into our workspace:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 </pre></div>
 </div>
@@ -141,7 +129,7 @@ that gives:</p>
 <tr>
 <td><code>Path.stat()</code></td>
 <td><code>ls -l</code>*</td>
-<td>return info about the path</td>
+<td>return info about the path. File size is <code>Path.stat().st_size</code></td>
 </tr>
 <tr>
 <td><code>Path.chmod()</code></td>
@@ -203,7 +191,9 @@ that gives:</p>
 </pre></div>
 </div>
 <p>To add a sub-directory or file to a <code class="docutils literal notranslate"><span class="pre">Path</span></code> object, we can use the list form, or we can just specify the separator ‘/’ between the components, provided the first term is a <code class="docutils literal notranslate"><span class="pre">Path</span></code> object:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># the relative directory bin</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># the relative directory bin</span>
 <span class="n">bindir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;bin&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;starting from the relative directory &quot;bin&quot;: </span><span class="si">{</span><span class="n">bindir</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
@@ -223,18 +213,58 @@ that gives:</p>
 </div>
 <div class="section" id="exercise-1">
 <h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
-<p>There is a file called <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in the directory <code class="docutils literal notranslate"><span class="pre">copy</span></code>.md_checkpoints/</p>
+<p>There is a file called <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in the directory <code class="docutils literal notranslate"><span class="pre">copy</span></code>.</p>
 <ul class="simple">
 <li><p>use <code class="docutils literal notranslate"><span class="pre">Path</span></code> to generate the a variable <code class="docutils literal notranslate"><span class="pre">copy_dir</span></code> containing the pathname of the <code class="docutils literal notranslate"><span class="pre">copy</span></code> directory</p></li>
 <li><p>create a variable <code class="docutils literal notranslate"><span class="pre">env_file</span></code> which adds add the file <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> to this</p></li>
 <li><p>check to see if the file exists</p></li>
 </ul>
+<p>To create a directory, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can use the options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which will make all of the sub-directories needed, and also no fail if the directory already exists. This is often the safest way to make a directory in your code, provided you are sure that your path will be reasonable.</p>
+<p>To remove an empty directory, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">rmdir</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that there is no recursive delete in <code class="docutils literal notranslate"><span class="pre">pathlib</span></code>: you have to delete files and directories explicitly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a temp directory</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">)</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># look inside tmp</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;files in </span><span class="si">{</span><span class="n">tmp</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># generate directory inside</span>
+<span class="n">inside</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">/</span> <span class="s1">&#39;inside&#39;</span>
+<span class="c1"># create this</span>
+<span class="n">inside</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># look inside tmp</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;files in </span><span class="si">{</span><span class="n">tmp</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># delete inside if it is a directory</span>
+<span class="n">inside</span><span class="o">.</span><span class="n">is_dir</span> <span class="ow">and</span> <span class="n">inside</span><span class="o">.</span><span class="n">rmdir</span><span class="p">()</span>
+<span class="c1"># then delete tmp</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">is_dir</span> <span class="ow">and</span> <span class="n">tmp</span><span class="o">.</span><span class="n">rmdir</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span> <span class="p">[]</span>
+<span class="n">files</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span> <span class="p">[</span><span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;tmp/inside&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
 <p>### File information</p>
 <p>The file permissions format we are used to from <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> is accessed through <code class="docutils literal notranslate"><span class="pre">filename.stat().st_mode</span></code> but needs to be converted to octal to match to <code class="docutils literal notranslate"><span class="pre">ls</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">oct</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mode</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># similar information to ls -l</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># similar information to ls -l</span>
 <span class="n">readme</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;bin&#39;</span><span class="p">,</span><span class="s1">&#39;README&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;README file is </span><span class="si">{</span><span class="n">readme</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;       size is </span><span class="si">{</span><span class="n">readme</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span><span class="si">}</span><span class="s1"> bytes&#39;</span><span class="p">)</span>
@@ -283,15 +313,12 @@ that gives:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># use glob to get a list of filenames in the directory bin </span>
 <span class="c1"># that end with .sh -&gt; pattern n* using a wildcard</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;bin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;n*&#39;</span><span class="p">)</span>
-
-<span class="c1"># loop over the filenames and print the permissions</span>
-<span class="c1"># as octal. Note how we use :25s to line items up</span>
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="si">:</span><span class="s1">25s</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="nb">oct</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mode</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="si">:</span><span class="s1">25s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">notebook</span><span class="o">-</span><span class="n">mkdocs</span><span class="o">.</span><span class="n">sh</span>    <span class="p">:</span> <span class="mo">0o100755</span>
-<span class="nb">bin</span><span class="o">/</span><span class="n">notebook</span><span class="o">-</span><span class="n">run</span><span class="o">.</span><span class="n">sh</span>       <span class="p">:</span> <span class="mo">0o100755</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">notebook</span><span class="o">-</span><span class="n">mkdocs</span><span class="o">.</span><span class="n">sh</span>   
+<span class="nb">bin</span><span class="o">/</span><span class="n">notebook</span><span class="o">-</span><span class="n">run</span><span class="o">.</span><span class="n">sh</span>      
 </pre></div>
 </div>
 <div class="section" id="exercise-2">
@@ -354,8 +381,8 @@ that gives:</p>
 <p>## Resources from a URL</p>
 </div>
 </div>
-<div class="section" id="gurlpath">
-<h3><code class="docutils literal notranslate"><span class="pre">gurlpath</span></code><a class="headerlink" href="#gurlpath" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="gurlpath-st-size">
+<h3><code class="docutils literal notranslate"><span class="pre">gurlpath</span></code>, <code class="docutils literal notranslate"><span class="pre">st_size</span></code><a class="headerlink" href="#gurlpath-st-size" title="Permalink to this headline">¶</a></h3>
 <p>The library <a class="reference external" href="geog0111/gurlpath.py"><code class="docutils literal notranslate"><span class="pre">gurlpath</span></code></a> in <a class="reference external" href="geog0111">geog0111</a> is designed to operate in a similar manner to <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> for reading data from URLs. It is derived from <a class="reference external" href="https://github.com/chrono-meter/urlpath"><code class="docutils literal notranslate"><span class="pre">urlpath</span></code></a>  which in turn is based on <a class="reference external" href="https://docs.python.org/3/library/urllib.parse.html">urllib.parse</a> and <a class="reference external" href="https://requests.readthedocs.io/en/master/">requests</a>. It uses <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/"><code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code></a> for parsing <code class="docutils literal notranslate"><span class="pre">html</span></code> data. At some point you may wish to learn how to use these lower-level packages, but for learning on this course, you will find it convenient to use this higher-level package.</p>
 <p>The object in <code class="docutils literal notranslate"><span class="pre">gurlpath</span></code> corresponding to <code class="docutils literal notranslate"><span class="pre">Path</span></code> is <code class="docutils literal notranslate"><span class="pre">URL</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
@@ -364,21 +391,49 @@ that gives:</p>
 <span class="n">site_file</span> <span class="o">=</span> <span class="s1">&#39;HadSEEP_monthly_qc.txt&#39;</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">site_dir</span><span class="p">,</span><span class="n">site_file</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;remote file </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;size is </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span><span class="o">/</span><span class="mi">1024</span> <span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">metoffice</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">hadobs</span><span class="o">/</span><span class="n">hadukp</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">monthly</span><span class="o">/</span><span class="n">HadSEEP_monthly_qc</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">remote</span> <span class="n">file</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">metoffice</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">hadobs</span><span class="o">/</span><span class="n">hadukp</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">monthly</span><span class="o">/</span><span class="n">HadSEEP_monthly_qc</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">size</span> <span class="ow">is</span> <span class="mf">4.77</span> <span class="n">KB</span>
 </pre></div>
 </div>
-<p>We have similar functionality for manipulating filenames, but more limited file information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
+
+<span class="n">site</span> <span class="o">=</span> <span class="s1">&#39;https://e4ftl01.cr.usgs.gov&#39;</span>
+<span class="n">site_dir</span> <span class="o">=</span> <span class="s1">&#39;MOTA/MCD15A3H.006/2020.01.01&#39;</span>
+<span class="n">site_file</span> <span class="o">=</span> <span class="s1">&#39;MCD15A3H.A2020001.h08v06.006.2020006032951.hdf&#39;</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">site_dir</span><span class="p">,</span><span class="n">site_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;remote file </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;size is </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span><span class="o">/</span><span class="mi">1024</span> <span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">remote</span> <span class="n">file</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span>
+<span class="n">size</span> <span class="ow">is</span> <span class="mf">8854.67</span> <span class="n">KB</span>
+</pre></div>
+</div>
+<p>We have similar functionality in <code class="docutils literal notranslate"><span class="pre">URL</span></code> to <code class="docutils literal notranslate"><span class="pre">Path</span></code> for manipulating filenames, but more limited file information:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;URL    : </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;name   : </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;parent : </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URL</span>    <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">metoffice</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">hadobs</span><span class="o">/</span><span class="n">hadukp</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">monthly</span><span class="o">/</span><span class="n">HadSEEP_monthly_qc</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">name</span>   <span class="p">:</span> <span class="n">HadSEEP_monthly_qc</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">parent</span> <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">metoffice</span><span class="o">.</span><span class="n">gov</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">hadobs</span><span class="o">/</span><span class="n">hadukp</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">monthly</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URL</span>    <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span>
+<span class="n">name</span>   <span class="p">:</span> <span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span>
+<span class="n">parent</span> <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
+</pre></div>
+</div>
+<p>but also some other helpful ones on the URL:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;anchor   : </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">anchor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;hostname : </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">hostinfo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;scheme   : </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">scheme</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span>   <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span>
+<span class="n">hostname</span> <span class="p">:</span> <span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span>
+<span class="n">scheme</span>   <span class="p">:</span> <span class="n">https</span>
 </pre></div>
 </div>
 <div class="section" id="exercise-4">
@@ -387,7 +442,7 @@ that gives:</p>
 <li><p>create a <code class="docutils literal notranslate"><span class="pre">URL</span></code> object for the file <code class="docutils literal notranslate"><span class="pre">table.html</span></code> in the directory <code class="docutils literal notranslate"><span class="pre">psd/enso/mei/</span></code> on the site <code class="docutils literal notranslate"><span class="pre">http://www.esrl.noaa.gov/</span></code>.</p></li>
 <li><p>print out the url and check it is <code class="docutils literal notranslate"><span class="pre">table.html</span></code></p></li>
 </ul>
-<p>For accessing URLs, will mostly make use of the following functions in <code class="docutils literal notranslate"><span class="pre">URL</span></code> that you will see are similat to those for <code class="docutils literal notranslate"><span class="pre">Path</span></code>:</p>
+<p>For accessing URLs, will mostly make use of the following functions in <code class="docutils literal notranslate"><span class="pre">URL</span></code> that you will see are very similar to those for <code class="docutils literal notranslate"><span class="pre">Path</span></code>:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -409,6 +464,10 @@ that gives:</p>
 <td>parts</td>
 </tr>
 <tr>
+<td><code>URL.stat()</code></td>
+<td>return info about the file. N.B. Only <code>URL.stat().st_size</code> is used for remote files</td>
+</tr>
+<tr>
 <td><code>URL.glob(pattern)</code></td>
 <td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
 </tr>
@@ -416,13 +475,9 @@ that gives:</p>
 <td><code>URL.exists()</code></td>
 <td>test to see if a url is accessible</td>
 </tr>
-<tr>
-<td><code>URL.with_userinfo()</code></td>
-<td>add username and password</td>
-</tr>
 </tbody>
 </table><p>### login and password</p>
-<p>Some web resources require you to use a login and password. This can be specified for the <code class="docutils literal notranslate"><span class="pre">URL</span></code> class by with the functiuon <code class="docutils literal notranslate"><span class="pre">with_userinfo</span></code>:</p>
+<p>Some web resources require you to use a login and password. This can be specified for the <code class="docutils literal notranslate"><span class="pre">URL</span></code> class by with the functiuon <code class="docutils literal notranslate"><span class="pre">URL.with_userinfo</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">URL</span><span class="o">.</span><span class="n">with_userinfo</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -454,18 +509,24 @@ that gives:</p>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I cannot access </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOLA</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2002.07</span><span class="o">.</span><span class="mi">04</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="n">A2002185</span><span class="o">.</span><span class="mf">0325.006</span><span class="o">.</span><span class="mf">2015142192613.</span><span class="n">hdf</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">testing</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">we</span> <span class="n">are</span> <span class="n">a</span> <span class="n">local</span> <span class="n">file</span>
+<span class="o">--&gt;</span> <span class="n">we</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">file</span> <span class="o">...</span>
+<span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOLA</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2002.07</span><span class="o">.</span><span class="mi">04</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="n">A2002185</span><span class="o">.</span><span class="mf">0325.006</span><span class="o">.</span><span class="mf">2015142192613.</span><span class="n">hdf</span>
+<span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">get</span>
+<span class="o">--&gt;</span> <span class="n">testing</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">we</span> <span class="n">are</span> <span class="n">a</span> <span class="n">local</span> <span class="n">file</span>
+<span class="o">--&gt;</span> <span class="n">we</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">file</span> <span class="o">...</span>
+<span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOLA</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2002.07</span><span class="o">.</span><span class="mi">04</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="n">A2002185</span><span class="o">.</span><span class="mf">0325.006</span><span class="o">.</span><span class="mf">2015142192613.</span><span class="n">hdf</span>
 <span class="o">--&gt;</span> <span class="n">code</span> <span class="mi">401</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">another</span>
 <span class="o">--&gt;</span> <span class="n">getting</span> <span class="n">login</span>
 <span class="o">--&gt;</span> <span class="n">logging</span> <span class="ow">in</span> <span class="n">to</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span>
 
 
-<span class="n">I</span> <span class="n">cannot</span> <span class="n">access</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOLA</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2002.07</span><span class="o">.</span><span class="mi">04</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="n">A2002185</span><span class="o">.</span><span class="mf">0325.006</span><span class="o">.</span><span class="mf">2015142192613.</span><span class="n">hdf</span>
+<span class="n">I</span> <span class="n">can</span> <span class="n">access</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOLA</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2002.07</span><span class="o">.</span><span class="mi">04</span><span class="o">/</span><span class="n">MYD11_L2</span><span class="o">.</span><span class="n">A2002185</span><span class="o">.</span><span class="mf">0325.006</span><span class="o">.</span><span class="mf">2015142192613.</span><span class="n">hdf</span>
 
 
-<span class="o">--&gt;</span> <span class="n">failure</span> <span class="n">reading</span> <span class="n">data</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span>
-<span class="o">--&gt;</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">connect</span>
+<span class="o">--&gt;</span> <span class="n">data</span> <span class="n">read</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span>
+<span class="o">--&gt;</span> <span class="n">code</span> <span class="mi">200</span>
 </pre></div>
 </div>
 <p>When we try to access a datafile on the site <a class="reference external" href="https://e4ftl01.cr.usgs.gov"><code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov</span></code></a> we need to use our NASA Earthdata login and password. This is done automatically withing the call to <code class="docutils literal notranslate"><span class="pre">url.exists()</span></code> or for any function requiring passwords.</p>
@@ -513,6 +574,9 @@ that gives:</p>
 
 
 <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.06</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020153</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020160231732</span><span class="o">.</span><span class="n">hdf</span>
+
+
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.06</span><span class="o">.</span><span class="mi">01</span>
 </pre></div>
 </div>
 <p>This is extremely useful for dataset discovery.</p>
@@ -538,10 +602,9 @@ that gives:</p>
 <li><p>write a function called <code class="docutils literal notranslate"><span class="pre">modis_dataset</span></code> with arguments corresponding to the settings above</p></li>
 <li><p>the function should return the URL objects of the NASA datasets specified by your arguments</p></li>
 <li><p>your function should be fully documented and include some error checks</p></li>
-<li><p>run a test of your function, and check that the file pointed to in the URL exists and is accessible</p></li>
+<li><p>run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places</p></li>
 <li><p>what happens if you use a wildcard for the date?</p></li>
 </ul>
-<p>The utility function</p>
 <p>The utility function <code class="docutils literal notranslate"><span class="pre">modis_dataset</span></code> we have developed here is available as <code class="docutils literal notranslate"><span class="pre">get_url</span></code> in the <code class="docutils literal notranslate"><span class="pre">Modis</span></code> class in  <code class="docutils literal notranslate"><span class="pre">geog0111.modis</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span>  <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
 
@@ -576,16 +639,26 @@ that gives:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">wildcards</span> <span class="ow">in</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2020.*.0[1-4]&#39;</span> <span class="s1">&#39;*.h08v06*.hdf&#39;</span><span class="p">]</span>
 <span class="o">--&gt;</span> <span class="n">level</span> <span class="mi">0</span><span class="o">/</span><span class="mi">2</span> <span class="p">:</span> <span class="mf">2020.</span><span class="o">*.</span><span class="mi">0</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">9</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="mf">2020.</span><span class="o">*.</span><span class="mi">0</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span>
 <span class="o">--&gt;</span> <span class="n">level</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="p">:</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.02</span><span class="o">.</span><span class="mi">02</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.02</span><span class="o">.</span><span class="mi">02</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.03</span><span class="o">.</span><span class="mi">01</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.03</span><span class="o">.</span><span class="mi">01</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.04</span><span class="o">.</span><span class="mi">02</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.04</span><span class="o">.</span><span class="mi">02</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.05</span><span class="o">.</span><span class="mi">04</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.05</span><span class="o">.</span><span class="mi">04</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.06</span><span class="o">.</span><span class="mi">01</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.06</span><span class="o">.</span><span class="mi">01</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.07</span><span class="o">.</span><span class="mi">03</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.07</span><span class="o">.</span><span class="mi">03</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.08</span><span class="o">.</span><span class="mi">04</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.08</span><span class="o">.</span><span class="mi">04</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.09</span><span class="o">.</span><span class="mi">01</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.09</span><span class="o">.</span><span class="mi">01</span>
 
 
 <span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span> <span class="p">:</span> <span class="kc">True</span>
@@ -604,7 +677,7 @@ that gives:</p>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this section, we have considered URLs and filenames in some detail, and made use of functions from <a class="reference external" href="https://docs.python.org/3/library/pathlib.html"><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a> and <a class="reference external" href="geog0111/gurlpath.py">gurlpath</a> to access them.</p>
+<p>In this section, we have considered URLs and filenames in some detail, and made use of functions from <a class="reference external" href="https://docs.python.org/3/library/pathlib.html"><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a> and <a class="reference external" href="geog0111/gurlpath.py">gurlpath</a> to access them. These high-level routines will work for a large number of cases. If you need to go deeper into calls to URLs, you should look at the Python packages: <a class="reference external" href="https://docs.python.org/3.7/library/urllib.parse.html">urllib.parse</a>, <a class="reference external" href="https://requests.readthedocs.io/en/master/">requests</a> and <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>.</p>
 <p>The first batch of <code class="docutils literal notranslate"><span class="pre">Path</span></code> commands we saw had much commonality with the core <code class="docutils literal notranslate"><span class="pre">unix</span></code> commands we had previously come across for moving around the file system and finding file information:</p>
 <table border="1" class="docutils">
 <thead>
@@ -628,7 +701,7 @@ that gives:</p>
 <tr>
 <td><code>Path.stat()</code></td>
 <td><code>ls -l</code>*</td>
-<td>return info about the path</td>
+<td>return info about the path. File size is <code>Path.stat().st_size</code></td>
 </tr>
 <tr>
 <td><code>Path.chmod()</code></td>
@@ -678,6 +751,10 @@ that gives:</p>
 <td>parts</td>
 </tr>
 <tr>
+<td><code>Path.stat()</code></td>
+<td>return info about the path</td>
+</tr>
+<tr>
 <td><code>Path.glob(pattern)</code></td>
 <td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
 </tr>
@@ -705,6 +782,10 @@ that gives:</p>
 <tr>
 <td><code>URL.parts</code></td>
 <td>parts</td>
+</tr>
+<tr>
+<td><code>URL.stat()</code></td>
+<td>return info about the file. N.B. Only <code>URL.stat().st_size</code> is used for remote files</td>
 </tr>
 <tr>
 <td><code>URL.glob(pattern)</code></td>
@@ -766,16 +847,18 @@ that gives:</p>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">020 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
 <li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
@@ -793,7 +876,7 @@ that gives:</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="018_Running_Python_answers.html" title="previous chapter">019 Python codes : Answers to exercises</a></li>
-      <li>Next: <a href="021_Read_files.html" title="next chapter">021 Read Files</a></li>
+      <li>Next: <a href="021_Read_text_files.html" title="next chapter">021 Read and Write: Streams</a></li>
   </ul></li>
 </ul>
 </div>

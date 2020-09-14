@@ -826,11 +826,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gurlpath" class="md-nav__link">
-    gurlpath
+  <a href="#gurlpath-st_size" class="md-nav__link">
+    gurlpath, st_size
   </a>
   
-    <nav class="md-nav" aria-label="gurlpath">
+    <nav class="md-nav" aria-label="gurlpath, st_size">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -904,8 +904,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Read_files/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../021_Read_text_files/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -916,8 +916,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_PandasExtra_and_plotting/" title="Pandasextra And Plotting" class="md-nav__link">
-      Pandasextra And Plotting
+    <a href="../022_Read_write_files/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
     </a>
   </li>
 
@@ -928,7 +928,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+    <a href="../023_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
       Pandas And Plotting
     </a>
   </li>
@@ -940,7 +940,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../023_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../024_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -1009,8 +1009,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Read_files_answers/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../021_Read_text_files_answers/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -1021,7 +1021,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../023_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../022_Read_write_files_answers/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../024_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -1410,11 +1422,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gurlpath" class="md-nav__link">
-    gurlpath
+  <a href="#gurlpath-st_size" class="md-nav__link">
+    gurlpath, st_size
   </a>
   
-    <nav class="md-nav" aria-label="gurlpath">
+    <nav class="md-nav" aria-label="gurlpath, st_size">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1498,7 +1510,7 @@
                 <h1 id="020-files-and-other-resources">020 Files and other Resources</h1>
 <h2 id="introduction">Introduction</h2>
 <h3 id="purpose">Purpose</h3>
-<p>In this session, we will learn about files and similar resources. We will introduce the standard Python library <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> which is how we deal with file paths, as well as the local package <a href="../geog0111/gurlpath.py">gurlpath</a> that allows a similar object-oriented approach with files and other objects on the web. We will also cover opening and closing files, and some simple read- and write-operations.</p>
+<p>In this session, we will learn about files and similar resources. We will introduce the standard Python library <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> which is how we deal with file paths, as well as the local package <a href="../geog0111/gurlpath.py">gurlpath</a> that allows a similar object-oriented approach with files and other objects on the web. The treatment is intentionally high-level. If you need to go deeper into calls to URLs, you should look at the Python packages: <a href="https://docs.python.org/3.7/library/urllib.parse.html">urllib.parse</a>, <a href="https://requests.readthedocs.io/en/master/">requests</a> and <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>.</p>
 <h3 id="prerequisites">Prerequisites</h3>
 <p>You will need some understanding of the following:</p>
 <ul>
@@ -1513,19 +1525,7 @@
 <li><a href="018_Packages.md">018_Packages</a></li>
 </ul>
 <h3 id="test">Test</h3>
-<p>You will need a web login to NASA Earthdata and to have stored this using <code>cylog</code> according to <a href="../004_Accounts/">004_Accounts</a> for the site <code>https://e4ftl01.cr.usgs.gov</code>. We can test this with the following code ius yoiu set do_test to True:</p>
-<pre><code class="python">from geog0111.gurlpath import URL
-# ping small (1.3 M) test file
-site='https://e4ftl01.cr.usgs.gov/'
-test_dir='MOLA/MYD11_L2.006/2002.07.04'
-test_file='MYD11_L2*0325*.hdf'
-# this glob interprets the wildcards to get at a suitable test file
-url = URL(site,test_dir).glob(test_file,verbose=False)[0]
-# test ping returns True
-assert url.ping(verbose=False) == True
-</code></pre>
-
-<p>If this fails, set <code>verbose</code> to <code>True</code> to see what is going on, then if you can;'t work it out from there, go back to <a href="../004_Accounts/">004_Accounts</a> and sort the login for NASA Earthdata the site <code>https://e4ftl01.cr.usgs.gov</code>.</p>
+<p>You should run a <a href="notebooks/004_Accounts.md#Test">NASA account test</a> if you have not already done so.</p>
 <h3 id="timing">Timing</h3>
 <p>The session should take around 30 minutes.</p>
 <h2 id="data-resources">Data resources</h2>
@@ -1552,7 +1552,7 @@ that gives:</p>
 <p>We first need to learn some core tools for file and URL access. We will be using the object-oriented <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> package for local files, and a local variant of <a href="https://github.com/chrono-meter/urlpath"><code>urlpath</code></a> called <a href="../geog0111/gurlpath.py"><code>gurlpath</code></a>.</p>
 <p>We will be also using <code>yaml</code>, <code>json</code> and <a href="https://pandas.pydata.org/"><code>pandas</code></a> packages for reading particular text file types, and introducing <a href="https://gdal.org/python/"><code>gdal</code></a> for binary image files.</p>
 <h2 id="path-import"><code>Path</code>, <code>import</code></h2>
-<p><code>Path</code> is part of the <code>pathlib</code> package, so in any Python codes, we first must import this into our workspace:</p>
+<p>We have come across the idea of packages in <a href="../005_Packages/">005 Packages</a>. <code>Path</code> is part of the <code>pathlib</code> package, so in any Python codes, we first must import this into our workspace:</p>
 <pre><code class="python">from pathlib import Path
 </code></pre>
 
@@ -1584,7 +1584,7 @@ that gives:</p>
 <tr>
 <td><code>Path.stat()</code></td>
 <td><code>ls -l</code>*</td>
-<td>return info about the path</td>
+<td>return info about the path. File size is <code>Path.stat().st_size</code></td>
 </tr>
 <tr>
 <td><code>Path.chmod()</code></td>
@@ -1644,7 +1644,9 @@ print(f'Does {readme_file} exist? {readme_file.exists()}')
 <pre><code>Does bin/README exist? True
 </code></pre>
 <p>To add a sub-directory or file to a <code>Path</code> object, we can use the list form, or we can just specify the separator '/' between the components, provided the first term is a <code>Path</code> object:</p>
-<pre><code class="python"># the relative directory bin
+<pre><code class="python">from pathlib import Path
+
+# the relative directory bin
 bindir = Path('bin')
 print(f'starting from the relative directory &quot;bin&quot;: {bindir}')
 
@@ -1662,17 +1664,53 @@ README file is: bin/README
 README file is: bin/README
 </code></pre>
 <h4 id="exercise-1">Exercise 1</h4>
-<p>There is a file called <code>environment.yml</code> in the directory <code>copy</code>.md_checkpoints/</p>
+<p>There is a file called <code>environment.yml</code> in the directory <code>copy</code>.</p>
 <ul>
 <li>use <code>Path</code> to generate the a variable <code>copy_dir</code> containing the pathname of the <code>copy</code> directory</li>
 <li>create a variable <code>env_file</code> which adds add the file <code>environment.yml</code> to this </li>
 <li>check to see if the file exists</li>
 </ul>
+<p>To create a directory, use:</p>
+<pre><code>Path().mkdir()
+</code></pre>
+<p>We can use the options:</p>
+<pre><code>Path().mkdir(parents=True,exist_ok=True)
+</code></pre>
+<p>which will make all of the sub-directories needed, and also no fail if the directory already exists. This is often the safest way to make a directory in your code, provided you are sure that your path will be reasonable.</p>
+<p>To remove an empty directory, use:</p>
+<pre><code>Path().rmdir()
+</code></pre>
+<p>Note that there is no recursive delete in <code>pathlib</code>: you have to delete files and directories explicitly.</p>
+<pre><code class="python"># make a temp directory
+tmp = Path('tmp')
+tmp.mkdir(parents=True,exist_ok=True)
+
+# look inside tmp
+print(f'files in {tmp}: {list(tmp.glob(&quot;*&quot;))}')
+
+# generate directory inside
+inside = tmp / 'inside'
+# create this
+inside.mkdir(parents=True,exist_ok=True)
+# look inside tmp
+print(f'files in {tmp}: {list(tmp.glob(&quot;*&quot;))}')
+
+# delete inside if it is a directory
+inside.is_dir and inside.rmdir()
+# then delete tmp
+tmp.is_dir and tmp.rmdir()
+</code></pre>
+
+<pre><code>files in tmp: []
+files in tmp: [PosixPath('tmp/inside')]
+</code></pre>
 <h3 id="file-information">File information</h3>
 <p>The file permissions format we are used to from <code>ls -l</code> is accessed through <code>filename.stat().st_mode</code> but needs to be converted to octal to match to <code>ls</code></p>
 <pre><code>oct(filename.stat().st_mode)
 </code></pre>
-<pre><code class="python"># similar information to ls -l
+<pre><code class="python">from pathlib import Path
+
+# similar information to ls -l
 readme=Path('bin','README')
 print(f'README file is {readme}')
 print(f'       size is {readme.stat().st_size} bytes')
@@ -1715,15 +1753,12 @@ print(filenames)
 <pre><code class="python"># use glob to get a list of filenames in the directory bin 
 # that end with .sh -&gt; pattern n* using a wildcard
 filenames = Path('bin').glob('n*')
-
-# loop over the filenames and print the permissions
-# as octal. Note how we use :25s to line items up
 for f in filenames:
-    print(f'{str(f):25s} : {oct(f.stat().st_mode)}')
+    print(f'{str(f):25s}')
 </code></pre>
 
-<pre><code>bin/notebook-mkdocs.sh    : 0o100755
-bin/notebook-run.sh       : 0o100755
+<pre><code>bin/notebook-mkdocs.sh   
+bin/notebook-run.sh
 </code></pre>
 <h4 id="exercise-2">Exercise 2</h4>
 <ul>
@@ -1779,7 +1814,7 @@ parent of bin/README is bin
 </ul>
 <p>You will need to know how many Bytes in a Kilobyte, and how to <a href="../012_Python_strings/#String-formating">format a string to two decimal places</a>. You will also need to remember how to use <a href="../015_Python_control/#Comparison-Operators-and-if"><code>if</code> statements</a>.</p>
 <h2 id="resources-from-a-url">Resources from a URL</h2>
-<h3 id="gurlpath"><code>gurlpath</code></h3>
+<h3 id="gurlpath-st_size"><code>gurlpath</code>, <code>st_size</code></h3>
 <p>The library <a href="../geog0111/gurlpath.py"><code>gurlpath</code></a> in <a href="geog0111">geog0111</a> is designed to operate in a similar manner to <code>pathlib</code> for reading data from URLs. It is derived from <a href="https://github.com/chrono-meter/urlpath"><code>urlpath</code></a>  which in turn is based on <a href="https://docs.python.org/3/library/urllib.parse.html">urllib.parse</a> and <a href="https://requests.readthedocs.io/en/master/">requests</a>. It uses <a href="https://www.crummy.com/software/BeautifulSoup/"><code>BeautifulSoup</code></a> for parsing <code>html</code> data. At some point you may wish to learn how to use these lower-level packages, but for learning on this course, you will find it convenient to use this higher-level package.</p>
 <p>The object in <code>gurlpath</code> corresponding to <code>Path</code> is <code>URL</code>:</p>
 <pre><code class="python">from geog0111.gurlpath import URL
@@ -1788,27 +1823,53 @@ site_dir = 'hadobs/hadukp/data/monthly'
 site_file = 'HadSEEP_monthly_qc.txt'
 
 url = URL(site,site_dir,site_file)
-print(url)
+print(f'remote file {url}')
+print(f'size is {url.stat().st_size/1024 :.2f} KB')
 </code></pre>
 
-<pre><code>https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
+<pre><code>remote file https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
+size is 4.77 KB
 </code></pre>
-<p>We have similar functionality for manipulating filenames, but more limited file information:</p>
+<pre><code class="python">from geog0111.gurlpath import URL
+
+site = 'https://e4ftl01.cr.usgs.gov'
+site_dir = 'MOTA/MCD15A3H.006/2020.01.01'
+site_file = 'MCD15A3H.A2020001.h08v06.006.2020006032951.hdf'
+
+url = URL(site,site_dir,site_file)
+print(f'remote file {url}')
+print(f'size is {url.stat().st_size/1024 :.2f} KB')
+</code></pre>
+
+<pre><code>remote file https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+size is 8854.67 KB
+</code></pre>
+<p>We have similar functionality in <code>URL</code> to <code>Path</code> for manipulating filenames, but more limited file information:</p>
 <pre><code class="python">print(f'URL    : {url}')
 print(f'name   : {url.name}')
 print(f'parent : {url.parent}')
 </code></pre>
 
-<pre><code>URL    : https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
-name   : HadSEEP_monthly_qc.txt
-parent : https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly
+<pre><code>URL    : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+name   : MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+parent : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+</code></pre>
+<p>but also some other helpful ones on the URL:</p>
+<pre><code class="python">print(f'anchor   : {url.anchor}')
+print(f'hostname : {url.hostinfo}')
+print(f'scheme   : {url.scheme}')
+</code></pre>
+
+<pre><code>anchor   : https://e4ftl01.cr.usgs.gov
+hostname : e4ftl01.cr.usgs.gov
+scheme   : https
 </code></pre>
 <h4 id="exercise-4">Exercise 4</h4>
 <ul>
 <li>create a <code>URL</code> object for the file <code>table.html</code> in the directory <code>psd/enso/mei/</code> on the site <code>http://www.esrl.noaa.gov/</code>.</li>
 <li>print out the url and check it is <code>table.html</code></li>
 </ul>
-<p>For accessing URLs, will mostly make use of the following functions in <code>URL</code> that you will see are similat to those for <code>Path</code>:</p>
+<p>For accessing URLs, will mostly make use of the following functions in <code>URL</code> that you will see are very similar to those for <code>Path</code>:</p>
 <table>
 <thead>
 <tr>
@@ -1830,6 +1891,10 @@ parent : https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly
 <td>parts</td>
 </tr>
 <tr>
+<td><code>URL.stat()</code></td>
+<td>return info about the file. N.B. Only <code>URL.stat().st_size</code> is used for remote files</td>
+</tr>
+<tr>
 <td><code>URL.glob(pattern)</code></td>
 <td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
 </tr>
@@ -1837,14 +1902,10 @@ parent : https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly
 <td><code>URL.exists()</code></td>
 <td>test to see if a url is accessible</td>
 </tr>
-<tr>
-<td><code>URL.with_userinfo()</code></td>
-<td>add username and password</td>
-</tr>
 </tbody>
 </table>
 <h3 id="login-and-password">login and password</h3>
-<p>Some web resources require you to use a login and password. This can be specified for the <code>URL</code> class by with the functiuon <code>with_userinfo</code>:</p>
+<p>Some web resources require you to use a login and password. This can be specified for the <code>URL</code> class by with the functiuon <code>URL.with_userinfo</code>:</p>
 <pre><code class="python">help(URL.with_userinfo)
 </code></pre>
 
@@ -1872,18 +1933,24 @@ else:
     print(f'I cannot access {url}')
 </code></pre>
 
-<pre><code>--&gt; trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+<pre><code>--&gt; testing to see if we are a local file
+--&gt; we are not a file ...
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+--&gt; trying get
+--&gt; testing to see if we are a local file
+--&gt; we are not a file ...
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
 --&gt; code 401
 --&gt; trying another
 --&gt; getting login
 --&gt; logging in to https://e4ftl01.cr.usgs.gov/
 
 
-I cannot access https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+I can access https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
 
 
---&gt; failure reading data from https://e4ftl01.cr.usgs.gov/
---&gt; failed to connect
+--&gt; data read from https://e4ftl01.cr.usgs.gov/
+--&gt; code 200
 </code></pre>
 <p>When we try to access a datafile on the site <a href="https://e4ftl01.cr.usgs.gov"><code>https://e4ftl01.cr.usgs.gov</code></a> we need to use our NASA Earthdata login and password. This is done automatically withing the call to <code>url.exists()</code> or for any function requiring passwords.</p>
 <h3 id="glob-and-nasa-datasets"><code>glob</code> and NASA datasets</h3>
@@ -1925,6 +1992,9 @@ for u in hdf_urls:
 
 
 https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
+
+
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 </code></pre>
 <p>This is extremely useful for dataset discovery.</p>
 <h4 id="exercise-5">Exercise 5</h4>
@@ -1947,10 +2017,9 @@ hdf_urls = list(url.glob(site_file,verbose=True))[0]
 <li>write a function called <code>modis_dataset</code> with arguments corresponding to the settings above</li>
 <li>the function should return the URL objects of the NASA datasets specified by your arguments</li>
 <li>your function should be fully documented and include some error checks</li>
-<li>run a test of your function, and check that the file pointed to in the URL exists and is accessible</li>
+<li>run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places</li>
 <li>what happens if you use a wildcard for the date?</li>
 </ul>
-<p>The utility function </p>
 <p>The utility function <code>modis_dataset</code> we have developed here is available as <code>get_url</code> in the <code>Modis</code> class in  <code>geog0111.modis</code>:</p>
 <pre><code class="python">from  geog0111.modis import Modis
 
@@ -1984,16 +2053,26 @@ for u in hdf_urls:
 <pre><code>--&gt; wildcards in: ['2020.*.0[1-4]' '*.h08v06*.hdf']
 --&gt; level 0/2 : 2020.*.0[1-4]
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; discovered 9 files with pattern 2020.*.0[1-4] in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
 --&gt; level 1/2 : *.h08v06*.hdf
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.02.02
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.02.02
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.04.02
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.04.02
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.05.04
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.05.04
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.07.03
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.07.03
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.08.04
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.08.04
 --&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
 
 
 MCD15A3H.A2020001.h08v06.006.2020006032951.hdf : True
@@ -2007,7 +2086,7 @@ MCD15A3H.A2020217.h08v06.006.2020223212414.hdf : True
 MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
 </code></pre>
 <h2 id="summary">Summary</h2>
-<p>In this section, we have considered URLs and filenames in some detail, and made use of functions from <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> and <a href="../geog0111/gurlpath.py">gurlpath</a> to access them. </p>
+<p>In this section, we have considered URLs and filenames in some detail, and made use of functions from <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> and <a href="../geog0111/gurlpath.py">gurlpath</a> to access them. These high-level routines will work for a large number of cases. If you need to go deeper into calls to URLs, you should look at the Python packages: <a href="https://docs.python.org/3.7/library/urllib.parse.html">urllib.parse</a>, <a href="https://requests.readthedocs.io/en/master/">requests</a> and <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>.</p>
 <p>The first batch of <code>Path</code> commands we saw had much commonality with the core <code>unix</code> commands we had previously come across for moving around the file system and finding file information:</p>
 <table>
 <thead>
@@ -2031,7 +2110,7 @@ MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
 <tr>
 <td><code>Path.stat()</code></td>
 <td><code>ls -l</code>*</td>
-<td>return info about the path</td>
+<td>return info about the path. File size is <code>Path.stat().st_size</code></td>
 </tr>
 <tr>
 <td><code>Path.chmod()</code></td>
@@ -2082,6 +2161,10 @@ MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
 <td>parts</td>
 </tr>
 <tr>
+<td><code>Path.stat()</code></td>
+<td>return info about the path</td>
+</tr>
+<tr>
 <td><code>Path.glob(pattern)</code></td>
 <td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
 </tr>
@@ -2110,6 +2193,10 @@ MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
 <tr>
 <td><code>URL.parts</code></td>
 <td>parts</td>
+</tr>
+<tr>
+<td><code>URL.stat()</code></td>
+<td>return info about the file. N.B. Only <code>URL.stat().st_size</code> is used for remote files</td>
 </tr>
 <tr>
 <td><code>URL.glob(pattern)</code></td>
@@ -2167,13 +2254,13 @@ MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
           </a>
         
         
-          <a href="../021_Read_files/" title="Read Files" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../021_Read_text_files/" title="Read Text Files" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Read Files
+                Read Text Files
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

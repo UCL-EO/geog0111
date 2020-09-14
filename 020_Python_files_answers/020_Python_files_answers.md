@@ -2,11 +2,34 @@
 
 #### Exercise 1
 
-There is a file called `environment.yml` in the directory `copy`.md_checkpoints/
+There is a file called `environment.yml` in the directory `copy`.
 
 * use `Path` to generate the a variable `copy_dir` containing the pathname of the `copy` directory
 * create a variable `env_file` which adds add the file `environment.yml` to this 
 * check to see if the file exists
+
+
+```python
+from pathlib import Path
+# ANSWER
+
+# There is a file called environment.yml in the directory copy.
+# use Path to generate the a variable copy_dir containing the 
+# pathname of the copy directory
+copy_dir = Path('copy')
+
+# create a variable env_file which adds add the file 
+# environment.yml to this
+env_file = copy_dir / 'environment.yml'
+# or
+env_file = Path(copy_dir,'environment.yml')
+
+# check to see if the file exists
+print(f'does {env_file} exist? {env_file.exists()}')
+```
+
+    does copy/environment.yml exist? True
+
 
 
 ```python
@@ -35,6 +58,23 @@ print(f'Does {env_file} exist? {env_file.exists()}')
 #### Exercise 2
 
 * Use `Path` to show the file permissions of all files that end `.sh` in the directory `bin`
+
+
+```python
+# ANSWER
+# use glob to get a list of filenames in the directory bin 
+# that end with .sh -> pattern n* using a wildcard
+filenames = Path('bin').glob('n*')
+
+# loop over the filenames and print the permissions
+# as octal. Note how we use :25s to line items up
+for f in filenames:
+    print(f'{str(f):25s} : {oct(f.stat().st_mode)}')
+```
+
+    bin/notebook-mkdocs.sh    : 0o100755
+    bin/notebook-run.sh       : 0o100755
+
 
 
 ```python
@@ -96,27 +136,6 @@ else:
     file size 1956 Bytes ->  1.91 KB
 
 
-
-```python
-# ANSWER
-# Using Path.read_text() read the text from the file work/easy.txt 
-# and print the text returned.
-
-# set up the filename
-infile = Path('work','easy.txt')
-# read the text
-read_text = infile.read_text()
-
-# split the text into lines of 
-# text using str.split() at each newline, 
-# and print out the resulting list
-lines = read_text.split('\n')
-print(lines)
-```
-
-    ['', 'It is easy for humans to read and write.', 'It is easy for machines to parse and generate. ', '']
-
-
 #### Exercise 4
 
 * create a `URL` object for the file `table.html` in the directory `psd/enso/mei/` on the site `http://www.esrl.noaa.gov/`.
@@ -145,31 +164,35 @@ print('passed')
     passed
 
 
+#### Exercise 5
 
-```python
-# ANSWER
-import json
+based on the code from above:
 
-# show the size of the files 
-# bin/copy/environment.json and bin/copy/environment.yml
+    # settings
+    product = 'MCD15A3H'
+    year, month, day = '2020', '06', '01'
+    tile = 'h08v06'
 
-# form the file names
-json_file = Path('bin','copy','environment.json')
-yaml_file = Path('bin','copy','environment.yml')
-# loop and print size
-for f in [json_file,yaml_file]:
-    print(f'{f} : {f.stat().st_size} bytes')
-```
+    # url with wildcards
+    site = 'https://e4ftl01.cr.usgs.gov'
+    site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
+    site_file = f'*.{tile}*.hdf'
 
-    bin/copy/environment.json : 791 bytes
-    bin/copy/environment.yml : 856 bytes
-
+    # get the information
+    url = URL(site,site_dir)
+    hdf_urls = list(url.glob(site_file,verbose=True))[0]
+    
+ * write a function called `modis_dataset` with arguments corresponding to the settings above
+ * the function should return the URL objects of the NASA datasets specified by your arguments
+ * your function should be fully documented and include some error checks
+ * run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places
+ * what happens if you use a wildcard for the date?
 
 
 ```python
 from geog0111.gurlpath import URL
 
-# ANSWER
+# ANSWER 1
 
 # write a function called `modis_dataset` 
 # with arguments corresponding to the settings above
@@ -209,15 +232,22 @@ def modis_dataset(product, tile, year, month, day,
 
 
 ```python
-# ANSWER 1
-# run a test of your function, and check that 
-# the file pointed to in the URL exists and is accessible
+# ANSWER 2
+# run a test of your function, 
+# and print the file size in MB 
+# for the file pointed to in the URL
+# to 2 decimal places
+
+msg = '''
+Note: 1 MB = 1024 * 1024 Bytes
+'''
+print(msg)
 
 args = ['MCD15A3H','h08v06','2020','06', '01']
 hdf_urls = modis_dataset(*args,verbose=True)
 # test if exist
 for u in hdf_urls:
-    print(f'{u.name} : {u.exists()}')
+    print(f'{u.name} : {u.stat().st_size/(1024*1024): .2f} MB')
 ```
 
     --> wildcards in: ['*.h08v06*.hdf']
@@ -225,79 +255,55 @@ for u in hdf_urls:
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 
 
-    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
+    
+    Note: 1 MB = 1024 * 1024 Bytes
+    
 
 
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 
-```python
-# ANSWER 2
-# run a test of your function, and check that 
-# mis-specify date and see that it fails
-# use '1' instead of '01'
 
-args = ['MCD15A3H','h08v06','2020','06', '1']
-hdf_urls = modis_dataset(*args,verbose=True)
-# test if exist
-for u in hdf_urls:
-    print(f'{u.name} : {u.exists()}')
-```
-
-    --> wildcards in: ['*.h08v06*.hdf']
-    --> level 0/1 : *.h08v06*.hdf
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.1
+    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf :  9.66 MB
 
 
 
 ```python
 # ANSWER 3
 # what happens if you use a wildcard for the date?
-args = ['MCD15A3H','h08v06','2020','06', '*']
+msg = '''
+Note: 1 MB = 1024 * 1024 Bytes
+'''
+print(msg)
+
+args = ['MCD15A3H','h08v06','2020','*', '01']
 hdf_urls = modis_dataset(*args,verbose=True)
 # test if exist
 for u in hdf_urls:
-    print(f'{u.name} : {u.exists()}')
+    print(f'{u.name} : {u.stat().st_size/(1024*1024): .2f} MB')
 ```
 
-    --> wildcards in: ['2020.06.*' '*.h08v06*.hdf']
-    --> level 0/2 : 2020.06.*
+    
+    Note: 1 MB = 1024 * 1024 Bytes
+    
+
+
+    --> wildcards in: ['2020.*.01' '*.h08v06*.hdf']
+    --> level 0/2 : 2020.*.01
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> discovered 4 files with pattern 2020.*.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
     --> level 1/2 : *.h08v06*.hdf
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.05
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.09
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.13
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.17
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.21
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.25
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.29
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
+    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
 
 
-    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
-    MCD15A3H.A2020157.h08v06.006.2020162035120.hdf : True
-    MCD15A3H.A2020161.h08v06.006.2020167041028.hdf : True
-    MCD15A3H.A2020165.h08v06.006.2020170044117.hdf : True
-    MCD15A3H.A2020169.h08v06.006.2020174041553.hdf : True
-    MCD15A3H.A2020173.h08v06.006.2020178032155.hdf : True
-    MCD15A3H.A2020177.h08v06.006.2020182190226.hdf : True
-    MCD15A3H.A2020181.h08v06.006.2020188194909.hdf : True
-
-
-
-```python
-# ANSWER 4
-msg = '''
-what happens if you use a wildcard for the date?
-
-It accepts wildcards for anywhere in the directory path.
-This is very useful for gathering datasets!
-'''
-print(msg)
-```
-
-    
-    what happens if you use a wildcard for the date?
-    
-    It accepts wildcards for anywhere in the directory path.
-    This is very useful for gathering datasets!
-    
+    MCD15A3H.A2020001.h08v06.006.2020006032951.hdf :  8.65 MB
+    MCD15A3H.A2020061.h08v06.006.2020066032716.hdf :  8.63 MB
+    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf :  9.66 MB
+    MCD15A3H.A2020245.h08v06.006.2020253152835.hdf :  10.46 MB
 

@@ -217,35 +217,6 @@
 <span class="nb">sorted</span> <span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;six&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
-<span class="c1"># Print the value of my_var using print(my_var)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
-
-<span class="c1"># Print the value of my_var using print(locals()[&#39;my_var&#39;])</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">locals</span><span class="p">()[</span><span class="s1">&#39;my_var&#39;</span><span class="p">])</span>
-
-<span class="c1"># confirm that they give the same answer</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">I can see they are the same</span>
-<span class="s1">&#39;&#39;&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
-
-<span class="ne">NameError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
-
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">a8b1461bf99a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-      <span class="mi">1</span> <span class="c1"># ANSWER</span>
-      <span class="mi">2</span> <span class="c1"># Print the value of my_var using print(my_var)</span>
-<span class="o">----&gt;</span> <span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
-      <span class="mi">4</span> 
-      <span class="mi">5</span> <span class="c1"># Print the value of my_var using print(locals()[&#39;my_var&#39;])</span>
-
-
-<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;my_var&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="learning-new-things">
 <h2>Learning new things<a class="headerlink" href="#learning-new-things" title="Permalink to this headline">¶</a></h2>
@@ -319,16 +290,18 @@
 <li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_files.html">021 Read Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_files_answers.html">021 Read Files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
 <li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>

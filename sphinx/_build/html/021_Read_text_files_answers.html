@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>021 Read and Write: Streams : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="021 Read and Write: URLs and files : Answers to exercises" href="022_Read_write_files_answers.html" />
+    <link rel="prev" title="020 Files and other Resources : Answers to exercises" href="020_Python_files_answers.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="read-and-write-streams-answers-to-exercises">
+<h1>021 Read and Write: Streams : Answers to exercises<a class="headerlink" href="#read-and-write-streams-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>write code to read from the json-format file <code class="docutils literal notranslate"><span class="pre">bin/copy/environment.json</span></code> into a dictionary called <code class="docutils literal notranslate"><span class="pre">json_data</span></code>.</p></li>
+<li><p>print out the dictionary keys.</p></li>
+<li><p>print the file size of the json-format file in KB to two decimal places.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># write code to read from the json-format file </span>
+<span class="c1"># bin/copy/environment.json </span>
+<span class="c1"># into a dictionary called json_data.</span>
+<span class="n">json_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;bin/copy/environment.json&#39;</span><span class="p">)</span>
+
+<span class="c1"># use with ... as ... as we have been shown</span>
+<span class="k">with</span> <span class="n">json_file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+<span class="c1"># print out the dictionary keys.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># print the file size of the </span>
+<span class="c1"># json-format file in KB to two decimal places.</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;file </span><span class="si">{</span><span class="n">json_file</span><span class="si">}</span><span class="s1"> size </span><span class="si">{</span><span class="n">json_file</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span> <span class="o">/</span> <span class="mi">1024</span> <span class="si">:</span><span class="s1"> .2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;channels&#39;</span><span class="p">,</span> <span class="s1">&#39;dependencies&#39;</span><span class="p">])</span>
+<span class="n">file</span> <span class="nb">bin</span><span class="o">/</span><span class="n">copy</span><span class="o">/</span><span class="n">environment</span><span class="o">.</span><span class="n">json</span> <span class="n">size</span>  <span class="mf">0.78</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<p>The file <a class="reference external" href="https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv">2276931.csv</a> contains precipitation data for an <a class="reference external" href="https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY">NOAA weather station</a> <code class="docutils literal notranslate"><span class="pre">HAVANA</span> <span class="pre">4.2</span> <span class="pre">SW,</span> <span class="pre">FL</span> <span class="pre">US</span></code> for the year 2020 to date.</p>
+<p>The dataset URL is:</p>
+<p>https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv</p>
+<ul class="simple">
+<li><p>Inspect the file to discover any issues you must account for.</p></li>
+<li><p>Read the file into <code class="docutils literal notranslate"><span class="pre">pandas</span></code> using <code class="docutils literal notranslate"><span class="pre">url.open('r')</span></code>.</p></li>
+<li><p>print the first 5 lines of data</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">Inspect the file to discover any issues you must account for.</span>
+
+<span class="s1">The file is straightforward CVS format, with the first column</span>
+<span class="s1">the data column titles</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
+
+<span class="n">site</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com&#39;</span>
+<span class="n">site_dir</span> <span class="o">=</span> <span class="s1">&#39;/UCL-EO/geog0111/master/data&#39;</span>
+<span class="n">site_file</span> <span class="o">=</span> <span class="s1">&#39;2276931.csv&#39;</span>
+
+<span class="c1"># form the URL</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">site_dir</span><span class="p">,</span><span class="n">site_file</span><span class="p">)</span>
+
+<span class="c1"># Read the file into pandas using url.open(&#39;r&#39;).</span>
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">))</span>
+
+<span class="c1"># print the first 5 lines of data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Inspect</span> <span class="n">the</span> <span class="n">file</span> <span class="n">to</span> <span class="n">discover</span> <span class="nb">any</span> <span class="n">issues</span> <span class="n">you</span> <span class="n">must</span> <span class="n">account</span> <span class="k">for</span><span class="o">.</span>
+
+<span class="n">The</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">straightforward</span> <span class="n">CVS</span> <span class="nb">format</span><span class="p">,</span> <span class="k">with</span> <span class="n">the</span> <span class="n">first</span> <span class="n">column</span>
+<span class="n">the</span> <span class="n">data</span> <span class="n">column</span> <span class="n">titles</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">dataframe</span> <span class="n">tbody</span> <span class="n">tr</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">vertical</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">top</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">.</span><span class="n">dataframe</span> <span class="n">thead</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">text</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">right</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATION</th>
+      <th>NAME</th>
+      <th>DATE</th>
+      <th>PRCP</th>
+      <th>SNOW</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-01</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-02</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-03</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-04</td>
+      <td>0.98</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-05</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER </span>
+
+<span class="c1"># print out the absolute pathname of the </span>
+<span class="c1"># directory that images/ucl.png is in</span>
+<span class="n">abs_name</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;images/ucl.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">abs_name</span><span class="p">)</span>
+
+<span class="c1"># we want the parent!</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the file </span><span class="si">{</span><span class="n">abs_name</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> is in </span><span class="si">{</span><span class="n">abs_name</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># print the size of the file in bytes without reading the datafile. </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">abs_name</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> has size </span><span class="si">{</span><span class="n">abs_name</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span><span class="si">}</span><span class="s1"> bytes&#39;</span><span class="p">)</span>
+
+<span class="c1"># 1 KB is 1024 Bytes</span>
+<span class="c1"># .2f is 2 d.p. format</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">abs_name</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> has size &#39;</span> <span class="o">+</span>\
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">abs_name</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
+
+<span class="c1"># read the datafile, and check you get the same data size</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">abs_name</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span>
+<span class="c1"># size</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;the size of data read is </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1"> bytes -&gt; </span><span class="si">{</span><span class="n">s</span><span class="o">/</span><span class="mi">1024</span> <span class="si">:</span><span class="s1"> .2f</span><span class="si">}</span><span class="s1"> KB&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">ucl</span><span class="o">.</span><span class="n">png</span>
+<span class="n">the</span> <span class="n">file</span> <span class="n">ucl</span><span class="o">.</span><span class="n">png</span> <span class="ow">is</span> <span class="ow">in</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span><span class="o">/</span><span class="n">images</span>
+<span class="n">ucl</span><span class="o">.</span><span class="n">png</span> <span class="n">has</span> <span class="n">size</span> <span class="mi">1956</span> <span class="nb">bytes</span>
+<span class="n">ucl</span><span class="o">.</span><span class="n">png</span> <span class="n">has</span> <span class="n">size</span> <span class="mf">1.91</span> <span class="n">KB</span>
+<span class="n">the</span> <span class="n">size</span> <span class="n">of</span> <span class="n">data</span> <span class="n">read</span> <span class="ow">is</span> <span class="mi">1956</span> <span class="nb">bytes</span> <span class="o">-&gt;</span>  <span class="mf">1.91</span> <span class="n">KB</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">021 Read and Write: Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="020_Python_files_answers.html" title="previous chapter">020 Files and other Resources : Answers to exercises</a></li>
+      <li>Next: <a href="022_Read_write_files_answers.html" title="next chapter">021 Read and Write: URLs and files : Answers to exercises</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/021_Read_text_files_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

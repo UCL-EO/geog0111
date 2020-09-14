@@ -311,6 +311,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -709,8 +716,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Read_files/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../021_Read_text_files/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -721,8 +728,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_PandasExtra_and_plotting/" title="Pandasextra And Plotting" class="md-nav__link">
-      Pandasextra And Plotting
+    <a href="../022_Read_write_files/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
     </a>
   </li>
 
@@ -733,7 +740,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
+    <a href="../023_Pandas_and_plotting/" title="Pandas And Plotting" class="md-nav__link">
       Pandas And Plotting
     </a>
   </li>
@@ -745,7 +752,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../023_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../024_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -814,8 +821,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Read_files_answers/" title="Read Files" class="md-nav__link">
-      Read Files
+    <a href="../021_Read_text_files_answers/" title="Read Text Files" class="md-nav__link">
+      Read Text Files
     </a>
   </li>
 
@@ -826,7 +833,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../023_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+    <a href="../022_Read_write_files_answers/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../024_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
       NASA MODIS Earthdata
     </a>
   </li>
@@ -1080,6 +1099,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1110,6 +1136,8 @@
 <h3 id="google-earth-engine">Google Earth Engine</h3>
 <p>You will also need to make sure you have a <a href="https://support.google.com/accounts/answer/27441?hl=en">google account</a> to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at <a href="https://signup.earthengine.google.com/">signup.earthengine.google.com</a>. <strong>You will need to do this before we start the class</strong> as you will need to wait for approval from Google.</p>
 <h3 id="nasa-earthdata-login-and-password">NASA Earthdata login and password</h3>
+<p>Before you can use the material in these notebooks, you will need to register as a user at the <a href="https://urs.earthdata.nasa.gov/users/new"><code>NASA EarthData</code></a>.</p>
+<p>Once you have done that, make sure you know your <code>username</code> and <code>password</code> ready for below.</p>
 <p>Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.</p>
 <p>To that in these notes we can make use of stored passwords and usernames using the local <a href="../geog0111/cylog.py">cylog</a> package. </p>
 <p>Information is encrypted in a user read-only file in your home directory (mode <code>400</code>) and accessed through the <code>Cylog</code>  <code>login</code> function.</p>
@@ -1188,6 +1216,18 @@ conda 4.8.4
 Python 3.7.8
 </code></pre>
 <p>The code cell above that we ran is a <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"><code>unix</code> (<code>bash</code>) shell</a>, indicated by the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code>%%bash</code> on the first line. This is a mechanism that lets us run unix commands in a Python notebook.</p>
+<h3 id="test">Test</h3>
+<p>You will need a web login to NASA Earthdata and to have stored this using <code>cylog</code> according to <a href="./">004_Accounts</a> for the site <code>https://e4ftl01.cr.usgs.gov</code>. We can test this with the following code if you set do_test to True:</p>
+<pre><code class="python">from geog0111.modis import test_login
+do_test = False
+assert test_login(do_test,verbose=False)
+</code></pre>
+
+<p>If this fails, set <code>verbose</code> to <code>True</code> to see what is going on, then if you can;'t work it out from there, go back to <a href="./">004_Accounts</a> and sort the login for NASA Earthdata the site <code>https://e4ftl01.cr.usgs.gov</code>.</p>
+<p>If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:</p>
+<pre><code>cy = cylog(site,force=True)
+</code></pre>
+<p>and re-run.</p>
 <pre><code class="python">
 </code></pre>
                 

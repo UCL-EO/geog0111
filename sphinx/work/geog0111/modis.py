@@ -76,7 +76,20 @@ class Modis():
     url = URL(site,site_dir)
     hdf_urls = url.glob(site_file,verbose=verbose)
     return hdf_urls 
-    
+
+def test_login(do_test,verbose=False):
+    '''ping small (1.3 M) test file
+       to test NASA Earthdata login'''
+    if not do_test:
+      return True
+    # ping small (1.3 M) test file
+    site='https://e4ftl01.cr.usgs.gov/'
+    test_dir='MOLA/MYD11_L2.006/2002.07.04'
+    test_file='MYD11_L2*0325*.hdf'
+    # this glob interprets the wildcards to get at a suitable test file
+    url = URL(site,test_dir).glob(test_file,verbose=verbose)[0]
+    # test ping returns True
+    return url.ping(verbose=verbose)   
 
 def main():
   modis = Modis('MCD15A3H',verbose=True)
