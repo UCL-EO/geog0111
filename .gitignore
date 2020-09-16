@@ -5,6 +5,8 @@
 docs/_*
 *.icloud
 *.swp
+data/ucl
+work/*
 data/lai_data_*.npz
 data/TM_WORLD_BORDERS-0.3.dbf
 data/TM_WORLD_BORDERS-0.3.prj

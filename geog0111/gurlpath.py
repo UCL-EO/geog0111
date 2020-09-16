@@ -6,6 +6,7 @@ import yaml
 import os
 from pathlib import Path
 import urlpath
+
 import urllib
 from pathlib import _PosixFlavour, PurePath
 import collections.abc
@@ -44,51 +45,115 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
   '''
 
-  def _local_file(self,local_file=None,verbose=False,local_dir=None,nomkdir=True,noclobber=True):
-      self.verbose = verbose
-      try:
-        local_dir = local_dir or self.local_dir
-      except:
-        local_dir = local_dir
-      try:
-        local_file = local_file or self.local_file
-      except:
-        local_file = local_file
+  '''
+  modified new and init
+  '''
+  def __new__(cls,*args,**kwargs):
+      self = super(URL, cls).__new__(cls,*args) 
+      self.kwargs = dict(kwargs)
+      if 'level' not in self.kwargs:
+        self.kwargs['level'] = 0
+      return self
 
+  def __init__(self,*args,**kwargs):
+      # remove any trailing '/' from args
+      args = list(args)
+      for i,arg in enumerate(args):
+        arg = str(arg)
+        while arg[-1] == '/':
+          if len(arg) == 1:
+            break
+          arg = arg[:-1]
+        args[i] = arg
+      args = tuple(args)
+      if not kwargs:
+        kwargs = {}
+      if 'level' in kwargs.keys():
+        kwargs['level'] += 1
+      else:
+        kwargs['level'] = 0
+      self._init(**kwargs)
 
-      if local_dir:
-        local_file = Path(local_dir,self.name) 
-      local_file =  Path(local_file or Path(self.components[2][1:]))
-      #self.msg(f"local file {local_file}")
+  def _init(self,**kwargs):
+      '''kwargs setup'''
+      self.verbose    = False
+      self.local_dir  = None
+      self.local_file = None
+      self.noclobber  = True
+      self.size_check = True
+
+      # extra arguments
+      keys = kwargs.keys()
+      if 'verbose' in keys:
+        self.verbose = kwargs['verbose']
+      if 'noclobber' in keys:
+        self.noclobber = kwargs['noclobber']
+      if 'size_check' in keys:
+        self.size_check = kwargs['size_check']
+
+      # local_dir may be a cache
+      if 'CACHE_DIR' in os.environ.keys() and os.environ['CACHE_DIR'] != None:
+        self.local_dir = Path(os.environ['CACHE_DIR']).absolute()
+        #self.msg(f"cache directory set from $CACHE_DIR : {self.local_dir}")
+      if 'local_dir' in keys and kwargs['local_dir'] != None:
+        self.local_dir = Path(kwargs['local_dir']).absolute()
+        #self.msg(f"cache directory set from cmd line : {self.local_dir}")
+
+      if 'local_file' in keys and kwargs['local_file'] != None:
+        self.local_file = Path(kwargs['local_file']).absolute()
+        self.msg(f"cache file set from cmd line : {self.local_file}")
+
+      if self.local_file and self.local_dir == None:
+        self.local_dir = self.local_file.parent
+      # so self.local_dir is either None or a Path
+
+      if self.local_file == None and self.local_dir:
+        self.local_file = Path(self.local_dir,self.name)
+
+      if self.local_dir:
+        if not self.local_dir.exists():
+          self.msg(f"mkdir local dir {self.local_dir}")
+          self.local_dir.mkdir(parents=True,exist_ok=True)
+
+  def _local_file(self):
+
+      if self.local_dir:
+        self.local_dir = Path(self.local_dir)
+        local_file = Path(self.local_dir,self.name) 
+        self.local_dir.mkdir(parents=True,exist_ok=True)
+      else:
+        local_file = self.local_file
+
+      if local_file == None:
+        return local_file
+
+      #local_file =  Path(local_file or Path(self.components[2][1:]))
+      # dont make it if it doesnt exist
+      #if not nomkdir:
+      #  self.msg(f"mkdir local dir {local_dir}")
+      #  local_dir.mkdir(parents=True,exist_ok=True)
+
+      if local_file.is_dir():
+        return None
+
       if local_file.exists():
         lsize = local_file.stat().st_size
-        self.msg(f"existing file {local_file} {lsize} Bytes")
-        self.msg(f'noclobber: {noclobber}')
+        #self.msg(f"existing file {local_file} {lsize} Bytes")
+        self.msg(f'noclobber: {self.noclobber}')
         # delete the file if noclobber is False
-        if not noclobber:
+        if not self.noclobber:
           self.msg("deleting existing file {local_file}")
           local_file.unlink()
         else:
           self.msg(f"keeping existing file {local_file}")
-      #self.msg(f"possible local file {local_file}")
-      local_dir = local_file.parent
-      # dont make it if it doesnt exist
-      if not nomkdir:
-        self.msg(f"mkdir local dir {local_dir}")
-        local_dir.mkdir(parents=True,exist_ok=True)
       
       return local_file
 
-  def open(self,mode='r',cache=False, buffering=-1, encoding=None, errors=None, newline=None,\
-                size_check=True,local_dir=None,verbose=False,noclobber=True,local_file=None):
+  def open(self,mode='r',buffering=-1, encoding=None, errors=None, newline=None):
       '''
       Open the file pointed by this URL and return a file object, as
       the built-in open() function does.
       '''
-      # append, so dont clobber
-      if '+' in mode or 'a' in mode:
-        noclobber=True
-      self.verbose = verbose
       kwargs = {'mode':mode,'buffering':buffering,'encoding':encoding,\
                 'errors':errors,'newline':newline}
 
@@ -98,23 +163,17 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
       binary = ('b' in mode) and ('t' not in mode) 
 
-      get_download = True
-      if cache:
-        get_download = self._test_already_local(verbose=verbose,size_check=size_check,\
-             local_file=local_file,local_dir=local_dir,noclobber=noclobber)
+      local_file = self._local_file()
+      get_download = self._test_already_local()
 
       if not get_download:
-        self.msg(f'opening already downloaded file')
-        return Path(self._local_file(verbose=verbose,\
-             local_file=local_file,local_dir=local_dir,\
-             size_check=True,noclobber=noclobber)).open(**kwargs)
+        self.msg(f'opening already downloaded file {local_file}')
+        return Path(local_file).open(**kwargs)
 
       self.msg(f'opening stream to {self}:') 
 
       if 'r' in mode:
         self.msg(f"reading data from {self}")
-        # cache ?
-         
         # read 
         if binary:
           self.msg("open() binary stream")
@@ -122,34 +181,25 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         else:
           self.msg("open() text stream")
           return  io.StringIO(self.read_text())
-      # if we are here, then we probably 
-      # want a real file for writing or whatever
-      local_file = self._local_file(verbose=verbose,local_dir=local_dir,local_file=local_file,noclobber=noclobber)  
 
-      self.msg(f"opening file ...")
-      return local_file.open(**kwargs)
+      # fallback
+      self.msg(f'fallback open()')
+      self.msg(f'opening already downloaded file {local_file}')
+      return Path(local_file).open(**kwargs)
 
-  def write_text(self,data, encoding=None, errors=None,size_check=True,
-                      local_dir=None,verbose=False,noclobber=True,local_file=None):
+  def write_text(self,data, encoding=None, errors=None):
       '''Open the file in text mode, write to it, and close the file.'''
-      self.verbose = verbose 
       kwargs = {'encoding':encoding}
       if self._isfile():
           self.msg(f'{self} is not a URL: interpreting as Path')
           return Path(self).write_text(data)
 
-      #self.msg(f'{self}')
-      get_download = self._test_already_local(verbose=verbose,size_check=size_check,\
-             local_file=local_file,local_dir=local_dir,noclobber=noclobber)
+      local_file = self._local_file()
+      get_download = self._test_already_local()
 
-      self.msg(f'get download? {get_download}')
       if not get_download:
-        self.msg(f'opening already downloaded file')
-        return Path(self._local_file(verbose=verbose,\
-             local_file=local_file,local_dir=local_dir,\
-             noclobber=noclobber)).write_text(data,**kwargs)
-
-      local_file = self._local_file(verbose=verbose,local_dir=local_dir,local_file=local_file,noclobber=noclobber)   
+        self.msg(f'opening already downloaded file {local_file}')
+        return Path(local_file).write_text(data,**kwargs)
 
       if not local_file.exists():
           kwargs = {'encoding':encoding,'errors':errors}
@@ -161,24 +211,19 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       self.msg(f"done : {retval}")
       return retval
 
-  def write_bytes(self,data,verbose=False,size_check=True,
-                       local_dir=None,noclobber=True,local_file=None):
+  def write_bytes(self,data):
       '''Open the file in bytes mode, write to it, and close the file.'''
-      self.verbose = verbose   
       if self._isfile():
           self.msg(f'{self} is not a URL: interpreting as Path')
-          return Path(self).write_text(data)
+          return Path(self).write_bytes(data)
 
-      get_download = self._test_already_local(verbose=verbose,size_check=size_check,\
-             local_file=local_file,local_dir=local_dir,noclobber=noclobber)
+      local_file = self._local_file()
+      get_download = self._test_already_local()
 
       if not get_download:
-        self.msg(f'opening already downloaded file')
-        return Path(self._local_file(verbose=verbose,\
-             local_file=local_file,local_dir=local_dir,\
-             noclobber=noclobber)).write_bytes(data)
+        self.msg(f'opening already downloaded file {local_file}')
+        return Path(local_file).write_bytes(data)
 
-      local_file = self._local_file(verbose=verbose,local_dir=local_dir,local_file=local_file,noclobber=noclobber)   
       if not local_file.exists():
           self.msg(f"writing data ...")
           retval = local_file.write_bytes(data)
@@ -189,9 +234,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       self.msg(f"done : {retval}")
       return retval
 
-  def _get_login(self,head=True,verbose=False):
+  def _get_login(self,head=True):
       u = self.resolve()
-      u.verbose = verbose
+      u._init(**(self.kwargs))
       with requests.Session() as session:
         if u.username and u.password:
           session.auth = u.username,u.password
@@ -224,74 +269,79 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
   def msg(self,*args):
     '''msg to stderr'''
     try:
+      # DONT REPEAT MESSAGES
+      if args in self.store_msg:
+        return
+      self.store_msg.append(args)
+    except:
+      self.store_msg = [args]
+    try:
         if self.verbose:
             print('-->',*args,file=sys.stderr)
     except:
         pass
 
-  def _test_already_local(self,verbose=False,size_check=True,\
-             local_file=None,local_dir=None,noclobber=True):
+  def _test_already_local(self):
     # get local_filename we would use for output
     # delete it if not noclobber
     # dont greate dir if it doesnt exist
-    self.verbose = verbose
-    local_file = self._local_file(local_file=local_file,verbose=verbose,\
-             nomkdir=True,local_dir=local_dir,noclobber=noclobber)
-    self.msg(f'local file: {local_file}')
-
-    if not local_file:
+    local_file = self._local_file()
+    if local_file:
+      self.msg(f'local file: {local_file}')
+    else:
       return True
     # local file doesnt exists
+
+    if local_file.is_dir():
+      return False
+
     if not local_file.exists():
-      self.msg(f'local file {local_file} does not exist')
+      #self.msg(f'local file {local_file} does not exist')
       return True
 
     # simple if no size check
-    if (not size_check) and local_file.exists():
+    if (not self.size_check) and local_file.exists():
       self.msg(f'local file {local_file} exists: no size check')
       return False
 
-
-    if size_check:
+    if self.size_check:
       lsize = local_file.stat().st_size
-      rsize = self.stat(verbose=verbose).st_size
+      rsize = self.stat().st_size
       if rsize < 0:
         # then its not available
-        self.msg(f'noclobber: {noclobber}')
         self.msg(f'not downloading file')
         # we might not want to download
         return False
       elif lsize == rsize:
         self.msg(f'local and remote file sizes equal {lsize}')
-        self.msg(f'noclobber: {noclobber}')
         self.msg(f'not downloading file')
         # we might not want to download
         return False
       self.msg(f'local and remote file sizes not equal {lsize}/{rsize} respectively')
       self.msg(f'so we need to download (or set size_check=False)')
-      if not noclobber:
+      if not self.noclobber:
         self.msg(f'deleting local file {local_file}')
         local_file.unlink()
     return True
 
-  def read_text(self, encoding=None, errors=None,noclobber=True,
-                      size_check=True,local_file=None,local_dir=None,verbose=False):
+
+  def read_text(self, encoding=None, errors=None):
     '''Open the URL, read in text mode and return text.'''  
-    self.verbose = verbose   
+
+    kwargs = {'encoding':encoding}
     u = self.resolve()
+    u._init(**(self.kwargs))
     if u._isfile():
       self.msg(f'{u} is not a URL: interpreting as Path')
       return Path(u).read_text()
-    u.verbose = verbose
 
-    get_download = self._test_already_local(verbose=verbose,size_check=size_check,\
-           local_file=local_file,local_dir=local_dir,noclobber=noclobber)
+    local_file = self._local_file()
+    get_download = self._test_already_local()
+
 
     if not get_download:
-      self.msg(f'opening already downloaded file')
-      return Path(self._local_file(verbose=verbose,\
-             local_file=local_file,local_dir=local_dir,\
-             noclobber=noclobber)).read_text()
+      self.msg(f'opening already downloaded file {local_file}')
+      return Path(local_file).read_text(**kwargs)
 
     try:
       u.msg(f'trying {self}')
@@ -300,7 +350,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       pass
 
     u.msg(f'getting login')
-    r = u._get_login(head=False,verbose=verbose)
+    r = u._get_login(head=False)
     if type(r) != requests.models.Response:
       return None
     if r.status_code == 200:
@@ -312,19 +362,17 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     u.msg(f'failed to connect')
     return None
 
-  def exists(self, verbose=False):
+  def exists(self):
     '''Whether this URL exists and can be accessed'''
-    self.verbose =verbose
-    return self.ping(verbose=verbose)
+    return self.ping()
 
-  def stat(self, head=False,verbose=False):
+  def stat(self, head=False):
     '''
     Some of the functionality of stat for URLs
 
     Currently, only stat_result.st_size is used.
     '''
-    self.verbose=verbose
-    input = [0,0,0,0,0,0,self._st_size(head=head,verbose=verbose),0,0,0]
+    input = [0,0,0,0,0,0,self._st_size(head=head),0,0,0]
     stat_result = os.stat_result(input)
     return stat_result
 
@@ -333,14 +381,13 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     return self.resolve
 
   def _isfile(self):
-    #self.msg('testing to see if we are a local file')
     if self.scheme == '' or self.scheme == 'file':
       self.msg('we are a file ...')
       return True
     #self.msg('we are not a file ...')
     return False
 
-  def _st_size(self, head=False,verbose=False):
+  def _st_size(self, head=False):
     '''
     retrieve the remote file size
 
@@ -352,9 +399,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     Or:
       -1
     '''
-    self.verbose=verbose
     u = self.resolve()
-    u.verbose = verbose
+    u._init(**(self.kwargs))
+
     remote_size = -1
     if u._isfile():
       self.msg(f'{u} is not a URL: interpreting as Path')
@@ -386,7 +433,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           # more complex session login and auth
           # e.g. needed for NASA Earthdata login
           u.msg(f'getting login')
-          r = u._get_login(head=head,verbose=verbose)
+          r = u._get_login(head=head)
           if r.status_code == 200:
             u.msg(f'code 200')
             hdr = r.headers
@@ -405,9 +452,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       u.msg(f'failed to connect')
       return remote_size
     u.msg(f'trying get')
-    return u.st_size(head=False,verbose=verbose)
+    return u.st_size(head=False)
 
-  def ping(self, head=True,verbose=False):
+  def ping(self, head=True):
     '''
     ping the URL data return True if response is 200
 
@@ -419,9 +466,8 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     Or:
       False
     '''
-    self.verbose=verbose
     u = self.resolve()
-    u.verbose = verbose
+    u._init(**(self.kwargs))
     if u._isfile():
       self.msg(f'{u} is not a URL: interpreting as Path')
       # not a URL
@@ -444,7 +490,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           # more complex session login and auth
           # e.g. needed for NASA Earthdata login
           u.msg(f'getting login')
-          r = u._get_login(head=head,verbose=verbose)
+          r = u._get_login(head=head)
           if r.status_code == 200:
             u.msg(f'code 200')
             return True
@@ -457,9 +503,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       u.msg(f'failed to connect')
       return False
     u.msg(f'trying get')
-    return u.ping(head=False,verbose=verbose)
+    return u.ping(head=False)
 
-  def read_bytes(self, local_file=None,size_check=True,local_dir=None,noclobber=True,verbose=False):
+  def read_bytes(self):
     '''
     Open the URL data in bytes mode, read it and return the data
 
@@ -467,7 +513,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     (e.g. when using NASA server) then a fuller 2-pass session
     is used.
 
-    You should speciufy any required login/password with 
+    You should specify any required login/password with 
     with_components(username=str,password=str) 
 
     Returns:
@@ -476,21 +522,19 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       None                     : on failure 
       requests.models.Response : on connection problem
     '''
-    self.verbose = verbose   
     u = self.resolve()
-    u.verbose = verbose
+    u._init(**(self.kwargs))
+
     if u._isfile():
       self.msg(f'{u} is not a URL: interpreting as Path')
       return Path(u).read_bytes()
 
-    get_download = self._test_already_local(verbose=verbose,size_check=size_check,\
-           local_file=local_file,local_dir=local_dir,noclobber=noclobber)
+    local_file = self._local_file()
+    get_download = self._test_already_local()
 
     if not get_download:
-      self.msg(f'opening already downloaded file')
-      return Path(self._local_file(verbose=verbose,\
-             local_file=local_file,local_dir=local_dir,\
-             noclobber=noclobber)).read_bytes()
+      self.msg(f'opening already downloaded file {local_file}')
+      return Path(local_file).read_bytes()
 
     try:
       u.msg(f'trying {u}')
@@ -506,7 +550,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           # more complex session login and auth
           # e.g. needed for NASA Earthdata login
           u.msg(f'getting login')
-          r = u._get_login(head=False,verbose=verbose)
+          r = u._get_login(head=False)
           if type(r) != requests.models.Response:
             return None
           if r.status_code == 200:
@@ -522,18 +566,22 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     return None 
 
 
-  def _convert_to_abs(self,list):
+  def _convert_to_abs(self,ilist):
     # this url
     this = str(self.resolve())
     olist = []
-    for l in list:
-      if URL(l).hostname:
+    for l in ilist:
+      if URL(l,**(self.kwargs)).hostname:
         pass
-        # ignore absolutes
-        #olist.append(str(URL(l).resolve()))
       else:
-        if l not in ['about', '/','#'] and l[0] not in ['/','#']:
-          olist.append(str(URL(this,l).resolve()))
+        try:
+          # trim
+          while len(l) > 1 and l[-1] == '/':
+            l = l[:-1]
+          if l not in ['about', '/','#'] and l[0] not in ['/','#']:
+            olist.append(str(URL(this,l,**(self.kwargs)).resolve()))
+        except:
+          pass
     return olist
 
   def _filter(self,list,pattern):
@@ -553,7 +601,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     self.done[pattern] = self.done[pattern] + olist
     return olist
 
-  def glob(self,pattern, verbose=False):
+  def glob(self,pattern):
     '''
     Iterate over this subtree and yield all existing files (of any
     kind, including directories) matching the given relative pattern.
@@ -564,17 +612,13 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
        patterm  : to search for e.g. */2021.*.01
                   only wildcards * and ? considered at present
 
-    Keyword arguments:
-       verbose=False   : verbose feedback
- 
     '''
-    self.verbose = verbose   
     u = self.resolve()
-    u.verbose = verbose
+    u._init(**(self.kwargs))
     url = str(u)
     if url[-1] == '/':
       url = urls[:-1]
-    url = URL(url,pattern)
+    url = URL(url,pattern,**(self.kwargs))
     uc = np.array(url.parts)
     is_wild   = np.logical_or(np.array(['*' in i for i in uc]),
                               np.array(['?' in i for i in uc]))
@@ -582,21 +626,21 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
                               np.array([']' in i for i in uc]))
     is_wild = np.logical_or(is_wild,is_wild_2)
     first_wild = np.where(np.cumsum(is_wild)>0)[0][0]
-    base_list = [str(URL(*list(uc[:first_wild])).resolve())]
+    base_list = [str(URL(*list(uc[:first_wild]),**(self.kwargs)).resolve())]
     wilds = uc[first_wild:]
     u.msg(f'wildcards in: {wilds}')
     for i,w in enumerate(wilds):
       u.msg(f'level {i}/{len(wilds)} : {w}')
       new_list = []
       for b in base_list:
-        new_list = new_list + URL(b)._glob(w,verbose=verbose)
+        new_list = new_list + URL(b,**(self.kwargs))._glob(w)
       base_list = np.array(new_list).flatten()
-    olist = list(np.array([URL(i) for i in base_list]).flatten())
+    olist = list(np.array([URL(i,**(self.kwargs)) for i in base_list]).flatten())
     for l in olist:
-      l.verbose = self.verbose
+      l._init(**(self.kwargs))
     return olist
 
-  def rglob(self, pattern, verbose=False):
+  def rglob(self, pattern):
     '''
     Recursively yield all existing files (of any kind, including
     directories) matching the given relative pattern, anywhere in
@@ -606,30 +650,26 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
        patterm  : to search for e.g. 2021.*.01
                   only wildcards * and ? considered at present
 
-    Keyword arguments:
-       verbose=False   : verbose feedback
 
     '''
-    self.verbose = verbose
     u = self.resolve()
-    u.verbose = verbose
-    return u.rglob(pattern, verbose=verbose)
+    u._init(**(self.kwargs))
+    return u.glob(pattern)
 
 
-  def _glob(self, pattern, verbose=False):
+  def _glob(self, pattern):
     '''
     Iterate over this subtree and yield all existing files (of any
     kind, including directories) matching the given relative pattern.
 
     The URL here then needs to return lxml html code.
     '''
-    self.verbose = verbose
     # take off training slash
     if pattern[-1] == '/':
       pattern = pattern[:-1]
 
     try:
-      html = self.read_text(verbose=verbose)
+      html = self.read_text()
       links = np.array([mylink.attrs['href'] for mylink in BeautifulSoup(html,'lxml').find_all('a')])
       links = np.array(self._filter(links,pattern))
 
@@ -653,13 +693,15 @@ def main():
   if False:
     u='https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11'
     url = URL(u)
-    files = url.glob('*0.hdf',verbose=True) 
+    files = url.glob('*0.hdf') 
     print(files) 
 
   if True:
     u='https://e4ftl01.cr.usgs.gov'
-    url = URL(u)
-    rlist = url.glob('MOT*/MCD15A3H.006/2003.12.*/*0.hdf',verbose=True)
+    url = URL(u,verbose=True)
+    import os
+    os.environ['CACHE_DIR'] = '/tmp/modis'
+    rlist = url.glob('MOT*/MCD15A3H.006/2003.12.*/*0.hdf')
     print(rlist)
  
 if __name__ == "__main__":
