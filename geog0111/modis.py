@@ -34,6 +34,7 @@ class Modis():
                     size_check=True,\
                     no_clobber=True,\
                     local_dir=None,\
+                    db_dir=None,\
                     verbose=False):
 
     self.size_check = size_check
@@ -169,10 +170,7 @@ def main():
   modis = Modis('MCD15A3H',verbose=True,local_dir='work')
   hdf_urls = modis.get_url("2020","*","0[1-4]")
   tif_files = modis.get_data(hdf_urls)
-  database = {modis.product : modis.sub, 'url' : { str(modis) : [str(i) for i in hdf_urls] }}
-  yaml_file = Path('work/db.yml')
-  with yaml_file.open('w') as f:
-    env = yaml.safe_dump(database,f)
+  database = {modis.product : modis.sub}
 
 
 
