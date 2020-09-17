@@ -7,6 +7,8 @@ docs/_*
 *.swp
 data/ucl
 work/*
+notebooks/work/*html
+xx
 .db.*
 ????.??.??
 data/lai_data_*.npz

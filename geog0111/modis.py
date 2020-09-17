@@ -89,8 +89,7 @@ class Modis():
     b = g.GetRasterBand(1)
     return data, (b.GetScale(),b.GetOffset())
     
-
-  def stitch_dates(self,year,step=4):
+  def get_year(self,year,step=4):
     '''create vrt dataset of all images for a year'''
     kwargs = self.kwargs.copy()
     kwargs['year']  = f'{year}'
