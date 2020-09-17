@@ -4,12 +4,13 @@
 import sys
 import yaml
 import os
-from pathlib import Path
 import urlpath
 import stat
 
 import urllib
 from pathlib import PosixPath, _PosixFlavour, PurePath
+from pathlib import Path
+
 import collections.abc
 import functools
 import re
@@ -21,6 +22,8 @@ import numpy as np
 import io
 import tempfile
 from functools import reduce
+from itertools import chain
+
 
 try:
   from geog0111.cylog import Cylog
@@ -80,23 +83,20 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       '''cleanup'''
       tempfile.clean()
 
-  def list_resolve(self,filelist):
+  def list_resolve(self,filelist,files=False):
       '''resolve filelist'''
-      if filelist is None:
-        return filelist
+      if (filelist is None) or (filelist == []):
+        return []
 
       if type(filelist) is list:
-        if len(filelist):
-          filelist = [str(f) for f in filelist if np.array(f,dtype=np.object).size]
-          if len(filelist) > 1:
-            filelist = list(reduce(lambda x,y: x+y, filelist))
+        filelist = [str(f) for f in filelist if f]
       elif type(filelist) is  str:
-        filelist = np.array([filelist],dtype=np.object)
+        filelist = [filelist]
       elif type(filelist) is PosixPath:
         filelist = [str(filelist)]
 
       if len(filelist) > 1:
-        filelist = reduce(lambda x,y: x+y, filelist)
+        #filelist = reduce(lambda x,y: x+y, filelist)
         filelist  = list(np.unique(np.array(filelist,dtype=np.object)))
 
       for i,f in enumerate(filelist):
@@ -104,9 +104,11 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         f = Path(f).absolute().resolve()
 
         # in case its a file accidently
-        if f.exists() and not f.is_dir():
-          f = f.parent
-        f.mkdir(parents=True,exist_ok=True)
+        #if files and f.exists() and f.is_dir():
+        #  f = f.parent
+        #if (not files) and (not f.exists()):
+          #print('--',f)
+          #f.mkdir(parents=True,exist_ok=True)
 
         filelist[i]  = f
       return filelist
@@ -117,10 +119,8 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       if filelist is None:
         return filelist
       if name == None:
-        name = str(self)
-      if len(filelist) > 1:
-        filelist = reduce(lambda x,y: x+y, filelist)
-        filelist  = list(np.unique(np.array(filelist,dtype=np.object)))
+        name = self.name
+      filelist = self.list_resolve(filelist)
 
       for i,f in enumerate(filelist):
         # needs to be dir
@@ -129,7 +129,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         # in case its a file accidently
         if f.exists() and f.is_dir():
           f = Path(f,name)
-        f.parent.mkdir(parents=True,exist_ok=True)
 
         filelist[i]  = f
       return filelist
@@ -140,14 +139,14 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       if filelist is None:
         return None,None
 
-      filelist  = np.array(self.list_resolve(filelist),dtype=np.object)
+      filelist  = np.array(self.list_resolve(filelist,files=True),dtype=np.object)
       readlist  = np.zeros_like(filelist).astype(np.bool)
       writelist = np.zeros_like(filelist).astype(np.bool)
 
       # get permissions
       for i,f in enumerate(filelist):
         f = Path(f)
-        if f.exists():
+        if f.exists() and (not f.is_dir()):
           st_mode = f.stat().st_mode
           readlist[i]  = bool((st_mode & stat.S_IRUSR) /stat.S_IRUSR )
           writelist[i] = bool((st_mode & stat.S_IWUSR) /stat.S_IWUSR )
@@ -180,12 +179,14 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
       # may be a cache
       if 'CACHE_DIR' in os.environ and os.environ['CACHE_DIR'] is not None:
-        self.db_dir = self.list_resolve([self.db_dir,os.environ['CACHE_DIR']])
+        self.db_dir = self.list_resolve(self.db_dir + self.list_resolve(os.environ['CACHE_DIR']))
+        [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
       if 'db_dir' in keys and kwargs['db_dir'] is not None:
-        self.db_dir = self.list_resolve([self.db_dir,kwargs['db_dir']])
+        self.db_dir = self.list_resolve(self.db_dir + self.list_resolve(kwargs['db_dir']))
+        [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
       if 'db_file' in keys and kwargs['db_file'] is not None:
-        self.db_file = self.name_resolve(kwargs['db_file'])
-        self.db_dir = self.list_resolve([self.db_dir,self.db_file])
+        name = Path(list(kwargs['db_file'])[-1]).name
+        self.db_file = self.name_resolve(kwargs['db_file'],name=name)
 
       # backup
       if len(self.db_dir) == 0:
@@ -193,36 +194,32 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
       if not self.db_file:
         self.db_file = self.name_resolve(self.db_dir,name='.db.yml')
-      else:
-        self.db_file = self.name_resolve(self.db_file)
 
       # initialise
-      self.msg(f'initialise cache db file {self.db_file}')
+      self.msg(f'initialise cache db files {self.db_file}')
       self.set_db({})
-        
+       
       if 'local_dir' in keys and kwargs['local_dir'] is not None:
         self.local_dir = self.list_resolve(kwargs['local_dir'])
 
       if 'local_file' in keys and kwargs['local_file'] is not None:
-        self.local_file = self.list_resolve(kwargs['local_file'])
-        self.local_dir = self.list_resolve([self.local_dir,self.local_file])
+        self.local_file = self.list_resolve(kwargs['local_file'],files=True)
 
-      if len(self.local_dir) == 0:
+      if (self.local_dir is None) or (len(self.local_dir) == 0):
         self.local_dir = self.list_resolve(self.db_dir)
 
-      if (self.local_file == None) and (self.name != ''):
+      is_good_name = (self.name != '') and (not self.has_wildness([self.name])[0])
+
+      if (self.local_file == None) and is_good_name:
         if len(self.local_dir):
-          import pdb;pdb.set_trace()
           self.local_file = self.name_resolve(self.local_dir,self.name)
-        #else:
-        #  self.local_file = self.name_resolve(self.db_dir,self.name)
       else:
         self.local_file = self.name_resolve(self.local_file)
 
       # update arg list for new creations
       kwargs['verbose']    = self.verbose
       kwargs['local_dir']  = self.local_dir 
-      kwargs['local_file'] = self.name_resolve(self.local_file)
+      #kwargs['local_file'] = self.name_resolve(self.local_file)
       kwargs['noclobber']  = self.noclobber
       kwargs['size_check'] = self.size_check
       kwargs['db_dir']     = self.db_dir
@@ -232,24 +229,54 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         self.kwargs.update(kwargs)
       except:
         self.kwargs = kwargs
+      if 'local_file' in self.kwargs:
+        del self.kwargs['local_file']
+      #if 'local_dir' in self.kwargs:
+      #  del self.kwargs['local_dir']
+
+  def filter_db(self,old_db):
+    if not 'data' in old_db.keys():
+      return old_db
+    old_db = dict(old_db)
+    data = dict(old_db['data'])
+    for k,v in data.items():
+      if Path(v).is_dir():
+        del data[k]
+      else:
+        data[k] = str(v)
+    old_db['data'] = data
+    return old_db
 
   def set_db(self,new_db,clean=False):
     '''save dictionary db in cache database'''
+    vold_db = dict(self.get_db())
     if not clean:
-      old_db = self.get_db()
+      old_db = vold_db.copy()
     else:
       old_db = {}
     new_db = dict(new_db)
-    new_db.update(old_db)
+    for k in new_db.keys():
+      if k in old_db:
+        old_db[k].update(new_db[k])
+      else:
+        old_db[k] = new_db[k]
+
+    old_db = self.filter_db(old_db)
+    new_db = self.filter_db(new_db)
 
     db_files = self.db_file
     readlist,writelist = self.list_info(db_files)
-    if readlist is None:
-      return new_db
+    if (readlist is None) or (old_db is {}):
+      return old_db.copy()
+
     for dbf in np.array(db_files,dtype=np.object)[writelist]:
-      with dbf.open('w') as f:
+      # make a copy first
+      with Path(str(dbf)+'.bak').open('w') as f:
         self.msg(f"updated cache database in {dbf}")
         yaml.safe_dump(new_db,f)
+      with dbf.open('w') as f:
+        self.msg(f"updated cache database in {dbf}")
+        yaml.safe_dump(old_db,f)
     return new_db
 
   def get_db(self):
@@ -260,7 +287,10 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     for dbf in np.array(db_files,dtype=np.object)[readlist]:
       with dbf.open('r') as f:
         self.msg(f'reading db file {dbf}')
-        old_db.update(dict(yaml.safe_load(f)))
+        try:
+          old_db.update(dict(yaml.safe_load(f)))
+        except:
+          self.msg('error reading data from {dbf}')
     return old_db
 
   def rm_from_db(self,store_flag,store_url,**kwargs):
@@ -301,13 +331,20 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         return self._local_file(mode="r")
     else:
       # file name for writing
-      local_file = get_write_file(self.local_file)
+      local_file = self.get_write_file(self.local_file)
 
     if local_file == None:
       return local_file
 
     # local_file is real
     if local_file.exists():
+      if local_file.is_dir():
+        try:
+          local_file.rmdir()
+          return None
+        except:
+          pass
+
       self.msg(f'noclobber: {self.noclobber}')
       # delete the file if noclobber is False
       if not self.noclobber:
@@ -332,29 +369,58 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
       binary = ('b' in mode) and ('t' not in mode) 
 
-      local_file = self._local_file()
-      get_download = self._test_already_local()
+      get_download,ifile,ofile = self._test_already_local()
 
-      if not get_download:
-        self.msg(f'opening already downloaded file {local_file}')
-        return Path(local_file).open(**kwargs)
+      # get from ofile
+      if ofile and Path(ofile).exists():
+        ofile = Path(ofile)
+        if binary:
+          data = io.BytesIO(ofile.read_bytes())
+        else:
+          data = io.StringIO(ofile.read_text())
+        cache = {store_flag : { str(store_url) : str(ofile) }}
+        self.set_db(cache)
+        return data
 
-      self.msg(f'opening stream to {self}:') 
+      # get from ifile
+      if ifile and Path(ifile).exists():
+        ifile = Path(ifile)
+        if binary:
+          data = io.BytesIO(ifile.read_bytes())
+        else:
+          data = io.StringIO(ifile.read_text())
+        ifile.parent.mkdir(parents=True,exist_ok=True)
+        if ofile:
+          ofile = Path(ofile)
+          if binary:
+            ofile.write_bytes(data)
+          else:
+            ofile.write_text(data)
+        cache = {store_flag : { str(store_url) : str(ifile) }}
+        self.set_db(cache)
+        return data
 
       if 'r' in mode:
         self.msg(f"reading data from {self}")
         # read 
         if binary:
           self.msg("open() binary stream")
-          return io.BytesIO(self.read_bytes())
+          data = io.BytesIO(self.read_bytes())
         else:
           self.msg("open() text stream")
-          return  io.StringIO(self.read_text())
+          data = io.StringIO(self.read_text())
+        if ofile:
+          ofile = Path(ofile)
+          if binary:
+            ofile.write_bytes(data)
+          else:
+            ofile.write_text(data)
+        cache = {store_flag : { str(store_url) : str(ifile) }}
+        self.set_db(cache)
+        return data
 
-      # fallback
-      self.msg(f'fallback open()')
-      self.msg(f'opening already downloaded file {local_file}')
-      return Path(local_file).open(**kwargs)
+      if ofile:
+        return Path(ofile).open(**kwargs)
 
   def write_text(self,data, encoding=None, errors=None):
       '''Open the file in text mode, write to it, and close the file.'''
@@ -363,45 +429,32 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           self.msg(f'{self} is not a URL: interpreting as Path')
           return Path(self).write_text(data)
 
-      local_file = self._local_file()
-      get_download = self._test_already_local()
+      get_download,ifile,ofile = self._test_already_local()
 
-      if not get_download:
-        self.msg(f'opening already downloaded file {local_file}')
-        return Path(local_file).write_text(data,**kwargs)
+      if ofile and Path(ofile).exists():
+         self.msg("file exists so not writing")
+         return Path(ofile).stat().st_size
 
-      if not local_file.exists():
-          kwargs = {'encoding':encoding,'errors':errors}
-          self.msg(f"writing data ...")
-          retval = local_file.write_text(data,**kwargs)
-      else:
-          self.msg("file exists so not writing")
-          retval = local_file.stat().st_size
-      self.msg(f"done : {retval}")
-      return retval
+      if ofile:
+        self.msg(f'opening output file {ofile}')
+        return Path(ofile).write_text(data,**kwargs)
 
   def write_bytes(self,data):
       '''Open the file in bytes mode, write to it, and close the file.'''
+
       if self._isfile():
           self.msg(f'{self} is not a URL: interpreting as Path')
           return Path(self).write_bytes(data)
 
-      local_file = self._local_file()
-      get_download = self._test_already_local()
+      get_download,ifile,ofile = self._test_already_local()
 
-      if not get_download:
-        self.msg(f'opening already downloaded file {local_file}')
-        return Path(local_file).write_bytes(data)
+      if ofile and Path(ofile).exists():
+         self.msg("file exists so not writing")
+         return Path(ofile).stat().st_size
 
-      if not local_file.exists():
-          self.msg(f"writing data ...")
-          retval = local_file.write_bytes(data)
-          self.msg(f"done : {retval}")
-      else:
-          self.msg("file exists so not writing")
-          retval = local_file.stat().st_size
-      self.msg(f"done : {retval}")
-      return retval
+      if ofile:
+        self.msg(f'opening output file {ofile}')
+        return Path(ofile).write_bytes(data)
 
   def _get_login(self,head=True):
       u = self.resolve()
@@ -461,39 +514,38 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     store_url  = str(self)
     store_flag = 'data'
 
-    if not self.noclobber:
-      lfile = self._from_db(store_flag,store_url)
-      if lfile is not None:
-        if Path(lfile).exists():
-          self.local_file = lfile
-          return False
+    # input file
+    ifile = self._from_db(store_flag,store_url)
+    
+    if ifile is not None:
+      ifile = Path(ifile)
+      if not ifile.exists():
         # otherwise incorrect db entry
         self.rm_from_db(store_flag,store_url)
+      if not self.noclobber and ifile.exists():   
+        # clobber
+        self.msg(f'deleting local file {ifile}')
+        ifile.unlink()
+        ifile = None
 
-    local_file = self._local_file()
-    if local_file:
-      self.msg(f'local file: {local_file}')
-    else:
-      return True
-    # local file doesnt exists
+    ofile = self._local_file("w")
 
-    if local_file.is_dir():
-      return False
+    if ifile is None:
+      return True,ifile,ofile
 
-    if not local_file.exists():
-      #self.msg(f'local file {local_file} does not exist')
-      return True
+    if not ifile.exists():
+      return True,None,ofile
 
     # simple if no size check
-    if (not self.size_check) and local_file.exists():
-      self.msg(f'local file {local_file} exists: no size check')
+    if (not self.size_check) and ifile.exists():
+      self.msg(f'local file {ifile} exists: no size check')
       # cache this in case we want to re-use it
-      cache = {store_flag : { str(store_url) : local_file }}
+      cache = {store_flag : { str(store_url) : str(ifile) }}
       self.set_db(cache)
-      return False
+      return False,ifile,ofile
 
     if self.size_check:
-      lsize = local_file.stat().st_size
+      lsize = ifile.stat().st_size
       rsize = self.stat().st_size
       if rsize < 0:
         # then its not available
@@ -501,24 +553,31 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         # we might not want to download
 
         # cache this in case we want to re-use it
-        cache = {store_flag : { str(store_url) : local_file }}
+        cache = {store_flag : { str(store_url) : ifile }}
         self.set_db(cache)
-        return False
+        return False,ifile,ofile
+
       elif lsize == rsize:
         self.msg(f'local and remote file sizes equal {lsize}')
         self.msg(f'not downloading file')
         # we might not want to download
         # cache this in case we want to re-use it
-        cache = {store_flag : { str(store_url) : local_file }}
+        cache = {store_flag : { str(store_url) : ifile }}
         self.set_db(cache)
-        return False
+        return False,ifile,ofile
       self.msg(f'local and remote file sizes not equal {lsize}/{rsize} respectively')
       self.msg(f'so we need to download (or set size_check=False)')
       if not self.noclobber:
-        self.msg(f'deleting local file {local_file}')
-        local_file.unlink()
+        if ifile and ifile.exists():
+          self.msg(f'deleting local ifile {local_file}')
+          ifile.unlink()
+          ifile = None
+        if ofile and ofile.exists():
+          self.msg(f'deleting local ofile {local_file}')
+          ofile.unlink()
+          ofile = None
 
-    return True
+    return True,ifile,ofile
 
 
   def read_text(self, encoding=None, errors=None):
@@ -535,22 +594,43 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       self.msg(f'{u} is not a URL: interpreting as Path')
       return Path(u).read_text()
 
-    local_file = self._local_file()
-    get_download = self._test_already_local()
+    get_download,ifile,ofile = self._test_already_local()
 
-    if not get_download:
-      self.msg(f'opening already downloaded file {local_file}')
-      return Path(local_file).read_text(**kwargs)
+    text = None
+
+    # get it from ofile
+    if ofile and Path(ofile).exists():
+      text = Path(ofile).read_text(**kwargs)
+      cache = {store_flag : { str(store_url) : str(ofile) }}
+      self.set_db(cache)
+      return text
+
+    # get it from ifile 
+    if ifile and Path(ifile).exists():
+      self.msg(f'opening already downloaded file {ifile}')
+      text = Path(ifile).read_text(**kwargs)
+      if ofile:
+        ofile = Path(ofile)
+        ofile.write_text(text)
+        cache = {store_flag : { str(store_url) : str(ofile) }}
+      else:
+        cache = {store_flag : { str(store_url) : str(ifile) }}
+      self.set_db(cache)
+      return text
+
+    if text is not None:
+      return text
 
     try:
       u.msg(f'trying {self}')
       text = u.get_text()
-      if local_file:
-        local_file = Path(local_file)
-        local_file.save_test(test)
-        cache = {store_flag : { str(store_url) : str(local_file) }}
+      if text and ofile:
+        ofile = Path(ofile)
+        ofile.parent.mkdir(parents=True,exist_ok=True)
+        ofile.write_text(text)
+        cache = {store_flag : { str(store_url) : str(ofile) }}
         self.set_db(cache)
-      return text
+        return text
     except:
       pass
 
@@ -559,14 +639,16 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     if type(r) != requests.models.Response:
       return None
     if r.status_code == 200:
-        u.msg(f'code {r.status_code}')
-        text = r.text
-        if local_file:
-          local_file = Path(local_file)
-          local_file.save_test(test)
-          cache = {store_flag : { str(store_url) : str(local_file) }}
-          self.set_db(cache)
-        return text
+      u.msg(f'code {r.status_code}')
+      text = r.text
+      if ofile:
+         ofile = Path(ofile)
+         ofile.parent.mkdir(parents=True,exist_ok=True)
+         ofile.write_text(text)
+         cache = {store_flag : { str(store_url) : str(ofile) }}
+         self.set_db(cache)
+      return text
+
     if type(r) == requests.models.Response:
         u.msg(f'code {r.status_code}')
         return r
@@ -756,17 +838,34 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
     store_url  = str(u)
     store_flag = 'data'
-
     if u._isfile():
       self.msg(f'{u} is not a URL: interpreting as Path')
       return Path(u).read_bytes()
 
-    local_file = self._local_file()
-    get_download = self._test_already_local()
+    get_download,ifile,ofile = self._test_already_local()
 
-    if not get_download:
-      self.msg(f'opening already downloaded file {local_file}')
-      return Path(local_file).read_bytes()
+    # get from ofile
+    if ofile and Path(ofile).exists():
+      data = ofile.read_bytes()
+      ofile = Path(ofile)
+      cache = {store_flag : { str(store_url) : str(ofile) }}
+      self.set_db(cache)
+      return data
+
+    # get from ifile
+    if ifile and Path(ifile).exists():
+      ifile = Path(ifile)
+      self.msg(f'opening already downloaded file {ifile}')
+      data = ifile.read_bytes()
+      if ofile: 
+        ofile = Path(ofile)
+        ofile.parent.mkdir(parents=True,exist_ok=True)
+        ofile.write_bytes(data)
+        cache = {store_flag : { str(store_url) : str(ofile) }}
+      else:
+        cache = {store_flag : { str(store_url) : str(ifile) }}
+      self.set_db(cache)
+      return data
 
     try:
       u.msg(f'trying {u}')
@@ -775,10 +874,11 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         if r.status_code == 200:
           u.msg(f'code {r.status_code}')
           data = r.content
-          if local_file:
-            local_file = Path(local_file)
-            local_file.save_bytes(data)
-            cache = {store_flag : { str(store_url) : str(local_file) }}
+          if ofile:
+            ofile = Path(ofile)
+            ofile.parent.mkdir(parents=True,exist_ok=True)
+            ofile.write_bytes(data)
+            cache = {store_flag : { str(store_url) : str(ofile) }}
             self.set_db(cache)
           return data
         if r.status_code == 401:
@@ -794,10 +894,11 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           if r.status_code == 200:
             u.msg(f'code {r.status_code}')
             data = r.content
-            if local_file:
-              local_file = Path(local_file)
-              local_file.save_bytes(data)
-              cache = {store_flag : { str(store_url) : str(local_file) }}
+            if ofile:
+              ofile = Path(ofile)
+              ofile.parent.mkdir(parents=True,exist_ok=True)
+              ofile.write_bytes(data)
+              cache = {store_flag : { str(store_url) : str(ofile) }}
               self.set_db(cache)
             return data
         else:
@@ -902,7 +1003,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       new_list = []
       for b in base_list:
         new_list = new_list + URL(b,**(self.kwargs))._glob(w)
-        new_list = reduce(lambda x,y: x+y, new_list)
+        #new_list = reduce(lambda x,y: x+y, new_list)
 
       base_list = np.array(new_list).flatten()
     olist = list(np.array([URL(i,**(self.kwargs)) for i in base_list]).flatten())
@@ -975,12 +1076,12 @@ def main():
     import os
     os.environ['CACHE_DIR'] = '/tmp/modis'
 
-    url = URL(u,verbose=True)
-    rlist = url.glob('MOT*/MCD15A3H.006/2003.12.*/*0.hdf')
-    s = URL(rlist[0],**url.kwargs)
-    import pdb;pdb.set_trace()
-    data = s.read_bytes() 
-    
+    url = URL(u,verbose=True,local_dir='work')
+    rlist = url.glob('MOT*/MCD15A3H.006/2003.12.11/*0.hdf')
+    for r in rlist:
+      u = URL(r,**url.kwargs)
+      data=u.read_bytes()
+      u.write_bytes(data)
 
 if __name__ == "__main__":
     main()
