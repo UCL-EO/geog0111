@@ -7,6 +7,8 @@ docs/_*
 *.swp
 data/ucl
 work/*
+.db.*
+????.??.??
 data/lai_data_*.npz
 data/TM_WORLD_BORDERS-0.3.dbf
 data/TM_WORLD_BORDERS-0.3.prj

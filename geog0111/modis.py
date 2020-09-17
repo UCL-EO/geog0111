@@ -25,21 +25,26 @@ class Modis():
   '''
   get MODIS datasets from the server
   '''
-  def __init__(self,product='MCD15A3H',\
+  def set_kwargs(self,product='MCD15A3H',\
                     tile='h08v06',\
                     day='01',\
                     month='*',\
                     year="2019",\
                     site='https://e4ftl01.cr.usgs.gov',\
                     size_check=True,\
-                    no_clobber=True,\
+                    noclobber=True,\
                     local_dir=None,\
+                    local_file=None,\
+                    db_file=None,\
                     db_dir=None,\
                     verbose=False):
 
     self.size_check = size_check
-    self.no_clobber = no_clobber
+    self.noclobber = noclobber
     self.local_dir = local_dir
+    self.local_file= local_file
+    self.db_dir  = db_dir
+    self.db_file = db_file
     self.verbose = verbose
     self.site    = site
     self.product = product
@@ -49,6 +54,10 @@ class Modis():
     self.year    = year
     self.sub     = None
     self.translateoptions = gdal.TranslateOptions(gdal.ParseCommandLine("-of Gtiff -co COMPRESS=LZW"))
+
+  def __init__(self,product='MCD15A3H',**kwargs):
+    self.set_kwargs(**kwargs)
+    self.kwargs = kwargs
 
   def get_url(self,year=False,    month=False, day=False,\
                    product=False, tile=False, \
@@ -81,19 +90,16 @@ class Modis():
 
     site_file = f'*.{tile}*.hdf'
     kwargs = {"verbose"    : self.verbose,\
-              "no_clobber" : self.no_clobber,\
+              "noclobber" : self.noclobber,\
+              "db_dir"    : self.db_dir,\
+              "db_file"   : self.db_file,\
               "size_check" : self.size_check,\
+              "local_file" : self.local_file,\
               "local_dir"  : self.local_dir }
 
     url = URL(site,site_dir,**kwargs)
-    
 
     hdf_urls = url.glob(site_file)
-    try:
-      self.cache_url[str(url)] = hdf_urls
-    except:
-      self.cache_url = {str(url) : hdf_urls}
-
     return hdf_urls 
 
   def get_hdf_data(self,hdf_urls):
