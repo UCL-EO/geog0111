@@ -29,6 +29,7 @@ class Modis():
   '''
   def set_kwargs(self,product='MCD15A3H',\
                     tile='h08v06',\
+                    log=None,
                     day='01',\
                     month='*',\
                     sds= None,
@@ -57,6 +58,7 @@ class Modis():
     self.year    = year
     self.sub     = None
     self.sds     = sds
+    self.log     = log
     self.translateoptions = gdal.TranslateOptions(gdal.ParseCommandLine("-of Gtiff -co COMPRESS=LZW"))
 
     # list of tiles
@@ -66,9 +68,11 @@ class Modis():
     if type(self.sds) is str:
       self.sds = [self.sds]
 
-  def __init__(self,product='MCD15A3H',**kwargs):
+  def __init__(self,**kwargs):
+    if 'product' not in kwargs:
+      product='MCD15A3H' 
     self.set_kwargs(**kwargs)
-    self.kwargs = kwargs
+    self.kwargs = kwargs.copy()
 
   def get_data(self,year,doy):
     '''return data array for doy year as sds dictionary'''
@@ -114,7 +118,7 @@ class Modis():
       del g  
       sfiles[s] = spatial_file
       sfiles[s+'_name'] = bandlist
-    return sfiles,bnames
+    return sfiles,bandlist
 
   def stitch_date(self,year,doy):
     '''stitch data for date'''
@@ -180,6 +184,7 @@ class Modis():
               "noclobber" : self.noclobber,\
               "db_dir"    : self.db_dir,\
               "db_file"   : self.db_file,\
+              "log"       : self.log,\
               "size_check" : self.size_check,\
               "local_file" : self.local_file,\
               "local_dir"  : self.local_dir }
