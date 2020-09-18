@@ -6,6 +6,11 @@ docs/_*
 *.icloud
 *.swp
 data/ucl
+data/*txt
+*.bak
+*log*
+data/lai_filelist_2016.dat.txt
+notebooks/work/uk_lai_2018.db
 work/*
 notebooks/work/*html
 xx
