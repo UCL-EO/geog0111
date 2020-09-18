@@ -21,6 +21,7 @@ import fnmatch
 import numpy as np
 import io
 import tempfile
+from argparse import Namespace
 
 
 try:
@@ -55,7 +56,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
   '''
   def __new__(cls,*args,**kwargs):
       self = super(URL, cls).__new__(cls,*args) 
-      self.kwargs = dict(kwargs)
       self.init(**kwargs)
       return self
 
@@ -160,7 +160,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
   def call_local(self):
     '''sort out and return local_file'''
-    kwargs = self.kwargs
+    kwargs = self.fdict()
     if 'local_dir' in kwargs and \
         (kwargs['local_dir'] is not None) and \
         len(kwargs['local_dir']) > 0:
@@ -195,49 +195,21 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       and db_dir
 
       '''
-      if 'verbose' not in kwargs:
-        self.verbose         = False
-      if ('local_dir' not in kwargs):
-        self.local_dir       = self.list_resolve([])
-      if 'db_dir' not in kwargs:
-        self.db_dir          = self.list_resolve([])
-      if 'local_file' not in kwargs:
-        self.local_file      = None
-      if 'noclobber' not in kwargs:
-        self.noclobber       = True
-      if 'size_check' not in kwargs:
-        self.size_check      = False
-      if 'db_file' not in kwargs:
-        self.db_file         = None
-      if 'store_msg'  not in kwargs:
-        self.store_msg       = []
-      if 'log'        not in kwargs:
-        self.log             = None
-      if 'database'         not in kwargs:
-        self.database        = None
-
-      self.stderr  = sys.stderr
-
-      try:
-        if self.store_msg is None:
-          self.store_msg = []
-      except:
-        self.store_msg = []
-
-      # extra arguments
-      keys = kwargs.keys()
-      if 'verbose' in keys:
-        self.verbose = kwargs['verbose']
-      if 'noclobber' in keys:
-        self.noclobber = kwargs['noclobber']
-      if 'size_check' in keys:
-        self.size_check = kwargs['size_check']
-      if 'store_msg' in keys:
-        self.store_msg = self.store_msg.append(kwargs['store_msg'])
-      if 'log' in keys and (kwargs['log'] is not None):
-        self.log = kwargs['log'] 
-      if 'database' in keys and (kwargs['database'] is not None):
-        self.database = kwargs['database']
+      defaults = {\
+         'verbose'    : False,\
+         'local_dir'  : self.list_resolve([]),\
+         'db_dir'     : self.list_resolve(['~/.url_db']),\
+         'local_file' : None,\
+         'noclobber'  : True,\
+         'size_check' : False,\
+         'db_file'    : None,\
+         'store_msg'  : [],\
+         'log'        : None,\
+         'database'   : None,\
+         'stderr'     : sys.stderr,\
+      }
+      defaults.update(kwargs)
+      self.__dict__.update(defaults)
 
       self.store_msg = self.remove_duplicates(self.store_msg)
       if self.log is not None:
@@ -254,42 +226,17 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           self.stderr = sys.stderr
           self.msg(f"WARNING: failure to open log file {self.log}")
 
+      self.local_dir = self.list_resolve(self.local_dir)
       
-      if 'local_dir' in keys and (kwargs['local_dir'] is not None):
-        try:
-          self.local_dir = self.list_resolve(self.local_dir + self.list_resolve(kwargs['local_dir']))
-        except:
-          self.local_dir = self.list_resolve(kwargs['local_dir'])
-        [d.mkdir(parents=True,exist_ok=True) for d in self.local_dir]
-      if 'local_file' in keys and (kwargs['local_file'] is not None):
-        self.local_file = self.name_resolve(kwargs['local_file'])
+      self.local_dir  = self.list_resolve(self.local_dir)
+      [d.mkdir(parents=True,exist_ok=True) for d in self.local_dir]
+      self.local_file = self.name_resolve(self.local_file)
 
-      # update arg list for new creations
-      kwargs['verbose']    = self.verbose
-      kwargs['local_dir']  = self.local_dir 
-      kwargs['local_file'] = self.name_resolve(self.local_file)
-      kwargs['noclobber']  = self.noclobber
-      kwargs['size_check'] = self.size_check
-      kwargs['db_dir']     = self.db_dir
+      self.db_dir     = self.list_resolve(self.db_dir)
+      [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
+      self.db_file    = self.db_file or self.name_resolve(self.db_dir,name='.db.yml')
 
-      import pdb;pdb.set_trace()
-
-      try:
-        kwargs['db_file']  = self.name_resolve(self.db_file,name='.db.yml')
-      except:
-        kwargs['db_file']  = None
-      kwargs['store_msg']  = self.store_msg
-      kwargs['log']        = self.log
-      kwargs['database']   = self.database
-      
-      try:
-        self.kwargs.update(kwargs)
-      except:
-        self.kwargs = kwargs
-
-      import pdb;pdb.set_trace()
-      self.db_file = self.kwargs['db_file'] 
-      self.database = Database(self.db_file,**kwarg)
+      self.database = Database(self.db_file,**(self.fdict()))
 
 
   def get_read_file(self,filelist):
@@ -380,7 +327,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         else:
           data = io.StringIO(ofile.read_text())
         cache = {store_flag : { str(store_url) : str(ofile) }}
-        self.set_db(cache)
+        self.database.set_db(cache)
         return data
 
       # get from ifile
@@ -398,7 +345,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           else:
             ofile.write_text(data)
         cache = {store_flag : { str(store_url) : str(ifile) }}
-        self.set_db(cache)
+        self.database.set_db(cache)
         return data
 
       if 'r' in mode:
@@ -420,7 +367,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
             else:
               ofile.write_text(idata)
             cache = {store_flag : { str(store_url) : str(ifile) }}
-            self.set_db(cache)
+            self.database.set_db(cache)
           except:
             pass
         return data
@@ -499,9 +446,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       # DONT REPEAT MESSAGES
       if args in self.store_msg:
         return
-      self.store_msg.append(args)
+      self.store_msg.append(*args)
     except:
-      self.store_msg = [args]
+      self.store_msg = [*args]
     try:
         if self.verbose or (self.log is not None):
             print('-->',*args,file=self.stderr)
@@ -546,7 +493,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       self.msg(f'local file {ifile} exists') #: no size check')
       # cache this in case we want to re-use it
       cache = {store_flag : { str(store_url) : str(ifile) }}
-      self.set_db(cache)
+      self.database.set_db(cache)
       return False,ifile,ofile
 
     if self.size_check:
@@ -559,7 +506,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
         # cache this in case we want to re-use it
         cache = {store_flag : { str(store_url) : ifile }}
-        self.set_db(cache)
+        self.database.set_db(cache)
         return False,ifile,ofile
 
       elif lsize == rsize:
@@ -568,7 +515,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         # we might not want to download
         # cache this in case we want to re-use it
         cache = {store_flag : { str(store_url) : ifile }}
-        self.set_db(cache)
+        self.database.set_db(cache)
         return False,ifile,ofile
       self.msg(f'local and remote file sizes not equal {lsize}/{rsize} respectively')
       self.msg(f'so we need to download (or set size_check=False)')
@@ -605,7 +552,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     if ofile and Path(ofile).exists():
       text = Path(ofile).read_text(**kwargs)
       cache = {store_flag : { str(store_url) : str(ofile) }}
-      self.set_db(cache)
+      self.database.set_db(cache)
       return text
 
     # get it from ifile 
@@ -618,7 +565,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         cache = {store_flag : { str(store_url) : str(ofile) }}
       else:
         cache = {store_flag : { str(store_url) : str(ifile) }}
-      self.set_db(cache)
+      self.database.set_db(cache)
       return text
 
     if text is not None:
@@ -633,7 +580,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           ofile.parent.mkdir(parents=True,exist_ok=True)
           ofile.write_text(text)
           cache = {store_flag : { str(store_url) : str(ofile) }}
-          self.set_db(cache)
+          self.database.set_db(cache)
           return text
         except:
           pass
@@ -654,7 +601,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
          ofile.parent.mkdir(parents=True,exist_ok=True)
          ofile.write_text(text)
          cache = {store_flag : { str(store_url) : str(ofile) }}
-         self.set_db(cache)
+         self.database.set_db(cache)
       return text
 
     if type(r) == requests.models.Response:
@@ -692,7 +639,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       ex = self.ping()
     if ex:
       cache = {store_flag : { str(store_url) : True }}
-      self.set_db(cache)
+      self.database.set_db(cache)
       
     return ex
 
@@ -761,7 +708,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           if remote_size > 0:
             # cache this in case we want to re-use it
             cache = {store_flag : { str(store_url) : remote_size }}
-            self.set_db(cache)
+            self.database.set_db(cache)
             return(remote_size)
 
         # 
@@ -780,7 +727,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
             if remote_size > 0:
               # cache this in case we want to re-use it
               cache = {store_flag : { str(store_url) : remote_size }}
-              self.set_db(cache)
+              self.database.set_db(cache)
               return(remote_size)
         elif head == False:
           u.msg(f'code {r.status_code}')
@@ -795,7 +742,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       remote_size = -2
       # cache this in case we want to re-use it even if its -1
       cache = {store_flag : { str(store_url) : remote_size }}
-      self.set_db(cache)
+      self.database.set_db(cache)
       return remote_size
     u.msg(f'trying get')
     return u.st_size(head=False)
@@ -881,7 +828,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       data = ofile.read_bytes()
       ofile = Path(ofile)
       cache = {store_flag : { str(store_url) : str(ofile) }}
-      self.set_db(cache)
+      self.database.set_db(cache)
       return data
 
     # get from ifile
@@ -896,7 +843,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         cache = {store_flag : { str(store_url) : str(ofile) }}
       else:
         cache = {store_flag : { str(store_url) : str(ifile) }}
-      self.set_db(cache)
+      self.database.set_db(cache)
       return data
 
     try:
@@ -911,7 +858,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
             ofile.parent.mkdir(parents=True,exist_ok=True)
             ofile.write_bytes(data)
             cache = {store_flag : { str(store_url) : str(ofile) }}
-            self.set_db(cache)
+            self.database.set_db(cache)
           return data
         if r.status_code == 401:
           u.msg(f'code {r.status_code}')
@@ -931,7 +878,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
               ofile.parent.mkdir(parents=True,exist_ok=True)
               ofile.write_bytes(data)
               cache = {store_flag : { str(store_url) : str(ofile) }}
-              self.set_db(cache)
+              self.database.set_db(cache)
             return data
         else:
           u.msg(f'code {r.status_code}')
@@ -945,23 +892,10 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
   def _convert_to_abs(self,ilist):
     # this url
-    this = str(self.resolve())
-    olist = []
-    for l in ilist:
-      if URL(l,**(self.kwargs)).hostname:
-        pass
-      else:
-        try:
-          # trim
-          while len(l) > 1 and l[-1] == '/':
-            l = l[:-1]
-          if l not in ['about', '/','#'] and l[0] not in ['/','#']:
-            olist.append(str(URL(this,l,**(self.kwargs)).resolve()))
-        except:
-          pass
-    return olist
+    return [URL(l.rstrip('/#'),**(self.fdict())).absolute() for l in ilist ]
 
   def _filter(self,list,pattern):
+    import pdb;pdb.set_trace()
     list = self._convert_to_abs(list)
     olist = []
     try:
@@ -986,6 +920,17 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     is_wild = np.logical_or(is_wild,is_wild_2)
     return is_wild
 
+  def fdict(self):
+    '''return partial version of self.__dict__'''
+    this = self.__dict__.copy()
+    dellist = []
+    for k,v in this.items():
+      if k[:len('_cached')] == '_cached':
+        dellist.append(k)
+    for k in dellist:
+      del this[k]
+    return this  
+
   def glob(self,pattern):
     '''
     Iterate over this subtree and yield all existing files (of any
@@ -1002,7 +947,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     url = str(u)
     if url[-1] == '/':
       url = urls[:-1]
-    url = URL(url,pattern,**(self.kwargs))
+    url = URL(url,pattern,**(self.fdict()))
 
     # check in database
     store_url  = url
@@ -1010,14 +955,21 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     olist = self.database.get_from_db(store_flag,store_url)
     if olist is not None:
       if type(olist) is list:
-        return [URL(o,**self.kwargs) for o in olist]
-      return [URL(olist,**self.kwargs)]
+        return [URL(o,**(self.fdict())) for o in olist]
+      return [URL(olist,**(self.fdict()))]
 
     uc = np.array(url.parts)
     is_wild = self.has_wildness(uc)
-    
-    first_wild = np.where(np.cumsum(is_wild)>0)[0][0]
-    base_list = [str(URL(*list(uc[:first_wild]),**(self.kwargs)).resolve())]
+   
+    first_wild = list(np.where(np.cumsum(is_wild)>0)[0])
+
+    if (type(first_wild) is list):
+      if len(first_wild): 
+        #self.msg(f"WARNING: suspect wildcard behaviour for {url}")
+        first_wild = first_wild[0]
+      else:
+        return [URL(url,**(self.fdict()))]
+    base_list = [str(URL(*list(uc[:first_wild]),**(self.fdict())).resolve())]
     wilds = uc[first_wild:]
     u.msg(f'wildcards in: {wilds}')
 
@@ -1025,19 +977,19 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       u.msg(f'level {i}/{len(wilds)} : {w}')
       new_list = []
       for b in base_list:
-        new_list = new_list + URL(b,**(self.kwargs))._glob(w)
+        new_list = new_list + URL(b,**(self.fdict()))._glob(w)
 
       base_list = np.array(new_list).flatten()
-    olist = list(np.array([URL(i,**(self.kwargs)) for i in base_list]).flatten())
+    olist = list(np.array([URL(i,**(self.fdict())) for i in base_list]).flatten())
     for l in olist:
-      l.init(**(self.kwargs))
+      l.init(**(self.fdict()))
 
     # cache this in case we want to re-use it
     cache = {store_flag : { str(store_url) : [str(i) for i in olist] }}
-    self.set_db(cache)
+    self.database.set_db(cache)
     if type(olist) is list: 
-      return [URL(o,**self.kwargs) for o in olist]
-    return [URL(olist,**self.kwargs)]
+      return [URL(o,**(self.fdict())) for o in olist]
+    return [URL(olist,**(self.fdict()))]
 
   def rglob(self, pattern):
     '''
@@ -1069,12 +1021,12 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       html = self.read_text()
       links = np.array([mylink.attrs['href'] for mylink in BeautifulSoup(html,'lxml').find_all('a')])
       links = np.array(self._filter(links,pattern))
-
+      import pdb;pdb.set_trace()
       matches = np.array([fnmatch.fnmatch(str(l), '*'+pattern) for l in links]) 
       files = list(links[matches])
     except:
       files = []
-    self.msg(f'discovered {len(files)} files with pattern {pattern} in {str(self.resolve())}')
+    self.msg(f'discovered {len(files)} files with pattern {pattern} in {str(self)}')
     return files 
 
 def main():

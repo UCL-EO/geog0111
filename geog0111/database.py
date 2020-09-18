@@ -45,14 +45,18 @@ class Database():
   def __del__(self):
       '''cleanup'''
       try:
-        self.set_db(self.database,write=True)
+        if self.database != {}:
+          if self.init_database != self.database:
+            self.set_db(self.database,write=True)
       except:
         pass
 
   def __exit__(self, *exc):
       '''cleanup'''
       try:
-        self.set_db(self.database,write=True)
+        if self.database != {}:
+          if self.init_database != self.database:
+            self.set_db(self.database,write=True)
       except:
         pass
 
@@ -102,6 +106,15 @@ class Database():
         filelist[i]  = f
       return filelist
 
+  def fdict(self,this):
+    '''return partial version of self.__dict__'''
+    dellist = []
+    for k,v in this.items():
+      if k[:len('_cached')] == '_cached':
+        dellist.append(k)
+    for k in dellist:
+      del this[k]
+    return this
 
   def list_info(self,filelist):
       '''resolve filelist and get read and write permissions'''
@@ -152,29 +165,25 @@ class Database():
       and db_dir
 
       '''
-      if 'verbose' not in kwargs:
-        self.verbose         = False
-      if 'store_msg'  not in kwargs:
-        self.store_msg       = []
-      if 'log'        not in kwargs:
-        self.log             = None
-
-      self.stderr  = sys.stderr
-
+      defaults = {\
+         'verbose'    : False,\
+         'db_dir'     : self.list_resolve(['~/.url_db']),\
+         'db_file'    : None,\
+         'store_msg'  : [],\
+         'log'        : None,\
+         'database'   : None,\
+         'stderr'     : sys.stderr,\
+      }
+      defaults.update(kwargs)
+      old_db = defaults['database']
+      self.__dict__.update(defaults)
       try:
-        if self.store_msg is None:
-          self.store_msg = []
+        # in case database object passed
+        self.__dict__.update(self.fdict(self.database.__dict__))
+        if type(old_db) is dict:
+          self.database.update(old_db) 
       except:
-        self.store_msg = []
-
-      # extra arguments
-      keys = kwargs.keys()
-      if 'verbose' in keys:
-        self.verbose = kwargs['verbose']
-      if 'store_msg' in keys:
-        self.store_msg = self.store_msg.append(kwargs['store_msg'])
-      if 'log' in keys and (kwargs['log'] is not None):
-        self.log = kwargs['log']
+        pass
 
       self.store_msg = self.remove_duplicates(self.store_msg)
       if self.log is not None:
@@ -195,25 +204,16 @@ class Database():
       if 'CACHE_DIR' in os.environ and os.environ['CACHE_DIR'] is not None:
         self.db_dir = self.list_resolve(self.db_dir + self.list_resolve(os.environ['CACHE_DIR']))
         [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
-      self.db_file = self.name_resolve(args)
+
       self.db_dir = self.list_resolve([Path(d).parent for d in self.db_file])
+      self.db_file = [Path(f) for f in self.db_file]
 
-      # update arg list for new creations
-      kwargs['verbose']    = self.verbose
-      kwargs['store_msg']  = self.store_msg
-      kwargs['log']        = self.log
-      
-      try:
-        self.kwargs.update(kwargs)
-      except:
-        self.kwargs = kwargs
-
-      if 'database' in self.kwargs:
+      if self.database and (len(self.database.keys())):
         self.msg('getting database from command line')
-        self.database = self.kwargs['database']
       else:
-        self.database = None
-      self.database = self.set_db(dict(self.get_db()))
+        self.database = self.set_db(dict(self.get_db()))
+      self.init_database = self.database.copy()
+
 
   def filter_db(self,old_db):
     '''clean the database'''
@@ -251,7 +251,6 @@ class Database():
 
     db_files = self.db_file
     readlist,writelist = self.list_info(db_files)
-    import pdb;pdb.set_trace()
 
     if (readlist is None) or (old_db is {}):
       return old_db.copy()
@@ -259,6 +258,7 @@ class Database():
     if not write:
       return new_db
 
+    import pdb;pdb.set_trace()
     for dbf in np.array(db_files,dtype=np.object)[writelist]:
       # make a copy first
       try:
@@ -305,7 +305,7 @@ class Database():
     readlist,writelist = self.list_info(db_files)
     for dbf in np.array(db_files,dtype=np.object)[readlist]:
       with dbf.open('r') as f:
-        self.msg(f'reading db file {dbf}')
+        #self.msg(f'reading db file {dbf}')
         try:
           fin = dict(yaml.safe_load(f))
         except:
@@ -330,6 +330,11 @@ class Database():
     except:
       self.msg(f'db file {self.call_db()}')
       self.database = self.database or self.get_db()
+    try:
+      keys = self.database.keys()
+    except:
+      self.database = self.get_db()
+      keys = self.database.keys()
     if flag in self.database.keys():
       if url in self.database[flag].keys():
         self.msg(f'retrieving {flag} {url} from database')
@@ -342,9 +347,9 @@ class Database():
       # DONT REPEAT MESSAGES
       if args in self.store_msg:
         return
-      self.store_msg.append(args)
+      self.store_msg.append(*args)
     except:
-      self.store_msg = [args]
+      self.store_msg = [*args]
     try:
         if self.verbose or (self.log is not None):
             print('-->',*args,file=self.stderr)

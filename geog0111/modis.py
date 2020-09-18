@@ -27,40 +27,30 @@ class Modis():
   '''
   get MODIS datasets from the server
   '''
-  def set_kwargs(self,product='MCD15A3H',\
-                    tile='h08v06',\
-                    log=None,
-                    day='01',\
-                    month='*',\
-                    sds= None,
-                    year="2019",\
-                    site='https://e4ftl01.cr.usgs.gov',\
-                    size_check=False,\
-                    noclobber=True,\
-                    local_dir='work',\
-                    local_file=None,\
-                    db_file=None,\
-                    db_dir='work',\
-                    verbose=False):
 
-    self.size_check = size_check
-    self.noclobber = noclobber
-    self.local_dir = local_dir
-    self.local_file= local_file
-    self.db_dir  = db_dir
-    self.db_file = db_file
-    self.verbose = verbose
-    self.site    = site
-    self.product = product
-    self.tile    = tile
-    self.day     = day
-    self.month   = month
-    self.year    = year
-    self.sub     = None
-    self.sds     = sds
-    self.log     = log
+  def __init__(self,**kwargs):
+    defaults = {
+     'product'    : 'MCD15A3H',\
+     'tile'       : 'h08v06',\
+     'log'        : None,\
+     'day'        : '01',\
+     'month'      : '*',\
+     'sds'        : None,
+     'year'       : "2019",\
+     'site'       : 'https://e4ftl01.cr.usgs.gov',\
+     'size_check' : False,\
+     'noclobber'  : True,\
+     'local_dir'  : 'work',\
+     'local_file' : None,\
+     'db_file'    : None,\
+     'db_dir'     : 'work',\
+     'verbose'    : False,\
+    }
+
     self.translateoptions = gdal.TranslateOptions(gdal.ParseCommandLine("-of Gtiff -co COMPRESS=LZW"))
 
+    defaults.update(kwargs)
+    self.__dict__.update(defaults)    
     # list of tiles
     if type(self.tile) is str:
       self.tile = [self.tile]
@@ -68,11 +58,17 @@ class Modis():
     if type(self.sds) is str:
       self.sds = [self.sds]
 
-  def __init__(self,**kwargs):
-    if 'product' not in kwargs:
-      product='MCD15A3H' 
-    self.set_kwargs(**kwargs)
-    self.kwargs = kwargs.copy()
+
+  def fdict(self):
+    '''return partial version of self.__dict__'''
+    this = self.__dict__.copy()
+    dellist = []
+    for k,v in this.items():
+      if k[:len('_cached')] == '_cached':
+        dellist.append(k)
+    for k in dellist:
+      del this[k]
+    return this
 
   def get_data(self,year,doy):
     '''return data array for doy year as sds dictionary'''
@@ -95,9 +91,8 @@ class Modis():
     
   def get_year(self,year,step=4):
     '''create vrt dataset of all images for a year'''
-    kwargs = self.kwargs.copy()
-    kwargs['year']  = f'{year}'
-
+    year = int(year)
+    self.year  = f'{year}'
     ayear = (datetime.datetime(year+1, 1, 1) - datetime.datetime(year, 1, 1)).days
     
     sfiles = {}
@@ -110,11 +105,11 @@ class Modis():
           bandlist.append(f'{str(i):0>2s}')
           ofiles.append(ifiles)
       spatial_file = f"{self.local_dir}/data.{self.sds[i]}." + \
-                     f"{'_'.join(self.tile)}.{kwargs['year']}.vrt"
+                     f"{'_'.join(self.tile)}.{self.year}.vrt"
       g = gdal.BuildVRT(spatial_file,ofiles,separate=True)
       g.FlushCache()
       if not g:
-        print(f"problem building dataset for {spatial_file} with {kwargs}")
+        print(f"problem building dataset for {spatial_file} with {self.fdict()}")
       del g  
       sfiles[s] = spatial_file
       sfiles[s+'_name'] = bandlist
@@ -122,14 +117,17 @@ class Modis():
 
   def stitch_date(self,year,doy):
     '''stitch data for date'''
+    year = int(year)
+    doy  = int(doy)
+
     dater = (datetime.datetime(year, 1, 1) +\
                datetime.timedelta(doy - 1)).strftime('%Y %m %d').split()
-    kwargs = self.kwargs.copy()
-    kwargs['year']  = f'{year}'
-    kwargs['month'] = f'{str(int(dater[1])) :0>2s}'
-    kwargs['day']   = f'{str(int(dater[2])) :0>2s}'
+    self.year  = f'{year}'
+    self.month = f'{str(int(dater[1])) :0>2s}'
+    self.day   = f'{str(int(dater[2])) :0>2s}'  
 
-    hdf_urls = self.get_url(**kwargs)
+    hdf_urls = self.get_url(**(self.fdict()))
+
     for f in hdf_urls:
       d = f.read_bytes()
     hdf_files = [str(f.local()) for f in hdf_urls]
@@ -138,18 +136,18 @@ class Modis():
     ofiles = []
     for i,sd in enumerate(sds):
       spatial_file = f"{self.local_dir}/data.{self.sds[i]}." + \
-                     f"{'_'.join(self.tile)}.{kwargs['year']}.{kwargs['month']}.{kwargs['day']}.vrt"
+                     f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
       g = gdal.BuildVRT(spatial_file,sds[i])
       if not g:
-        print(f"problem building dataset for {spatial_file} with {kwargs}")
+        print(f"problem building dataset for {spatial_file} with {self.fdict()}")
         sys.exit(1)
       ofiles.append(spatial_file)
     return ofiles
 
-  def get_files(self,**kwargs):
-    hdf_urls = self.get_url(**kwargs)
-    hdf_files = [f.local() for f in hdf_urls]
-    return hdf_files
+  #def get_files(self,**kwargs):
+  #  hdf_urls = self.get_url(**kwargs)
+  #  hdf_files = [f.local() for f in hdf_urls]
+  #  return hdf_files
 
 
   def get_url(self,**kwargs):
@@ -181,10 +179,10 @@ class Modis():
 
     site_file = f'*.{tile}*.hdf'
     kwargs = {"verbose"    : self.verbose,\
-              "noclobber" : self.noclobber,\
-              "db_dir"    : self.db_dir,\
-              "db_file"   : self.db_file,\
-              "log"       : self.log,\
+              "noclobber"  : self.noclobber,\
+              "db_dir"     : self.db_dir,\
+              "db_file"    : self.db_file,\
+              "log"        : self.log,\
               "size_check" : self.size_check,\
               "local_file" : self.local_file,\
               "local_dir"  : self.local_dir }
@@ -194,13 +192,13 @@ class Modis():
       hdf_urls += URL(site,site_dir,**kwargs).glob(f'*.{t}*.hdf')
     return hdf_urls 
 
-  def get_hdf_files(self,**kwargs):
-    '''download the MODIS data and return the local filenames'''
-    hdf_urls = self.get_url(**kwargs)
-    for f in hdf_urls:
-      d = f.read_bytes()
-    hdf_files = [f.local() for f in hdf_urls]
-    return hdf_files
+  #def get_hdf_files(self,**kwargs):
+  #  '''download the MODIS data and return the local filenames'''
+  #  hdf_urls = self.get_url(**kwargs)
+  #  for f in hdf_urls:
+  #    d = f.read_bytes()
+  #  hdf_files = [f.local() for f in hdf_urls]
+  #  return hdf_files
 
   def get_sds(self,hdf_files):
 
@@ -216,31 +214,31 @@ class Modis():
       this_subs += [s0 for s0,s1 in all_subs if sd in s1]
     return [[sub.format(local_file=str(lfile)) for lfile in hdf_files] for sub in this_subs]
 
-  def hdf_to_gtiff(self,hdf_file):
-    '''pull the SDS from and HDF'''
-    g = gdal.Open(str(hdf_file))
-    if g:
-      sub = self.get_sub(hdf_file)
-      glocal_file_sds = []
-      for s in sub:
-        g = gdal.Open(s[0])
-        product = s[1].split()[1]
-        name = '_'.join([product,hdf_file.with_suffix('.tif').name])
-        glocal_file = hdf_file.with_name(name)
-        if g:
-          gout = gdal.Translate(str(glocal_file), g, options=self.translateoptions)
-          del gout
-        glocal_file_sds.append(glocal_file)
-    return glocal_file_sds
+  #def hdf_to_gtiff(self,hdf_file):
+  #  '''pull the SDS from and HDF'''
+  #  g = gdal.Open(str(hdf_file))
+  #  if g:
+  #    sub = self.get_sub(hdf_file)
+  #    glocal_file_sds = []
+  #    for s in sub:
+  #      g = gdal.Open(s[0])
+  #      product = s[1].split()[1]
+  #      name = '_'.join([product,hdf_file.with_suffix('.tif').name])
+  #      glocal_file = hdf_file.with_name(name)
+  #      if g:
+  #        gout = gdal.Translate(str(glocal_file), g, options=self.translateoptions)
+  #        del gout
+  #      glocal_file_sds.append(glocal_file)
+  #  return glocal_file_sds
 
-  def get_tdata(self,hdf_urls):
-    '''
-    get the data corresponding to the list in hdf_urls
-    '''
-    hdf_urls = list(hdf_urls)
-    hdf_data = self.get_hdf_data(hdf_urls)
-
-    return [self.hdf_to_gtiff(f) for f in hdf_data]
+  #def get_tdata(self,hdf_urls):
+  #  '''
+  #  get the data corresponding to the list in hdf_urls
+  #  '''
+  #  hdf_urls = list(hdf_urls)
+  #  hdf_data = self.get_hdf_data(hdf_urls)
+  #
+  #  return [self.hdf_to_gtiff(f) for f in hdf_data]
 
 def test_login(do_test):
     '''ping small (1.3 M) test file
@@ -257,13 +255,9 @@ def test_login(do_test):
     return url.ping()   
 
 def main():
-  modis = Modis('MCD15A3H',verbose=True,local_dir='work')
+  modis = Modis(product='MCD15A3H',verbose=True,local_dir='work')
   hdf_urls = modis.get_url(year="2020",month="*",day="0[1-4]")
-  tif_files = modis.get_data(hdf_urls)
-  database = {modis.product : modis.sub}
-
-
-
+  print(hdf_urls)
 
 if __name__ == "__main__":
     main()
