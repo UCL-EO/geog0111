@@ -1066,7 +1066,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
     store_url  = str(self.update(pattern))
     store_flag = 'query'
-    if nor self.noclobber:
+    if not self.noclobber:
       # dont trust cache
       response = None
     else:
