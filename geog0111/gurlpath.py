@@ -76,6 +76,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
   def __del__(self):
       try:
         del self.database
+        self.msg(f'clone: {url.is_clone}')
       except:
         pass
 
@@ -86,6 +87,27 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       except:
         pass
       tempfile.clean()
+
+  def dedate(self):
+    if '_cache_original' in  self.__dict__:
+      self.__dict__ = self._cache_original.copy()
+      if '_cache_original' in  self.__dict__:
+        del self.__dict__['_cache_original']
+
+  def update(self,*args,**kwargs):
+    '''update args in object'''
+    if '_cache_original' not in  self.__dict__:
+      self._cache_original = self.__dict__.copy()
+    #self.msg(f'updating {str(self)}')
+    args = [str(self)] + list(args)   
+    url = super(URL, self).__new__(self,*args)
+    url.is_clone = True
+    #self.msg(f'to {str(url)}')
+    # 
+    #old_dict = self.fdict(self._cache_original.copy())
+    #old_dict.update(self.fdict(url.__dict__))
+    url.__dict__ = self.fdict(self._cache_original.copy())
+    return url
 
   def list_resolve(self,filelist,files=False):
       '''resolve filelist'''
@@ -236,7 +258,11 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
       self.db_file    = self.db_file or self.name_resolve(self.db_dir,name='.db.yml')
 
-      self.database = Database(self.db_file,**(self.fdict()))
+      if 'database' in self.__dict__ and type(self.database) == Database:
+        # already have databse stored
+        pass
+      else:  
+        self.database = Database(self.db_file,**(self.fdict(ignore=['db_dir','db_file'])))
 
 
   def get_read_file(self,filelist):
@@ -655,7 +681,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
   def absolute(self):
     '''resolve'''
-    return self.resolve
+    return self.resolve()
 
   def _isfile(self):
     if self.scheme == '' or self.scheme == 'file':
@@ -891,12 +917,20 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
 
   def _convert_to_abs(self,ilist):
-    # this url
-    return [URL(l.rstrip('/#'),**(self.fdict())).absolute() for l in ilist ]
+    # this is slow and may be not needed
+    self.msg(f'parsing URLs from html file {len(ilist)} items')
+    return [self.update(l.rstrip('/#'),**(self.fdict())).absolute() for l in ilist ]
 
-  def _filter(self,list,pattern):
-    import pdb;pdb.set_trace()
-    list = self._convert_to_abs(list)
+  def _filter(self,links,pattern,pre_filter=True):
+    # pre-filter
+    if pre_filter: 
+
+      links = np.array([str(l).rstrip('/#') for l in links])
+      matches = np.array([fnmatch.fnmatch(str(l), '*'+pattern) for l in links])
+      links = list(links[matches])
+    
+
+    links = self._convert_to_abs(links)
     olist = []
     try:
       p = self.done[pattern]
@@ -908,7 +942,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         self.done = {pattern:[]}
     p = self.done[pattern]
     
-    olist = [u for u in list if u not in p]    
+    olist = [u for u in links if u not in p]    
     self.done[pattern] = self.done[pattern] + olist
     return olist
 
@@ -920,18 +954,20 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     is_wild = np.logical_or(is_wild,is_wild_2)
     return is_wild
 
-  def fdict(self):
+  def fdict(self,idict=None,ignore=[]):
     '''return partial version of self.__dict__'''
-    this = self.__dict__.copy()
+    this = idict or self.__dict__.copy()
     dellist = []
     for k,v in this.items():
-      if k[:len('_cached')] == '_cached':
+      if (k[:len('_cached')] == '_cached'):
+        dellist.append(k)
+      if k in ignore:
         dellist.append(k)
     for k in dellist:
       del this[k]
     return this  
 
-  def glob(self,pattern):
+  def glob(self,pattern,pre_filter=True):
     '''
     Iterate over this subtree and yield all existing files (of any
     kind, including directories) matching the given relative pattern.
@@ -947,7 +983,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     url = str(u)
     if url[-1] == '/':
       url = urls[:-1]
-    url = URL(url,pattern,**(self.fdict()))
+    url = self.update(url,pattern)
 
     # check in database
     store_url  = url
@@ -955,8 +991,8 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     olist = self.database.get_from_db(store_flag,store_url)
     if olist is not None:
       if type(olist) is list:
-        return [URL(o,**(self.fdict())) for o in olist]
-      return [URL(olist,**(self.fdict()))]
+        return [self.update(o) for o in olist]
+      return [self.update(olist)]
 
     uc = np.array(url.parts)
     is_wild = self.has_wildness(uc)
@@ -968,19 +1004,26 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         #self.msg(f"WARNING: suspect wildcard behaviour for {url}")
         first_wild = first_wild[0]
       else:
-        return [URL(url,**(self.fdict()))]
-    base_list = [str(URL(*list(uc[:first_wild]),**(self.fdict())).resolve())]
+        return [self.update(url)]
+
+    baser = self.update(*list(uc[:first_wild]))
+    base_list = [baser]
     wilds = uc[first_wild:]
     u.msg(f'wildcards in: {wilds}')
+    # recover from update
+    self.dedate()
 
     for i,w in enumerate(wilds):
       u.msg(f'level {i}/{len(wilds)} : {w}')
       new_list = []
       for b in base_list:
-        new_list = new_list + URL(b,**(self.fdict()))._glob(w)
+        new_list = new_list + self.update(b)._glob(w,pre_filter=pre_filter)
 
       base_list = np.array(new_list).flatten()
-    olist = list(np.array([URL(i,**(self.fdict())) for i in base_list]).flatten())
+
+    olist = list(np.array([self.update(i) for i in base_list]).flatten())
+    self.dedate()
+
     for l in olist:
       l.init(**(self.fdict()))
 
@@ -988,10 +1031,10 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     cache = {store_flag : { str(store_url) : [str(i) for i in olist] }}
     self.database.set_db(cache)
     if type(olist) is list: 
-      return [URL(o,**(self.fdict())) for o in olist]
-    return [URL(olist,**(self.fdict()))]
+      return [self.update(o) for o in olist]
+    return [self.update(olist)]
 
-  def rglob(self, pattern):
+  def rglob(self, pattern,pre_filter=True):
     '''
     Recursively yield all existing files (of any kind, including
     directories) matching the given relative pattern, anywhere in
@@ -1003,10 +1046,15 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
 
     '''
-    return self.glob(pattern)
+    return self.glob(pattern,pre_filter=pre_filter)
 
+  def flush(self):
+    try:
+      return self.database.set_db(self.database.database,write=True)
+    except:
+      return None
 
-  def _glob(self, pattern):
+  def _glob(self, pattern,pre_filter=True):
     '''
     Iterate over this subtree and yield all existing files (of any
     kind, including directories) matching the given relative pattern.
@@ -1017,16 +1065,28 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     if pattern[-1] == '/':
       pattern = pattern[:-1]
 
+    store_url  = str(self.update(pattern))
+    store_flag = 'query'
+    response = self.database.get_from_db(store_flag,store_url)
+    if response:
+      self.msg(f'got response from database for {store_url}')
+      self.msg(f'discovered {len(response)} files with pattern {pattern} in {str(self)}')
+      return [self.update(str(f)) for f in response] 
+
     try:
       html = self.read_text()
       links = np.array([mylink.attrs['href'] for mylink in BeautifulSoup(html,'lxml').find_all('a')])
-      links = np.array(self._filter(links,pattern))
-      import pdb;pdb.set_trace()
+      links = np.array(self._filter(links,pattern,pre_filter=pre_filter))
       matches = np.array([fnmatch.fnmatch(str(l), '*'+pattern) for l in links]) 
       files = list(links[matches])
     except:
       files = []
     self.msg(f'discovered {len(files)} files with pattern {pattern} in {str(self)}')
+
+    # cache this in db
+    cache = {store_flag : { str(store_url) : [str(i) for i in files] }}
+    self.database.set_db(cache,write=True)
+ 
     return files 
 
 def main():
@@ -1042,21 +1102,24 @@ def main():
   if False:
     u='https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11'
     url = URL(u)
-    files = url.glob('*0.hdf') 
+    files = url.glob('*0.hdf',pre_filter=True) 
     print(files) 
 
-  import pdb;pdb.set_trace()
   if True:
     u='https://e4ftl01.cr.usgs.gov'
     import os
-    os.environ['CACHE_DIR'] = 'data'
+    os.environ['CACHE_FILE'] = 'data/database.db'
 
     url = URL(u,verbose=True,db_file='data/new_db.txt',local_dir='work')
-    rlist = url.glob('MOT*/MCD15A3H.006/2003.12.11/*0.hdf')
-    for r in rlist:
-      u = URL(r,**url.kwargs)
+    rlist = url.glob('MOT*/MCD15A3H.006/2003.12.11/*0.hdf',pre_filter=True)
+    for i,r in enumerate(rlist):
+      print(i)
+      # we can save in decalring a new URL by passing old one
+      u = URL(r,**(url.fdict()))
       data=u.read_bytes()
-      u.write_bytes(data)
+      # updata database
+      u.flush()
+      #u.write_bytes(data)
 
 if __name__ == "__main__":
     main()

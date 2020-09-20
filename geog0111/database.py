@@ -42,6 +42,7 @@ class Database():
   '''
   URL look up database
   '''
+
   def __del__(self):
       '''cleanup'''
       try:
@@ -71,6 +72,8 @@ class Database():
         filelist = [filelist]
       elif type(filelist) is PosixPath:
         filelist = [str(filelist)]
+
+      filelist = [str(f) for f in filelist]
 
       filelist  = self.remove_duplicates(filelist)
 
@@ -106,11 +109,14 @@ class Database():
         filelist[i]  = f
       return filelist
 
-  def fdict(self,this):
+  def fdict(self,idict=None,ignore=[]):
     '''return partial version of self.__dict__'''
+    this = idict or self.__dict__.copy()
     dellist = []
     for k,v in this.items():
-      if k[:len('_cached')] == '_cached':
+      if (k[:len('_cached')] == '_cached'):
+        dellist.append(k)
+      if k in ignore:
         dellist.append(k)
     for k in dellist:
       del this[k]
@@ -164,6 +170,7 @@ class Database():
       kwargs setup and organisation of local_dir
       and db_dir
 
+      args are database files
       '''
       defaults = {\
          'verbose'    : False,\
@@ -177,13 +184,17 @@ class Database():
       defaults.update(kwargs)
       old_db = defaults['database']
       self.__dict__.update(defaults)
-      try:
-        # in case database object passed
-        self.__dict__.update(self.fdict(self.database.__dict__))
-        if type(old_db) is dict:
-          self.database.update(old_db) 
-      except:
-        pass
+
+      if ('database' in self.__dict__) and (type(self.database) is Database):
+        try:
+          print("WARNING: shouldnt be here  ... ")
+          this = self.database.__dict__
+          # in case database object passed
+          self.__dict__.update(self.fdict(this))
+          if type(old_db) is dict:
+            self.database.update(old_db) 
+        except:
+          pass
 
       self.store_msg = self.remove_duplicates(self.store_msg)
       if self.log is not None:
@@ -199,18 +210,51 @@ class Database():
         except:
           self.stderr = sys.stderr
           self.msg(f"WARNING: failure to open log file {self.log}")
+ 
+      if type(self.db_file) is str:
+        self.db_file = [self.db_file]
+
+      # database files
+      if (self.db_file is None):
+        self.db_file = args
+      else:
+        if type(self.db_file) is not list:
+          self.db_file = [self.db_file]
+        self.db_file.append(args)
+
+      if (self.db_file is not None) and type(self.db_file) is not list:
+        self.db_file = [self.db_file]
+      if (self.db_dir is not None) and type(self.db_dir) is not list:
+        self.db_dir = [self.db_dir]
 
       # may be a cache
-      if 'CACHE_DIR' in os.environ and os.environ['CACHE_DIR'] is not None:
-        self.db_dir = self.list_resolve(self.db_dir + self.list_resolve(os.environ['CACHE_DIR']))
-        [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
+      if 'CACHE_FILE' in os.environ and os.environ['CACHE_FILE'] is not None:
+        db_file = self.list_resolve(os.environ['CACHE_FILE'])
+        self.msg(f'using cache {db_file}')
+        if (self.db_file is None):
+          self.db_file = db_file
+        else:
+          self.db_file = self.list_resolve(self.db_file + db_file)
 
-      self.db_dir = self.list_resolve([Path(d).parent for d in self.db_file])
-      self.db_file = [Path(f) for f in self.db_file]
+      # in case still none
+      if (self.db_file is None) or \
+         ((type(self.db_file) is list) and len(self.db_file) == 0):
+        # in case self.db_dir is none
+        if (self.db_dir is None) or \
+         ((type(self.db_dir) is list) and len(self.db_dir) == 0):
+          self.db_dir = self.list_resolve([Path('~','.url_db')])
+        self.db_file = [Path(d,'.db.yml') for d in self.db_dir] 
+
+      if type(self.db_file) is str:
+        self.db_file = [self.db_file]
+
+      self.db_file = self.list_resolve([Path(f) for f in self.db_file])
+      self.db_dir = [Path(d).parent for d in self.db_file]
 
       if self.database and (len(self.database.keys())):
         self.msg('getting database from command line')
       else:
+        
         self.database = self.set_db(dict(self.get_db()))
       self.init_database = self.database.copy()
 
@@ -234,31 +278,34 @@ class Database():
 
   def set_db(self,new_db,write=False,clean=False):
     '''save dictionary db in cache database'''
-    vold_db = self.database or dict(self.get_db())
-    if not clean:
-      old_db = vold_db.copy()
-    else:
-      old_db = {}
-    new_db = dict(new_db)
-    for k in new_db.keys():
-      if k in old_db:
-        old_db[k].update(new_db[k])
+    if write:
+      vold_db = self.database or dict(self.get_db())
+      if not clean:
+        old_db = vold_db.copy()
       else:
-        old_db[k] = new_db[k]
+        old_db = {}
 
-    old_db = self.filter_db(old_db)
+    new_db = dict(new_db)
+
+    if write:
+      for k in new_db.keys():
+        if k in old_db:
+          old_db[k].update(new_db[k])
+        else:
+          old_db[k] = new_db[k]
+      old_db = self.filter_db(old_db)
+
     new_db = self.filter_db(new_db)
 
     db_files = self.db_file
     readlist,writelist = self.list_info(db_files)
 
-    if (readlist is None) or (old_db is {}):
+    if write and ((readlist is None) or (old_db is {})):
       return old_db.copy()
 
     if not write:
       return new_db
 
-    import pdb;pdb.set_trace()
     for dbf in np.array(db_files,dtype=np.object)[writelist]:
       # make a copy first
       try:
@@ -305,7 +352,7 @@ class Database():
     readlist,writelist = self.list_info(db_files)
     for dbf in np.array(db_files,dtype=np.object)[readlist]:
       with dbf.open('r') as f:
-        #self.msg(f'reading db file {dbf}')
+        self.msg(f'reading db file {dbf}')
         try:
           fin = dict(yaml.safe_load(f))
         except:
@@ -365,6 +412,7 @@ def main():
   }
   dbs = ['data/database.db','data/new_db.txt','data/lai_filelist_2016.dat.txt','data/lai_filelist_2017.dat.txt']
   db = Database(dbs,**kwargs)
+  # this is how to pass on a database 
   database = db.database.copy()
   del db
 
@@ -374,6 +422,12 @@ def main():
   }
   db = Database(dbs,**kwargs)
   del db
+
+  # try no arg: default
+  kwargs = {
+    'verbose'   :    True
+  }
+  db = Database(None,**kwargs)
 
 if __name__ == "__main__":
     main()
