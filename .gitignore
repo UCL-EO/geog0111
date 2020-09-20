@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 ??=???=?
 docs/_*
+notebooks/work/*
 *.icloud
 *.swp
 data/ucl
