@@ -391,7 +391,7 @@ class Database():
   def msg(self,*args):
     '''msg to self.stderr'''
     try:
-      # DONT REPEAT MESSAGES
+      # DONT REPEAT MESSAGES ... doesnt work as yet
       if args in self.store_msg:
         return
       self.store_msg.append(*args)

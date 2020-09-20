@@ -256,7 +256,8 @@ def test_login(do_test):
 
 def main():
   modis = Modis(product='MCD15A3H',verbose=True,local_dir='work')
-  hdf_urls = modis.get_url(year="2020",month="*",day="0[1-4]")
+  hdf_urls = modis.get_url(year="2019",month="*",day="0[1-4]")
+
   print(hdf_urls)
 
 if __name__ == "__main__":

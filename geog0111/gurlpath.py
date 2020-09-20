@@ -492,7 +492,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     store_url  = str(self)
     store_flag = 'data'
 
-    # input file
     ifile = self.database.get_from_db(store_flag,store_url)
 
     if ifile is not None:
@@ -1067,7 +1066,11 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
     store_url  = str(self.update(pattern))
     store_flag = 'query'
-    response = self.database.get_from_db(store_flag,store_url)
+    if nor self.noclobber:
+      # dont trust cache
+      response = None
+    else:
+      response = self.database.get_from_db(store_flag,store_url)
     if response:
       self.msg(f'got response from database for {store_url}')
       self.msg(f'discovered {len(response)} files with pattern {pattern} in {str(self)}')
