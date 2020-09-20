@@ -172,11 +172,11 @@ class Database():
 
       args are database files
       '''
+
       defaults = {\
          'verbose'    : False,\
          'db_dir'     : self.list_resolve(['~/.url_db']),\
          'db_file'    : None,\
-         'store_msg'  : [],\
          'log'        : None,\
          'database'   : None,\
          'stderr'     : sys.stderr,\
@@ -196,13 +196,13 @@ class Database():
         except:
           pass
 
-      self.store_msg = self.remove_duplicates(self.store_msg)
+      #self.store_msg = self.remove_duplicates(self.store_msg)
       if self.log is not None:
         try:
           self.stderr = Path(self.log).open("a")
           if self.verbose:
             try:
-              msg = f"database: log file {self.log}"
+              #msg = f"database: log file {self.log}"
               self.store_msg.append(msg)
               print(msg,file=sys.stderr)
             except:
@@ -390,13 +390,14 @@ class Database():
 
   def msg(self,*args):
     '''msg to self.stderr'''
+    this = str(*args)
     try:
       # DONT REPEAT MESSAGES ... doesnt work as yet
-      if args in self.store_msg:
+      if this in self.store_msg:
         return
-      self.store_msg.append(*args)
+      self.store_msg.append(this)
     except:
-      self.store_msg = [*args]
+      self.store_msg = [this]
     try:
         if self.verbose or (self.log is not None):
             print('-->',*args,file=self.stderr)

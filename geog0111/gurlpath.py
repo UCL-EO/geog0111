@@ -98,8 +98,13 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     '''update args in object'''
     if '_cache_original' not in  self.__dict__:
       self._cache_original = self.__dict__.copy()
-    #self.msg(f'updating {str(self)}')
-    args = [str(self)] + list(args)   
+
+    # whetehr we specify full URL in update or not
+
+    if ('full_url' in kwargs) and (kwargs['full_url'] == True):
+      args = list(args)
+    else:
+      args = [str(self)] + list(args)   
     url = super(URL, self).__new__(self,*args)
     url.is_clone = True
     #self.msg(f'to {str(url)}')
@@ -263,7 +268,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         pass
       else:  
         self.database = Database(self.db_file,**(self.fdict(ignore=['db_dir','db_file'])))
-
 
   def get_read_file(self,filelist):
     filelist = self.name_resolve(filelist)
@@ -468,13 +472,14 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
   def msg(self,*args):
     '''msg to self.stderr'''
+    this = str(*args)
     try:
-      # DONT REPEAT MESSAGES
-      if args in self.store_msg:
+      # DONT REPEAT MESSAGES ... doesnt work as yet
+      if this in self.store_msg:
         return
-      self.store_msg.append(*args)
+      self.store_msg.extend(this)
     except:
-      self.store_msg = [*args]
+      self.store_msg = [this]
     try:
         if self.verbose or (self.log is not None):
             print('-->',*args,file=self.stderr)

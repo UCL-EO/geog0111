@@ -96,23 +96,25 @@ class Modis():
     ayear = (datetime.datetime(year+1, 1, 1) - datetime.datetime(year, 1, 1)).days
     
     sfiles = {}
+    bandlist = []
     for i,s in enumerate(self.sds):
       ofiles = []
       bandlist = []
       for doy in range(1,ayear+1,step):
-        ifiles = self.stitch_date(year,doy)[i]
-        if ifiles:
+        ifiles = self.stitch_date(year,doy)
+        if ifiles and len(ifiles):
           bandlist.append(f'{str(i):0>2s}')
-          ofiles.append(ifiles)
-      spatial_file = f"{self.local_dir}/data.{self.sds[i]}." + \
+          ofiles.append(ifiles[i])
+      if len(ofiles):
+        spatial_file = f"{self.local_dir}/data.{self.sds[i]}." + \
                      f"{'_'.join(self.tile)}.{self.year}.vrt"
-      g = gdal.BuildVRT(spatial_file,ofiles,separate=True)
-      g.FlushCache()
-      if not g:
-        print(f"problem building dataset for {spatial_file} with {self.fdict()}")
-      del g  
-      sfiles[s] = spatial_file
-      sfiles[s+'_name'] = bandlist
+        g = gdal.BuildVRT(spatial_file,ofiles,separate=True)
+        g.FlushCache()
+        if not g:
+          print(f"problem building dataset for {spatial_file} with {self.fdict()}")
+        del g  
+        sfiles[s] = spatial_file
+        sfiles[s+'_name'] = bandlist
     return sfiles,bandlist
 
   def stitch_date(self,year,doy):
@@ -179,6 +181,7 @@ class Modis():
 
     site_file = f'*.{tile}*.hdf'
     kwargs = {"verbose"    : self.verbose,\
+              "full_url"   : True,\
               "noclobber"  : self.noclobber,\
               "db_dir"     : self.db_dir,\
               "db_file"    : self.db_file,\
@@ -188,8 +191,11 @@ class Modis():
               "local_dir"  : self.local_dir }
 
     hdf_urls = []
+    url = None
     for t in self.tile:
-      hdf_urls += URL(site,site_dir,**kwargs).glob(f'*.{t}*.hdf')
+      url = ((url is None) and URL(site,site_dir,**kwargs)) or \
+             url.update(site,site_dir,**kwargs)
+      hdf_urls += url.glob(f'*.{t}*.hdf')
     return hdf_urls 
 
   #def get_hdf_files(self,**kwargs):
