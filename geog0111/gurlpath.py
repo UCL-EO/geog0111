@@ -27,9 +27,13 @@ from argparse import Namespace
 try:
   from geog0111.cylog import Cylog
   from geog0111.database import Database
+  from geog0111.fdict import fdict
+  from geog0111.lists import ginit,list_resolve,name_resolve,list_info
 except:
   from cylog import Cylog
   from database import Database
+  from fdict import fdict
+  from lists import ginit,list_resolve,name_resolve,list_info
 
 '''
 class derived from urlpath to provide pathlib-like
@@ -73,6 +77,15 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       if not kwargs:
         kwargs = {}
 
+  def init(self,**kwargs):
+      self.__dict__.update(ginit(self,**kwargs))
+      if 'database' in self.__dict__ and type(self.database) == Database:
+        # already have databse stored
+        pass
+      else:
+        self.database = Database(self.db_file,\
+                          **(fdict(self.__dict__.copy())))
+
   def __del__(self):
       try:
         del self.database
@@ -107,183 +120,47 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       args = [str(self)] + list(args)   
     url = super(URL, self).__new__(self,*args)
     url.is_clone = True
-    #self.msg(f'to {str(url)}')
-    # 
-    #old_dict = self.fdict(self._cache_original.copy())
-    #old_dict.update(self.fdict(url.__dict__))
-    url.__dict__ = self.fdict(self._cache_original.copy())
+    url.__dict__ = fdict(self._cache_original.copy())
     return url
-
-  def list_resolve(self,filelist,files=False):
-      '''resolve filelist'''
-      if (filelist is None) or (filelist == []):
-        return []
-
-      if type(filelist) is list:
-        filelist = [str(f) for f in filelist if f]
-      elif type(filelist) is  str:
-        filelist = [filelist]
-      elif type(filelist) is PosixPath:
-        filelist = [str(filelist)]
-
-      filelist  = self.remove_duplicates(filelist)
-
-      filelist = [Path(f).expanduser().absolute().resolve() for f in filelist]
-      return filelist
-
-  def name_resolve(self,filelist,name=None):
-      '''resolve filename into filelist'''
-
-      if filelist is None:
-        return filelist
-      if name == None:
-        name = self.name
-      filelist = self.list_resolve(filelist)
-
-      for i,f in enumerate(filelist):
-        # needs to be dir
-        #f = Path(f).expanduser().absolute().resolve()
-
-        # in case its a dir accidently
-        if f.exists() and f.is_dir():
-          self.msg(f"filename {f} is a directory ...")
-          f = Path(f,name)
-          self.msg(f"using {f}")
-
-        parent = f.parent
-        if parent.exists() and (not parent.is_dir()):
-          try:
-            self.msg(f'requested file name {f} parent directory {parent} is file: deleting')
-            parent.unlink()
-          except:
-            self.msg(f'failed to deal with file name {f} parent directory {parent} being file: check permissions')
-            sys.exit(1)
-        try:
-          parent.mkdir(parents=True,exist_ok=True)
-        except:
-          pass
-        filelist[i]  = f
-      return filelist
-
-  def list_info(self,filelist):
-      '''resolve filelist and get read and write permissions'''
-      if filelist is None:
-        return None,None
-
-      filelist  = np.array(self.list_resolve(filelist,files=True),dtype=np.object)
-      readlist  = np.zeros_like(filelist).astype(np.bool)
-      writelist = np.zeros_like(filelist).astype(np.bool)
-
-      # get permissions
-      for i,f in enumerate(filelist):
-        f = Path(f)
-        if f.exists() and (not f.is_dir()):
-          st_mode = f.stat().st_mode
-          readlist[i]  = bool((st_mode & stat.S_IRUSR) /stat.S_IRUSR )
-          writelist[i] = bool((st_mode & stat.S_IWUSR) /stat.S_IWUSR )
-        else:
-          writelist[i] = True
-      return list(readlist),list(writelist) 
 
   def call_local(self):
     '''
     sort out and return local_file
 
     This comes from the URL and local_dir
-
+    and ends .store
     '''
-    kwargs = self.fdict()
+    kwargs = fdict(self.__dict__.copy())
     if 'local_dir' in kwargs and \
         (kwargs['local_dir'] is not None) and \
         len(kwargs['local_dir']) > 0:
-      self.local_dir = self.list_resolve(kwargs['local_dir'])
+      self.local_dir = list_resolve(kwargs['local_dir'])
 
     if (self.local_dir is None) or (len(self.local_dir) == 0):
-      self.local_dir = self.list_resolve(self.db_dir)
+      self.local_dir = list_resolve(self.db_dir)
 
     self.local_file = Path(self.local_dir[-1],str(self.with_scheme(''))[2:]).absolute()
 
-    suffix = self.local_file.suffix()
+    suffix = self.local_file.suffix
     self.local_file = self.local_file.with_suffix(suffix + '.store')
     self.local_file.parent.mkdir(parents=True,exist_ok=True) 
     return self.local_file
 
-  def remove_duplicates(self,l):
-      '''remove duplicates in list l'''
-      if l is None:
-        return l
-      if len(l) == 0:
-        return l
-      return list(np.unique(np.array(l,dtype=np.object)).flatten())
-
-  def init(self,**kwargs):
-      '''
-      kwargs setup and organisation of local_dir
-      and db_dir
-
-      '''
-      defaults = {\
-         'verbose'    : False,\
-         'local_dir'  : self.list_resolve([]),\
-         'db_dir'     : self.list_resolve(['~/.url_db']),\
-         'local_file' : None,\
-         'noclobber'  : True,\
-         'size_check' : False,\
-         'db_file'    : None,\
-         'store_msg'  : [],\
-         'log'        : None,\
-         'database'   : None,\
-         'stderr'     : sys.stderr,\
-      }
-      defaults.update(kwargs)
-      self.__dict__.update(defaults)
-
-      self.store_msg = self.remove_duplicates(self.store_msg)
-      if self.log is not None:
-        try:
-          self.stderr = Path(self.log).open("a")
-          if self.verbose:
-            try:
-              msg = f"{str(self)}: log file {self.log}"
-              self.store_msg.append(msg)
-              print(msg,file=sys.stderr)
-            except:
-              pass
-        except:
-          self.stderr = sys.stderr
-          self.msg(f"WARNING: failure to open log file {self.log}")
-
-      self.local_dir = self.list_resolve(self.local_dir)
-      
-      self.local_dir  = self.list_resolve(self.local_dir)
-      [d.mkdir(parents=True,exist_ok=True) for d in self.local_dir]
-      self.local_file = self.name_resolve(self.local_file)
-
-      self.db_dir     = self.list_resolve(self.db_dir)
-      [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
-      self.db_file    = self.db_file or self.name_resolve(self.db_dir,name='.db.yml')
-
-      if 'database' in self.__dict__ and type(self.database) == Database:
-        # already have databse stored
-        pass
-      else:  
-        self.database = Database(self.db_file,**(self.fdict(ignore=['db_dir','db_file'])))
-
   def get_read_file(self,filelist):
-    filelist = self.name_resolve(filelist)
-    readlist,writelist = self.list_info(filelist)
+    filelist = name_resolve(filelist)
+    readlist,writelist = list_info(filelist)
     filelist = np.array(filelist,dtype=np.object)[readlist]
     return (filelist.size and filelist[-1]) or None
 
   def get_write_file(self,filelist):
-    filelist = self.name_resolve(filelist)
-    readlist,writelist = self.list_info(filelist)
+    filelist = name_resolve(filelist)
+    readlist,writelist = list_info(filelist)
     filelist = np.array(filelist,dtype=np.object)[writelist]
     return (filelist.size and filelist[-1]) or None
 
   def get_readwrite_file(self,filelist):
-    filelist = self.name_resolve(filelist)
-    readlist,writelist = self.list_info(filelist)
+    filelist = name_resolve(filelist)
+    readlist,writelist = list_info(filelist)
     filelist = np.array(filelist,dtype=np.object)[np.logical_and(np.array(writelist),np.array(readlist))]
     return (filelist.size and filelist[-1]) or None
 
@@ -854,7 +731,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       data = ofile.read_bytes()
       ofile = Path(ofile)
       cache = {store_flag : { str(store_url) : str(ofile) }}
-      self.database.set_db(cache)
+      self.database.set_db(cache,write=True)
       return data
 
     # get from ifile
@@ -869,7 +746,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         cache = {store_flag : { str(store_url) : str(ofile) }}
       else:
         cache = {store_flag : { str(store_url) : str(ifile) }}
-      self.database.set_db(cache)
+      self.database.set_db(cache,write=True)
       return data
 
     try:
@@ -884,7 +761,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
             ofile.parent.mkdir(parents=True,exist_ok=True)
             ofile.write_bytes(data)
             cache = {store_flag : { str(store_url) : str(ofile) }}
-            self.database.set_db(cache)
+            self.database.set_db(cache,write=True)
           return data
         if r.status_code == 401:
           u.msg(f'code {r.status_code}')
@@ -904,7 +781,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
               ofile.parent.mkdir(parents=True,exist_ok=True)
               ofile.write_bytes(data)
               cache = {store_flag : { str(store_url) : str(ofile) }}
-              self.database.set_db(cache)
+              self.database.set_db(cache,write=True)
             return data
         else:
           u.msg(f'code {r.status_code}')
@@ -919,7 +796,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
   def _convert_to_abs(self,ilist):
     # this is slow and may be not needed
     self.msg(f'parsing URLs from html file {len(ilist)} items')
-    return [self.update(*[str(self),l.rstrip('/#')],**(self.fdict())) for l in ilist ]
+    return [self.update(*[str(self),l.rstrip('/#')],**(fdict(self.__dict__.copy()))) for l in ilist ]
 
   def _filter(self,links,pattern,pre_filter=True):
     # pre-filter
@@ -952,19 +829,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
                               np.array([']' in i for i in uc]))
     is_wild = np.logical_or(is_wild,is_wild_2)
     return is_wild
-
-  def fdict(self,idict=None,ignore=[]):
-    '''return partial version of self.__dict__'''
-    this = idict or self.__dict__.copy()
-    dellist = []
-    for k,v in this.items():
-      if (k[:len('_cached')] == '_cached'):
-        dellist.append(k)
-      if k in ignore:
-        dellist.append(k)
-    for k in dellist:
-      del this[k]
-    return this  
 
   def glob(self,pattern,pre_filter=True):
     '''
@@ -1011,7 +875,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     self.dedate()
 
     for l in olist:
-      l.init(**(self.fdict()))
+      l.init(**(fdict(self.__dict__.copy())))
 
     # cache this in case we want to re-use it
     cache = {store_flag : { str(store_url) : [str(i) for i in olist] }}
@@ -1050,7 +914,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     # take off training slash
     if pattern[-1] == '/':
       pattern = pattern[:-1]
-    import pdb;pdb.set_trace()
     store_url  = str(self.update(pattern))
     store_flag = 'query'
     if not self.noclobber:
@@ -1106,7 +969,7 @@ def main():
     for i,r in enumerate(rlist):
       print(i)
       # we can save in decalring a new URL by passing old one
-      u = URL(r,**(url.fdict()))
+      u = URL(r,**(fdict(url.__dict__.copy())))
       data=u.read_bytes()
       # updata database
       u.flush()

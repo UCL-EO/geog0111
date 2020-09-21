@@ -25,8 +25,12 @@ import tempfile
 
 try:
   from geog0111.cylog import Cylog
+  from geog0111.fdict import fdict
+  from geog0111.lists import list_resolve,name_resolve,list_info
 except:
   from cylog import Cylog
+  from fdict import fdict
+  from lists import list_resolve,name_resolve,list_info
 
 '''
 database for URL lookup and other things ...
@@ -61,109 +65,17 @@ class Database():
       except:
         pass
 
-  def list_resolve(self,filelist,files=False):
-      '''resolve filelist'''
-      if (filelist is None) or (filelist == []):
-        return []
-
-      if type(filelist) is list:
-        filelist = [str(f) for f in filelist if f]
-      elif type(filelist) is  str:
-        filelist = [filelist]
-      elif type(filelist) is PosixPath:
-        filelist = [str(filelist)]
-
-      filelist = [str(f) for f in filelist]
-
-      filelist  = self.remove_duplicates(filelist)
-
-      filelist = [Path(f).expanduser().absolute().resolve() for f in filelist]
-      return filelist
-
-  def name_resolve(self,*filelist,name=None):
-      '''resolve filename into filelist'''
-
-      if filelist is None:
-        return filelist
-      filelist = self.list_resolve(filelist)
-
-      for i,f in enumerate(filelist):
-        # in case its a dir accidently
-        if f.exists() and f.is_dir():
-          self.msg(f"filename {f} is a directory ...")
-          f = Path(f,name)
-          self.msg(f"using {f}")
-
-        parent = f.parent
-        if parent.exists() and (not parent.is_dir()):
-          try:
-            self.msg(f'requested file name {f} parent directory {parent} is file: deleting')
-            parent.unlink()
-          except:
-            self.msg(f'failed to deal with file name {f} parent directory {parent} being file: check permissions')
-            sys.exit(1)
-        try:
-          parent.mkdir(parents=True,exist_ok=True)
-        except:
-          pass
-        filelist[i]  = f
-      return filelist
-
-  def fdict(self,idict=None,ignore=[]):
-    '''return partial version of self.__dict__'''
-    this = idict or self.__dict__.copy()
-    dellist = []
-    for k,v in this.items():
-      if (k[:len('_cached')] == '_cached'):
-        dellist.append(k)
-      if k in ignore:
-        dellist.append(k)
-    for k in dellist:
-      del this[k]
-    return this
-
-  def list_info(self,filelist):
-      '''resolve filelist and get read and write permissions'''
-      if filelist is None:
-        return None,None
-
-      filelist  = np.array(self.list_resolve(filelist,files=True),dtype=np.object)
-      readlist  = np.zeros_like(filelist).astype(np.bool)
-      writelist = np.zeros_like(filelist).astype(np.bool)
-
-      # get permissions
-      for i,f in enumerate(filelist):
-        f = Path(f)
-        if f.exists() and (not f.is_dir()):
-          st_mode = f.stat().st_mode
-          readlist[i]  = bool((st_mode & stat.S_IRUSR) /stat.S_IRUSR )
-          writelist[i] = bool((st_mode & stat.S_IWUSR) /stat.S_IWUSR )
-        else:
-          writelist[i] = True
-      return list(readlist),list(writelist)
-
-
   def call_db(self):
     '''deal with call to access db and setup if needed'''
 
     if len(self.db_dir) == 0:
-      self.db_dir = self.list_resolve(Path.home() / '.url_db')
+      self.db_dir = list_resolve(Path.home() / '.url_db')
       self.msg(f'setting db_dir {self.db_dir}')
     if not self.db_file:
-      self.db_file = self.name_resolve([f / '.db.yml' for f in self.db_dir])
+      self.db_file = name_resolve([f / '.db.yml' for f in self.db_dir])
       self.msg(f'setting db_file {self.db_file}')
     self.set_db({})
     return self.db_file
-
-
-  def remove_duplicates(self,l):
-      '''remove duplicates in list l'''
-      if l is None:
-        return l
-      if len(l) == 0:
-        return l
-      return list(np.unique(np.array(l,dtype=np.object)).flatten())
-
 
   def __init__(self,args,**kwargs):
       '''
@@ -175,7 +87,7 @@ class Database():
 
       defaults = {\
          'verbose'    : False,\
-         'db_dir'     : self.list_resolve(['~/.url_db']),\
+         'db_dir'     : list_resolve(['~/.url_db']),\
          'db_file'    : None,\
          'log'        : None,\
          'database'   : None,\
@@ -190,13 +102,12 @@ class Database():
           print("WARNING: shouldnt be here  ... ")
           this = self.database.__dict__
           # in case database object passed
-          self.__dict__.update(self.fdict(this))
+          self.__dict__.update(fdict(this))
           if type(old_db) is dict:
             self.database.update(old_db) 
         except:
           pass
 
-      #self.store_msg = self.remove_duplicates(self.store_msg)
       if self.log is not None:
         try:
           self.stderr = Path(self.log).open("a")
@@ -217,10 +128,10 @@ class Database():
       # database files
       if (self.db_file is None):
         self.db_file = args
-      else:
-        if type(self.db_file) is not list:
-          self.db_file = [self.db_file]
-        self.db_file.append(args)
+      #else:
+      #  if type(self.db_file) is not list:
+      #    self.db_file = [self.db_file]
+      #  self.db_file.append(args)
 
       if (self.db_file is not None) and type(self.db_file) is not list:
         self.db_file = [self.db_file]
@@ -229,12 +140,12 @@ class Database():
 
       # may be a cache
       if 'CACHE_FILE' in os.environ and os.environ['CACHE_FILE'] is not None:
-        db_file = self.list_resolve(os.environ['CACHE_FILE'])
+        db_file = [str(l) for l in list_resolve(os.environ['CACHE_FILE'])]
         self.msg(f'using cache {db_file}')
         if (self.db_file is None):
           self.db_file = db_file
         else:
-          self.db_file = self.list_resolve(self.db_file + db_file)
+          self.db_file = list_resolve(self.db_file + db_file)
 
       # in case still none
       if (self.db_file is None) or \
@@ -242,13 +153,13 @@ class Database():
         # in case self.db_dir is none
         if (self.db_dir is None) or \
          ((type(self.db_dir) is list) and len(self.db_dir) == 0):
-          self.db_dir = self.list_resolve([Path('~','.url_db')])
+          self.db_dir = list_resolve([Path('~','.url_db')])
         self.db_file = [Path(d,'.db.yml') for d in self.db_dir] 
 
       if type(self.db_file) is str:
         self.db_file = [self.db_file]
 
-      self.db_file = self.list_resolve([Path(f) for f in self.db_file])
+      self.db_file = list_resolve([Path(f) for f in self.db_file])
       self.db_dir = [Path(d).parent for d in self.db_file]
 
       if self.database and (len(self.database.keys())):
@@ -298,7 +209,7 @@ class Database():
     new_db = self.filter_db(new_db)
 
     db_files = self.db_file
-    readlist,writelist = self.list_info(db_files)
+    readlist,writelist = list_info(db_files)
 
     if write and ((readlist is None) or (old_db is {})):
       return old_db.copy()
@@ -323,33 +234,11 @@ class Database():
 
     return new_db
 
-
-  def list_info(self,filelist):
-      '''resolve filelist and get read and write permissions'''
-      if filelist is None:
-        return None,None
-
-      filelist  = np.array(self.list_resolve(filelist,files=True),dtype=np.object)
-      readlist  = np.zeros_like(filelist).astype(np.bool)
-      writelist = np.zeros_like(filelist).astype(np.bool)
-
-      # get permissions
-      for i,f in enumerate(filelist):
-        f = Path(f)
-        if f.exists() and (not f.is_dir()):
-          st_mode = f.stat().st_mode
-          readlist[i]  = bool((st_mode & stat.S_IRUSR) /stat.S_IRUSR )
-          writelist[i] = bool((st_mode & stat.S_IWUSR) /stat.S_IWUSR )
-        else:
-          writelist[i] = True
-      return list(readlist),list(writelist)
-
-
   def get_db(self):
     '''get the cache database dictionary'''
     db_files = self.db_file
     old_db = {}
-    readlist,writelist = self.list_info(db_files)
+    readlist,writelist = list_info(db_files)
     for dbf in np.array(db_files,dtype=np.object)[readlist]:
       with dbf.open('r') as f:
         self.msg(f'reading db file {dbf}')
@@ -360,7 +249,10 @@ class Database():
         try:
           old_db.update(fin)
         except:
-          self.msg(f'WARNING: error updating with data {fin} from {dbf}')
+          try:
+            self.msg(f'WARNING: error updating with data {fin} from {dbf}')
+          except:
+            pass
     return old_db
 
   def rm_from_db(self,store_flag,store_url,**kwargs):

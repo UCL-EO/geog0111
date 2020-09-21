@@ -5,14 +5,20 @@ import gdal
 from pathlib import Path
 import datetime
 import numpy as np
+import os
 
 try:
   from geog0111.gurlpath import URL
   from geog0111.cylog import Cylog
+  from geog0111.database import Database
+  from geog0111.fdict import fdict
+  from geog0111.lists import ginit,list_resolve,name_resolve,list_info
 except:
   from gurlpath import URL
   from cylog import Cylog
-
+  from database import Database
+  from fdict import fdict
+  from lists import ginit,list_resolve,name_resolve,list_info
 '''
 class to get MODIS datasets
 '''
@@ -29,7 +35,9 @@ class Modis():
   '''
 
   def __init__(self,**kwargs):
-    defaults = {
+    kwargs['defaults'] = {
+     'store_msg'  : [],\
+     'database'   : None,\
      'product'    : 'MCD15A3H',\
      'tile'       : 'h08v06',\
      'log'        : None,\
@@ -46,12 +54,18 @@ class Modis():
      'db_file'    : None,\
      'db_dir'     : 'work',\
      'verbose'    : False,\
+     'stderr'     : sys.stderr
     }
+    self.__dict__.update(ginit(self,**kwargs))
+    if 'database' in self.__dict__ and type(self.database) == Database:
+        # already have databse stored
+        pass
+    else:
+        self.database = Database(self.db_file,\
+                          **(fdict(self.__dict__.copy(),ignore=['db_dir','db_file'])))
 
     self.translateoptions = gdal.TranslateOptions(gdal.ParseCommandLine("-of Gtiff -co COMPRESS=LZW"))
 
-    defaults.update(kwargs)
-    self.__dict__.update(defaults)    
     # list of tiles
     if type(self.tile) is str:
       self.tile = [self.tile]
@@ -59,20 +73,24 @@ class Modis():
     if type(self.sds) is str:
       self.sds = [self.sds]
 
-
-  def fdict(self):
-    '''return partial version of self.__dict__'''
-    this = self.__dict__.copy()
-    dellist = []
-    for k,v in this.items():
-      if k[:len('_cached')] == '_cached':
-        dellist.append(k)
-    for k in dellist:
-      del this[k]
-    return this
+  def msg(self,*args):
+    '''msg to self.stderr'''
+    this = str(*args)
+    try:
+      # DONT REPEAT MESSAGES ... doesnt work as yet
+      if this in self.store_msg:
+        return
+      self.store_msg.append(this)
+    except:
+      self.store_msg = [this]
+    try:
+        if self.verbose or (self.log is not None):
+            print('-->',*args,file=self.stderr)
+    except:
+        pass
 
   def get_data(self,year,doy):
-    '''return data array for doy year as sds dictionary'''
+    '''return data dict for doy year as sds dictionary'''
     vfiles = self.stitch_date(year,doy)
     if not vfiles:
       return dict(zip(self.sds,[[]] * len(self.sds)))
@@ -107,12 +125,17 @@ class Modis():
           bandlist.append(f'{str(i):0>2s}')
           ofiles.append(ifiles[i])
       if len(ofiles):
-        spatial_file = f"{self.local_dir}/data.{self.sds[i]}." + \
-                     f"{'_'.join(self.tile)}.{self.year}.vrt"
-        g = gdal.BuildVRT(spatial_file,ofiles,separate=True)
-        g.FlushCache()
+        ofile = f"data.{self.sds[i]}.{'_'.join(self.tile)}.{self.year}.vrt"
+        spatial_file = Path(f"{self.local_dir[0]}",ofile)
+        import pdb;pdb.set_trace()
+        g = gdal.BuildVRT(spatial_file.as_posix(),ofiles,separate=True)
+        try:
+          g.FlushCache()
+        except:
+          pass
         if not g:
-          print(f"problem building dataset for {spatial_file} with {self.fdict()}")
+          d = self.__dict__
+          print(f"problem building dataset for {spatial_file} with {fdict(d)}")
         del g  
         sfiles[s] = spatial_file
         sfiles[s+'_name'] = bandlist
@@ -129,22 +152,48 @@ class Modis():
     self.month = f'{str(int(dater[1])) :0>2s}'
     self.day   = f'{str(int(dater[2])) :0>2s}'  
 
-    hdf_urls = self.get_url(**(self.fdict()))
+    d = self.__dict__.copy()
+    hdf_urls = self.get_url(**(fdict(d)))
+    if not(len(hdf_urls) and (type(hdf_urls[0]) == URL)):
+      return [None]
+
+    if 'db_file' in self.__dict__:
+      if 'database' not in self.__dict__:
+        # load database
+        d = self.__dict__.copy()
+        self.database = Database(self.db_file,**(fdict(d,ignore=['db_dir','db_file'])))
+
+    # look up in db
+    this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
+    store_flag = 'modis'
+    response = self.database.get_from_db(store_flag,this_set)
+    if response and self.noclobber:
+      # safe to return
+      self.msg(f'positive response from database')
+      ofiles = response
+      return ofiles
 
     for f in hdf_urls:
       d = f.read_bytes()
     hdf_files = [str(f.local()) for f in hdf_urls]
 
-    sds = self.get_sds(hdf_files)
+    sds = self.get_sds(hdf_files,do_all=True)
     ofiles = []
+    import pdb;pdb.set_trace()
     for i,sd in enumerate(sds):
-      spatial_file = f"{self.local_dir}/data.{self.sds[i]}." + \
-                     f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
-      g = gdal.BuildVRT(spatial_file,sds[i])
+      ofile = f"data.{self.sds[i]}." + \
+              f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
+
+      spatial_file = Path(f"{self.local_dir[0]}",ofile)
+      g = gdal.BuildVRT(spatial_file.as_posix(),sds[i])
       if not g:
-        print(f"problem building dataset for {spatial_file} with {self.fdict()}")
+        d = self.__dict__
+        print(f"problem building dataset for {spatial_file} with {fdict(d)}")
         sys.exit(1)
-      ofiles.append(spatial_file)
+      ofiles.append(str(Path(spatial_file).absolute()))
+    # store in db
+    cache = {store_flag : { this_set : ofiles }}
+    self.database.set_db(cache,write=True)
     return ofiles
 
   #def get_files(self,**kwargs):
@@ -215,24 +264,18 @@ class Modis():
 
     hdf_urls = []
     url = None
-    import pdb;pdb.set_trace()
     for t in self.tile:
       url = ((url is None) and URL(site,site_dir,**kwargs)) or \
              url.update(site,site_dir,**kwargs)
       hdf_urls += url.glob(f'{self.product}*.{t}*.hdf')
     if len(hdf_urls) == 0:
       return [None]
+
+    self.db_file = hdf_urls[0].db_file
+    
     return hdf_urls 
 
-  #def get_hdf_files(self,**kwargs):
-  #  '''download the MODIS data and return the local filenames'''
-  #  hdf_urls = self.get_url(**kwargs)
-  #  for f in hdf_urls:
-  #    d = f.read_bytes()
-  #  hdf_files = [f.local() for f in hdf_urls]
-  #  return hdf_files
-
-  def get_sds(self,hdf_files):
+  def get_sds(self,hdf_files,do_all=False):
     '''get defined SDS or all'''
     if type(hdf_files) is not list:
       hdf_files = [hdf_files]
@@ -244,8 +287,8 @@ class Modis():
     if not g:
       return []
     # in case not defined
-    if (self.sds is None) or len(self.sds) == 0 or \
-      ((len(self.sds) == 1) and len(self.sds[0]) == 0) :
+    if do_all or ((self.sds is None) or len(self.sds) == 0 or \
+      ((len(self.sds) == 1) and len(self.sds[0]) == 0)) :
       self.sds = [s1.split()[1] for s0,s1 in g.GetSubDatasets()]
 
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
@@ -253,32 +296,6 @@ class Modis():
     for sd in self.sds:
       this_subs += [s0 for s0,s1 in all_subs if sd in s1]
     return [[sub.format(local_file=str(lfile)) for lfile in hdf_files] for sub in this_subs]
-
-  #def hdf_to_gtiff(self,hdf_file):
-  #  '''pull the SDS from and HDF'''
-  #  g = gdal.Open(str(hdf_file))
-  #  if g:
-  #    sub = self.get_sub(hdf_file)
-  #    glocal_file_sds = []
-  #    for s in sub:
-  #      g = gdal.Open(s[0])
-  #      product = s[1].split()[1]
-  #      name = '_'.join([product,hdf_file.with_suffix('.tif').name])
-  #      glocal_file = hdf_file.with_name(name)
-  #      if g:
-  #        gout = gdal.Translate(str(glocal_file), g, options=self.translateoptions)
-  #        del gout
-  #      glocal_file_sds.append(glocal_file)
-  #  return glocal_file_sds
-
-  #def get_tdata(self,hdf_urls):
-  #  '''
-  #  get the data corresponding to the list in hdf_urls
-  #  '''
-  #  hdf_urls = list(hdf_urls)
-  #  hdf_data = self.get_hdf_data(hdf_urls)
-  #
-  #  return [self.hdf_to_gtiff(f) for f in hdf_data]
 
 def test_login(do_test):
     '''ping small (1.3 M) test file
