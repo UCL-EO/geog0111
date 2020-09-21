@@ -207,6 +207,8 @@ class Modis():
   #  return hdf_files
 
   def get_sds(self,hdf_files):
+    if type(hdf_files) is not list:
+      hdf_files = [hdf_files]
 
     if len(hdf_files) < 1:
       return []
