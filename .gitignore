@@ -13,6 +13,7 @@ work/????
 *log*
 data/lai_filelist_2016.dat.txt
 notebooks/work/uk_lai_2018.db
+notebooks/work/*.hdf
 work/*
 notebooks/work/*html
 xx

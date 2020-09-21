@@ -94,6 +94,10 @@ class Modis():
     vfiles = self.stitch_date(year,doy)
     if not vfiles:
       return dict(zip(self.sds,[[]] * len(self.sds)))
+    if not self.sds:
+      # recover from vfiles
+      self.sds = [Path(i).name.split('.')[1] for i in vfiles]
+ 
     data = []
     for i,s in enumerate(self.sds):
       g = gdal.Open(vfiles[i])
@@ -127,7 +131,6 @@ class Modis():
       if len(ofiles):
         ofile = f"data.{self.sds[i]}.{'_'.join(self.tile)}.{self.year}.vrt"
         spatial_file = Path(f"{self.local_dir[0]}",ofile)
-        import pdb;pdb.set_trace()
         g = gdal.BuildVRT(spatial_file.as_posix(),ofiles,separate=True)
         try:
           g.FlushCache()
@@ -176,10 +179,8 @@ class Modis():
     for f in hdf_urls:
       d = f.read_bytes()
     hdf_files = [str(f.local()) for f in hdf_urls]
-
     sds = self.get_sds(hdf_files,do_all=True)
     ofiles = []
-    import pdb;pdb.set_trace()
     for i,sd in enumerate(sds):
       ofile = f"data.{self.sds[i]}." + \
               f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
@@ -190,7 +191,8 @@ class Modis():
         d = self.__dict__
         print(f"problem building dataset for {spatial_file} with {fdict(d)}")
         sys.exit(1)
-      ofiles.append(str(Path(spatial_file).absolute()))
+      del g
+      ofiles.append(Path(spatial_file).absolute().as_posix())
     # store in db
     cache = {store_flag : { this_set : ofiles }}
     self.database.set_db(cache,write=True)
@@ -294,7 +296,7 @@ class Modis():
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
     this_subs = []
     for sd in self.sds:
-      this_subs += [s0 for s0,s1 in all_subs if sd in s1]
+      this_subs += [s0 for s0,s1 in all_subs if sd == s1.split()[1]]
     return [[sub.format(local_file=str(lfile)) for lfile in hdf_files] for sub in this_subs]
 
 def test_login(do_test):
