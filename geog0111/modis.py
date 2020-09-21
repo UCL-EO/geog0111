@@ -207,6 +207,7 @@ class Modis():
   #  return hdf_files
 
   def get_sds(self,hdf_files):
+    '''get defined SDS or all'''
     if type(hdf_files) is not list:
       hdf_files = [hdf_files]
 
@@ -216,6 +217,11 @@ class Modis():
     g = gdal.Open(str(lfile))
     if not g:
       return []
+    # in case not defined
+    if (self.sds is None) or len(self.sds) == 0 or \
+      ((len(self.sds) == 1) and len(self.sds[0]) == 0) :
+      self.sds = [s1.split()[1] for s0,s1 in g.GetSubDatasets()]
+
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
     this_subs = []
     for sd in self.sds:
