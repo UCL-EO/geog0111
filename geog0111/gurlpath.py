@@ -186,26 +186,26 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       return list(readlist),list(writelist) 
 
   def call_local(self):
-    '''sort out and return local_file'''
+    '''
+    sort out and return local_file
+
+    This comes from the URL and local_dir
+
+    '''
     kwargs = self.fdict()
     if 'local_dir' in kwargs and \
         (kwargs['local_dir'] is not None) and \
         len(kwargs['local_dir']) > 0:
       self.local_dir = self.list_resolve(kwargs['local_dir'])
 
-    if 'local_file' in kwargs and kwargs['local_file'] is not None:
-      self.local_file = self.list_resolve(kwargs['local_file'],files=True)
-
     if (self.local_dir is None) or (len(self.local_dir) == 0):
       self.local_dir = self.list_resolve(self.db_dir)
 
-    is_good_name = (self.name != '') and (not self.has_wildness([self.name])[0])
+    self.local_file = Path(self.local_dir[-1],str(self.with_scheme(''))[2:]).absolute()
 
-    if (self.local_file == None) and is_good_name:
-      if len(self.local_dir):
-        self.local_file = self.name_resolve(self.local_dir,self.name)
-    elif self.local_file:
-      self.local_file = self.name_resolve(self.local_file)
+    suffix = self.local_file.suffix()
+    self.local_file = self.local_file.with_suffix(suffix + '.store')
+    self.local_file.parent.mkdir(parents=True,exist_ok=True) 
     return self.local_file
 
   def remove_duplicates(self,l):
@@ -683,10 +683,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     stat_result = os.stat_result(input)
     return stat_result
 
-  def absolute(self):
-    '''resolve'''
-    return self.resolve()
-
   def _isfile(self):
     if self.scheme == '' or self.scheme == 'file':
       self.msg('we are a file ...')
@@ -923,12 +919,11 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
   def _convert_to_abs(self,ilist):
     # this is slow and may be not needed
     self.msg(f'parsing URLs from html file {len(ilist)} items')
-    return [self.update(l.rstrip('/#'),**(self.fdict())).absolute() for l in ilist ]
+    return [self.update(*[str(self),l.rstrip('/#')],**(self.fdict())) for l in ilist ]
 
   def _filter(self,links,pattern,pre_filter=True):
     # pre-filter
     if pre_filter: 
-
       links = np.array([str(l).rstrip('/#') for l in links])
       matches = np.array([fnmatch.fnmatch(str(l), '*'+pattern) for l in links])
       links = list(links[matches])
@@ -998,31 +993,18 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         return [self.update(o) for o in olist]
       return [self.update(olist)]
 
+    # start at the top
     uc = np.array(url.parts)
-    is_wild = self.has_wildness(uc)
-   
-    first_wild = list(np.where(np.cumsum(is_wild)>0)[0])
-
-    if (type(first_wild) is list):
-      if len(first_wild): 
-        #self.msg(f"WARNING: suspect wildcard behaviour for {url}")
-        first_wild = first_wild[0]
-      else:
-        return [self.update(url)]
-
-    baser = self.update(*list(uc[:first_wild]))
-    base_list = [baser]
-    wilds = uc[first_wild:]
-    u.msg(f'wildcards in: {wilds}')
-    # recover from update
-    self.dedate()
-
-    for i,w in enumerate(wilds):
-      u.msg(f'level {i}/{len(wilds)} : {w}')
+    for i,w in enumerate(uc[1:]): 
+      if i == 0:
+        base_list = [self.update(uc[0])]
       new_list = []
       for b in base_list:
-        new_list = new_list + self.update(b)._glob(w,pre_filter=pre_filter)
-
+        # set to new item
+        glob = self.update(b)._glob(w,pre_filter=pre_filter)
+        
+        # glob with the next item
+        new_list = new_list + glob
       base_list = np.array(new_list).flatten()
 
     olist = list(np.array([self.update(i) for i in base_list]).flatten())
@@ -1068,7 +1050,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     # take off training slash
     if pattern[-1] == '/':
       pattern = pattern[:-1]
-
+    import pdb;pdb.set_trace()
     store_url  = str(self.update(pattern))
     store_flag = 'query'
     if not self.noclobber:
@@ -1090,9 +1072,10 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     except:
       files = []
     self.msg(f'discovered {len(files)} files with pattern {pattern} in {str(self)}')
-
+   
+    files = [str(i) for i in files]
     # cache this in db
-    cache = {store_flag : { str(store_url) : [str(i) for i in files] }}
+    cache = {store_flag : { str(store_url) : files }}
     self.database.set_db(cache,write=True)
  
     return files 

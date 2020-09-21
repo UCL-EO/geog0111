@@ -34,6 +34,7 @@ class Modis():
      'tile'       : 'h08v06',\
      'log'        : None,\
      'day'        : '01',\
+     'doy'        : None,
      'month'      : '*',\
      'sds'        : None,
      'year'       : "2019",\
@@ -151,6 +152,13 @@ class Modis():
   #  hdf_files = [f.local() for f in hdf_urls]
   #  return hdf_files
 
+  def has_wildness(self,uc):
+    is_wild   = np.logical_or(np.array(['*' in i for i in uc]),
+                              np.array(['?' in i for i in uc]))
+    is_wild_2 = np.logical_or(np.array(['[' in i for i in uc]),
+                              np.array([']' in i for i in uc]))
+    is_wild = np.logical_or(is_wild,is_wild_2)
+    return is_wild
 
   def get_url(self,**kwargs):
     '''
@@ -175,9 +183,24 @@ class Modis():
     day      = ('day' in kwargs and kwargs['day'])         or self.day
     month    = ('month' in kwargs and kwargs['month'])     or self.month
     year     = ('year' in kwargs and kwargs['year'])       or self.year
-
+    doy      = ('doy' in kwargs and kwargs['doy'])         or self.doy
+  
+    # special cases 
+    #if self.product[:5] == 'MCD19':
+    #  self.site = 'https://ladsweb.modaps.eosdis.nasa.gov'
     # you should put some tests in
-    site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
+    if site == 'https://e4ftl01.cr.usgs.gov':
+      site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
+    elif site == 'https://ladsweb.modaps.eosdis.nasa.gov':
+     if self.doy is None:
+       try:
+         doy = (datetime.datetime(year+1, 1, 1) - \
+                datetime.datetime(year=int(year),month=int(month),day=int(day))).days
+       except:
+         self.verbose = True
+         self.msg(f"ERROR: you need to specify doy explicitly for product {self.product}")
+         sys.exit(1)
+       site_dir = f'archive/allData/6/{product}/{year}/{doy}'
 
     site_file = f'*.{tile}*.hdf'
     kwargs = {"verbose"    : self.verbose,\
@@ -192,10 +215,13 @@ class Modis():
 
     hdf_urls = []
     url = None
+    import pdb;pdb.set_trace()
     for t in self.tile:
       url = ((url is None) and URL(site,site_dir,**kwargs)) or \
              url.update(site,site_dir,**kwargs)
-      hdf_urls += url.glob(f'*.{t}*.hdf')
+      hdf_urls += url.glob(f'{self.product}*.{t}*.hdf')
+    if len(hdf_urls) == 0:
+      return [None]
     return hdf_urls 
 
   #def get_hdf_files(self,**kwargs):
