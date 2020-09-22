@@ -92,16 +92,32 @@ class Modis():
   def get_data(self,year,doy):
     '''return data dict for doy year as sds dictionary'''
     vfiles = self.stitch_date(year,doy)
-    if not vfiles:
-      return dict(zip(self.sds,[[]] * len(self.sds)))
+    if (not vfiles) or (len(vfiles) and vfiles[0] == None):
+      msg = f"WARNING: no datasets in get_data() for product {self.product} tile {self.tile} year {year} doy {doy}"
+      print(msg)
+      self.msg(msg)
+      try:
+        return dict(zip(self.sds,[[]] * len(self.sds)))
+      except:
+        return {None:None}
     if not self.sds:
       # recover from vfiles
+      self.msg("trying to recover SDS from files")
       self.sds = [Path(i).name.split('.')[1] for i in vfiles]
- 
+      self.msg(self.sds)
+    
+    sds = [Path(i).name.split('.')[1] for i in vfiles]
+
     data = []
-    for i,s in enumerate(self.sds):
+    for i,s in enumerate(sds):
       g = gdal.Open(vfiles[i])
-      data.append(g.ReadAsArray())
+      dataset = g.ReadAsArray()
+      if dataset is None:
+        msg = f"WARNING: no datasets in get_data() for {vfiles[i]}\n" +\
+              f"check datasets and database file {str(self.db_file)}"
+        print(msg)
+        self.msg(msg)
+      data.append(dataset)
     return dict(zip(self.sds,data))
 
   def read_data(self,ifile):
@@ -125,11 +141,24 @@ class Modis():
       bandlist = []
       for doy in range(1,ayear+1,step):
         ifiles = self.stitch_date(year,doy)
-        if ifiles and len(ifiles):
-          bandlist.append(f'{str(i):0>2s}')
-          ofiles.append(ifiles[i])
+        if (not ifiles) or (len(ifiles) and ifiles[0] == None):
+          # no dataset
+          try:
+            # repeat last for now
+            self.msg('no dataset for sds {s} for dataset {i}: using filler')
+            this = ofiles[-1]
+            bthis = 'filler ' + bandlist[-1]
+          except:
+            this = None
+        else:
+          this = ifiles[i]
+          bthis = f'{str(i):0>2s}'
+        if this:
+          bandlist.append(bthis)
+          ofiles.append(this)
       if len(ofiles):
         ofile = f"data.{self.sds[i]}.{'_'.join(self.tile)}.{self.year}.vrt"
+        ofile = ofile.replace(' ','_')
         spatial_file = Path(f"{self.local_dir[0]}",ofile)
         g = gdal.BuildVRT(spatial_file.as_posix(),ofiles,separate=True)
         try:
@@ -144,6 +173,33 @@ class Modis():
         sfiles[s+'_name'] = bandlist
     return sfiles,bandlist
 
+  def test_ok(self,hdffile,dosubs=True):
+    '''sanity check on file'''
+    if not Path(hdffile).exists():
+      msg = f'test: file {hdffile} does not exist'
+      self.msg(msg)
+      return False
+    g = gdal.Open(hdffile)
+    if not g:
+      msg = f'test: file {hdffile} failed to open with gdal'
+      self.msg(msg)
+      del g
+      return False
+    # check referenced files
+    if dosubs:
+      for f in g.GetFileList():
+        # dont do too much recursion
+        if not self.test_ok(f,dosubs=False):
+          return False
+    data = g.ReadAsArray(xsize=1,ysize=1)
+    if data is None:
+      msg = f'test: file {hdffile} failed: None returned in read '
+      self.msg(msg)
+      del g
+      return False
+    return True
+
+
   def stitch_date(self,year,doy):
     '''stitch data for date'''
     year = int(year)
@@ -157,6 +213,7 @@ class Modis():
 
     d = self.__dict__.copy()
     hdf_urls = self.get_url(**(fdict(d)))
+
     if not(len(hdf_urls) and (type(hdf_urls[0]) == URL)):
       return [None]
 
@@ -171,20 +228,33 @@ class Modis():
     store_flag = 'modis'
     response = self.database.get_from_db(store_flag,this_set)
     if response and self.noclobber:
-      # safe to return
-      self.msg(f'positive response from database')
-      ofiles = response
-      return ofiles
+      # test 
+      if self.test_ok(response[0]):
+        # safe to return
+        self.msg(f'positive response from database')
+        ofiles = response
+        return ofiles
+      else:
+        msg=f'WARNING: invalid entry {response[0]} in database {str(self.db_file)}'
+        print(msg)
+        self.msg(msg)
 
     for f in hdf_urls:
       d = f.read_bytes()
     hdf_files = [str(f.local()) for f in hdf_urls]
     sds = self.get_sds(hdf_files,do_all=True)
     ofiles = []
+    if len(sds) > len(self.sds):
+      self.msg(f"ERROR in product {self.product} specification of SDS")
+      self.msg(f"all SDS claimed to be: {len(self.sds)}")
+      self.msg(self.sds)
+      self.msg(f"But request for {len(sds)} SDSs made")
+      self.msg(sds)
+      sys.exit(1)
     for i,sd in enumerate(sds):
       ofile = f"data.{self.sds[i]}." + \
               f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
-
+      ofile = ofile.replace(' ','_')
       spatial_file = Path(f"{self.local_dir[0]}",ofile)
       g = gdal.BuildVRT(spatial_file.as_posix(),sds[i])
       if not g:
@@ -235,14 +305,28 @@ class Modis():
     month    = ('month' in kwargs and kwargs['month'])     or self.month
     year     = ('year' in kwargs and kwargs['year'])       or self.year
     doy      = ('doy' in kwargs and kwargs['doy'])         or self.doy
-  
+ 
+
+    if product[:5] == "MOD10" or product[:5] == "MYD10":
+      # NSIDC
+      site = "https://n5eil01u.ecs.nsidc.org"
+      self.msg(f"Snow and ice product {product}") 
+      self.msg(f"switching to server {site}")
+
+    if product[:3] == "MOD":
+      code = "MOST"
+    elif product[:3] == "MYD":
+      code = "MOSA"
+    else:
+      code = "MOTA"
+    self.msg(f"product {product} -> code {code}")
+
     # special cases 
     #if self.product[:5] == 'MCD19':
     #  self.site = 'https://ladsweb.modaps.eosdis.nasa.gov'
     # you should put some tests in
-    if site == 'https://e4ftl01.cr.usgs.gov':
-      site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
-    elif site == 'https://ladsweb.modaps.eosdis.nasa.gov':
+    site_dir = f'{code}/{product}.006/{year}.{month}.{day}'
+    if site == 'https://ladsweb.modaps.eosdis.nasa.gov':
      if self.doy is None:
        try:
          doy = (datetime.datetime(year+1, 1, 1) - \
@@ -277,6 +361,10 @@ class Modis():
     
     return hdf_urls 
 
+  def sdscode(self,s1):
+    '''PITA decoding of SDS from HDF field that comes from s0,s1 in g.GetSubDatasets()'''
+    return (' '.join(s1.split()[1:-3])).split(self.product)[0].split('MOD')[0].strip()
+
   def get_sds(self,hdf_files,do_all=False):
     '''get defined SDS or all'''
     if type(hdf_files) is not list:
@@ -291,12 +379,14 @@ class Modis():
     # in case not defined
     if do_all or ((self.sds is None) or len(self.sds) == 0 or \
       ((len(self.sds) == 1) and len(self.sds[0]) == 0)) :
-      self.sds = [s1.split()[1] for s0,s1 in g.GetSubDatasets()]
+        self.msg("trying to get SDS names")
+        self.sds = [self.sdscode(s1) for s0,s1 in g.GetSubDatasets()]
+        self.msg(self.sds)
 
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
     this_subs = []
     for sd in self.sds:
-      this_subs += [s0 for s0,s1 in all_subs if sd == s1.split()[1]]
+      this_subs += [s0 for s0,s1 in all_subs if sd == self.sdscode(s1)]
     return [[sub.format(local_file=str(lfile)) for lfile in hdf_files] for sub in this_subs]
 
 def test_login(do_test):

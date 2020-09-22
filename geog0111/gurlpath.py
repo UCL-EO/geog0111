@@ -123,6 +123,26 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     url.__dict__ = fdict(self._cache_original.copy())
     return url
 
+  def check_path(self,ppp):
+    '''
+    You can corrupt the database by having files where we expect directories
+    so we need to clean these up
+    '''
+    parts = list(ppp.parts)
+    for i,part in enumerate(parts):
+      this = Path(*(parts[:i+1]))
+      if this.exists() and (not this.is_dir()):
+        # warning path in expected directory
+        self.msg('found non-directory term in path {str(this)}')
+        try: 
+          self.msg('trying to correct')
+          this.unlink()
+          return True
+        except:
+          self.msg('failed to correct')
+          return False
+    return True
+
   def call_local(self):
     '''
     sort out and return local_file
@@ -138,11 +158,12 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
     if (self.local_dir is None) or (len(self.local_dir) == 0):
       self.local_dir = list_resolve(self.db_dir)
-
     self.local_file = Path(self.local_dir[-1],str(self.with_scheme(''))[2:]).absolute()
-
+    # replace ' '
+    self.local_file = Path(str(self.local_file).replace(' ','_'))
     suffix = self.local_file.suffix
     self.local_file = self.local_file.with_suffix(suffix + '.store')
+    self.check_path(self.local_file.parent)
     self.local_file.parent.mkdir(parents=True,exist_ok=True) 
     return self.local_file
 
@@ -244,6 +265,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           data = io.BytesIO(ifile.read_bytes())
         else:
           data = io.StringIO(ifile.read_text())
+        self.check_path(ifile.parent)
         ifile.parent.mkdir(parents=True,exist_ok=True)
         if ofile:
           ofile = Path(ofile)
@@ -484,6 +506,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       if text and ofile:
         try:
           ofile = Path(ofile)
+          self.check_path(ofile.parent)
           ofile.parent.mkdir(parents=True,exist_ok=True)
           ofile.write_text(text)
           cache = {store_flag : { str(store_url) : str(ofile) }}
@@ -505,6 +528,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       text = r.text
       if ofile:
          ofile = Path(ofile)
+         self.check_path(ofile.parent)
          ofile.parent.mkdir(parents=True,exist_ok=True)
          ofile.write_text(text)
          cache = {store_flag : { str(store_url) : str(ofile) }}
@@ -741,6 +765,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       data = ifile.read_bytes()
       if ofile: 
         ofile = Path(ofile)
+        self.check_path(ofile.parent)
         ofile.parent.mkdir(parents=True,exist_ok=True)
         ofile.write_bytes(data)
         cache = {store_flag : { str(store_url) : str(ofile) }}
@@ -758,6 +783,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           data = r.content
           if ofile:
             ofile = Path(ofile)
+            self.check_path(ofile.parent)
             ofile.parent.mkdir(parents=True,exist_ok=True)
             ofile.write_bytes(data)
             cache = {store_flag : { str(store_url) : str(ofile) }}
@@ -778,6 +804,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
             data = r.content
             if ofile:
               ofile = Path(ofile)
+              self.check_path(ofile.parent)
               ofile.parent.mkdir(parents=True,exist_ok=True)
               ofile.write_bytes(data)
               cache = {store_flag : { str(store_url) : str(ofile) }}

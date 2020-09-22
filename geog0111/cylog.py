@@ -64,6 +64,10 @@ class  Cylog():
         password: str
             password
         ''' 
+        site = str(site)
+        while site[-1] == '/':
+          site = site[:-1]
+  
         self.site = site
         self.stderr = stderr or sys.stderr
         self.verbose = verbose
