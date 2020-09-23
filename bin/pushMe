@@ -1,5 +1,5 @@
-#!/bin/csh -f
-set here = `pwd`
+#!/bin/bash
+here=`pwd`
 
 git add --all *
 git commit -m "updated from $here:t"
