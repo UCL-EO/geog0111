@@ -10,7 +10,7 @@ except:
   from modis import Modis
 
 '''
-local download of MNODIS datasets and storage in dbfile
+local download of MODIS datasets and storage in dbfile
 '''
 
 __author__    = "P. Lewis"
