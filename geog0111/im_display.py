@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib
 
-def im_display(data,names,r=[None,None],c=[None,None],\
+def im_display(data,names,band=0,r=[None,None],c=[None,None],\
                title=None,colourmap=None,vmin=[],vmax=[],\
                x_size=12,y_size=8,shape=None,sub=(None,None)):
     '''
@@ -10,6 +10,7 @@ def im_display(data,names,r=[None,None],c=[None,None],\
         names :  a list of keywords of datasets to plot
 
         optionally:
+            band             : if 3D dataset
             title = None     : a title
             r=[None,None]    : row min/max
             c=[None,None]    : column min/max
@@ -44,7 +45,12 @@ def im_display(data,names,r=[None,None],c=[None,None],\
                 ((type(vmax) is not list) and vmax)or None
 
         # plot image data
-        im = axs[i].imshow(data[k][r[0]:r[1],c[0]:c[1]],vmin=v_min,vmax=v_max,interpolation=None)
+        this = data[k]
+        if this.ndim == 2:
+          this = this[r[0]:r[1],c[0]:c[1]]
+        else:
+          this = this[band,r[0]:r[1],c[0]:c[1]]
+        im = axs[i].imshow(this,vmin=v_min,vmax=v_max,interpolation=None)
         if colourmap:
             im.set_cmap(colourmap)
         axs[i].set_title(k)

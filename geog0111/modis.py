@@ -12,12 +12,16 @@ try:
   from geog0111.cylog import Cylog
   from geog0111.database import Database
   from geog0111.fdict import fdict
+  from geog0111.get_doy import get_doy
+  from geog0111.monthdays import monthdays,yeardays
   from geog0111.lists import ginit,list_resolve,name_resolve,list_info
 except:
   from gurlpath import URL
   from cylog import Cylog
   from database import Database
   from fdict import fdict
+  from get_doy import get_doy
+  from monthdays import monthdays,yeardays
   from lists import ginit,list_resolve,name_resolve,list_info
 '''
 class to get MODIS datasets
@@ -72,6 +76,10 @@ class Modis():
 
     if type(self.sds) is str:
       self.sds = [self.sds]
+    if self.sds is not None:
+      self.msg(f'initial SDS {self.sds}')
+      self.required_sds = self.sds
+
 
   def msg(self,*args):
     '''msg to self.stderr'''
@@ -89,44 +97,359 @@ class Modis():
     except:
         pass
 
-  def get_data(self,year,doy):
-    '''return data dict for doy year as sds dictionary'''
-    vfiles = self.stitch_date(year,doy)
-    if (not vfiles) or (len(vfiles) and vfiles[0] == None):
-      msg = f"WARNING: no datasets in get_data() for product {self.product} tile {self.tile} year {year} doy {doy}"
+  def get_data(self,year,doy=None,idict=None,month=None,step=1,fatal=False):
+    '''
+    Return data dictionary of MODIS dataset for specified time period
+
+    args:
+      year  : year (2000 to present for MOD, or 2002 to present if using MYD)
+              NB this is ignoired if idict is given
+ 
+    options:
+      doy   : day in year, or day in month if month specified, or None
+              when specified as day in year, or day in month, can be a list
+              1-365/366 or 1-28-31 as appropriate
+      month : month index 1-12 or None
+      step  : dataset step. Default 1, but set to 4 for 4-day product, i
+              8 for 8-day, 365/366 for year etc.
+      fatal : default False. If True, exit if dataset not found.
+      idict : data file dictionary provided by eg call to
+              self.get_modis(year,doy=None,month=None,step=1,fatal=False)
+              see get_modis for more details
+ 
+    returns:
+      data dictionary with keys specified by:
+            - self.sds list 
+            - or all SDS if self.sds is None (default)
+      data dictionary key 'bandnames' of DOY 
+
+      Each data item a 2- or 3-dimensional numpy array:
+
+      For a single date:
+        kwargs = {
+            'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
+            'product'   :    'MCD15A3H',
+            'sds'       :    'Lai_500m',
+        }
+        modis = Modis(**kwargs)
+        # specify day of year (DOY) and year
+        data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
+
+        print(data_MCD15A3H.keys())
+        dict_keys(['Lai_500m', 'bandnames', 'files'])
+
+        print(data_MCD15A3H['Lai_500m'].shape)
+        (4800, 4800)
+ 
+        print(len(data_MCD15A3H['bandnames']))
+        1
+
+      If a list of days, or a month or year is specified, the datasets are 3-D:
+        kwargs = {
+            'tile'      :    ['h19v03'],
+            'product'   :    'MOD10A1',
+            'sds'       :     ['NDSI_Snow_Cover']
+        }
+
+        year  = 2019
+        month = 1
+        # get the data
+        modis = Modis(**kwargs)
+        # specify month and year
+        data_MOD10A1 = modis.get_data(year,month=1)
+
+        print(data_MOD10A1.keys())
+        dict_keys(['NDSI_Snow_Cover', 'bandnames', 'files'])
+
+        print(data_MOD10A1['NDSI_Snow_Cover'].shape)
+        (31, 2400, 2400)
+
+        print(len(data_MOD10A1['bandnames']))
+        31
+        
+
+    '''
+    idict = idict or self.get_modis(year,doy=doy,month=month,step=step,fatal=year)
+
+    # put back original sds if set
+    if 'required_sds' in self.__dict__:
+      self.msg(f'require: {self.required_sds}')
+      all_sds = self.sds
+      self.msg(f'from: {all_sds}')
+      self.sds = self.required_sds
+
+    try:
+      bandnames = idict['bandnames']
+      del idict['bandnames']
+      sds = idict.keys()
+      vfiles = [idict[k] for k in sds]
+
+      data = []
+      for i,s in enumerate(sds):
+        g = gdal.Open(vfiles[i])
+        dataset = g.ReadAsArray()
+        if dataset is None:
+          msg = f"WARNING: no datasets in get_data() for {vfiles[i]}\n" +\
+                f"check datasets and database file {str(self.db_file)}"
+          print(msg)
+          self.msg(msg)
+          if fatal == True:
+            sys.exit(1)
+        data.append(dataset)
+      # enforce 3D
+      data = np.atleast_3d(np.array(data).T).T
+      odict = dict(zip(sds,data))
+      odict['bandnames'] = bandnames
+      odict['files']  = idict
+      # return state of self.sds
+      if 'required_sds' in self.__dict__:
+        self.sds = all_sds
+      return odict
+    except:
+      self.msg("Error calling get_data")
+    # return state of self.sds
+    if 'required_sds' in self.__dict__:
+      self.sds = all_sds
+    return {}
+
+  def get_modis(self,year,doy=None,month=None,step=1,fatal=False):
+    '''
+    Return data dictionary of MODIS datasets for specified time period
+      
+    args:     
+      year  : year (2000 to present for MOD, or 2002 to present if using MYD)
+      
+    options:  
+      doy   : day in year, or day in month if month specified, or None
+              when specified as day in year, or day in month, can be a list
+              1-365/366 or 1-28-31 as appropriate 
+      month : month index 1-12 or None 
+      step  : dataset step. Default 1, but set to 4 for 4-day product, i
+              8 for 8-day, 365/366 for year etc.
+      fatal : default False. If True, exit if dataset not found.
+      
+    returns:
+      data dictionary with SDS names as keys and gdal VRT filename
+      data dictionary key 'bandnames' of DOY 
+            
+      For a single date:
+        kwargs = {
+            'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
+            'product'   :    'MCD15A3H',
+        } 
+        modis = Modis(**kwargs)
+        # specify day of year (DOY) and year
+        data_MCD15A3H = modis.get_modis(2019,1+4*10)
+        
+        print(data_MCD15A3H.keys())
+        dict_keys(['Lai_500m', ... 'bandnames'])
+        
+        print(len(data_MCD15A3H['bandnames']))
+        1
+        
+      If a list of days, or a month or year is specified, the datasets are 3-D:
+        kwargs = {
+            'tile'      :    ['h19v03'],
+            'product'   :    'MOD10A1',
+        }
+        
+        year  = 2019
+        month = 1
+        # get the data
+        modis = Modis(**kwargs)
+        # specify month and year
+        data_MOD10A1 = modis.get_modis(year,month=1)
+
+        print(data_MOD10A1.keys())
+        dict_keys(['NDSI_Snow_Cover', ... 'bandnames'])
+
+        print(len(data_MOD10A1['bandnames']))
+        31
+    '''
+    if (month is None) and (doy is None):
+      # whole year
+      month = "ALL"
+      doy = "ALL"
+      bandnames = [f'{i :0>3d}' for i in yeardays(year,step=step)]
+      vfiles = self.stitch(year,step=step)
+    elif (month is None) and (doy is not None):
+      if (type(doy) is list) or (type(doy) is np.ndarray):
+        doy = np.array(doy).astype(np.int)
+        month = "NA"
+        bandnames = [f'{d :0>3d}' for d in doy]
+        vfiles = self.stitch(year,doy=doy,step=step)
+      else:
+        # no month but doy
+        doy = int(doy)
+        month = "NA"
+        bandnames = [f'{doy :0>3d}']
+        vfiles = self.stitch(year,doy=doy,step=step)
+    elif (month is not None) and (doy is not None):
+      # month and day in month
+      month = int(month)
+      if (type(doy) is list) or (type(doy) is np.ndarray):
+        doy0 = np.array(doy).astype(np.int)
+        # get the valid days in month
+        m0 = datetime(year,month,1).day
+        md = np.array(monthdays(year,month,step=step)) - m0 + 1
+        doy = [d for d in doy0 if d in md]
+        # doy is filtered for valid days
+        if len(doy) == 0:
+          self.msg(f"No valid days found in list {doy0} for month {month} year {year} step {step}")
+          self.msg(f"Only {md} are valid")
+          if fatal:
+            self.msg("Fatal call")
+            sys.exit(1)
+        bandnames = [f'{i :0>3d}' for i in doy]
+        vfiles = self.stitch(year,doy=doy,step=step)
+      else:
+        doy = datetime(year,month,doy).day
+        bandnames = [f'{doy :0>3d}']
+        vfiles = self.stitch(year,doy=doy,step=step)
+    elif (month is not None) and (doy is None):
+      # all days in month
+      month = int(month)
+      doy = "ALL"
+      bandnames = [f'{i :0>3d}' for i in monthdays(year,month,step=step)]
+      vfiles = self.stitch(year,month=month,step=step)
+    else:
+      self.msg("ERROR: unexpected condition in get_data")
+      self.msg(f"year: {year} doy={doy} month={month} step={step}")
+      sys.exit(1)
+
+    # put back original sds if set
+    if 'required_sds' in self.__dict__:
+      self.msg(f'require: {self.required_sds}')
+      all_sds = self.sds
+      self.msg(f'from: {all_sds}')
+      self.sds = self.required_sds
+
+    if (not vfiles) or (len(vfiles) == 0) or (len(vfiles) and (vfiles[0] == None)):
+      msg = f"WARNING: no datasets in get_data() for product {self.product} tile {self.tile} year {year} month {month} doy {doy}"
       print(msg)
       self.msg(msg)
       try:
+        if 'required_sds' in self.__dict__:
+          self.sds = all_sds
         return dict(zip(self.sds,[[]] * len(self.sds)))
       except:
         return {None:None}
     if not self.sds:
       # recover from vfiles
-      self.msg("trying to recover SDS from files")
+      self.msg("trying to recover SDS from files which might fail with any spaces ...")
       self.sds = [Path(i).name.split('.')[1] for i in vfiles]
       self.msg(self.sds)
-    
-    sds = [Path(i).name.split('.')[1] for i in vfiles]
 
-    data = []
-    for i,s in enumerate(sds):
-      g = gdal.Open(vfiles[i])
-      dataset = g.ReadAsArray()
-      if dataset is None:
-        msg = f"WARNING: no datasets in get_data() for {vfiles[i]}\n" +\
-              f"check datasets and database file {str(self.db_file)}"
-        print(msg)
-        self.msg(msg)
-      data.append(dataset)
-    return dict(zip(self.sds,data))
+    #sds = [Path(i).name.split('.')[1] for i in vfiles]
+    sds = self.sds
+    odict  = dict(zip(sds,vfiles))
+    odict['bandnames'] = bandnames
+
+    # return state of self.sds
+    if 'required_sds' in self.__dict__:
+      self.sds = all_sds
+    return odict
 
   def read_data(self,ifile):
     g = gdal.Open(ifile)
     if not g:
-      return None,None   
+      return None,None
     data = np.array([g.GetRasterBand(i).ReadAsArray() for i in range(1,len(g.GetFileList()))])
     b = g.GetRasterBand(1)
     return data, (b.GetScale(),b.GetOffset())
+
+  def fix_sds(self,sds,year,doy):
+    '''fix sds'''
+    if sds:
+      return sds
+    if 'required_sds' in self.__dict__:
+      self.sds = self.required_sds
+
+    # else need to derive it 
+    self.msg("polling for SDS names")
+    #itest = self.get_data(year,doy=doy)
+    # get some data by another route
+    self.stitch_date(year,doy,test=True)
+    if self.sds is None:
+      self.msg("error finding SDS names")
+      sys.exit(1)
+    if 'required_sds' not in self.__dict__:
+      self.required_sds = self.sds
+    self.msg(f"SDS: {self.sds}")
+    return self.sds
+
+  def stitch(self,year,month=None,doy=None,step=1):
+    '''create vrt dataset of all images for doys / a month / year'''
+    year = int(year)
+    self.year  = f'{year}'
+    self.step  = f'{str(int(step)) :0>3s}' 
+    if doy is not None:
+      month = "NA"
+      if type(doy) is list:
+        doys = doy
+      elif type(doy) is np.ndarray:
+        doys = list(doy)
+      else:
+        doys = [int(doy)]
+      self.month = month
+      self.msg(f'create vrt dataset for doys {doys} year {year}')
+    elif month is not None:
+      month = int(month)
+      doys = monthdays(year,month,step=step)
+      self.month = f'{str(int(month)) :0>2s}'
+      self.msg(f'create vrt dataset for month {month} year {year}')
+    else:
+      month = "ALL"
+      doys = yeardays(year,step=step)
+      self.msg(f'create vrt dataset for year {year}')
+
+    if (doys is None) or (len(doys) == 0) or (len(doys) and doys[0] == None):
+      self.msg("No return from yeardays/monthdays for year {year} doys {doy} month {month} step {step}")
+      return {},[] 
+
+    sfiles = {}
+    bandlist = []
+    # sds may not be defined
+    self.fix_sds(self.sds,year,doys[0])
+
+    # loop over sds
+    for i,s in enumerate(self.sds):
+      ofiles = []
+      bandlist = []
+      for doy in doys:
+        ifiles = self.stitch_date(year,doy)
+        if (not ifiles) or (len(ifiles) and ifiles[0] == None):
+          # no dataset
+          try:
+            # repeat last for now
+            self.msg('no dataset for sds {s} for dataset {i}: using filler')
+            this = ofiles[-1]
+            bthis = 'filler ' + bandlist[-1]
+          except:
+            this = None
+        else:
+          this = ifiles[i]
+          bthis = f'{str(i):0>2s}'
+        if this:
+          bandlist.append(bthis)
+          ofiles.append(this)
+      if len(ofiles):
+        ofile = f"data.{self.sds[i]}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.step}.vrt"
+        ofile = ofile.replace(' ','_')
+        spatial_file = Path(f"{self.local_dir[0]}",ofile)
+        g = gdal.BuildVRT(spatial_file.as_posix(),ofiles,separate=True)
+        try:
+          g.FlushCache()
+        except:
+          pass
+        if not g:
+          d = self.__dict__
+          print(f"problem building dataset for {spatial_file} with {fdict(d)}")
+        del g
+        sfiles[s] = spatial_file
+        #sfiles[s+'_name'] = bandlist
+    # build list of files
+    return [str(i) for i in sfiles.values()]
     
   def get_year(self,year,step=4):
     '''create vrt dataset of all images for a year'''
@@ -170,7 +493,7 @@ class Modis():
           print(f"problem building dataset for {spatial_file} with {fdict(d)}")
         del g  
         sfiles[s] = spatial_file
-        sfiles[s+'_name'] = bandlist
+        #sfiles[s+'_name'] = bandlist
     return sfiles,bandlist
 
   def test_ok(self,hdffile,dosubs=True):
@@ -199,8 +522,7 @@ class Modis():
       return False
     return True
 
-
-  def stitch_date(self,year,doy):
+  def stitch_date(self,year,doy,test=False):
     '''stitch data for date'''
     year = int(year)
     doy  = int(doy)
@@ -223,26 +545,32 @@ class Modis():
         d = self.__dict__.copy()
         self.database = Database(self.db_file,**(fdict(d,ignore=['db_dir','db_file'])))
 
-    # look up in db
-    this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
-    store_flag = 'modis'
-    response = self.database.get_from_db(store_flag,this_set)
-    if response and self.noclobber:
-      # test 
-      if self.test_ok(response[0]):
-        # safe to return
-        self.msg(f'positive response from database')
-        ofiles = response
-        return ofiles
-      else:
-        msg=f'WARNING: invalid entry {response[0]} in database {str(self.db_file)}'
-        print(msg)
-        self.msg(msg)
+    if not test:
+      # look up in db
+      this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
+      store_flag = 'modis'
+      response = self.database.get_from_db(store_flag,this_set)
+      if response and self.noclobber:
+        # test 
+        if self.test_ok(response[0]):
+          # safe to return
+          self.msg(f'positive response from database')
+          ofiles = response
+          return ofiles
+        else:
+          msg=f'WARNING: invalid entry {response[0]} in database {str(self.db_file)}'
+          print(msg)
+          self.msg(msg)
 
     for f in hdf_urls:
       d = f.read_bytes()
     hdf_files = [str(f.local()) for f in hdf_urls]
     sds = self.get_sds(hdf_files,do_all=True)
+
+    # early return if we just want sds
+    if test == True:
+      return sds
+
     ofiles = []
     if len(sds) > len(self.sds):
       self.msg(f"ERROR in product {self.product} specification of SDS")
@@ -380,7 +708,10 @@ class Modis():
     if do_all or ((self.sds is None) or len(self.sds) == 0 or \
       ((len(self.sds) == 1) and len(self.sds[0]) == 0)) :
         self.msg("trying to get SDS names")
+        self.required_sds = self.sds
         self.sds = [self.sdscode(s1) for s0,s1 in g.GetSubDatasets()]
+        if 'required_sds' in self.__dict__:
+          self.msg(f'require: {self.required_sds}')
         self.msg(self.sds)
 
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
