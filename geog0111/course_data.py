@@ -23,9 +23,9 @@ def lai(year=2019,tile=['h17v03', 'h17v04', 'h18v03', 'h18v04']):
   kwargs = {
     'tile'      :    tile,
     'product'   :    'MCD15A3H',  
-    'log'       :    f'/shared/groups/jrole001/${course_name}/work/lai_{year}_{tidy(tile)}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/${course_name}/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/${course_name}/work',
+    'log'       :    f'/shared/groups/jrole001/geog0111/work/lai_{year}_{tidy(tile)}_log.txt',
+    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
+    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
     'verbose'   :    True
   }
   modis = Modis(**kwargs)
@@ -41,9 +41,9 @@ def snow(year=2019,tile=['h19v03']):
   kwargs = {
     'tile'      :    tile,
     'product'   :    'MOD10A1',
-    'log'       :    f'/shared/groups/jrole001/${course_name}/work/snow_{year}_{tile}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/${course_name}/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/${course_name}/work',
+    'log'       :    f'/shared/groups/jrole001/geog0111/work/snow_{year}_{tile}_log.txt',
+    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
+    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
     'verbose'   :    True
   }
   modis = Modis(**kwargs)
@@ -53,9 +53,9 @@ def lc(year,tile=['h17v03', 'h18v03']):
   kwargs = {
     'tile' : tile,
     'product'   :    'MCD12Q1',
-    'log'       :    f'/shared/groups/jrole001/${course_name}/work/lc_{year}_{tile}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/${course_name}/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/${course_name}/work',
+    'log'       :    f'/shared/groups/jrole001/geog0111/work/lc_{year}_{tile}_log.txt',
+    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
+    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
     'verbose'   :    True
   }
   # get the data
@@ -67,9 +67,9 @@ def ba(year,tile=['h22v10']):
   kwargs = {
     'tile'      :    tile,
     'product'   :    'MCD64A1',
-    'log'       :    f'/shared/groups/jrole001/${course_name}/work/ba_{year}_{tile}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/${course_name}/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/${course_name}/work',
+    'log'       :    f'/shared/groups/jrole001/geog0111/work/ba_{year}_{tile}_log.txt',
+    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
+    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
     'verbose'   :    True
   }
    # get the data
