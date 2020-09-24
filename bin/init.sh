@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 # This script is the initial setup script for users of geog0111
 # on the UCL notebook servers
