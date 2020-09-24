@@ -39,6 +39,7 @@ if [ "$?" -eq 0 ]; then
   mv /tmp/tmp.${course_name}.$$ ~/.profile 
 else
   echo "---> failure setting active env to ${course_name}"
+  exit 1
 fi
 echo "--> done setting active env to ${course_name}"
 
