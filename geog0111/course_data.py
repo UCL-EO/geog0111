@@ -30,7 +30,7 @@ def lai(year=2019,tile=['h17v03', 'h17v04', 'h18v03', 'h18v04']):
   }
   modis = Modis(**kwargs)
   
-  result = modis.get_year(year,step=4)
+  result = modis.get_data(year,step=4)
   return result
 
 def tidy(s):
