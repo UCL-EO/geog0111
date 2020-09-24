@@ -15,6 +15,7 @@ try:
   from geog0111.get_doy import get_doy
   from geog0111.monthdays import monthdays,yeardays
   from geog0111.lists import ginit,list_resolve,name_resolve,list_info
+  from geog0111.create_blank_file import create_blank_file
 except:
   from gurlpath import URL
   from cylog import Cylog
@@ -23,6 +24,7 @@ except:
   from get_doy import get_doy
   from monthdays import monthdays,yeardays
   from lists import ginit,list_resolve,name_resolve,list_info
+  from create_blank_file import create_blank_file
 '''
 class to get MODIS datasets
 '''
@@ -169,7 +171,7 @@ class Modis():
         
 
     '''
-    idict = idict or self.get_modis(year,doy=doy,month=month,step=step,fatal=year)
+    idict = idict or self.get_modis(year,doy=doy,month=month,step=step,fatal=fatal)
 
     # put back original sds if set
     if 'required_sds' in self.__dict__:
@@ -290,7 +292,7 @@ class Modis():
       if (type(doy) is list) or (type(doy) is np.ndarray):
         doy0 = np.array(doy).astype(np.int)
         # get the valid days in month
-        m0 = datetime(year,month,1).day
+        m0 = datetime.datetime(year,month,1).day
         md = np.array(monthdays(year,month,step=step)) - m0 + 1
         doy = [d for d in doy0 if d in md]
         # doy is filtered for valid days
@@ -303,7 +305,7 @@ class Modis():
         bandnames = [f'{i :0>3d}' for i in doy]
         vfiles = self.stitch(year,doy=doy,step=step)
       else:
-        doy = datetime(year,month,doy).day
+        doy = datetime.datetime(year,month,doy).day
         bandnames = [f'{doy :0>3d}']
         vfiles = self.stitch(year,doy=doy,step=step)
     elif (month is not None) and (doy is None):
@@ -378,7 +380,7 @@ class Modis():
     self.msg(f"SDS: {self.sds}")
     return self.sds
 
-  def stitch(self,year,month=None,doy=None,step=1):
+  def stitch(self,year,month=None,doy=None,step=1,duffer=-1):
     '''create vrt dataset of all images for doys / a month / year'''
     year = int(year)
     self.year  = f'{year}'
@@ -420,13 +422,28 @@ class Modis():
         ifiles = self.stitch_date(year,doy)
         if (not ifiles) or (len(ifiles) and ifiles[0] == None):
           # no dataset
-          try:
-            # repeat last for now
-            self.msg('no dataset for sds {s} for dataset {i}: using filler')
-            this = ofiles[-1]
-            bthis = 'filler ' + bandlist[-1]
-          except:
-            this = None
+          if ('blanco' in self.__dict__) and (Path(self.blanco).exists()):
+            output_filename = self.blanco
+            self.msg(f'using file with value {duffer} {output_filename}')
+            bthis = f'duff-{str(i):0>2s}'
+            this = output_filename
+          else:
+            try:
+              import pdb;pdb.set_trace()
+              # repeat last for now
+              self.msg(f'no dataset for sds {s} for dataset {i}: using filler')
+              this = ofiles[-1]
+              output_filename = this.replace('.vrt','_blank.tif')
+              if not Path(output_filename).exists():
+                # need to set to invalid number ...
+                self.msg(f'creating dummy file')
+                create_blank_file(this,output_filename,value=duffer)
+              self.msg(f'using file with value {duffer} {output_filename}')
+              self.blanco = output_filename
+              bthis = f'duff-{str(i):0>2s}'
+              this = output_filename
+            except:
+              this = None
         else:
           this = ifiles[i]
           bthis = f'{str(i):0>2s}'
@@ -469,6 +486,7 @@ class Modis():
           try:
             # repeat last for now
             self.msg('no dataset for sds {s} for dataset {i}: using filler')
+
             this = ofiles[-1]
             bthis = 'filler ' + bandlist[-1]
           except:
@@ -522,7 +540,7 @@ class Modis():
       return False
     return True
 
-  def stitch_date(self,year,doy,test=False):
+  def stitch_date(self,year,doy,get_files=False,test=False):
     '''stitch data for date'''
     year = int(year)
     doy  = int(doy)
@@ -537,6 +555,8 @@ class Modis():
     hdf_urls = self.get_url(**(fdict(d)))
 
     if not(len(hdf_urls) and (type(hdf_urls[0]) == URL)):
+      if get_files:
+        return None,None
       return [None]
 
     if 'db_file' in self.__dict__:
@@ -545,7 +565,7 @@ class Modis():
         d = self.__dict__.copy()
         self.database = Database(self.db_file,**(fdict(d,ignore=['db_dir','db_file'])))
 
-    if not test:
+    if not test and not get_files:
       # look up in db
       this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
       store_flag = 'modis'
@@ -566,7 +586,8 @@ class Modis():
       d = f.read_bytes()
     hdf_files = [str(f.local()) for f in hdf_urls]
     sds = self.get_sds(hdf_files,do_all=True)
-
+    if get_files:
+      return hdf_files,sds
     # early return if we just want sds
     if test == True:
       return sds
@@ -735,10 +756,13 @@ def test_login(do_test):
     return url.ping()   
 
 def main():
+  # test blank: try one that doesnt exist
   modis = Modis(product='MCD15A3H',verbose=True,local_dir='work')
-  hdf_urls = modis.get_url(year="2019",month="*",day="0[1-4]")
-
-  print(hdf_urls)
+  l = modis.stitch(2019,month=None,doy=[1,2],step=1)
+  print(l)
+  #modis = Modis(product='MCD15A3H',verbose=True,local_dir='work')
+  #hdf_urls = modis.get_url(year="2019",month="*",day="0[1-4]")
+  #print(hdf_urls)
 
 if __name__ == "__main__":
     main()
