@@ -78,10 +78,11 @@ def ba(year,tile=['h22v10']):
   data_MCD12Q1 = modis.get_data(year)
 
 def main():
-    for tile in [['h17v03', 'h17v04', 'h18v03', 'h18v04'],['h09v04','h10v04','h11v04','h12v04'],['h19v03','h19v04'],['h30v10','h31v10'],['h19v11','h19v10'],['h22v10','h23v10']]:
+    for tile in ['h17v03', 'h17v04', 'h18v03', 'h18v04','h09v04','h10v04','h11v04','h12v04','h19v03','h19v04','h30v10','h31v10','h19v11','h19v10','h22v10','h23v10']:
+      tile = [tile]
       for year in [2018,2019,2020]:
         try:
-          lai(yeari,tile=tile)
+          lai(year,tile=tile)
         except:
           pass
         try:
