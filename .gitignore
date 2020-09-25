@@ -20,10 +20,10 @@ xx
 .db.*
 ????.??.??
 data/lai_data_*.npz
-data/TM_WORLD_BORDERS-0.3.dbf
-data/TM_WORLD_BORDERS-0.3.prj
-data/TM_WORLD_BORDERS-0.3.shp
-data/TM_WORLD_BORDERS-0.3.shx
+#data/TM_WORLD_BORDERS-0.3.dbf
+#data/TM_WORLD_BORDERS-0.3.prj
+#data/TM_WORLD_BORDERS-0.3.shp
+#data/TM_WORLD_BORDERS-0.3.shx
 MCD15A3H*
 *.vrt
 backup*
