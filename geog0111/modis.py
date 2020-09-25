@@ -506,9 +506,11 @@ class Modis():
     for f in hdf_urls:
       d = f.read_bytes()
     hdf_files = [str(f.local()) for f in hdf_urls]
-    sds = self.get_sds(hdf_files,do_all=True)
     if get_files:
+      sds = self.get_sds(hdf_files,do_all=False)
       return hdf_files,sds
+
+    sds = self.get_sds(hdf_files,do_all=True)
     # early return if we just want sds
     if test == True:
       return sds
@@ -661,7 +663,13 @@ class Modis():
 
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
     this_subs = []
-    for sd in self.sds:
+
+    if (not do_all) and ('required_sds' in self.__dict__):
+      sds = self.required_sds
+    else:
+      sds = self.sds
+
+    for sd in sds:
       this_subs += [s0 for s0,s1 in all_subs if sd == self.sdscode(s1)]
     return [[sub.format(local_file=str(lfile)) for lfile in hdf_files] for sub in this_subs]
 

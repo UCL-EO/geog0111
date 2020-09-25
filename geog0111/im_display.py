@@ -50,7 +50,7 @@ def im_display(data,names,band=0,r=[None,None],c=[None,None],\
           this = this[r[0]:r[1],c[0]:c[1]]
         else:
           this = this[band,r[0]:r[1],c[0]:c[1]]
-        im = axs[i].imshow(this,vmin=v_min,vmax=v_max,interpolation=None)
+        im = axs[i].imshow(this,vmin=v_min,vmax=v_max,interpolation='nearest')
         if colourmap:
             im.set_cmap(colourmap)
         axs[i].set_title(k)

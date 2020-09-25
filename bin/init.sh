@@ -44,6 +44,10 @@ fi
 echo "--> done setting active env to ${course_name}"
 
 # postBuild to set jupyter extensions
+echo "--> setting up jupyter extensions"
+jupyter contrib nbextensions install --user
+echo "--> done setting up jupyter extensions"
+
 echo "--> setting jupyter extensions"
 bin/postBuild 
 echo "--> done setting jupyter extensions"

@@ -30,7 +30,7 @@ def plot_lc(data,x_size=12,y_size=12):
     patches = [matplotlib.patches.Patch(color=c, label=l)
                for c,l in legend_labels.items()]
     fig, axs = plt.subplots(1,figsize=(x_size,y_size))
-    im = axs.imshow(data,cmap=cmap,norm=norm,interpolation=None)
+    im = axs.imshow(data,cmap=cmap,norm=norm,interpolation="nearest")
     plt.legend(handles=patches,
               bbox_to_anchor=(1.4, 1),
               facecolor="white")
