@@ -201,7 +201,12 @@ class Database():
     if write:
       for k in new_db.keys():
         if k in old_db:
-          old_db[k].update(new_db[k])
+          try:
+            old_db[k].update(new_db[k])
+          except:
+            # format error
+            self.msg(f"WARNING fixing database format error for {self.db_file}")
+            old_db[k] = new_db[k]
         else:
           old_db[k] = new_db[k]
       old_db = self.filter_db(old_db)
@@ -275,9 +280,12 @@ class Database():
       self.database = self.get_db()
       keys = self.database.keys()
     if flag in self.database.keys():
-      if url in self.database[flag].keys():
-        self.msg(f'retrieving {flag} {url} from database')
-        return self.database[flag][url]
+      try:
+        if url in self.database[flag].keys():
+          self.msg(f'retrieving {flag} {url} from database')
+          return self.database[flag][url]
+      except:
+        pass
     return None
 
   def msg(self,*args):

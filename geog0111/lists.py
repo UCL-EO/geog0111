@@ -119,7 +119,7 @@ def ginit(self,**kwargs):
             try:
               msg = f"{str(self)}: log file {self.log}"
               self.store_msg.append(msg)
-              print(msg,file=sys.stderr)
+              #print(msg,file=sys.stderr)
             except:
               pass
         except:

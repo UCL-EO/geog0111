@@ -19,82 +19,56 @@ __date__      = "28 Aug 2020"
 __copyright__ = "Copyright 2020 P. Lewis"
 __license__   = "GPLv3"
 
-def lai(year=2019,tile=['h17v03', 'h17v04', 'h18v03', 'h18v04']):
+
+gwork = '/shared/groups/jrole001/geog0111/'
+if not Path(gwork).exists():
+  gwork = 'work'
+
+def pull(product,year,tile,doy=None,month=None,day=None,step=1):
   kwargs = {
-    'tile'      :    tile,
-    'product'   :    'MCD15A3H',  
-    'log'       :    f'/shared/groups/jrole001/geog0111/work/lai_{year}_{tidy(tile)}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
+    'tile'      :    list(tile),
+    'product'   :    product,
+    'log'       :    f'{gwork}/{product}_{year}_{tidy(tile)}_log.txt',
+    'db_file'   :    [f'{gwork}/database.db',f'{gwork}/{product}_database.db'],
+    'local_dir' :    f'{gwork}',
     'verbose'   :    True
   }
+  # get the data
+  print(kwargs)
   modis = Modis(**kwargs)
-  
-  result = modis.get_data(year,step=4)
-  return result
+  #modis.get_data(year,doy=doy,day=day,step=step,month=month) 
+  modis.stitch(year,doy=doy,day=day,step=step,month=month)
+  return modis
 
 def tidy(s):
   return str(s).replace("'","").replace('"','').replace(',','_').replace('[','_').replace(']','_')
 
-def snow(year=2019,tile=['h19v03']):
-  name = f'work/snow_{year}_{tidy(tile)}'
-  kwargs = {
-    'tile'      :    tile,
-    'product'   :    'MOD10A1',
-    'log'       :    f'/shared/groups/jrole001/geog0111/work/snow_{year}_{tile}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
-    'verbose'   :    True
-  }
-  modis = Modis(**kwargs)
-  retval = modis.stitch(year)
-
-def lc(year,tile=['h17v03', 'h18v03']):
-  kwargs = {
-    'tile' : tile,
-    'product'   :    'MCD12Q1',
-    'log'       :    f'/shared/groups/jrole001/geog0111/work/lc_{year}_{tile}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
-    'verbose'   :    True
-  }
-  # get the data
-  modis = Modis(**kwargs)
-  # specify day of year (DOY) and year
-  data_MCD12Q1 = modis.get_data(year,1)
-
-def ba(year,tile=['h22v10']):
-  kwargs = {
-    'tile'      :    tile,
-    'product'   :    'MCD64A1',
-    'log'       :    f'/shared/groups/jrole001/geog0111/work/ba_{year}_{tile}_log.txt',
-    'db_file'   :    ['/shared/groups/jrole001/geog0111/work/database.db'],
-    'local_dir' :    '/shared/groups/jrole001/geog0111/work',
-    'verbose'   :    True
-  }
-   # get the data
-  modis = Modis(**kwargs)
-  # specify day of year (DOY) and year
-  data_MCD12Q1 = modis.get_data(year)
-
 def main():
     for tile in ['h17v03', 'h17v04', 'h18v03', 'h18v04','h09v04','h10v04','h11v04','h12v04','h19v03','h19v04','h30v10','h31v10','h19v11','h19v10','h22v10','h23v10']:
-      tile = [tile]
       for year in [2018,2019,2020]:
         try:
-          lai(year,tile=tile)
+          # LAI
+          r = pull('MCD15A3H',year,tile,step=4)
         except:
           pass
         try:
-          snow(year=year,tile=tile)
+          # snow 1
+          r = pull('MOD10A1',year,tile,step=1)
         except:
           pass
         try:
-          lc(year,tile=tile)
+          # snow 2
+          r = pull('MYD10A1',year,tile,step=1)
         except:
           pass
         try:
-          ba(year,tile=tile)
+          # LC
+          r = pull('MCD12Q1',year,tile,step=400)
+        except:
+          pass
+        try:
+          # BA
+          r = pull('MCD64A1',year,tile,month="*",day=1)
         except:
           pass
 
