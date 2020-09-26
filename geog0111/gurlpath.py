@@ -76,6 +76,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       args = tuple(args)
       if not kwargs:
         kwargs = {}
+      self.fourOhOne = False
 
   def init(self,**kwargs):
       self.__dict__.update(ginit(self,**kwargs))
@@ -641,6 +642,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         # 
         if r.status_code == 401:
           u.msg(f'code 401')
+          self.self.fourOhOne = True
+      
+        if self.self.fourOhOne:
           # unauthorised
           # more complex session login and auth
           # e.g. needed for NASA Earthdata login
