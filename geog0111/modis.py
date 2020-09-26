@@ -74,7 +74,6 @@ class Modis():
                           **(fdict(self.__dict__.copy(),ignore=['db_dir','db_file'])))
 
     self.translateoptions = gdal.TranslateOptions(gdal.ParseCommandLine("-of Gtiff -co COMPRESS=LZW"))
-
     # list of tiles
     if type(self.tile) is str:
       self.tile = [self.tile]
@@ -354,6 +353,7 @@ class Modis():
       self.sds = self.required_sds
 
     # else look in dictionary
+    response = self.database.get_from_db("SDS",self.product)
     if response:
       self.msg("found SDS names in database")
       self.sds = response
