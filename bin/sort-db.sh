@@ -1,7 +1,15 @@
 #!/bin/bash
 
-cd data/ucl
+# run as 
+# bin/sort-db.sh > $CACHE_FILE
 
+if  [[ -z "$CACHE_FILE" ]]; then
+  export CACHE_FILE="work/database.db"
+fi
+echo $CACHE_FILE 
+idir=$(echo $CACHE_FILE | awk -F/ 'BEGIN{str="/"} {for(i=1;i<NF;i++)str=str"/"$i} END{print(str)}')
+cd $idir
+pwd
 echo "query:"
 ls */M*.store |  cut -d. -f1,2,3,4 | awk '{print("  https://"$0":");print("  - https://"$0)}'
 ls */M*/*.store  | cut -d. -f1,2,3,4,5 | awk '{print("  https://"$0":");print("  - https://"$0)}'
@@ -57,6 +65,6 @@ EOF
 echo "data:"
 here=$(pwd)
 ls */M*/*/*/*hdf.store | sed 's/hdf.store/hdf/' > /tmp/all.$$
-awk < /tmp/all.$$ -v here=$here '{print("  https://"$1":");print("  - "here $1i ".store")}'
+awk < /tmp/all.$$ -v here=$here '{print("  https://"$1":");print("  - "here "/" $1 ".store")}'
 
 

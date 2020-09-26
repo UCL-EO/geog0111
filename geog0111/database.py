@@ -139,7 +139,14 @@ class Database():
         self.db_dir = [self.db_dir]
 
       # may be a cache
-      if 'CACHE_FILE' in os.environ and os.environ['CACHE_FILE'] is not None:
+      cache=File("/shared/groups/jrole001/geog0111/work/database.db")
+      if cache.exists():
+        self.msg(f'using cache {db_file}')
+        if (self.db_file is None):
+          self.db_file = db_file
+        else:
+          self.db_file = list_resolve(self.db_file + db_file)
+      elif 'CACHE_FILE' in os.environ and os.environ['CACHE_FILE'] is not None:
         db_file = [str(l) for l in list_resolve(os.environ['CACHE_FILE'])]
         self.msg(f'using cache {db_file}')
         if (self.db_file is None):

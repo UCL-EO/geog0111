@@ -437,10 +437,11 @@ class Modis():
           bandlist.append(bthis)
           ofiles.append(this)
       if len(ofiles):
-        ofile = f"data.{self.sds[i]}.{self.tidy(self.tile)}." + \
+        ofile = f"{self.product}/data.{self.sds[i]}.{self.tidy(self.tile)}." + \
                 f"{year}.{str(int(doy)) :0>3s}.{str(int(step)) :0>3s}.vrt"
         ofile = ofile.replace(' ','_')
         spatial_file = Path(f"{self.local_dir[0]}",ofile)
+        spatial_file.parent.mkdir(parents=True,exist_ok=True)
         g = gdal.BuildVRT(spatial_file.as_posix(),ofiles,separate=True)
         try:
           g.FlushCache()
@@ -561,10 +562,11 @@ class Modis():
       self.msg(sds)
       sys.exit(1)
     for i,sd in enumerate(sds):
-      ofile = f"data.{self.sds[i]}." + \
+      ofile = f"{self.product}/data.{self.sds[i]}." + \
               f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
       ofile = ofile.replace(' ','_')
       spatial_file = Path(f"{self.local_dir[0]}",ofile)
+      spatial_file.parent.mkdir(parents=True,exist_ok=True)
       g = gdal.BuildVRT(spatial_file.as_posix(),sds[i])
       if not g:
         d = self.__dict__
