@@ -139,7 +139,7 @@ class Database():
         self.db_dir = [self.db_dir]
 
       # may be a cache
-      cache=File("/shared/groups/jrole001/geog0111/work/database.db")
+      cache=Path("/shared/groups/jrole001/geog0111/work/database.db")
       if cache.exists():
         self.msg(f'using cache {db_file}')
         if (self.db_file is None):
