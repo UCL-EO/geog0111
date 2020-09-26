@@ -141,11 +141,15 @@ class Database():
       # may be a cache
       cache=Path("/shared/groups/jrole001/geog0111/work/database.db")
       if cache.exists():
-        self.msg(f'using cache {db_file}')
+        cache = cache.as_posix()
+        self.msg(f'using cache {cache}')
+        if "db_file" not in self.__dict__:
+          self.db_file = cache
+
         if (self.db_file is None):
-          self.db_file = db_file
+          self.db_file = cache 
         else:
-          self.db_file = list_resolve(self.db_file + db_file)
+          self.db_file = list_resolve([cache] + self.db_file)
       elif 'CACHE_FILE' in os.environ and os.environ['CACHE_FILE'] is not None:
         db_file = [str(l) for l in list_resolve(os.environ['CACHE_FILE'])]
         self.msg(f'using cache {db_file}')
@@ -154,17 +158,38 @@ class Database():
         else:
           self.db_file = list_resolve(self.db_file + db_file)
 
-      # in case still none
-      if (self.db_file is None) or \
-         ((type(self.db_file) is list) and len(self.db_file) == 0):
-        # in case self.db_dir is none
-        if (self.db_dir is None) or \
-         ((type(self.db_dir) is list) and len(self.db_dir) == 0):
-          self.db_dir = list_resolve([Path('~','.url_db')])
-        self.db_file = [Path(d,'.db.yml') for d in self.db_dir] 
+      if ((type(self.db_dir) is list) and len(self.db_dir) == 0):
+        self.db_dir = None
+
+      if ((type(self.db_file) is list) and len(self.db_file) == 0):
+        self.db_file = None
 
       if type(self.db_file) is str:
-        self.db_file = [self.db_file]
+        self.db_file = [self.db_file] 
+
+      if type(self.db_dir) is str:
+        self.db_dir = [self.db_dir] 
+
+      # writeable db_files
+      if (self.db_file is not None):
+        # ie we apparently have something
+        can_write = False
+        for d in self.db_file:
+          try:
+            Path(d).touch()
+            can_write = True
+          except:
+            pass
+
+      # in case still none or no writeable     
+      if (not can_write) or (self.db_file is None):
+        # in case self.db_dir is none
+        if (self.db_dir is None):
+          self.db_dir = list_resolve([Path('~','.url_db')])
+        if (self.db_file is None):
+          self.db_file = [Path(d,'.db.yml') for d in self.db_dir] 
+        else:
+          self.db_file.extend([Path(d,'.db.yml') for d in self.db_dir])
 
       self.db_file = list_resolve([Path(f) for f in self.db_file])
       self.db_dir = [Path(d).parent for d in self.db_file]
