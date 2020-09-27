@@ -25,6 +25,16 @@
 |---|---|---|
 |[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
 
+### Installation on UCL JupyterHub
+
+Log on the the UCL JupyterHub.
+
+In a shell, type:
+
+    git clone https://github.com/UCL-EO/geog0111.git
+    cd geog0111
+    bin/init.sh
+
 ### Purpose of this course
 
 This course, GEOG0111 Scientific Computing, is a term 1 MSc module worth 15 credits (25% of the term 1 credits) that aims to:
