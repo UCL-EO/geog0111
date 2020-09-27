@@ -6,10 +6,10 @@
 if  [[ -z "$CACHE_FILE" ]]; then
   export CACHE_FILE="work/database.db"
 fi
-echo $CACHE_FILE 
+#echo $CACHE_FILE 
 idir=$(echo $CACHE_FILE | awk -F/ 'BEGIN{str="/"} {for(i=1;i<NF;i++)str=str"/"$i} END{print(str)}')
 cd $idir
-pwd
+#pwd
 echo "query:"
 ls */M*.store |  cut -d. -f1,2,3,4 | awk '{print("  https://"$0":");print("  - https://"$0)}'
 ls */M*/*.store  | cut -d. -f1,2,3,4,5 | awk '{print("  https://"$0":");print("  - https://"$0)}'

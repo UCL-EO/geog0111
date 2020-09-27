@@ -144,6 +144,22 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
           return False
     return True
 
+  def indb(self):
+    # might be in database
+    store_url  = str(self)
+    store_flag = 'data'
+    ifile = self.get_name(self.database.get_from_db(store_flag,store_url))
+    if ifile:
+      old = self.local_file
+      self.local_file = Path(ifile)
+      if self.local_file.exists() and self.local_file.suffix == '.store':
+        return True
+      if self.local_file.suffix != '.store':
+        self.local_file = old
+        return False
+      return True
+    return False
+
   def call_local(self):
     '''
     sort out and return local_file
@@ -151,6 +167,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     This comes from the URL and local_dir
     and ends .store
     '''
+    if self.indb():
+      return self.local
+    
     kwargs = fdict(self.__dict__.copy())
     if 'local_dir' in kwargs and \
         (kwargs['local_dir'] is not None) and \
@@ -159,7 +178,8 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
     if (self.local_dir is None) or (len(self.local_dir) == 0):
       self.local_dir = list_resolve(self.db_dir)
-    self.local_file = Path(self.local_dir[-1],str(self.with_scheme(''))[2:]).absolute()
+    self.local_file = Path(self.local_dir[0],self.as_posix().split("://")[1]) 
+    #self.local_file = Path(self.local_dir[-1],str(self.with_scheme(''))[2:]).absolute()
     # replace ' '
     self.local_file = Path(str(self.local_file).replace(' ','_'))
     suffix = self.local_file.suffix
@@ -188,10 +208,12 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
   def _local_file(self,mode="r"):
     '''get local file name'''
+    if self.indb():
+      return self.local
     self.call_local()
     # clobber
     if not self.noclobber:
-      local_file  = self.get_readwrite_file(self.local_file)
+      local_file  = self.get_write_file(self.local_file)
       # file name for writing
     elif mode == "r":
       local_file = self.get_read_file(self.local_file)
@@ -386,6 +408,15 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     except:
         pass
 
+  def get_name(self,ofile):
+    if ofile == [] or ofile == {}:
+      ofile = None
+    if type(ofile) == list:
+      ofile = ofile[0]
+    if type(ofile) == dict:
+      ofile = list(ofile.values())[0]
+    return ofile
+
   def _test_already_local(self):
     # get local_filename we would use for output
     # delete it if not noclobber
@@ -397,7 +428,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     store_url  = str(self)
     store_flag = 'data'
 
-    ifile = self.database.get_from_db(store_flag,store_url)
+    ifile = self.get_name(self.database.get_from_db(store_flag,store_url))
 
     if ifile is not None:
       ifile = Path(ifile)
@@ -410,7 +441,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         ifile.unlink()
         ifile = None
 
-    ofile = self._local_file("w")
+    ofile = self.get_name(self._local_file("w"))
 
     if ifile is None:
       return True,ifile,ofile
@@ -881,7 +912,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
     # check in database
     store_url  = url
-    store_flag = 'glob' 
+    store_flag = 'query' 
     olist = self.database.get_from_db(store_flag,store_url)
     if olist is not None:
       if type(olist) is list:
@@ -900,8 +931,10 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         
         # glob with the next item
         new_list = new_list + glob
-      base_list = np.array(new_list).flatten()
+      base_list = np.unique(np.array(new_list,dtype=np.object).flatten())
 
+    base_list = np.unique(np.array(base_list,dtype=np.object))
+ 
     olist = list(np.array([self.update(i) for i in base_list]).flatten())
     self.dedate()
 
@@ -970,7 +1003,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     files = [str(i) for i in files]
     # cache this in db
     cache = {store_flag : { str(store_url) : files }}
-    self.database.set_db(cache,write=True)
+    self.database.set_db(cache)
  
     return files 
 

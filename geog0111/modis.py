@@ -186,11 +186,11 @@ class Modis():
 
     '''
     idict = idict or self.get_modis(year,day=day,doy=doy,month=month,step=step,fatal=fatal)
-
     # for get_data, we only want required_sds
     try:
       if 'required_sds' in self.__dict__:
         sds = self.required_sds
+        bandnames = idict['bandnames']
       else:
         bandnames = idict['bandnames']
         del idict['bandnames']
@@ -220,6 +220,16 @@ class Modis():
     except:
       self.msg("Error calling get_data")
     return {}
+
+
+  def sort_vfiles(self,vfiles,sds):
+    # reconcile the order of sds and vfiles list
+    _sds = np.array([s.replace(" ","_") for s in sds])
+    _vfiles = np.array([f.split('/')[-1].split('.')[1] for f in vfiles])
+    index = tuple([np.where(_vfiles == ts)[0][0]  for ts in _sds])
+    vf = vfiles.copy()
+    vfiles = [vf[i] for i in index]
+    return vfiles
 
   def get_modis(self,year,doy=None,day=None,month=None,step=1,\
                      warp_args=None,dstNodata=None,fatal=False):
@@ -309,7 +319,6 @@ class Modis():
     bandnames = [f'{year}-{d :0>3d}' for d,y in zip(doy_list,year_list)]
     vfiles = self.stitch(year=year_list,doy=doy_list,\
                          dstNodata=dstNodata,warp_args=warp_args)
-
     # error 
     if (not vfiles) or (len(vfiles) == 0) or (len(vfiles) and (vfiles[0] == None)):
       msg = f"WARNING: no datasets in get_data() for product {self.product} tile {self.tile} year {year} month {month} doy {doy}"
@@ -324,10 +333,10 @@ class Modis():
 
     if 'required_sds' in self.__dict__:
       sds = self.required_sds
-      vfiles = [vfiles[i] for i,s in enumerate(self.sds) if s in sds]
     else:
       sds = self.sds
 
+    vfiles = self.sort_vfiles(vfiles,sds)
     odict  = dict(zip(sds,vfiles))
     odict['bandnames'] = bandnames
     return odict
@@ -363,8 +372,9 @@ class Modis():
     self.msg("polling for SDS names")
     self.stitch_date(year,doy,test=True)
     if self.sds is None:
+      # try again
       self.msg("error finding SDS names")
-      sys.exit(1)
+      return []
     if 'required_sds' not in self.__dict__:
       self.required_sds = self.sds
     self.msg(f"SDS: {self.sds}")
@@ -409,7 +419,7 @@ class Modis():
     bandlist = []
     # sds may not be defined
     self.fix_sds(self.sds,years[0],doys[0])
-
+      
     # set nodata value
     if (warp_args is not None) and (dstNodata is None):
       dstNodata = warp_args['dstNodata']
@@ -420,10 +430,11 @@ class Modis():
       warp_args['dstNodata'] = dstNodata
 
     # loop over sds
+    store_files = [None]*len(years)
     for i,s in enumerate(self.sds):
       ofiles = []
       bandlist = []
-      for year,doy in zip(years,doys):
+      for j,(year,doy) in enumerate(zip(years,doys)):
         year       = int(year)
         doy        = int(doy)
         ifiles = self.stitch_date(year,doy)
@@ -432,6 +443,8 @@ class Modis():
           this,bthis = self.get_blank(dstNodata,s,i)
         else:
           this,bthis = ifiles[i],f'{str(i):0>2s}'
+
+        store_files[j] = ifiles
  
         if this:
           bandlist.append(bthis)
@@ -511,7 +524,10 @@ class Modis():
     self.day   = f'{str(int(dater[2])) :0>2s}'  
 
     d = self.__dict__.copy()
-    hdf_urls = self.get_url(**(fdict(d)))
+    fd = fdict(d)
+    # dont need to read it
+    fd['no_read'] = True
+    hdf_urls = self.get_url(**(fd))
 
     if not(len(hdf_urls) and (type(hdf_urls[0]) == URL)):
       if get_files:
@@ -541,17 +557,32 @@ class Modis():
           print(msg)
           self.msg(msg)
 
-    for f in hdf_urls:
-      d = f.read_bytes()
-    hdf_files = [str(f.local()) for f in hdf_urls]
+    try:
+      hdf_files = [str(f.local()) for f in hdf_urls]
+    except:
+      for f in hdf_urls:
+        d = f.read_bytes()
+      hdf_files = [str(f.local()) for f in hdf_urls]
     if get_files:
       sds = self.get_sds(hdf_files,do_all=False)
       return hdf_files,sds
 
     sds = self.get_sds(hdf_files,do_all=True)
+    if sds == []:
+      for f in hdf_urls:
+        d = f.read_bytes()
+      hdf_files = [str(f.local()) for f in hdf_urls]
+      sds = self.get_sds(hdf_files,do_all=True)
+
     # early return if we just want sds
     if test == True:
       return sds
+    if len(sds) == 0:
+      # failed to get SDS: need to download example file
+      for f in hdf_urls:
+        d = f.read_bytes()
+      hdf_files = [str(f.local()) for f in hdf_urls]
+      sds = self.get_sds(hdf_files,do_all=True)
 
     ofiles = []
     if len(sds) > len(self.sds):
@@ -662,6 +693,7 @@ class Modis():
               "log"        : self.log,\
               "size_check" : self.size_check,\
               "local_file" : self.local_file,\
+              "database"   : self.database.database,
               "local_dir"  : self.local_dir }
 
     hdf_urls = []
@@ -688,9 +720,15 @@ class Modis():
 
     if len(hdf_files) < 1:
       return []
-    lfile = hdf_files[0]
-    g = gdal.Open(str(lfile))
-    if not g:
+    try:
+      lfile = hdf_files[0]
+      if not Path(lfile).exists():
+        return []
+      g = gdal.Open(str(lfile))
+      if not g:
+        return []
+    except:
+      # need to pull this first
       return []
 
     #hdf_files = list(np.sort(np.unique(np.array(hdf_files))))

@@ -3,6 +3,7 @@ from pathlib import PosixPath, _PosixFlavour, PurePath
 from pathlib import Path
 import sys
 import stat
+import yaml
 
 try:
   from geog0111.cylog import Cylog
@@ -93,12 +94,8 @@ def ginit(self,**kwargs):
       if not 'defaults' in kwargs:
         defaults = {\
          'verbose'    : False,\
-         'local_dir'  : list_resolve([]),\
-         'db_dir'     : list_resolve(['~/.url_db']),\
-         'local_file' : None,\
          'noclobber'  : True,\
          'size_check' : False,\
-         'db_file'    : None,\
          'store_msg'  : [],\
          'log'        : None,\
          'database'   : None,\
@@ -108,6 +105,16 @@ def ginit(self,**kwargs):
         defaults = kwargs['defaults']
         del kwargs['defaults']
 
+      # try to read from ~/.url_db/.init
+      initfile = Path('~/.url_db/init.yml').expanduser().absolute()
+      if initfile.exists():
+        self.msg(f'reading init file {initfile.as_posix()}')
+        with initfile.open('r') as f:
+          info = yaml.safe_load(f)
+      else:
+        info = {}
+
+      defaults.update(info)
       defaults.update(kwargs)
       self.__dict__.update(defaults)
 
@@ -126,12 +133,17 @@ def ginit(self,**kwargs):
           self.stderr = sys.stderr
           self.msg(f"WARNING: failure to open log file {self.log}")
 
+      if 'local_dir' not in self.__dict__:
+        self.local_dir = ["work"]
+
       self.local_dir = list_resolve(self.local_dir)
 
       self.local_dir  = list_resolve(self.local_dir)
       [d.mkdir(parents=True,exist_ok=True) for d in self.local_dir]
-      self.local_file = name_resolve(self.local_file)
-
+      try:
+        self.local_file = name_resolve(self.local_file)
+      except:
+        self.local_file = name_resolve(self.local_dir,name=self.name)
       self.db_dir     = list_resolve(self.db_dir)
       [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
       self.db_file    = self.db_file or name_resolve(self.db_dir,name='.db.yml')

@@ -87,12 +87,22 @@ class Database():
 
       defaults = {\
          'verbose'    : False,\
-         'db_dir'     : list_resolve(['~/.url_db']),\
+         'db_dir'     : None,\
          'db_file'    : None,\
          'log'        : None,\
          'database'   : None,\
          'stderr'     : sys.stderr,\
       }
+      # try to read from ~/.url_db/.init
+      initfile = Path('~/.url_db/init.yml').expanduser().absolute()
+      if initfile.exists():
+        self.msg(f'reading init file {initfile.as_posix()}')
+        with initfile.open('r') as f:
+          info = yaml.safe_load(f)
+      else:
+        info = {}
+
+      defaults.update(info)
       defaults.update(kwargs)
       old_db = defaults['database']
       self.__dict__.update(defaults)
@@ -139,20 +149,20 @@ class Database():
         self.db_dir = [self.db_dir]
 
       # may be a cache
-      cache=Path("/shared/groups/jrole001/geog0111/work/database.db")
-      if cache.exists():
-        cache = cache.as_posix()
-        self.msg(f'using cache {cache}')
-        if "db_file" not in self.__dict__:
-          self.db_file = cache
-
-        if (self.db_file is None):
-          self.db_file = cache 
-        else:
-          self.db_file = list_resolve([cache] + self.db_file)
-      elif 'CACHE_FILE' in os.environ and os.environ['CACHE_FILE'] is not None:
+      #cache=Path("/shared/groups/jrole001/geog0111/work/database.db")
+      #if cache.exists():
+      #  cache = cache.as_posix()
+      #  self.msg(f'using cache {cache}')
+      #  if "db_file" not in self.__dict__:
+      #    self.db_file = cache
+      # 
+      #  if (self.db_file is None):
+      #    self.db_file = cache 
+      #  else:
+      #    self.db_file = list_resolve([cache] + self.db_file)
+      if info == {} and 'CACHE_FILE' in os.environ and os.environ['CACHE_FILE'] is not None:
         db_file = [str(l) for l in list_resolve(os.environ['CACHE_FILE'])]
-        self.msg(f'using cache {db_file}')
+        #self.msg(f'using cache {db_file}')
         if (self.db_file is None):
           self.db_file = db_file
         else:
@@ -210,12 +220,21 @@ class Database():
     data = dict(old_db['data'])
 
     # cleaning ...
-    for k,v in data.items():
-      if Path(v).is_dir():
-        del data[k]
-      else:
-        data[k] = str(v)
-    old_db['data'] = data
+    try:
+      for k,v in data.items():
+        if v is None:
+          # error in dba
+          print(f"WARNING: database None error {k}:{v}")
+          del data[k]
+        elif type(v) is list:
+          v = v[0]
+        if Path(v).is_dir():
+          del data[k]
+        else:
+          data[k] = str(v)
+      old_db['data'] = data
+    except:
+      print(f"WARNING: database error {k}:{v}")  
     return old_db
 
 
@@ -278,7 +297,7 @@ class Database():
     readlist,writelist = list_info(db_files)
     for dbf in np.array(db_files,dtype=np.object)[readlist]:
       with dbf.open('r') as f:
-        self.msg(f'reading db file {dbf}')
+        #self.msg(f'reading db file {dbf}')
         try:
           fin = dict(yaml.safe_load(f))
         except:
@@ -315,7 +334,7 @@ class Database():
       try:
         if url in self.database[flag].keys():
           self.msg(f'retrieving {flag} {url} from database')
-          return self.database[flag][url]
+          return list(np.unique(np.array(self.database[flag][url],dtype=np.object)))
       except:
         pass
     return None

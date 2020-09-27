@@ -65,6 +65,10 @@ cd data
 ln -s /shared/groups/jrole001/geog0111/work ucl
 echo "--> done"
 
+echo "--> system database init"
+cd $base
+ipython geog0111/sys_init.py
+echo "--> done system database init"
 # 
 
 echo "----> done running $0 from $here"
