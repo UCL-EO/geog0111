@@ -43,29 +43,31 @@ GEOG0111 Scientific Computing
    018_Running_Python_answers.md
   
    020_Python_files.md
-   021_Read_text_files.md
+   021_Streams.md
    022_Read_write_files.md
-   023_Pandas_and_plotting.md
-   024_NASA_MODIS_Earthdata.md
-   025_GoogleEarthEngine.md
-   026_Numpy_matplotlib.md
+   023_Plotting.md
+   024_Image_display.md
   
    020_Python_files_answers.md
-   021_Read_text_files_answers.md
+   021_Streams_answers.md
    022_Read_write_files_answers.md
-   024_NASA_MODIS_Earthdata_answers.md
+   023_Plotting_answers.md
+   024_Image_display_answers.md
   
-   030_GDAL.md
-   031_MODIS_download.md
-   032_GDAL_stacking_and_interpolating.md
-   033_GDAL_masking.md
-   034_GDAL_Reconciling_projections.md
+   030_NASA_MODIS_Earthdata.md
+   031_Numpy.md
+   032_GDAL_mosaicing_and_masking.md
+   033_GDAL_timeseries.md
+   034_Weigthed_smoothing_and_interpolation.md
+   035_Weighted_interpolation.md
+   036_Model_Fitting.md
   
-   040_Linear_models.md
-   041_Modelling_and_optimisation.md
+   030_NASA_MODIS_Earthdata_answers.md
+   031_Numpy_answers.md
+   032_GDAL_mosaicing_and_masking_answers.md
   
-   DEV_Local_Install.md
-   DEV_scripts.md
+   040_Practical_Part1.md
+   041_Practical_Part2.md
 
 Indices and tables
 ==================

@@ -1,6 +1,6 @@
-# 019 Python codes : Answers to exercises
+# 018 Python codes : Answers to exercises
 
-#### Exercise
+#### Exercise 1
 
 * Create a Python file in your [`work`](work) folder based on the example above and call it `work/myFirstCode.py`
 * Modify the code to achieve the following:
@@ -67,6 +67,9 @@ chmod 755 work/myFirstCode.py
 # ANSWER
 %run work/myFirstCode.py
 ```
+
+    hello from me
+
 
 ### Exercise: Submitted Practical
 
@@ -196,6 +199,27 @@ print('work/greet.py Hermione ->')
 %run work/greet.py Hermione
 ```
 
+    
+    As a test, when you run the script:
+    
+      %run work/greet.py Fred
+    you would expect to get a response of the form:
+    
+      greetings from Fred
+    and if you run:
+    
+      %run work/greet.py Hermione
+    then
+    
+      greetings from Hermione
+    
+    
+    work/greet.py Fred ->
+    greetings from Fred
+    work/greet.py Hermione ->
+    greetings from Hermione
+
+
 
 ```bash
 %%bash
@@ -285,6 +309,12 @@ print('work/greet.py  ->')
 print('work/greet.py Hermione ->')
 %run work/greet.py Hermione
 ```
+
+    work/greet.py  ->
+    work/greet.py: error - no command line name given
+    work/greet.py Hermione ->
+    greetings from Hermione
+
 
 
 ```bash
@@ -384,3 +414,20 @@ print(f'{dash}\nwork/greet.py Hermione ->{dash}')
 print(f'{dash}\nwork/greet.py Hermione Fred ->{dash}')
 %run work/greet.py Hermione Fred
 ```
+
+    
+    ==========
+    work/greet.py  ->
+    ==========
+    
+    ==========
+    work/greet.py Hermione ->
+    ==========
+    greetings from Hermione
+    
+    ==========
+    work/greet.py Hermione Fred ->
+    ==========
+    greetings from Hermione
+    greetings from Fred
+

@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>030 NASA MODIS Earthdata : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="031 Manipulating data: numpy : Answers to exercises" href="031_Numpy_answers.html" />
+    <link rel="prev" title="036 Model Fitting" href="036_Model_Fitting.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="nasa-modis-earthdata-answers-to-exercises">
+<h1>030 NASA MODIS Earthdata : Answers to exercises<a class="headerlink" href="#nasa-modis-earthdata-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<p>The pattern on the tile names is <code class="docutils literal notranslate"><span class="pre">hXXvYY</span></code> where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the horizontal coordinate and <code class="docutils literal notranslate"><span class="pre">YY</span></code> the vertical.</p>
+<ul class="simple">
+<li><p>use the map above to work out the names of the two tiles that we will need to access data over the UK</p></li>
+<li><p>set the variable <code class="docutils literal notranslate"><span class="pre">tiles</span></code> to contain these two names in a list</p></li>
+</ul>
+<p>For example, for the two tiles covering Madagascar, we would set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h22v10&#39;</span><span class="p">,</span><span class="s1">&#39;h22v11&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tiles for the UK</span>
+
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h17v04&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v04&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exercise-2-mask-invalid-data">
+<h2>Exercise 2: mask invalid data<a class="headerlink" href="#exercise-2-mask-invalid-data" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>write a function called <code class="docutils literal notranslate"><span class="pre">data_mask</span></code> that is given:</p>
+<ul>
+<li><p>a data dictionary</p></li>
+<li><p>a list of sds strings</p></li>
+<li><p>a list of scale factors</p></li>
+<li><p>a list of upper threshold values</p></li>
+<li><p>a list of lower threshold values
+and returns the dictionary with the scaled and masked datasets</p></li>
+</ul>
+</li>
+<li><p>plot both <code class="docutils literal notranslate"><span class="pre">Lai_500m</span></code> and <code class="docutils literal notranslate"><span class="pre">LaiStdDev_500m</span></code> side-by-side. You should apply appropriate scaling factors and masking as above.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+<span class="kn">from</span> <span class="nn">geog0111.im_display</span> <span class="kn">import</span> <span class="n">im_display</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">data_mask</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">sds</span><span class="p">,</span><span class="n">scales</span><span class="p">,</span><span class="n">uthresh</span><span class="p">,</span><span class="n">lthresh</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    given:</span>
+<span class="sd">    </span>
+<span class="sd">    data     : data dictionary</span>
+<span class="sd">    sds      : list of sds strings</span>
+<span class="sd">    scales   : list of scale factors</span>
+<span class="sd">    uthresh  : list of upper threshold values</span>
+<span class="sd">    lthresh  : list of upper threshold values</span>
+<span class="sd">    </span>
+<span class="sd">    return the dictionary with the scaled </span>
+<span class="sd">    and masked datasets </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sds</span><span class="p">):</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">scales</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span>
+        <span class="c1"># mask invalid by setting to </span>
+        <span class="k">if</span> <span class="n">uthresh</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ds</span><span class="p">[</span><span class="n">ds</span><span class="o">&gt;=</span><span class="n">uthresh</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">if</span> <span class="n">lthresh</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span><span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+            <span class="n">ds</span><span class="p">[</span><span class="n">ds</span><span class="o">&lt;=</span><span class="n">lthresh</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="c1"># load back into data_MCD15A3H</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># put the required SDS in the sds field of kwargs</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tile&#39;</span>      <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h17v04&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v03&#39;</span><span class="p">,</span> <span class="s1">&#39;h18v04&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;product&#39;</span>   <span class="p">:</span>    <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sds&#39;</span>       <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;Lai_500m&#39;</span><span class="p">,</span><span class="s1">&#39;LaiStdDev_500m&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># get the data</span>
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># specify day of year (DOY) and year</span>
+<span class="n">data_MCD15A3H</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="n">doy</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">sds</span>     <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sds&#39;</span><span class="p">]</span>
+<span class="n">scale</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="n">uthresh</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">lthresh</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span>
+
+<span class="n">data_MCD15A3H</span> <span class="o">=</span> <span class="n">data_mask</span><span class="p">(</span><span class="n">data_MCD15A3H</span><span class="p">,</span><span class="n">sds</span><span class="p">,</span><span class="n">scale</span><span class="p">,</span><span class="n">uthresh</span><span class="p">,</span><span class="n">lthresh</span><span class="p">)</span>
+<span class="c1"># plot with different vmax for the plots!</span>
+<span class="n">im_display</span><span class="p">(</span><span class="n">data_MCD15A3H</span><span class="p">,</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sds&#39;</span><span class="p">],</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">x_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">y_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/030_NASA_MODIS_Earthdata_answers_5_0.png" /></p>
+</div>
+<div class="section" id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>write a function called <code class="docutils literal notranslate"><span class="pre">get_doy</span></code> that is given the year, month and day integer and returns the day of year</p></li>
+<li><p>test it</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span> <span class="nf">get_doy</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="p">,</span><span class="n">day</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    function that is given </span>
+<span class="sd">    </span>
+<span class="sd">    the year </span>
+<span class="sd">    and month integer </span>
+<span class="sd">        </span>
+<span class="sd">    and returns the day of year</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">doy</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">month</span><span class="p">,</span><span class="n">day</span><span class="p">)</span> <span class="o">-</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">31</span><span class="p">))</span><span class="o">.</span><span class="n">days</span>
+    <span class="k">return</span> <span class="n">doy</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
+
+<span class="k">assert</span> <span class="n">get_doy</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">get_doy</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">32</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting.html">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display_answers.html">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking.html">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="036_Model_Fitting.html" title="previous chapter">036 Model Fitting</a></li>
+      <li>Next: <a href="031_Numpy_answers.html" title="next chapter">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/030_NASA_MODIS_Earthdata_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

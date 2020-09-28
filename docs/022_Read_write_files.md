@@ -1,4 +1,4 @@
-# 021 Read and Write: URLs and files
+# 022 Read and Write: URLs and files
 
 
 ## Introduction
@@ -28,7 +28,7 @@ You will need to recall details from [020_Python_files](020_Python_files.md) on 
 
 ### Test
 
-You should run a [NASA account test](notebooks/004_Accounts.md#Test) if you have not already done so.
+You should run a NASA account test](004_Accounts.md) if you have not already done so.
 
 ## Reading and writing
 
@@ -100,178 +100,188 @@ We can show that we get the same result reading the same file locally from [`dat
 from geog0111.gurlpath import URL
 from pathlib import Path
 
-# first read the data
+# first read the data from URL with no cache
+# and directory work
 u = 'https://www.json.org/json-en.html'
-url = URL(u)
-# set the output dir
-url.local_dir='data'
+url = URL(u,local_dir='work',verbose=True,noclobber=False)
+data_url = url.read_text()
 
-data = url.read_text()
-# write to 'data/json-en.html' with URL
-osize = url.write_text(data)
-# test the correct number of bytes
-assert osize == 26718
-print('passed URL')
+# then from file in directory data
+data_file = Path('data/json-en.html').read_text()
 
-# write to 'data/json-en.html' with Path
-osize = Path('data/json-en.html').write_text(data)
-# test the correct number of bytes
-assert osize == 26718
-print('passed Path')
-
+assert data_url == data_file
+print('files are the same')
 ```
 
-    passed URL
-    passed Path
-
-
-The `URL` class has a few advantages over using `Path` in this way:
-
-* if the output directory doesn't already exist, it will be created
-* by default, it caches files. 
-
-This latter point means that if were intending to read some file from a URL and store it, then the next time we make the same call, it will read from the saved (cached) file instead of trying to download it. To avoid the problem where cached files may have been partially downloaded or otherwise corrupted, the library checks the local file size against what it expects from the URL.
-
-Caching can be turned off by specifying:
-
-    `noclobber=Fakse`
-    
-and file size testing can be disabled with:
-
-    `size_check=False`
-    
-It is generally a good idea to keep `size_check=True`, although for some files (e.g. large, password-protected files) getting the file size can take a not inconsiderable amount of time. Further, we cannot easily determine the remote file size in all cases (e.g. for compressed files that are uncompressed on download).
-
-You can specify a location for cached files by setting e.g.:
-
-    url.local_dir='data'
-    
-as above. 
-
-We can follow the logic of the file check if we switch on `verbose=True`:
-
-
-```python
-from geog0111.gurlpath import URL
-from pathlib import Path
-
-# first read the data
-u = 'https://www.json.org/json-en.html'
-url = URL(u)
-# cache file here when read
-url.local_dir='data'
-
-data = url.read_text(verbose=True)
-
-# write to 'data/json-en.html' with URL
-# but this is where we cached it on reading
-osize = url.write_text(data,verbose=True)
-```
-
-    --> existing file data/json-en.html 26880 Bytes
-    --> noclobber: True
-    --> keeping existing file data/json-en.html
-    --> local file: data/json-en.html
     --> trying https://www.json.org/json-en.html
-    --> code 200
-    --> file is compressed, remote size not directly available
-    --> code 200
-    --> noclobber: True
-    --> not downloading file
-    --> opening already downloaded file
-    --> existing file data/json-en.html 26880 Bytes
-    --> noclobber: True
-    --> keeping existing file data/json-en.html
-    --> existing file data/json-en.html 26880 Bytes
-    --> noclobber: True
-    --> keeping existing file data/json-en.html
-    --> local file: data/json-en.html
-    --> trying https://www.json.org/json-en.html
-    --> code 200
-    --> file is compressed, remote size not directly available
-    --> code 200
-    --> noclobber: True
-    --> not downloading file
-    --> get download? False
-    --> opening already downloaded file
-    --> existing file data/json-en.html 26880 Bytes
-    --> noclobber: True
-    --> keeping existing file data/json-en.html
+
+
+    files are the same
 
 
 ## read and write binary data
 
 We can read binary data from a file with `Path.read_bytes()` or from a URL with `URL.read_bytes()`, then either `Path.write_bytes()` or  `URL.write_bytes()` to write the binary data to a file. Other than that, and the fact that we cannot directly visualise the contents of the binary files without some interpreted code, there is no real difference in how we treat them.
 
-Let's first access a MODIS file from the web, as we did in [020_Python_files](020_Python_files.md):
+
+### MODIS
+
+One of the deepest sources of geospatial information over the last two decades is that obtained from the NASA [MODIS](https://modis.gsfc.nasa.gov/data/dataprod/) products. We wiull make use of various MODIS datasets in this course.
+
+As a start on this, let's first access a MODIS file from the web, as we did in [020_Python_files](020_Python_files.md). Here, the `kwargs` are passed on to `URL`:
 
 
 ```python
 from  geog0111.modis import Modis
 
-modis = Modis('MCD15A3H',verbose=True)
-url = modis.get_url("2020","01","01")[0]
+kwargs = {
+    'verbose'    : True,
+    'product'    : 'MCD15A3H',
+    'db_dir'     : 'work',
+    'local_dir'  : 'work',
+}
+
+modis = Modis(**kwargs)
+url = modis.get_url(year="2020",month="01",day="01")[0]
 ```
 
-    --> wildcards in: ['*.h08v06*.hdf']
-    --> level 0/1 : *.h08v06*.hdf
-    --> local file: MOTA/MCD15A3H.006/2020.01.01
-    --> local file MOTA/MCD15A3H.006/2020.01.01 does not exist
+    --> retrieving SDS MCD15A3H from database
+    --> found SDS names in database
+    --> ['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m']
+    --> product MCD15A3H -> code MOTA
+    --> getting database from command line
+    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
+    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+    --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
+    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
+    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
+    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01 from database
+    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> discovered 1 files with pattern 2020.01.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> parsing URLs from html file 1 items
+    --> discovered 1 files with pattern MCD15A3H*.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> reading init file /home/ucfalew/.url_db/init.yml
 
 
-Now, pull the dataset (or keep the cached version)
+We can access the binary data with `url.read_bytes()`, although we would normally want to use some package such as [`gdal`](https://gdal.org/) to interpret the data. 
+
+Cached data will be used where available unless we set `noclobber=False`.
 
 
 ```python
-# set the output directory
-url.local_dir = 'work'
-# read the dataset
-hdf_data = url.read_bytes(size_check=False)
-# and save to a file
-obytes = url.write_bytes(hdf_data,size_check=False)
-print(f'{obytes} Bytes')
+b  = url.read_bytes()
+print(f'data for {url} cached in {url.local()}')
+print(f'dataset is {len(b)} bytes')
 ```
 
-    9067184 Bytes
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+    --> code 401
+    --> trying another
+    --> getting login
+    --> logging in to https://e4ftl01.cr.usgs.gov/
+    --> data read from https://e4ftl01.cr.usgs.gov/
+    --> code 200
+    --> updated cache database in /shared/groups/jrole001/geog0111/work/database.db
 
+
+    data for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf cached in /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store
+    dataset is 9067184 bytes
+
+
+    --> retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
+    --> local file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
+
+
+We could explicitly write the data to a file, but since we are using a cache, there is no real point. This means that we can just use the URL to access the dataset. If we do need to specify the filename explicitly for any other codes, we can use `url.local()`.
 
 #### Exercise 2
 
 Using the code:
-    
-    from  geog0111.modis import Modis
 
-    # get URL
-    modis = Modis('MCD15A3H',verbose=True)
-    url = modis.get_url("2020","01","01")[0]
-    # set the output directory
-    url.local_dir = 'work'
+    kwargs = {
+        'product'    : 'MCD15A3H',
+        'db_dir'     : 'work',
+        'local_dir'  : 'work',
+    }
+
+    modis = Modis(**kwargs)
+    # get URLs
+    hdf_urls = modis.get_url(year="2020",month="01",day="01")
+
+* write a function called `get_locals` that loops over each entry in the list `hdf_urls` and returns the local filename 
+* write code to test the function and print results using data from `modis.get_url("2020","01","*")`
+
+### `gdal`
+
+
+The MODIS files are in `hdf` format, and as we have noted, we do not generally want direct access to the raw (byte) information. Instead we must use some package to interpret the data. 
+
+We can use the package [`gdal`](https://gdal.org/python/) to access information from these and other geospatial files. We will explore the contents of MODIS files in a later session, but for now, we can note that each MODIS file contains a set of sub datasets.
+
+Basic use of `gdal` in this context is:
+
+    g = gdal.Open(str(url.local()))
     
+to convert the cached URL filename to a string, then to open the file in `gdal`. If this returns None, there has been a problem opening the file, so we might check that.
+
+Then
+
+    g.GetSubDatasets()
+   
+returns a list of sub-dataset information. Each item in the list is a tuple of two strings. In each, the first is the full name of the sub-dataset, and the second a text descriptor of the dataset. We call these `filename,name` below.
+
+We read the dataset with:
+
+    gdal.Open(filename).ReadAsArray()
+    
+In the illustration below, we will examine only the first sub-dataset `g.GetSubDatasets()[0]`.
+
+
+```python
+import gdal
+from  geog0111.modis import Modis
+
+# as before
+kwargs = {
+    'product'    : 'MCD15A3H',
+    'db_dir'     : 'work',
+    'local_dir'  : 'work',
+}
+modis = Modis(**kwargs)
+url = modis.get_url(year="2020",month="01",day="01")[0]
+
+# open
+g = gdal.Open(str(url.local()))
+
+if g:
+    # get the first SDS only for illustration
+    filename,name = g.GetSubDatasets()[0]
+    print(f'dataset info is: {name}')
     # read the dataset
-    hdf_data = url.read_bytes()
-    # and save to a file
-    obytes = url.write_bytes(hdf_data,verbose=True)    
+    data = gdal.Open(filename).ReadAsArray()
+    print(f'dataset read is shape {data.shape} and type {type(data)}')
+```
 
-* write a function that only calls `url.read_bytes()` if the file doesn't already exist
-* If it already exists, just read the data from that file
-* test your code with the url generated above and show that the file size is 9067184 bytes
+    dataset info is: [2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)
+    dataset read is shape (2400, 2400) and type <class 'numpy.ndarray'>
 
-You will need to remember how to get the filename from the URL object, and also to test if a file exists. We learned all of these in [020_Python_files](020_Python_files.md).
-
-Note that `len(data)` will give the size of bytes data.
 
 #### Exercise 3
 
-* print out the absolute pathname of the directory that the binary file [`images/ucl.png`](images/ucl.png) is in
-* print the size of the file in kilobytes (KB) to two decimal places without reading the datafile. 
-* read the datafile, and check you get the same data size
+    name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
 
-You will need to recall how to find a file size in bytes using `Path`. This was covered in [020_Python_files](020_Python_files.md). You will need to know how many bytes are in a KB. To print to two decimal places, you need to recall the string formatting we did in [012_Python_strings](012_Python_strings.md#String-formating).
+* Take the string variable `name` above, split it to obtain the second field (`Fpar_500m` here) and store this in a variable `sds_name`
+* Write a function called `get_data` that reads an HDF (MODIS) filename, and returns a dictionary of all of the sub-datasets in the file, using `ReadAsArray()`. The dictionary keys should correspond to the items in  `sds_name` above.
+* test the code by showing the keys in the dictionary returned and the shape of their dataset
+
+You will need to recall how to split a string, that was covered in [013 Python string methods](013_Python_string_methods.md#split()-and-join()). You will also need to recall how to [loop over a dictionary](016_Python_for.md#looping-over-dictionaries,-and-assert). We saw how to find the shape of the dataset returned above (`.shape`).
 
 ## Summary
 
-In this section, we have used `Path` and `URL` classes to read and write text and binary files. We have combined these ideas with earlier work to download and save a MODIS datafile and other text and binary datasets. We have refreshed our memory of some of the earlier material, especially string formatting.
+In this section, we have used `Path` and `URL` classes to read and write text and binary files. We have combined these ideas with earlier work to access MODIS datafiles and other text and binary datasets. For data we access through a URL, we can do file operations on a cached version of the file. We have refreshed our memory of some of the earlier material, especially string formatting.
+
+We have learned how to use `gdal` to look at the sub-datasets in an HDF file and also how to read them.
 
 You should now have some confidence in these matters, so that if you were set a task of downloading and saving datasets, as well as other tasks such as finding their size, whether the exists or not, you could do this. 

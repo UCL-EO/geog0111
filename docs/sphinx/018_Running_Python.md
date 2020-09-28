@@ -1,4 +1,4 @@
-# 019 Python codes
+# 018 Python codes
 
 ## Introduction
 
@@ -55,7 +55,7 @@ as the first line in the file, and is executable. We can see if a file is execut
 !ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 [31mgeog0111/helloWorld.py[m[m
+    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 21 13:29 geog0111/helloWorld.py
 
 
 The first field gives us the file permissions:
@@ -71,7 +71,7 @@ chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 geog0111/helloWorld.py
+    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 21 13:29 geog0111/helloWorld.py
 
 
 ### Running Python code from Python
@@ -141,6 +141,9 @@ if __name__ == "__main__":
 
 ```
 
+    hello world
+
+
 This same code is contained in the file [geog0111/helloWorld.py](geog0111/helloWorld.py). Although the amount of comments and code in there might seem a little overkill just to print out `hello world`, it is good for you to get into the habit of writing your Python codes in this way. 
 
 To briefly explain the blocks of code:
@@ -185,6 +188,13 @@ After defining the function, we give a document string to associate with it and 
 help(helloWorld)
 ```
 
+    Help on function helloWorld in module __main__:
+    
+    helloWorld()
+        function to print the string 'hello world'
+    
+
+
 In the last part of the file, we provide some utilities that allow the file to be run as a script.
 
 First, we define a function called `main()` that provides an example of calling the function we have created:
@@ -227,6 +237,9 @@ Now we can run the Python code from a code cell:
 %run geog0111/helloWorld.py
 ```
 
+    hello world
+
+
 Note that using `%run` in the code cell (or just `run` in other Python codes) allows us to run a python command from a Python file in the cell, rather than the usual Python codes.
 
 An alternative is to make the whole cell into one to run bash commands with `%%bash`:
@@ -236,6 +249,9 @@ An alternative is to make the whole cell into one to run bash commands with `%%b
 %%bash
 geog0111/helloWorld.py
 ```
+
+    hello world
+
 
 
 ## Editing a file
@@ -327,11 +343,14 @@ Now run it as above:
 %run work/myHelloWorld.py
 ```
 
+    hello world
+
+
 You should now be able to load this Python file directly in Jupyter, using `File -> Open` then click through to the Python file you generated. 
 
 Once you save the file, run the Python code again (`%run work/myHelloWorld.py`).
 
-#### Exercise
+#### Exercise 1
 
 * Create a Python file in your [`work`](work) folder based on the example above and call it `work/myFirstCode.py`
 * Modify the code to achieve the following:
@@ -383,6 +402,10 @@ def hello(name):
 hello('Fred')
 hello('Hermione')
 ```
+
+    hello from Fred
+    hello from Hermione
+
 
 We have seen that that code operates correctly -- it is very good practice to test any small incremental developments in your code in this way.
 
@@ -453,6 +476,9 @@ chmod 755 work/hello.py
 %run work/hello.py
 ```
 
+    hello from Fred
+
+
 We now have a more flexible function `hello(name)`, but when we run the script `work/hello.py` we will always be running the same code in `main()`, so we can only ever get a hello from Fred.
 
 When we write a Python script, we often will want to make that more flexible too. We can do this by passing a command-line argument through to the script. What we want to happen is that when we run:
@@ -475,6 +501,9 @@ import sys
 
 print(sys.argv)
 ```
+
+    ['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-0b59f88f-3901-4e76-bd87-7331f3b34bef.json']
+
 
 Running from the notebook, we get to see the full command that is run when we launch this notebook. Since `sys` is a package, we first import it:
 
@@ -503,6 +532,9 @@ chmod 755 work/test.py
 ```python
 %run work/test.py Hermione
 ```
+
+    ['work/test.py', 'Hermione']
+
 
 We see that running the script:
 

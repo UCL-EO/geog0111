@@ -1,0 +1,901 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plotting Graphs &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="024 Image display" href="024_Image_display.html" />
+    <link rel="prev" title="022 Read and Write: URLs and files" href="022_Read_write_files.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="plotting-graphs">
+<h1>Plotting Graphs<a class="headerlink" href="#plotting-graphs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>We have seen from <a class="reference internal" href="021_Streams.html"><span class="doc">021 Streams</span></a> and <a class="reference internal" href="022_Read_write_files.html"><span class="doc">022 Read write files</span></a> how to access both text and binary datasets, either from the local file system or from a URL.</p>
+<p>In this section, we will learn how to plot graphs from such data.</p>
+<p>We will be using the core <a class="reference external" href="https://matplotlib.org"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a> library for this. We will show only basic plotting here. You will find many examples that you can develop from the the  <a class="reference external" href="https://matplotlib.org/tutorials/introductory/sample_plots.html"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> site</a>.</p>
+<p>You might follow these notes up by looking at the Python packages <a class="reference external" href="https://bokeh.org/"><code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a> and <a class="reference external" href="https://seaborn.pydata.org/"><code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a> for improved visualisation and interaction.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="002_Unix.html"><span class="doc">002 Unix</span></a> with a good familiarity with the UNIX commands we have been through.</p></li>
+<li><p><a class="reference internal" href="003_Help.html"><span class="doc">003 Getting help</span></a></p></li>
+<li><p><a class="reference internal" href="010_Python_Introduction.html"><span class="doc">010 Variables, comments and print()</span></a></p></li>
+<li><p><a class="reference internal" href="011_Python_data_types.html"><span class="doc">011 Data types</span></a></p></li>
+<li><p><a class="reference internal" href="012_Python_strings.html"><span class="doc">012 String formatting</span></a></p></li>
+<li><p><a class="reference internal" href="013_Python_string_methods.html"><span class="doc">013_Python_string_methods</span></a></p></li>
+<li><p><a class="reference internal" href="020_Python_files.html"><span class="doc">020_Python_files</span></a></p></li>
+<li><p><a class="reference internal" href="021_Streams.html"><span class="doc">021 Streams</span></a></p></li>
+<li><p><a class="reference internal" href="022_Read_write_files.html"><span class="doc">022 Read write files</span></a></p></li>
+</ul>
+<p>You will need to know how to use <a class="reference external" href="021_Streams.md#Reading-data-into-pandas"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> for reading a CSV dataset. Note that you can do plotting within <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. But this is much the same as using <a class="reference external" href="https://matplotlib.org"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a> directly, so we will not be using <code class="docutils literal notranslate"><span class="pre">pandas</span></code> plotting. We will introduce the <a class="reference external" href="geog0111/modis.py"><code class="docutils literal notranslate"><span class="pre">Modis</span></code></a> class for simple downloading and reading of MODIS datasets.</p>
+</div>
+<div class="section" id="simple-x-y-plot">
+<h2>Simple x-y plot<a class="headerlink" href="#simple-x-y-plot" title="Permalink to this headline">¶</a></h2>
+<p>We have <a class="reference external" href="021_Streams.md#Reading-data-into-pandas">previously</a> seen a dataset of Monthly Southeast England precipitation (mm) in a tabular form on the <a class="reference external" href="https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt">Met Office website</a> amnd how to load this into <code class="docutils literal notranslate"><span class="pre">pandas</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
+
+<span class="c1"># Monthly Southeast England precipitation (mm) </span>
+<span class="n">site</span> <span class="o">=</span> <span class="s1">&#39;https://www.metoffice.gov.uk/&#39;</span>
+<span class="n">site_dir</span> <span class="o">=</span> <span class="s1">&#39;hadobs/hadukp/data/monthly&#39;</span>
+<span class="n">site_file</span> <span class="o">=</span> <span class="s1">&#39;HadSEEP_monthly_qc.txt&#39;</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">site_dir</span><span class="p">,</span><span class="n">site_file</span><span class="p">)</span>
+
+<span class="n">panda_format</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;skiprows&#39;</span>   <span class="p">:</span>  <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;na_values&#39;</span>  <span class="p">:</span>  <span class="p">[</span><span class="o">-</span><span class="mf">99.9</span><span class="p">],</span>
+    <span class="s1">&#39;sep&#39;</span>        <span class="p">:</span>  <span class="sa">r</span><span class="s2">&quot;[ ]{1,}&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;engine&#39;</span>     <span class="p">:</span>  <span class="s1">&#39;python&#39;</span>
+<span class="p">}</span>
+
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">),</span><span class="o">**</span><span class="n">panda_format</span><span class="p">)</span>
+
+<span class="c1"># df.head: first n lines</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">dataframe</span> <span class="n">tbody</span> <span class="n">tr</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">vertical</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">top</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">.</span><span class="n">dataframe</span> <span class="n">thead</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">text</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">right</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>YEAR</th>
+      <th>JAN</th>
+      <th>FEB</th>
+      <th>MAR</th>
+      <th>APR</th>
+      <th>MAY</th>
+      <th>JUN</th>
+      <th>JUL</th>
+      <th>AUG</th>
+      <th>SEP</th>
+      <th>OCT</th>
+      <th>NOV</th>
+      <th>DEC</th>
+      <th>ANN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1873</td>
+      <td>87.1</td>
+      <td>50.4</td>
+      <td>52.9</td>
+      <td>19.9</td>
+      <td>41.1</td>
+      <td>63.6</td>
+      <td>53.2</td>
+      <td>56.4</td>
+      <td>62.0</td>
+      <td>86.0</td>
+      <td>59.4</td>
+      <td>15.7</td>
+      <td>647.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1874</td>
+      <td>46.8</td>
+      <td>44.9</td>
+      <td>15.8</td>
+      <td>48.4</td>
+      <td>24.1</td>
+      <td>49.9</td>
+      <td>28.3</td>
+      <td>43.6</td>
+      <td>79.4</td>
+      <td>96.1</td>
+      <td>63.9</td>
+      <td>52.3</td>
+      <td>593.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1875</td>
+      <td>96.9</td>
+      <td>39.7</td>
+      <td>22.9</td>
+      <td>37.0</td>
+      <td>39.1</td>
+      <td>76.1</td>
+      <td>125.1</td>
+      <td>40.8</td>
+      <td>54.7</td>
+      <td>137.7</td>
+      <td>106.4</td>
+      <td>27.1</td>
+      <td>803.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1876</td>
+      <td>31.8</td>
+      <td>71.9</td>
+      <td>79.5</td>
+      <td>63.6</td>
+      <td>16.5</td>
+      <td>37.2</td>
+      <td>22.3</td>
+      <td>66.3</td>
+      <td>118.2</td>
+      <td>34.1</td>
+      <td>89.0</td>
+      <td>162.9</td>
+      <td>793.3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1877</td>
+      <td>146.0</td>
+      <td>47.7</td>
+      <td>56.2</td>
+      <td>66.4</td>
+      <td>62.3</td>
+      <td>24.9</td>
+      <td>78.5</td>
+      <td>82.4</td>
+      <td>38.4</td>
+      <td>58.1</td>
+      <td>144.5</td>
+      <td>54.2</td>
+      <td>859.6</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>The <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframe is essentially a dictionary, so we refer to the data for column <code class="docutils literal notranslate"><span class="pre">JAN</span></code> and <code class="docutils literal notranslate"><span class="pre">df['JAN']</span></code> etc.</p>
+<p>We can access the column headings as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">headings</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">headings</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;YEAR&#39;</span><span class="p">,</span> <span class="s1">&#39;JAN&#39;</span><span class="p">,</span> <span class="s1">&#39;FEB&#39;</span><span class="p">,</span> <span class="s1">&#39;MAR&#39;</span><span class="p">,</span> <span class="s1">&#39;APR&#39;</span><span class="p">,</span> <span class="s1">&#39;MAY&#39;</span><span class="p">,</span> <span class="s1">&#39;JUN&#39;</span><span class="p">,</span> <span class="s1">&#39;JUL&#39;</span><span class="p">,</span> <span class="s1">&#39;AUG&#39;</span><span class="p">,</span> <span class="s1">&#39;SEP&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;OCT&#39;</span><span class="p">,</span> <span class="s1">&#39;NOV&#39;</span><span class="p">,</span> <span class="s1">&#39;DEC&#39;</span><span class="p">,</span> <span class="s1">&#39;ANN&#39;</span><span class="p">],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>so, if we wanted just the months, we would want to leave out the first and last entry, and this would be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">headings</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">headings</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;JAN&#39;</span><span class="p">,</span> <span class="s1">&#39;FEB&#39;</span><span class="p">,</span> <span class="s1">&#39;MAR&#39;</span><span class="p">,</span> <span class="s1">&#39;APR&#39;</span><span class="p">,</span> <span class="s1">&#39;MAY&#39;</span><span class="p">,</span> <span class="s1">&#39;JUN&#39;</span><span class="p">,</span> <span class="s1">&#39;JUL&#39;</span><span class="p">,</span> <span class="s1">&#39;AUG&#39;</span><span class="p">,</span> <span class="s1">&#39;SEP&#39;</span><span class="p">,</span> <span class="s1">&#39;OCT&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;NOV&#39;</span><span class="p">,</span> <span class="s1">&#39;DEC&#39;</span><span class="p">],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s plot some of this dataset now:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># make a useful title</span>
+<span class="n">year0</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">year1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Monthly SE UK precipitation </span><span class="si">{</span><span class="n">year0</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">year1</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="mi">4</span>
+<span class="c1"># set up the figure: </span>
+<span class="c1">#   1 x 1 sub-plots</span>
+<span class="c1">#   size of plot 10,4</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+<span class="c1"># set the figure title</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># plot y-data and set the label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;JAN&#39;</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;JAN&#39;</span><span class="p">)</span>
+<span class="c1"># set x-limits to get a neat graph</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">year0</span><span class="p">,</span><span class="n">year1</span><span class="p">)</span>
+
+<span class="c1"># set the subplot title</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;JAN&#39;</span><span class="p">)</span>
+<span class="c1"># y-label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Precipitation (mm)&#39;</span><span class="p">)</span>
+<span class="c1"># x-label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_10_1.png" /></p>
+<p>The code to do this sort of plot is simple and generic. This example has most of what you will need in terms of coding for line plots.</p>
+<p>If we wanted to do several plots over each other, we can simply call <code class="docutils literal notranslate"><span class="pre">axs.plot</span></code> again, but we will also find it useful to set a legend:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a useful title</span>
+<span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Monthly SE UK precipitation&#39;</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="mi">4</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+
+<span class="c1"># plot y-data and set the label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;JAN&#39;</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;JAN&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FEB&#39;</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FEB&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">year0</span><span class="p">,</span><span class="n">year1</span><span class="p">)</span>
+
+<span class="c1"># set legend now</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="c1"># set the subplot title</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;JAN-FEB&#39;</span><span class="p">)</span>
+<span class="c1"># y-label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Precipitation (mm)&#39;</span><span class="p">)</span>
+<span class="c1"># x-label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_13_1.png" /></p>
+<p>If, instead, we wanted these on separate sub-plots, we specify that in the <code class="docutils literal notranslate"><span class="pre">plt.subplots</span></code> call. For a line of 2 plots, we use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We should also increase the <code class="docutils literal notranslate"><span class="pre">y_size</span></code> variable, to make the plot longer, and notice that <code class="docutils literal notranslate"><span class="pre">axs</span></code> is a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> now, where we access <code class="docutils literal notranslate"><span class="pre">axs[0]</span></code> for the first plot, <code class="docutils literal notranslate"><span class="pre">axs[1]</span></code> for the second etc.</p>
+<p>If we had 2 rows of plots and 2 columns, <code class="docutils literal notranslate"><span class="pre">axs</span></code> would be 2-dimensional and we would refer to <code class="docutils literal notranslate"><span class="pre">axs[0,0]</span></code>, <code class="docutils literal notranslate"><span class="pre">axs[0,1]</span></code>, <code class="docutils literal notranslate"><span class="pre">axs[1,0]</span></code> and <code class="docutils literal notranslate"><span class="pre">axs[1,1]</span></code>. It is easier deal with as a one-dimensional array though. We can achieve this by applying:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>after it has been created. Then we refer to the sub-plots simply as <code class="docutils literal notranslate"><span class="pre">axs[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">axs[1]</span></code>, <code class="docutils literal notranslate"><span class="pre">axs[2]</span></code> and <code class="docutils literal notranslate"><span class="pre">axs[3]</span></code>.</p>
+<p>Below, we also choose to set the line colour to black (<code class="docutils literal notranslate"><span class="pre">k</span></code> in the <code class="docutils literal notranslate"><span class="pre">axs[...].plot()</span></code> command).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Monthly SE UK precipitation&#39;</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="mi">8</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># set the figure title</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># plot y-data and set the label for the first panel</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;JAN&#39;</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;JAN&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;JAN Precipitation (mm)&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">year0</span><span class="p">,</span><span class="n">year1</span><span class="p">)</span>
+
+<span class="c1"># plot y-data and set the label for the next panel</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FEB&#39;</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FEB&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;FEB Precipitation (mm)&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">year0</span><span class="p">,</span><span class="n">year1</span><span class="p">)</span>
+
+<span class="c1"># x-label</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_15_1.png" /></p>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<p>We have seen how to access the dataset labels using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">headings</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Copy the code to read the HadSEEP monthly datasets above</p></li>
+<li><p>Write and run code that plots the precipitation data for all months separate subplots.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="errorbars-symbols-and-savefig">
+<h2>Errorbars, symbols, and <code class="docutils literal notranslate"><span class="pre">savefig</span></code><a class="headerlink" href="#errorbars-symbols-and-savefig" title="Permalink to this headline">¶</a></h2>
+<p>We often need to include error bars in out plots. The simplest form of this involves setting a variable <code class="docutils literal notranslate"><span class="pre">yerr</span></code>, assumed equal positive and negative around <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<p>We can then use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to plot the error bars. More <a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html">sophisticated options</a> are available for moore complex cases.</p>
+<p>When we plot the errorbars, we might also like to plot a symbol at each data point. We can do this by giving an extra argument in <code class="docutils literal notranslate"><span class="pre">plot</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will plot small circles at the data points. This can be customised by <a class="reference external" href="https://matplotlib.org/3.1.0/api/markers_api.html">symbol</a> and/or <a class="reference external" href="https://matplotlib.org/2.1.1/api/_as_gen/matplotlib.pyplot.plot.html">colour</a>.</p>
+<p>We also show here how to save the plot to an image file, using <code class="docutils literal notranslate"><span class="pre">plt.savefig</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
+
+<span class="c1"># Monthly Southeast England precipitation (mm) </span>
+<span class="n">site</span> <span class="o">=</span> <span class="s1">&#39;https://www.metoffice.gov.uk/&#39;</span>
+<span class="n">site_dir</span> <span class="o">=</span> <span class="s1">&#39;hadobs/hadukp/data/monthly&#39;</span>
+<span class="n">site_file</span> <span class="o">=</span> <span class="s1">&#39;HadSEEP_monthly_qc.txt&#39;</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">site_dir</span><span class="p">,</span><span class="n">site_file</span><span class="p">)</span>
+
+<span class="n">panda_format</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;skiprows&#39;</span>   <span class="p">:</span>  <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;na_values&#39;</span>  <span class="p">:</span>  <span class="p">[</span><span class="o">-</span><span class="mf">99.9</span><span class="p">],</span>
+    <span class="s1">&#39;sep&#39;</span>        <span class="p">:</span>  <span class="sa">r</span><span class="s2">&quot;[ ]{1,}&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;engine&#39;</span>     <span class="p">:</span>  <span class="s1">&#39;python&#39;</span>
+<span class="p">}</span>
+
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">),</span><span class="o">**</span><span class="n">panda_format</span><span class="p">)</span>
+<span class="c1"># get mean and std over all months</span>
+</pre></div>
+</div>
+<p>We will go into the details of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> in a future session, but here we just need to calculate the mean and standard deviation of precipitation over all months.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">months</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">year</span>   <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">]</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">months</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">std</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">months</span><span class="p">])</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># make a useful title</span>
+<span class="n">year0</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">year1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Monthly SE UK precipitation </span><span class="si">{</span><span class="n">year0</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">year1</span><span class="si">}</span><span class="s1">: mean and 1.95 std (over months)&#39;</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="mi">4</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># plot y-data and error bars</span>
+<span class="n">x</span>    <span class="o">=</span> <span class="n">year</span>
+<span class="n">y</span>    <span class="o">=</span> <span class="n">mean</span>
+<span class="n">yerr</span> <span class="o">=</span> <span class="n">std</span> <span class="o">*</span> <span class="mf">1.95</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerr</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;o--&#39;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Precipitation (mm)&#39;</span><span class="p">)</span>
+<span class="c1"># x-label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">year0</span><span class="p">,</span><span class="n">year1</span><span class="p">)</span>
+
+<span class="c1"># save to file</span>
+<span class="n">ofile</span> <span class="o">=</span> <span class="s1">&#39;data/precip.png&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">ofile</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_21_0.png" /></p>
+<p>We can now load the <a class="reference external" href="data/precip.png">saved image</a> as a figure:</p>
+<p><img alt="the figure we just saved" src="_images/precip.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># make a useful title</span>
+<span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Monthly SE UK precipitation&#39;</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="mi">4</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+
+<span class="c1"># plot y-data and set the label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;JAN&#39;</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;JAN&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FEB&#39;</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FEB&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">year0</span><span class="p">,</span><span class="n">year1</span><span class="p">)</span>
+
+<span class="c1"># set legend now</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="c1"># set the subplot title</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;JAN-FEB&#39;</span><span class="p">)</span>
+<span class="c1"># y-label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Precipitation (mm)&#39;</span><span class="p">)</span>
+<span class="c1"># x-label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_23_1.png" /></p>
+</div>
+<div class="section" id="date-fields">
+<h2>Date fields<a class="headerlink" href="#date-fields" title="Permalink to this headline">¶</a></h2>
+<p>Many datasets we deal with will be a function of time. Sometimes the date information may be presented in a format we can use as an integer (or even floating point number), an example being the year field above. But other times, we might need to work with the date format that comes with the dataset to make it something appropriate.</p>
+<p>A useful Python package for this is <a class="reference external" href="https://docs.python.org/3/library/datetime.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code></a>.</p>
+<p>Core elements of this is are: <code class="docutils literal notranslate"><span class="pre">datetime</span></code> class, the</p>
+<div class="section" id="datetime">
+<h3><code class="docutils literal notranslate"><span class="pre">datetime</span></code><a class="headerlink" href="#datetime" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="c1"># now</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;It is now </span><span class="si">{</span><span class="n">now</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># access individual elements</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;day </span><span class="si">{</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;month </span><span class="si">{</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year </span><span class="si">{</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span><span class="si">}</span><span class="s2"> O&#39;clock&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">It</span> <span class="ow">is</span> <span class="n">now</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">27</span> <span class="mi">21</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">00.888192</span>
+<span class="n">day</span> <span class="mi">27</span>
+<span class="n">month</span> <span class="mi">9</span>
+<span class="n">year</span> <span class="mi">2020</span>
+<span class="mi">21</span> <span class="n">O</span><span class="s1">&#39;clock</span>
+</pre></div>
+</div>
+<p>You can set up the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> fields explicitly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># datetime(year, month, day, hour, minute, second, microsecond)</span>
+<span class="n">then</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1918</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;It was then </span><span class="si">{</span><span class="n">then</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># you can access this using keywords</span>
+<span class="n">then</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">1918</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;It was then </span><span class="si">{</span><span class="n">then</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">It</span> <span class="n">was</span> <span class="n">then</span> <span class="mi">1918</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="n">It</span> <span class="n">was</span> <span class="n">then</span> <span class="mi">1918</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</pre></div>
+</div>
+<p>And do operations such as subtraction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jan1_2019</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">jan1_2020</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">days_in_year</span> <span class="o">=</span> <span class="p">(</span><span class="n">jan1_2020</span><span class="o">-</span><span class="n">jan1_2019</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year 2019 had </span><span class="si">{</span><span class="n">days_in_year</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">year</span> <span class="mi">2019</span> <span class="n">had</span> <span class="mi">365</span> <span class="n">days</span>
+</pre></div>
+</div>
+<p>To add/subtract one day, or smaller unit, use timedelta:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">yesterday</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yesterday was </span><span class="si">{</span><span class="n">yesterday</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yesterday</span> <span class="n">was</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">26</span> <span class="mi">21</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">00.966741</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="strftime-and-strptime">
+<h3><code class="docutils literal notranslate"><span class="pre">strftime</span></code> and <code class="docutils literal notranslate"><span class="pre">strptime</span></code><a class="headerlink" href="#strftime-and-strptime" title="Permalink to this headline">¶</a></h3>
+<p>We use <code class="docutils literal notranslate"><span class="pre">strftime</span></code> to format a date string:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># current date and time</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+<span class="n">time_now</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time now: </span><span class="si">{</span><span class="n">time_now</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">date_now</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%m/</span><span class="si">%d</span><span class="s2">/%Y&quot;</span><span class="p">)</span>
+<span class="c1"># mm/dd/YY H:M:S format</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;data now: </span><span class="si">{</span><span class="n">date_now</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="n">now</span><span class="p">:</span> <span class="mi">21</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">00</span>
+<span class="n">data</span> <span class="n">now</span><span class="p">:</span> <span class="mi">09</span><span class="o">/</span><span class="mi">27</span><span class="o">/</span><span class="mi">2020</span>
+</pre></div>
+</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">strptime</span></code> to load a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object from a string. To do so, we need to specify the format of the string. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">date_then</span> <span class="o">=</span> <span class="s2">&quot;11 November, 1918&quot;</span>
+<span class="c1"># %d, %B and %Y -&gt; day, month, year</span>
+<span class="n">date_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_then</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> %B, %Y&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date: </span><span class="si">{</span><span class="n">date_object</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span><span class="p">:</span> <span class="mi">1918</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">11</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">date_then</span> <span class="o">=</span> <span class="s2">&quot;2020-06-20&quot;</span>
+<span class="n">date_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_then</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date: </span><span class="si">{</span><span class="n">date_object</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span><span class="p">:</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">20</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="noaa-precipitation">
+<h3>NOAA precipitation<a class="headerlink" href="#noaa-precipitation" title="Permalink to this headline">¶</a></h3>
+<p>The file <a class="reference external" href="https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv">2276931.csv</a> contains precipitation data for an <a class="reference external" href="https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY">NOAA weather station</a> <code class="docutils literal notranslate"><span class="pre">HAVANA</span> <span class="pre">4.2</span> <span class="pre">SW,</span> <span class="pre">FL</span> <span class="pre">US</span></code> for the year 2020 to date. Precipitation data are in inches.</p>
+<p>We want to plot precipitation as a function of time. First, we read the data as previously:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
+
+<span class="n">site</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com&#39;</span>
+<span class="n">site_dir</span> <span class="o">=</span> <span class="s1">&#39;/UCL-EO/geog0111/master/data&#39;</span>
+<span class="n">site_file</span> <span class="o">=</span> <span class="s1">&#39;2276931.csv&#39;</span>
+
+<span class="c1"># form the URL</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">site_dir</span><span class="p">,</span><span class="n">site_file</span><span class="p">)</span>
+
+<span class="c1"># Read the file into pandas using url.open(&#39;r&#39;).</span>
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">))</span>
+
+<span class="c1"># print the first 5 lines of data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">dataframe</span> <span class="n">tbody</span> <span class="n">tr</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">vertical</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">top</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">.</span><span class="n">dataframe</span> <span class="n">thead</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">text</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">right</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATION</th>
+      <th>NAME</th>
+      <th>DATE</th>
+      <th>PRCP</th>
+      <th>SNOW</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-01</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-02</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-03</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-04</td>
+      <td>0.98</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-05</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>We can refer to the datasets we see in the table above then as <code class="docutils literal notranslate"><span class="pre">df['DATE']</span></code>, <code class="docutils literal notranslate"><span class="pre">df['PRCP']</span></code> etc.
+If we want to use the station name, and access the first date from the dataframes, we can do this with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># take the first entry</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-2">
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Read the <code class="docutils literal notranslate"><span class="pre">2276931.csv</span></code> dataset into a pandas dataframe called <code class="docutils literal notranslate"><span class="pre">df</span></code></p></li>
+<li><p>Convert the field <code class="docutils literal notranslate"><span class="pre">df[&quot;DATE&quot;]</span></code> to a list called <code class="docutils literal notranslate"><span class="pre">dates</span></code></p></li>
+<li><p>Use your understanding of <code class="docutils literal notranslate"><span class="pre">datetime</span></code> to convert the data <code class="docutils literal notranslate"><span class="pre">dates[0]</span></code> to a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object called <code class="docutils literal notranslate"><span class="pre">start_date</span></code></p></li>
+<li><p>Convert the data <code class="docutils literal notranslate"><span class="pre">date[-1]</span></code> to a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object called <code class="docutils literal notranslate"><span class="pre">end_date</span></code></p></li>
+<li><p>Find how many days between start_date and end_date</p></li>
+<li><p>Use a loop structure to convert the all elements in <code class="docutils literal notranslate"><span class="pre">dates</span></code> to be the n umber of days after the start date</p></li>
+</ul>
+<p>Let’s do a simple plot of <code class="docutils literal notranslate"><span class="pre">df['PRCP']</span></code> as a function of days after 01/01/2020:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># use strptime to get date from %Y-%m-%d format</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span><span class="mi">3</span>
+<span class="c1"># set up the figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+
+<span class="c1"># set the title</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># plot x,y-data</span>
+<span class="c1"># get number of days after start date</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[(</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">-</span><span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;PRCP&#39;</span><span class="p">]</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PRCP / inches&#39;</span><span class="p">)</span>
+<span class="c1"># format date string with strftime</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;days after </span><span class="si">{</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;days after 01/01/2020&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_45_1.png" /></p>
+<p>We can use the date fields directly in the plot above, which might make the information easier to understand. But by default, all of the data fields will be printed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span><span class="mi">3</span>
+<span class="c1"># set up the figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+
+<span class="c1"># set the title</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># plot y-data</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PRCP&#39;</span><span class="p">])</span>
+
+<span class="c1"># label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PRCP / inches&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_47_1.png" /></p>
+<p>This is not a limitation of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, just a formatting issue. A quick <a class="reference external" href="https://matplotlib.org/3.1.0/api/dates_api.html">look into the matplotlib <code class="docutils literal notranslate"><span class="pre">dates</span></code> API</a> shows us that we can quite simply set the x-ticks to be every month:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">months</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">()</span> 
+<span class="n">axs</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">months</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span><span class="mi">3</span>
+<span class="c1"># set up the figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+
+<span class="c1"># set the title</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PRCP&#39;</span><span class="p">])</span>
+
+<span class="c1"># format the ticks: every month</span>
+<span class="n">months</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">()</span> 
+<span class="n">axs</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">months</span><span class="p">)</span>
+
+<span class="c1"># label</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PRCP / inches&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/023_Plotting_49_1.png" /></p>
+<p>Although the default formatting in <a class="reference external" href="https://matplotlib.org/">matplotlib</a> will do an excellent job for the vast majority of your needs, you should be aware that you may meet cases where you need to look a little deeper into the documentation to find the right solution to your problem. You should always try to find such solutions in the existing codebase, rather than attempting to hack your way around a problem.</p>
+</div>
+<div class="section" id="exercise-3">
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<p>We examined a pulsar time series in a <a class="reference external" href="021_Streams.md#pandas-transpose">previous section of notes</a>. It contains the <a class="reference external" href="https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv">successive pulses</a> of the oscillation signal coming from the <a class="reference external" href="https://www.joydivisionofficial.com/reimagined/">Pulsar PSR B1919+21</a> discovered by <a class="reference external" href="https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell">Jocelyn Bell</a> in 1967.</p>
+<p>The dataset as presented contains samples in columns, so that sample <code class="docutils literal notranslate"><span class="pre">0</span></code> is df[0], up to df[79] (80 samples).</p>
+<ul class="simple">
+<li><p>Plot the pulsar samples in a series of 80 sub-plots.</p></li>
+</ul>
+<p><strong>Advice</strong>:</p>
+<p>For the figure, do not label the axes as it will get too cluttered. In any professional figure of that sort, you would need to explain the axes in accompanying text.</p>
+<p>For further ‘effects’ consider switching off the plotting of axes in each subplot, with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>for axis <code class="docutils literal notranslate"><span class="pre">ax</span></code> (this may be something like <code class="docutils literal notranslate"><span class="pre">axs[i]</span></code> in your code).</p>
+<p>The results should be reminiscent of:</p>
+<p><a class="reference external" href="https://blogs.scientificamerican.com/blogs/assets/sa-visual/Image/fig537.jpg"><img alt="pulsar image" src="_images/smallfig537.jpg" /></a></p>
+<p>If you want to go further towards re-creating this, you consult <a class="reference external" href="https://matplotlib.org/3.1.0/gallery/animation/unchained.html">the matplotlib gallery</a> for ideas.</p>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we have learned how to plot graphs from datasets we have read in or downloaded from the web. We have concentrated in simple line graphs, with possibly multiple sub-plots here, although there are many other types of graph you may consider.</p>
+<p>The <a class="reference external" href="https://matplotlib.org/3.3.1/gallery/index.html"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> gallery</a> provides a useful starting point for other types of plot. You might also consider the Python packages <a class="reference external" href="https://bokeh.org/"><code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a> and <a class="reference external" href="https://seaborn.pydata.org/"><code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a> for improved visualisation and interaction.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display_answers.html">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking.html">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata_answers.html">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="022_Read_write_files.html" title="previous chapter">022 Read and Write: URLs and files</a></li>
+      <li>Next: <a href="024_Image_display.html" title="next chapter">024 Image display</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/023_Plotting.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

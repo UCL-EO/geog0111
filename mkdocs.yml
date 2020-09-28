@@ -40,29 +40,31 @@ nav:
     - Running Python: 018_Running_Python_answers.md
 - Datasets:
   - Python Files: 020_Python_files.md
-  - Read Text Files: 021_Read_text_files.md
+  - Streams: 021_Streams.md
   - Read Write Files: 022_Read_write_files.md
-  - Pandas And Plotting: 023_Pandas_and_plotting.md
-  - NASA MODIS Earthdata: 024_NASA_MODIS_Earthdata.md
-  - Google Earth Engine: 025_GoogleEarthEngine.md
-  - Numpy Matplotlib: 026_Numpy_matplotlib.md
+  - Plotting: 023_Plotting.md
+  - Image Display: 024_Image_display.md
   - Answers:
     - Python Files: 020_Python_files_answers.md
-    - Read Text Files: 021_Read_text_files_answers.md
+    - Streams: 021_Streams_answers.md
     - Read Write Files: 022_Read_write_files_answers.md
-    - NASA MODIS Earthdata: 024_NASA_MODIS_Earthdata_answers.md
+    - Plotting: 023_Plotting_answers.md
+    - Image Display: 024_Image_display_answers.md
 - Geospatial Data:
-  - GDAL: 030_GDAL.md
-  - MODIS Download: 031_MODIS_download.md
-  - GDAL Stacking And Interpolating: 032_GDAL_stacking_and_interpolating.md
-  - GDAL Masking: 033_GDAL_masking.md
-  - GDAL Reconciling Projections: 034_GDAL_Reconciling_projections.md
+  - NASA MODIS Earthdata: 030_NASA_MODIS_Earthdata.md
+  - Numpy: 031_Numpy.md
+  - GDAL Mosaicing And Masking: 032_GDAL_mosaicing_and_masking.md
+  - GDAL Timeseries: 033_GDAL_timeseries.md
+  - Weigthed Smoothing And Interpolation: 034_Weigthed_smoothing_and_interpolation.md
+  - Weighted Interpolation: 035_Weighted_interpolation.md
+  - Model Fitting: 036_Model_Fitting.md
+  - Answers:
+    - NASA MODIS Earthdata: 030_NASA_MODIS_Earthdata_answers.md
+    - Numpy: 031_Numpy_answers.md
+    - GDAL Mosaicing And Masking: 032_GDAL_mosaicing_and_masking_answers.md
 - Modelling:
-  - Linear Models: 040_Linear_models.md
-  - Modelling And Optimisation: 041_Modelling_and_optimisation.md
-- Developers:
-  - Local Install: DEV_Local_Install.md
-  - Scripts: DEV_scripts.md
+  - Practical Part1: 040_Practical_Part1.md
+  - Practical Part2: 041_Practical_Part2.md
 plugins:
 - git-revision-date-localized
 - exclude:

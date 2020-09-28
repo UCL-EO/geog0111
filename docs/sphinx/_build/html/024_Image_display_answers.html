@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>024 Image display : Answers to exercises &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="030 NASA MODIS Earthdata" href="030_NASA_MODIS_Earthdata.html" />
+    <link rel="prev" title="Plotting Graphs : Answers to exercises" href="023_Plotting_answers.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="image-display-answers-to-exercises">
+<h1>024 Image display : Answers to exercises<a class="headerlink" href="#image-display-answers-to-exercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Plots the first datasets in <code class="docutils literal notranslate"><span class="pre">data_MCD15A3H</span></code> as subplots in a 2 x 2 shape.</p></li>
+</ul>
+<p>Hint: Use a loop for the keys of <code class="docutils literal notranslate"><span class="pre">data_MCD15A3H</span></code>. Set up the 2 x 2 subplots with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>then you can refer to the subplot axes as <code class="docutils literal notranslate"><span class="pre">ax[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">ax[1]</span></code>, <code class="docutils literal notranslate"><span class="pre">ax[2]</span></code> and <code class="docutils literal notranslate"><span class="pre">ax[3]</span></code> when you loop over the keys. Don’t forget to increase <code class="docutils literal notranslate"><span class="pre">x_size,y_size</span></code> appropriately.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span>  <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;product&#39;</span>    <span class="p">:</span> <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tile&#39;</span>       <span class="p">:</span> <span class="s1">&#39;h17v03&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">data_MCD15A3H</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="mi">20</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span> 
+
+<span class="c1"># this is mnost neatly done with a </span>
+<span class="c1"># loop over the keys we want</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data_MCD15A3H</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> tile </span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;tile&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="c1"># plot size </span>
+<span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span><span class="mi">6</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+<span class="c1"># dont flatten if shape is (1,1)</span>
+<span class="k">if</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  
+    <span class="n">axs</span> <span class="o">=</span> <span class="p">[</span><span class="n">axs</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="c1"># set the figure title</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># the loop</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+    <span class="c1"># plot image data</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_MCD15A3H</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>\
+                   <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>\
+                   <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/024_Image_display_answers_2_0.png" /></p>
+</div>
+<div class="section" id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>write a function called <code class="docutils literal notranslate"><span class="pre">im_display</span></code> that takes as input:</p>
+<ul>
+<li><p>a data dictionary</p></li>
+<li><p>a list of keywords of datasets to plot</p></li>
+<li><p>optionally:</p>
+<ul>
+<li><p>a title</p></li>
+<li><p>a colourmap name</p></li>
+<li><p>lower and upper limits for plot data (vmin, vmax)</p></li>
+<li><p>x_size,y_size</p></li>
+<li><p>subplots shape : e.g. (2,2)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>You should assume some default values for the optional items if not given. For the subplots shape, assume it is <code class="docutils literal notranslate"><span class="pre">(n,1)</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the length of the keyword list.</p>
+<p>You should set the default values of <code class="docutils literal notranslate"><span class="pre">vmin</span></code> and <code class="docutils literal notranslate"><span class="pre">vmax</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>, as this just then takes the dataset default minimum and maximum.</p>
+<p>Your code should be well-documented.</p>
+<ul class="simple">
+<li><p>test your code</p></li>
+</ul>
+<p>Note that you will have to experiment a bit with the <code class="docutils literal notranslate"><span class="pre">x_size,y_size</span></code> values to get a good plot. It is not easy to automate that.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span>  <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;product&#39;</span>    <span class="p">:</span> <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tile&#39;</span>       <span class="p">:</span> <span class="s1">&#39;h17v03&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">data_MCD15A3H</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="mi">20</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span> 
+
+<span class="k">def</span> <span class="nf">im_display</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">names</span><span class="p">,</span>\
+               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">colourmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>\
+               <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>\
+               <span class="n">x_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">y_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    a function called im_display that takes as input:</span>
+<span class="sd">        data  :  a data dictionary</span>
+<span class="sd">        names :  a list of keywords of datasets to plot</span>
+
+<span class="sd">        optionally:</span>
+<span class="sd">            title = None     : a title</span>
+<span class="sd">            colourmap = None : a colourmap name</span>
+<span class="sd">            vmin,vmax        : lower and upper limits for plot data</span>
+<span class="sd">            x_size=16        : plot x size * shape[0]</span>
+<span class="sd">            y_size=12        : plot y size * shape[1]</span>
+<span class="sd">            shape=None       : subplots shape : e.g. (2,2)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># sort out options</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># adaptive size</span>
+    <span class="n">x_size</span> <span class="o">=</span> <span class="n">x_size</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y_size</span> <span class="o">=</span> <span class="n">y_size</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  
+        <span class="n">axs</span> <span class="o">=</span> <span class="p">[</span><span class="n">axs</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="c1"># switch off ticks</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
+
+    <span class="c1"># set the figure title</span>
+    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="c1"># loop over names</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+        <span class="c1"># plot image data</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>\
+                   <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>\
+                   <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">colourmap</span><span class="p">:</span>
+            <span class="n">im</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="n">colourmap</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>    
+        
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span>  <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;product&#39;</span>    <span class="p">:</span> <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tile&#39;</span>       <span class="p">:</span> <span class="s1">&#39;h17v03&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">data_MCD15A3H</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="mi">20</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span> 
+
+<span class="c1"># this is mnost neatly done with a </span>
+<span class="c1"># loop over the keys we want</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data_MCD15A3H</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> tile </span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;tile&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="n">im_display</span><span class="p">(</span><span class="n">data_MCD15A3H</span><span class="p">,</span><span class="n">keys</span><span class="p">,</span>\
+               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">colourmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>\
+               <span class="n">x_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">y_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/024_Image_display_answers_5_0.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">im_display</span><span class="p">(</span><span class="n">data_MCD15A3H</span><span class="p">,</span><span class="n">keys</span><span class="p">,</span>\
+               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">colourmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>\
+               <span class="n">x_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">y_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/024_Image_display_answers_6_0.png" /></p>
+</div>
+<div class="section" id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Write a function called <code class="docutils literal notranslate"><span class="pre">plot_lc</span></code> that takes as input modis land cover dataset and plots the associated land cover map</p></li>
+<li><p>You might use <code class="docutils literal notranslate"><span class="pre">x_size,y_size</span></code> as optional inputs to improve scaling</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER</span>
+<span class="c1"># this is a little long-winded, but just wraps up the codes above</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">plot_lc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">x_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">y_size</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    takes as input MODIS LC dataset</span>
+<span class="sd">    plots the associated land cover map</span>
+
+<span class="sd">    x_size,y_size as optional inputs</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">lc_Type1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/LC_Type1_colour.csv&#39;</span><span class="p">)</span>
+
+    <span class="c1"># generate matplotlib cmap and norm objects from these</span>
+
+    <span class="c1"># get the LC codes, colours and classes</span>
+    <span class="c1"># from LC_Type1_class and LC_Type1_colour</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span>\
+            <span class="n">ListedColormap</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lc_Type1</span><span class="p">[</span><span class="s1">&#39;colour&#39;</span><span class="p">]))</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span>\
+            <span class="n">BoundaryNorm</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lc_Type1</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lc_Type1</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]))</span>
+
+    <span class="c1"># set up the legend</span>
+    <span class="n">legend_labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lc_Type1</span><span class="p">[</span><span class="s1">&#39;colour&#39;</span><span class="p">]),</span>\
+                             <span class="nb">list</span><span class="p">(</span><span class="n">lc_Type1</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">])))</span>
+    <span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l</span><span class="p">)</span>
+               <span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">l</span> <span class="ow">in</span> <span class="n">legend_labels</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">x_size</span><span class="p">,</span><span class="n">y_size</span><span class="p">))</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span>
+              <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+              <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+<span class="kn">from</span> <span class="nn">geog0111.plot_lc</span> <span class="kn">import</span> <span class="n">plot_lc</span>
+<span class="n">year</span><span class="p">,</span><span class="n">tiles</span> <span class="o">=</span> <span class="mi">2018</span><span class="p">,[</span><span class="s1">&#39;h31v10&#39;</span><span class="p">]</span>
+
+<span class="c1"># ensure tiles is a list</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tile&#39;</span>      <span class="p">:</span>    <span class="nb">list</span><span class="p">(</span><span class="n">tiles</span><span class="p">),</span>
+    <span class="s1">&#39;product&#39;</span>   <span class="p">:</span>    <span class="s1">&#39;MCD12Q1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sds&#39;</span>       <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;LC_Type1&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1"># get the data</span>
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># specify day of year (DOY) and year</span>
+<span class="n">data_MCD12Q1</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">doy</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># the data we want here</span>
+<span class="n">plot_lc</span><span class="p">(</span><span class="n">data_MCD12Q1</span><span class="p">[</span><span class="s1">&#39;LC_Type1&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/024_Image_display_answers_9_0.png" /></p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting.html">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking.html">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata_answers.html">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="023_Plotting_answers.html" title="previous chapter">Plotting Graphs : Answers to exercises</a></li>
+      <li>Next: <a href="030_NASA_MODIS_Earthdata.html" title="next chapter">030 NASA MODIS Earthdata</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/024_Image_display_answers.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

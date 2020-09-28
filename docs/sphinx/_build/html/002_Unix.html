@@ -50,10 +50,6 @@
 </ul>
 <p>Remember that you can ‘run’ the code in a code block using the ‘run’ widget (above) or hitting the keys (‘typing’) <shift> and <return> at the same time.</p>
 </div>
-<div class="section" id="timing">
-<h3>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h3>
-<p>The session should take around 15 minutes.</p>
-</div>
 </div>
 <div class="section" id="running-unix-commands">
 <h2>Running unix commands<a class="headerlink" href="#running-unix-commands" title="Permalink to this headline">¶</a></h2>
@@ -63,9 +59,6 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pwd
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
-</pre></div>
-</div>
 <p>or by using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
 
@@ -73,11 +66,13 @@
 <span class="nb">pwd</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">nfs</span><span class="o">/</span><span class="n">cfs</span><span class="o">/</span><span class="n">home3</span><span class="o">/</span><span class="n">Uucfa6</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
 </pre></div>
 </div>
 <p>If you are using these notes through the <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code></a> interface you have access to a <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash">terminal</a> to run unix commands.</p>
-<p>### Navigating the file system</p>
+</div>
+<div class="section" id="navigating-the-file-system">
+<h3>Navigating the file system<a class="headerlink" href="#navigating-the-file-system" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id1">
 <h3><code class="docutils literal notranslate"><span class="pre">~</span></code>, <code class="docutils literal notranslate"><span class="pre">.</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
@@ -100,7 +95,7 @@
 <span class="nb">pwd</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ucfalew</span>
 </pre></div>
 </div>
 <p>changes directory to our home, and prints the directory name.</p>
@@ -111,8 +106,8 @@
 <span class="nb">pwd</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
-<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">GitHub</span><span class="o">/</span><span class="n">geog0111</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">nfs</span><span class="o">/</span><span class="n">cfs</span><span class="o">/</span><span class="n">home3</span><span class="o">/</span><span class="n">Uucfa6</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span>
+<span class="o">/</span><span class="n">nfs</span><span class="o">/</span><span class="n">cfs</span><span class="o">/</span><span class="n">home3</span><span class="o">/</span><span class="n">Uucfa6</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span>
 </pre></div>
 </div>
 <div class="section" id="exercise-1">
@@ -141,7 +136,7 @@ ls R*
 ls -lh README.md
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">3.3</span><span class="n">K</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mf">3.4</span><span class="n">K</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">13</span><span class="p">:</span><span class="mi">29</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
 </pre></div>
 </div>
 <p>Here, the file size if <code class="docutils literal notranslate"><span class="pre">321B</span></code> (321 Bytes), and the file is owned by the user <code class="docutils literal notranslate"><span class="pre">plewis</span></code>. The field <code class="docutils literal notranslate"><span class="pre">-rw-r--r--</span></code> provides information on file permissions. Ignoring the first <code class="docutils literal notranslate"><span class="pre">-</span></code>, it is in 3 sets of 3 bits:</p>
@@ -202,18 +197,28 @@ cat <span class="s">&lt;&lt; EOF</span>
 <span class="s">EOF</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/Users/plewis/Documents/GitHub/geog0111/notebooks
--rw-r--r--  1 plewis  staff    16B  9 Sep 11:22 bin/README
-lrwxr-xr-x  1 plewis  staff     7B 12 Sep 12:34 bin/copy -&gt; ../copy
--rwxr-xr-x  1 plewis  staff   217B  9 Sep 10:28 bin/docker-build
--rwxr-xr-x  1 plewis  staff   428B  9 Sep 10:28 bin/docker-killall
--rwxr-xr-x  1 plewis  staff   1.0K  9 Sep 10:28 bin/docker-run
--rwxr-xr-x  1 plewis  staff   569B  9 Sep 10:28 bin/git-remove-all.sh
--rwxr-xr-x  1 plewis  staff   2.0K 11 Sep 08:26 bin/link-set.sh
--rwxr-xr-x  1 plewis  staff   3.4K 12 Sep 12:29 bin/notebook-mkdocs.sh
--rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/notebook-run.sh
--rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/postBuild
--rwxr-xr-x  1 plewis  staff   3.4K  9 Sep 10:28 bin/setup.sh
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+lrwxrwxrwx 1 ucfalew ucfa    7 Sep 26 17:20 bin/copy -&gt; ../copy
+-rwxr-xr-x 1 ucfalew ucfa   43 Sep 26 19:19 bin/database.sh
+-rwxr-xr-x 1 ucfalew ucfa  217 Sep 21 13:29 bin/docker-build
+-rwxr-xr-x 1 ucfalew ucfa  428 Sep 21 13:29 bin/docker-killall
+-rwxr-xr-x 1 ucfalew ucfa 1022 Sep 21 13:29 bin/docker-run
+-rwxr-xr-x 1 ucfalew ucfa  569 Sep 21 13:29 bin/git-remove-all.sh
+-rw-rw-r-- 1 ucfalew ucfa  257 Sep 25 17:56 bin/howmany.sh
+-rwxr-xr-x 1 ucfalew ucfa 1.7K Sep 25 17:50 bin/init.sh
+-rwxr-xr-x 1 ucfalew ucfa 3.1K Sep 24 09:51 bin/link-set.sh
+-rwxr-xr-x 1 ucfalew ucfa  855 Sep 27 00:38 bin/mv_vrt.sh
+-rwxr-xr-x 1 ucfalew ucfa 4.0K Sep 21 13:29 bin/notebook-mkdocs.sh
+-rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 21 13:29 bin/notebook-run.sh
+-rwxr-xr-x 1 ucfalew ucfa 1.5K Sep 23 21:28 bin/postBuild
+-rwxr-xr-x 1 ucfalew ucfa   44 Sep 23 21:54 bin/pullYou
+-rwxr-xr-x 1 ucfalew ucfa  100 Sep 23 21:54 bin/pushMe
+-rw-r--r-- 1 ucfalew ucfa   16 Sep 21 13:29 bin/README
+-rw-r--r-- 1 ucfalew ucfa  271 Sep 23 21:54 bin/set-course.sh
+-rwxr-xr-x 1 ucfalew ucfa 3.4K Sep 21 13:29 bin/setup.sh
+-rwxr-xr-x 1 ucfalew ucfa  754 Sep 24 09:13 bin/shellMe.sh
+-rwxr-xr-x 1 ucfalew ucfa 1.8K Sep 26 22:34 bin/sort-db.sh
+-rwxr-xr-x 1 ucfalew ucfa  742 Sep 26 20:47 bin/tidy.sh
 ===============================
 * what do you notice about these?
 ===============================
@@ -242,8 +247,8 @@ ls -lh ../README.md
 chmod <span class="m">644</span> ../README.md
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">3.3</span><span class="n">K</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
-<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="o">@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>   <span class="mf">3.3</span><span class="n">K</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mf">3.4</span><span class="n">K</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">13</span><span class="p">:</span><span class="mi">29</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mf">3.4</span><span class="n">K</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">13</span><span class="p">:</span><span class="mi">29</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
 </pre></div>
 </div>
 <p>First the permissions of the file are 644 as we saw above, then we use <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">755</span></code> to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:</p>
@@ -258,7 +263,7 @@ chmod <span class="m">644</span> ../README.md
 ls -l ~/geog0111/README.md
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">3390</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mi">3390</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">13</span><span class="p">:</span><span class="mi">29</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
 </pre></div>
 </div>
 <p>A <em>relative pathname</em> is one that does not start with <code class="docutils literal notranslate"><span class="pre">/</span></code>  or <code class="docutils literal notranslate"><span class="pre">~</span></code>. It is specified relative to where we are in the filesystem in the current shell. For example:</p>
@@ -266,7 +271,7 @@ ls -l ~/geog0111/README.md
 ls -l ../README.md
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--@</span> <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">3390</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mi">3390</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">13</span><span class="p">:</span><span class="mi">29</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
 </pre></div>
 </div>
 <p>Recall that we use <code class="docutils literal notranslate"><span class="pre">..</span></code> to specify ‘up one level’. Then:</p>
@@ -284,9 +289,9 @@ ls -l ../README.md
 <span class="nb">pwd</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">images</span>
-<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">plewis</span><span class="o">/</span><span class="n">geog0111</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">images</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span>
 </pre></div>
 </div>
 </div>
@@ -311,7 +316,7 @@ cat <span class="s">&lt;&lt; EOF &gt; work/newererfile.dat</span>
 ls -lh work/n*
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>    <span class="mi">73</span><span class="n">B</span> <span class="mi">12</span> <span class="n">Sep</span> <span class="mi">12</span><span class="p">:</span><span class="mi">38</span> <span class="n">work</span><span class="o">/</span><span class="n">newererfile</span><span class="o">.</span><span class="n">dat</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mi">73</span> <span class="n">Sep</span> <span class="mi">27</span> <span class="mi">20</span><span class="p">:</span><span class="mi">44</span> <span class="n">work</span><span class="o">/</span><span class="n">newererfile</span><span class="o">.</span><span class="n">dat</span>
 </pre></div>
 </div>
 <p>We can also use <code class="docutils literal notranslate"><span class="pre">cat</span></code> to see what is in a file:</p>
@@ -456,7 +461,7 @@ rm work/newererfile.dat
 <li class="toctree-l1 current"><a class="current reference internal" href="#">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
@@ -468,7 +473,7 @@ rm work/newererfile.dat
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
@@ -477,30 +482,30 @@ rm work/newererfile.dat
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting.html">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
-<li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="033_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html">Table of Contents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
-<li class="toctree-l1"><a class="reference internal" href="041_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display_answers.html">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking.html">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata_answers.html">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
 </ul>
 
 <div class="relations">

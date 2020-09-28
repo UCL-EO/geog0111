@@ -16,9 +16,6 @@ You will need some understanding of the following:
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) In particular, you should be understand strings and know how to find the length of a string.
 
-### Timing
-
-The session should take around 30 minutes.
 
 
 ## String features

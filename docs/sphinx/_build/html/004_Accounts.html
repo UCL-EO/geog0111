@@ -15,7 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Packages" href="005_Packages.html" />
+    <link rel="next" title="005 Packages" href="005_Packages.html" />
     <link rel="prev" title="003 Help" href="003_Help.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -37,10 +37,6 @@
 <h1>004 Setup, Accounts and logins<a class="headerlink" href="#setup-accounts-and-logins" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="google-earth-engine">
-<h3>Google Earth Engine<a class="headerlink" href="#google-earth-engine" title="Permalink to this headline">¶</a></h3>
-<p>You will also need to make sure you have a <a class="reference external" href="https://support.google.com/accounts/answer/27441?hl=en">google account</a> to be able to use GEE, and will need to know your username and password. In addition, you will need to sign up for a GEE account. You need to request this by filling out the form at <a class="reference external" href="https://signup.earthengine.google.com/">signup.earthengine.google.com</a>. <strong>You will need to do this before we start the class</strong> as you will need to wait for approval from Google.</p>
-</div>
 <div class="section" id="nasa-earthdata-login-and-password">
 <h3>NASA Earthdata login and password<a class="headerlink" href="#nasa-earthdata-login-and-password" title="Permalink to this headline">¶</a></h3>
 <p>Before you can use the material in these notebooks, you will need to register as a user at the <a class="reference external" href="https://urs.earthdata.nasa.gov/users/new"><code class="docutils literal notranslate"><span class="pre">NASA</span> <span class="pre">EarthData</span></code></a>.</p>
@@ -48,6 +44,19 @@
 <p>Some web resources require you to use a login and password. In any publicly available files (like these notebooks) we do not want to expose sensitive information such information.</p>
 <p>To that in these notes we can make use of stored passwords and usernames using the local <a class="reference external" href="geog0111/cylog.py">cylog</a> package.</p>
 <p>Information is encrypted in a user read-only file in your home directory (mode <code class="docutils literal notranslate"><span class="pre">400</span></code>) and accessed through the <code class="docutils literal notranslate"><span class="pre">Cylog</span></code>  <code class="docutils literal notranslate"><span class="pre">login</span></code> function.</p>
+<p>You need to store your username and password in a database file (that only you can access) to be able to make convenient use oof the notes in later classes.</p>
+<p>You can do this by running through the following cell, and responding as appropriate.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.cylog</span> <span class="kn">import</span> <span class="n">Cylog</span>
+
+<span class="n">sites</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://n5eil01u.ecs.nsidc.org&#39;</span><span class="p">,</span>\
+         <span class="s1">&#39;https://urs.earthdata.nasa.gov&#39;</span><span class="p">,</span>\
+        <span class="s1">&#39;https://e4ftl01.cr.usgs.gov&#39;</span><span class="p">]</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="n">Cylog</span><span class="p">(</span><span class="n">sites</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you are interested, you can see the help page for <code class="docutils literal notranslate"><span class="pre">Cylog</span></code>. It shows, for instance, how to over-ride the current entry (e.g. if you have changed your password), by using <code class="docutils literal notranslate"><span class="pre">force=True</span></code>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.cylog</span> <span class="kn">import</span> <span class="n">Cylog</span>
 <span class="n">help</span><span class="p">(</span><span class="n">Cylog</span><span class="o">.</span><span class="n">login</span><span class="p">)</span>
 </pre></div>
@@ -70,82 +79,21 @@
     <span class="n">A</span> <span class="nb">tuple</span> <span class="n">containing</span> <span class="n">plain</span> <span class="n">text</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">site</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>https://e4ftl01.cr.usgs.gov</p>
-<p>https://urs.earthdata.nasa.gov/users/new</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
-<span class="c1"># ping small (1.3 M) test file</span>
-<span class="n">site</span><span class="o">=</span><span class="s1">&#39;https://e4ftl01.cr.usgs.gov/&#39;</span>
-<span class="n">test_dir</span><span class="o">=</span><span class="s1">&#39;MOLA/MYD11_L2.006/2002.07.04&#39;</span>
-<span class="n">test_file</span><span class="o">=</span><span class="s1">&#39;MYD11_L2*0325*.hdf&#39;</span>
-<span class="c1"># this glob interprets the wildcards to get at a suitable test file</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">test_dir</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="c1"># test ping returns True</span>
-<span class="k">assert</span> <span class="n">url</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="anaconda-and-jupyter">
-<h3>Anaconda and Jupyter<a class="headerlink" href="#anaconda-and-jupyter" title="Permalink to this headline">¶</a></h3>
-<p>We will be using software from the <a class="reference external" href="https://anaconda.org/anaconda/python">anaconda distribution of python</a>. This should already be installed for you if you are viewing this, but we can run some quick tests. Running the cell below (<code class="docutils literal notranslate"><span class="pre">&gt;|</span> <span class="pre">Run</span></code>) should give, the following, or higher:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.0</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.12</span><span class="o">.</span><span class="mi">0</span>
-<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.1</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">6</span>
-<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">2</span>
-<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">6</span>
-</pre></div>
-</div>
-<p>If that is not the case, then make a copy of what it does produce, and contact the course organisers through <a class="reference external" href="https://moodle.ucl.ac.uk/course/view.php?id=21495">moodle</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash 
-<span class="c1"># tests </span>
-jupyter --version
-conda -V
-python -V
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">core</span>     <span class="p">:</span> <span class="mf">4.6</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">qtconsole</span>        <span class="p">:</span> <span class="mf">4.7</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">ipython</span>          <span class="p">:</span> <span class="mf">7.18</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">ipykernel</span>        <span class="p">:</span> <span class="mf">5.3</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">jupyter</span> <span class="n">client</span>   <span class="p">:</span> <span class="mf">6.1</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">jupyter</span> <span class="n">lab</span>      <span class="p">:</span> <span class="mf">2.2</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">nbconvert</span>        <span class="p">:</span> <span class="mf">5.6</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">ipywidgets</span>       <span class="p">:</span> <span class="mf">7.5</span><span class="o">.</span><span class="mi">1</span>
-<span class="n">nbformat</span>         <span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">traitlets</span>        <span class="p">:</span> <span class="mf">4.3</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">conda</span> <span class="mf">4.8</span><span class="o">.</span><span class="mi">4</span>
-<span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">8</span>
-</pre></div>
-</div>
-<p>The code cell above that we ran is a <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)"><code class="docutils literal notranslate"><span class="pre">unix</span></code> (<code class="docutils literal notranslate"><span class="pre">bash</span></code>) shell</a>, indicated by the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> on the first line. This is a mechanism that lets us run unix commands in a Python notebook.</p>
+<p>You should be aware that the NASA servers this connects you to go down for maintenance on Wednesdays. You can ping the servers with the follwoing code:</p>
 </div>
 <div class="section" id="test">
 <h3>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h3>
-<p>You will need a web login to NASA Earthdata and to have stored this using <code class="docutils literal notranslate"><span class="pre">cylog</span></code> according to <a class="reference internal" href="#"><span class="doc">004_Accounts</span></a> for the site <code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov</span></code>. We can test this with the following code if you set do_test to True:</p>
+<p>You can run a test on your login to NASA Earthdata using the information you have stored this using <code class="docutils literal notranslate"><span class="pre">cylog</span></code> according to <a class="reference internal" href="#"><span class="doc">004_Accounts</span></a> for the site <code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov</span></code>. We can test this with the following code if you set do_test to True:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">test_login</span>
-<span class="n">do_test</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="k">assert</span> <span class="n">test_login</span><span class="p">(</span><span class="n">do_test</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">test_login</span><span class="p">(</span><span class="n">do_test</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If this fails, set <code class="docutils literal notranslate"><span class="pre">verbose</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> to see what is going on, then if you can;’t work it out from there, go back to <a class="reference internal" href="#"><span class="doc">004_Accounts</span></a> and sort the login for NASA Earthdata the site <code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov</span></code>.</p>
+<p>If this fails, you may have entered your account information incorrectly for <code class="docutils literal notranslate"><span class="pre">https://e4ftl01.cr.usgs.gov</span></code> (or it could just be Wednesday, in which case, don’t run this again).</p>
 <p>If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cy</span> <span class="o">=</span> <span class="n">cylog</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and re-run.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -175,7 +123,7 @@ python -V
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">004 Setup, Accounts and logins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
@@ -187,7 +135,7 @@ python -V
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
@@ -196,30 +144,30 @@ python -V
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting.html">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
-<li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="033_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html">Table of Contents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
-<li class="toctree-l1"><a class="reference internal" href="041_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display_answers.html">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking.html">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata_answers.html">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
 </ul>
 
 <div class="relations">
@@ -227,7 +175,7 @@ python -V
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="003_Help.html" title="previous chapter">003 Help</a></li>
-      <li>Next: <a href="005_Packages.html" title="next chapter">Packages</a></li>
+      <li>Next: <a href="005_Packages.html" title="next chapter">005 Packages</a></li>
   </ul></li>
 </ul>
 </div>

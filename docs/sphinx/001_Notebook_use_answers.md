@@ -139,9 +139,6 @@ print(second_string)
 # run the cell 
 ```
 
-    hello again
-
-
 #### Exercise 4
 
 * create a code cell below
@@ -261,3 +258,16 @@ Remember what this type of error can mean.
 '''
 print(msg)
 ```
+
+    hello once more
+    
+    what does that tell you about information we create in one cell and 
+    try to use in another above?
+    
+    we can run cells in any order. Once we had created third_string, the 
+    previous exercise print(third_string) executed as we expected.
+    The *Danger* is that the next time we run this notebook in cell order
+    the cell above will fail again. Learn from the mistakes we make.
+    Remember what this type of error can mean.
+    
+

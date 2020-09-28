@@ -205,6 +205,17 @@ print(msg)
 
 ```
 
+    
+     This fails with:
+     
+         IndexError: string index out of range
+    
+     because string[5] does not exist
+     as the length of string is 5: we can
+     only idex from 0 to 4
+    
+
+
 #### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.
@@ -232,6 +243,10 @@ skip  = 2
 print (s[start:stop:skip])
 ```
 
+    Hello World 11
+    HloWrd
+
+
 
 ```python
 # ANSWER
@@ -241,3 +256,6 @@ s = "Hello World"
 # index 3 is the 4th character !!!
 print(s[3])
 ```
+
+    l
+

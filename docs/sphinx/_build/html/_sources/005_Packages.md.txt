@@ -1,4 +1,4 @@
-# Packages
+# 005 Packages
 
 ## Introduction
 
@@ -15,10 +15,6 @@ You will need some understanding of the following:
 
 * [001 Using Notebooks](001_Notebook_use.md)
 
-
-### Timing
-
-The session should take around 10 minutes.
 
 ## `import`
 
@@ -81,8 +77,10 @@ You can access `conda` commands in the notebook with the `%conda` directive. For
 
     # conda environments:
     #
-    base                     /Users/plewis/anaconda3
-    geog0111              *  /Users/plewis/anaconda3/envs/geog0111
+    david                    /shared/groups/jrole001/david/envs/david
+    geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
+    base                     /shared/ucl/apps/miniconda-jhub/4.8.3
+    jhubcode                 /shared/ucl/apps/miniconda-jhub/4.8.3/envs/jhubcode
     
     
     Note: you may need to restart the kernel to use updated packages.
@@ -99,9 +97,10 @@ If you want to see if a particular package and particular version exists in your
 
     Loading channels: done
     # Name                       Version           Build  Channel             
-    gdal                           3.0.2  py27hbe65578_0  pkgs/main           
-    gdal                           3.0.2  py36hbe65578_0  pkgs/main           
-    gdal                           3.0.2  py37hbe65578_0  pkgs/main           
+    gdal                           3.0.2  py27hbb2a789_0  pkgs/main           
+    gdal                           3.0.2  py36hbb2a789_0  pkgs/main           
+    gdal                           3.0.2  py37hbb2a789_0  pkgs/main           
+    gdal                           3.0.2  py38hbb2a789_0  pkgs/main           
     
     Note: you may need to restart the kernel to use updated packages.
 
@@ -126,15 +125,15 @@ to install a pip package. You should check that the package will be suitable for
 %pip install urlpath --user
 ```
 
-    Requirement already satisfied: urlpath in /Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages (1.1.7)
-    Requirement already satisfied: requests in /Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages (from urlpath) (2.24.0)
-    Requirement already satisfied: certifi>=2017.4.17 in /Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (2020.6.20)
-    Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (1.25.10)
-    Requirement already satisfied: idna<3,>=2.5 in /Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (2.10)
-    Requirement already satisfied: chardet<4,>=3.0.2 in /Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (3.0.4)
+    Requirement already satisfied: urlpath in /shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages (1.1.7)
+    Requirement already satisfied: requests in /shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages (from urlpath) (2.24.0)
+    Requirement already satisfied: idna<3,>=2.5 in /shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (2.10)
+    Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (1.25.10)
+    Requirement already satisfied: certifi>=2017.4.17 in /shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (2020.6.20)
+    Requirement already satisfied: chardet<4,>=3.0.2 in /shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages (from requests->urlpath) (3.0.4)
     Note: you may need to restart the kernel to use updated packages.
 
 
-## Summary
+## Summary
 
 In this section, we have learned how to import packages using `import` and `from`. We have seen how to check if a package exists in our conda distribution, and how we can install `conda` and `pip` packages if we need to.

@@ -20,9 +20,6 @@ You will need some understanding of the following:
 * [014_Python_groups](014_Python_groups.md)
 * [015_Python_control](015_Python_control.md)
 
-### Timing
-
-The session should take around 40 minutes.
 
 ## Looping with `for`
 

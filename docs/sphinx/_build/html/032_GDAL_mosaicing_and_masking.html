@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>032 GDAL: mosaicing and masking &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="033 GDAL: time series" href="033_GDAL_timeseries.html" />
+    <link rel="prev" title="031 Manipulating data: numpy" href="031_Numpy.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="gdal-mosaicing-and-masking">
+<h1>032 GDAL: mosaicing and masking<a class="headerlink" href="#gdal-mosaicing-and-masking" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we’ll look at combining both raster and vector data to provide a masked dataset ready to use. We will produce a combined dataset of leaf area index (LAI) over the UK derived from the MODIS sensor that we have examined before.</p>
+<p>At the end of this session, you should be able to use one or more of these methods to obtain a numpy array with a MODIS datatset for a particular place and time.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>You will need some understanding of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="001_Notebook_use.html"><span class="doc">001 Using Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="010_Python_Introduction.html"><span class="doc">010 Variables, comments and print()</span></a></p></li>
+<li><p><a class="reference internal" href="011_Python_data_types.html"><span class="doc">011 Data types</span></a></p></li>
+<li><p><a class="reference internal" href="012_Python_strings.html"><span class="doc">012 String formatting</span></a></p></li>
+<li><p><a class="reference internal" href="013_Python_string_methods.html"><span class="doc">013_Python_string_methods</span></a></p></li>
+<li><p><a class="reference internal" href="020_Python_files.html"><span class="doc">020_Python_files</span></a></p></li>
+<li><p><a class="reference internal" href="021_Streams.html"><span class="doc">021 Streams</span></a></p></li>
+<li><p><a class="reference internal" href="022_Read_write_files.html"><span class="doc">022 Read write files</span></a></p></li>
+<li><p><a class="reference internal" href="023_Plotting.html"><span class="doc">023 Plotting</span></a></p></li>
+<li><p><a class="reference internal" href="024_Image_display.html"><span class="doc">024 Image display</span></a></p></li>
+<li><p><a class="reference internal" href="030_NASA_MODIS_Earthdata.html"><span class="doc">030_NASA_MODIS_Earthdata</span></a></p></li>
+<li><p><a class="reference external" href="032_Numpy">031_Numpy</a></p></li>
+</ul>
+<p>You will need to remember:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="(030_NASA_MODIS_Earthdata.md)">the SDS in MODIS datasets</a></p></li>
+<li><p>how to do <a class="reference external" href="031_Numpy.md#slicing"><code class="docutils literal notranslate"><span class="pre">numpy</span></code> slicing</a> and numpy functions to get <a class="reference external" href="031_Numpy.md#Summary-statistics">array statistics</a></p></li>
+</ul>
+</div>
+<div class="section" id="test">
+<h2>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h2>
+<p>You should run a <a class="reference internal" href="004_Accounts.html"><span class="doc">NASA account test</span></a> if you have not already done so.</p>
+</div>
+<div class="section" id="modis-dataset-access">
+<h2>MODIS dataset access<a class="headerlink" href="#modis-dataset-access" title="Permalink to this headline">¶</a></h2>
+<p>You should by now be able to access MODIS data, either through specifying the URL of the file to download, or through using the <code class="docutils literal notranslate"><span class="pre">geog0111.modis</span></code> library as we have done in <a class="reference external" href="024_Image_display.md#MODIS">024 Image display</a>
+and <a class="reference external" href="025_NASA_MODIS_Earthdata.md#MOTA">025 NASA MODIS Earthdata</a>.</p>
+<p>If we want to access only the local filename and/or SDS information for a particular, we can use the function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">files</span><span class="p">,</span><span class="n">sds</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">doy</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;verbose&#39;</span> <span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;tile&#39;</span>      <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;product&#39;</span>   <span class="p">:</span>    <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sds&#39;</span>       <span class="p">:</span>    <span class="s1">&#39;Lai_500m&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">doy</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2019</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># specify day of year (DOY) and year</span>
+<span class="c1"># and get the filenames</span>
+<span class="n">files</span><span class="p">,</span><span class="n">sds</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">doy</span><span class="p">)</span>
+<span class="c1"># look at first dataset in lists</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">groups</span><span class="o">/</span><span class="n">jrole001</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2019.02</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2019041</span><span class="o">.</span><span class="n">h17v03</span><span class="o">.</span><span class="mf">006.2019050221756</span><span class="o">.</span><span class="n">hdf</span><span class="o">.</span><span class="n">store</span>
+<span class="p">[</span><span class="s1">&#39;HDF4_EOS:EOS_GRID:&quot;/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store&quot;:MOD_Grid_MCD15A3H:Lai_500m&#39;</span><span class="p">]</span>
+
+
+<span class="o">--&gt;</span> <span class="n">initial</span> <span class="n">SDS</span> <span class="p">[</span><span class="s1">&#39;Lai_500m&#39;</span><span class="p">]</span>
+<span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">SDS</span> <span class="n">MCD15A3H</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">found</span> <span class="n">SDS</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">database</span>
+<span class="o">--&gt;</span> <span class="p">[</span><span class="s1">&#39;FparExtra_QC&#39;</span><span class="p">,</span> <span class="s1">&#39;FparLai_QC&#39;</span><span class="p">,</span> <span class="s1">&#39;FparStdDev_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;Fpar_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;LaiStdDev_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;Lai_500m&#39;</span><span class="p">]</span>
+<span class="o">--&gt;</span> <span class="n">product</span> <span class="n">MCD15A3H</span> <span class="o">-&gt;</span> <span class="n">code</span> <span class="n">MOTA</span>
+<span class="o">--&gt;</span> <span class="n">getting</span> <span class="n">database</span> <span class="kn">from</span> <span class="nn">command</span> <span class="n">line</span>
+<span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">query</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2019.02</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">*.</span><span class="n">h17v03</span><span class="o">*.</span><span class="n">hdf</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">data</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2019.02</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2019041</span><span class="o">.</span><span class="n">h17v03</span><span class="o">.</span><span class="mf">006.2019050221756</span><span class="o">.</span><span class="n">hdf</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">local</span> <span class="n">file</span> <span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">groups</span><span class="o">/</span><span class="n">jrole001</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2019.02</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2019041</span><span class="o">.</span><span class="n">h17v03</span><span class="o">.</span><span class="mf">006.2019050221756</span><span class="o">.</span><span class="n">hdf</span><span class="o">.</span><span class="n">store</span> <span class="n">exists</span>
+</pre></div>
+</div>
+<p>The SDS description (in <code class="docutils literal notranslate"><span class="pre">sds[0][0]</span></code> here) is rather long-winded, but contains the full pathname of the dataset, along with the specification for the <code class="docutils literal notranslate"><span class="pre">Lai_500m</span></code> sub-dataset.</p>
+<p>Armed with the SDS description, we can read a dataset from the MODIS file using <code class="docutils literal notranslate"><span class="pre">g.ReadAsArray()</span></code> after we have opened it. It returns a numpy array. We introduce <code class="docutils literal notranslate"><span class="pre">np.unique</span></code> that returns the unique values in a numpy array:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">this_sds</span> <span class="o">=</span> <span class="n">sds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># open the SDS of dataset 0</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">sds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;max:&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;max:&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="c1"># get unique values, for interst</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;unique values:&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+max: 255
+max: 0
+unique values: [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70 250
+ 253 254 255]
+</pre></div>
+</div>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<p>Recall that the MODIS LAI data need a scaling factor of 0.1 applied, and that values of greater than 100 are invalid.</p>
+<p>For the dataset described by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tile&#39;</span>      <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;product&#39;</span>   <span class="p">:</span>    <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sds&#39;</span>       <span class="p">:</span>    <span class="s1">&#39;Lai_500m&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">doy</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2019</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">gdal</span></code> to read the data into a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array called lai</p></li>
+<li><p>print the shape of the array <code class="docutils literal notranslate"><span class="pre">lai</span></code></p></li>
+<li><p>Find the maximum valid LAI value in the dataset</p></li>
+<li><p>find at least one pixel (row, column) which has that maximum value.</p></li>
+</ul>
+<p>You will need to recall how to filter and <a class="reference external" href="026_Numpy.md#argmin,-argmax-and-masking">mask <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays</a> and use <a class="reference external" href="026_Numpy.md#where"><code class="docutils literal notranslate"><span class="pre">np.where</span></code></a>.</p>
+</div>
+</div>
+<div class="section" id="tile-stitching-with-gdal-buildvrt">
+<h2>Tile stitching with <code class="docutils literal notranslate"><span class="pre">gdal.BuildVRT</span></code><a class="headerlink" href="#tile-stitching-with-gdal-buildvrt" title="Permalink to this headline">¶</a></h2>
+<p>Each MODIS tile has (SDS) datasets that are typically 1200x1200 pixels (1 km resolution) or 2400x2400 pixels (500 m resolution). Whilst we have to consider the MODIS tiles when downloading a dataset, after that point, we will probably want to work with data over some area that may only be a portion of a tile, or that may involve multiple tiles.</p>
+<p>One approach to this is to read the individual tile data as above, the sub-set or stitch together multiple tiles. This is perfectly possible using <code class="docutils literal notranslate"><span class="pre">numpy</span></code> (see <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.vstack.html"><code class="docutils literal notranslate"><span class="pre">np.vstack</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.hstack.html"><code class="docutils literal notranslate"><span class="pre">np.hstack</span></code></a> to follow that up), but not generally very convenient.</p>
+<p>Another factor is that, whilst the datasets are on regular grids, each location in the grid covers a unique geographical area. Once we load the data into a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array, we are no longer using the coordinate information available in the original geospatial dataset.</p>
+<p>A final factor can be that it might be memory-inefficient to process data by reading it all into a large array.</p>
+<p>Instead then, we can use <code class="docutils literal notranslate"><span class="pre">gdal</span></code> to stitch together geospatial data. A convenient way of doing this is to form a new <code class="docutils literal notranslate"><span class="pre">gdal</span></code> <a class="reference external" href="https://www.gdal.org/gdal_vrttut.html">virtual file</a>, using gdal.BuildVRT (check the documentation).</p>
+<p>This function takes two inputs: the output filename (in the variable <code class="docutils literal notranslate"><span class="pre">ofile</span></code>) and a set of GDAL format filenames.</p>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">modis.stitch_date</span></code> as above to provide the SDS of four MODIS tiles <code class="docutils literal notranslate"><span class="pre">['h17v03','h18v03','h17v04','h18v04']</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tile&#39;</span>      <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span><span class="s1">&#39;h18v03&#39;</span><span class="p">,</span><span class="s1">&#39;h17v04&#39;</span><span class="p">,</span><span class="s1">&#39;h18v04&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;product&#39;</span>   <span class="p">:</span>    <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sds&#39;</span>       <span class="p">:</span>    <span class="s1">&#39;Lai_500m&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">doy</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2019</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">files</span><span class="p">,</span><span class="n">sds</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">doy</span><span class="p">)</span>
+
+<span class="c1"># build a VRT </span>
+<span class="n">ofile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;work/stitch_full_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">doy</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.vrt&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;saving to </span><span class="si">{</span><span class="n">ofile</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">BuildVRT</span><span class="p">(</span><span class="n">ofile</span><span class="p">,</span> <span class="n">sds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">del</span> <span class="n">stitch_vrt</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">saving</span> <span class="n">to</span> <span class="n">work</span><span class="o">/</span><span class="n">stitch_full_2019_041</span><span class="o">.</span><span class="n">vrt</span>
+</pre></div>
+</div>
+<p>We can check what it looks like with e.g. <code class="docutils literal notranslate"><span class="pre">gdal.Info</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ofile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;work/stitch_full_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">doy</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.vrt&quot;</span>
+<span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">ofile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdal</span><span class="o">.</span><span class="n">Info</span><span class="p">(</span><span class="n">stitch_vrt</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Driver</span><span class="p">:</span> <span class="n">VRT</span><span class="o">/</span><span class="n">Virtual</span> <span class="n">Raster</span>
+<span class="n">Files</span><span class="p">:</span> <span class="n">work</span><span class="o">/</span><span class="n">stitch_full_2019_041</span><span class="o">.</span><span class="n">vrt</span>
+<span class="n">Size</span> <span class="ow">is</span> <span class="mi">4800</span><span class="p">,</span> <span class="mi">4800</span>
+<span class="n">Coordinate</span> <span class="n">System</span> <span class="ow">is</span><span class="p">:</span>
+<span class="n">PROJCRS</span><span class="p">[</span><span class="s2">&quot;unnamed&quot;</span><span class="p">,</span>
+    <span class="n">BASEGEOGCRS</span><span class="p">[</span><span class="s2">&quot;Unknown datum based upon the custom spheroid&quot;</span><span class="p">,</span>
+        <span class="n">DATUM</span><span class="p">[</span><span class="s2">&quot;Not specified (based on custom spheroid)&quot;</span><span class="p">,</span>
+            <span class="n">ELLIPSOID</span><span class="p">[</span><span class="s2">&quot;Custom spheroid&quot;</span><span class="p">,</span><span class="mf">6371007.181</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">LENGTHUNIT</span><span class="p">[</span><span class="s2">&quot;metre&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">ID</span><span class="p">[</span><span class="s2">&quot;EPSG&quot;</span><span class="p">,</span><span class="mi">9001</span><span class="p">]]]],</span>
+        <span class="n">PRIMEM</span><span class="p">[</span><span class="s2">&quot;Greenwich&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">ANGLEUNIT</span><span class="p">[</span><span class="s2">&quot;degree&quot;</span><span class="p">,</span><span class="mf">0.0174532925199433</span><span class="p">,</span>
+                <span class="n">ID</span><span class="p">[</span><span class="s2">&quot;EPSG&quot;</span><span class="p">,</span><span class="mi">9122</span><span class="p">]]]],</span>
+    <span class="n">CONVERSION</span><span class="p">[</span><span class="s2">&quot;unnamed&quot;</span><span class="p">,</span>
+        <span class="n">METHOD</span><span class="p">[</span><span class="s2">&quot;Sinusoidal&quot;</span><span class="p">],</span>
+        <span class="n">PARAMETER</span><span class="p">[</span><span class="s2">&quot;Longitude of natural origin&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">ANGLEUNIT</span><span class="p">[</span><span class="s2">&quot;degree&quot;</span><span class="p">,</span><span class="mf">0.0174532925199433</span><span class="p">],</span>
+            <span class="n">ID</span><span class="p">[</span><span class="s2">&quot;EPSG&quot;</span><span class="p">,</span><span class="mi">8802</span><span class="p">]],</span>
+        <span class="n">PARAMETER</span><span class="p">[</span><span class="s2">&quot;False easting&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">LENGTHUNIT</span><span class="p">[</span><span class="s2">&quot;Meter&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">ID</span><span class="p">[</span><span class="s2">&quot;EPSG&quot;</span><span class="p">,</span><span class="mi">8806</span><span class="p">]],</span>
+        <span class="n">PARAMETER</span><span class="p">[</span><span class="s2">&quot;False northing&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">LENGTHUNIT</span><span class="p">[</span><span class="s2">&quot;Meter&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">ID</span><span class="p">[</span><span class="s2">&quot;EPSG&quot;</span><span class="p">,</span><span class="mi">8807</span><span class="p">]]],</span>
+    <span class="n">CS</span><span class="p">[</span><span class="n">Cartesian</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+        <span class="n">AXIS</span><span class="p">[</span><span class="s2">&quot;easting&quot;</span><span class="p">,</span><span class="n">east</span><span class="p">,</span>
+            <span class="n">ORDER</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">LENGTHUNIT</span><span class="p">[</span><span class="s2">&quot;Meter&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span>
+        <span class="n">AXIS</span><span class="p">[</span><span class="s2">&quot;northing&quot;</span><span class="p">,</span><span class="n">north</span><span class="p">,</span>
+            <span class="n">ORDER</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="n">LENGTHUNIT</span><span class="p">[</span><span class="s2">&quot;Meter&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">]]]</span>
+<span class="n">Data</span> <span class="n">axis</span> <span class="n">to</span> <span class="n">CRS</span> <span class="n">axis</span> <span class="n">mapping</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
+<span class="n">Origin</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1111950.519667000044137</span><span class="p">,</span><span class="mf">6671703.117999999783933</span><span class="p">)</span>
+<span class="n">Pixel</span> <span class="n">Size</span> <span class="o">=</span> <span class="p">(</span><span class="mf">463.312716527916677</span><span class="p">,</span><span class="o">-</span><span class="mf">463.312716527708290</span><span class="p">)</span>
+<span class="n">Corner</span> <span class="n">Coordinates</span><span class="p">:</span>
+<span class="n">Upper</span> <span class="n">Left</span>  <span class="p">(</span><span class="o">-</span><span class="mf">1111950.520</span><span class="p">,</span> <span class="mf">6671703.118</span><span class="p">)</span> <span class="p">(</span> <span class="mi">20</span><span class="n">d</span> <span class="mi">0</span><span class="s1">&#39; 0.00&quot;W, 60d 0&#39;</span> <span class="mf">0.00</span><span class="s2">&quot;N)</span>
+<span class="n">Lower</span> <span class="n">Left</span>  <span class="p">(</span><span class="o">-</span><span class="mf">1111950.520</span><span class="p">,</span> <span class="mf">4447802.079</span><span class="p">)</span> <span class="p">(</span> <span class="mi">13</span><span class="n">d</span> <span class="mi">3</span><span class="s1">&#39;14.66&quot;W, 40d 0&#39;</span> <span class="mf">0.00</span><span class="s2">&quot;N)</span>
+<span class="n">Upper</span> <span class="n">Right</span> <span class="p">(</span> <span class="mf">1111950.520</span><span class="p">,</span> <span class="mf">6671703.118</span><span class="p">)</span> <span class="p">(</span> <span class="mi">20</span><span class="n">d</span> <span class="mi">0</span><span class="s1">&#39; 0.00&quot;E, 60d 0&#39;</span> <span class="mf">0.00</span><span class="s2">&quot;N)</span>
+<span class="n">Lower</span> <span class="n">Right</span> <span class="p">(</span> <span class="mf">1111950.520</span><span class="p">,</span> <span class="mf">4447802.079</span><span class="p">)</span> <span class="p">(</span> <span class="mi">13</span><span class="n">d</span> <span class="mi">3</span><span class="s1">&#39;14.66&quot;E, 40d 0&#39;</span> <span class="mf">0.00</span><span class="s2">&quot;N)</span>
+<span class="n">Center</span>      <span class="p">(</span>       <span class="mf">0.000</span><span class="p">,</span> <span class="mf">5559752.598</span><span class="p">)</span> <span class="p">(</span>  <span class="mi">0</span><span class="n">d</span> <span class="mi">0</span><span class="s1">&#39; 0.01&quot;E, 50d 0&#39;</span> <span class="mf">0.00</span><span class="s2">&quot;N)</span>
+<span class="n">Band</span> <span class="mi">1</span> <span class="n">Block</span><span class="o">=</span><span class="mi">128</span><span class="n">x128</span> <span class="n">Type</span><span class="o">=</span><span class="n">Byte</span><span class="p">,</span> <span class="n">ColorInterp</span><span class="o">=</span><span class="n">Gray</span>
+  <span class="n">NoData</span> <span class="n">Value</span><span class="o">=</span><span class="mi">255</span>
+  <span class="n">Offset</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>   <span class="n">Scale</span><span class="p">:</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+<p>So we see that we now have 4800 columns by 4800 rows dataset, centered around 0 degrees North, 0 degrees W. Let’s plot the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">ofile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;work/stitch_full_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">doy</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.vrt&quot;</span>
+<span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">ofile</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">stitch_vrt</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span><span class="o">*</span><span class="mf">0.1</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>\
+                <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span> <span class="n">at</span> <span class="mh">0x7fee62fc6750</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/032_GDAL_mosaicing_and_masking_14_1.png" /></p>
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>write a function called <code class="docutils literal notranslate"><span class="pre">stitch_me</span></code> that you give the arguments:</p>
+<ul>
+<li><p>year</p></li>
+<li><p>doy</p></li>
+</ul>
+</li>
+</ul>
+<p>and keywords/defaults:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">sds</span><span class="o">=</span><span class="s1">&#39;Lai_500m&#39;</span>
+<span class="o">*</span> <span class="n">tile</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span><span class="s1">&#39;h18v03&#39;</span><span class="p">]</span>
+<span class="o">*</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;MCD15A3H&#39;</span>
+</pre></div>
+</div>
+<p>that then generates a stitched VRT file with the appropriate data, and returns the VRT filename. Make sure to use the <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">doy</span></code> in the VRT filename.</p>
+</div>
+</div>
+<div class="section" id="sub-setting">
+<h2>Sub-setting<a class="headerlink" href="#sub-setting" title="Permalink to this headline">¶</a></h2>
+<p>We have seen in <a class="reference external" href="026_Numpy">026 Numpy</a> how we can use the idea of slicing to sub-set an array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">:</span><span class="n">step</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The dataset we read in the previous section was 4800 x 4800 pixels. If we wanted to generate a sub-set for pixels in the Pyrenees for example, we could inspect the image above, and see that this would be covered by about:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">[</span><span class="mi">3900</span><span class="p">:</span><span class="mi">4400</span><span class="p">,</span><span class="mi">2000</span><span class="p">:</span><span class="mi">3000</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We can use standard <a class="reference external" href="026_Numpy.md#slicing"><code class="docutils literal notranslate"><span class="pre">numpy</span></code> slicing</a> to sub-set then:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ofile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;work/stitch_full_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">doy</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.vrt&quot;</span>
+<span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">ofile</span><span class="p">)</span>
+<span class="c1"># get the lai data</span>
+<span class="n">lai</span> <span class="o">=</span> <span class="n">stitch_vrt</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span><span class="o">*</span><span class="mf">0.1</span>
+<span class="c1"># now subset</span>
+<span class="n">r0</span><span class="p">,</span><span class="n">r1</span> <span class="o">=</span> <span class="mi">3900</span><span class="p">,</span><span class="mi">4400</span>
+<span class="n">c0</span><span class="p">,</span><span class="n">c1</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="mi">3000</span>
+<span class="n">pyrenees</span> <span class="o">=</span> <span class="n">lai</span><span class="p">[</span><span class="n">r0</span><span class="p">:</span><span class="n">r1</span><span class="p">,</span><span class="n">c0</span><span class="p">:</span><span class="n">c1</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pyrenees</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>\
+                <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;shape was </span><span class="si">{</span><span class="n">lai</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;shape now </span><span class="si">{</span><span class="n">pyrenees</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="n">was</span> <span class="p">(</span><span class="mi">4800</span><span class="p">,</span> <span class="mi">4800</span><span class="p">)</span>
+<span class="n">shape</span> <span class="n">now</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/032_GDAL_mosaicing_and_masking_17_1.png" /></p>
+<p>That is rather inefficient though, and it is preferable to do the slicing when we call <code class="docutils literal notranslate"><span class="pre">ReadAsArray()</span></code>. This has a similar form of syntax for sub-setting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gdal</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">(</span><span class="n">col_offset</span><span class="p">,</span> <span class="n">row_offset</span><span class="p">,</span> <span class="n">col_size</span><span class="p">,</span> <span class="n">row_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ofile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;work/stitch_full_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">doy</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.vrt&quot;</span>
+<span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">ofile</span><span class="p">)</span>
+
+<span class="c1"># get the lai data as sub-set directly</span>
+<span class="n">r0</span><span class="p">,</span><span class="n">r1</span> <span class="o">=</span> <span class="mi">3900</span><span class="p">,</span><span class="mi">4400</span>
+<span class="n">c0</span><span class="p">,</span><span class="n">c1</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="mi">3000</span>
+
+<span class="n">pyrenees</span> <span class="o">=</span> <span class="n">stitch_vrt</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">(</span><span class="n">c0</span><span class="p">,</span><span class="n">r0</span><span class="p">,</span><span class="n">c1</span><span class="o">-</span><span class="n">c0</span><span class="p">,</span><span class="n">r1</span><span class="o">-</span><span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="mf">0.1</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pyrenees</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>\
+                <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;shape now </span><span class="si">{</span><span class="n">pyrenees</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="n">now</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/032_GDAL_mosaicing_and_masking_19_1.png" /></p>
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For doy 41 2019, extract and plot LAI of the sub-region around London by defining the approximate pixel coordinates of the area</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="filtering-by-vector-dataset-with-gdal-warp">
+<h2>Filtering by vector dataset with <code class="docutils literal notranslate"><span class="pre">gdal.Warp</span></code><a class="headerlink" href="#filtering-by-vector-dataset-with-gdal-warp" title="Permalink to this headline">¶</a></h2>
+<p>We can apply spatial filtering from a vector dataset, e.g. in a shape file, using <a class="reference external" href="https://gdal.org/programs/gdalwarp.html"><code class="docutils literal notranslate"><span class="pre">gdal.Warp</span></code></a>. We will explore this by filtering MODIS LAI by country boundary data.</p>
+<p>A number of vectors with countries and administrative subdivisions are available. The <a class="reference external" href="http://thematicmapping.org/downloads/TM_WORLD_BORDERS-0.3.zip">TM_WORLD_BORDERS shapefile</a> is popular and in the public domain. You can see it, and have a look at the data <a class="reference external" href="https://koordinates.com/layer/7354-tm-world-borders-03/">here</a>. The security on the website means that we cannot directly download the file, so instead we use the version stored in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory [<code class="docutils literal notranslate"><span class="pre">data/TM_WORLD_BORDERS-0.3.zip</span></code>].</p>
+<p>We will use the <a class="reference external" href="https://en.wikipedia.org/wiki/FIPS_county_code">FIPS code</a> to refer to countries within the dataset and the <code class="docutils literal notranslate"><span class="pre">gdal</span></code> function <code class="docutils literal notranslate"><span class="pre">gdal.Warp</span></code> to filter by this vector dataset. The syntax is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Warp</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;stitch_up.vrt&quot;</span><span class="p">,</span>
+         <span class="nb">format</span> <span class="o">=</span> <span class="s1">&#39;MEM&#39;</span><span class="p">,</span>
+         <span class="n">dstNodata</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+         <span class="n">cropToCutline</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+         <span class="n">cutlineDSName</span> <span class="o">=</span> <span class="s1">&#39;data/TM_WORLD_BORDERS-0.3.shp&#39;</span><span class="p">,</span> 
+         <span class="n">cutlineWhere</span> <span class="o">=</span> <span class="s2">&quot;FIPS=&#39;UK&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>the first argument (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> here) is the output filename</p></li>
+<li><p>the second argument (<code class="docutils literal notranslate"><span class="pre">&quot;stitch_up.vrt&quot;</span></code> here) is the input file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">format</span> <span class="pre">=</span> <span class="pre">'MEM'</span></code> means that the file is written to memory, rather than being stored in a file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dstNodata=255</span></code> means that any no data values will be set to 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cropToCutline</span> <span class="pre">=</span> <span class="pre">True</span></code> forces the dataset to be cropped at the dataset boundary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cutlineDSName</span> <span class="pre">=</span> <span class="pre">'data/TM_WORLD_BORDERS-0.3.shp'</span></code> specifies the vector boundary dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cutlineWhere</span> <span class="pre">=</span> <span class="pre">&quot;FIPS='UK'&quot;</span></code> provides the condition for sub-setting</p></li>
+</ul>
+<p>We choose a value of 255 for <code class="docutils literal notranslate"><span class="pre">dstNodata</span></code> because we have seen that only values between 0 and 100 are valid for this dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># only choose the tiles we need to make more efficient</span>
+<span class="c1"># [&#39;h17v03&#39;,&#39;h18v03&#39;]</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tile&#39;</span>      <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span><span class="s1">&#39;h18v03&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;product&#39;</span>   <span class="p">:</span>    <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sds&#39;</span>       <span class="p">:</span>    <span class="s1">&#39;Lai_500m&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">doy</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2019</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">files</span><span class="p">,</span><span class="n">sds</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">doy</span><span class="p">)</span>
+
+<span class="n">warp_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;dstNodata&#39;</span>     <span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+    <span class="s1">&#39;format&#39;</span>        <span class="p">:</span> <span class="s1">&#39;MEM&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cropToCutline&#39;</span> <span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;cutlineWhere&#39;</span>  <span class="p">:</span> <span class="s2">&quot;FIPS=&#39;UK&#39;&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;cutlineDSName&#39;</span> <span class="p">:</span> <span class="s1">&#39;data/TM_WORLD_BORDERS-0.3.shp&#39;</span>
+<span class="p">}</span>
+<span class="c1"># build a VRT </span>
+<span class="n">stitch_vrt</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">BuildVRT</span><span class="p">(</span><span class="s2">&quot;work/stitch_uk.vrt&quot;</span><span class="p">,</span> <span class="n">sds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">del</span> <span class="n">stitch_vrt</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Warp</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;work/stitch_uk.vrt&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">warp_args</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span><span class="o">*</span><span class="mf">0.1</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>\
+                <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span> <span class="n">at</span> <span class="mh">0x7fee63413f50</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/032_GDAL_mosaicing_and_masking_22_1.png" /></p>
+<p>If you want to save the resultant file, e.g. to geoTiff or VRT file, then you would use e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">warp_args</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="s1">&#39;GTiff&#39;</span>
+<span class="n">warp_args</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;COMPRESS=LZW&#39;</span><span class="p">]</span>
+<span class="c1"># compressed</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Warp</span><span class="p">(</span><span class="s2">&quot;uk.tif&quot;</span><span class="p">,</span> <span class="s2">&quot;stitch_up.tif&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">warp_args</span><span class="p">)</span>
+<span class="c1"># force a write to disk</span>
+<span class="n">g</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">warp_args</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;VRT&#39;</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Warp</span><span class="p">(</span><span class="s2">&quot;uk.vrt&quot;</span><span class="p">,</span> <span class="s2">&quot;stitch_up.vrt&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">warp_args</span><span class="p">)</span>
+<span class="c1"># force a write to disk</span>
+<span class="n">g</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="exercise-4">
+<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Plot the LAI for Luxemburg (<code class="docutils literal notranslate"><span class="pre">&quot;FIPS='LU'&quot;</span></code>) for doy 46, 2019</p></li>
+<li><p>find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.</p></li>
+</ul>
+</div>
+<div class="section" id="modis-get-modis">
+<h3><code class="docutils literal notranslate"><span class="pre">Modis.get_modis</span></code><a class="headerlink" href="#modis-get-modis" title="Permalink to this headline">¶</a></h3>
+<p>For convenience, we can use the function <code class="docutils literal notranslate"><span class="pre">Modis.get_modis</span></code> to combine these:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">from</span> <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;tile&#39;</span>      <span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;h17v03&#39;</span><span class="p">,</span><span class="s1">&#39;h18v03&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;product&#39;</span>   <span class="p">:</span>    <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sds&#39;</span>       <span class="p">:</span>    <span class="s1">&#39;Lai_500m&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">doy</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2019</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">warp_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;dstNodata&#39;</span>     <span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+    <span class="s1">&#39;format&#39;</span>        <span class="p">:</span> <span class="s1">&#39;MEM&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cropToCutline&#39;</span> <span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;cutlineWhere&#39;</span>  <span class="p">:</span> <span class="s2">&quot;FIPS=&#39;UK&#39;&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;cutlineDSName&#39;</span> <span class="p">:</span> <span class="s1">&#39;data/TM_WORLD_BORDERS-0.3.shp&#39;</span>
+<span class="p">}</span>
+
+<span class="n">mfiles</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_modis</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="n">doy</span><span class="p">,</span><span class="n">warp_args</span><span class="o">=</span><span class="n">warp_args</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mfiles</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;FparExtra_QC&#39;</span><span class="p">,</span> <span class="s1">&#39;FparLai_QC&#39;</span><span class="p">,</span> <span class="s1">&#39;FparStdDev_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;Fpar_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;LaiStdDev_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;Lai_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;bandnames&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">mfiles</span><span class="p">[</span><span class="s1">&#39;Lai_500m&#39;</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span><span class="o">*</span><span class="mf">0.1</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>\
+                <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">inferno_r</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">mfiles</span><span class="p">[</span><span class="s1">&#39;bandnames&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span> <span class="n">at</span> <span class="mh">0x7fee618c3390</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/032_GDAL_mosaicing_and_masking_27_1.png" /></p>
+<div class="section" id="exercise-5">
+<h4>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">Modis.get_modis</span></code> to plot the LAI for France for doy 49, 2019</p></li>
+<li><p>find the median LAI for France for doy 49, 2019 to 2 d.p.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>We have started to do some fuller geospatial processing now. WE have seen how to use <code class="docutils literal notranslate"><span class="pre">gdal</span></code> for reading datasets, as well as mosaicing them and filtering by some vector dataset. We can take a subset of an image when we use <code class="docutils literal notranslate"><span class="pre">gdal.ReadAsArray()</span></code>. We have learned how to do these things using the MODIS HDF files and SDS descriptors.</p>
+<p>We have also seen some utility functions to aid our use of these data: <code class="docutils literal notranslate"><span class="pre">Modis.get_files</span></code> to get the SDS or filenames for a particular configuration, and <code class="docutils literal notranslate"><span class="pre">Modis.get_modis</span></code> and to get a <code class="docutils literal notranslate"><span class="pre">gdal</span></code> VRT file with mosaiced tiles and vector masking.</p>
+<p>You should make sure that you are able to use one or more of these methods to obtain a numpy array with a MODIS datatset for a particular place and time.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GEOG0111 Scientific Computing</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docindex.html">GEOG0111</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docindex.html#geog0111-scientific-computing">GEOG0111 Scientific Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use.html">001 Use of Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction.html">010 Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types.html">011 Python data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings.html">012 String formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods.html">013 String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups.html">014 Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="013_Python_string_methods_answers.html">013 String methods : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="014_Python_groups_answers.html">014 Groups : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting.html">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display_answers.html">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata_answers.html">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="031_Numpy.html" title="previous chapter">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+      <li>Next: <a href="033_GDAL_timeseries.html" title="next chapter">033 GDAL: time series</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, P. Lewis and J. Gomez-Dans.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/032_GDAL_mosaicing_and_masking.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
