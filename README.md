@@ -25,13 +25,6 @@
 |---|---|---|
 |[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
 
-### Installation on UCL JupyterHub
-
-Log on the the UCL JupyterHub.
-
-In a shell, type:
-
-    /shared/groups/jrole001/geog0111/init/init0111.sh > init0111.log
 
 ### Purpose of this course
 
@@ -58,6 +51,10 @@ At the end of the module, students should:
 * have an understanding of algorithm development and be able to use widely used scientific computing software to manipulate datasets and accomplish analytical tasks
 * have an understanding of the technical issues specific to image-based analysis, model implementation and scientific visualisation
 
+
+### Running on UCL JupyterHub
+
+Follow the instructions on [UCL installation and running](Install.md)
 
 ## Timetable
 
