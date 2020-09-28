@@ -58,13 +58,18 @@ Follow the instructions on [UCL installation and running](Install.md)
 
 ## Timetable
 
+[class timetable for 2020/21](TIMETABLE.md)
+
 The course takes place over 10 weeks in term 1, usually in the Geography Department Unix Computing Lab (PB110) in the [Northwest wing](http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003), UCL. 
 
 Due to covid restrictions, it is being run online in the 2020-21 session.
 
 Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](http://www.ucl.ac.uk/staff/term-dates) for further information.
 
-The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Wednesday mornings.
+The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Thursdays.
+
+
+
 
 ### Assessment
 
