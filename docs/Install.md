@@ -13,5 +13,5 @@
 1. Make sure you have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running
 2. Log on the the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 3. Navigate to the directory `geog0111/notebooks`
-4. Access the notebooks you want directly, or via the [index](notebooks/Index.md).
+4. Access the notebooks you want directly, or via the [index](TIMETABLE.md).
 5. See further information on the course [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)
