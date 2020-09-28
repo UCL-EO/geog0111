@@ -758,7 +758,7 @@ class Modis():
     ofiles = [[sub.format(local_file=str(lfile)) for lfile in hdf_files] for sub in this_subs]
     return ofiles
 
-def test_login(do_test):
+def test_login(do_test,verbose=True):
     '''ping small (1.3 M) test file
        to test NASA Earthdata login'''
     if not do_test:
