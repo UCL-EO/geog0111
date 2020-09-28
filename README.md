@@ -70,11 +70,11 @@ The timetable is available on the UCL Academic Calendar. Live class sessions wil
 
 Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 
 
-See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=2796) for more details.
+See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for more details.
 
 ### Useful links
 
-[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=2796)  
+[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)  
 
 ### Using the course notes
 
