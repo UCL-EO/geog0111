@@ -15,11 +15,13 @@ import yaml
 from pathlib import Path
 
 def modis_annual_dataset(year,tile,product,step=1,\
+                         verbose=False,\
                          dbfile='data/my_db.yml'):
     # load into kwargs
     kwargs = {
     'tile'      :    list(tile),
     'product'   :    product,
+    'verbose'   :    verbose,
     }
     # list of doys we want
     doys = "*"
@@ -70,11 +72,11 @@ def get_modis_annual(ifiles,sds=None,warp_args={}):
     return mfiles
 
 
-def modis_annual(year,tile,product,step=1,\
+def modis_annual(year,tile,product,step=1,verbose=False,\
                  sds=None,warp_args={},\
                  dbfile='data/my_db.yml'):
     
-    ifiles = modis_annual_dataset(year,tile,product,\
+    ifiles = modis_annual_dataset(year,tile,product,verbose=verbose,\
                          step=step,dbfile=dbfile)
     mfiles = get_modis_annual(ifiles,sds=sds,warp_args=warp_args)
     # what to do is SDS is None?
@@ -91,9 +93,10 @@ def main():
   sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
   tile    = ['h17v03','h18v03','h17v04','h18v04']
   product = 'MCD15A3H'
-  year    = 2019
+  year    = 2018
   step    = 4 
-  mfiles = modis_annual(year,tile,product,step=step,sds=sds,warp_args=warp_args)
+  verbose = True
+  mfiles = modis_annual(year,tile,product,verbose=verbose,step=step,sds=sds,warp_args=warp_args)
   print(mfiles.keys())
 
 
