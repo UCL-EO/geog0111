@@ -42,7 +42,7 @@ class  Cylog():
         ----------
         site: 
            string of anchor URL for site to associate with username and
-           password  OR list of sites for the same username/ password
+           password OR list of sites
 
         Keyword arguments 
         ----------
@@ -64,18 +64,11 @@ class  Cylog():
         password: str
             password
         ''' 
-        if type(site) == str:
-          site = [site]
-        else:
-          site = list(site)
-     
-        site = [str(s) for s in site]
-        ssite = []
-        for s in site:
-          while s[-1] == '/':
-            s = s[:-1]
-          ssite.append(s)
-        site = ssite
+        
+        
+        site = self.sort_list(site)
+        if site is None:
+           return 
   
         self.site = site
         self.stderr = stderr or sys.stderr
@@ -88,13 +81,34 @@ class  Cylog():
         else:
             self._init(site=self.site,destination_folder=destination_folder)
 
+    def sort_list(self,site):
+        site = site or self.site
+        if site is None:
+           return 
+    
+        '''sort the list'''
+        if type(site) is str:
+            site = [site]
+        else:
+            site = list(site)
+        ssite = []
+        for s in site:
+            s = str(s)
+            while s[-1] == '/':
+                  s = s[:-1]
+            ssite.append(s)
+        return ssite
+        
     def msg(self,*args):
         '''message passing'''
         if self.verbose:
           print('-->',*args,file=self.stderr)
 
-    def _init(self,site=False,destination_folder='.cylog'):
-
+    def _init(self,site=None,destination_folder='.cylog'):
+        site = self.sort_list(site)
+        if site is None:
+           return 
+    
         key = Fernet.generate_key()
         cipher_suite = Fernet(key)
         data = {'key':key}
@@ -113,25 +127,11 @@ class  Cylog():
         p.chmod(0o600)
 
 
-    def _setup(self,site=False,destination_folder='.cylog'):
-        site = site or self.site
-
+    def _setup(self,site=None,destination_folder='.cylog'):
+        site = self.sort_list(site)
         if site is None:
            return 
-
-        if type(site) == str:
-          site = [site]
-        else:
-          site = list(site)
-
-        site = [str(s) for s in site]
-        ssite = []
-        for s in site:
-          while s[-1] == '/':
-            s = s[:-1]
-          ssite.append(s)
-        site = ssite
-
+    
         # make sure keyfile exists
         # should check permissions too
         keyfile = self.dest_path.joinpath('.cylog.npz')
@@ -172,8 +172,8 @@ class  Cylog():
         ciphered_user = cipher_suite.encrypt((username.encode()))
         ciphered_pass = cipher_suite.encrypt((password.encode()))
         for s in site:
-          data[f'ciphered_user_{s}'] = ciphered_user
-          data[f'ciphered_pass_{s}'] = ciphered_pass
+            data[f'ciphered_user_{s}'] = ciphered_user
+            data[f'ciphered_pass_{s}'] = ciphered_pass
 
         self.msg(f"--> writing ciphers to file")
 
@@ -186,7 +186,7 @@ class  Cylog():
         p.chmod(0o600)
         self.msg(f"--> done writing ciphers to file")
 
-    def login(self,site=False,force=False):
+    def login(self,site=None,force=False):
         '''
         Reads encrypted information from ~/{dest_path}/.cylog.npz
 
@@ -203,24 +203,10 @@ class  Cylog():
         A tuple containing plain text (username,password) for (site or self.site)
 
         '''
-        site = site or self.site
+        site = self.sort_list(site)
         if site is None:
-          return (None,None)
+           return (None,None)
         force = force 
-
-
-        if type(site) == str:
-          site = [site]
-        else:
-          site = list(site)
-
-        site = [str(s) for s in site]
-        ssite = []
-        for s in site:
-          while s[-1] == '/':
-            s = s[:-1]
-          ssite.append(s)
-        site = ssite
 
         keyfile = self.dest_path.joinpath('.cylog.npz')
         if not keyfile.exists():
@@ -234,15 +220,14 @@ class  Cylog():
             self._init(site=site,destination_folder=destination_folder)
 
         key = data['key']
-       
-        for s in site: 
-          
-          if (f'ciphered_user_{s}' not in data) or (f'ciphered_pass_{s}' not in data):
-            self.msg(f"ciphered_user_{s} and/or ciphered_pass_{s} " +
-                   f"missing from key file {keyfile.as_posix()}")
-            print(f"try again ... or enter 'exit' as username to quit")
-            self._setup(site=site)
-            return self.login(site=site)
+        
+        for s in site:
+            if (f'ciphered_user_{s}' not in data) or (f'ciphered_pass_{s}' not in data):
+                self.msg(f"ciphered_user_{s} and/or ciphered_pass_{s} " +
+                       f"missing from key file {keyfile.as_posix()}")
+                print(f"try again ... or enter 'exit' as username to quit")
+                self._setup(site=site)
+                return self.login(site=site)
 
         if force:
             self.msg(f'forcing re-entry of password for {site}')
