@@ -19,9 +19,6 @@ You will need some understanding of the following:
 * [013_Python_string_methods](013_Python_string_methods.md)
 * [014_Python_groups](014_Python_groups.md)
 
-### Timing
-
-The session should take around 15 minutes.
 
 ## Comparison Operators and `if`
 
@@ -191,4 +188,4 @@ We should know know how to use `if` statements in Python to control program flow
 
 We know that conditions inside `if` statements use indentation in Python, and we know to be careful in our use of this.
 
-There are additional notes in [docs.python.org](https://docs.python.org/3/tutorial/controlflow.html#the-range-function) you can foloow up to deepen your understanding of these topics. 
+There are additional notes in [docs.python.org](https://docs.python.org/3/tutorial/controlflow.html#the-range-function) you can follow up to deepen your understanding of these topics. 

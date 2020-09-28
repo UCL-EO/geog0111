@@ -18,10 +18,6 @@ You will need some understanding of the following:
 * [011 Data types](011_Python_data_types.md) In particular, you should be understand strings.
 * [012 String formatting](012_Python_strings.md)
 
-### Timing
-
-The session should take around 20 minutes.
-
 
 
 ## Strings
@@ -780,6 +776,11 @@ stop  = None
 skip  = 1
 print (s[start:stop:skip])
 ```
+
+    Hello World 11
+    HloWrd
+    rld
+
 
 #### Exercise 5
 

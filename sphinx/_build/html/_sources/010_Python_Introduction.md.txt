@@ -27,9 +27,6 @@ You will need some understanding of the following:
 
 Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
 
-### Timing
-
-The session should take around 15 minutes.
 
 ## Some basics
 

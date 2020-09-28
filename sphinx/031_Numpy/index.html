@@ -1,0 +1,2049 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://ucl-eo.github.io/geog0111/sphinx/031_Numpy/">
+      
+      
+        <meta name="author" content="Prof P. Lewis">
+      
+      <link rel="shortcut icon" href="../../images/ucl.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>031 Manipulating data: `numpy` - GEOG0111</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#031-manipulating-data-numpy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            GEOG0111
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              031 Manipulating data: `numpy`
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    GEOG0111
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Course Basics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Course Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../002_Unix/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../003_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../004_Accounts/" title="Accounts" class="md-nav__link">
+      Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../005_Packages/" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../001_Notebook_use_answers/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../002_Unix_answers/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../003_Help_answers/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Core Concepts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Core Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../014_Python_groups/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../015_Python_control/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../016_Python_for/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../017_Functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../018_Running_Python/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
+    
+    <label class="md-nav__link" for="nav-3-10">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-10">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../010_Python_Introduction_answers/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../011_Python_data_types_answers/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings_answers/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../013_Python_string_methods_answers/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../014_Python_groups_answers/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../015_Python_control_answers/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../016_Python_for_answers/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../017_Functions_answers/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../018_Running_Python_answers/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_Python_files/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../021_Streams/" title="Streams" class="md-nav__link">
+      Streams
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../022_Read_write_files/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../023_Plotting/" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../024_Image_display/" title="Image Display" class="md-nav__link">
+      Image Display
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-6" type="checkbox" id="nav-4-6">
+    
+    <label class="md-nav__link" for="nav-4-6">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-6">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_Python_files_answers/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../021_Streams_answers/" title="Streams" class="md-nav__link">
+      Streams
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../022_Read_write_files_answers/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../023_Plotting_answers/" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../024_Image_display_answers/" title="Image Display" class="md-nav__link">
+      Image Display
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Geospatial Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Geospatial Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../030_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../031_Numpy/" title="Numpy" class="md-nav__link">
+      Numpy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../032_GDAL_mosaicing_and_masking/" title="GDAL Mosaicing And Masking" class="md-nav__link">
+      GDAL Mosaicing And Masking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../033_GDAL_timeseries/" title="GDAL Timeseries" class="md-nav__link">
+      GDAL Timeseries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../034_Weigthed_smoothing_and_interpolation/" title="Weigthed Smoothing And Interpolation" class="md-nav__link">
+      Weigthed Smoothing And Interpolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../035_Weighted_interpolation/" title="Weighted Interpolation" class="md-nav__link">
+      Weighted Interpolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../036_Model_Fitting/" title="Model Fitting" class="md-nav__link">
+      Model Fitting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8" type="checkbox" id="nav-5-8">
+    
+    <label class="md-nav__link" for="nav-5-8">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-8">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../030_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../031_Numpy_answers/" title="Numpy" class="md-nav__link">
+      Numpy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../032_GDAL_mosaicing_and_masking_answers/" title="GDAL Mosaicing And Masking" class="md-nav__link">
+      GDAL Mosaicing And Masking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Modelling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Modelling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../040_Practical_Part1/" title="Practical Part1" class="md-nav__link">
+      Practical Part1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../041_Practical_Part2/" title="Practical Part2" class="md-nav__link">
+      Practical Part2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    Purpose
+  </a>
+  
+    <nav class="md-nav" aria-label="Purpose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numpy" class="md-nav__link">
+    numpy
+  </a>
+  
+    <nav class="md-nav" aria-label="numpy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction-to-arrays" class="md-nav__link">
+    Introduction to arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-arithmetic" class="md-nav__link">
+    Array arithmetic
+  </a>
+  
+    <nav class="md-nav" aria-label="Array arithmetic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-detail-on-numpyarrays" class="md-nav__link">
+    More detail on numpy.arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-creators" class="md-nav__link">
+    Array creators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexing-arrays" class="md-nav__link">
+    Indexing arrays
+  </a>
+  
+    <nav class="md-nav" aria-label="Indexing arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nplinspace-nparange" class="md-nav__link">
+    np.linspace, np.arange
+  </a>
+  
+    <nav class="md-nav" aria-label="np.linspace, np.arange">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-statistics" class="md-nav__link">
+    Summary statistics
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary statistics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nploadtxt" class="md-nav__link">
+    np.loadtxt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slicing" class="md-nav__link">
+    slicing
+  </a>
+  
+    <nav class="md-nav" aria-label="slicing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-5" class="md-nav__link">
+    Exercise 5
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axis" class="md-nav__link">
+    axis
+  </a>
+  
+    <nav class="md-nav" aria-label="axis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-6" class="md-nav__link">
+    Exercise 6
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argmin-argmax-and-masking" class="md-nav__link">
+    argmin, argmax and masking
+  </a>
+  
+    <nav class="md-nav" aria-label="argmin, argmax and masking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-7" class="md-nav__link">
+    Exercise 7
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    where
+  </a>
+  
+    <nav class="md-nav" aria-label="where">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-8" class="md-nav__link">
+    Exercise 8
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/sphinx/031_Numpy.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="031-manipulating-data-numpy">031 Manipulating data: <code>numpy</code></h1>
+<h2 id="purpose">Purpose</h2>
+<p>While Python has a rich set of modules and data types by default, for numerical computing you'll be using two main libraries that conform the backbone of the <a href="https://scipy.org/about.html">Python scientific stack</a>. These libraries implement a great deal of functionality related to mathematical operations and efficient computations on large data volumes. These libraries are <a href="http://numpy.org"><code>numpy</code></a> and <a href="http://scipy.org"><code>scipy</code></a>. <code>numpy</code>, which we will concentrate on in this section, deals with efficient arrays, similar to lists, that simplify many common processing operations. Of course, just doing calculations isn't much fun if you can't plot some results. To do this, we use the <a href="http://matplotlib.org"><code>matplotlib</code></a> library that we have seen in previous sessions.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+<li><a href="../011_Python_data_types/">011 Data types</a> </li>
+<li><a href="../012_Python_strings/">012 String formatting</a></li>
+<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
+<li><a href="../020_Python_files/">020_Python_files</a></li>
+<li><a href="../021_Streams/">021 Streams</a></li>
+<li><a href="../022_Read_write_files/">022 Read write files</a></li>
+<li><a href="../023_Plotting/">023 Plotting</a></li>
+<li><a href="../024_Image_display/">024_Image_display</a></li>
+<li><a href="../030_NASA_MODIS_Earthdata/">030_NASA_MODIS_Earthdata</a></li>
+</ul>
+<h2 id="numpy"><code>numpy</code></h2>
+<h3 id="introduction-to-arrays">Introduction to arrays</h3>
+<p>You import the <code>numpy</code> library using</p>
+<pre><code>import numpy as np
+</code></pre>
+<p>This means that all the functionality of <code>numpy</code> is accessed by the prefix <code>np.</code>: e.g. <code>np.array</code>. The main element of <code>numpy</code> is the numpy array. </p>
+<p>An array is in some ways like the <a href="../014_Python_groups/#list">list object we have seen before</a>, but unlike a list, all the elements are of the same type, for example floating point numbers. Further, the range of things we can do with a <code>numpy</code> list is much greater than with the basic list.</p>
+<pre><code class="python">import numpy as np  # Import the numpy library
+
+# Example 1
+# An array with 5 ones
+arr = np.ones(5)
+print(f'--&gt; Array with 5 ones:\n{arr}')
+
+# type
+print(f'--&gt; type of array:\n{type(arr)}')
+assert type(arr) == np.ndarray
+
+# Example 2
+arr = np.array([1, 2, 3, 4])
+print(f'--&gt; Array started from a list of integers:\n{arr}')
+
+# Example 3
+# An array started from a list of numbers, what's the difference??
+arr = np.array([1., 2, 3, 4])
+print(f'--&gt; Array started from a list of floats (some implicit):\n{arr}')
+
+</code></pre>
+
+<pre><code>--&gt; Array with 5 ones:
+[1. 1. 1. 1. 1.]
+--&gt; type of array:
+&lt;class 'numpy.ndarray'&gt;
+--&gt; Array started from a list of integers:
+[1 2 3 4]
+--&gt; Array started from a list of floats (some implicit):
+[1. 2. 3. 4.]
+</code></pre>
+<p>In the example above we have generated an array where all the elements are <code>1.0</code>, using <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html"><code>np.ones</code></a>, and then we have been able to generate arrays from lists using the <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html"><code>np.array</code></a> function. The difference between the 2nd and 3rd examples is that in the 2nd example, all the elements of the list are integers, and in the 3rd example, one is a floating point number. <code>numpy</code> automatically makes the array floating point by converting the integers to floating point numbers.</p>
+<p>We saw in an <a href="../011_Python_data_types/#Conversion-between-data-types">earlier session</a> how we could convert a floating point number to integer with:</p>
+<pre><code class="python">float_version = 10.5
+print(f'float version: {float_version}')
+
+# convert individual number to int
+int_version = int(float_version)
+print(f'int version  : {int_version}')
+</code></pre>
+
+<pre><code>float version: 10.5
+int version  : 10
+</code></pre>
+<p>We can similarly convert between numpy data types (where appropriate) with <code>np.astype()</code>:</p>
+<pre><code class="python"># An array started from a list of numbers, what's the difference??
+float_version = np.array([1., 2., 3., 4.])
+print(f'float version: {float_version}')
+
+# convert whole array to int
+int_version = float_version.astype(np.int)
+print(f'int version  : {int_version}')
+</code></pre>
+
+<pre><code>float version: [1. 2. 3. 4.]
+int version  : [1 2 3 4]
+</code></pre>
+<h3 id="array-arithmetic">Array arithmetic</h3>
+<p>What else can we do with arrays? Perhaps the most significant thing is that can efficiently operate all array elements without loops, by treating the array as an object:</p>
+<pre><code class="python">arr = np.ones(10)
+print(f'2 x {arr} \n  = {2 * arr}')
+</code></pre>
+
+<pre><code>2 x [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] 
+  = [2. 2. 2. 2. 2. 2. 2. 2. 2. 2.]
+</code></pre>
+<p><code>numpy</code> is clever enough to figure out that the 2 multiplying the array is applied to all elements of the array, and returns an array of the same size as <code>arr</code> with the elements of <code>arr</code> multiplied by 2. We can also multiply two arrays of the same size. So let's create an array with the numbers 0 to 9 and one with the numbers 9 to 0 and do a times table:</p>
+<pre><code class="python">arr1 = 9 * np.ones(10).astype(np.int)
+arr2 = np.arange(1, 11)  # arange gives an array from 1 to 11, 11 not included
+
+print(arr1)
+print(arr2)
+
+print(arr1 * arr2)
+</code></pre>
+
+<pre><code>[9 9 9 9 9 9 9 9 9 9]
+[ 1  2  3  4  5  6  7  8  9 10]
+[ 9 18 27 36 45 54 63 72 81 90]
+</code></pre>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>Using code similar to the above and a <code>for</code> loop, write the times tables for 2 to 10. The solution you're looking for should look a bit like this:<pre><code>[ 2  4  6  8 10 12 14 16 18 20]
+[ 3  6  9 12 15 18 21 24 27 30]
+[ 4  8 12 16 20 24 28 32 36 40]
+[ 5 10 15 20 25 30 35 40 45 50]
+[ 6 12 18 24 30 36 42 48 54 60]
+[ 7 14 21 28 35 42 49 56 63 70]
+[ 8 16 24 32 40 48 56 64 72 80]
+[ 9 18 27 36 45 54 63 72 81 90]
+[ 10  20  30  40  50  60  70  80  90 100]
+</code></pre>
+</li>
+</ul>
+<p>We can get a tuple of the array shape with <code>array.shape</code>.</p>
+<p>If the arrays are of the same shape, you can do standard operations between them <strong>element-wise</strong>:</p>
+<pre><code class="python">arr1 = np.array([3, 4, 5, 6.])
+arr2 = np.array([30, 40, 50, 60.])
+
+print(arr2 - arr1)
+print(arr1 * arr2)
+
+print(&quot;Array shapes:&quot;)
+print(f&quot;arr1: {arr1.shape}&quot;)
+print(f&quot;arr2: {arr2.shape}&quot;)
+</code></pre>
+
+<pre><code>[27. 36. 45. 54.]
+[ 90. 160. 250. 360.]
+Array shapes:
+arr1: (4,)
+arr2: (4,)
+</code></pre>
+<p>The <code>numpy</code> documenation is huge. There's an <a href="https://docs.scipy.org/doc/numpy/user/index.html">user's guide</a>, as well as a reference to all the <a href="https://docs.scipy.org/doc/numpy/reference/index.html">contents of the library</a>. There's even <a href="https://docs.scipy.org/doc/numpy/user/quickstart.html">a tutorial availabe</a> if you get bored with this one.</p>
+<h3 id="more-detail-on-numpyarrays">More detail on <code>numpy.arrays</code></h3>
+<p>So far, we have seen a 1D array, which is the equivalent to a vector. But arrays can have more dimensions: a 2D array would be equivalent to a matrix (or an image, with rows and columns), and a 3D array would be a volume split into voxels, as seen below</p>
+<p><a href="https://cdn-images-1.medium.com/max/1120/1*Ikn1J6siiiCSk4ivYUhdgw.png"><img alt="numpy arrays" src="../images/1%2AIkn1J6siiiCSk4ivYUhdgw.png" /></a></p>
+<p>So a 1D array has one axis, a 2D array has 2 axes, a 3D array 3, and so on. The <code>shape</code> of the array provides a tuple with the number of elements along each axis. Let's see this with some generally useful array creation options:</p>
+<pre><code class="python"># Create a 2D array from a list of rows. 
+# Note that the 3 rows have the same number of elements!
+arr1 = np.array([[0,  1,  2,  3,  4],\
+                 [5,  6,  7,  8,  9],\
+                 [10, 11, 12, 13, 14]])
+
+# A 2D array from a list of tuples.
+# We're specifically asking for floating point numbers
+arr2 = np.array([(1.5, 2, 3),\
+                 (4  , 5, 6)], dtype=np.float)
+print(&quot;3*5 array:&quot;)
+print(arr1)
+print(&quot;2*3 array:&quot;)
+print(arr2)
+</code></pre>
+
+<pre><code>3*5 array:
+[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]]
+2*3 array:
+[[1.5 2.  3. ]
+ [4.  5.  6. ]]
+</code></pre>
+<h3 id="array-creators">Array creators</h3>
+<p>Quite often, we will want to initialise an array to be all the same number. The methods for doing this as 0,1 in <code>numpy</code> are <code>np.zeros()</code> and <code>np.ones()</code> respectively.</p>
+<p>We specify the shape of the array we want with an appropriate tuple.</p>
+<p>We can specify the data type of the array with the keyword <code>dtype=np.int</code> (for integer). This would have the same effect as using <code>array.astype(np.int)</code> as above, but is shorter, clearer and neater. </p>
+<pre><code class="python"># Creates a 3*4 array of 0s
+arr = np.zeros((3, 4))
+print(&quot;3*4 array of 0s&quot;)
+print(arr)
+
+# Creates a 2x3x4 array of int 1's
+print(&quot;2*3*4 array of 1s (integers)&quot;)
+arr = np.ones((2, 3, 4), dtype=np.int)
+print(arr)
+</code></pre>
+
+<pre><code>3*4 array of 0s
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+2*3*4 array of 1s (integers)
+[[[1 1 1 1]
+  [1 1 1 1]
+  [1 1 1 1]]
+
+ [[1 1 1 1]
+  [1 1 1 1]
+  [1 1 1 1]]]
+</code></pre>
+<p>A similar useful set of functions are <code>np.ones_like</code> and <code>np.zeros_like</code>. These create a copy of an array, with the values set to 1 or 0 respectively:</p>
+<pre><code class="python">base = np.array([[1,2,3],[4,7,0]])
+print(f'base:\n{base}')
+
+z = np.zeros_like(base)
+print(f'z:\n{z}')
+</code></pre>
+
+<pre><code>base:
+[[1 2 3]
+ [4 7 0]]
+z:
+[[0 0 0]
+ [0 0 0]]
+</code></pre>
+<h3 id="indexing-arrays">Indexing arrays</h3>
+<p>We can refer to a particular value within an array with a tuple describing an index. </p>
+<p>For example:</p>
+<pre><code class="python">import numpy as np
+
+arr = np.array([[0,  1,  2,  3,  4],\
+                 [5,  6,  7,  8,  9],\
+                 [10, 11, 12, 13, 14]])
+
+# row 2, column 3
+# so index is (2,3)
+print(arr[2,3])
+</code></pre>
+
+<pre><code>13
+</code></pre>
+<p>In the example above, the index was implicitly a tuple, but we can also be explicit:</p>
+<pre><code class="python"># row 2, column 3
+# so index is (2,3)
+# make an index tuple
+index = (2,3)
+print(arr[index])
+</code></pre>
+
+<pre><code>13
+</code></pre>
+<p>If we want to refer to a set of indices, we can use a 2D index tuple:</p>
+<pre><code class="python">import numpy as np
+
+arr = np.array([[0,  1,  2,  3,  4],\
+                 [5,  6,  7,  8,  9],\
+                 [10, 11, 12, 13, 14]])
+
+print(f'shape is {arr.shape}')
+# make sure we dont index outside of this shape!
+# row 2, column 3
+# row 0, column 4
+# row 1, column 2
+
+# so 2D index is ((2,0,1),(3,4,1))
+# make an index tuple
+print(f'data:\n{arr}')
+index = ((2,0,1),(3,4,1))
+print(f'values at {index} are {arr[index]}')
+</code></pre>
+
+<pre><code>shape is (3, 5)
+data:
+[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]]
+values at ((2, 0, 1), (3, 4, 1)) are [13  4  6]
+</code></pre>
+<p>We will see below that there are other options for referring to elements of an array, but this 2D tuple of indices is important in showing how to select individual elements from an array.</p>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>write a function that does the following:<ul>
+<li>create a 2-D tuple called <code>indices</code> containing the integers <code>((0, 1, 2, 3, 4),(5, 6, 7, 8, 9))</code></li>
+<li>create a 2-D numpy array called <code>data</code> of shape <code>(5,10)</code>, data type <code>int</code>, initialised with zero</li>
+<li>set the value of <code>data[r,c]</code> to be <code>1</code> for each of the 5 row,column pairs specified in <code>indices</code>.</li>
+<li>return the data array</li>
+</ul>
+</li>
+<li>print out the result returned</li>
+</ul>
+<p>The result should look like:</p>
+<pre><code>[[0 0 0 0 0 1 0 0 0 0]
+ [0 0 0 0 0 0 1 0 0 0]
+ [0 0 0 0 0 0 0 1 0 0]
+ [0 0 0 0 0 0 0 0 1 0]
+ [0 0 0 0 0 0 0 0 0 1]]
+</code></pre>
+<p><strong>Hint</strong>: You could use a <code>for</code> loop, but what does <code>data[indices]</code> give?</p>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>write a more flexible version of you function above where <code>indices</code>, the value you want to set (<code>1</code> above) and the desired shape of <code>data</code> are specified through function keyword arguments (e.g. <code>indices=((0, 1, 2, 3, 4),(5, 6, 7, 8, 9)),value=1</code>) with the shape set as a required argument.</li>
+</ul>
+<h3 id="nplinspace-nparange"><code>np.linspace</code>, <code>np.arange</code></h3>
+<p>As well as initialising arrays with the same number as above, we often also want to initialise with common data patterns. This includes simple integer ranges <code>(start, stop, step)</code> in a similar fashion to <a href="../013_Python_string_methods/#slice">slicing we saw earlier</a>.</p>
+<p>For example:</p>
+<pre><code>np.arange(start, stop, step)
+</code></pre>
+<p>will produce a list of integer numbers from <code>start</code> to <code>stop</code> in steps of <code>step</code>. It is similar to the <a href="../016_Python_for/#range()"><code>range</code> function we have seen perviously</a>.</p>
+<p>We will introduce the function <code>np.linspace(start, stop, nsamp)</code> that creates an array of equally-spaced numbers according to the pattern <code>(start, stop, nsamp)</code>.</p>
+<pre><code class="python"># array creators
+
+print(&quot;1D array of numbers from 0 to 2 in increments of 0.3&quot;)
+start = 0
+stop = 2.0
+step = 0.3
+
+arr = np.arange(start, stop, step)
+print(f'arr of shape {arr.shape}:\n\t{arr}')
+
+start = 0
+stop = 34
+nsamp = 9
+arr = np.linspace(start, stop, nsamp)
+print(
+    f&quot;array of shape {arr.shape} numbers equally spaced from {start} to {stop}:\n\t{arr}&quot;)
+
+np.linspace(stop, start, 9)
+</code></pre>
+
+<pre><code>1D array of numbers from 0 to 2 in increments of 0.3
+arr of shape (7,):
+    [0.  0.3 0.6 0.9 1.2 1.5 1.8]
+array of shape (9,) numbers equally spaced from 0 to 34:
+    [ 0.    4.25  8.5  12.75 17.   21.25 25.5  29.75 34.  ]
+
+
+
+
+
+array([34.  , 29.75, 25.5 , 21.25, 17.  , 12.75,  8.5 ,  4.25,  0.  ])
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<ul>
+<li>print an array of integer numbers from 100 to 1</li>
+<li>print an array with 9 numbers equally spaced between 100 and 1</li>
+</ul>
+<p>Hint: what value of skip would be appropriate here? what about <code>start</code> and <code>stop</code>?</p>
+<h2 id="summary-statistics">Summary statistics</h2>
+<p>Below are some representative arithmetic operations that you can use on arrays. Remember that they happen <strong>elementwise</strong> (i.e. to the whole array):</p>
+<pre><code class="python"># initialise some numbers
+b = np.arange(4)
+print(f'{b}^2 = {b**2}\n')
+
+a = np.array([20, 30, 40, 50])
+print(f&quot;assuming in radians,\n10*sin({a}) = {10 * np.sin(a)}&quot;)
+
+print(&quot;\nSome useful numpy array methods for summary statistics...\n&quot;)
+print(f&quot;Find the maximum of an array: a.max():   {a.max()}&quot;)
+print(f&quot;Find the minimum of an array: a.min():   {a.min()}&quot;)
+print(f&quot;Find the sum of an array: a.sum():       {a.sum()}&quot;)
+print(f&quot;Find the mean of an array: a.mean():     {a.mean(): &gt;5.2f}&quot;)
+print(f&quot;Find the std dev of an array: a.std():   {a.std() : &gt;5.2f}&quot;)
+</code></pre>
+
+<pre><code>[0 1 2 3]^2 = [0 1 4 9]
+
+assuming in radians,
+10*sin([20 30 40 50]) = [ 9.12945251 -9.88031624  7.4511316  -2.62374854]
+
+Some useful numpy array methods for summary statistics...
+
+Find the maximum of an array: a.max():   50
+Find the minimum of an array: a.min():   20
+Find the sum of an array: a.sum():       140
+Find the mean of an array: a.mean():     35.00
+Find the std dev of an array: a.std():   11.18
+</code></pre>
+<pre><code class="python"># variance and standard deviation:
+#
+# try var and see if it is the same as std * std
+var = a.var()
+std = a.std()
+
+# use np.sqrt for square root
+print(f'sqrt({np.sqrt(var)}) should equal {std}')
+</code></pre>
+
+<pre><code>sqrt(11.180339887498949) should equal 11.180339887498949
+</code></pre>
+<h3 id="nploadtxt"><code>np.loadtxt</code></h3>
+<p>Let's access an interesting dataset on the frequency of satellite launches to illustrate this.</p>
+<p><a href="https://media.giphy.com/media/26DNbCqVfLJbYrXIA/giphy.gif"><img alt="SpaceX landing" src="../images/giphy.gif" /></a></p>
+<p>The library code <code>geog0111.nsat</code> accesses a database at <a href="https://www.n2yo.com">https://www.n2yo.com</a> and gets a table satellite launch data.</p>
+<p>Data from this is stored in the datafile <a href="../data/satellites-1957-2021.gz">data/satellites-1957-2021.gz</a>. This is a compressed text file.</p>
+<p>We can use <code>np.loadtxt</code> to read files of this nature into numpy arrays in a similar way to how we <a href="../021_Streams/#Reading-data-into-pandas">read into panadas</a>. If the dataset is not <code>CSV</code> but simply a whitespaced text file, it is often easier to use <code>np.loadtxt</code> than <code>pandas</code>.</p>
+<p>In the case of this dataset, we wish to interpret the launch counts as integers, so we convert the data we read to integers.</p>
+<pre><code class="python">import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# shape of data
+print(data.shape)
+</code></pre>
+
+<pre><code>(12, 64)
+</code></pre>
+<p>The dataset dimensions are to <code>(month,year)</code>. Indices into the array are zero-based, so we can relate month number (1 being January) and year number to index <code>(i,j)</code> through:</p>
+<pre><code>i = month - 1
+j = year - 1957
+</code></pre>
+<p>We can print some summary statistics:</p>
+<pre><code class="python">print(f'data shape {data.shape}')
+
+print(f'some summary statistics over the period 1957 to 2021:')
+print(f'The total number of launches is {data.sum()}')
+print(f'The mean number of launches is {data.mean() : .2f} per month')
+</code></pre>
+
+<pre><code>data shape (12, 64)
+some summary statistics over the period 1957 to 2021:
+The total number of launches is 45689
+The mean number of launches is  59.49 per month
+</code></pre>
+<h3 id="slicing">slicing</h3>
+<p>We have seen <a href="026_Numpy.md#Indexing-arrays">above</a> how we can provide a tuple of indices to access particular array elements. Often we want to access 'blocks' of an array. A set of indices would be inefficient for that. Instead, we use the idea of slices <code>(from:to:step)</code> that we have come across before for <a href="../013_Python_string_methods/#slice">strings</a> . Remember that <code>to</code> is "up to but not including" the to number.</p>
+<p>If we specify <code>:</code> or <code>::</code> in the slice, it means we take the defaults for <code>(from:to:step)</code>. If we specify only one number, that is <code>from</code>. If we specify two, it is <code>from:to</code>.</p>
+<p>So:</p>
+<pre><code>data[0]
+</code></pre>
+<p>is the data for month index 0 (January), <code>data[1]</code> for February etc. Or:</p>
+<pre><code>data[0:2]
+</code></pre>
+<p>is the data for month index 0 (January) <strong>and</strong> 1 (February)  etc. </p>
+<p>We can get more specific statistics then such as:</p>
+<pre><code class="python">import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+print(f'mean launches in month 0: {data[0].mean() :.2f}')
+print(f'max  launches in month 0: {data[0].max()}')
+</code></pre>
+
+<pre><code>mean launches in month 0: 33.95
+max  launches in month 0: 237
+</code></pre>
+<p>We can refer to items in the second dimension of the array, by using a code for <em>all</em> values of the first dimension. So:</p>
+<pre><code>data[:,0]
+</code></pre>
+<p>refers to all elements in dimension 0 (i.e. all months here) by only year 0 (1957).</p>
+<pre><code class="python">print(f'mean launches in year 1957: {data[:,0].sum()}')
+print(f'max  launches in year 1957: {data[:,0].max()}')
+</code></pre>
+
+<pre><code>mean launches in year 1957: 3
+max  launches in year 1957: 2
+</code></pre>
+<h4 id="exercise-5">Exercise 5</h4>
+<ul>
+<li>Print out the total number of launches per month, for each month.</li>
+<li>Print out the total number of launches per year, for the years 2010 to 2020 inclusive</li>
+</ul>
+<h3 id="axis">axis</h3>
+<p>Whilst it is perfectly possibly to loop over one dimension of an array and calculate statistics over the other dimension, it is not very <a href="https://docs.python-guide.org/writing/style/">Pythonic</a> to do it that way. </p>
+<p>Instead. we can specify the array axes over which we want the operation to occur.</p>
+<p>For example, in our satellite launch dataset, the dimension 0 is month index and the dimension 1 is year index. To calculate the mean over all years then, we apply the <code>mean</code> function to axis 1:</p>
+<pre><code class="python">import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# mean over all months
+data.mean(axis=1)
+</code></pre>
+
+<pre><code>array([ 33.953125,  58.515625,  45.234375,  49.734375, 103.21875 ,
+        90.1875  ,  51.234375,  38.765625,  68.78125 ,  63.046875,
+        51.140625,  60.078125])
+</code></pre>
+<p>This is much more convenient than the loop we did above. The axis keyword is widely used in <code>numpy</code>, and you can apply most operations over one or more axis. </p>
+<h4 id="exercise-6">Exercise 6</h4>
+<ul>
+<li>Plot the total number of satellite launches per year, as a function of year</li>
+</ul>
+<p>You will need to remember how to <a href="../023_Plotting/#Plotting-Graphs">plot line graphs</a></p>
+<h3 id="argmin-argmax-and-masking"><code>argmin</code>, <code>argmax</code> and masking</h3>
+<p>Whilst we have generated some initial summary statistics on the dataset, it's not really enough to give us a good idea of the data characteristics.</p>
+<p>To do that, we want to be able to ask somewhat more complex questions of the data, such as:</p>
+<ul>
+<li>which <em>year</em> has the most/least launches? </li>
+<li>which month do most launches happen in? </li>
+<li>which month in which year had the most launches? </li>
+<li>which years had more than 100 launches?</li>
+</ul>
+<p>Whilst we could do some of these with loops and slicing, we expect a more convenient approach for <code>numpy</code>.</p>
+<p>To be able to address these, we need some new concepts:</p>
+<ul>
+<li>methods <code>argmin()</code> and <code>argmax()</code> that provide the <em>index</em> where the min/max occurs</li>
+<li>masking out array elements that meet some condition</li>
+</ul>
+<p>The first set of these, <code>argmin()</code> and <code>argmax()</code> are straightforward to visualise and use:</p>
+<pre><code class="python">import numpy as np
+
+# read data as before
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# sum the data over all months (axis 0)
+sum_per_year = data.sum(axis=0)
+# Construct an array of years
+year_array = 1957 + np.arange(data.shape[1])
+
+# Find the location (year) with **most** launches
+# Find the index of sum_per_year with highest number (argmmax)
+imax = np.argmax(sum_per_year)
+
+# Find the location (year) with **least** launches
+# Find the index of sum_per_year with lowest number (argmmax)
+imin = np.argmin(sum_per_year)
+
+print(f'the year with most   launches was',\
+      f'{year_array[imax]} with {sum_per_year[imax]}')
+print(f'the year with fewest launches was',\
+      f'{year_array[imin]} with {sum_per_year[imin]}')
+</code></pre>
+
+<pre><code>the year with most   launches was 1999 with 4195
+the year with fewest launches was 1957 with 3
+</code></pre>
+<h4 id="exercise-7">Exercise 7</h4>
+<ul>
+<li>Write code to print the months with highest and lowest number of launches</li>
+</ul>
+<p>In section <a href="../011_Python_data_types/#Data-types:-bool">011_Python_data_types</a> we came across the boolean (binary) data type that can take the states <code>True</code> or <code>False</code>.</p>
+<p>Boolean arrays in <code>numpy</code> are important in the efficient use of arrays, as they can act as a mask on an array. </p>
+<p>For example:</p>
+<p>The form of filtering above (<code>high = sum_per_year &gt;= 1000</code>) produces a numpy array of the same shape as that operated on (<code>sum_per_year</code> here) of <code>bool</code> data type.  It has entries of <code>True</code> where the condition is met, and <code>False</code> where it is not met.</p>
+<pre><code class="python">import numpy as np
+
+# read data as before
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+# sum over all months (axis 0)
+sum_per_year = data.sum(axis=0)
+
+high = sum_per_year &gt;= 1000
+print(high)
+</code></pre>
+
+<pre><code>[False False False False False False False False  True False False False
+ False False False False False False  True  True False False False False
+  True False False False False  True  True False False False False False
+  True  True False False False False  True False False False False False
+ False  True False False False False False False False False False False
+ False False False False]
+</code></pre>
+<p>We can think of this logical array as a 'data mask' that we use to select (filter) entries:</p>
+<pre><code class="python"># form the data mask
+high = (sum_per_year &gt;= 1000)
+# form an attau of years
+years = 1957 + np.arange(data.shape[1])
+# select only elements where mask is True
+print(f'years with 1000 or more launches {years[high]}')
+</code></pre>
+
+<pre><code>years with 1000 or more launches [1965 1975 1976 1981 1986 1987 1993 1994 1999 2006]
+</code></pre>
+<p>We can apply logical operators to boolean arrays:</p>
+<pre><code class="python">low = np.logical_not(high)
+print(low)
+</code></pre>
+
+<pre><code>[ True  True  True  True  True  True  True  True False  True  True  True
+  True  True  True  True  True  True False False  True  True  True  True
+ False  True  True  True  True False False  True  True  True  True  True
+ False False  True  True  True  True False  True  True  True  True  True
+  True False  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True]
+</code></pre>
+<p>including combinations of logical arrays. </p>
+<p>Suppose we want to know the years after the year 2000 that have 1000 or greater launches. We can form two boolean arrays:</p>
+<pre><code>years &gt; 2000
+sum_per_year &gt;= 1000
+</code></pre>
+<p>Since these arrays are of the same shape, we can combine them element-wise:</p>
+<pre><code class="python">c1 = (years &gt; 2000)
+c2 = (sum_per_year &gt;= 1000)
+combined = np.logical_and(c1,c2)
+print(years[combined])
+</code></pre>
+
+<pre><code>[2006]
+</code></pre>
+<h3 id="where"><code>where</code></h3>
+<p>Sometimes, instead of just applying the filter as above, we want to know the indices of the filtered values.</p>
+<p>To do this, we can use the <code>np.where()</code> method. This takes a <code>bool</code> array as its argument (such as our data masks or other conditions) and returns a tuple of the indices where this is set <code>True</code>. </p>
+<p>As an example, lets find month, year pairs where the number of launches is greater than 500. </p>
+<p>For a final flourish, we load the dataset into <code>pandas</code> to print it in a table:</p>
+<pre><code class="python"># find month, year where launches &gt; 500
+import numpy as np
+import pandas as pd
+
+# read data as before
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+month_index,year_index = np.where(data &gt; 500)
+# This gives array indices
+
+# convert index to real month and year
+# and *transpose* (swap rows and columns)
+# using .T
+high_launches = np.array([month_index+1,year_index+1957]).T
+
+# load into pandas data frame 
+df = pd.DataFrame(high_launches,columns=['month','year'])
+df
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>1986</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+      <td>1994</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>1999</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6</td>
+      <td>1981</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6</td>
+      <td>1993</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>2006</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>1976</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>9</td>
+      <td>1997</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>So <code>np.where()</code> is one way  we can derive a set of tuples such as those we saw <a href="026_Numpy.md#Indexing-arrays">above</a>.</p>
+<h4 id="exercise-8">Exercise 8</h4>
+<p>Recall from <a href="025_NASA_MODIS_Earthdata.md#MOTA">previous sections</a> how to retrieve a MODIS LAI dataset for a particular date. Recall also values of greater than 100 are invalid, and that a scaling of 0.1 should be applied to the LAI.</p>
+<ul>
+<li>Load a MODIS LAI dataset SDS <code>Lai_500m</code> for tile <code>h17v03</code> day of year 41, 2019. </li>
+<li>Call the 2D array <code>data</code> and confirm that it has a shape (2400, 2400)</li>
+<li>build a mask called <code>mask</code> of invalid pixels </li>
+<li>print the percentage of invalid pixels to 2 decimal places (hint: sum with <code>sum</code>)</li>
+<li>scale the data array as appropriate to obtain LAI</li>
+<li>set invalid data values to 'not a number' <code>np.nan</code></li>
+<li>display the resulting image</li>
+</ul>
+<h3 id="summary">Summary</h3>
+<p>In this section, you have been introduced to the <code>numpy</code> package and more detail on arrays. The big advantages of <code>numpy</code> are that you can easily perform array operators (such as adding two arrays together), and that <code>numpy</code> has a large number of useful functions for manipulating N-dimensional data in array form. This makes it particularly appropriate for raster geospatial data processing.</p>
+<p>We have seen how to create various forms of array (e.g. <code>np.ones()</code>, <code>np.arange()</code>), how to calculate some basic statistics (<code>min()</code>, <code>max()</code> etc), and finding the array index where some pattern occurs (e.g. <code>argmin()</code>, <code>argsort()</code> or <code>where()</code>) and how to generate and use masks for selecting data. </p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 28, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/prof_plewis" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/proflewis/geog0111" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/UCL-EO/geog0111" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

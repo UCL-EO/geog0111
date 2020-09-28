@@ -17,10 +17,6 @@ You will need some understanding of the following:
 * [001 Using Notebooks](001_Notebook_use.md)
 
 
-#### Timing
-
-The session should take around 20 minutes.
-
 ## Help Method
 
 ### help()

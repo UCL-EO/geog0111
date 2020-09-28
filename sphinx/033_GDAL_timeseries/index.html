@@ -1,0 +1,2010 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://ucl-eo.github.io/geog0111/sphinx/033_GDAL_timeseries/">
+      
+      
+        <meta name="author" content="Prof P. Lewis">
+      
+      <link rel="shortcut icon" href="../../images/ucl.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>033 GDAL: time series - GEOG0111</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#033-gdal-time-series" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            GEOG0111
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              033 GDAL: time series
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    GEOG0111
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Course Basics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Course Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../002_Unix/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../003_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../004_Accounts/" title="Accounts" class="md-nav__link">
+      Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../005_Packages/" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../001_Notebook_use_answers/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../002_Unix_answers/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../003_Help_answers/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Core Concepts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Core Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../014_Python_groups/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../015_Python_control/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../016_Python_for/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../017_Functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../018_Running_Python/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
+    
+    <label class="md-nav__link" for="nav-3-10">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-10">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../010_Python_Introduction_answers/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../011_Python_data_types_answers/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../012_Python_strings_answers/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../013_Python_string_methods_answers/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../014_Python_groups_answers/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../015_Python_control_answers/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../016_Python_for_answers/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../017_Functions_answers/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../018_Running_Python_answers/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_Python_files/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../021_Streams/" title="Streams" class="md-nav__link">
+      Streams
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../022_Read_write_files/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../023_Plotting/" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../024_Image_display/" title="Image Display" class="md-nav__link">
+      Image Display
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-6" type="checkbox" id="nav-4-6">
+    
+    <label class="md-nav__link" for="nav-4-6">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-6">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../020_Python_files_answers/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../021_Streams_answers/" title="Streams" class="md-nav__link">
+      Streams
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../022_Read_write_files_answers/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../023_Plotting_answers/" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../024_Image_display_answers/" title="Image Display" class="md-nav__link">
+      Image Display
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Geospatial Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Geospatial Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../030_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../031_Numpy/" title="Numpy" class="md-nav__link">
+      Numpy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../032_GDAL_mosaicing_and_masking/" title="GDAL Mosaicing And Masking" class="md-nav__link">
+      GDAL Mosaicing And Masking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../033_GDAL_timeseries/" title="GDAL Timeseries" class="md-nav__link">
+      GDAL Timeseries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../034_Weigthed_smoothing_and_interpolation/" title="Weigthed Smoothing And Interpolation" class="md-nav__link">
+      Weigthed Smoothing And Interpolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../035_Weighted_interpolation/" title="Weighted Interpolation" class="md-nav__link">
+      Weighted Interpolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../036_Model_Fitting/" title="Model Fitting" class="md-nav__link">
+      Model Fitting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8" type="checkbox" id="nav-5-8">
+    
+    <label class="md-nav__link" for="nav-5-8">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-8">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../030_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../031_Numpy_answers/" title="Numpy" class="md-nav__link">
+      Numpy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../032_GDAL_mosaicing_and_masking_answers/" title="GDAL Mosaicing And Masking" class="md-nav__link">
+      GDAL Mosaicing And Masking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Modelling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Modelling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../040_Practical_Part1/" title="Practical Part1" class="md-nav__link">
+      Practical Part1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../041_Practical_Part2/" title="Practical Part2" class="md-nav__link">
+      Practical Part2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    Purpose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timeseries" class="md-nav__link">
+    Timeseries
+  </a>
+  
+    <nav class="md-nav" aria-label="Timeseries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modisget_modis" class="md-nav__link">
+    Modis.get_modis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-year-of-data" class="md-nav__link">
+    A year of data
+  </a>
+  
+    <nav class="md-nav" aria-label="A year of data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plotting-time-series" class="md-nav__link">
+    Plotting time series
+  </a>
+  
+    <nav class="md-nav" aria-label="Plotting time series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1_1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uncertainty-and-weighting" class="md-nav__link">
+    Uncertainty and weighting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/sphinx/033_GDAL_timeseries.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="033-gdal-time-series">033 GDAL: time series</h1>
+<h3 id="purpose">Purpose</h3>
+<p>In this section, we'll continue to look at the MODIS LAI, with a view to forming a time series dataset. AT the end of this session, you will be able to generate a 3D numpy array of some MODIS geophysical variable for a selcted area and time.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><a href="../030_NASA_MODIS_Earthdata/">030_NASA_MODIS_Earthdata</a></li>
+<li><a href="032_Numpy.md">031_Numpy</a></li>
+<li><a href="../032_GDAL_mosaicing_and_masking/">032_GDAL_mosaicing_and_masking</a></li>
+</ul>
+<p>You must make sure you can recall the details of the work covered in <a href="030_GDAL_mosaicing_and_masking.md">030_GDAL_mosaicing_and_masking</a>. You will also need to know how to do <a href="../023_Plotting/">graph plotting</a>, including sub-figures and errorbars, and <a href="../024_Image_display/">image display</a>.</p>
+<h3 id="test">Test</h3>
+<p>You should run a <a href="../004_Accounts/">NASA account test</a> if you have not already done so.</p>
+<h2 id="timeseries">Timeseries</h2>
+<p>We can conveniently generate a timeseries dataset using the <code>gdal</code> VRT file approach we used in <a href="027_GDAL_mosaicing_and_masking.md">027_GDAL_mosaicing_and_masking</a>. </p>
+<p>In this case, the main process would be:</p>
+<pre><code>- initialise band name list bnames
+- initialise list sds_set
+- loop over some set of doy values:
+    - retrieve an SDS for each doy
+    - make a band name for the doy/year
+    - stitch tiles together into one VRT
+    - append the new SDS to the list sds_set
+    - append the band name to the list bnames
+</code></pre>
+<pre><code class="python">import gdal
+from geog0111.modis import Modis
+
+kwargs = {
+    'tile'      :    ['h17v03','h18v03'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+}
+year = 2019
+# list of doys we want
+# - every 4 days for MCD15A3H
+doys = [41,45,49]
+
+modis = Modis(**kwargs)
+
+# initialise list sds_set
+sds_set = []
+bnames = []
+
+# loop over some set of doy values:
+for doy in doys:
+    # retrieve an SDS for each doy
+    files,sds = modis.get_files(year,doy)
+    # choose only the first SDS for now
+    this_sds = sds[0]
+
+    # make a band name for the doy/year
+    bandname = f'{year}-{doy:0&gt;3d}'
+
+    # stitch tiles together into one VRT
+    # called ofile
+    ofile = f&quot;work/stitch_{modis.product}.{doy}.vrt&quot;
+    stitch_vrt = gdal.BuildVRT(ofile,this_sds)
+    del stitch_vrt
+    # append the new SDS to the list sds_set
+    sds_set.append(ofile)
+    # append the band name to the list bnames
+    bnames.append(bandname)
+
+print(sds_set)
+print(bnames)
+</code></pre>
+
+<pre><code>['work/stitch_MCD15A3H.41.vrt', 'work/stitch_MCD15A3H.45.vrt', 'work/stitch_MCD15A3H.49.vrt']
+['2019-041', '2019-045', '2019-049']
+</code></pre>
+<p>Now we have a set of SDS we want to put them into a VRT file to represent the time series. We do this as we have previously, specifying the outoput name <code>work/stitch_set.vrt</code> here, and ythe listr of SDS that goes in to the time series,<code>sds_set</code> here:</p>
+<pre><code class="python"># build a VRT &quot;work/stitch_set.vrt&quot;
+stitch_vrt = gdal.BuildVRT(&quot;work/stitch_set.vrt&quot;, sds_set,separate=True)
+del stitch_vrt
+# test it by reading and plotting
+g = gdal.Open(&quot;work/stitch_set.vrt&quot;)
+data = g.ReadAsArray()
+print(data.shape)
+</code></pre>
+
+<pre><code>(3, 2400, 4800)
+</code></pre>
+<p>The dataset is now 3D. The first dimensions represent the time samples, so:</p>
+<pre><code>data[0] -&gt; bnames[0]
+</code></pre>
+<p>etc.</p>
+<pre><code class="python">import numpy as np
+for i in range(data.shape[0]):
+    print(f'band {bnames[i]} -&gt; mean {np.mean(data[i])}')
+</code></pre>
+
+<pre><code>band 2019-041 -&gt; mean 166.24298064236112
+band 2019-045 -&gt; mean 166.25176796875
+band 2019-049 -&gt; mean 165.74304947916667
+</code></pre>
+<h4 id="exercise-1">Exercise 1</h4>
+<p>We have seen in <a href="027_GDAL_mosaicing_and_masking.md">027_GDAL_mosaicing_and_masking</a> that you can use <code>gdal</code> to creat a GeoTiff format image, for example with:</p>
+<pre><code>g = gdal.Warp(output_name, input_name ,format='GTiff',options=['COMPRESS=LZW'])
+g.FlushCache()
+</code></pre>
+<ul>
+<li>Convert the <code>gdal</code> file <code>work/stitch_set.vrt</code> to a more portable GeoTiff file called <code>work/stitch_set.tif</code></li>
+<li>Confirm that this has worked by reading and displaying data from the file</li>
+</ul>
+<pre><code class="python"># ANSWER
+import gdal
+
+# Convert the `gdal` file `work/stitch_set.vrt` to a 
+# more portable GeoTiff file called `work/stitch_set.tif`
+
+# set up the filenames
+infile = 'work/stitch_set.vrt'
+outfile = 'work/stitch_set.tif'
+
+# convert using gdal.Warp or similar
+g = gdal.Warp(outfile, infile ,format='GTiff',options=['COMPRESS=LZW'])
+# force write to disk
+g.FlushCache()
+</code></pre>
+
+<pre><code class="python">import matplotlib.pyplot as plt
+# Confirm that this has worked by reading and 
+# displaying data from the file
+
+# test it by reading and plotting
+g = gdal.Open(&quot;work/stitch_set.tif&quot;)
+data = g.ReadAsArray()
+
+fig, axs = plt.subplots(1,3,figsize=(20,2))
+axs = axs.flatten()
+for i in range(data.shape[0]):
+    im = axs[i].imshow(data[i],vmax=7,\
+                cmap=plt.cm.inferno_r,interpolation='nearest')
+    fig.colorbar(im, ax=axs[i])
+    axs[i].set_title(bnames[i])
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_11_0.png" /></p>
+<p>Cut out the UK and visualise as before:</p>
+<pre><code class="python"># subset and display
+
+warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : &quot;FIPS='UK'&quot;,
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+g = gdal.Warp(&quot;&quot;, &quot;work/stitch_set.vrt&quot;,**warp_args)
+data = g.ReadAsArray()*0.1
+print(data.shape)
+</code></pre>
+
+<pre><code>(3, 2623, 1394)
+</code></pre>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+fig, axs = plt.subplots(1,3,figsize=(12,5))
+axs = axs.flatten()
+for i in range(data.shape[0]):
+    im = axs[i].imshow(data[i],vmax=7,\
+                cmap=plt.cm.inferno_r,interpolation='nearest')
+    fig.colorbar(im, ax=axs[i])
+    axs[i].set_title(bnames[i])
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_14_0.png" /></p>
+<h3 id="modisget_modis"><code>Modis.get_modis</code></h3>
+<p>For convenience, we can again use the function <code>Modis.get_modis</code> to combine these, simply by passing a list of <code>doy</code> values, rather than a single <code>doy</code>.</p>
+<pre><code class="python">import gdal
+from geog0111.modis import Modis
+import matplotlib.pyplot as plt
+
+kwargs = {
+    'tile'      :    ['h17v03','h18v03'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+}
+year = 2019
+# list of doys we want
+doys = [41,45,49]
+
+modis = Modis(**kwargs)
+
+warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : &quot;FIPS='UK'&quot;,
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+mfiles = modis.get_modis(year,doys,warp_args=warp_args)
+print(mfiles.keys())
+</code></pre>
+
+<pre><code>dict_keys(['Fpar_500m', 'Lai_500m', 'FparLai_QC', 'FparExtra_QC', 'FparStdDev_500m', 'LaiStdDev_500m', 'bandnames'])
+</code></pre>
+<p>Now let's mask out invalid data points (<code>&gt; 10.0</code> when scaled by 0.1), and display the results:</p>
+<pre><code class="python">import numpy as np
+
+g = gdal.Open(mfiles['Lai_500m'])
+
+# dataset and band nanes
+data = g.ReadAsArray()*0.1
+
+# valid mask
+data[data&gt;10.0] = np.nan
+bnames = mfiles['bandnames']
+print(data.shape)
+</code></pre>
+
+<pre><code>(3, 2623, 1394)
+</code></pre>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+fig, axs = plt.subplots(1,3,figsize=(12,5))
+axs = axs.flatten()
+for i in range(data.shape[0]):
+    im = axs[i].imshow(data[i],vmax=7,\
+                cmap=plt.cm.inferno_r,interpolation='nearest')
+    fig.colorbar(im, ax=axs[i])
+    axs[i].set_title(bnames[i])
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_19_0.png" /></p>
+<h2 id="a-year-of-data">A year of data</h2>
+<p>A convenient feature of <code>Modis.get_modis</code> is that we can use wildcards for specifying dates. </p>
+<p>So, to get a year of LAI data for Luxembourg, we can specify <code>doys = "*"</code>. Note that we could have chosen any location, but we select a small country to make the running more feasible in a practical session.</p>
+<p>If the data are already downloaded into the local cache, it should not take too long to form the time series. It will need to generate the VRT files for how every many files and tile you have requested, so that may take some tens of minutes, even if the HDF files are already generated.</p>
+<p>If you are attempting to get data not already in the cache, it will take some considerable time to download these datasets for whole years, for multiple tiles. </p>
+<p>If you want to download a dataset that is not covered in these notebooks, you are of course welcome to do so, but plan your work ahead of time, and try to pre-download the data before attempting any processing. In such a case, you should take some code such as that below and paste it into a Python file and run that as a Python scripy from a command line. You should make sure you set:</p>
+<pre><code>'verbose' : True
+</code></pre>
+<p>in the <code>kwargs</code> dictionary. An example script you can modify is given in <a href="../geog0111/get_lai.py">geog0111/get_lai.py</a>.</p>
+<p>Since the dataset is quite large, we need to be efficient in our processing. We'll create a small yaml database we will call <code>work/my_db.yml</code> to keep track of this.</p>
+<p>So, before we try to generate the dataset, we check to see if it exists in the database. </p>
+<pre><code class="python">import yaml
+from pathlib import Path
+
+# read the databse
+database = Path('data/my_db.yml')
+if database.exists():
+    with database.open(&quot;r&quot;) as f:
+        db = yaml.safe_load(f) or {}
+</code></pre>
+
+<p>We need a key to store this configuratiuon under. Let's choose:</p>
+<pre><code class="python"># make a  key to describe this dataset
+key = &quot;MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019&quot;
+
+if key in db.keys():
+    print(f&quot;we dont need to process {key}&quot;)
+</code></pre>
+
+<pre><code>we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019
+</code></pre>
+<p>We can now wrap this condition around our processing:</p>
+<pre><code class="python">import gdal
+from geog0111.modis import Modis
+import matplotlib.pyplot as plt
+
+kwargs = {
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+    'product'   :    'MCD15A3H',
+}
+year = 2019
+# list of doys we want
+doys = &quot;*&quot;
+
+# we could generate this automatically from 
+# the information above ...
+key = &quot;MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019&quot;
+
+if key in db.keys():
+    print(f&quot;we dont need to process {key}&quot;)
+    ifiles = db[key]
+else:
+    '''
+    We will gather the data for the year, 
+    tiles and product that we are interested in into a VRT file:
+    '''
+    modis = Modis(**kwargs)
+    ifiles = modis.get_modis(year,doys,step=4)
+
+    # put in database
+    cache = {key : ifiles}
+    db.update(cache)
+    # write out
+    with database.open(&quot;w&quot;) as f:
+        yaml.safe_dump(db,f)  
+
+</code></pre>
+
+<pre><code>we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019
+</code></pre>
+<pre><code class="python">ifiles.keys()
+</code></pre>
+
+<pre><code>dict_keys(['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m', 'bandnames'])
+</code></pre>
+<p>We will then do all further processing using this file, rather than going through the <code>MODIS.get_modis</code> interface.</p>
+<pre><code class="python">import gdal
+
+warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : &quot;FIPS='LU'&quot;,
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+sds = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+
+# loop over SDS sets and read into dictionary
+mfiles = {'bandnames':ifiles['bandnames']}
+for s in sds:
+    g = gdal.Warp(&quot;&quot;,ifiles[s],**warp_args)
+    mfiles[s] = g.ReadAsArray()
+# scale
+mfiles['Lai_500m'] = mfiles['Lai_500m'] * 0.1
+mfiles['LaiStdDev_500m'] = mfiles['LaiStdDev_500m'] * 0.1
+</code></pre>
+
+<p>This is a little more long-winded than just using <code>modis.get_modis</code> each time, but it is a lot more efficient for such large datasets.</p>
+<p>We can now plot the data on sub-plots:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+shape=(8,12)
+x_size,y_size=(30,20)
+
+fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
+axs = axs.flatten()
+plt.setp(axs, xticks=[], yticks=[])
+
+for i in range(mfiles['Lai_500m'].shape[0]):
+    im = axs[i].imshow(mfiles['Lai_500m'][i],vmax=7,cmap=plt.cm.inferno_r,\
+                       interpolation='nearest')
+    axs[i].set_title(mfiles['bandnames'][i])
+    fig.colorbar(im, ax=axs[i])
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_30_0.png" /></p>
+<h3 id="plotting-time-series">Plotting time series</h3>
+<p>We might now want to plot some time series.</p>
+<p>First, extract the <code>doy</code> from <code>mfiles['bandnames']</code>:</p>
+<pre><code class="python">print(mfiles['bandnames'])
+</code></pre>
+
+<pre><code>['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
+</code></pre>
+<pre><code class="python"># convert to 1 by splitting the string
+test = '2019-001'
+int(test.split('-')[1])
+</code></pre>
+
+<pre><code>1
+</code></pre>
+<pre><code class="python">doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+print(doy)
+</code></pre>
+
+<pre><code>[1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 169, 173, 177, 181, 185, 189, 193, 197, 201, 205, 209, 213, 217, 221, 225, 229, 233, 237, 241, 245, 249, 253, 257, 261, 265, 269, 273, 277, 281, 285, 289, 293, 297, 301, 305, 309, 313, 317, 321, 325, 329, 333, 337, 341, 345, 349, 353, 357, 361, 365]
+</code></pre>
+<p>It is interesting to see a set of sub-plots for a range of pixel locations. We can follow tghe approach we have taken to sub-plots previously, but now we want to make use of the 2D nature of the sub-plot <code>axs</code> variable (recall that previously we have flattened this to a 1D representation).</p>
+<p>We will define a sub-plot shape: <code>shape=(10,10)</code> and a starting pixel <code>pixel = (100,70)</code>. We will then loop in row and column to produce the sub-plots:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+x_size,y_size=(20,20)
+
+shape=(10,10)
+fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
+plt.setp(axs, xticks=[], yticks=[])
+
+pixel = (100,70)
+x = doy
+
+for i in range(shape[0]):
+    p0 = pixel[0] + i
+    for j in range(shape[1]):
+        p1 = pixel[1] + j
+        im = axs[i,j].plot(x,mfiles['Lai_500m'][:,p0,p1])
+        axs[i,j].set_title(f'{p0} {p1}')
+        # ensure the same scale for all
+        axs[i,j].set_ylim(0,7)
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_36_0.png" /></p>
+<h4 id="exercise-1_1">Exercise 1</h4>
+<ul>
+<li>Write code that takes the information in:<pre><code>kwargs = {
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+    'product'   :    'MCD15A3H',
+}
+year = 2019
+# list of doys we want
+doys = "*"
+</code></pre>
+</li>
+</ul>
+<p>and generates a key string of the form:</p>
+<pre><code>    key = "MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019"
+</code></pre>
+<ul>
+<li>Write a function called <code>modis_annual_dataset</code>that takes <code>year</code>,<code>tile</code> and <code>product</code> and <code>step</code> and returns a dictionary of appropriate MODIS datasets. </li>
+</ul>
+<p>Your function should test to see if the dataset has already been stored in a database under a relevant key (such as that above).</p>
+<ul>
+<li>
+<p>Write another function <code>get_modis_annual</code> that takes the dictionary of appropriate MODIS datasets. and generates a dictionary of MODIS data values, filtered according to information of the form:</p>
+<pre><code>warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : "FIPS='LU'",
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+sds = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+</code></pre>
+</li>
+<li>
+<p>Write a third function <code>modis_annual</code> that combines these two functions.</p>
+</li>
+<li>Test your code and ploit some results</li>
+</ul>
+<pre><code class="python"># ANSWER
+msg = '''
+Write code that takes the information in:
+
+  kwargs = {
+      'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+      'product'   :    'MCD15A3H',
+  }
+  year = 2019
+  # list of doys we want
+  doys = &quot;*&quot;
+and generates a key string of the form:
+
+    key = &quot;MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019&quot;
+'''
+
+kwargs = {
+  'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+  'product'   :    'MCD15A3H',
+}
+year = 2019
+
+# first lets deal with the tile info
+t = &quot;_&quot;.join(kwargs['tile'])
+print(f'test: {t}')
+
+key = f'{kwargs[&quot;product&quot;]}._{&quot;_&quot;.join(kwargs[&quot;tile&quot;])}_.{year}'
+print(msg)
+print(f'key: {key}')
+</code></pre>
+
+<pre><code>test: h17v03_h18v03_h17v04_h18v04
+
+Write code that takes the information in:
+
+  kwargs = {
+      'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+      'product'   :    'MCD15A3H',
+  }
+  year = 2019
+  # list of doys we want
+  doys = "*"
+and generates a key string of the form:
+
+    key = "MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019"
+
+key: MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019
+</code></pre>
+<pre><code class="python"># ANSWER
+msg = '''
+Write a function called modis_annual_dataset that takes 
+year,tile and product and step and  returns a dictionary of appropriate 
+MODIS datasets.
+
+Your function should test to see if the dataset has already 
+been stored in a database under a relevant key (such as that above).
+'''
+import gdal
+from geog0111.modis import Modis
+import yaml
+from pathlib import Path
+
+def modis_annual_dataset(year,tile,product,step=1,\
+                         dbfile='data/my_db.yml'):
+    # load into kwargs
+    kwargs = {
+    'tile'      :    list(tile),
+    'product'   :    product,
+    }
+    # list of doys we want
+    doys = &quot;*&quot;
+
+    # read the database
+    database = Path(dbfile)
+    if database.exists():
+        with database.open(&quot;r&quot;) as f:
+            db = yaml.safe_load(f) or {}
+
+    # from above    
+    key = f'{kwargs[&quot;product&quot;]}._{&quot;_&quot;.join(kwargs[&quot;tile&quot;])}_.{year}'
+
+    if key in db.keys():
+        print(f&quot;we dont need to process {key}&quot;)
+        ifiles = db[key]
+    else:
+        '''
+        We will gather the data for the year, 
+        tiles and product that we are interested in into a VRT file:
+        '''
+        modis = Modis(**kwargs)
+        ifiles = modis.get_modis(year,doys,step=step)
+
+        # put in database
+        cache = {key : ifiles}
+        db.update(cache)
+        # write out
+        with database.open(&quot;w&quot;) as f:
+            yaml.safe_dump(db,f)  
+
+    return ifiles
+
+</code></pre>
+
+<pre><code class="python"># ANSWER
+
+msg = '''
+Write another function get_modis_annual that 
+takes the dictionary of appropriate MODIS datasets. 
+and generates a dictionary of MODIS data values, 
+filtered according to information of the form:
+'''
+
+def get_modis_annual(ifiles,sds=None,warp_args={}):
+    # loop over SDS sets and read into dictionary
+    mfiles = {'bandnames':ifiles['bandnames']}
+    del ifiles['bandnames']
+
+    # useful sds default
+    if sds == None:
+        sds = ifiles.keys()
+
+    for s in sds:
+        # do this in case we dont need to cut
+        if warp_args != {}:
+            g = gdal.Warp(&quot;&quot;,ifiles[s],**warp_args)
+            mfiles[s] = g.ReadAsArray()
+        else:
+            mfiles[s] = ifiles[s]
+    return mfiles
+
+</code></pre>
+
+<pre><code class="python"># Write a third function modis_annual 
+# that combines these two functions.
+
+def modis_annual(year,tile,product,step=1,\
+                 sds=None,warp_args={},\
+                 dbfile='data/my_db.yml'):
+
+    ifiles = modis_annual_dataset(year,tile,product,\
+                         dbfile=dbfile,step=step)
+    mfiles = get_modis_annual(ifiles,sds=sds,warp_args=warp_args)
+    # what to do is SDS is None?
+    return mfiles
+</code></pre>
+
+<pre><code class="python"># ANSWER : Test
+
+warp_args = {
+  'dstNodata'     : 255,
+  'format'        : 'MEM',
+  'cropToCutline' : True,
+  'cutlineWhere'  : &quot;FIPS='LU'&quot;,
+  'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+tile    = ['h17v03','h18v03','h17v04','h18v04']
+product = 'MCD15A3H'
+year    = 2019
+step    = 4
+
+mfiles = modis_annual(year,tile,product,sds=sds,step=step,warp_args=warp_args)
+print(mfiles.keys())
+</code></pre>
+
+<pre><code>we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019
+dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
+</code></pre>
+<h2 id="uncertainty-and-weighting">Uncertainty and weighting</h2>
+<p>The full set of SDS available is </p>
+<pre><code>['Fpar_500m',
+ 'Lai_500m',
+ 'FparLai_QC',
+ 'FparExtra_QC',
+ 'FparStdDev_500m',
+ 'LaiStdDev_500m']
+</code></pre>
+<p>We should always examine any uncertainty information available when trying to interpret a dataset. In this exercise, we will take the uncertainty, defined as a standard deviation, and generate a weight from this in the form:</p>
+<pre><code>W  = 1/(std * std)
+</code></pre>
+<p>where std is the uncertainty. Where this weighting is high, we can put more emphasis on the reliability of the data than when it is low.</p>
+<p>First then, read all SDS:</p>
+<pre><code class="python">import gdal
+import matplotlib.pyplot as plt
+from geog0111.modis_annual import modis_annual
+
+warp_args = {
+  'dstNodata'     : 255,
+  'format'        : 'MEM',
+  'cropToCutline' : True,
+  'cutlineWhere'  : &quot;FIPS='LU'&quot;,
+  'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+tile    = ['h17v03','h18v03','h17v04','h18v04']
+product = 'MCD15A3H'
+year    = 2019
+
+mfiles = modis_annual(year,tile,product,sds=sds,warp_args=warp_args)
+
+print(mfiles.keys())
+
+</code></pre>
+
+<pre><code>we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2019
+dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
+</code></pre>
+<pre><code class="python"># scale
+mfiles['Lai_500m'] = mfiles['Lai_500m'] * 0.1
+mfiles['LaiStdDev_500m'] = mfiles['LaiStdDev_500m'] * 0.1
+</code></pre>
+
+<p>There is a feature in the <code>LaiStdDev_500m</code> dataset where some pixels have apparently zero uncertainty. Indeed, all LAI values with an uncertainty under 1.0 seem suspect as individual values. So we treat them hear, to set all values less than 1 to 1.</p>
+<p>We know that LAI values over 10 (100 * 0.1) are invalid, so we should make sure these are also weighted zero:</p>
+<pre><code class="python">weight = np.zeros_like(mfiles['LaiStdDev_500m'])
+std = mfiles['LaiStdDev_500m']
+
+# fix low values
+std[std&lt;1.0] = 1.0
+
+mask = (std &gt; 0)
+weight[mask] = 1./(std[mask]**2)
+
+weight[mfiles['Lai_500m'] &gt; 10] = 0.
+weight[mfiles['LaiStdDev_500m']==0] = 0.
+# look at some stats
+print(weight.min(),weight.max())
+</code></pre>
+
+<pre><code>0.0 1.0
+</code></pre>
+<p>We can now go ahead and plot the dataset and the weights. We switch to a greyscale colourmap to make the interpretation of numbers easier.</p>
+<pre><code class="python"># produce image plots of the both quantities
+import matplotlib.pyplot as plt
+
+shape=(8,12)
+x_size,y_size=(30,20)
+
+fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
+axs = axs.flatten()
+plt.setp(axs, xticks=[], yticks=[])
+fig.suptitle(&quot;LAI Luxembourg 2019&quot;)
+for i in range(mfiles['Lai_500m'].shape[0]):
+    im = axs[i].imshow(mfiles['Lai_500m'][i],vmax=7,cmap=plt.cm.gray,\
+                       interpolation='nearest')
+    axs[i].set_title(mfiles['bandnames'][i])
+    fig.colorbar(im, ax=axs[i])
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_50_0.png" /></p>
+<pre><code class="python"># Plot the weight
+import matplotlib.pyplot as plt
+
+shape=(8,12)
+x_size,y_size=(30,20)
+
+fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
+axs = axs.flatten()
+plt.setp(axs, xticks=[], yticks=[])
+fig.suptitle(&quot;LAI weight Luxembourg 2019&quot;)
+
+for i in range(mfiles['Lai_500m'].shape[0]):
+    im = axs[i].imshow(weight[i],vmax=1,cmap=plt.cm.gray,\
+                       interpolation='nearest')
+    axs[i].set_title(mfiles['bandnames'][i])
+    fig.colorbar(im, ax=axs[i])
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_51_0.png" /></p>
+<pre><code class="python"># LAI time series
+import matplotlib.pyplot as plt
+doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+
+x_size,y_size=(20,20)
+
+shape=(10,10)
+fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
+plt.setp(axs, xticks=[], yticks=[])
+
+pixel = (100,70)
+x = doy
+
+for i in range(shape[0]):
+    p0 = pixel[0] + i
+    for j in range(shape[1]):
+        p1 = pixel[1] + j
+        im = axs[i,j].plot(x,mfiles['Lai_500m'][:,p0,p1])
+        axs[i,j].set_title(f'{p0} {p1}')
+        # ensure the same scale for all
+        axs[i,j].set_ylim(0,7)
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_52_0.png" /></p>
+<pre><code class="python"># weight time series plots 
+import matplotlib.pyplot as plt
+doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+
+x_size,y_size=(20,20)
+
+shape=(10,10)
+fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
+plt.setp(axs, xticks=[], yticks=[])
+
+pixel = (100,70)
+x = doy
+
+for i in range(shape[0]):
+    p0 = pixel[0] + i
+    for j in range(shape[1]):
+        p1 = pixel[1] + j
+        im = axs[i,j].plot(x,weight[:,p0,p1])
+        axs[i,j].set_title(f'{p0} {p1}')
+        # ensure the same scale for all
+        axs[i,j].set_ylim(0,1)
+</code></pre>
+
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_53_0.png" /></p>
+<p>We can look at an individual plot now, and use the weights for error bars.</p>
+<p>In this case, we want to convert the array <code>weight</code> to an array <code>error</code>, applying the opposite of what we did above to get standard deviation, and multiplying by <a href="https://en.wikipedia.org/wiki/1.96">1.96</a>.</p>
+<p>We want to avoid the division <code>1/0</code>, so we first build an array the same as weight, but fiulled with zero values:</p>
+<pre><code>error = np.zeros_like(weight)
+</code></pre>
+<p>and then only do the division for the mask <code>weight&gt;0</code>:</p>
+<pre><code>error[weight&gt;0] = np.sqrt(1./(weight[weight&gt;0] )) * 1.97
+</code></pre>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+error = np.zeros_like(weight)
+error[weight&gt;0] = np.sqrt(1./(weight[weight&gt;0] )) * 1.97
+
+doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+p0,p1 = (107,72)
+x_size,y_size=(10,5)
+
+shape=(10,10)
+fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
+
+pixel = (100,70)
+x = doy
+
+axs.errorbar(x,mfiles['Lai_500m'][:,p0,p1],yerr=error[:,p0,p1]/10)
+axs.set_title(f'{p0} {p1}')
+# ensure the same scale for all
+axs.set_ylim(0,7)
+axs.set_xlabel('DOY 2019')
+axs.set_ylabel('LAI')
+</code></pre>
+
+<pre><code>Text(0, 0.5, 'LAI')
+</code></pre>
+<p><img alt="png" src="../033_GDAL_timeseries_files/033_GDAL_timeseries_55_1.png" /></p>
+<p>We might question the validity of some of the LAI uncertainty here: we expect LAI to have a smnooth trajectory in time, but that is clearly not always the case here. However, they provide a traceable estimate of the reliability of each individual measurement and are useful in that respect.</p>
+<h2 id="summary">Summary</h2>
+<p>We now know how to combine geospatial data in both space and time VRT files using <code>gdal</code>. Remember that we can also do such things using <code>numpy</code>, but if we are able to keep the geospatial information and other metadata in a <code>gdal</code> file, so much the better. We have seen how to write the dataset to a portable file format such as GeoTiff.</p>
+<p>We have seen that some datasets such as the MODIS LAI product come with a per-pixel estimate of uncertainty. We have investigated this data field and used it to provide a weighting to associate with the reliability of each pixel. We have written a function <code>modis_annual</code> that uses a yaml database to see if it needs to reconstruct a large annual datafile.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 28, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/prof_plewis" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/proflewis/geog0111" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/UCL-EO/geog0111" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

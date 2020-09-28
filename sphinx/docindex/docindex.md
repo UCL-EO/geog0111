@@ -11,6 +11,8 @@ UCL Geography MSc notes.
 
 # GEOG0111 Scientific Computing
 
+![UCL](images/ucl_logo.png)
+
 [Course Documentation](https://ucl-eo.github.io/geog0111/)
 
 [![Documentation Status](https://readthedocs.org/projects/geog0111-scientific-computing/badge/?version=master)](https://geog0111-scientific-computing.readthedocs.io/en/master/?badge=master)
@@ -35,6 +37,7 @@ UCL Geography MSc notes.
 |   |   |   |
 |---|---|---|
 |[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
+
 
 ### Purpose of this course
 
@@ -62,6 +65,10 @@ At the end of the module, students should:
 * have an understanding of the technical issues specific to image-based analysis, model implementation and scientific visualisation
 
 
+### Running on UCL JupyterHub
+
+Follow the instructions on [UCL installation and running](Install.md)
+
 ## Timetable
 
 The course takes place over 10 weeks in term 1, usually in the Geography Department Unix Computing Lab (PB110) in the [Northwest wing](http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003), UCL. 
@@ -76,15 +83,15 @@ The timetable is available on the UCL Academic Calendar. Live class sessions wil
 
 Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 
 
-See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=2796) for more details.
+See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for more details.
 
 ### Useful links
 
-[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=2796)  
+[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)  
 
 ### Using the course notes
 
-We will generally use `jupyter` notebooks for running interactive Python programs.
-
+We will generally use `jupyter` notebooks for running interactive Python programs. If you are takinbg this course at UCL, 
+follow the instructions on [UCL installation and running](Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md).
 
 

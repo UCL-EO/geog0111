@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>019 Python codes &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <title>018 Python codes &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -34,7 +34,7 @@
           <div class="body" role="main">
             
   <div class="section" id="python-codes">
-<h1>019 Python codes<a class="headerlink" href="#python-codes" title="Permalink to this headline">¶</a></h1>
+<h1>018 Python codes<a class="headerlink" href="#python-codes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Whilst writing codes in Jupyter notebooks is useful and powerful, you will find over the course of GEOG0111 that you will need to develop your own codes as Python scripts. These are more portable than codes embedded in notebooks, and can also be used to develop your own code libraries.</p>
@@ -78,7 +78,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!ls -l geog0111/helloWorld.py
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>-rwxr-xr-x  1 plewis  staff  514  6 Sep 22:34 [31mgeog0111/helloWorld.py[m[m
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mi">514</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">13</span><span class="p">:</span><span class="mi">29</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">helloWorld</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>The first field gives us the file permissions:</p>
@@ -91,7 +91,7 @@ chmod <span class="m">755</span> geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  <span class="mi">1</span> <span class="n">plewis</span>  <span class="n">staff</span>  <span class="mi">514</span>  <span class="mi">6</span> <span class="n">Sep</span> <span class="mi">22</span><span class="p">:</span><span class="mi">34</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">helloWorld</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span> <span class="n">ucfalew</span> <span class="n">ucfa</span> <span class="mi">514</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">13</span><span class="p">:</span><span class="mi">29</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">helloWorld</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </div>
@@ -152,6 +152,9 @@ ls -l geog0111/helloWorld.py
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
 <p>This same code is contained in the file <a class="reference external" href="geog0111/helloWorld.py">geog0111/helloWorld.py</a>. Although the amount of comments and code in there might seem a little overkill just to print out <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>, it is good for you to get into the habit of writing your Python codes in this way.</p>
 <p>To briefly explain the blocks of code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
@@ -190,6 +193,12 @@ ls -l geog0111/helloWorld.py
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">helloWorld</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">function</span> <span class="n">helloWorld</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
+
+<span class="n">helloWorld</span><span class="p">()</span>
+    <span class="n">function</span> <span class="n">to</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">string</span> <span class="s1">&#39;hello world&#39;</span>
+</pre></div>
+</div>
 <p>In the last part of the file, we provide some utilities that allow the file to be run as a script.</p>
 <p>First, we define a function called <code class="docutils literal notranslate"><span class="pre">main()</span></code> that provides an example of calling the function we have created:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example calling the function    </span>
@@ -219,10 +228,16 @@ chmod <span class="m">755</span> geog0111/helloWorld.py
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">geog0111</span><span class="o">/</span><span class="n">helloWorld</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
 <p>Note that using <code class="docutils literal notranslate"><span class="pre">%run</span></code> in the code cell (or just <code class="docutils literal notranslate"><span class="pre">run</span></code> in other Python codes) allows us to run a python command from a Python file in the cell, rather than the usual Python codes.</p>
 <p>An alternative is to make the whole cell into one to run bash commands with <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
 geog0111/helloWorld.py
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
 </pre></div>
 </div>
 </div>
@@ -301,10 +316,13 @@ chmod <span class="m">755</span> work/myHelloWorld.py
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">myHelloWorld</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
 <p>You should now be able to load this Python file directly in Jupyter, using <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Open</span></code> then click through to the Python file you generated.</p>
 <p>Once you save the file, run the Python code again (<code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">work/myHelloWorld.py</span></code>).</p>
-<div class="section" id="exercise">
-<h4>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="exercise-1">
+<h4>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Create a Python file in your <a class="reference external" href="work"><code class="docutils literal notranslate"><span class="pre">work</span></code></a> folder based on the example above and call it <code class="docutils literal notranslate"><span class="pre">work/myFirstCode.py</span></code></p></li>
 <li><p>Modify the code to achieve the following:</p>
@@ -355,6 +373,10 @@ chmod <span class="m">755</span> work/myHelloWorld.py
 <span class="c1"># call the function with some argument</span>
 <span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Fred&#39;</span><span class="p">)</span>
 <span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Hermione&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="kn">from</span> <span class="nn">Fred</span>
+<span class="n">hello</span> <span class="kn">from</span> <span class="nn">Hermione</span>
 </pre></div>
 </div>
 <p>We have seen that that code operates correctly – it is very good practice to test any small incremental developments in your code in this way.</p>
@@ -419,6 +441,9 @@ chmod <span class="m">755</span> work/hello.py
 <span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="kn">from</span> <span class="nn">Fred</span>
+</pre></div>
+</div>
 <p>We now have a more flexible function <code class="docutils literal notranslate"><span class="pre">hello(name)</span></code>, but when we run the script <code class="docutils literal notranslate"><span class="pre">work/hello.py</span></code> we will always be running the same code in <code class="docutils literal notranslate"><span class="pre">main()</span></code>, so we can only ever get a hello from Fred.</p>
 <p>When we write a Python script, we often will want to make that more flexible too. We can do this by passing a command-line argument through to the script. What we want to happen is that when we run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">hello</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
@@ -436,6 +461,9 @@ chmod <span class="m">755</span> work/hello.py
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-0b59f88f-3901-4e76-bd87-7331f3b34bef.json&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Running from the notebook, we get to see the full command that is run when we launch this notebook. Since <code class="docutils literal notranslate"><span class="pre">sys</span></code> is a package, we first import it:</p>
@@ -458,6 +486,9 @@ chmod <span class="m">755</span> work/test.py
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">work</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="n">Hermione</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;work/test.py&#39;</span><span class="p">,</span> <span class="s1">&#39;Hermione&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>We see that running the script:</p>
@@ -553,7 +584,7 @@ greetings from Hermione</p>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
@@ -565,7 +596,7 @@ greetings from Hermione</p>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">019 Python codes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">018 Python codes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
@@ -574,30 +605,30 @@ greetings from Hermione</p>
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">021 Read and Write: URLs and files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files.html">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting.html">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
-<li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="033_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html">Table of Contents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
-<li class="toctree-l1"><a class="reference internal" href="041_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display_answers.html">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking.html">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata_answers.html">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
 </ul>
 
 <div class="relations">

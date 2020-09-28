@@ -29,10 +29,10 @@ cd ../..
 pwd
 ```
 
-    /Users/plewis/Documents/GitHub/geog0111/notebooks
-    /Users/plewis/Documents/GitHub/geog0111
-    /Users/plewis/Documents/GitHub
-    /Users/plewis
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111
+    /nfs/cfs/home3/Uucfa6/ucfalew
+    /nfs/cfs/home3
 
 
 
@@ -49,13 +49,13 @@ pwd
 # Then go from there back to the notebook directory. 
 # This is e.g. in Documents/GitHub/geog0111/notebooks
 # relative to where we are
-cd Documents/GitHub/geog0111/notebooks
+cd geog0111/notebooks
 pwd
 ```
 
-    /Users/plewis/Documents/GitHub/geog0111/notebooks
-    /Users/plewis
-    /Users/plewis/Documents/GitHub/geog0111/notebooks
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    /home/ucfalew
+    /home/ucfalew/geog0111/notebooks
 
 
 #### Exercise 3
@@ -79,7 +79,7 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73 12 Sep 12:38 work/newfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Sep 27 20:44 work/newfile.dat
 
 
 
@@ -95,7 +95,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73 12 Sep 12:38 work/newfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Sep 27 20:44 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
@@ -133,7 +133,9 @@ ls -lh geog0111/f*
 # and only read for others
 ```
 
-    -rw-r--r--  1 plewis  staff   2.2K  9 Sep 10:28 geog0111/fire_practical_model.py
-    -rw-r--r--  1 plewis  staff   4.3K  9 Sep 10:28 geog0111/fire_practical_satellite.py
-    -rw-r--r--  1 plewis  staff   1.9K  9 Sep 10:28 geog0111/fire_practical_telecon.py
+    -rw------- 1 ucfalew ucfa  362 Sep 22 17:59 geog0111/fdict.py
+    -rw-r--r-- 1 ucfalew ucfa 2.2K Sep 21 13:29 geog0111/fire_practical_model.py
+    -rw-r--r-- 1 ucfalew ucfa 4.3K Sep 21 13:29 geog0111/fire_practical_satellite.py
+    -rw-r--r-- 1 ucfalew ucfa 1.9K Sep 21 13:29 geog0111/fire_practical_telecon.py
+    -rw-r--r-- 1 ucfalew ucfa   66 Sep 21 13:29 geog0111/flatten.py
 

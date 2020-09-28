@@ -27,10 +27,6 @@ In particular, you will need to recall how to use:
    - [`str.join()`](013_Python_string_methods.md#split()-and-join())
    - [`zip`](014_Python_groups.md#dict)
 
-### Timing
-
-The session should take around 30 minutes to go through the first time. The exercises will take longer than that.
-
 
 ## Introduction to Functions
 

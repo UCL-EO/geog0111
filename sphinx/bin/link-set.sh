@@ -66,20 +66,54 @@ do
 done
 cd "${here}"
 
+echo "--> examining UCLDATA"
 if [ -z "$UCLDATA" ] ; then
   echo "--> UCLDATA not set"
-  export UCLDATA="../work"
-  echo "--> UCLDATA -> $UCLDATA"
+  export UCLDATA="/shared/groups/jrole001/geog0111/work"
 fi
+echo "--> setting UCLDATA=$UCLDATA"
+touch ~/.profile
+echo "export UCLDATA=$UCLDATA" > /tmp/tmp.geog0111.$$
+grep -v 'UCLDATA=' < ~/.profile >> /tmp/tmp.geog0111.$$
+echo "--> testing"
+source /tmp/tmp.geog0111.$$
+if [ "$?" -eq 0 ]; then
+  mv /tmp/tmp.geog0111.$$ ~/.profile
+  echo "--> done testing"
+else
+  echo "---> failure setting active env to ${course_name}"
+  exit 1
+fi
+echo "--> done examining UCLDATA"
 
+
+echo "--> examining CACHE_FILE"
+if [ -z "$CACHE_FILE" ] ; then
+  echo "--> CACHE_FILE not set"
+  export CACHE_FILE="/shared/groups/jrole001/geog0111/work/database.db"
+fi
+echo "--> setting CACHE_FILE=$CACHE_FILE"
+touch ~/.profile
+echo "export CACHE_FILE=$CACHE_FILE" > /tmp/tmp.geog0111.$$
+grep -v 'CACHE_FILE=' < ~/.profile >> /tmp/tmp.geog0111.$$
+echo "--> testing"
+source /tmp/tmp.geog0111.$$
+if [ "$?" -eq 0 ]; then
+  mv /tmp/tmp.geog0111.$$ ~/.profile
+  echo "--> done testing"
+else
+  echo "---> failure setting active env to ${course_name}"
+  exit 1
+fi
+echo "--> done examining CACHE_FILE"
+
+# UCL data link
+cd $base
+echo "--> sorting link to UCL data store"
+rm -f data/ucl
 cd data
-if [ -L ucl ] ; then
-  rm -f ucl
-fi
-echo "linking data/ucl to $UCLDATA"
 ln -s $UCLDATA ucl
-cd $here
-
+echo "--> done"
 
 csubs=('docs' 'bin' 'notebooks' 'notebooks_lab')
 # outer loop

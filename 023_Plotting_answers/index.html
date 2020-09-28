@@ -1,0 +1,1921 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://ucl-eo.github.io/geog0111/023_Plotting_answers/">
+      
+      
+        <meta name="author" content="Prof P. Lewis">
+      
+      <link rel="shortcut icon" href="../images/ucl.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Plotting - GEOG0111</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plotting-graphs-answers-to-exercises" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-header-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            GEOG0111
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Plotting
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ucl-eo.github.io/geog0111" title="GEOG0111" class="md-nav__button md-logo" aria-label="GEOG0111">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    GEOG0111
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/UCL-EO/geog0111/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Course Basics
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Course Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Course Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../001_Notebook_use/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../002_Unix/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../004_Accounts/" title="Accounts" class="md-nav__link">
+      Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../005_Packages/" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../001_Notebook_use_answers/" title="Notebook Use" class="md-nav__link">
+      Notebook Use
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../002_Unix_answers/" title="Unix" class="md-nav__link">
+      Unix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../003_Help_answers/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Core Concepts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Core Concepts" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Core Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../010_Python_Introduction/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../011_Python_data_types/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../014_Python_groups/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../015_Python_control/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../016_Python_for/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../017_Functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../018_Running_Python/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
+    
+    <label class="md-nav__link" for="nav-3-10">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-10">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../010_Python_Introduction_answers/" title="Python Introduction" class="md-nav__link">
+      Python Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../011_Python_data_types_answers/" title="Python Data Types" class="md-nav__link">
+      Python Data Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../012_Python_strings_answers/" title="Python Strings" class="md-nav__link">
+      Python Strings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../013_Python_string_methods_answers/" title="Python String Methods" class="md-nav__link">
+      Python String Methods
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../014_Python_groups_answers/" title="Python Groups" class="md-nav__link">
+      Python Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../015_Python_control_answers/" title="Python Control" class="md-nav__link">
+      Python Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../016_Python_for_answers/" title="Python For" class="md-nav__link">
+      Python For
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../017_Functions_answers/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../018_Running_Python_answers/" title="Running Python" class="md-nav__link">
+      Running Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_Python_files/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_Streams/" title="Streams" class="md-nav__link">
+      Streams
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_Read_write_files/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../023_Plotting/" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../024_Image_display/" title="Image Display" class="md-nav__link">
+      Image Display
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-6" type="checkbox" id="nav-4-6" checked>
+    
+    <label class="md-nav__link" for="nav-4-6">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-6">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../020_Python_files_answers/" title="Python Files" class="md-nav__link">
+      Python Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../021_Streams_answers/" title="Streams" class="md-nav__link">
+      Streams
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../022_Read_write_files_answers/" title="Read Write Files" class="md-nav__link">
+      Read Write Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Plotting
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Plotting" class="md-nav__link md-nav__link--active">
+      Plotting
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../024_Image_display_answers/" title="Image Display" class="md-nav__link">
+      Image Display
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Geospatial Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Geospatial Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Geospatial Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../030_NASA_MODIS_Earthdata/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../031_Numpy/" title="Numpy" class="md-nav__link">
+      Numpy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../032_GDAL_mosaicing_and_masking/" title="GDAL Mosaicing And Masking" class="md-nav__link">
+      GDAL Mosaicing And Masking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../033_GDAL_timeseries/" title="GDAL Timeseries" class="md-nav__link">
+      GDAL Timeseries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../034_Weigthed_smoothing_and_interpolation/" title="Weigthed Smoothing And Interpolation" class="md-nav__link">
+      Weigthed Smoothing And Interpolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../035_Weighted_interpolation/" title="Weighted Interpolation" class="md-nav__link">
+      Weighted Interpolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../036_Model_Fitting/" title="Model Fitting" class="md-nav__link">
+      Model Fitting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-8" type="checkbox" id="nav-5-8">
+    
+    <label class="md-nav__link" for="nav-5-8">
+      Answers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Answers" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-8">
+        <span class="md-nav__icon md-icon"></span>
+        Answers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../030_NASA_MODIS_Earthdata_answers/" title="NASA MODIS Earthdata" class="md-nav__link">
+      NASA MODIS Earthdata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../031_Numpy_answers/" title="Numpy" class="md-nav__link">
+      Numpy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../032_GDAL_mosaicing_and_masking_answers/" title="GDAL Mosaicing And Masking" class="md-nav__link">
+      GDAL Mosaicing And Masking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Modelling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modelling" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Modelling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../040_Practical_Part1/" title="Practical Part1" class="md-nav__link">
+      Practical Part1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../041_Practical_Part2/" title="Practical Part2" class="md-nav__link">
+      Practical Part2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/023_Plotting_answers.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="plotting-graphs-answers-to-exercises">Plotting Graphs : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<p>We have seen how to access the dataset labels using:</p>
+<pre><code>headings = df.columns[1:-1]
+</code></pre>
+<ul>
+<li>Copy the code to read the HadSEEP monthly datasets above</li>
+<li>Write and run code that plots the precipitation data for all months separate subplots.</li>
+</ul>
+<pre><code class="python"># ANSWER 
+# Copy the code to read the HadSEEP monthly datasets above
+import pandas as pd
+from geog0111.gurlpath import URL
+
+# Monthly Southeast England precipitation (mm) 
+site = 'https://www.metoffice.gov.uk/'
+site_dir = 'hadobs/hadukp/data/monthly'
+site_file = 'HadSEEP_monthly_qc.txt'
+
+url = URL(site,site_dir,site_file)
+
+panda_format = {
+    'skiprows'   :  3,
+    'na_values'  :  [-99.9],
+    'sep'        :  r&quot;[ ]{1,}&quot;,
+    'engine'     :  'python'
+}
+
+df=pd.read_table(url.open('r'),**panda_format)
+
+# df.head: first n lines
+df.head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>YEAR</th>
+      <th>JAN</th>
+      <th>FEB</th>
+      <th>MAR</th>
+      <th>APR</th>
+      <th>MAY</th>
+      <th>JUN</th>
+      <th>JUL</th>
+      <th>AUG</th>
+      <th>SEP</th>
+      <th>OCT</th>
+      <th>NOV</th>
+      <th>DEC</th>
+      <th>ANN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1873</td>
+      <td>87.1</td>
+      <td>50.4</td>
+      <td>52.9</td>
+      <td>19.9</td>
+      <td>41.1</td>
+      <td>63.6</td>
+      <td>53.2</td>
+      <td>56.4</td>
+      <td>62.0</td>
+      <td>86.0</td>
+      <td>59.4</td>
+      <td>15.7</td>
+      <td>647.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1874</td>
+      <td>46.8</td>
+      <td>44.9</td>
+      <td>15.8</td>
+      <td>48.4</td>
+      <td>24.1</td>
+      <td>49.9</td>
+      <td>28.3</td>
+      <td>43.6</td>
+      <td>79.4</td>
+      <td>96.1</td>
+      <td>63.9</td>
+      <td>52.3</td>
+      <td>593.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1875</td>
+      <td>96.9</td>
+      <td>39.7</td>
+      <td>22.9</td>
+      <td>37.0</td>
+      <td>39.1</td>
+      <td>76.1</td>
+      <td>125.1</td>
+      <td>40.8</td>
+      <td>54.7</td>
+      <td>137.7</td>
+      <td>106.4</td>
+      <td>27.1</td>
+      <td>803.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1876</td>
+      <td>31.8</td>
+      <td>71.9</td>
+      <td>79.5</td>
+      <td>63.6</td>
+      <td>16.5</td>
+      <td>37.2</td>
+      <td>22.3</td>
+      <td>66.3</td>
+      <td>118.2</td>
+      <td>34.1</td>
+      <td>89.0</td>
+      <td>162.9</td>
+      <td>793.3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1877</td>
+      <td>146.0</td>
+      <td>47.7</td>
+      <td>56.2</td>
+      <td>66.4</td>
+      <td>62.3</td>
+      <td>24.9</td>
+      <td>78.5</td>
+      <td>82.4</td>
+      <td>38.4</td>
+      <td>58.1</td>
+      <td>144.5</td>
+      <td>54.2</td>
+      <td>859.6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<pre><code class="python"># ANSWER 2
+# Write and run code that plots the 
+# precipitation data for all months separate subplots.
+import matplotlib.pyplot as plt
+
+# plot size &gt; in y
+# need to play with this to get it right
+x_size,y_size = 20,30
+
+# get the m onth names from columns
+months = df.columns[1:-1]
+
+fig, axs = plt.subplots(12,1,figsize=(x_size,y_size))
+
+# use enumerate in the loop, to get the index
+for i,m in enumerate(months):
+    # plot y-data and set the label for the first panel
+    axs[i].plot(df[&quot;YEAR&quot;],df[m],'k',label=m)
+    axs[i].set_ylabel(f'{m} Precipitation (mm)')
+    axs[i].set_xlim(year0,year1)
+
+# x-label
+axs[-1].set_xlabel(f'year')
+</code></pre>
+
+<pre><code>Text(0.5, 0, 'year')
+</code></pre>
+<p><img alt="png" src="../023_Plotting_answers_files/023_Plotting_answers_3_1.png" /></p>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>Read the <code>2276931.csv</code> dataset into a pandas dataframe called <code>df</code></li>
+<li>Convert the field <code>df["DATE"]</code> to a list called <code>dates</code></li>
+<li>Use your understanding of <code>datetime</code> to convert the data <code>dates[0]</code> to a <code>datetime</code> object called <code>start_date</code></li>
+<li>Convert the data <code>date[-1]</code> to a <code>datetime</code> object called <code>end_date</code></li>
+<li>Find how many days between start_date and end_date</li>
+<li>Use a loop structure to convert the all elements in <code>dates</code> to be the n umber of days after the start date</li>
+</ul>
+<pre><code class="python"># ANSWER
+# Read the `2276931.csv` dataset into a 
+# pandas dataframe called `df`
+import pandas as pd
+from geog0111.gurlpath import URL
+
+site = 'https://raw.githubusercontent.com'
+site_dir = '/UCL-EO/geog0111/master/data'
+site_file = '2276931.csv'
+
+# form the URL
+url = URL(site,site_dir,site_file)
+
+# Read the file into pandas using url.open('r').
+df=pd.read_csv(url.open('r'))
+
+# print the first 5 lines of data
+df.head(5)
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATION</th>
+      <th>NAME</th>
+      <th>DATE</th>
+      <th>PRCP</th>
+      <th>SNOW</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-01</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-02</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-03</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-04</td>
+      <td>0.98</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>US1FLGD0002</td>
+      <td>HAVANA 4.2 SW, FL US</td>
+      <td>2020-01-05</td>
+      <td>0.00</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<pre><code class="python">from datetime import datetime
+# ANSWER
+# Convert the field `df[&quot;DATE&quot;]` to 
+# a list called `dates`
+dates = list(df[&quot;DATE&quot;])
+
+# Use your understanding of `datetime` to convert 
+# the data `dates[0]` to a `datetime` object called `start_date`
+# use datetime.strptime(d,&quot;%Y-%m-%d&quot;) to read a date in the format 2020-09-02
+start_date = datetime.strptime(dates[0], &quot;%Y-%m-%d&quot;)
+print(f'{dates[0]} -&gt; {start_date}')
+
+# Convert the data `date[-1]` to a 
+# `datetime` object called `end_date`
+end_date = datetime.strptime(dates[-1], &quot;%Y-%m-%d&quot;)
+print(f'{dates[-1]} -&gt; {end_date}')
+
+# find how many days between start_date and end_date
+# ndays is number of days in date minus start date
+ndays = (end_date - start_date).days
+print(f'ndays: {start_date} to {end_date}: {ndays}')
+
+# Use a loop structure to convert the all 
+# elements in `dates` to be the number of days after the start date
+ndays = [(datetime.strptime(d,&quot;%Y-%m-%d&quot;)-start_date).days for d in dates]
+print(ndays)
+</code></pre>
+
+<pre><code>2020-01-01 -&gt; 2020-01-01 00:00:00
+2020-09-02 -&gt; 2020-09-02 00:00:00
+ndays: 2020-01-01 00:00:00 to 2020-09-02 00:00:00: 245
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245]
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<p>We examined a pulsar time series in a <a href="../021_Streams/#pandas-transpose">previous section of notes</a>. It contains the <a href="https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv">successive pulses</a> of the oscillation signal coming from the <a href="https://www.joydivisionofficial.com/reimagined/">Pulsar PSR B1919+21</a> discovered by <a href="https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell">Jocelyn Bell</a> in 1967.</p>
+<p>The dataset as presented contains samples in columns, so that sample <code>0</code> is df[0], up to df[79] (80 samples).</p>
+<ul>
+<li>Plot the pulsar samples in a series of 80 sub-plots. </li>
+</ul>
+<p><strong>Advice</strong>: </p>
+<p>For the figure, do not label the axes as it will get too cluttered. In any professional figure of that sort, you would need to explain the axes in accompanying text. </p>
+<p>For further 'effects' consider switching off the plotting of axes in each subplot, with:</p>
+<pre><code>ax.axis('off')
+</code></pre>
+<p>for axis <code>ax</code> (this may be something like <code>axs[i]</code> in your code).</p>
+<p>The results should be reminiscent of:</p>
+<p><a href="https://blogs.scientificamerican.com/blogs/assets/sa-visual/Image/fig537.jpg"><img alt="pulsar image" src="../images/smallfig537.jpg" /></a></p>
+<p>If you want to go further towards re-creating this, you consult <a href="https://matplotlib.org/3.1.0/gallery/animation/unchained.html">the matplotlib gallery</a> for ideas.</p>
+<pre><code class="python">import pandas as pd
+from geog0111.gurlpath import URL
+
+site = 'https://raw.githubusercontent.com'
+site_dir = 'igorol/unknown_pleasures_plot/master'
+site_file = 'pulsar.csv'
+
+url = URL(site,site_dir,site_file)
+
+# transposed version
+df=pd.read_csv(url,header=None).transpose()
+df
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>70</th>
+      <th>71</th>
+      <th>72</th>
+      <th>73</th>
+      <th>74</th>
+      <th>75</th>
+      <th>76</th>
+      <th>77</th>
+      <th>78</th>
+      <th>79</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.81</td>
+      <td>-0.61</td>
+      <td>-1.43</td>
+      <td>-1.09</td>
+      <td>-1.13</td>
+      <td>-0.66</td>
+      <td>-0.36</td>
+      <td>-0.73</td>
+      <td>-0.89</td>
+      <td>-0.69</td>
+      <td>...</td>
+      <td>0.00</td>
+      <td>-0.16</td>
+      <td>0.19</td>
+      <td>-0.32</td>
+      <td>-0.16</td>
+      <td>0.62</td>
+      <td>0.32</td>
+      <td>-0.09</td>
+      <td>0.11</td>
+      <td>0.12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.91</td>
+      <td>-0.40</td>
+      <td>-1.15</td>
+      <td>-0.85</td>
+      <td>-0.98</td>
+      <td>-0.89</td>
+      <td>-0.21</td>
+      <td>-0.83</td>
+      <td>-0.61</td>
+      <td>-0.54</td>
+      <td>...</td>
+      <td>-0.12</td>
+      <td>-0.15</td>
+      <td>0.06</td>
+      <td>-0.83</td>
+      <td>-0.26</td>
+      <td>0.64</td>
+      <td>0.31</td>
+      <td>-0.14</td>
+      <td>0.05</td>
+      <td>-0.12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1.09</td>
+      <td>-0.42</td>
+      <td>-1.25</td>
+      <td>-0.72</td>
+      <td>-0.93</td>
+      <td>-0.87</td>
+      <td>-0.44</td>
+      <td>-0.91</td>
+      <td>-0.74</td>
+      <td>-0.84</td>
+      <td>...</td>
+      <td>0.10</td>
+      <td>0.25</td>
+      <td>-0.27</td>
+      <td>-0.69</td>
+      <td>-0.36</td>
+      <td>0.59</td>
+      <td>0.28</td>
+      <td>-0.24</td>
+      <td>0.05</td>
+      <td>-0.12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.00</td>
+      <td>-0.38</td>
+      <td>-1.13</td>
+      <td>-0.74</td>
+      <td>-0.90</td>
+      <td>-0.87</td>
+      <td>-0.20</td>
+      <td>-1.10</td>
+      <td>-0.85</td>
+      <td>-0.89</td>
+      <td>...</td>
+      <td>-0.01</td>
+      <td>0.37</td>
+      <td>-0.11</td>
+      <td>-0.80</td>
+      <td>-0.49</td>
+      <td>0.30</td>
+      <td>0.42</td>
+      <td>-0.24</td>
+      <td>-0.05</td>
+      <td>-0.45</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.59</td>
+      <td>-0.55</td>
+      <td>-0.76</td>
+      <td>-0.26</td>
+      <td>-1.14</td>
+      <td>-1.07</td>
+      <td>-0.31</td>
+      <td>-0.87</td>
+      <td>-0.77</td>
+      <td>-0.45</td>
+      <td>...</td>
+      <td>-0.15</td>
+      <td>-0.13</td>
+      <td>0.09</td>
+      <td>-0.76</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>-0.24</td>
+      <td>-0.66</td>
+      <td>-0.03</td>
+      <td>-0.24</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>295</th>
+      <td>-0.26</td>
+      <td>-0.83</td>
+      <td>0.11</td>
+      <td>-1.03</td>
+      <td>-0.29</td>
+      <td>-0.55</td>
+      <td>-1.45</td>
+      <td>-1.20</td>
+      <td>-0.94</td>
+      <td>-0.16</td>
+      <td>...</td>
+      <td>0.47</td>
+      <td>0.10</td>
+      <td>-0.06</td>
+      <td>0.08</td>
+      <td>0.28</td>
+      <td>-0.21</td>
+      <td>-0.56</td>
+      <td>-0.12</td>
+      <td>-0.87</td>
+      <td>0.13</td>
+    </tr>
+    <tr>
+      <th>296</th>
+      <td>-0.52</td>
+      <td>-0.80</td>
+      <td>-0.77</td>
+      <td>-0.78</td>
+      <td>-0.54</td>
+      <td>-0.62</td>
+      <td>-0.77</td>
+      <td>-1.40</td>
+      <td>-1.05</td>
+      <td>0.24</td>
+      <td>...</td>
+      <td>0.41</td>
+      <td>0.02</td>
+      <td>-0.08</td>
+      <td>-0.15</td>
+      <td>-0.01</td>
+      <td>-0.09</td>
+      <td>-0.50</td>
+      <td>0.29</td>
+      <td>-1.31</td>
+      <td>0.09</td>
+    </tr>
+    <tr>
+      <th>297</th>
+      <td>-0.44</td>
+      <td>-0.47</td>
+      <td>-0.88</td>
+      <td>-0.40</td>
+      <td>-0.65</td>
+      <td>-0.71</td>
+      <td>0.03</td>
+      <td>-0.51</td>
+      <td>-0.51</td>
+      <td>-0.17</td>
+      <td>...</td>
+      <td>0.32</td>
+      <td>-0.10</td>
+      <td>-0.04</td>
+      <td>0.03</td>
+      <td>-0.67</td>
+      <td>-0.24</td>
+      <td>-0.38</td>
+      <td>-0.02</td>
+      <td>-1.02</td>
+      <td>-0.01</td>
+    </tr>
+    <tr>
+      <th>298</th>
+      <td>-0.58</td>
+      <td>-0.13</td>
+      <td>-0.45</td>
+      <td>0.18</td>
+      <td>-0.64</td>
+      <td>-0.88</td>
+      <td>0.47</td>
+      <td>0.25</td>
+      <td>-0.47</td>
+      <td>-0.09</td>
+      <td>...</td>
+      <td>0.57</td>
+      <td>-0.16</td>
+      <td>0.23</td>
+      <td>0.03</td>
+      <td>-0.86</td>
+      <td>-0.17</td>
+      <td>-0.58</td>
+      <td>0.21</td>
+      <td>-1.10</td>
+      <td>-0.03</td>
+    </tr>
+    <tr>
+      <th>299</th>
+      <td>-0.54</td>
+      <td>-0.12</td>
+      <td>-1.01</td>
+      <td>0.27</td>
+      <td>-0.94</td>
+      <td>-0.70</td>
+      <td>1.33</td>
+      <td>0.74</td>
+      <td>-0.79</td>
+      <td>0.01</td>
+      <td>...</td>
+      <td>0.48</td>
+      <td>-0.06</td>
+      <td>-0.10</td>
+      <td>-0.54</td>
+      <td>-1.66</td>
+      <td>-0.62</td>
+      <td>-0.43</td>
+      <td>0.44</td>
+      <td>-1.62</td>
+      <td>-0.23</td>
+    </tr>
+  </tbody>
+</table>
+<p>300 rows × 80 columns</p>
+</div>
+
+<pre><code class="python"># ANSWER 3
+# Plot the pulsar samples in a series of 80 sub-plots.
+import matplotlib.pyplot as plt
+
+# need to play with this to get it right
+x_size,y_size = 15,20
+
+# get the m onth names from columns
+samples = df.columns
+fig,axs = plt.subplots(len(df.columns),1,figsize=(x_size,y_size))
+
+# use enumerate in the loop, to get the index
+for i,m in enumerate(samples):
+    axs[i].plot(df[m],'k')
+    axs[i].axis('off')
+</code></pre>
+
+<p><img alt="png" src="../023_Plotting_answers_files/023_Plotting_answers_9_0.png" /></p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 28, 2020</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../022_Read_write_files_answers/" title="Read Write Files" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Read Write Files
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../024_Image_display_answers/" title="Image Display" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Image Display
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/prof_plewis" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/proflewis/geog0111" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/UCL-EO/geog0111" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

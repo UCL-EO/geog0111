@@ -21,11 +21,6 @@ You will need some understanding of the following:
 
 In the exercises below, make use of f-strings when building statements to print.
 
-### Timing
-
-The session should take around 30 minutes.
-
-
 
 ## Groups of things
 Very often, we will want to group items together. There are several main mechanisms for doing this in Python, known as:
@@ -201,11 +196,12 @@ A list has a much richer set of methods than a tuple. This is because we can add
 
 * `insert(i,j)` : insert `j` beore item `i` in the list
 * `append(j)` : append `j` to the end of the list
+* `extend(j)` : extend the list with `j` to the end of the list
 * `sort()` : sort the list
 
-Recall from [003_Help](003_Help.md#Exercise) that `sort()` is an `in-place` operation, and remeber the consequences of that. Notice that `insert()` and `append()` are also `in-place` operations.
+Recall from [003_Help](003_Help.md#Exercise) that `sort()` is an `in-place` operation, and remember the consequences of that. Notice that `insert()`, `extend()` and `append()` are also `in-place` operations.
 
-This list of methods suggests that tuples and lists are 'ordered' (i.e. they maintain the order they are loaded in) so that indiviual elements may be accessed through an 'index'. The index values start at 0 as we saw above. The index of the last element in a list/tuple is the length of the group, minus 1. This can also be referred to an index `-1`.
+This list of methods suggests that tuples and lists are 'ordered' (i.e. they maintain the order they are loaded in) so that individual elements may be accessed through an 'index'. The index values start at 0 as we saw above. The index of the last element in a list/tuple is the length of the group, minus 1. This can also be referred to an index `-1`.
 
 
 ```python
@@ -236,6 +232,34 @@ print(f'the list {l0} once sorted is {l1}')
 ```
 
     the list [64, 2, 8, 4, 32, 128, 16, 256] once sorted is [2, 4, 8, 16, 32, 64, 128, 256]
+
+
+#### `extend` and `append`
+
+
+```python
+l0 = [2,8,4,32,16]
+l1 = [2,3,4]
+
+# notice the difference between extend and append
+l0.extend(l1)
+print(l0)
+```
+
+    [2, 8, 4, 32, 16, 2, 3, 4]
+
+
+
+```python
+l0 = [2,8,4,32,16]
+l1 = [2,3,4]
+
+# notice the difference between extend and append
+l0.append(l1)
+print(l0)
+```
+
+    [2, 8, 4, 32, 16, [2, 3, 4]]
 
 
 #### Exercise 4

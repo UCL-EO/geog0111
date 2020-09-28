@@ -1,0 +1,1467 @@
+modis:
+  MOD10A1.h19v03.2019.01.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.01.vrt
+  MOD10A1.h19v03.2019.01.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.05.vrt
+  MOD10A1.h19v03.2019.01.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.09.vrt
+  MOD10A1.h19v03.2019.01.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.13.vrt
+  MOD10A1.h19v03.2019.01.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.17.vrt
+  MOD10A1.h19v03.2019.01.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.21.vrt
+  MOD10A1.h19v03.2019.01.25:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.25.vrt
+  MOD10A1.h19v03.2019.01.29:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.01.29.vrt
+  MOD10A1.h19v03.2019.02.02:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.02.02.vrt
+  MOD10A1.h19v03.2019.02.06:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.02.06.vrt
+  MOD10A1.h19v03.2019.02.10:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.02.10.vrt
+  MOD10A1.h19v03.2019.02.14:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.02.14.vrt
+  MOD10A1.h19v03.2019.02.18:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.02.18.vrt
+  MOD10A1.h19v03.2019.02.22:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.02.22.vrt
+  MOD10A1.h19v03.2019.02.26:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.02.26.vrt
+  MOD10A1.h19v03.2019.03.02:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.02.vrt
+  MOD10A1.h19v03.2019.03.06:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.06.vrt
+  MOD10A1.h19v03.2019.03.10:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.10.vrt
+  MOD10A1.h19v03.2019.03.14:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.14.vrt
+  MOD10A1.h19v03.2019.03.18:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.18.vrt
+  MOD10A1.h19v03.2019.03.22:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.22.vrt
+  MOD10A1.h19v03.2019.03.26:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.26.vrt
+  MOD10A1.h19v03.2019.03.30:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.03.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.03.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.03.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.03.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.03.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.03.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.03.30.vrt
+  MOD10A1.h19v03.2019.04.03:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.04.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.04.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.04.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.04.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.04.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.04.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.04.03.vrt
+  MOD10A1.h19v03.2019.04.07:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.04.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.04.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.04.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.04.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.04.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.04.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.04.07.vrt
+  MOD10A1.h19v03.2019.04.11:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.04.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.04.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.04.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.04.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.04.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.04.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.04.11.vrt
+  MOD10A1.h19v03.2019.04.15:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.04.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.04.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.04.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.04.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.04.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.04.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.04.15.vrt
+  MOD10A1.h19v03.2019.04.19:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.04.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.04.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.04.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.04.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.04.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.04.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.04.19.vrt
+  MOD10A1.h19v03.2019.04.23:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.04.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.04.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.04.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.04.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.04.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.04.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.04.23.vrt
+  MOD10A1.h19v03.2019.04.27:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.04.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.04.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.04.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.04.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.04.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.04.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.04.27.vrt
+  MOD10A1.h19v03.2019.05.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.01.vrt
+  MOD10A1.h19v03.2019.05.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.05.vrt
+  MOD10A1.h19v03.2019.05.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.09.vrt
+  MOD10A1.h19v03.2019.05.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.13.vrt
+  MOD10A1.h19v03.2019.05.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.17.vrt
+  MOD10A1.h19v03.2019.05.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.21.vrt
+  MOD10A1.h19v03.2019.05.25:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.25.vrt
+  MOD10A1.h19v03.2019.05.29:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.05.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.05.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.05.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.05.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.05.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.05.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.05.29.vrt
+  MOD10A1.h19v03.2019.06.02:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.02.vrt
+  MOD10A1.h19v03.2019.06.06:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.06.vrt
+  MOD10A1.h19v03.2019.06.10:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.10.vrt
+  MOD10A1.h19v03.2019.06.14:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.14.vrt
+  MOD10A1.h19v03.2019.06.18:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.18.vrt
+  MOD10A1.h19v03.2019.06.22:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.22.vrt
+  MOD10A1.h19v03.2019.06.26:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.26.vrt
+  MOD10A1.h19v03.2019.06.30:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.06.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.06.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.06.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.06.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.06.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.06.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.06.30.vrt
+  MOD10A1.h19v03.2019.07.04:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.07.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.07.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.07.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.07.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.07.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.07.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.07.04.vrt
+  MOD10A1.h19v03.2019.07.08:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.07.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.07.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.07.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.07.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.07.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.07.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.07.08.vrt
+  MOD10A1.h19v03.2019.07.12:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.07.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.07.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.07.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.07.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.07.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.07.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.07.12.vrt
+  MOD10A1.h19v03.2019.07.16:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.07.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.07.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.07.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.07.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.07.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.07.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.07.16.vrt
+  MOD10A1.h19v03.2019.07.20:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.07.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.07.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.07.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.07.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.07.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.07.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.07.20.vrt
+  MOD10A1.h19v03.2019.07.24:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.07.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.07.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.07.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.07.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.07.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.07.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.07.24.vrt
+  MOD10A1.h19v03.2019.07.28:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.07.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.07.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.07.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.07.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.07.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.07.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.07.28.vrt
+  MOD10A1.h19v03.2019.08.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.01.vrt
+  MOD10A1.h19v03.2019.08.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.05.vrt
+  MOD10A1.h19v03.2019.08.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.09.vrt
+  MOD10A1.h19v03.2019.08.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.13.vrt
+  MOD10A1.h19v03.2019.08.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.17.vrt
+  MOD10A1.h19v03.2019.08.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.21.vrt
+  MOD10A1.h19v03.2019.08.25:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.25.vrt
+  MOD10A1.h19v03.2019.08.29:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.08.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.08.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.08.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.08.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.08.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.08.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.08.29.vrt
+  MOD10A1.h19v03.2019.09.02:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.02.vrt
+  MOD10A1.h19v03.2019.09.06:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.06.vrt
+  MOD10A1.h19v03.2019.09.10:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.10.vrt
+  MOD10A1.h19v03.2019.09.14:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.14.vrt
+  MOD10A1.h19v03.2019.09.18:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.18.vrt
+  MOD10A1.h19v03.2019.09.22:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.22.vrt
+  MOD10A1.h19v03.2019.09.26:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.26.vrt
+  MOD10A1.h19v03.2019.09.30:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.09.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.09.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.09.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.09.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.09.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.09.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.09.30.vrt
+  MOD10A1.h19v03.2019.10.04:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.10.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.10.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.10.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.10.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.10.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.10.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.10.04.vrt
+  MOD10A1.h19v03.2019.10.08:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.10.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.10.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.10.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.10.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.10.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.10.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.10.08.vrt
+  MOD10A1.h19v03.2019.10.12:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.10.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.10.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.10.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.10.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.10.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.10.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.10.12.vrt
+  MOD10A1.h19v03.2019.10.16:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.10.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.10.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.10.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.10.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.10.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.10.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.10.16.vrt
+  MOD10A1.h19v03.2019.10.20:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.10.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.10.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.10.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.10.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.10.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.10.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.10.20.vrt
+  MOD10A1.h19v03.2019.10.24:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.10.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.10.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.10.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.10.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.10.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.10.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.10.24.vrt
+  MOD10A1.h19v03.2019.10.28:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.10.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.10.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.10.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.10.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.10.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.10.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.10.28.vrt
+  MOD10A1.h19v03.2019.11.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.01.vrt
+  MOD10A1.h19v03.2019.11.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.05.vrt
+  MOD10A1.h19v03.2019.11.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.09.vrt
+  MOD10A1.h19v03.2019.11.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.13.vrt
+  MOD10A1.h19v03.2019.11.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.17.vrt
+  MOD10A1.h19v03.2019.11.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.21.vrt
+  MOD10A1.h19v03.2019.11.25:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.25.vrt
+  MOD10A1.h19v03.2019.11.29:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.11.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.11.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.11.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.11.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.11.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.11.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.11.29.vrt
+  MOD10A1.h19v03.2019.12.03:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.03.vrt
+  MOD10A1.h19v03.2019.12.07:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.07.vrt
+  MOD10A1.h19v03.2019.12.11:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.11.vrt
+  MOD10A1.h19v03.2019.12.15:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.15.vrt
+  MOD10A1.h19v03.2019.12.19:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.19.vrt
+  MOD10A1.h19v03.2019.12.23:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.23.vrt
+  MOD10A1.h19v03.2019.12.27:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.27.vrt
+  MOD10A1.h19v03.2019.12.31:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2019.12.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2019.12.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2019.12.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2019.12.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2019.12.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2019.12.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2019.12.31.vrt
+  MOD10A1.h19v03.2020.01.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.01.vrt
+  MOD10A1.h19v03.2020.01.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.05.vrt
+  MOD10A1.h19v03.2020.01.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.09.vrt
+  MOD10A1.h19v03.2020.01.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.13.vrt
+  MOD10A1.h19v03.2020.01.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.17.vrt
+  MOD10A1.h19v03.2020.01.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.21.vrt
+  MOD10A1.h19v03.2020.01.25:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.25.vrt
+  MOD10A1.h19v03.2020.01.29:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.01.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.01.29.vrt
+  MOD10A1.h19v03.2020.02.02:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.02.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.02.02.vrt
+  MOD10A1.h19v03.2020.02.06:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.02.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.02.06.vrt
+  MOD10A1.h19v03.2020.02.10:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.02.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.02.10.vrt
+  MOD10A1.h19v03.2020.02.14:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.02.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.02.14.vrt
+  MOD10A1.h19v03.2020.02.18:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.02.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.02.18.vrt
+  MOD10A1.h19v03.2020.02.22:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.02.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.02.22.vrt
+  MOD10A1.h19v03.2020.02.26:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.02.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.02.26.vrt
+  MOD10A1.h19v03.2020.03.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.01.vrt
+  MOD10A1.h19v03.2020.03.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.05.vrt
+  MOD10A1.h19v03.2020.03.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.09.vrt
+  MOD10A1.h19v03.2020.03.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.13.vrt
+  MOD10A1.h19v03.2020.03.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.17.vrt
+  MOD10A1.h19v03.2020.03.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.21.vrt
+  MOD10A1.h19v03.2020.03.25:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.25.vrt
+  MOD10A1.h19v03.2020.03.29:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.03.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.03.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.03.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.03.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.03.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.03.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.03.29.vrt
+  MOD10A1.h19v03.2020.04.02:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.02.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.02.vrt
+  MOD10A1.h19v03.2020.04.06:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.06.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.06.vrt
+  MOD10A1.h19v03.2020.04.10:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.10.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.10.vrt
+  MOD10A1.h19v03.2020.04.14:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.14.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.14.vrt
+  MOD10A1.h19v03.2020.04.18:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.18.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.18.vrt
+  MOD10A1.h19v03.2020.04.22:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.22.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.22.vrt
+  MOD10A1.h19v03.2020.04.26:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.26.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.26.vrt
+  MOD10A1.h19v03.2020.04.30:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.04.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.04.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.04.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.04.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.04.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.04.30.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.04.30.vrt
+  MOD10A1.h19v03.2020.05.04:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.05.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.05.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.05.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.05.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.05.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.05.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.05.04.vrt
+  MOD10A1.h19v03.2020.05.08:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.05.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.05.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.05.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.05.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.05.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.05.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.05.08.vrt
+  MOD10A1.h19v03.2020.05.12:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.05.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.05.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.05.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.05.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.05.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.05.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.05.12.vrt
+  MOD10A1.h19v03.2020.05.16:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.05.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.05.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.05.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.05.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.05.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.05.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.05.16.vrt
+  MOD10A1.h19v03.2020.05.20:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.05.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.05.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.05.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.05.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.05.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.05.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.05.20.vrt
+  MOD10A1.h19v03.2020.05.24:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.05.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.05.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.05.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.05.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.05.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.05.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.05.24.vrt
+  MOD10A1.h19v03.2020.05.28:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.05.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.05.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.05.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.05.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.05.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.05.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.05.28.vrt
+  MOD10A1.h19v03.2020.06.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.01.vrt
+  MOD10A1.h19v03.2020.06.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.05.vrt
+  MOD10A1.h19v03.2020.06.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.09.vrt
+  MOD10A1.h19v03.2020.06.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.13.vrt
+  MOD10A1.h19v03.2020.06.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.17.vrt
+  MOD10A1.h19v03.2020.06.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.21.vrt
+  MOD10A1.h19v03.2020.06.25:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.25.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.25.vrt
+  MOD10A1.h19v03.2020.06.29:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.06.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.06.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.06.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.06.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.06.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.06.29.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.06.29.vrt
+  MOD10A1.h19v03.2020.07.03:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.03.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.03.vrt
+  MOD10A1.h19v03.2020.07.07:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.07.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.07.vrt
+  MOD10A1.h19v03.2020.07.11:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.11.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.11.vrt
+  MOD10A1.h19v03.2020.07.15:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.15.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.15.vrt
+  MOD10A1.h19v03.2020.07.19:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.19.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.19.vrt
+  MOD10A1.h19v03.2020.07.23:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.23.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.23.vrt
+  MOD10A1.h19v03.2020.07.27:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.27.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.27.vrt
+  MOD10A1.h19v03.2020.07.31:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.07.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.07.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.07.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.07.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.07.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.07.31.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.07.31.vrt
+  MOD10A1.h19v03.2020.08.04:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.08.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.08.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.08.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.08.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.08.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.08.04.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.08.04.vrt
+  MOD10A1.h19v03.2020.08.08:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.08.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.08.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.08.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.08.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.08.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.08.08.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.08.08.vrt
+  MOD10A1.h19v03.2020.08.12:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.08.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.08.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.08.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.08.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.08.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.08.12.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.08.12.vrt
+  MOD10A1.h19v03.2020.08.16:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.08.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.08.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.08.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.08.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.08.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.08.16.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.08.16.vrt
+  MOD10A1.h19v03.2020.08.20:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.08.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.08.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.08.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.08.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.08.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.08.20.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.08.20.vrt
+  MOD10A1.h19v03.2020.08.24:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.08.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.08.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.08.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.08.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.08.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.08.24.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.08.24.vrt
+  MOD10A1.h19v03.2020.08.28:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.08.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.08.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.08.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.08.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.08.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.08.28.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.08.28.vrt
+  MOD10A1.h19v03.2020.09.01:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.09.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.09.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.09.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.09.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.09.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.09.01.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.09.01.vrt
+  MOD10A1.h19v03.2020.09.05:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.09.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.09.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.09.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.09.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.09.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.09.05.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.09.05.vrt
+  MOD10A1.h19v03.2020.09.09:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.09.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.09.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.09.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.09.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.09.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.09.09.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.09.09.vrt
+  MOD10A1.h19v03.2020.09.13:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.09.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.09.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.09.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.09.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.09.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.09.13.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.09.13.vrt
+  MOD10A1.h19v03.2020.09.17:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.09.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.09.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.09.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.09.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.09.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.09.17.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.09.17.vrt
+  MOD10A1.h19v03.2020.09.21:
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover.h19v03.2020.09.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Basic_QA.h19v03.2020.09.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI_Snow_Cover_Algorithm_Flags_QA.h19v03.2020.09.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.NDSI.h19v03.2020.09.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.Snow_Albedo_Daily_Tile.h19v03.2020.09.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.orbit_pnt.h19v03.2020.09.21.vrt
+  - /Users/plewis/Documents/GitHub/geog0111/work/data.granule_pnt.h19v03.2020.09.21.vrt
+query:
+  https://e4ftl01.cr.usgs.gov/MOT*:
+  - https://e4ftl01.cr.usgs.gov/MOTA
+  https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006:
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+  https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11:
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11
+  https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/*0.hdf:
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h01v07.006.2015084000250.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h06v03.006.2015083235840.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h12v09.006.2015084001540.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h12v12.006.2015084001500.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h12v13.006.2015084002120.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h13v04.006.2015084001500.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h14v04.006.2015084000300.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h14v11.006.2015083235900.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h17v06.006.2015084002050.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h19v02.006.2015084000250.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h20v02.006.2015084000240.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h21v06.006.2015084002100.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h21v10.006.2015084001750.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h22v09.006.2015084002120.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h23v02.006.2015084001530.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h28v09.006.2015084002100.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h28v12.006.2015084002020.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h29v10.006.2015084002130.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h29v12.006.2015084001520.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h30v07.006.2015084003750.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h30v09.006.2015084002850.hdf
+  - https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2003.12.11/MCD15A3H.A2003345.h35v10.006.2015083235850.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST:
+  - https://n5eil01u.ecs.nsidc.org/MOST
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.01:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.01
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.01
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.01/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.01/MOD10A1.A2019001.h19v03.006.2019003030329.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.01/MOD10A1.A2019001.h19v03.006.2019003030329.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.05:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.05
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.05
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.05/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.05/MOD10A1.A2019005.h19v03.006.2019007025422.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.05/MOD10A1.A2019005.h19v03.006.2019007025422.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.09:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.09
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.09
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.09/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.09/MOD10A1.A2019009.h19v03.006.2019011030302.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.09/MOD10A1.A2019009.h19v03.006.2019011030302.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.13:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.13
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.13
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.13/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.13/MOD10A1.A2019013.h19v03.006.2019015031741.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.13/MOD10A1.A2019013.h19v03.006.2019015031741.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.17:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.17
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.17
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.17/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.17/MOD10A1.A2019017.h19v03.006.2019019031922.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.17/MOD10A1.A2019017.h19v03.006.2019019031922.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.21:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.21
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.21
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.21/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.21/MOD10A1.A2019021.h19v03.006.2019023060408.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.21/MOD10A1.A2019021.h19v03.006.2019023060408.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.25:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.25
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.25
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.25/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.25/MOD10A1.A2019025.h19v03.006.2019030093243.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.25/MOD10A1.A2019025.h19v03.006.2019030093243.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.29:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.29
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.29
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.29/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.29/MOD10A1.A2019029.h19v03.006.2019031033902.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.01.29/MOD10A1.A2019029.h19v03.006.2019031033902.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.03:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.03
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.03
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.03/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.03/MOD10A1.A2019337.h19v03.006.2019339033111.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.03/MOD10A1.A2019337.h19v03.006.2019339033111.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.07:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.07
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.07
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.07/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.07/MOD10A1.A2019341.h19v03.006.2019343025018.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.07/MOD10A1.A2019341.h19v03.006.2019343025018.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11/MOD10A1.A2019345.h19v03.006.2019351223119.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11/MOD10A1.A2019345.h19v03.006.2019351223119.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11/MOD10A1.A2019345.h19v03.006.2019352201525.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.11/MOD10A1.A2019345.h19v03.006.2019352201525.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.15:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.15
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.15
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.15/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.15/MOD10A1.A2019349.h19v03.006.2019351033255.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.15/MOD10A1.A2019349.h19v03.006.2019351033255.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.19:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.19
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.19
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.19/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.19/MOD10A1.A2019353.h19v03.006.2019355034709.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.19/MOD10A1.A2019353.h19v03.006.2019355034709.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.23:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.23
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.23
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.23/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.23/MOD10A1.A2019357.h19v03.006.2019359031749.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.23/MOD10A1.A2019357.h19v03.006.2019359031749.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.27:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.27
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.27
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.27/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.27/MOD10A1.A2019361.h19v03.006.2019363033501.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.27/MOD10A1.A2019361.h19v03.006.2019363033501.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.31:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.31
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.31
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.31/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.31/MOD10A1.A2019365.h19v03.006.2020002214311.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2019.12.31/MOD10A1.A2019365.h19v03.006.2020002214311.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.01:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.01
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.01
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.01/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.01/MOD10A1.A2020245.h19v03.006.2020247030412.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.01/MOD10A1.A2020245.h19v03.006.2020247030412.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.05:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.05
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.05
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.05/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.05/MOD10A1.A2020249.h19v03.006.2020251034117.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.05/MOD10A1.A2020249.h19v03.006.2020251034117.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.09:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.09
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.09
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.09/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.09/MOD10A1.A2020253.h19v03.006.2020255031305.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.09/MOD10A1.A2020253.h19v03.006.2020255031305.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.13:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.13
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.13
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.13/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.13/MOD10A1.A2020257.h19v03.006.2020259031424.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.13/MOD10A1.A2020257.h19v03.006.2020259031424.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.17:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.17
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.17
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.17/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.17/MOD10A1.A2020261.h19v03.006.2020267081237.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.17/MOD10A1.A2020261.h19v03.006.2020267081237.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.21:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.21
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.21
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.21/MOD10A1*.h19v03*.hdf:
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.21/MOD10A1.A2020265.h19v03.006.2020267075250.hdf
+  - https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.21/MOD10A1.A2020265.h19v03.006.2020267075250.hdf
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.25: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.09.29: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.03: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.07: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.11: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.15: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.19: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.23: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.27: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.10.31: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.11.04: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.11.08: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.11.12: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.11.16: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.11.20: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.11.24: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.11.28: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.02: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.06: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.10: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.14: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.18: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.22: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.26: []
+  https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/2020.12.30: []

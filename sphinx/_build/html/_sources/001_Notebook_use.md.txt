@@ -38,10 +38,6 @@ Note that you can 'run' the code in a code block using the 'run' widget (above) 
 
 
 
-#### Timing
-
-The session should take around 20 minutes though you will spend longer on follow-up material and exercises. 
-    
 
 ### Some resources
 

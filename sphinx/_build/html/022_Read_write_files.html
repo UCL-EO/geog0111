@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>021 Read and Write: URLs and files &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
+    <title>022 Read and Write: URLs and files &#8212; GEOG0111 Scientific Computing 1.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pandas" href="023_Pandas_and_plotting.html" />
-    <link rel="prev" title="021 Read and Write: Streams" href="021_Read_text_files.html" />
+    <link rel="next" title="Plotting Graphs" href="023_Plotting.html" />
+    <link rel="prev" title="021 Streams" href="021_Streams.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,7 +34,7 @@
           <div class="body" role="main">
             
   <div class="section" id="read-and-write-urls-and-files">
-<h1>021 Read and Write: URLs and files<a class="headerlink" href="#read-and-write-urls-and-files" title="Permalink to this headline">¶</a></h1>
+<h1>022 Read and Write: URLs and files<a class="headerlink" href="#read-and-write-urls-and-files" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="purpose">
@@ -59,7 +59,7 @@
 </div>
 <div class="section" id="test">
 <h3>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h3>
-<p>You should run a <a class="reference external" href="notebooks/004_Accounts.md#Test">NASA account test</a> if you have not already done so.</p>
+<p>You should run a NASA account test](004_Accounts.md) if you have not already done so.</p>
 </div>
 </div>
 <div class="section" id="reading-and-writing">
@@ -158,168 +158,177 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="c1"># first read the data</span>
+<span class="c1"># first read the data from URL with no cache</span>
+<span class="c1"># and directory work</span>
 <span class="n">u</span> <span class="o">=</span> <span class="s1">&#39;https://www.json.org/json-en.html&#39;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-<span class="c1"># set the output dir</span>
-<span class="n">url</span><span class="o">.</span><span class="n">local_dir</span><span class="o">=</span><span class="s1">&#39;data&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">local_dir</span><span class="o">=</span><span class="s1">&#39;work&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">noclobber</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">data_url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
-<span class="c1"># write to &#39;data/json-en.html&#39; with URL</span>
-<span class="n">osize</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="c1"># test the correct number of bytes</span>
-<span class="k">assert</span> <span class="n">osize</span> <span class="o">==</span> <span class="mi">26718</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;passed URL&#39;</span><span class="p">)</span>
+<span class="c1"># then from file in directory data</span>
+<span class="n">data_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data/json-en.html&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
 
-<span class="c1"># write to &#39;data/json-en.html&#39; with Path</span>
-<span class="n">osize</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data/json-en.html&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="c1"># test the correct number of bytes</span>
-<span class="k">assert</span> <span class="n">osize</span> <span class="o">==</span> <span class="mi">26718</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;passed Path&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">data_url</span> <span class="o">==</span> <span class="n">data_file</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;files are the same&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">passed</span> <span class="n">URL</span>
-<span class="n">passed</span> <span class="n">Path</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">URL</span></code> class has a few advantages over using <code class="docutils literal notranslate"><span class="pre">Path</span></code> in this way:</p>
-<ul class="simple">
-<li><p>if the output directory doesn’t already exist, it will be created</p></li>
-<li><p>by default, it caches files.</p></li>
-</ul>
-<p>This latter point means that if were intending to read some file from a URL and store it, then the next time we make the same call, it will read from the saved (cached) file instead of trying to download it. To avoid the problem where cached files may have been partially downloaded or otherwise corrupted, the library checks the local file size against what it expects from the URL.</p>
-<p>Caching can be turned off by specifying:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`noclobber=Fakse`
-</pre></div>
-</div>
-<p>and file size testing can be disabled with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`size_check=False`
-</pre></div>
-</div>
-<p>It is generally a good idea to keep <code class="docutils literal notranslate"><span class="pre">size_check=True</span></code>, although for some files (e.g. large, password-protected files) getting the file size can take a not inconsiderable amount of time. Further, we cannot easily determine the remote file size in all cases (e.g. for compressed files that are uncompressed on download).</p>
-<p>You can specify a location for cached files by setting e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span><span class="o">.</span><span class="n">local_dir</span><span class="o">=</span><span class="s1">&#39;data&#39;</span>
-</pre></div>
-</div>
-<p>as above.</p>
-<p>We can follow the logic of the file check if we switch on <code class="docutils literal notranslate"><span class="pre">verbose=True</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geog0111.gurlpath</span> <span class="kn">import</span> <span class="n">URL</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">json</span><span class="o">-</span><span class="n">en</span><span class="o">.</span><span class="n">html</span>
 
-<span class="c1"># first read the data</span>
-<span class="n">u</span> <span class="o">=</span> <span class="s1">&#39;https://www.json.org/json-en.html&#39;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-<span class="c1"># cache file here when read</span>
-<span class="n">url</span><span class="o">.</span><span class="n">local_dir</span><span class="o">=</span><span class="s1">&#39;data&#39;</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># write to &#39;data/json-en.html&#39; with URL</span>
-<span class="c1"># but this is where we cached it on reading</span>
-<span class="n">osize</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--&gt; existing file data/json-en.html 26880 Bytes
---&gt; noclobber: True
---&gt; keeping existing file data/json-en.html
---&gt; local file: data/json-en.html
---&gt; trying https://www.json.org/json-en.html
---&gt; code 200
---&gt; file is compressed, remote size not directly available
---&gt; code 200
---&gt; noclobber: True
---&gt; not downloading file
---&gt; opening already downloaded file
---&gt; existing file data/json-en.html 26880 Bytes
---&gt; noclobber: True
---&gt; keeping existing file data/json-en.html
---&gt; existing file data/json-en.html 26880 Bytes
---&gt; noclobber: True
---&gt; keeping existing file data/json-en.html
---&gt; local file: data/json-en.html
---&gt; trying https://www.json.org/json-en.html
---&gt; code 200
---&gt; file is compressed, remote size not directly available
---&gt; code 200
---&gt; noclobber: True
---&gt; not downloading file
---&gt; get download? False
---&gt; opening already downloaded file
---&gt; existing file data/json-en.html 26880 Bytes
---&gt; noclobber: True
---&gt; keeping existing file data/json-en.html
+<span class="n">files</span> <span class="n">are</span> <span class="n">the</span> <span class="n">same</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="read-and-write-binary-data">
 <h2>read and write binary data<a class="headerlink" href="#read-and-write-binary-data" title="Permalink to this headline">¶</a></h2>
 <p>We can read binary data from a file with <code class="docutils literal notranslate"><span class="pre">Path.read_bytes()</span></code> or from a URL with <code class="docutils literal notranslate"><span class="pre">URL.read_bytes()</span></code>, then either <code class="docutils literal notranslate"><span class="pre">Path.write_bytes()</span></code> or  <code class="docutils literal notranslate"><span class="pre">URL.write_bytes()</span></code> to write the binary data to a file. Other than that, and the fact that we cannot directly visualise the contents of the binary files without some interpreted code, there is no real difference in how we treat them.</p>
-<p>Let’s first access a MODIS file from the web, as we did in <a class="reference internal" href="020_Python_files.html"><span class="doc">020_Python_files</span></a>:</p>
+<div class="section" id="modis">
+<h3>MODIS<a class="headerlink" href="#modis" title="Permalink to this headline">¶</a></h3>
+<p>One of the deepest sources of geospatial information over the last two decades is that obtained from the NASA <a class="reference external" href="https://modis.gsfc.nasa.gov/data/dataprod/">MODIS</a> products. We wiull make use of various MODIS datasets in this course.</p>
+<p>As a start on this, let’s first access a MODIS file from the web, as we did in <a class="reference internal" href="020_Python_files.html"><span class="doc">020_Python_files</span></a>. Here, the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> are passed on to <code class="docutils literal notranslate"><span class="pre">URL</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span>  <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
 
-<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span><span class="s2">&quot;01&quot;</span><span class="p">,</span><span class="s2">&quot;01&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;verbose&#39;</span>    <span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;product&#39;</span>    <span class="p">:</span> <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;db_dir&#39;</span>     <span class="p">:</span> <span class="s1">&#39;work&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;local_dir&#39;</span>  <span class="p">:</span> <span class="s1">&#39;work&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span><span class="n">month</span><span class="o">=</span><span class="s2">&quot;01&quot;</span><span class="p">,</span><span class="n">day</span><span class="o">=</span><span class="s2">&quot;01&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">wildcards</span> <span class="ow">in</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;*.h08v06*.hdf&#39;</span><span class="p">]</span>
-<span class="o">--&gt;</span> <span class="n">level</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="p">:</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span>
-<span class="o">--&gt;</span> <span class="n">local</span> <span class="n">file</span><span class="p">:</span> <span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
-<span class="o">--&gt;</span> <span class="n">local</span> <span class="n">file</span> <span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">exist</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">SDS</span> <span class="n">MCD15A3H</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">found</span> <span class="n">SDS</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">database</span>
+<span class="o">--&gt;</span> <span class="p">[</span><span class="s1">&#39;FparExtra_QC&#39;</span><span class="p">,</span> <span class="s1">&#39;FparLai_QC&#39;</span><span class="p">,</span> <span class="s1">&#39;FparStdDev_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;Fpar_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;LaiStdDev_500m&#39;</span><span class="p">,</span> <span class="s1">&#39;Lai_500m&#39;</span><span class="p">]</span>
+<span class="o">--&gt;</span> <span class="n">product</span> <span class="n">MCD15A3H</span> <span class="o">-&gt;</span> <span class="n">code</span> <span class="n">MOTA</span>
+<span class="o">--&gt;</span> <span class="n">getting</span> <span class="n">database</span> <span class="kn">from</span> <span class="nn">command</span> <span class="n">line</span>
+<span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">query</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">got</span> <span class="n">response</span> <span class="kn">from</span> <span class="nn">database</span> <span class="k">for</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="n">MOTA</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span>
+<span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">query</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">got</span> <span class="n">response</span> <span class="kn">from</span> <span class="nn">database</span> <span class="k">for</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span>
+<span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">query</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">got</span> <span class="n">response</span> <span class="kn">from</span> <span class="nn">database</span> <span class="k">for</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span>
 <span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
-<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
+<span class="o">--&gt;</span> <span class="n">parsing</span> <span class="n">URLs</span> <span class="kn">from</span> <span class="nn">html</span> <span class="n">file</span> <span class="mi">1</span> <span class="n">items</span>
+<span class="o">--&gt;</span> <span class="n">discovered</span> <span class="mi">1</span> <span class="n">files</span> <span class="k">with</span> <span class="n">pattern</span> <span class="n">MCD15A3H</span><span class="o">*.</span><span class="n">h08v06</span><span class="o">*.</span><span class="n">hdf</span> <span class="ow">in</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span>
+<span class="o">--&gt;</span> <span class="n">reading</span> <span class="n">init</span> <span class="n">file</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/.</span><span class="n">url_db</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">yml</span>
 </pre></div>
 </div>
-<p>Now, pull the dataset (or keep the cached version)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the output directory</span>
-<span class="n">url</span><span class="o">.</span><span class="n">local_dir</span> <span class="o">=</span> <span class="s1">&#39;work&#39;</span>
-<span class="c1"># read the dataset</span>
-<span class="n">hdf_data</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">(</span><span class="n">size_check</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># and save to a file</span>
-<span class="n">obytes</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">write_bytes</span><span class="p">(</span><span class="n">hdf_data</span><span class="p">,</span><span class="n">size_check</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">obytes</span><span class="si">}</span><span class="s1"> Bytes&#39;</span><span class="p">)</span>
+<p>We can access the binary data with <code class="docutils literal notranslate"><span class="pre">url.read_bytes()</span></code>, although we would normally want to use some package such as <a class="reference external" href="https://gdal.org/"><code class="docutils literal notranslate"><span class="pre">gdal</span></code></a> to interpret the data.</p>
+<p>Cached data will be used where available unless we set <code class="docutils literal notranslate"><span class="pre">noclobber=False</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">b</span>  <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data for </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1"> cached in </span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">local</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dataset is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s1"> bytes&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9067184</span> <span class="n">Bytes</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span>
+<span class="o">--&gt;</span> <span class="n">code</span> <span class="mi">401</span>
+<span class="o">--&gt;</span> <span class="n">trying</span> <span class="n">another</span>
+<span class="o">--&gt;</span> <span class="n">getting</span> <span class="n">login</span>
+<span class="o">--&gt;</span> <span class="n">logging</span> <span class="ow">in</span> <span class="n">to</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span>
+<span class="o">--&gt;</span> <span class="n">data</span> <span class="n">read</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span>
+<span class="o">--&gt;</span> <span class="n">code</span> <span class="mi">200</span>
+<span class="o">--&gt;</span> <span class="n">updated</span> <span class="n">cache</span> <span class="n">database</span> <span class="ow">in</span> <span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">groups</span><span class="o">/</span><span class="n">jrole001</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">database</span><span class="o">.</span><span class="n">db</span>
+
+
+<span class="n">data</span> <span class="k">for</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span> <span class="n">cached</span> <span class="ow">in</span> <span class="o">/</span><span class="n">nfs</span><span class="o">/</span><span class="n">cfs</span><span class="o">/</span><span class="n">home3</span><span class="o">/</span><span class="n">Uucfa6</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span><span class="o">.</span><span class="n">store</span>
+<span class="n">dataset</span> <span class="ow">is</span> <span class="mi">9067184</span> <span class="nb">bytes</span>
+
+
+<span class="o">--&gt;</span> <span class="n">retrieving</span> <span class="n">data</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span> <span class="kn">from</span> <span class="nn">database</span>
+<span class="o">--&gt;</span> <span class="n">local</span> <span class="n">file</span> <span class="o">/</span><span class="n">nfs</span><span class="o">/</span><span class="n">cfs</span><span class="o">/</span><span class="n">home3</span><span class="o">/</span><span class="n">Uucfa6</span><span class="o">/</span><span class="n">ucfalew</span><span class="o">/</span><span class="n">geog0111</span><span class="o">/</span><span class="n">notebooks</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">e4ftl01</span><span class="o">.</span><span class="n">cr</span><span class="o">.</span><span class="n">usgs</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">MOTA</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="mi">006</span><span class="o">/</span><span class="mf">2020.01</span><span class="o">.</span><span class="mi">01</span><span class="o">/</span><span class="n">MCD15A3H</span><span class="o">.</span><span class="n">A2020001</span><span class="o">.</span><span class="n">h08v06</span><span class="o">.</span><span class="mf">006.2020006032951</span><span class="o">.</span><span class="n">hdf</span><span class="o">.</span><span class="n">store</span> <span class="n">exists</span>
 </pre></div>
 </div>
+<p>We could explicitly write the data to a file, but since we are using a cache, there is no real point. This means that we can just use the URL to access the dataset. If we do need to specify the filename explicitly for any other codes, we can use <code class="docutils literal notranslate"><span class="pre">url.local()</span></code>.</p>
 <div class="section" id="exercise-2">
-<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<h4>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h4>
 <p>Using the code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span>  <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;product&#39;</span>    <span class="p">:</span> <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;db_dir&#39;</span>     <span class="p">:</span> <span class="s1">&#39;work&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;local_dir&#39;</span>  <span class="p">:</span> <span class="s1">&#39;work&#39;</span><span class="p">,</span>
+<span class="p">}</span>
 
-<span class="c1"># get URL</span>
-<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span><span class="s2">&quot;01&quot;</span><span class="p">,</span><span class="s2">&quot;01&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="c1"># set the output directory</span>
-<span class="n">url</span><span class="o">.</span><span class="n">local_dir</span> <span class="o">=</span> <span class="s1">&#39;work&#39;</span>
-
-<span class="c1"># read the dataset</span>
-<span class="n">hdf_data</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span>
-<span class="c1"># and save to a file</span>
-<span class="n">obytes</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">write_bytes</span><span class="p">(</span><span class="n">hdf_data</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># get URLs</span>
+<span class="n">hdf_urls</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span><span class="n">month</span><span class="o">=</span><span class="s2">&quot;01&quot;</span><span class="p">,</span><span class="n">day</span><span class="o">=</span><span class="s2">&quot;01&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>write a function that only calls <code class="docutils literal notranslate"><span class="pre">url.read_bytes()</span></code> if the file doesn’t already exist</p></li>
-<li><p>If it already exists, just read the data from that file</p></li>
-<li><p>test your code with the url generated above and show that the file size is 9067184 bytes</p></li>
+<li><p>write a function called <code class="docutils literal notranslate"><span class="pre">get_locals</span></code> that loops over each entry in the list <code class="docutils literal notranslate"><span class="pre">hdf_urls</span></code> and returns the local filename</p></li>
+<li><p>write code to test the function and print results using data from <code class="docutils literal notranslate"><span class="pre">modis.get_url(&quot;2020&quot;,&quot;01&quot;,&quot;*&quot;)</span></code></p></li>
 </ul>
-<p>You will need to remember how to get the filename from the URL object, and also to test if a file exists. We learned all of these in <a class="reference internal" href="020_Python_files.html"><span class="doc">020_Python_files</span></a>.</p>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">len(data)</span></code> will give the size of bytes data.</p>
+</div>
+</div>
+<div class="section" id="gdal">
+<h3><code class="docutils literal notranslate"><span class="pre">gdal</span></code><a class="headerlink" href="#gdal" title="Permalink to this headline">¶</a></h3>
+<p>The MODIS files are in <code class="docutils literal notranslate"><span class="pre">hdf</span></code> format, and as we have noted, we do not generally want direct access to the raw (byte) information. Instead we must use some package to interpret the data.</p>
+<p>We can use the package <a class="reference external" href="https://gdal.org/python/"><code class="docutils literal notranslate"><span class="pre">gdal</span></code></a> to access information from these and other geospatial files. We will explore the contents of MODIS files in a later session, but for now, we can note that each MODIS file contains a set of sub datasets.</p>
+<p>Basic use of <code class="docutils literal notranslate"><span class="pre">gdal</span></code> in this context is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">local</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>to convert the cached URL filename to a string, then to open the file in <code class="docutils literal notranslate"><span class="pre">gdal</span></code>. If this returns None, there has been a problem opening the file, so we might check that.</p>
+<p>Then</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">GetSubDatasets</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>returns a list of sub-dataset information. Each item in the list is a tuple of two strings. In each, the first is the full name of the sub-dataset, and the second a text descriptor of the dataset. We call these <code class="docutils literal notranslate"><span class="pre">filename,name</span></code> below.</p>
+<p>We read the dataset with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the illustration below, we will examine only the first sub-dataset <code class="docutils literal notranslate"><span class="pre">g.GetSubDatasets()[0]</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">from</span>  <span class="nn">geog0111.modis</span> <span class="kn">import</span> <span class="n">Modis</span>
+
+<span class="c1"># as before</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;product&#39;</span>    <span class="p">:</span> <span class="s1">&#39;MCD15A3H&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;db_dir&#39;</span>     <span class="p">:</span> <span class="s1">&#39;work&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;local_dir&#39;</span>  <span class="p">:</span> <span class="s1">&#39;work&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">modis</span> <span class="o">=</span> <span class="n">Modis</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">modis</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span><span class="n">month</span><span class="o">=</span><span class="s2">&quot;01&quot;</span><span class="p">,</span><span class="n">day</span><span class="o">=</span><span class="s2">&quot;01&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># open</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">local</span><span class="p">()))</span>
+
+<span class="k">if</span> <span class="n">g</span><span class="p">:</span>
+    <span class="c1"># get the first SDS only for illustration</span>
+    <span class="n">filename</span><span class="p">,</span><span class="n">name</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">GetSubDatasets</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dataset info is: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># read the dataset</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dataset read is shape </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1"> and type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dataset info is: [2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)
+dataset read is shape (2400, 2400) and type &lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div>
 </div>
 <div class="section" id="exercise-3">
-<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<h4>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)&#39;</span>
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>print out the absolute pathname of the directory that the binary file <a class="reference external" href="images/ucl.png"><code class="docutils literal notranslate"><span class="pre">images/ucl.png</span></code></a> is in</p></li>
-<li><p>print the size of the file in kilobytes (KB) to two decimal places without reading the datafile.</p></li>
-<li><p>read the datafile, and check you get the same data size</p></li>
+<li><p>Take the string variable <code class="docutils literal notranslate"><span class="pre">name</span></code> above, split it to obtain the second field (<code class="docutils literal notranslate"><span class="pre">Fpar_500m</span></code> here) and store this in a variable <code class="docutils literal notranslate"><span class="pre">sds_name</span></code></p></li>
+<li><p>Write a function called <code class="docutils literal notranslate"><span class="pre">get_data</span></code> that reads an HDF (MODIS) filename, and returns a dictionary of all of the sub-datasets in the file, using <code class="docutils literal notranslate"><span class="pre">ReadAsArray()</span></code>. The dictionary keys should correspond to the items in  <code class="docutils literal notranslate"><span class="pre">sds_name</span></code> above.</p></li>
+<li><p>test the code by showing the keys in the dictionary returned and the shape of their dataset</p></li>
 </ul>
-<p>You will need to recall how to find a file size in bytes using <code class="docutils literal notranslate"><span class="pre">Path</span></code>. This was covered in <a class="reference internal" href="020_Python_files.html"><span class="doc">020_Python_files</span></a>. You will need to know how many bytes are in a KB. To print to two decimal places, you need to recall the string formatting we did in <a class="reference external" href="012_Python_strings.md#String-formating">012_Python_strings</a>.</p>
+<p>You will need to recall how to split a string, that was covered in <a class="reference external" href="013_Python_string_methods.md#split()-and-join()">013 Python string methods</a>. You will also need to recall how to <a class="reference external" href="016_Python_for.md#looping-over-dictionaries,-and-assert">loop over a dictionary</a>. We saw how to find the shape of the dataset returned above (<code class="docutils literal notranslate"><span class="pre">.shape</span></code>).</p>
+</div>
 </div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this section, we have used <code class="docutils literal notranslate"><span class="pre">Path</span></code> and <code class="docutils literal notranslate"><span class="pre">URL</span></code> classes to read and write text and binary files. We have combined these ideas with earlier work to download and save a MODIS datafile and other text and binary datasets. We have refreshed our memory of some of the earlier material, especially string formatting.</p>
+<p>In this section, we have used <code class="docutils literal notranslate"><span class="pre">Path</span></code> and <code class="docutils literal notranslate"><span class="pre">URL</span></code> classes to read and write text and binary files. We have combined these ideas with earlier work to access MODIS datafiles and other text and binary datasets. For data we access through a URL, we can do file operations on a cached version of the file. We have refreshed our memory of some of the earlier material, especially string formatting.</p>
+<p>We have learned how to use <code class="docutils literal notranslate"><span class="pre">gdal</span></code> to look at the sub-datasets in an HDF file and also how to read them.</p>
 <p>You should now have some confidence in these matters, so that if you were set a task of downloading and saving datasets, as well as other tasks such as finding their size, whether the exists or not, you could do this.</p>
 </div>
 </div>
@@ -349,7 +358,7 @@
 <li class="toctree-l1"><a class="reference internal" href="002_Unix.html">002 Some basic UNIX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help.html">003 Help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_Accounts.html">004 Setup, Accounts and logins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_Packages.html">005 Packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="001_Notebook_use_answers.html">001 Use of Jupyter notebooks : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_Unix_answers.html">002 Some basic UNIX : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_Help_answers.html">003 Help : Answers to exercises</a></li>
@@ -361,7 +370,7 @@
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions.html">Functions in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">019 Python codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python.html">018 Python codes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="010_Python_Introduction_answers.html">010 Introduction to Python : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="011_Python_data_types_answers.html">011 Python data types : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="012_Python_strings_answers.html">012 String formatting : Answers to exercises</a></li>
@@ -370,38 +379,38 @@
 <li class="toctree-l1"><a class="reference internal" href="015_Python_control_answers.html">015 Control in Python: <code class="docutils literal notranslate"><span class="pre">if</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="016_Python_for_answers.html">016 More control in Python: <code class="docutils literal notranslate"><span class="pre">for</span></code> : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="017_Functions_answers.html">Functions in Python : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">019 Python codes : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="018_Running_Python_answers.html">018 Python codes : Answers to exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files.html">020 Files and other Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files.html">021 Read and Write: Streams</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">021 Read and Write: URLs and files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023_Pandas_and_plotting.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html">NASA MODIS Earthdata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#exercises">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="025_GoogleEarthEngine.html">201 Google Earth Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="026_Numpy_matplotlib.html">Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams.html">021 Streams</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">022 Read and Write: URLs and files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting.html">Plotting Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display.html">024 Image display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020_Python_files_answers.html">020 Files and other Resources : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021_Read_text_files_answers.html">021 Read and Write: Streams : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">021 Read and Write: URLs and files : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024_NASA_MODIS_Earthdata_answers.html">NASA MODIS Earthdata : Answers to exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="030_GDAL.html">3 Geospatial processing with <code class="docutils literal notranslate"><span class="pre">gdal</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="031_MODIS_download.html">3.2 Accessing MODIS Data products</a></li>
-<li class="toctree-l1"><a class="reference internal" href="032_GDAL_stacking_and_interpolating.html">3.4 Stacking and interpolating data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="033_GDAL_masking.html">3.3 GDAL, and OGR masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="034_GDAL_Reconciling_projections.html">3.6 Reconciling projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html">Table of Contents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="040_Linear_models.html#fitting-to-the-mauna-loa-co-2-record">Fitting to the Mauna Loa $CO_2$ record</a></li>
-<li class="toctree-l1"><a class="reference internal" href="041_Modelling_and_optimisation.html">5 Modelling and optimisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_Local_Install.html">003 Full native installation  of software and notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEV_scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_Streams_answers.html">021 Streams : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_Read_write_files_answers.html">022 Read and Write: URLs and files : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023_Plotting_answers.html">Plotting Graphs : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024_Image_display_answers.html">024 Image display : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html">030 NASA MODIS Earthdata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking.html">032 GDAL: mosaicing and masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033_GDAL_timeseries.html">033 GDAL: time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="034_Weigthed_smoothing_and_interpolation.html">034 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="035_Weighted_interpolation.html">035 Weighted interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="036_Model_Fitting.html">036 Model Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030_NASA_MODIS_Earthdata_answers.html">030 NASA MODIS Earthdata : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_Numpy_answers.html">031 Manipulating data: <code class="docutils literal notranslate"><span class="pre">numpy</span></code> : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032_GDAL_mosaicing_and_masking_answers.html">032 GDAL: mosaicing and masking : Answers to exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_Practical_Part1.html">Assessed Practical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041_Practical_Part2.html">041 Assessed Practical</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="021_Read_text_files.html" title="previous chapter">021 Read and Write: Streams</a></li>
-      <li>Next: <a href="023_Pandas_and_plotting.html" title="next chapter"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+      <li>Previous: <a href="021_Streams.html" title="previous chapter">021 Streams</a></li>
+      <li>Next: <a href="023_Plotting.html" title="next chapter">Plotting Graphs</a></li>
   </ul></li>
 </ul>
 </div>

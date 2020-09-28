@@ -28,11 +28,7 @@ You will need some understanding of the following:
 
 ### Test
 
-You should run a [NASA account test](notebooks/004_Accounts.md#Test) if you have not already done so.
-
-### Timing
-
-The session should take around 30 minutes.
+You should run a [NASA account test](004_Accounts.md) if you have not already done so.
 
 ## Data resources
 
@@ -120,8 +116,8 @@ print(f'I am in directory {Path.cwd()}')
 print(f'My home is {Path.home()}')
 ```
 
-    I am in directory /Users/plewis/Documents/GitHub/geog0111/notebooks
-    My home is /Users/plewis
+    I am in directory /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    My home is /home/ucfalew
 
 
 To keep the filenames generic, we can form a filename from a list using `Path()`, so `Path('bin','README')` would refer to the filename `bin/README` on a `posix` system, and `bin/README` on Windows. However, this is interpreted the same as just using `bin/README` which will often be clearer.
@@ -220,7 +216,7 @@ tmp.is_dir and tmp.rmdir()
     files in tmp: [PosixPath('tmp/inside')]
 
 
-### File information
+### File information
 
 The file permissions format we are used to from `ls -l` is accessed through `filename.stat().st_mode` but needs to be converted to octal to match to `ls`
 
@@ -241,7 +237,7 @@ print(f'      owner is {readme.owner()}')
     README file is bin/README
            size is 16 bytes
            mode is 0o100644
-          owner is plewis
+          owner is ucfalew
 
 
 ### `glob` generators 
@@ -263,11 +259,19 @@ for i,f in enumerate(filenames):
     print(f'file {i} is {f}')
 ```
 
-    file 0 is bin/notebook-mkdocs.sh
-    file 1 is bin/setup.sh
-    file 2 is bin/notebook-run.sh
-    file 3 is bin/link-set.sh
-    file 4 is bin/git-remove-all.sh
+    file 0 is bin/git-remove-all.sh
+    file 1 is bin/link-set.sh
+    file 2 is bin/notebook-mkdocs.sh
+    file 3 is bin/notebook-run.sh
+    file 4 is bin/setup.sh
+    file 5 is bin/shellMe.sh
+    file 6 is bin/set-course.sh
+    file 7 is bin/init.sh
+    file 8 is bin/howmany.sh
+    file 9 is bin/sort-db.sh
+    file 10 is bin/database.sh
+    file 11 is bin/tidy.sh
+    file 12 is bin/mv_vrt.sh
 
 
 The advantage of a generator is that it will generally need less memory than fully calculating all items in a list. Once we move on to the next item in the generator, any memory used by current item is freed.
@@ -280,7 +284,7 @@ filenames = list(Path('bin').glob('*.sh'))
 print(filenames)
 ```
 
-    [PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/git-remove-all.sh')]
+    [PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh')]
 
 
 Let's use `glob` now to get the file permissions of each file `n*` in the directory `bin`:
@@ -302,7 +306,8 @@ for f in filenames:
 
 * Use `Path` to show the file permissions of all files that end `.sh` in the directory `bin`
 
-### `absolute`, `parts`, `name`, `parent`
+
+### `absolute`, `parts`, `name`, `parent`
 
 We can use `Path` to convert filenames between relative and absolute representations using `absolute()` and `relative_to()`:
 
@@ -324,12 +329,12 @@ readme = readme.relative_to(Path.cwd())
 print(f'name relative to {Path.cwd()}:\n\t{readme}')
 ```
 
-    I am in /Users/plewis/Documents/GitHub/geog0111/notebooks
+    I am in /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
     original relative name:
     	bin/README
     absolute name:
-    	/Users/plewis/Documents/GitHub/geog0111/notebooks/bin/README
-    name relative to /Users/plewis/Documents/GitHub/geog0111/notebooks:
+    	/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/bin/README
+    name relative to /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks:
     	bin/README
 
 
@@ -357,7 +362,7 @@ print(f'parent of {readme} is {readme.parent}')
     parent of bin/README is bin
 
 
-#### Exercise 3
+#### Exercise 3
 
 * print out the absolute pathname of the directory that `images/ucl.png` is in
 * check that the file exists
@@ -365,13 +370,15 @@ print(f'parent of {readme} is {readme.parent}')
 
 You will need to know how many Bytes in a Kilobyte, and how to [format a string to two decimal places](012_Python_strings.md#String-formating). You will also need to remember how to use [`if` statements](015_Python_control.md#Comparison-Operators-and-if).
 
-## Resources from a URL
+## Resources from a URL
 
 ### `gurlpath`, `st_size`
 
 The library [`gurlpath`](geog0111/gurlpath.py) in [geog0111](geog0111) is designed to operate in a similar manner to `pathlib` for reading data from URLs. It is derived from [`urlpath`](https://github.com/chrono-meter/urlpath)  which in turn is based on [urllib.parse](https://docs.python.org/3/library/urllib.parse.html) and [requests](https://requests.readthedocs.io/en/master/). It uses [`BeautifulSoup`](https://www.crummy.com/software/BeautifulSoup/) for parsing `html` data. At some point you may wish to learn how to use these lower-level packages, but for learning on this course, you will find it convenient to use this higher-level package.
 
-The object in `gurlpath` corresponding to `Path` is `URL`:
+The object in `gurlpath` corresponding to `Path` is `URL`.
+
+A text file example:
 
 
 ```python
@@ -389,6 +396,8 @@ print(f'size is {url.stat().st_size/1024 :.2f} KB')
     size is 4.77 KB
 
 
+A binary file example:
+
 
 ```python
 from geog0111.gurlpath import URL
@@ -403,7 +412,7 @@ print(f'size is {url.stat().st_size/1024 :.2f} KB')
 ```
 
     remote file https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-    size is 8854.67 KB
+    size is -0.00 KB
 
 
 We have similar functionality in `URL` to `Path` for manipulating filenames, but more limited file information:
@@ -452,7 +461,8 @@ For accessing URLs, will mostly make use of the following functions in `URL` tha
 |`URL.exists()`|  test to see if a url is accessible |
 
 
-### login and password
+
+### login and password
 
 Some web resources require you to use a login and password. This can be specified for the `URL` class by with the functiuon `URL.with_userinfo`:
 
@@ -489,19 +499,15 @@ site = 'https://e4ftl01.cr.usgs.gov'
 site_dir = '/MOLA/MYD11_L2.006/2002.07.04'
 site_file = 'MYD11_L2.A2002185.0325.006.2015142192613.hdf'
 
-url = URL(site,site_dir,site_file)
-if url.exists(verbose=True):
+url = URL(site,site_dir,site_file,verbose=True)
+if url.exists():
     print(f'I can access {url}')
 else:
     print(f'I cannot access {url}')
 ```
 
-    --> testing to see if we are a local file
-    --> we are not a file ...
     --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
     --> trying get
-    --> testing to see if we are a local file
-    --> we are not a file ...
     --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
     --> code 401
     --> trying another
@@ -553,22 +559,29 @@ site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
 site_file = f'*.{tile}*.hdf'
 
 # get the information
-url = URL(site,site_dir)\
+url = URL(site,site_dir,verbose=True)\
 # convert generator to list to make it easier to understand
-hdf_urls = url.glob(site_file,verbose=True)
+hdf_urls = url.glob(site_file)
 for u in hdf_urls:
     print(u)
 ```
 
-    --> wildcards in: ['*.h08v06*.hdf']
-    --> level 0/1 : *.h08v06*.hdf
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-
-
     https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
 
 
+    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
+    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+    --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
+    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
+    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
+    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01 from database
+    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+    --> discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+    --> reading init file /home/ucfalew/.url_db/init.yml
 
 
 This is extremely useful for dataset discovery.
@@ -588,8 +601,8 @@ based on the code from above:
     site_file = f'*.{tile}*.hdf'
 
     # get the information
-    url = URL(site,site_dir)
-    hdf_urls = list(url.glob(site_file,verbose=True))[0]
+    url = URL(site,site_dir,verbose=True)
+    hdf_urls = list(url.glob(site_file))[0]
     
  * write a function called `modis_dataset` with arguments corresponding to the settings above
  * the function should return the URL objects of the NASA datasets specified by your arguments
@@ -608,7 +621,7 @@ help(Modis.get_url)
 
     Help on function get_url in module geog0111.modis:
     
-    get_url(self, year=False, month=False, day=False, product=False, tile=False, verbose=False, site=False)
+    get_url(self, **kwargs)
         Get URL object list for NASA MODIS products
         for the specified product, tile, year, month, day
         
@@ -628,45 +641,15 @@ help(Modis.get_url)
 ```python
 from  geog0111.modis import Modis
 
-modis = Modis('MCD15A3H',verbose=True)
-hdf_urls = modis.get_url("2020","*","0[1-4]")
+modis = Modis(product='MCD15A3H',verbose=False)
+hdf_urls = modis.get_url(year="2020",month="*",day="01")
 for u in hdf_urls:
     print(f'{u.name} : {u.exists()}')
 ```
 
-    --> wildcards in: ['2020.*.0[1-4]' '*.h08v06*.hdf']
-    --> level 0/2 : 2020.*.0[1-4]
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> discovered 9 files with pattern 2020.*.0[1-4] in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> level 1/2 : *.h08v06*.hdf
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.02.02
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.02.02
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.04.02
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.04.02
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.05.04
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.05.04
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.07.03
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.07.03
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.08.04
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.08.04
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
-
-
     MCD15A3H.A2020001.h08v06.006.2020006032951.hdf : True
-    MCD15A3H.A2020033.h08v06.006.2020038231141.hdf : True
     MCD15A3H.A2020061.h08v06.006.2020066032716.hdf : True
-    MCD15A3H.A2020093.h08v06.006.2020099025238.hdf : True
-    MCD15A3H.A2020125.h08v06.006.2020130031836.hdf : True
     MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
-    MCD15A3H.A2020185.h08v06.006.2020190031222.hdf : True
-    MCD15A3H.A2020217.h08v06.006.2020223212414.hdf : True
     MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
 
 

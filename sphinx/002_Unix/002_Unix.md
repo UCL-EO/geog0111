@@ -21,10 +21,6 @@ You will need some understanding of the following:
 
 Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. 
 
-#### Timing
-
-The session should take around 15 minutes.
-
 ## Running unix commands 
 
 ### Unix in code cells 
@@ -36,9 +32,6 @@ The code cells in this notebook take Python commands by default, but we can run 
 !pwd
 ```
 
-    /Users/plewis/Documents/GitHub/geog0111/notebooks
-
-
 or by using the [cell magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html) `%%bash`:
 
 
@@ -49,12 +42,12 @@ or by using the [cell magic](https://ipython.readthedocs.io/en/stable/interactiv
 pwd
 ```
 
-    /Users/plewis/Documents/GitHub/geog0111/notebooks
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
 
 
 If you are using these notes through the [`JupyterLab`](https://jupyterlab.readthedocs.io/en/stable/) interface you have access to a [terminal](https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash) to run unix commands.
 
-### Navigating the file system
+### Navigating the file system
 
 ### `~`, `.`, `..`
 
@@ -84,7 +77,7 @@ cd ~
 pwd
 ```
 
-    /Users/plewis
+    /home/ucfalew
 
 
 changes directory to our home, and prints the directory name.
@@ -99,8 +92,8 @@ cd ..
 pwd
 ```
 
-    /Users/plewis/Documents/GitHub/geog0111/notebooks
-    /Users/plewis/Documents/GitHub/geog0111
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111
 
 
 #### Exercise 1
@@ -134,7 +127,7 @@ cd ~/geog0111
 ls -lh README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff   3.3K 12 Sep 10:40 README.md
+    -rw-r--r-- 1 ucfalew ucfa 3.4K Sep 21 13:29 README.md
 
 
 Here, the file size if `321B` (321 Bytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
@@ -199,18 +192,28 @@ The README file is not executable: its just a text file.
 EOF
 ```
 
-    /Users/plewis/Documents/GitHub/geog0111/notebooks
-    -rw-r--r--  1 plewis  staff    16B  9 Sep 11:22 bin/README
-    lrwxr-xr-x  1 plewis  staff     7B 12 Sep 12:34 bin/copy -> ../copy
-    -rwxr-xr-x  1 plewis  staff   217B  9 Sep 10:28 bin/docker-build
-    -rwxr-xr-x  1 plewis  staff   428B  9 Sep 10:28 bin/docker-killall
-    -rwxr-xr-x  1 plewis  staff   1.0K  9 Sep 10:28 bin/docker-run
-    -rwxr-xr-x  1 plewis  staff   569B  9 Sep 10:28 bin/git-remove-all.sh
-    -rwxr-xr-x  1 plewis  staff   2.0K 11 Sep 08:26 bin/link-set.sh
-    -rwxr-xr-x  1 plewis  staff   3.4K 12 Sep 12:29 bin/notebook-mkdocs.sh
-    -rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/notebook-run.sh
-    -rwxr-xr-x  1 plewis  staff   2.0K  9 Sep 10:28 bin/postBuild
-    -rwxr-xr-x  1 plewis  staff   3.4K  9 Sep 10:28 bin/setup.sh
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    lrwxrwxrwx 1 ucfalew ucfa    7 Sep 26 17:20 bin/copy -> ../copy
+    -rwxr-xr-x 1 ucfalew ucfa   43 Sep 26 19:19 bin/database.sh
+    -rwxr-xr-x 1 ucfalew ucfa  217 Sep 21 13:29 bin/docker-build
+    -rwxr-xr-x 1 ucfalew ucfa  428 Sep 21 13:29 bin/docker-killall
+    -rwxr-xr-x 1 ucfalew ucfa 1022 Sep 21 13:29 bin/docker-run
+    -rwxr-xr-x 1 ucfalew ucfa  569 Sep 21 13:29 bin/git-remove-all.sh
+    -rw-rw-r-- 1 ucfalew ucfa  257 Sep 25 17:56 bin/howmany.sh
+    -rwxr-xr-x 1 ucfalew ucfa 1.7K Sep 25 17:50 bin/init.sh
+    -rwxr-xr-x 1 ucfalew ucfa 3.1K Sep 24 09:51 bin/link-set.sh
+    -rwxr-xr-x 1 ucfalew ucfa  855 Sep 27 00:38 bin/mv_vrt.sh
+    -rwxr-xr-x 1 ucfalew ucfa 4.0K Sep 21 13:29 bin/notebook-mkdocs.sh
+    -rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 21 13:29 bin/notebook-run.sh
+    -rwxr-xr-x 1 ucfalew ucfa 1.5K Sep 23 21:28 bin/postBuild
+    -rwxr-xr-x 1 ucfalew ucfa   44 Sep 23 21:54 bin/pullYou
+    -rwxr-xr-x 1 ucfalew ucfa  100 Sep 23 21:54 bin/pushMe
+    -rw-r--r-- 1 ucfalew ucfa   16 Sep 21 13:29 bin/README
+    -rw-r--r-- 1 ucfalew ucfa  271 Sep 23 21:54 bin/set-course.sh
+    -rwxr-xr-x 1 ucfalew ucfa 3.4K Sep 21 13:29 bin/setup.sh
+    -rwxr-xr-x 1 ucfalew ucfa  754 Sep 24 09:13 bin/shellMe.sh
+    -rwxr-xr-x 1 ucfalew ucfa 1.8K Sep 26 22:34 bin/sort-db.sh
+    -rwxr-xr-x 1 ucfalew ucfa  742 Sep 26 20:47 bin/tidy.sh
     ===============================
     * what do you notice about these?
     ===============================
@@ -240,8 +243,8 @@ ls -lh ../README.md
 chmod 644 ../README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff   3.3K 12 Sep 10:40 ../README.md
-    -rwxr-xr-x@ 1 plewis  staff   3.3K 12 Sep 10:40 ../README.md
+    -rw-r--r-- 1 ucfalew ucfa 3.4K Sep 21 13:29 ../README.md
+    -rwxr-xr-x 1 ucfalew ucfa 3.4K Sep 21 13:29 ../README.md
 
 
 First the permissions of the file are 644 as we saw above, then we use `chmod 755` to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:
@@ -259,7 +262,7 @@ A posix directory name that **starts with** the file separator '/' is called an 
 ls -l ~/geog0111/README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff  3390 12 Sep 10:40 /Users/plewis/geog0111/README.md
+    -rw-r--r-- 1 ucfalew ucfa 3390 Sep 21 13:29 /home/ucfalew/geog0111/README.md
 
 
 
@@ -271,7 +274,7 @@ A *relative pathname* is one that does not start with `/`  or `~`. It is specifi
 ls -l ../README.md
 ```
 
-    -rw-r--r--@ 1 plewis  staff  3390 12 Sep 10:40 ../README.md
+    -rw-r--r-- 1 ucfalew ucfa 3390 Sep 21 13:29 ../README.md
 
 
 Recall that we use `..` to specify 'up one level'. Then:
@@ -292,9 +295,9 @@ cd ..
 pwd
 ```
 
-    /Users/plewis/geog0111/images
-    /Users/plewis/geog0111/bin
-    /Users/plewis/geog0111
+    /home/ucfalew/geog0111/images
+    /home/ucfalew/geog0111/bin
+    /home/ucfalew/geog0111
 
 
 ### Create and delete a file, `cat`, `rm`
@@ -321,7 +324,7 @@ EOF
 ls -lh work/n*
 ```
 
-    -rw-r--r--  1 plewis  staff    73B 12 Sep 12:38 work/newererfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Sep 27 20:44 work/newererfile.dat
 
 
 We can also use `cat` to see what is in a file:
