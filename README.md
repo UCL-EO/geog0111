@@ -31,9 +31,7 @@ Log on the the UCL JupyterHub.
 
 In a shell, type:
 
-    git clone https://github.com/UCL-EO/geog0111.git
-    cd geog0111
-    bin/init.sh
+    /shared/groups/jrole001/geog0111/init/init0111.sh > init0111.log
 
 ### Purpose of this course
 
