@@ -1,5 +1,7 @@
 # GEOG0111 Scientific Computing
 
+![UCL](images/ucl_logo.png)
+
 [Course Documentation](https://ucl-eo.github.io/geog0111/)
 
 [![Documentation Status](https://readthedocs.org/projects/geog0111-scientific-computing/badge/?version=master)](https://geog0111-scientific-computing.readthedocs.io/en/master/?badge=master)
@@ -78,5 +80,5 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 
 ### Using the course notes
 
-We will generally use `jupyter` notebooks for running interactive Python programs.
-
+We will generally use `jupyter` notebooks for running interactive Python programs. If you are takinbg this course at UCL, 
+follow the instructions on [UCL installation and running](Install.md).
