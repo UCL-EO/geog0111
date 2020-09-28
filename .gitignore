@@ -3,6 +3,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 ??=???=?
 docs/_*
+notebooks_bak/*
+notebooks_lab_bak/*
 notebooks/work/*
 *.icloud
 *.swp
