@@ -2,6 +2,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 ??=???=?
+docs/sphinx/*2.md
+docs/sphinx/_build/*/*2.doctree
+docs/sphinx/_build/*/*/*2.png
+docs/sphinx/_build
+notebooks_lab/*2.ipynb
 docs/_*
 notebooks_bak/*
 notebooks_lab_bak/*
