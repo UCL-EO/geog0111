@@ -1,7 +1,5 @@
 # GEOG0111 Scientific Computing
 
-![UCL](images/ucl_logo.png)
-
 [Course Documentation](https://ucl-eo.github.io/geog0111/)
 
 [![Documentation Status](https://readthedocs.org/projects/geog0111-scientific-computing/badge/?version=master)](https://geog0111-scientific-computing.readthedocs.io/en/master/?badge=master)
