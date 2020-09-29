@@ -182,10 +182,21 @@ def runner():
     min_rmse = RMSE.min()
     print(f'min rmse\n{min_rmse}')
 
-    # use np.where to find the minimum or argmin
-    ix,iy = np.where(RMSE == min_rmse)
-    p0,p1 = param
-    print(f'parameters: {p0[ix,iy]} {p1[ix,iy]}')
+    # use argmin to find min, but need to flatten/reshape arrays first
+    _rmse = RMSE.reshape(np.prod(RMSE.shape))
+    _p0 = param[0].reshape(np.prod(param[0].shape))
+    _p1 = param[1].reshape(np.prod(param[1].shape))
+
+    imin = np.argmin(_rmse)
+
+    print(f'index: {imin}: {_p0[imin]},{_p1[imin]}')
+    ixi,iyi = np.indices(param[0].shape)
+    # flatten
+    _ix = ixi.reshape(np.prod(ixi.shape))
+    _iy = iyi.reshape(np.prod(iyi.shape))
+    ix,iy = _ix[imin],_iy[imin]
+    p = np.array([_p0[imin],_p1[imin]])
+    print(f'parameters: {p[0]} {p[1]}')
 
     return RMSE,tdriver,(measure,measure_weight,tmdriver)
 
