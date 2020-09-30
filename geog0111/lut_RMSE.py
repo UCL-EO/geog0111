@@ -137,26 +137,30 @@ def lut_RMSE(param,tdriver,measure,measure_weight,tmdriver):
     Comments: should put in some tests on the various array shapes here
     '''
     p0,p1 = param
+    # flatten these
+    p0_ = np.ravel(p0)
+    p1_ = np.ravel(p1)
     
     # reconcile parameters to measurements assuming measurements are 1D
-    p0_ext      = p0[:,:,np.newaxis]
-    p1_ext      = p1[:,:,np.newaxis]
-    tdriver_ext = tdriver[np.newaxis,np.newaxis,:]
-    
+    p0_ext      = p0_[np.newaxis,:]
+    p1_ext      = p1_[np.newaxis,:]
+    tdriver_ext = tdriver[:,np.newaxis]
+
     # run the model
     output  = model(tdriver_ext,[p0_ext,p1_ext])
     location_array =  get_location_array(measure,tmdriver,tdriver)
     # now mapping output to sample_output is easy
-    sample_output = output[:,:,location_array]
+    sample_output = output[location_array,:]
     
     # extend measurements and weights
-    measure_ext        = measure[np.newaxis,np.newaxis,:]
-    measure_weight_ext = measure_weight[np.newaxis,np.newaxis,:]
+    measure_ext        = measure[:,np.newaxis]
+    measure_weight_ext = measure_weight[:,np.newaxis]
     
     # error term
     error_ext = (sample_output - measure_ext)*measure_weight_ext
-    error_ext = error_ext**2
-    return np.sqrt(np.mean(error_ext,axis=2))
+    error_ext = error_ext*error_ext
+
+    return np.sqrt(np.mean(error_ext,axis=0))
 
 '''
 * Write a function `runner()` that 
@@ -183,19 +187,19 @@ def runner():
     print(f'min rmse\n{min_rmse}')
 
     # use argmin to find min, but need to flatten/reshape arrays first
-    _rmse = RMSE.reshape(np.prod(RMSE.shape))
-    _p0 = param[0].reshape(np.prod(param[0].shape))
-    _p1 = param[1].reshape(np.prod(param[1].shape))
+    p0,p1 = param
+    p0_ = np.ravel(p0)
+    p1_ = np.ravel(p1)
+    # min over time axis
+    imin = np.argmin(RMSE,axis=0)
 
-    imin = np.argmin(_rmse)
+    print(f'index: {imin}: {p0_[imin]},{p1_[imin]}')
+    # back to 2D
+    ip0min,ip1min = np.unravel_index(imin,p0.shape)
+    p0min = p0[ip0min,ip1min]
+    p1min = p1[ip0min,ip1min]
 
-    print(f'index: {imin}: {_p0[imin]},{_p1[imin]}')
-    ixi,iyi = np.indices(param[0].shape)
-    # flatten
-    _ix = ixi.reshape(np.prod(ixi.shape))
-    _iy = iyi.reshape(np.prod(iyi.shape))
-    ix,iy = _ix[imin],_iy[imin]
-    p = np.array([_p0[imin],_p1[imin]])
+    p = np.array([p0min,p1min])
     print(f'parameters: {p[0]} {p[1]}')
 
     return RMSE,tdriver,(measure,measure_weight,tmdriver)
