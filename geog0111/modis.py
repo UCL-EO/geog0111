@@ -225,7 +225,7 @@ class Modis():
 
   def sort_vfiles(self,vfiles,sds):
     # reconcile the order of sds and vfiles list
-    _sds = np.array([s.replace(" ","_") for s in sds])
+    _sds = np.array([self.tidy(s) for s in sds])
     _vfiles = np.array([f.split('/')[-1].split('.')[1] for f in vfiles])
     index = tuple([np.where(_vfiles == ts)[0][0]  for ts in _sds])
     vf = vfiles.copy()
@@ -465,9 +465,8 @@ class Modis():
           bandlist.append(bthis)
           ofiles.append(this)
       if len(ofiles):
-        ofile = f"{self.product}/data.{self.sds[i]}.{self.tidy(self.tile)}." + \
-                f"{year}.{str(int(doy)) :0>3s}.{str(int(step)) :0>3s}.vrt"
-        ofile = ofile.replace(' ','_')
+        ofile = self.tidy(f"{self.product}/data.{self.sds[i]}.{self.tidy(self.tile)}." + \
+                f"{year}.{str(int(doy)) :0>3s}.{str(int(step)) :0>3s}.vrt")
         spatial_file = Path(f"{self.local_dir[0]}",ofile)
         spatial_file.parent.mkdir(parents=True,exist_ok=True)
         g = gdal.BuildVRT(spatial_file.as_posix(),ofiles,separate=True)
@@ -565,7 +564,7 @@ class Modis():
 
     ofiles = []
     for i,sd in enumerate(self.sds):
-      ofile = ofilebase.replace("__SDS__",self.sds[i].replace(' ','_'))
+      ofile = self.tidy(ofilebase.replace("__SDS__",self.sds[i]))
       spatial_file = Path(f"{self.local_dir[0]}",ofile)
       spatial_file.parent.mkdir(parents=True,exist_ok=True)
 
@@ -712,7 +711,7 @@ class Modis():
     # self.sds is a list if SDS names
     # sds is a list of HDF SDS specs
     for i,sd in enumerate(self.sds):
-      ofile = ofilebase.replace("__SDS__",sd.replace(' ','_'))
+      ofile = self.tidy(ofilebase.replace("__SDS__",sd))
       spatial_file = Path(f"{self.local_dir[0]}",ofile)
       spatial_file.parent.mkdir(parents=True,exist_ok=True)
       g = gdal.BuildVRT(spatial_file.as_posix(),sds[i])
