@@ -45,6 +45,7 @@ class Modis():
 
   def __init__(self,**kwargs):
     kwargs['defaults'] = {
+     'version'    : 6,
      'store_msg'  : [],\
      'database'   : None,\
      'product'    : 'MCD15A3H',\
@@ -526,111 +527,192 @@ class Modis():
       return False
     return True
 
+  def stitch  
 
-  def stitch_date(self,year,doy,get_files=False,test=False,do_all=True):
+  def stitch_date(self,year,doy,flush=True,get_files=False,test=False,do_all=True):
     ''' 
     stitch multiple tiles for given year,doy
     '''
+
+    db_key,db_value = self.get_keys(tile,year,doy)
+
+    if test:
+      return self.stitch_date_tile_sds(tile,year,doy,test=True)
+
     if get_files:
       hdf_files = []
       for tile in self.tiles:
-        hdf_files.extend(self.stitch_date_tile(tile,year,doy,get_files=True))
+        hdf_files.extend(self.stitch_date_tile_sds(tile,year,doy,get_files=True))
       sds = self.get_sds(hdf_files,do_all=False)
       return hdf_files,sds
- 
+
+    # look in DB
+    ofiles = self.get_from_db(db_key,db_value)
+    if ofiles is not None:
+      return ofiles    
+
+    ofilebase = f"{self.product}/data.__SDS__.{db_value}.vrt"
+
+    ifiles = [] 
     for t in self.tiles:
-      
+      ifiles.extend(self.stitch_date_tile_sds(tile,year,doy,flush=False,test=False,do_all=True))
+    # a list of pairs (sds,vrtfile)
+    return self.do_VRT(ifiles,ofilebase,db_key,db_value)   
 
+  def do_VRT(self,ifiles,ofilebase,db_key,db_value):    
+    # main purpose: we have the HDF files and the SDS
+    # so build the VRTs for each SDS
 
-  def stitch_date_tile(self,tile,year,doy,get_files=False,test=False,do_all=True):
-    '''
-    produce a vrt of SDS for single tile
+    ofiles = []
+    for i,sd in enumerate(self.sds):
+      ofile = ofilebase.replace("__SDS__",self.sds[i].replace(' ','_'))
+      spatial_file = Path(f"{self.local_dir[0]}",ofile)
+      spatial_file.parent.mkdir(parents=True,exist_ok=True)
 
-    '''
-    year = int(year)
-    doy  = int(doy)
+      # filter on s
+      flist = [f for s,f in ifiles if s == sd]
+      if len(flist):
+        g = gdal.BuildVRT(spatial_file.as_posix(),flist)
+        if not g:
+          d = self.__dict__
+          print(f"problem building dataset for {spatial_file} with {fdict(d)}")
+          sys.exit(1)
+        del g
+        # make new pairs 
+        ofiles.append((sd,Path(spatial_file).absolute().as_posix()))
 
-    dater = (datetime.datetime(year, 1, 1) +\
-               datetime.timedelta(doy - 1)).strftime('%Y %m %d').split()
-    syear  = f'{year}'
-    smonth = f'{str(int(dater[1])) :0>2s}'
-    sday   = f'{str(int(dater[2])) :0>2s}'  
-    ofilebase = f"{self.product}/data.__SDS__." + \
-                f"{tile}.{syear}.{smonth}.{sday}.vrt".replace(' ','_')
+    # store in db
+    if len(ofiles)
+      self.set_db(db_key,db_value,ofiles)
+    return ofiles
 
-    d = self.__dict__.copy()
-    fd = fdict(d)
-    # dont need to read it
-    fd['no_read'] = True
-    hdf_urls = self.get_url(**(fd))
+  def set_db(self,db_key,db_value,entry,flush=True):
+    # store in db
+    database = self.get_database()
+    cache = {db_key: { db_value : ofiles }}
+    database.set_db(cache,write=flush)
 
-    if not(len(hdf_urls) and (type(hdf_urls[0]) == URL)):
-      if get_files:
-        return None,None
-      return [None]
-
+  def get_database(self):
     if 'db_file' in self.__dict__:
       if 'database' not in self.__dict__:
         # load database
         d = self.__dict__.copy()
         self.database = Database(self.db_file,**(fdict(d,ignore=['db_dir','db_file'])))
+    return self.database
+
+  def get_keys(self,tile,year,doy):
+    '''get DB key and value for year. doy
+    year = int(year)
+    doy  = int(doy)
+
+    if type(tile) == list:
+      stile = '_'.join(tile)
+    else:
+      stile = str(tile)
+
+    dater = (datetime.datetime(year, 1, 1) +\
+               datetime.timedelta(doy - 1)).strftime('%Y %m %d').split()
+    syear    = f'{year}'
+    smonth   = f'{str(int(dater[1])) :0>2s}'
+    sday     = f'{str(int(dater[2])) :0>2s}'
+    sversion = f'{str(int(self.version)) :0>2s}'
+
+    # database key for this entry
+    db_value = f"{stile}.{syear}.{smonth}.{sday}.{sversion}"
+    db_key   = "modis"
+    return db_key,db_value
+
+  def get_from_db(self,db_key,db_value):
+    # get the database
+    database = self.get_database()
+
+    # look up in database
+    response = database.get_from_db(db_key,db_value)
+    if response and self.noclobber:
+      # test
+      if self.test_ok(response[0]):
+        # safe to return
+        self.msg(f'positive response from database')
+        ofiles = response
+        return ofiles
+      else:
+        msg=f'WARNING: invalid entry {response[0]} in database {str(self.db_file)}'
+        print(msg)
+        self.msg(msg)
+        return None
+    return None
+
+  def stitch_date_tile_sds(self,tile,year,doy,flush=True,get_files=False,test=False,do_all=True):
+    '''
+    produce a vrt of SDS for single tile
+
+    '''
+    db_key,db_value = self.get_keys(tile,year,doy)
+    ofilebase = f"{self.product}/data.__SDS__.{db_value}.vrt"
+
+    # get the URLS associated with this 
+    d = self.__dict__.copy()
+    fd = fdict(d)
+    hdf_urls = self.get_url(**(fd))
+
+    # nothing doing
+    if not(len(hdf_urls) and (type(hdf_urls[0]) == URL)):
+      if get_files:
+        return None,None
+      return [None]
 
     if not test and not get_files:
-      # look up in db
-      this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
-      store_flag = 'modis'
-      response = self.database.get_from_db(store_flag,this_set)
-      if response and self.noclobber:
-        # test 
-        if self.test_ok(response[0]):
-          # safe to return
-          self.msg(f'positive response from database')
-          ofiles = response
-          return ofiles
-        else:
-          msg=f'WARNING: invalid entry {response[0]} in database {str(self.db_file)}'
-          print(msg)
-          self.msg(msg)
+      ofiles = self.get_from_db(db_key,db_value)
+      if ofiles is not None:
+        return ofiles
 
+    # so its not in the database ...
+    # get the HDF file names    
     try:
       hdf_files = [str(f.local()) for f in hdf_urls]
     except:
       for f in hdf_urls:
         d = f.read_bytes()
       hdf_files = [str(f.local()) for f in hdf_urls]
-    if get_files:
-      sds = self.get_sds(hdf_files,do_all=False)
-      return hdf_files,sds
 
+    # just want the HDF filenames so return
+    if get_files:
+      return hdf_files
+
+    # get the SDS fields for this product
     sds = self.get_sds(hdf_files,do_all=True)
+
+    # catch in case not found from that
+    # force a read, then look again
     if sds == []:
       for f in hdf_urls:
         d = f.read_bytes()
+      del d
       hdf_files = [str(f.local()) for f in hdf_urls]
       sds = self.get_sds(hdf_files,do_all=True)
 
     # early return if we just want sds
-    if test == True:
+    if (test == True) and len(sds):
       return sds
+
+    # one last catch: might not be needed
     if len(sds) == 0:
       # failed to get SDS: need to download example file
       for f in hdf_urls:
         d = f.read_bytes()
       hdf_files = [str(f.local()) for f in hdf_urls]
       sds = self.get_sds(hdf_files,do_all=True)
+      if test:
+        return sds
+
+    # main purpose: we have the HDF files and the SDS
+    # so build the VRTs for each SDS
 
     ofiles = []
-    if len(sds) > len(self.sds):
-      self.msg(f"ERROR in product {self.product} specification of SDS")
-      self.msg(f"all SDS claimed to be: {len(self.sds)}")
-      self.msg(self.sds)
-      self.msg(f"But request for {len(sds)} SDSs made")
-      self.msg(sds)
-      sys.exit(1)
-    for i,sd in enumerate(sds):
-      ofile = f"{self.product}/data.{self.sds[i]}." + \
-              f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
-      ofile = ofile.replace(' ','_')
+    # self.sds is a list if SDS names
+    # sds is a list of HDF SDS specs
+    for i,sd in enumerate(self.sds):
+      ofile = ofilebase.replace("__SDS__",sd.replace(' ','_'))
       spatial_file = Path(f"{self.local_dir[0]}",ofile)
       spatial_file.parent.mkdir(parents=True,exist_ok=True)
       g = gdal.BuildVRT(spatial_file.as_posix(),sds[i])
@@ -639,10 +721,10 @@ class Modis():
         print(f"problem building dataset for {spatial_file} with {fdict(d)}")
         sys.exit(1)
       del g
-      ofiles.append(Path(spatial_file).absolute().as_posix())
+      ofiles.append((sd,Path(spatial_file).absolute().as_posix()))
     # store in db
-    cache = {store_flag : { this_set : ofiles }}
-    self.database.set_db(cache,write=True)
+    if len(ofiles)
+      self.set_db(db_key,db_value,ofiles)
     return ofiles
 
   def get_files(self,year,doy):
