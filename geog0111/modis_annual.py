@@ -13,6 +13,7 @@ import gdal
 from geog0111.modis import Modis
 import yaml
 from pathlib import Path
+import sys
 
 def modis_annual_dataset(year,tile,product,step=1,\
                          verbose=False,\
@@ -54,6 +55,13 @@ def modis_annual_dataset(year,tile,product,step=1,\
 
 
 def get_modis_annual(ifiles,sds=None,warp_args={}):
+    if 'cutlineDSName' in warp_args:
+        cutfile = Path(warp_args['cutlineDSName'])
+        if not cutfile.exists():
+            print(f"FATAL Error opening cutfile {str(cutfile)}:")
+            print("    - cannot proceed in get_modis_annual()")
+            sys.exit(1)
+    
     # loop over SDS sets and read into dictionary
     mfiles = {'bandnames':ifiles['bandnames']}
     del ifiles['bandnames']

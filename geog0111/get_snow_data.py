@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import gdal
 from geog0111.modis_annual import modis_annual
 import numpy as np
 
@@ -12,17 +15,17 @@ def get_snow_data(year):
       'dstNodata'     : 255,
       'format'        : 'MEM',
       'cropToCutline' : True,
-      'cutlineWhere'  : f"'HUC=13010001'",
-      'cutlineDSName' : 'data/Hydrological_Units/HUC_Polygons.shp'
+      'cutlineWhere'  : f"HUC=13010001",
+      'cutlineDSName' : 'data/Hydrologic_Units/HUC_Polygons.shp'
     }
-    
     mfiles = modis_annual(year,tile,product,verbose=True,\
                           sds=sds,warp_args=warp_args)
     # scale it
     # doy from filenames
     doy = np.array([int(i.split('-')[1]) for i in mfiles['bandnames']])
-    print(mfiles[sds[0]],doy)
+    #print(mfiles[sds[0]],doy)
     return mfiles[sds[0]],doy
 
-get_snow_data(2019)
+snow,doy = get_snow_data(2019)
+print(doy)
 
