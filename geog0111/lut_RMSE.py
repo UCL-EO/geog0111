@@ -13,7 +13,6 @@ In a file `lut_RMSE.py` do the following:
         gridp0,gridp1 = np.mgrid[p0min:p0max+p0step:p0step,\
                                  p1min:p1max+p1step:p1step]
 
-
 * Write a function `gen_lut` to return a 2D parameter (Look up table -- LUT) grid using `np.mgrid` as above as `param = [gridp0,gridp1]`
 
         # simple model 
@@ -22,34 +21,31 @@ In a file `lut_RMSE.py` do the following:
             return param[0] + param[1] * driver * driver
           
 * Write a function `model` to describe the model we will be using from the code above
-  
             
         # code to use
         # time driver every 4 days for measurement    
         tmdriver = np.arange(0,365,4,dtype=np.int)
         # generate a pseudo-measurement
-        p0 = np.array([0.4,0.0002])
-        # zero-centre the noise
+        p0 = np.array([5.0,0.0005])
         measure = model(tmdriver,p0) + 5*(np.random.random(tmdriver.shape)-0.5)
         # just make up some weights for this exercise
         measure_weight = (2 + np.random.random(tmdriver.shape))/4
         
-        
-* Write a function `gen_meas` to generate a pseudo-measurement based on the model and some noise. It should return `tmdriver, measure, measure_weight` corresponding to:
+* Write a function `gen_meas` to generate a pseudo-measurement based on the model and some noise. It should print the value of the parameters used in the model, and return `tmdriver, measure, measure_weight` corresponding to:
 
-        * tdriver:        array of (Nt,) floats of the day of year on which to do modelling
+        * tmdriver:       array of (Nm,) floats of the day of year on which to do modelling
         * measure:        array of (Nm,) floats of measurements over sampled days of the year
         * measure_weight: array of (Nm,) floats of the weights associated with the measurements
 
 * Write a function `lut_RMSE` that takes as inputs:
 
-    * `param`:          list of `[p0,p1]` with `p0` and `p1` being arrays of shape `(Np0,Np1)` representing a the LUT grid over parameter space
-    * `tdriver`:        array of (Nt,) floats of the day of year on which to do modelling
-    * `measure:`        array of (Nm,) floats of measurements over sampled days of the year
-    * `measure_weight`: array of (Nm,) floats of the weights associated with the measurements
-    * `tmdriver`:       array of (Nm,) integers: the days on which the measurements occur 
+        * `param`:          list of `[p0,p1]` with `p0` and `p1` being arrays of shape `(Np0,Np1)` representing a the LUT grid over parameter space
+        * `tmdriver`:       array of (Nm,) integers: the days on which the measurements occur 
+        * `measure:`        array of (Nm,) floats of measurements over sampled days of the year
+        * `measure_weight`: array of (Nm,) floats of the weights associated with the measurements
     
- That runs the model `model(tdriver,param)` and calculates the weighted RMSE between the measurements and the modelled values for each parameter pair, and returns a grid of shape `(Np0,Np1)` values of RMSE associated with each parameter pair.
+ That runs the model `model(tmdriver,param)`, calculates the weighted RMSE between the measurements and the modelled values for each parameter pair, and returns a grid of shape `(Np0,Np1)` values of RMSE associated with each param
+ 
  
  * Write a function `runner()` that 
    * gets a LUT `param` from `gen_lut`
@@ -89,7 +85,7 @@ def gen_meas(p0=[0.4,0.0002]):
     
     Outputs:
     
-    tdriver:        array of (Nt,) floats of the day of year on which to do modelling
+    tmdriver:       array of (Nm,) floats of the day of year on which to do modelling
     measure:        array of (Nm,) floats of measurements over sampled days of the year
     measure_weight: array of (Nm,) floats of the weights associated with the measurements
     '''
@@ -104,17 +100,7 @@ def gen_meas(p0=[0.4,0.0002]):
     measure_weight = 1+ (2 + np.random.random(tmdriver.shape))/4
     return tmdriver,measure,measure_weight
 
-def get_location_array(measure,tmdriver,tdriver):
-    # get measurement mask
-    location_array = np.zeros_like(measure,dtype=np.int)
-    # populate location_array with indices of where measurement is
-    for i,t in enumerate(tmdriver):
-        location = np.where(tdriver == t)
-        if len(location[0]):
-            location_array[i] = location[0][0]
-    return location_array
-        
-def lut_RMSE(param,tdriver,measure,measure_weight,tmdriver):
+def lut_RMSE(param,tmdriver,measure,measure_weight):
     '''
     
     Runs the model model(tdriver,param) and calculates the 
@@ -125,10 +111,9 @@ def lut_RMSE(param,tdriver,measure,measure_weight,tmdriver):
     
     param:          list of [p0,p1] with p0 and p1 being arrays of shape
                     (Np0,Np1) representing a the LUT grid over parameter space
-    driver:         array of (Nt,) floats of the day of year on which to do modelling
+    tmdriver:       array of (Nm,) integers: the days on which the measurements occur 
     measure:        array of (Nm,) floats of measurements over sampled days of the year
     measure_weight: array of (Nm,) floats of the weights associated with the measurements
-    tmdriver:       array of (Nm,) integers: the days on which the measurements occur 
  
     Outputs:
     
@@ -142,22 +127,19 @@ def lut_RMSE(param,tdriver,measure,measure_weight,tmdriver):
     p1_ = np.ravel(p1)
     
     # reconcile parameters to measurements assuming measurements are 1D
-    p0_ext      = p0_[np.newaxis,:]
-    p1_ext      = p1_[np.newaxis,:]
-    tdriver_ext = tdriver[:,np.newaxis]
+    p0_ext       = p0_[np.newaxis,:]
+    p1_ext       = p1_[np.newaxis,:]
+    tmdriver_ext = tmdriver[:,np.newaxis]
 
     # run the model
-    output  = model(tdriver_ext,[p0_ext,p1_ext])
-    location_array =  get_location_array(measure,tmdriver,tdriver)
-    # now mapping output to sample_output is easy
-    sample_output = output[location_array,:]
+    tmoutput  = model(tmdriver_ext,[p0_ext,p1_ext])
     
     # extend measurements and weights
     measure_ext        = measure[:,np.newaxis]
     measure_weight_ext = measure_weight[:,np.newaxis]
     
     # error term
-    error_ext = (sample_output - measure_ext)*measure_weight_ext
+    error_ext = (tmoutput - measure_ext)*measure_weight_ext
     error_ext = error_ext*error_ext
 
     return np.sqrt(np.mean(error_ext,axis=0))
@@ -173,6 +155,14 @@ def lut_RMSE(param,tdriver,measure,measure_weight,tmdriver):
  '''
 
 def runner():
+    '''
+    generates tmdriver, the array of (92,) floats for every 4 day of year on which to do modelling
+    gets a LUT param from gen_lut
+    gets a pseudo-measurement from gen_meas
+    gets a 2-D array of RMSE corresponding to the parameter grid
+    calculated and prints the value of the parameters corresponding to the minimum RMSE,
+    returns the RMSE array, the LUT, and the measurements
+    '''
     # generates tdriver, the array of (365,) 
     # floats of the day of year on which to do modelling
     tdriver = np.arange(0,365,1,dtype=np.int)
@@ -181,7 +171,7 @@ def runner():
     # gets a pseudo-measurement from `gen_meas`
     tmdriver,measure,measure_weight = gen_meas()
     # gets a 2-D array of RMSE corresponding to the parameter grid
-    RMSE = lut_RMSE(param,tdriver,measure,measure_weight,tmdriver)
+    RMSE = lut_RMSE(param,tmdriver,measure,measure_weight)
     # calculated and prints the value of the parameters corresponding to the minimum RMSE,
     min_rmse = RMSE.min()
     print(f'min rmse\n{min_rmse}')
@@ -202,10 +192,10 @@ def runner():
     p = np.array([p0min,p1min])
     print(f'parameters: {p[0]} {p[1]}')
 
-    return RMSE,tdriver,(measure,measure_weight,tmdriver)
+    return RMSE,param,(measure,measure_weight,tmdriver)
 
 def main():
-  RMSE,tdriver,m  = runner()
+  RMSE,param,m  = runner()
 
 if __name__ == "__main__":
     main()    
