@@ -96,7 +96,7 @@ class Database():
       # try to read from ~/.url_db/.init
       initfile = Path('~/.url_db/init.yml').expanduser().absolute()
       if initfile.exists():
-        self.msg(f'reading init file {initfile.as_posix()}')
+        #self.msg(f'reading init file {initfile.as_posix()}')
         with initfile.open('r') as f:
           info = yaml.safe_load(f)
       else:

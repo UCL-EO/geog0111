@@ -45,6 +45,12 @@ class Modis():
 
   def __init__(self,**kwargs):
     kwargs['defaults'] = {
+      'this_product' : None,
+      'this_tile' : None,
+      'this_day' : None,
+      'this_month' : None,
+      'this_year' : None,
+      'this_doy' : None,
      'version'    : 6,
      'store_msg'  : [],\
      'database'   : None,\
@@ -526,21 +532,19 @@ class Modis():
       return False
     return True
 
-  def stitch  
-
   def stitch_date(self,year,doy,flush=True,get_files=False,test=False,do_all=True):
     ''' 
     stitch multiple tiles for given year,doy
     '''
 
-    db_key,db_value = self.get_keys(tile,year,doy)
+    db_key,db_value = self.get_keys(self.tile,year,doy)
 
     if test:
-      return self.stitch_date_tile_sds(tile,year,doy,test=True)
+      return self.stitch_date_tile_sds(self.tile,year,doy,test=True)
 
     if get_files:
       hdf_files = []
-      for tile in self.tiles:
+      for tile in self.tile:
         hdf_files.extend(self.stitch_date_tile_sds(tile,year,doy,get_files=True))
       sds = self.get_sds(hdf_files,do_all=False)
       return hdf_files,sds
@@ -553,9 +557,9 @@ class Modis():
     ofilebase = f"{self.product}/data.__SDS__.{db_value}.vrt"
 
     ifiles = [] 
-    for t in self.tiles:
+    for tile in self.tile:
       ifiles.extend(self.stitch_date_tile_sds(tile,year,doy,flush=False,test=False,do_all=True))
-    # a list of pairs (sds,vrtfile)
+    # a list of (sds,vrtfile)
     return self.do_VRT(ifiles,ofilebase,db_key,db_value)   
 
   def do_VRT(self,ifiles,ofilebase,db_key,db_value):    
@@ -581,14 +585,14 @@ class Modis():
         ofiles.append((sd,Path(spatial_file).absolute().as_posix()))
 
     # store in db
-    if len(ofiles)
+    if len(ofiles):
       self.set_db(db_key,db_value,ofiles)
     return ofiles
 
   def set_db(self,db_key,db_value,entry,flush=True):
     # store in db
     database = self.get_database()
-    cache = {db_key: { db_value : ofiles }}
+    cache = {db_key: { db_value : entry }}
     database.set_db(cache,write=flush)
 
   def get_database(self):
@@ -600,7 +604,7 @@ class Modis():
     return self.database
 
   def get_keys(self,tile,year,doy):
-    '''get DB key and value for year. doy
+    '''get DB key and value for year, doy'''
     year = int(year)
     doy  = int(doy)
 
@@ -608,13 +612,14 @@ class Modis():
       stile = '_'.join(tile)
     else:
       stile = str(tile)
+      self.this_tile = stile
 
     dater = (datetime.datetime(year, 1, 1) +\
                datetime.timedelta(doy - 1)).strftime('%Y %m %d').split()
-    syear    = f'{year}'
-    smonth   = f'{str(int(dater[1])) :0>2s}'
-    sday     = f'{str(int(dater[2])) :0>2s}'
-    sversion = f'{str(int(self.version)) :0>2s}'
+    self.this_year    = syear    = f'{year}'
+    self.this_month   = smonth   = f'{str(int(dater[1])) :0>2s}'
+    self.this_day     = sday     = f'{str(int(dater[2])) :0>2s}'
+    self.this_version = sversion = f'{str(int(self.version)) :0>2s}'
 
     # database key for this entry
     db_value = f"{stile}.{syear}.{smonth}.{sday}.{sversion}"
@@ -722,7 +727,7 @@ class Modis():
       del g
       ofiles.append((sd,Path(spatial_file).absolute().as_posix()))
     # store in db
-    if len(ofiles)
+    if len(ofiles):
       self.set_db(db_key,db_value,ofiles)
     return ofiles
 
@@ -762,13 +767,20 @@ class Modis():
     '''
     site     = ('site' in kwargs and kwargs['site'])    or 'https://e4ftl01.cr.usgs.gov'
 
-    product  = ('product' in kwargs and kwargs['product']) or self.product 
-    tile     = ('tile' in kwargs and kwargs['tile'])       or self.tile
-    day      = ('day' in kwargs and kwargs['day'])         or self.day
-    month    = ('month' in kwargs and kwargs['month'])     or self.month
-    year     = ('year' in kwargs and kwargs['year'])       or self.year
-    doy      = ('doy' in kwargs and kwargs['doy'])         or self.doy
- 
+    product  = self.this_product or ('product' in kwargs and kwargs['product']) or self.product 
+    tile     = self.this_tile    or ('tile' in kwargs and kwargs['tile']) or self.tile
+    day      = self.this_day     or ('day' in kwargs and kwargs['day']) or self.day
+    month    = self.this_month   or ('month' in kwargs and kwargs['month']) or self.month
+    year     = self.this_year    or ('year' in kwargs and kwargs['year']) or self.year
+    doy      = self.this_doy     or ('doy' in kwargs and kwargs['doy'])  or self.doy
+
+    # this terms are volatile
+    self.this_product = None
+    self.this_tile = None
+    self.this_day = None
+    self.this_month = None
+    self.this_year = None
+    self.this_doy = None 
 
     if product[:5] == "MOD10" or product[:5] == "MYD10":
       # NSIDC
@@ -813,11 +825,9 @@ class Modis():
               "local_dir"  : self.local_dir }
 
     hdf_urls = []
-    url = None
-    for t in self.tile:
-      url = ((url is None) and URL(site,site_dir,**kwargs)) or \
-             url.update(site,site_dir,**kwargs)
-      hdf_urls += url.glob(f'{self.product}*.{t}*.hdf')
+    url = URL(site,site_dir,**kwargs) 
+    # url.update(site,site_dir,**kwargs)
+    hdf_urls += url.glob(f'{self.product}*.{tile}*.hdf')
     if len(hdf_urls) == 0:
       return [None]
 
@@ -829,38 +839,41 @@ class Modis():
     '''PITA decoding of SDS from HDF field that comes from s0,s1 in g.GetSubDatasets()'''
     return (' '.join(s1.split()[1:-3])).split(self.product)[0].split('MOD')[0].strip()
 
-  def get_sds_names_from_hdffile(self,hdf_files):
-    '''if need to, get SDS names from HDF files'''
-    not_sds = ((self.sds is None) or len(self.sds) == 0 or \
-               ((len(self.sds) == 1) and len(self.sds[0]) == 0))
-    if not not_sds:
-      return self.sds
+  def open_any(self,hdf_files):
     try:
       g = None
       # hopefully one of them exists!
       for lfile in hdf_files:
         if Path(lfile).exists():
           g = gdal.Open(str(lfile))
-          break
-      if not g:
-        return []
+          return g,lfile
     except:
-      # need to pull an HDF file first
-      try:
-        del g
-      except:
-        pass
-      return []
+      pass
+    return None,None
 
+  def get_sds_names_from_hdffile(self,hdf_files):
+    '''if need to, get SDS names from HDF files'''
+    not_sds = ((self.sds is None) or len(self.sds) == 0 or \
+               ((len(self.sds) == 1) and len(self.sds[0]) == 0))
+    if not not_sds:
+      return self.sds
+    g,lfile = self.open_any(hdf_files)
+    if not g:
+      return []
+    del g
     self.msg("trying to get SDS names")
+
+    # this guarantees self.sds is the same order as 
+    # from g.GetSubDatasets()
+    self.sds = [self.sdscode(s1) for s0,s1 in g.GetSubDatasets()]
     if 'required_sds' not in self.__dict__:
       self.required_sds = self.sds
-    self.sds = [self.sdscode(s1) for s0,s1 in g.GetSubDatasets()]
+
     cache = {"SDS": {self.product: self.sds}}
     self.database.set_db(cache,write=True)
     return self.sds
 
-  def get_sds(self,hdf_files,do_all=False):
+  def get_sds(self,hdf_files,do_all=True):
     '''try to get SDS names from HDF files'''
     all_sds = self.get_sds_names_from_hdffile(hdf_files)
     # force a list
@@ -870,7 +883,12 @@ class Modis():
     if (all_sds == []) or (len(hdf_files) < 1):
       return []
 
+    g,lfile = self.open_any(hdf_files)
+    if not g:
+      return []
+
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
+    del g
 
     this_subs = []
 
@@ -900,23 +918,35 @@ def test_login(do_test,verbose=True):
 
 def main():
   # test blank: try one that doesnt exist
-  modis = Modis(product='MCD15A3H',verbose=False,local_dir='work')
-  l = modis.stitch(2019,month=None,doy=[1,2],step=1)
-  print(l)
+  #modis = Modis(product='MCD15A3H',verbose=False,local_dir='work')
+  #l = modis.stitch(2019,month=None,doy=[1,2],step=1)
+  #print(l)
 
-  modis = Modis(product='MCD15A3H',verbose=False,local_dir='work')
-  hdf_urls = modis.get_url(year="2019",month="*",day="0[1-4]")
-  print(hdf_urls)
+  #modis = Modis(product='MCD15A3H',verbose=False,local_dir='work')
+  #hdf_urls = modis.get_url(year="2019",month="*",day="0[1-4]")
+  #print(hdf_urls)
 
-  kwargs = {
-    'product'   :    'MCD12Q1',
-    'local_dir' :    'work',
-  }
+  #kwargs = {
+  #  'product'   :    'MCD12Q1',
+  #  'local_dir' :    'work',
+  #}
   # get the data
-  modis = Modis(**kwargs)
+  #modis = Modis(**kwargs)
   # specify day of year (DOY) and year
-  data_MCD12Q1 = modis.get_data(2011,1,step=366)
-  print(data_MCD12Q1) 
+  #data_MCD12Q1 = modis.get_data(2011,1,step=366)
+  #print(data_MCD12Q1) 
+
+  print("test 1")
+  modis = Modis(product='MCD15A3H',verbose=True)
+  tile = 'h18v03'
+  year = 2019
+  day = 41
+  sds_data = modis.stitch_date_tile_sds(tile,year,day)
+
+  print("test 2")
+  import pdb;pdb.set_trace()
+  sds_data = modis.stitch_date(year,day)
+ 
 
 if __name__ == "__main__":
     main()
