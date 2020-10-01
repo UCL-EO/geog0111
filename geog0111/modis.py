@@ -314,9 +314,13 @@ class Modis():
     kwargs = {'doy':doy,'day':day,'month':month,'step':step,\
               'warp_args':warp_args,'dstNodata':dstNodata,'fatal':fatal}
 
+    # work entirely in terms of year and doy
     dates = list_of_doys(year,doy=doy,day=day,month=month,step=step)
     year_list,doy_list = list(dates['year']),list(dates['doy'])
     bandnames = [f'{year}-{d :0>3d}' for d,y in zip(doy_list,year_list)]
+
+    # this is the core call to get the files we want
+    # many will be cached 
     vfiles = self.stitch(year=year_list,doy=doy_list,\
                          dstNodata=dstNodata,warp_args=warp_args)
     # error 
@@ -354,12 +358,18 @@ class Modis():
     b = g.GetRasterBand(1)
     return data, (b.GetScale(),b.GetOffset())
 
-  def fix_sds(self,sds,year,doy):
-    '''fix sds'''
+  def fix_sds(self,sds,year,doy,do_all=True):
+    '''
+    fix sds
+
+    only use self.required_sds if do_all==False
+
+    '''
     if sds:
       return sds
     if 'required_sds' in self.__dict__:
-      self.sds = self.required_sds
+      if do_all == False:
+        self.sds = self.required_sds
 
     # else look in dictionary
     response = self.database.get_from_db("SDS",self.product)
@@ -370,12 +380,16 @@ class Modis():
 
     # else need to derive it 
     self.msg("polling for SDS names")
+    # get hold of a datafile and pull the
+    # the names from there: test=True
     self.stitch_date(year,doy,test=True)
+
     if self.sds is None:
       # try again
       self.msg("error finding SDS names")
       return []
     if 'required_sds' not in self.__dict__:
+      # set this in case its not set
       self.required_sds = self.sds
     self.msg(f"SDS: {self.sds}")
     return self.sds
@@ -512,16 +526,37 @@ class Modis():
       return False
     return True
 
-  def stitch_date(self,year,doy,get_files=False,test=False):
-    '''stitch data for date'''
+
+  def stitch_date(self,year,doy,get_files=False,test=False,do_all=True):
+    ''' 
+    stitch multiple tiles for given year,doy
+    '''
+    if get_files:
+      hdf_files = []
+      for tile in self.tiles:
+        hdf_files.extend(self.stitch_date_tile(tile,year,doy,get_files=True))
+      sds = self.get_sds(hdf_files,do_all=False)
+      return hdf_files,sds
+ 
+    for t in self.tiles:
+      
+
+
+  def stitch_date_tile(self,tile,year,doy,get_files=False,test=False,do_all=True):
+    '''
+    produce a vrt of SDS for single tile
+
+    '''
     year = int(year)
     doy  = int(doy)
 
     dater = (datetime.datetime(year, 1, 1) +\
                datetime.timedelta(doy - 1)).strftime('%Y %m %d').split()
-    self.year  = f'{year}'
-    self.month = f'{str(int(dater[1])) :0>2s}'
-    self.day   = f'{str(int(dater[2])) :0>2s}'  
+    syear  = f'{year}'
+    smonth = f'{str(int(dater[1])) :0>2s}'
+    sday   = f'{str(int(dater[2])) :0>2s}'  
+    ofilebase = f"{self.product}/data.__SDS__." + \
+                f"{tile}.{syear}.{smonth}.{sday}.vrt".replace(' ','_')
 
     d = self.__dict__.copy()
     fd = fdict(d)
@@ -713,39 +748,49 @@ class Modis():
     '''PITA decoding of SDS from HDF field that comes from s0,s1 in g.GetSubDatasets()'''
     return (' '.join(s1.split()[1:-3])).split(self.product)[0].split('MOD')[0].strip()
 
-  def get_sds(self,hdf_files,do_all=False):
-    '''get defined SDS or all'''
-    if type(hdf_files) is not list:
-      hdf_files = [hdf_files]
-
-    if len(hdf_files) < 1:
-      return []
+  def get_sds_names_from_hdffile(self,hdf_files):
+    '''if need to, get SDS names from HDF files'''
+    not_sds = ((self.sds is None) or len(self.sds) == 0 or \
+               ((len(self.sds) == 1) and len(self.sds[0]) == 0))
+    if not not_sds:
+      return self.sds
     try:
-      lfile = hdf_files[0]
-      if not Path(lfile).exists():
-        return []
-      g = gdal.Open(str(lfile))
+      g = None
+      # hopefully one of them exists!
+      for lfile in hdf_files:
+        if Path(lfile).exists():
+          g = gdal.Open(str(lfile))
+          break
       if not g:
         return []
     except:
-      # need to pull this first
+      # need to pull an HDF file first
+      try:
+        del g
+      except:
+        pass
       return []
 
-    #hdf_files = list(np.sort(np.unique(np.array(hdf_files))))
-    # in case not defined
-    if do_all or ((self.sds is None) or len(self.sds) == 0 or \
-      ((len(self.sds) == 1) and len(self.sds[0]) == 0)) :
-        self.msg("trying to get SDS names")
-        self.required_sds = self.sds
-        self.sds = [self.sdscode(s1) for s0,s1 in g.GetSubDatasets()]
-        cache = {"SDS": {self.product: self.sds}}
-        self.database.set_db(cache,write=True)
+    self.msg("trying to get SDS names")
+    if 'required_sds' not in self.__dict__:
+      self.required_sds = self.sds
+    self.sds = [self.sdscode(s1) for s0,s1 in g.GetSubDatasets()]
+    cache = {"SDS": {self.product: self.sds}}
+    self.database.set_db(cache,write=True)
+    return self.sds
 
-        if 'required_sds' in self.__dict__:
-          self.msg(f'require: {self.required_sds}')
-        self.msg(self.sds)
+  def get_sds(self,hdf_files,do_all=False):
+    '''try to get SDS names from HDF files'''
+    all_sds = self.get_sds_names_from_hdffile(hdf_files)
+    # force a list
+    if type(hdf_files) is not list:
+      hdf_files = [hdf_files]
+
+    if (all_sds == []) or (len(hdf_files) < 1):
+      return []
 
     all_subs  = [(s0.replace(str(lfile),'{local_file}'),s1) for s0,s1 in g.GetSubDatasets()]
+
     this_subs = []
 
     if (not do_all) and ('required_sds' in self.__dict__):
