@@ -7,6 +7,7 @@ import datetime
 import numpy as np
 import os
 import pandas as pd
+import json
 
 try:
   from geog0111.gurlpath import URL
@@ -95,6 +96,10 @@ class Modis():
       # require them all 
       if 'required_sds' not in self.__dict__:
         self.required_sds = self.sds
+
+  #def __del__(self):
+  #  cache = {"done" : { "done" : "exit" }}
+  #  self.database.set_db(cache,write=True)
 
   def msg(self,*args):
     '''msg to self.stderr'''
@@ -221,6 +226,23 @@ class Modis():
       self.msg("Error calling get_data")
     return {}
 
+  def monkey(self,kwargs):
+     # could use json.dumps(d)
+     return json.dumps(kwargs)
+     keys = np.array(list(kwargs.keys()))
+     keys.sort()
+     s = ''
+     for k in keys:
+       v = kwargs[k]
+       if type(v) is dict:
+         ss = '{'+f'{self.monkey(v)}'+'}'
+       elif type(v) is list:
+         ss = "_".join(v)
+       else:
+         ss = str(v)
+       s = s + '.' + f"{k}:{ss}"
+     s = self.tidy(s.replace(' ','_'))
+     return s
 
   def sort_vfiles(self,vfiles,sds):
     # reconcile the order of sds and vfiles list
@@ -310,9 +332,19 @@ class Modis():
         31
 
     '''
+    # check in db
     #store for diagnostics
-    kwargs = {'doy':doy,'day':day,'month':month,'step':step,\
-              'warp_args':warp_args,'dstNodata':dstNodata,'fatal':fatal}
+    kwargs = {'year': year, 'doy':doy,'day':day,'month':month,'step':step,\
+              'warp_args':warp_args,'dstNodata':dstNodata}
+    mkey = json.dumps(kwargs)
+    response = self.database.get_from_db("modis",mkey)
+    if response is not None:
+      if (type(response) is list) and (len(response)):
+        return response[0]
+      elif (type(response) is dict):
+        return response
+      else:
+        return response
 
     dates = list_of_doys(year,doy=doy,day=day,month=month,step=step)
     year_list,doy_list = list(dates['year']),list(dates['doy'])
@@ -339,6 +371,8 @@ class Modis():
     vfiles = self.sort_vfiles(vfiles,sds)
     odict  = dict(zip(sds,vfiles))
     odict['bandnames'] = bandnames
+    cache = {"modis": {mkey: odict}}
+    self.database.set_db(cache,write=True)
     return odict
 
   def tidy(self,s):
@@ -358,8 +392,8 @@ class Modis():
     '''fix sds'''
     if sds:
       return sds
-    if 'required_sds' in self.__dict__:
-      self.sds = self.required_sds
+    #if 'required_sds' in self.__dict__:
+    #  self.sds = self.required_sds
 
     # else look in dictionary
     response = self.database.get_from_db("SDS",self.product)
@@ -372,11 +406,11 @@ class Modis():
     self.msg("polling for SDS names")
     self.stitch_date(year,doy,test=True)
     if self.sds is None:
-      # try again
+      # try again
       self.msg("error finding SDS names")
       return []
-    if 'required_sds' not in self.__dict__:
-      self.required_sds = self.sds
+    #if 'required_sds' not in self.__dict__:
+    #  self.required_sds = self.sds
     self.msg(f"SDS: {self.sds}")
     return self.sds
 
@@ -527,6 +561,9 @@ class Modis():
     fd = fdict(d)
     # dont need to read it
     fd['no_read'] = True
+    ofilebase = f"{self.product}/data.__SDS__." + \
+                f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
+
     hdf_urls = self.get_url(**(fd))
 
     if not(len(hdf_urls) and (type(hdf_urls[0]) == URL)):
@@ -593,9 +630,7 @@ class Modis():
       self.msg(sds)
       sys.exit(1)
     for i,sd in enumerate(sds):
-      ofile = f"{self.product}/data.{self.sds[i]}." + \
-              f"{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}.vrt"
-      ofile = ofile.replace(' ','_')
+      ofile = f'{ofilebase.replace("__SDS__",self.sds[i])}.vrt'.replace(' ','_')
       spatial_file = Path(f"{self.local_dir[0]}",ofile)
       spatial_file.parent.mkdir(parents=True,exist_ok=True)
       g = gdal.BuildVRT(spatial_file.as_posix(),sds[i])
@@ -607,7 +642,7 @@ class Modis():
       ofiles.append(Path(spatial_file).absolute().as_posix())
     # store in db
     cache = {store_flag : { this_set : ofiles }}
-    self.database.set_db(cache,write=True)
+    #self.database.set_db(cache,write=True)
     return ofiles
 
   def get_files(self,year,doy):
@@ -671,7 +706,7 @@ class Modis():
     # special cases 
     #if self.product[:5] == 'MCD19':
     #  self.site = 'https://ladsweb.modaps.eosdis.nasa.gov'
-    # you should put some tests in
+    # you should put some tests in
     site_dir = f'{code}/{product}.006/{year}.{month}.{day}'
     if site == 'https://ladsweb.modaps.eosdis.nasa.gov':
      if self.doy is None:
@@ -718,6 +753,17 @@ class Modis():
     if type(hdf_files) is not list:
       hdf_files = [hdf_files]
 
+    if do_all or ((self.sds is None) or len(self.sds) == 0 or \
+      ((len(self.sds) == 1) and len(self.sds[0]) == 0)) :
+      response = self.database.get_from_db('SDS',self.product)
+      if response:
+        self.msg("found SDS names in database")
+        self.sds = response
+        self.msg(self.sds)
+        # require them all
+        if 'required_sds' not in self.__dict__:
+          self.required_sds = self.sds
+
     if len(hdf_files) < 1:
       return []
     try:
@@ -733,10 +779,9 @@ class Modis():
 
     #hdf_files = list(np.sort(np.unique(np.array(hdf_files))))
     # in case not defined
-    if do_all or ((self.sds is None) or len(self.sds) == 0 or \
+    if ((self.sds is None) or len(self.sds) == 0 or \
       ((len(self.sds) == 1) and len(self.sds[0]) == 0)) :
         self.msg("trying to get SDS names")
-        self.required_sds = self.sds
         self.sds = [self.sdscode(s1) for s0,s1 in g.GetSubDatasets()]
         cache = {"SDS": {self.product: self.sds}}
         self.database.set_db(cache,write=True)
@@ -758,7 +803,7 @@ class Modis():
     ofiles = [[sub.format(local_file=str(lfile)) for lfile in hdf_files] for sub in this_subs]
     return ofiles
 
-def test_login(do_test):
+def test_login(do_test,verbose=True):
     '''ping small (1.3 M) test file
        to test NASA Earthdata login'''
     if not do_test:

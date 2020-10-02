@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  <link rel="canonical" href="https://ucl-eo.github.io/geog0111/040_GDAL_mosaicing_and_masking_answers/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>GDAL Mosaicing And Masking - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "GDAL Mosaicing And Masking";
+    var mkdocs_page_input_path = "040_GDAL_mosaicing_and_masking_answers.md";
+    var mkdocs_page_url = "/geog0111/040_GDAL_mosaicing_and_masking_answers/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A01_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A02_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A04_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A05_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A06_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A01_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A02_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A04_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A05_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Answers</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">GDAL Mosaicing And Masking</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Answers &raquo;</li>
+        
+      
+        
+          <li>Geospatial Data &raquo;</li>
+        
+      
+    
+    <li>GDAL Mosaicing And Masking</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/040_GDAL_mosaicing_and_masking_answers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="040-gdal-mosaicing-and-masking-answers-to-exercises">040 GDAL: mosaicing and masking : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<p>Recall that the MODIS LAI data need a scaling factor of 0.1 applied, and that values of greater than 100 are invalid.</p>
+<p>For the dataset described by:</p>
+<pre><code>kwargs = {
+    'tile'      :    ['h17v03'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+}
+doy = 41
+year = 2019
+</code></pre>
+<ul>
+<li>Use <code>gdal</code> to read the data into a <code>numpy</code> array called lai</li>
+<li>print the shape of the array <code>lai</code></li>
+<li>Find the maximum valid LAI value in the dataset</li>
+<li>find at least one pixel (row, column) which has that maximum value.</li>
+</ul>
+<p>You will need to recall how to filter and <a href="../032_More_numpy/#argmin,-argmax-and-masking">mask <code>numpy</code> arrays</a> and use <a href="../032_More_numpy/#where"><code>np.where</code></a>.</p>
+<pre><code class="python"># ANSWER
+# dont forget to import the packages you need
+from geog0111.modis import Modis
+import gdal
+import numpy as np
+
+# Use gdal to read the data into a numpy array called lai
+kwargs = {
+    'tile'      :    ['h17v03'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+}
+doy = 41
+year = 2019
+modis = Modis(**kwargs)
+files,sds = modis.get_files(year,doy)
+g = gdal.Open(sds[0][0])
+lai = g.ReadAsArray()
+# print the shape of the array `lai`
+print(f'shape of lai: {lai.shape}')
+</code></pre>
+
+<pre><code>shape of lai: (2400, 2400)
+</code></pre>
+<pre><code class="python"># Find the maximum valid LAI value in the dataset
+# first filter for valid
+valid_mask = (lai &lt;= 100)
+# now apply, and scale
+max_lai = lai[valid_mask].max()
+print(f'max LAI is {max_lai * 0.1}')
+
+# find pixels where it equals the max
+where_max_mask = (lai == max_lai)
+
+# find at least one pixel (row, column) 
+# which has that maximum value.
+row,col = np.where(where_max_mask)
+print(row[0],col[0])
+</code></pre>
+
+<pre><code>max LAI is 7.0
+111 2199
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>
+<p>write a function called <code>stitch_me</code> that you give the arguments:</p>
+<ul>
+<li>year</li>
+<li>doy</li>
+</ul>
+</li>
+</ul>
+<p>and keywords/defaults:</p>
+<pre><code>* sds='Lai_500m'
+* tile=['h17v03','h18v03']
+* product='MCD15A3H'
+</code></pre>
+<p>that then generates a stitched VRT file with the appropriate data, and returns the VRT filename. Make sure to use the <code>year</code> and <code>doy</code> in the VRT filename.</p>
+<pre><code class="python">
+def stitch_me(year,doy,sds='Lai_500m',\
+              tile=['h17v03','h18v03'],\
+              product='MCD15A3H'):
+    '''
+    function called stitch_me with arguments:
+
+    year
+    doy
+
+    keywords/defaults:
+
+        sds      : 'Lai_500m'
+        tile     : ['h17v03','h18v03','h17v04','h18v04']
+        product  : 'MCD15A3H'
+
+    generates a stitched VRT file with the appropriate data,
+
+    returns VRT filename for this dataset.
+    '''
+    # set up kwargs for MODIS
+    kwargs = {
+        'tile'      :    tile,
+        'product'   :    product,
+        'sds'       :    sds,
+    }
+    # set up MODIS object
+    modis = Modis(**kwargs)
+    # get filenames and SDS for this year/doy
+    files,sds = modis.get_files(year,doy)
+
+    # Make sure to use the year and doy in the VRT filename.
+    ofile = f&quot;work/stitch_{year}_{doy:03d}.vrt&quot;
+
+    # build a VRT     
+    stitch_vrt = gdal.BuildVRT(ofile, sds[0])
+    return ofile
+</code></pre>
+
+<pre><code class="python">import matplotlib.pyplot as plt
+
+# test
+sfile = stitch_me(2019,41)
+print(sfile)
+
+g = gdal.Open(sfile)
+# see if opens
+if g:
+    fig, axs = plt.subplots(1,1,figsize=(12,6))
+    im = axs.imshow(stitch_vrt.ReadAsArray()*0.1,vmax=7,\
+                    cmap=plt.cm.inferno_r,interpolation='nearest')
+    fig.colorbar(im, ax=axs)
+else:
+    print('test failed')
+</code></pre>
+
+<pre><code>work/stitch_2019_041.vrt
+</code></pre>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_6_1.png" /></p>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>For doy 41 2019, extract and plot LAI of the sub-region around London by defining the approximate pixel coordinates of the area</li>
+</ul>
+<pre><code class="python"># ANSWER
+msg = '''
+For doy 41 2019, extract and plot 
+LAI of the sub-region around the 
+London by defining the 
+pixel coordinates of the area
+
+We can identify Corsica from searching for maps.
+We can see from the images above and a little trial
+and error that this is approximately
+
+r0,r1 = 1900,2150
+c0,c1 = 2250,2500
+
+'''
+
+ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
+stitch_vrt = gdal.Open(ofile)
+
+# get the lai data as sub-set directly
+r0,r1 = 1900,2150
+c0,c1 = 2250,2500
+
+london = stitch_vrt.ReadAsArray(c0,r0,c1-c0,r1-r0)*0.1
+
+fig, axs = plt.subplots(1,1,figsize=(12,6))
+im = axs.imshow(london,vmax=7,\
+                cmap=plt.cm.inferno_r,interpolation='nearest')
+fig.colorbar(im, ax=axs)
+print(msg)
+</code></pre>
+
+<pre><code>For doy 41 2019, extract and plot 
+LAI of the sub-region around the 
+London by defining the 
+pixel coordinates of the area
+
+We can identify Corsica from searching for maps.
+We can see from the images above and a little trial
+and error that this is approximately
+
+r0,r1 = 1900,2150
+c0,c1 = 2250,2500
+</code></pre>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_8_1.png" /></p>
+<h4 id="exercise-4">Exercise 4</h4>
+<ul>
+<li>Plot the LAI for Luxemburg (<code>"FIPS='LU'"</code>) for doy 46, 2019</li>
+<li>find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+import gdal
+from geog0111.modis import Modis
+import matplotlib.pyplot as plt
+
+msg = '''
+Plot the LAI for Luxemburg (&quot;FIPS='LU'&quot;) for doy 46, 2019
+
+This is essentially a straight copy from the notes aboive, changing UK for LU
+But if we do that, we will not have the correct tiles to cover Luxemburg
+We need to make sure we use ['h18v04','h18v03'] to get the whole country
+'''
+
+# only choose the tiles we need to make more efficient
+# ['h18v04','h18v03']
+kwargs = {
+    'tile'      :    ['h18v04','h18v03'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+}
+doy = 41
+year = 2019
+
+modis = Modis(**kwargs)
+files,sds = modis.get_files(year,doy)
+
+warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : &quot;FIPS='LU'&quot;,
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+# build a VRT 
+stitch_vrt = gdal.BuildVRT(&quot;work/stitch_lu.vrt&quot;, sds[0])
+del stitch_vrt
+g = gdal.Warp(&quot;&quot;, &quot;work/stitch_lu.vrt&quot;,**warp_args)
+
+fig, axs = plt.subplots(1,1,figsize=(12,6))
+im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
+                cmap=plt.cm.inferno_r,interpolation='nearest')
+fig.colorbar(im, ax=axs)
+print(msg)
+
+</code></pre>
+
+<pre><code>Plot the LAI for Luxemburg ("FIPS='LU'") for doy 46, 2019
+
+This is essentially a straight copy from the notes aboive, changing UK for LU
+But if we do that, we will not have the correct tiles to cover Luxemburg
+We need to make sure we use ['h18v04','h18v03'] to get the whole country
+</code></pre>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_10_1.png" /></p>
+<pre><code class="python">import numpy as np
+msg = '''
+Find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.
+
+For this part, we need to build a mask of valid data points
+Then find the mean LAI over that set.
+'''
+print(msg)
+
+# dataset scaled
+lai = g.ReadAsArray()*0.1
+
+# mask for valid
+mask = (lai &lt;= 10.0)
+
+mean_lai = np.mean(lai[mask])
+
+# mean
+print(f'Mean LAI for LU for doy {doy} {year} is {mean_lai :.2f}')
+</code></pre>
+
+<pre><code>Find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.
+
+For this part, we need to build a mask of valid data points
+Then find the mean LAI over that set.
+
+Mean LAI for LU for doy 41 2019 is 0.35
+</code></pre>
+<h4 id="exercise-5">Exercise 5</h4>
+<ul>
+<li>Use <code>Modis.get_modis</code> to plot the LAI for France for doy 49, 2019</li>
+<li>find the median LAI for France for doy 49, 2019 to 2 d.p.</li>
+</ul>
+<pre><code class="python">import gdal
+from geog0111.modis import Modis
+import matplotlib.pyplot as plt
+
+msg = '''
+Use Modis.get_modis to plot the LAI for France for doy 49, 2019
+
+This is mostly a copy from the code in the notes. But again we need
+to check the tiles to use. We can find that this should be 
+['h17v03','h17v04','h18v03','h18v04']
+
+We also need to change the doy from 41 to 49 !!!
+
+We also need to look up the FIPS code for France, since this 
+is not given. This can be found to be &quot;FIPS='FR'&quot; from a quick 
+search.
+'''
+
+kwargs = {
+    'tile'      :    ['h17v03','h17v04','h18v03','h18v04'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+}
+doy = 49
+year = 2019
+
+modis = Modis(**kwargs)
+
+warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : &quot;FIPS='FR'&quot;,
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+# getting the dataset is this simple
+mfiles = modis.get_modis(year,doy,warp_args=warp_args)
+
+# This is just plotting 
+g = gdal.Open(mfiles['Lai_500m'])
+fig, axs = plt.subplots(1,1,figsize=(12,6))
+im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
+                cmap=plt.cm.inferno_r,interpolation='nearest')
+axs.set_title(mfiles['bandnames'][0])
+fig.colorbar(im, ax=axs)
+
+print(msg)
+</code></pre>
+
+<pre><code>Use Modis.get_modis to plot the LAI for France for doy 49, 2019
+
+This is mostly a copy from the code in the notes. But again we need
+to check the tiles to use. We can find that this should be 
+['h17v03','h17v04','h18v03','h18v04']
+
+We also need to change the doy from 41 to 49 !!!
+
+We also need to look up the FIPS code for France, since this 
+is not given. This can be found to be "FIPS='FR'" from a quick 
+search.
+</code></pre>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_13_1.png" /></p>
+<pre><code class="python">
+msg = '''
+find the median LAI for France for doy 49, 2019 to 2 d.p.
+
+Same as exercise 3, but motice median is asked for
+
+For this part, we need to build a mask of valid data points
+Then find the mean LAI over that set.
+'''
+print(msg)
+
+# dataset scaled
+lai = g.ReadAsArray()*0.1
+
+# mask for valid
+mask = (lai &lt;= 10.0)
+
+# np.median
+mean_lai = np.median(lai[mask])
+
+# mean
+print(f'Mean LAI for LU for doy {doy} {year} is {mean_lai :.2f}')
+</code></pre>
+
+<pre><code>find the median LAI for France for doy 49, 2019 to 2 d.p.
+
+Same as exercise 3, but motice median is asked for
+
+For this part, we need to build a mask of valid data points
+Then find the mean LAI over that set.
+
+Mean LAI for LU for doy 49 2019 is 0.80
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../041_GDAL_timeseries_answers/" class="btn btn-neutral float-right" title="GDAL Timeseries">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../043_Weighted_interpolation/" class="btn btn-neutral" title="Weighted Interpolation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../043_Weighted_interpolation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../041_GDAL_timeseries_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

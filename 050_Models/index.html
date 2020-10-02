@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  <link rel="canonical" href="https://ucl-eo.github.io/geog0111/050_Models/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Models - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Models";
+    var mkdocs_page_input_path = "050_Models.md";
+    var mkdocs_page_url = "/geog0111/050_Models/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A01_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A02_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A04_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A05_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A06_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A01_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A02_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A04_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A05_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Models</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#models">Models</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#discrepancy-and-optimisation">discrepancy and optimisation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#varying-the-parameters">Varying the parameters</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#visualisation-of-rmse">Visualisation of RMSE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lut-inversion">LUT inversion</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Modelling &raquo;</li>
+        
+      
+    
+    <li>Models</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/050_Models.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="050-models">050 Models</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In this session, we will consider the idea of a model in (Environmental) Science and discuss some examples. The material in this section brings together a lot of the techniques we have dealt with in previous sessions, so you should make sure you are up to speed with concepts like array processing, graph plotting and writing Python functions and scripts before attempting this.</p>
+<p>You will need to understand the material in this section to be able to complete the second half of the submitted coursework.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You will need a good understanding of previous topics involving <a href="../031_Numpy/#np.linspace,-np.arange,-np.mgrid"><code>np/mgrid</code></a> and <a href="../032_More_numpy/#Reconciling-arrays:-np.newaxis"><code>np.newaxis</code></a>. You should by know be familiar with other more basic material. </p>
+<h2 id="models">Models</h2>
+<p>We can think of a model as a 'process' box encapsulating our understanding, or a proposal for our understanding, of some process. Two examples we will cover later are:</p>
+<ul>
+<li>a descriptive model of vegetation phenology</li>
+<li>a model of snow-melt</li>
+</ul>
+<p>Such models make an <em>output prediction</em> will be some variable, or set of variables. For our two example models, these will be:</p>
+<ul>
+<li>LAI as a function of time</li>
+<li>river flow resulting from snow-melt</li>
+</ul>
+<p>The <strong>outputs</strong> depend on the mechanics of our model and:</p>
+<ul>
+<li>some set of <strong>driving data</strong> (in our two models this will be simply time, and time and temperature, respectively) </li>
+<li>some model parameters</li>
+</ul>
+<p>The model parameters control the operation of the model. These could be related to the type of vegetation for a phenology model, or terms such as the thickness of snowpack in the case of a snow-melt model. Most often, the parameters will describe <em>states</em> and <em>rates</em>, for example, the current amount of water in a snowpack (state) or the rate at which water is released from the snowpack into runoff (rate).</p>
+<p><img alt="model" src="../images/parameters1.png" /></p>
+<p>We will generally have access to the driving data for our model, and we will have some set of measurements that correspond to the output, but we may not know the values of the parameters to use.</p>
+<p><img alt="model" src="../images/parameters2.png" /></p>
+<p>How can we use this to provide an estimate of the model parameters? We could make some educated guesses, based on previous experience with the model in different situations ('expert opinion'), and we might also be able to provide reasonable bounds for the parameters, again either based on previous experience with the model or sometimes simply from physical limits (e.g. some parameters cannot be negative). </p>
+<p>What we really want is a more objective way of estimating the parameters. This involves parameter optimisation, which is a whole field of science. We cannot cover that in this course, but we can introduce some of the main ideas to use in our codes.</p>
+<p>Before moving on to more 'realistic' models, let's build a simple example model <code>model</code> we can learn from. </p>
+<p>This has two parameters <code>p[0]</code> and <code>p[0]</code> and a driver that represents time:</p>
+<pre><code class="python"># simple model 
+def model(driver,param):
+    '''2-parameter quadratic model with noise'''
+    return param[0] + param[1] * driver * driver
+</code></pre>
+
+<p>We will generate a dataset <code>measure</code> at time samples <code>tmdriver</code> to represent our measurements, We generate them with the model with a set of parameters and some additive noise. We will also generate a set of weights for the observations, which we will use to indicate their reliability:</p>
+<pre><code class="python">import numpy as np
+
+# time driver every 4 days for measurement
+tmdriver = np.arange(0,365,4,dtype=np.int)
+# generate a pseudo-measurement
+p0 = np.array([0.4,0.0002])
+measure = model(tmdriver,p0) + 5*(np.random.random(tmdriver.shape)-0.5)
+# just make up some weights for this exercise
+measure_weight = (2 + np.random.random(tmdriver.shape))/4
+# convert to std for plotting as previously
+std = 1./np.sqrt(measure_weight) * 1.96
+</code></pre>
+
+<p>Now we forget that we know the parameters, make a guess that they are <code>[0.3,0.0001]</code>, and use the model to make a prediction <code>output</code>. Note that <code>output</code> exists every day, whereas the measurements are only every 4 days.</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+# time driver every day
+tdriver = np.arange(0,365,1,dtype=np.int)
+# guess parameters
+p = np.array([0.3,0.0001])
+toutput  = model(tdriver,p)
+
+
+# plot
+fig, axs = plt.subplots(1,1,figsize=(10,3))
+axs.set_xlim(0,365)
+axs.plot(tdriver,toutput,'k',label='modelled values')
+axs.errorbar(tmdriver,measure,yerr=std,ls='none')
+axs.plot(tmdriver,measure,'r+',label='measured values')
+# set legend now
+axs.legend(loc='best')
+axs.set_xlabel(f'time / days')
+
+print(f'measurements: tmdriver shape {tmdriver.shape}')
+print(f'model output: tdriver shape  {tdriver.shape}')
+</code></pre>
+
+<pre><code>measurements: tmdriver shape (92,)
+model output: tdriver shape  (365,)
+</code></pre>
+<p><img alt="png" src="../050_Models_files/050_Models_11_1.png" /></p>
+<p>We can see right away that there is a mis-match between the model outputs and the measurements.</p>
+<h3 id="discrepancy-and-optimisation">discrepancy and optimisation</h3>
+<p>We have a set of <em>observations</em> that correspond to the model outputs at some time samples. </p>
+<p>A simple operation we can do is to compare these then. We might suppose that a set of parameters that provides a lower discrepancy between observations and modelled values (we will often call this error) is <em>objectively better</em> than one with a poorer match. In that sense, what we would need to do would be to search for a set of parameters that which has the minimum error. Our search for parameters will be guided by any bounds we set. Then all we need to do is write some computer code that considers different values of the parameters and reports on the best (the optimal) match.</p>
+<p><img alt="model" src="../images/parameters3.png" /></p>
+<p>That is a reasonable approach, and one we will take in these notes. We should be aware that when we do Science however, we need to take into account uncertainty, and also that there might be other constraints we want to put on the problem.</p>
+<p>Uncertainty manifests itself at all stages of modelling and optimisation: the model itself will be uncertain, because of its nature as an abstraction of some process; the drivers will often be uncertain in their ability to the conditions at the actual place and time we are doing the modelling; and the measurements will be uncertain. We have treated uncertainty in other sections of these notes by applying a weight to observations, and we can take the same approach here. When we calculate error, for instance as the root mean square error between model predictions (output) and measurement, we can weight this to give a weighted error.</p>
+<p>Before we can calculate the (weighted) error, we need to treat the outputs so that they match the time samples of the measurements. We can either match the observations to the measurements, or the measurements to the observations. The best approach with depend on circumstances but generally it is simplest to run the model for each observation driver. If your model involves some summation (integral) over time, then you need to think carefully about how to do this.</p>
+<p>In this example though it is straightforward: we just run the model for the time locations that we have observations.</p>
+<pre><code class="python"># run the model for measurement times only
+tmoutput = model(tmdriver,p)
+# check the shape
+print(f'tmoutput shape: {tmoutput.shape}')
+print(f'tmdriver shape: {tmdriver.shape}')
+print(f'tdriver shape: {tdriver.shape}')
+</code></pre>
+
+<pre><code>tmoutput shape: (92,)
+tmdriver shape: (92,)
+tdriver shape: (365,)
+</code></pre>
+<pre><code class="python"># now we can calculate the weighted discrepency 
+error = (tmoutput - measure)*measure_weight
+error2 = error**2
+rmse = np.sqrt(np.mean(error2))
+print(f'RMSE: {rmse} for parameters {p}')
+</code></pre>
+
+<pre><code>RMSE: 3.89127879506191 for parameters [3.e-01 1.e-04]
+</code></pre>
+<pre><code class="python"># plot
+fig, axs = plt.subplots(1,1,figsize=(10,3))
+axs.set_xlim(0,365)
+axs.plot(tmdriver,tmoutput,'r+',label='modelled values')
+axs.plot(tmdriver,measure,'g+',label='measured values')
+# plot the discrepencies as error bars using errorbar
+axs.errorbar(tmdriver,measure,\
+             yerr=[measure-measure,tmoutput-measure],ls='none',\
+             label='error')
+
+# set legend now
+axs.legend(loc='best')
+axs.set_xlabel(f'time / days')
+
+print(f'measurements: measure shape  {measure.shape}')
+print(f'model output: tmoutput shape {tmoutput.shape}')
+</code></pre>
+
+<pre><code>measurements: measure shape  (92,)
+model output: tmoutput shape (92,)
+</code></pre>
+<p><img alt="png" src="../050_Models_files/050_Models_19_1.png" /></p>
+<pre><code class="python"># scatter plot
+fig, axs = plt.subplots(1,1,figsize=(5,5))
+# max value over all
+maxvalue = np.array([measure,tmoutput]).max()
+axs.set_xlim(0,maxvalue)
+axs.set_ylim(0,maxvalue)
+
+axs.plot(measure,tmoutput,'r+')
+axs.errorbar(measure,tmoutput,yerr=std,ls='none')
+
+axs.set_ylabel(f'model output')
+axs.set_xlabel(f'measurement')
+# 1:1 line
+axs.plot([0,maxvalue],[0,maxvalue],'k')
+</code></pre>
+
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x7fcc6892b050&gt;]
+</code></pre>
+<p><img alt="png" src="../050_Models_files/050_Models_20_1.png" /></p>
+<h3 id="varying-the-parameters">Varying the parameters</h3>
+<p>We have seen how, once we have aligned the model outputs and observations, we can calculate a weighted measure if error, RMSE here. So, so some given set of measurements, a model, and a set of model parameters, we can calculate the error:</p>
+<p><img alt="model" src="../images/parameters4.png" /></p>
+<p>Re-generate the set of measurements:</p>
+<pre><code class="python">import numpy as np
+
+# simple model 
+def model(driver,param):
+    '''2-parameter quadratic model with noise'''
+    return param[0] + param[1] * driver * driver
+
+# time driver every 4 days for measurement
+tmdriver = np.arange(0,365,4,dtype=np.int)
+
+# generate a pseudo-measurement
+# NB different to above
+p0 = np.array([0.6,0.0005])
+
+# np.random.random(tmdriver.shape)-0.5 -&gt; zero mean noise
+measure = model(tmdriver,p0) + 5*(np.random.random(tmdriver.shape)-0.5)
+# just make up some weights for this exercise
+measure_weight = (2 + np.random.random(tmdriver.shape))/4
+# convert to std for plotting as previously
+std = 1./np.sqrt(measure_weight) * 1.96
+</code></pre>
+
+<p>Recap on the core components so far, but setting the parameters to <code>numpy</code> arrays:</p>
+<pre><code class="python"># some test parameters
+p0,p1 = np.array([0.1]),np.array([0.2])
+
+tmoutput  = model(tmdriver,[p0,p1])
+
+print(f'p0 shape:    {p0.shape}')
+print(f'p1 shape:    {p1.shape}')
+print(f'tmdriver shape: {tmdriver.shape}')
+print(f'tmoutput shape: {tmoutput.shape}')
+</code></pre>
+
+<pre><code>p0 shape:    (1,)
+p1 shape:    (1,)
+tmdriver shape: (92,)
+tmoutput shape: (92,)
+</code></pre>
+<p>We will now build a Look-up table (LUT) in parameter space to examine how the RMSE varies as we vary the model parameters.</p>
+<pre><code class="python">import numpy as np
+
+# Use mgrid as previously to define a 2D grid of parameters
+p0min,p0max,p0step = 0.0,10.0,1
+p1min,p1max,p1step = 0.0,0.0011,0.0001
+p0,p1 = np.mgrid[p0min:p0max+p0step:p0step,\
+                 p1min:p1max+p1step:p1step]
+</code></pre>
+
+<pre><code class="python">import matplotlib.pyplot as plt
+fig, axs = plt.subplots(1,1,figsize=(5,5))
+axs.plot(p0,p1,'+')
+axs.set_xlabel('p0')
+axs.set_ylabel('p1')
+
+print('2d parameter grid')
+</code></pre>
+
+<pre><code>2d parameter grid
+</code></pre>
+<p><img alt="png" src="../050_Models_files/050_Models_28_1.png" /></p>
+<p>Recall from <a href="../032_More_numpy/#Changing-shape:-flatten,-ravel-and-reshape">032 <code>reshape</code></a> that although the LUT is 2-D, we will mostly want to operate on a 1D ravelled version. So let's generate that from the outset:</p>
+<pre><code class="python">p0_ = np.ravel(p0)
+p1_ = np.ravel(p1)
+print(f'shape of p0 : {p0.shape}')
+print(f'shape of p0_ : {p0_.shape}')
+</code></pre>
+
+<pre><code>shape of p0 : (11, 12)
+shape of p0_ : (132,)
+</code></pre>
+<p>In <a href="../032_More_numpy/#Reconciling-arrays:-np.newaxis">032 <code>np.newaxis</code></a> we saw how to use <code>np.newaxis</code> to reconcile two arrays for element-wise processing. Here, have the 1D arrays <code>tdriver</code> and the <code>p0_</code> and <code>p1_</code> and we want to be able to describe all parameters for all time locations;</p>
+<pre><code class="python">p0_ext       = p0_[np.newaxis,:]
+p1_ext       = p1_[np.newaxis,:]
+tmdriver_ext = tmdriver[:,np.newaxis]
+
+print(f'p0_ext shape:       {p0_ext.shape}')
+print(f'p1_ext shape:       {p1_ext.shape}')
+print(f'tmdriver_ext shape: {tmdriver_ext.shape}')
+
+# we can now call the model with extended arrays
+# to produce model output for all parameters and 
+# time samples
+tmoutput  = model(tmdriver_ext,[p0_ext,p1_ext])
+print(f'tmoutput shape:     {tmoutput.shape}')
+</code></pre>
+
+<pre><code>p0_ext shape:       (1, 132)
+p1_ext shape:       (1, 132)
+tmdriver_ext shape: (92, 1)
+tmoutput shape:     (92, 132)
+</code></pre>
+<p>We need to be able to compare <code>tmoutput</code> with <code>measure</code> and <code>measure_weight</code>, so lets do that to align with the parameter grid:</p>
+<pre><code class="python">measure_ext        = measure[:,np.newaxis]
+measure_weight_ext = measure_weight[:,np.newaxis]
+print(f'measure_ext shape:        {measure_ext.shape}')
+print(f'measure_weight_ext shape: {measure_weight_ext.shape}')
+</code></pre>
+
+<pre><code>measure_ext shape:        (92, 1)
+measure_weight_ext shape: (92, 1)
+</code></pre>
+<p>We can now perform element-wise operations involving <code>measure_ext</code>, <code>measure_weight_ext</code> and <code>tmoutput</code>:</p>
+<pre><code class="python">error_ext = (tmoutput - measure_ext)*measure_weight_ext
+error_ext = error_ext*error_ext
+print(f'error_ext shape: {error_ext.shape}')
+</code></pre>
+
+<pre><code>error_ext shape: (92, 132)
+</code></pre>
+<p>Now calculate the square root of the mean of this squared error term <code>error_ext</code> over time samples (axis 0):</p>
+<pre><code class="python">rmse = np.sqrt(np.mean(error_ext,axis=0))
+
+print(f'rmse shape {rmse.shape}')
+min_rmse = rmse.min()
+print(f'min rmse\n{min_rmse}')
+</code></pre>
+
+<pre><code>rmse shape (132,)
+min rmse
+0.9572456122482587
+</code></pre>
+<p>Following the material in <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index">032</a> we use <code>argmin</code> to find the parameter index of minimum RMSE:</p>
+<pre><code class="python"># use np.argmin to find the minimum
+imin = np.argmin(rmse)
+p0min,p1min = p0_[imin],p1_[imin]
+print(f'1D index of minimum  : {imin}')
+print(f'parameter at minimum : {p0min},{p1min}')
+</code></pre>
+
+<pre><code>1D index of minimum  : 5
+parameter at minimum : 0.0,0.0005
+</code></pre>
+<p>To convert the index back to the unflattened array, we can use <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index"><code>np.unravel_index</code></a> as before:</p>
+<pre><code class="python">ip0min,ip1min = np.unravel_index(imin,p0.shape)
+
+print(f'2D index of minimum point: {ip0min}, {ip1min}')
+p0min = p0[ip0min,ip1min]
+p1min = p1[ip0min,ip1min]
+print(f'parameter at minimum : {p0min},{p1min}')
+</code></pre>
+
+<pre><code>2D index of minimum point: 0, 5
+parameter at minimum : 0.0,0.0005
+</code></pre>
+<p>Of the 11 x 12  combinations of parameters we examined, the parameters <code>[1.0,0.0005]</code> provide the best fit to the data. We had generated the 'measurements' with:</p>
+<pre><code>p0 = np.array([0.6,0.0005])
+</code></pre>
+<h4 id="visualisation-of-rmse">Visualisation of RMSE</h4>
+<p>We can find it useful to visualise the RMSE 'error surface' and then plot the measurements and forward model. Since we have a flattened version, we will need to apply <code>reshape</code> before loading it. We reshape it to the same shape as <code>p0</code>:</p>
+<pre><code class="python"># reshape to plot
+_rmse = rmse.reshape(p0.shape)
+</code></pre>
+
+<p>Now, a graph of the RMSE values as a function of parameter 0 index. We set the maximum value in the plots below to 10 times the minimum RMSE value, as this should let us see some detail in the error function, without swamping the plot with error values that are not at all feasible. This factor of 5 is a little arbitrary, and you might need to experiment with it, but it is not a bad rule of thumb.</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+# plot rmse as function of parameter index
+pindex = np.arange(_rmse.shape[0])
+fig, axs = plt.subplots(1,1,figsize=(10,3))
+axs.plot(pindex,_rmse,'r+')
+axs.plot([p0min],[min_rmse],'ko',label='minimum RMSE')
+# set upper bound so we can see the detail
+axs.set_ylim(0,min_rmse*5)
+axs.set_xlabel(f'parameter index')
+</code></pre>
+
+<pre><code>Text(0.5, 0, 'parameter index')
+</code></pre>
+<p><img alt="png" src="../050_Models_files/050_Models_47_1.png" /></p>
+<pre><code class="python">import matplotlib.pyplot as plt
+# Plot the RMSE values returned from this as an image
+
+# plot it
+fig, axs = plt.subplots(1,1,figsize=(5,4))
+# plot reshaped rmse
+im = axs.imshow(rmse.reshape(p0.shape),\
+                interpolation=&quot;nearest&quot;,\
+                vmax=min_rmse*5,cmap=plt.cm.inferno_r)
+fig.colorbar(im, ax=axs)
+axs.set_xlabel('p0')
+axs.set_ylabel('p1')
+# notice we plot ip1min,ip0min to overlay the image
+plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
+axs.legend(loc='lower right')
+</code></pre>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7fcc687a4dd0&gt;
+</code></pre>
+<p><img alt="png" src="../050_Models_files/050_Models_48_1.png" /></p>
+<p>It is useful to look at such plots because we can use them to gauge  the uncertainty in the parameter solution. In this case, we see that the error surface is long and narrow in parameter 1. So even though we have reported the optimal value as 1.0, it could vary considerably and not change the RMSE value considerably. This is an important part of the interpretation of our results, and helps explain why we solved for a parameter value of 1.0 even though we fed the measurements with a value of 0.6.</p>
+<p>One other thing these plots are useful for is to check that our solution does not lie on the boundary of the parameter space. Unless there is a good physical reason for the bounds we have imposed on the parameters in generating the LUT grid, if we find our solution is on a parameter boundary we might just be not sampling the parameter space well enough. Related to this, we also would like to see some spread of the RMSE values, rather than just a single low point, as this might otherwise indicate that our sampling grid is too coarse. The example above is good model for what you should be looking for the the RMSE plots, although the grid is a little coarse. Remember from above that we have thresholded the plot at 10 times the minimum RMSE so we can see the detail of the plot around the minimum point.</p>
+<p>Now visualise the model and measurents for the 'optimum' parameters:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+# time driver every day
+tdriver = np.arange(0,365,1,dtype=np.int)
+
+# get the parameters we iolved for
+p = np.array([p0min,p1min])
+print(p)
+
+# forward model at all time points
+# noit just the measurement points
+output  = model(tdriver,p)
+
+# plot
+fig, axs = plt.subplots(1,1,figsize=(10,3))
+axs.set_xlim(0,365)
+axs.plot(tdriver,output,'k',label='modelled values')
+axs.errorbar(tmdriver,measure,yerr=std,ls='none')
+axs.plot(tmdriver,measure,'r+',label='measured values')
+# set legend now
+axs.legend(loc='best')
+axs.set_xlabel(f'time / days')
+
+print(f'measurements: tmdriver shape {tmdriver.shape}')
+print(f'model output: tdriver shape  {tdriver.shape}')
+</code></pre>
+
+<pre><code>[0.     0.0005]
+measurements: tmdriver shape (92,)
+model output: tdriver shape  (365,)
+</code></pre>
+<p><img alt="png" src="../050_Models_files/050_Models_51_1.png" /></p>
+<p>The parameter estimation code is effective and quite fast in this case. 
+We are using quite a sparse LUT (132 points) in 2-D, but the model is able to mimic the (pseudo) observations very well, even with rather a quantised LUT. We can see from the RMSE image plot above, and the value of RMSE we obtained, that this is likely a good solution for the model. We know from that plot also that the uncertainty in parameter 1 is high. A more sophisticated analysis would take into account the parameter uncertainty in producing the modelled outputs (i.e. put error bars on the model output).</p>
+<p>When we forward model using the parameters we solved for, we see that the solution 
+found gives a good fit to the observations, within their error bars. This further informs us
+that the sensitivity to  model parameter p1 is quite low. </p>
+<h3 id="lut-inversion">LUT inversion</h3>
+<p>This approach is called a Look-up table (LUT) inversion. It has the advantage of being quite fast if the total number of samples in the LUT can be kept down in number. This means that the limits to the problem need to be carefully considered: if your LUT inversion produces a supposed optimum parameter value that is on the bounds of the parameter space, then this can often be quite suspect: it may be that you just haven't sampled over a large-enough parameter space. The result is quantised to the LUT spacing if you use the simple approach here, but that will be fine for many applications. This is really only an appropriate method if you have a small number of parameters that you are solving for: i.e. a 1-, 2- or perhaps 3-Dimensional problem. If your model has more parameters, you may have to adopt a multi-pass strategy for parameter searching, or use a method other than LUT inversion.</p>
+<h4 id="exercise-1">Exercise 1</h4>
+<p>In a file <code>lut_RMSE.py</code> do the following:</p>
+<pre><code>    import numpy as np
+    # define the min and max and step for the grid we want
+    p0min,p0max,p0step = 0.0,10.0,0.05
+    p1min,p1max,p1step = 0.0,0.001,0.000005
+
+    gridp0,gridp1 = np.mgrid[p0min:p0max+p0step:p0step,\
+                             p1min:p1max+p1step:p1step]
+</code></pre>
+<ul>
+<li>
+<p>Write a function <code>gen_lut</code> to return a 2D parameter (Look up table -- LUT) grid using <code>np.mgrid</code> as above as <code>param = [gridp0,gridp1]</code></p>
+<pre><code># simple model 
+def model(driver,param):
+    '''2-parameter quadratic model with noise'''
+    return param[0] + param[1] * driver * driver
+</code></pre>
+</li>
+<li>
+<p>Write a function <code>model</code> to describe the model we will be using from the code above</p>
+<pre><code># code to use
+# time driver every 4 days for measurement    
+tmdriver = np.arange(0,365,4,dtype=np.int)
+# generate a pseudo-measurement
+p0 = np.array([5.0,0.0005])
+measure = model(tmdriver,p0) + 5*(np.random.random(tmdriver.shape)-0.5)
+# just make up some weights for this exercise
+measure_weight = (2 + np.random.random(tmdriver.shape))/4
+</code></pre>
+</li>
+<li>
+<p>Write a function <code>gen_meas</code> to generate a pseudo-measurement based on the model and some noise. It should print the value of the parameters used in the model, and return <code>tmdriver, measure, measure_weight</code> corresponding to:</p>
+<pre><code>* tmdriver:       array of (Nm,) floats of the day of year on which to do modelling
+* measure:        array of (Nm,) floats of measurements over sampled days of the year
+* measure_weight: array of (Nm,) floats of the weights associated with the measurements
+</code></pre>
+</li>
+<li>
+<p>Write a function <code>lut_RMSE</code> that takes as inputs:</p>
+<pre><code>* `param`:          list of `[p0,p1]` with `p0` and `p1` being arrays of shape `(Np0,Np1)` representing a the LUT grid over parameter space
+* `tmdriver`:       array of (Nm,) integers: the days on which the measurements occur 
+* `measure:`        array of (Nm,) floats of measurements over sampled days of the year
+* `measure_weight`: array of (Nm,) floats of the weights associated with the measurements
+</code></pre>
+</li>
+</ul>
+<p>That runs the model <code>model(tmdriver,param)</code>, calculates the weighted RMSE between the measurements and the modelled values for each parameter pair, and returns a grid of shape <code>(Np0,Np1)</code> values of RMSE associated with each parameter pair.</p>
+<ul>
+<li>
+<p>Write a function <code>runner()</code> that </p>
+<ul>
+<li>generates tmdriver, the array of (92,) floats for every 4 day of year on which to do modelling</li>
+<li>gets a LUT <code>param</code> from <code>gen_lut</code></li>
+<li>gets a pseudo-measurement from <code>gen_meas</code></li>
+<li>gets a 2-D array of RMSE corresponding to the parameter grid</li>
+<li>calculated and prints the value of the parameters corresponding to the minimum RMSE,</li>
+<li>returns the RMSE array, the LUT, and the measurements</li>
+</ul>
+</li>
+<li>
+<p>Run <code>runner()</code> in a notebook</p>
+</li>
+<li>Plot the RMSE values returned from this as an image</li>
+<li>Verify that you have identified the minimum RMSE</li>
+<li>Set different parameters in <code>gen_meas</code> to generate a different pseudo-measurement and repeat the process.</li>
+<li>Comment on the results</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>In this notebook, we have discussed some generic aspects of models. We note that they typically have some set of driving data (even if that is just time, as in the example here), and a set of parameters that control the model response. </p>
+<p>We have seen how we can apply the concepts we learned in the <a href="../032_More_numpy/#032-More-numpy"><code>numpy</code></a> sessions to build a parameter LUT and rapidly calculate a goodness of fit measure between some set of observations and the model output. We have seen how to use this to provide an estimate of the model parameters. This is known as model calibration. </p>
+<p>Technically, we have seen how we need to reconcile the dimensions of the parameter LUT and the model outputs in <code>numpy</code> using <code>np.newaxis</code> so we can calculate the model outputs for all parameters in the LUT efficiently, all at once. We have seen that parameter estimation in this way can be effective, but may be limited to a relatively small-dimensional problem. If we have a larger number of parameters, we may need to devise other strategies for parameter estimation.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../051_Phenology_model/" class="btn btn-neutral float-right" title="Phenology Model">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../043_Weighted_interpolation_answers/" class="btn btn-neutral" title="Weighted Interpolation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../043_Weighted_interpolation_answers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../051_Phenology_model/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  <link rel="canonical" href="https://ucl-eo.github.io/geog0111/032_More_numpy_answers/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>More Numpy - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "More Numpy";
+    var mkdocs_page_input_path = "032_More_numpy_answers.md";
+    var mkdocs_page_url = "/geog0111/032_More_numpy_answers/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A01_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A02_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A04_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A05_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A06_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A01_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A02_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A04_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A05_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Answers</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">More Numpy</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Answers &raquo;</li>
+        
+      
+        
+          <li>Array Data &raquo;</li>
+        
+      
+    
+    <li>More Numpy</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/032_More_numpy_answers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="032-more-numpy-answers-to-exercises">032 More <code>numpy</code> : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>Print out the total number of launches per month, for each month.</li>
+<li>Print out the total number of launches per year, for the years 2010 to 2020 inclusive</li>
+</ul>
+<h4 id="exercise-2">Exercise 2</h4>
+<pre><code>    import numpy as np
+    filename = 'data/satellites-1957-2021.gz'
+    data=np.loadtxt(filename).astype(np.int)
+</code></pre>
+<ul>
+<li>Use <code>slice</code> to produce a sub-set of the launch dataset <code>data</code> for the months January, March, and May for the years 1960-1966 inclusive. This is 3 months and 7 years, so the resultant array should have shape <code>(3,7)</code></li>
+</ul>
+<pre><code class="python"># ANSWER
+import numpy as np
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+msg = '''
+ Use slice to produce a sub-set of the launch 
+ dataset data for the months January, March, and May
+
+ January, March, and May -&gt; months 0,2,4 so slice(0:6:2)
+
+ for the years 1960-1966 inclusive
+ -&gt; slice(1960-1957:1966-1957+1:1) -&gt; slice(3,10)
+'''
+axis0 = slice(0,6,2)
+axis1 = slice(3,10)
+subset = data[axis0,axis1]
+print(f'subset is of shape {subset.shape}')
+</code></pre>
+
+<pre><code>subset is of shape (3, 7)
+</code></pre>
+<pre><code class="python"># ANSWER
+import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# Print out the total number of launches 
+# per month, for each month.
+# use sum() to sum over data[m] and loop over m
+# get length of m from data.shape[0]
+for m in range(data.shape[0]):
+    print(f'{data[m].sum()} launches in month {m}')
+</code></pre>
+
+<pre><code>2173 launches in month 0
+3745 launches in month 1
+2895 launches in month 2
+3183 launches in month 3
+6606 launches in month 4
+5772 launches in month 5
+3279 launches in month 6
+2481 launches in month 7
+4402 launches in month 8
+4035 launches in month 9
+3273 launches in month 10
+3845 launches in month 11
+</code></pre>
+<pre><code class="python"># ANSWER
+import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# Print out the total number of launches 
+# per year, for the years 2010 to 2020
+# use sum() to sum over data[y] and loop over y
+# translate year to index by subtracting 1957
+
+# its best to be explicit about this
+# this answer more clearly relates to the qn
+years = np.arange(2010,2020+1) - 1957
+for y in years:
+    print(f'{data[:,y].sum()} launches in year {y+1957}')
+
+</code></pre>
+
+<pre><code>373 launches in year 2010
+315 launches in year 2011
+435 launches in year 2012
+352 launches in year 2013
+355 launches in year 2014
+335 launches in year 2015
+308 launches in year 2016
+512 launches in year 2017
+741 launches in year 2018
+735 launches in year 2019
+922 launches in year 2020
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>Plot the total number of satellite launches per year, as a function of year</li>
+</ul>
+<p>You will need to remember how to <a href="../023_Plotting/#Plotting-Graphs">plot line graphs</a></p>
+<pre><code class="python"># ANSWER
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# total for all years, so sum over all months (axis 0)
+n = data.sum(axis=0)
+# clean way to do years
+years = np.arange(1957,1957+data.shape[1])
+
+name = f'Number of satellite launches per year {years[0]} to {years[-1]}'
+
+# plot size 
+x_size,y_size = 12,4
+fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
+fig.suptitle(name)
+# plot y-data and set the label
+axs.plot(years,n)
+# set x-limits to get a neat graph
+axs.set_xlim(years[0],years[-1])
+
+axs.set_ylabel(f'Number of launches')
+# x-label
+axs.set_xlabel(f'year')
+</code></pre>
+
+<pre><code>Text(0.5, 0, 'year')
+</code></pre>
+<p><img alt="png" src="../032_More_numpy_answers_files/032_More_numpy_answers_7_1.png" /></p>
+<pre><code class="python"># ANSWER
+# Print out the total number of 
+# launches per month, for each month.
+
+# use sum for total
+# we can use data.shape[0] for the size of the 1st dimension
+for m in range(data.shape[0]):
+    print(f'{data[m].sum()} launches in month index {m}')
+
+</code></pre>
+
+<pre><code>2173 launches in month index 0
+3745 launches in month index 1
+2895 launches in month index 2
+3183 launches in month index 3
+6606 launches in month index 4
+5772 launches in month index 5
+3279 launches in month index 6
+2481 launches in month index 7
+4402 launches in month index 8
+4035 launches in month index 9
+3273 launches in month index 10
+3845 launches in month index 11
+</code></pre>
+<pre><code class="python"># ANSWER
+# Print out the total number of 
+# launches per year, for the years 2010 to 2020 inclusive
+
+# use sum for total
+for y in range(2010,2020+1):
+    # y is a year, but we need index
+    j = y - 1957
+    print(f'{data[:,j].sum()} launches in year {y}')
+</code></pre>
+
+<pre><code>373 launches in year 2010
+315 launches in year 2011
+435 launches in year 2012
+352 launches in year 2013
+355 launches in year 2014
+335 launches in year 2015
+308 launches in year 2016
+512 launches in year 2017
+741 launches in year 2018
+735 launches in year 2019
+922 launches in year 2020
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<ul>
+<li>Write code to print the months with highest and lowest number of launches</li>
+</ul>
+<pre><code class="python">import numpy as np
+# ANSWER
+# Write code to print the months with 
+# highest and lowest number of launches
+
+# read data as before
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# sum the data over all years (axis 1)
+sum_per_month = data.sum(axis=1)
+# Construct an array of months
+month_array = 1 + np.arange(data.shape[0])
+
+# Find the location (month) with **most** launches
+# Find the index of sum_per_month with highest number (argmmax)
+imax = np.argmax(sum_per_month)
+
+# Find the location (month) with **least** launches
+# Find the index of sum_per_month with lowest number (argmmax)
+imin = np.argmin(sum_per_month)
+
+print(f'the month with most   launches was',\
+      f'{month_array[imax]} with {sum_per_month[imax]}')
+print(f'the month with fewest launches was',\
+      f'{month_array[imin]} with {sum_per_month[imin]}')
+</code></pre>
+
+<pre><code>the month with most   launches was 5 with 6606
+the month with fewest launches was 1 with 2173
+</code></pre>
+<h4 id="exercise-5">Exercise 5</h4>
+<pre><code>def linear_func(c,m,x):
+    return m * x + c
+
+x = np.arange(0,10.5,0.5)
+
+c_min,c_max,c_step = 0.0,1.,0.5
+m_min,m_max,m_step = 0.0,0.05,0.01
+
+grid_c,grid_m = np.mgrid[c_min:c_max+c_step:c_step,\
+                         m_min:m_max+m_step:m_step]
+</code></pre>
+<ul>
+<li>Use <code>np.newaxis</code> to reconcile the shapes of <code>grid_c</code>,<code>grid_m</code> and <code>x</code> </li>
+<li>Make a single call to the function <code>linear_func</code>  using these reconciled variables</li>
+<li>Show how the shape of the output relates to the shape of the inputs </li>
+<li>Confirm your result by plotting the results for each (c,m) value pair</li>
+</ul>
+<pre><code class="python"># ANSWER
+import numpy as np
+
+def linear_func(c,m,x):
+    return m * x + c
+
+x = np.arange(0,10.5,0.5)
+
+c_min,c_max,c_step = 0.0,1.,0.5
+m_min,m_max,m_step = 0.0,0.05,0.01
+
+grid_c,grid_m = np.mgrid[c_min:c_max+c_step:c_step,\
+                         m_min:m_max+m_step:m_step]
+
+# Use np.newaxis to reconcile the shapes of grid_c,grid_m and x
+msg = '''
+we are looking for output of shape 
+
+    grid_c.shape + x.shape
+
+so we add new axes to the final axis of grid_c,grid_m
+and 2 new axes to the front of x
+'''
+print(msg)
+
+grid_c1 = grid_c[:,:,np.newaxis]
+grid_m1 = grid_m[:,:,np.newaxis]
+x1      = x[np.newaxis,np.newaxis,:]
+print(f'grid_c1 shape: {grid_c1.shape}')
+print(f'grid_m1 shape: {grid_m1.shape}')
+print(f'x1 shape:      {x1.shape}')
+
+# Make a single call to the function linear_func 
+# using these reconciled variables
+y = linear_func(grid_c1,grid_m1,x1)
+
+print(f'y shape:       {y.shape}')
+msg = '''
+Show how the shape of the output relates to the shape of the inputs 
+
+The array y is of diemnsion (7, 6, 21)
+values of c,m are on a grid (7, 6)
+and x is (21,) so the result here involves
+efficient element-wise multiplication
+and addition for each combination of (c,m)
+and each value of x
+'''
+print(msg)
+</code></pre>
+
+<pre><code>we are looking for output of shape
+
+    grid_c.shape + x.shape
+
+so we add new axes to the final axis of grid_c,grid_m
+and 2 new axes to the front of x
+
+grid_c1 shape: (3, 6, 1)
+grid_m1 shape: (3, 6, 1)
+x1 shape:      (1, 1, 21)
+y shape:       (3, 6, 21)
+
+Show how the shape of the output relates to the shape of the inputs
+
+The array y is of diemnsion (7, 6, 21)
+values of c,m are on a grid (7, 6)
+and x is (21,) so the result here involves
+efficient element-wise multiplication
+and addition for each combination of (c,m)
+and each value of x
+</code></pre>
+<pre><code class="python"># Confirm your result by plotting the results for each (c,m) value pair
+import matplotlib.pyplot as plt
+ymin,ymax = y.min(),y.max()
+xmin,xmax = x.min(),x.max()
+
+# plots:     
+fig, axs = plt.subplots(*(grid_c.shape),figsize=(12,5))
+plt.setp(axs, xticks=[], yticks=[])
+
+for i in range(y.shape[0]):
+    for j in range(y.shape[1]):
+        axs[i,j].plot(x,y[i,j],'k')
+        axs[i,j].set_title(f'c: {grid_c[i,j]:.2f} m: {grid_m[i,j]:.2f}')
+        axs[i,j].set_xlim(xmin,xmax)
+        axs[i,j].set_ylim(ymin,ymax)
+</code></pre>
+
+<p><img alt="png" src="../032_More_numpy_answers_files/032_More_numpy_answers_14_0.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../040_GDAL_mosaicing_and_masking/" class="btn btn-neutral float-right" title="GDAL Mosaicing And Masking">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../031_Numpy_answers/" class="btn btn-neutral" title="Numpy"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../031_Numpy_answers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../040_GDAL_mosaicing_and_masking/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

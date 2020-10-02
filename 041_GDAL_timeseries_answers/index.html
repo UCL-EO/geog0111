@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  <link rel="canonical" href="https://ucl-eo.github.io/geog0111/041_GDAL_timeseries_answers/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>GDAL Timeseries - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "GDAL Timeseries";
+    var mkdocs_page_input_path = "041_GDAL_timeseries_answers.md";
+    var mkdocs_page_url = "/geog0111/041_GDAL_timeseries_answers/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A01_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A02_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A04_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A05_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A06_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A01_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A02_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A04_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A05_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Answers</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">GDAL Timeseries</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Answers &raquo;</li>
+        
+      
+        
+          <li>Geospatial Data &raquo;</li>
+        
+      
+    
+    <li>GDAL Timeseries</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/041_GDAL_timeseries_answers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="041-gdal-time-series-answers-to-exercises">041 GDAL: time series : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<p>We have seen in <a href="../040_GDAL_mosaicing_and_masking/">040_GDAL_mosaicing_and_masking</a> that you can use <code>gdal</code> to creat a GeoTiff format image, for example with:</p>
+<pre><code>g = gdal.Warp(output_name, input_name ,format='GTiff',options=['COMPRESS=LZW'])
+g.FlushCache()
+</code></pre>
+<ul>
+<li>Convert the <code>gdal</code> file <code>work/stitch_set.vrt</code> to a more portable GeoTiff file called <code>work/stitch_set.tif</code></li>
+<li>Confirm that this has worked by reading and displaying data from the file</li>
+</ul>
+<pre><code class="python"># ANSWER
+import gdal
+
+# Convert the `gdal` file `work/stitch_set.vrt` to a 
+# more portable GeoTiff file called `work/stitch_set.tif`
+
+# set up the filenames
+infile = 'work/stitch_set.vrt'
+outfile = 'work/stitch_set.tif'
+
+# convert using gdal.Warp or similar
+g = gdal.Warp(outfile, infile ,format='GTiff',options=['COMPRESS=LZW'])
+# force write to disk
+g.FlushCache()
+</code></pre>
+
+<pre><code class="python">import matplotlib.pyplot as plt
+# ANSWER
+# Confirm that this has worked by reading and 
+# displaying data from the file
+
+# test it by reading and plotting
+g = gdal.Open(&quot;work/stitch_set.tif&quot;)
+data = g.ReadAsArray()
+
+fig, axs = plt.subplots(1,3,figsize=(20,2))
+axs = axs.flatten()
+for i in range(data.shape[0]):
+    im = axs[i].imshow(data[i],vmax=7,\
+                cmap=plt.cm.inferno_r,interpolation='nearest')
+    fig.colorbar(im, ax=axs[i])
+    axs[i].set_title(bnames[i])
+</code></pre>
+
+<p><img alt="png" src="../041_GDAL_timeseries_answers_files/041_GDAL_timeseries_answers_3_0.png" /></p>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>
+<p>Write a function called <code>modis_annual_dataset</code>that takes <code>year</code>,<code>tile</code> and <code>product</code> and <code>step</code> and returns a dictionary of appropriate MODIS datasets. </p>
+</li>
+<li>
+<p>Write another function <code>get_modis_annual</code> that takes the dictionary of appropriate MODIS datasets. and generates a dictionary of MODIS data values, filtered according to information of the form:</p>
+<pre><code>warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : "FIPS='LU'",
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+sds = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+</code></pre>
+</li>
+<li>
+<p>Write a third function <code>modis_annual</code> that combines these two functions.</p>
+</li>
+<li>Test your code and plot some results</li>
+</ul>
+<pre><code class="python"># ANSWER
+msg = '''
+Write a function called modis_annual_dataset that takes 
+year,tile and product and step and  returns a dictionary of appropriate 
+MODIS datasets.
+'''
+import gdal
+from geog0111.modis import Modis
+import yaml
+from pathlib import Path
+
+def modis_annual_dataset(year,tile,product,step=1):
+    # load into kwargs
+    kwargs = {
+    'tile'      :    list(tile),
+    'product'   :    product,
+    }
+    # list of doys we want
+    doys = &quot;*&quot;
+    '''
+    We will gather the data for the year, 
+    tiles and product that we are interested in into a VRT file:
+    '''
+    modis = Modis(**kwargs)
+    ifiles = modis.get_modis(year,doys,step=step)
+    return ifiles
+
+</code></pre>
+
+<pre><code class="python"># ANSWER
+
+msg = '''
+Write another function get_modis_annual that 
+takes the dictionary of appropriate MODIS datasets. 
+and generates a dictionary of MODIS data values, 
+filtered according to information of the form:
+'''
+
+def get_modis_annual(ifiles,sds=None,warp_args={}):
+    # loop over SDS sets and read into dictionary
+    mfiles = {'bandnames':ifiles['bandnames']}
+    del ifiles['bandnames']
+
+    # useful sds default
+    if sds == None:
+        sds = ifiles.keys()
+
+    for s in sds:
+        # do this in case we dont need to cut
+        if warp_args != {}:
+            g = gdal.Warp(&quot;&quot;,ifiles[s],**warp_args)
+            mfiles[s] = g.ReadAsArray()
+        else:
+            mfiles[s] = ifiles[s]
+    return mfiles
+
+</code></pre>
+
+<pre><code class="python"># Write a third function modis_annual 
+# that combines these two functions.
+
+def modis_annual(year,tile,product,step=1,\
+                 sds=None,warp_args={}):
+
+    ifiles = modis_annual_dataset(year,tile,product,step=step)
+    mfiles = get_modis_annual(ifiles,sds=sds,warp_args=warp_args)
+    # what to do is SDS is None?
+    return mfiles
+</code></pre>
+
+<pre><code class="python"># ANSWER : Test
+
+warp_args = {
+  'dstNodata'     : 255,
+  'format'        : 'MEM',
+  'cropToCutline' : True,
+  'cutlineWhere'  : &quot;FIPS='LU'&quot;,
+  'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+tile    = ['h17v03','h18v03','h17v04','h18v04']
+product = 'MCD15A3H'
+year    = 2019
+step    = 4
+
+mfiles = modis_annual(year,tile,product,sds=sds,step=step,warp_args=warp_args)
+print(mfiles.keys())
+</code></pre>
+
+<pre><code>dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>Write a function <code>get_lai_data</code> that takes as argument:<pre><code>year : integer year
+tile : list of tiles to process
+fips : country fips code (e.g. BE for Belgium)
+</code></pre>
+</li>
+</ul>
+<p>and returns the annual LAI, standard deviation and day of year</p>
+<ul>
+<li>test your code for Belgium for 2018 for tiles <code>['h17v03','h18v03','h17v04','h18v04']</code></li>
+<li>show the shape of the arrays returned</li>
+</ul>
+<p>Hint: You may find it useful to use <code>geog0111.modis_annual</code></p>
+<pre><code class="python"># ANSWER
+from geog0111.modis_annual import modis_annual
+import numpy as np
+
+def get_lai_data(year,tile,fips):
+    '''
+    Get the annual LAI dataset for fips, tile and year
+    and return lai,std,doy
+    '''
+    # load some data
+    sds     = ['Lai_500m','LaiStdDev_500m']
+    product = 'MCD15A3H'
+
+    warp_args = {
+      'dstNodata'     : 255,
+      'format'        : 'MEM',
+      'cropToCutline' : True,
+      'cutlineWhere'  : f&quot;FIPS='{fips}'&quot;,
+      'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+    }
+
+    mfiles = modis_annual(year,tile,product,step=4,\
+                          sds=sds,warp_args=warp_args)
+    # scale it
+    lai = mfiles['Lai_500m'] * 0.1
+    std = mfiles['LaiStdDev_500m'] * 0.1
+    # doy from filenames
+    doy = np.array([int(i.split('-')[1]) for i in mfiles['bandnames']])
+    return lai,std,doy
+</code></pre>
+
+<pre><code class="python"># Test
+
+tile = ['h17v03','h18v03','h17v04','h18v04']
+year = 2018
+fips = 'BE'
+# test your code for Belgium for 2018 for 
+# tiles ['h17v03','h18v03','h17v04','h18v04']
+lai,std,doy = get_lai_data(year,tile,fips)
+print(f'shape of lai: {lai.shape}')
+print(f'shape of std: {std.shape}')
+print(f'shape of doy: {doy.shape}')
+</code></pre>
+
+<pre><code>shape of lai: (92, 479, 596)
+shape of std: (92, 479, 596)
+shape of doy: (92,)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../043_Weighted_interpolation_answers/" class="btn btn-neutral float-right" title="Weighted Interpolation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../040_GDAL_mosaicing_and_masking_answers/" class="btn btn-neutral" title="GDAL Mosaicing And Masking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../040_GDAL_mosaicing_and_masking_answers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../043_Weighted_interpolation_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

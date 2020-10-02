@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  <link rel="canonical" href="https://ucl-eo.github.io/geog0111/032_More_numpy/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>More Numpy - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "More Numpy";
+    var mkdocs_page_input_path = "032_More_numpy.md";
+    var mkdocs_page_url = "/geog0111/032_More_numpy/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A01_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A02_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A03_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A04_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A05_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../A06_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A01_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A02_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A04_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../A05_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">More Numpy</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nploadtxt">np.loadtxt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slicing-slice">slicing, slice</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#axis">axis</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#argmin-argmax">argmin, argmax</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#masking">masking</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#where">where</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#simplifying-shape-flatten-ravel-reshape-and-unravel_index">Simplifying shape: flatten, ravel, reshape and unravel_index</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reconciling-arrays-npnewaxis">Reconciling arrays: np.newaxis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#formative-assessment">Formative assessment</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Array Data &raquo;</li>
+        
+      
+    
+    <li>More Numpy</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/032_More_numpy.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="032-more-numpy">032 More <code>numpy</code></h1>
+<h2 id="purpose">Purpose</h2>
+<p>We continue our exploration of <code>numpy</code> and move onto topics we need for efficient array processing.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><a href="../020_Python_files/">020_Python_files</a></li>
+<li><a href="../021_Streams/">021 Streams</a></li>
+<li><a href="../022_Read_write_files/">022 Read write files</a></li>
+<li><a href="../023_Plotting/">023 Plotting</a></li>
+<li><a href="../031_Numpy/">031_Numpy</a></li>
+</ul>
+<p>You will need to know the material  from <a href="../031_Numpy/">031_Numpy</a> in detail.</p>
+<h3 id="nploadtxt"><code>np.loadtxt</code></h3>
+<p>Let's access an interesting dataset on the frequency of satellite launches to illustrate this.</p>
+<p><a href="https://media.giphy.com/media/26DNbCqVfLJbYrXIA/giphy.gif"><img alt="SpaceX landing" src="../images/giphy.gif" /></a></p>
+<p>The library code <code>geog0111.nsat</code> accesses a database at <a href="https://www.n2yo.com">https://www.n2yo.com</a> and gets a table satellite launch data.</p>
+<p>Data from this is stored in the datafile <a href="../data/satellites-1957-2021.gz">data/satellites-1957-2021.gz</a>. This is a compressed text file.</p>
+<p>We can use <code>np.loadtxt</code> to read files of this nature into numpy arrays in a similar way to how we <a href="../021_Streams/#Reading-data-into-pandas">read into panadas</a>. If the dataset is not <code>CSV</code> but simply a whitespaced text file, it is often easier to use <code>np.loadtxt</code> than <code>pandas</code>.</p>
+<p>In the case of this dataset, we wish to interpret the launch counts as integers, so we convert the data we read to integers.</p>
+<pre><code class="python">import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# shape of data
+print(data.shape)
+</code></pre>
+
+<pre><code>(12, 64)
+</code></pre>
+<p>The dataset dimensions are to <code>(month,year)</code>. Indices into the array are zero-based, so we can relate month number (1 being January) and year number to index <code>(i,j)</code> through:</p>
+<pre><code>i = month - 1
+j = year - 1957
+</code></pre>
+<p>We can print some summary statistics:</p>
+<pre><code class="python">print(f'data shape {data.shape}')
+
+print(f'some summary statistics over the period 1957 to 2021:')
+print(f'The total number of launches is {data.sum()}')
+print(f'The mean number of launches is {data.mean() : .2f} per month')
+</code></pre>
+
+<pre><code>data shape (12, 64)
+some summary statistics over the period 1957 to 2021:
+The total number of launches is 45689
+The mean number of launches is  59.49 per month
+</code></pre>
+<h3 id="slicing-slice">slicing, <code>slice</code></h3>
+<p>We have seen <a href="026_Numpy.md#Indexing-arrays">above</a> how we can provide a tuple of indices to access particular array elements. Often we want to access 'blocks' of an array. A set of indices would be inefficient for that. Instead, we use the idea of slices <code>(from:to:step)</code> that we have come across before for <a href="../013_Python_string_methods/#slice">strings</a> . Remember that <code>to</code> is "up to but not including" the to number.</p>
+<p>If we specify <code>:</code> or <code>::</code> in the slice, it means we take the defaults for <code>(from:to:step)</code>. If we specify only one number, that is <code>from</code>. If we specify two, it is <code>from:to</code>.</p>
+<p>So:</p>
+<pre><code>data[0]
+</code></pre>
+<p>is the data for month index 0 (January), <code>data[1]</code> for February etc. Or:</p>
+<pre><code>data[0:2]
+</code></pre>
+<p>is the data for month index 0 (January) <strong>and</strong> 1 (February)  etc. </p>
+<p>We can get more specific statistics then such as:</p>
+<pre><code class="python">import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+print(f'mean launches in month 0: {data[0].mean() :.2f}')
+print(f'max  launches in month 0: {data[0].max()}')
+</code></pre>
+
+<pre><code>mean launches in month 0: 33.95
+max  launches in month 0: 237
+</code></pre>
+<p>We can refer to items in the second dimension of the array, by using a code for <em>all</em> values of the first dimension. So:</p>
+<pre><code>data[:,0]
+</code></pre>
+<p>refers to all elements in dimension 0 (i.e. all months here) by only year 0 (1957).</p>
+<pre><code class="python">print(f'mean launches in year 1957: {data[:,0].sum()}')
+print(f'max  launches in year 1957: {data[:,0].max()}')
+</code></pre>
+
+<pre><code>mean launches in year 1957: 3
+max  launches in year 1957: 2
+</code></pre>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>Print out the total number of launches per month, for each month.</li>
+<li>Print out the total number of launches per year, for the years 2010 to 2020 inclusive</li>
+</ul>
+<p>The <code>numpy</code> formatting for slice in an array is <code>start:stop:step</code> as we have seen. Sometimes it is convenient to use the function <code>slice(start:stop:step)</code> to specify this.</p>
+<p>Recall that the array <code>data</code> is two-dimensional of shape <code>(12, 64)</code> where the first axis is month and the second year after 1957. To describe the months of May to July inclusive (axis 0: index <code>4:7</code>) and years <code>1990-2000</code> inclusive (axis 1: index <code>1990-1957:2000-1957+1</code> = <code>33:44</code>) we can write:</p>
+<pre><code class="python">subset = data[4:7,33:44]
+print(f'shape of subset is {subset.shape}')
+</code></pre>
+
+<pre><code>shape of subset is (3, 11)
+</code></pre>
+<p>Equivalently, using <code>slice</code>:</p>
+<pre><code class="python">axis0 = slice(4,7)
+axis1 = slice(33,44)
+
+subset = data[axis0,axis1]
+print(f'shape of subset is {subset.shape}')
+print(f'slices: {axis0},{axis1}')
+</code></pre>
+
+<pre><code>shape of subset is (3, 11)
+slices: slice(4, 7, None),slice(33, 44, None)
+</code></pre>
+<p>One advantage of using <code>slice</code> is that we can store the axis slice information in a variable. We access the individual elements as:</p>
+<pre><code class="python">axis0.start,axis0.stop,axis0.step
+</code></pre>
+
+<pre><code>(4, 7, None)
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<pre><code>    import numpy as np
+    filename = 'data/satellites-1957-2021.gz'
+    data=np.loadtxt(filename).astype(np.int)
+</code></pre>
+<ul>
+<li>Use <code>slice</code> to produce a sub-set of the launch dataset <code>data</code> for the months January, March, and May for the years 1960-1966 inclusive. This is 3 months and 7 years, so the resultant array should have shape <code>(3,7)</code></li>
+</ul>
+<h3 id="axis">axis</h3>
+<p>Whilst it is perfectly possibly to loop over one dimension of an array and calculate statistics over the other dimension, it is not very <a href="https://docs.python-guide.org/writing/style/">Pythonic</a> to do it that way. </p>
+<p>Instead. we can specify the array axes over which we want the operation to occur.</p>
+<p>For example, in our satellite launch dataset, the dimension 0 is month index and the dimension 1 is year index. To calculate the mean over all years then, we apply the <code>mean</code> function to axis 1:</p>
+<pre><code class="python">import numpy as np
+
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# mean over all months
+data.mean(axis=1)
+</code></pre>
+
+<pre><code>array([ 33.953125,  58.515625,  45.234375,  49.734375, 103.21875 ,
+        90.1875  ,  51.234375,  38.765625,  68.78125 ,  63.046875,
+        51.140625,  60.078125])
+</code></pre>
+<p>This is much more convenient than the loop we did above. The axis keyword is widely used in <code>numpy</code>, and you can apply most operations over one or more axis. </p>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>Plot the total number of satellite launches per year, as a function of year</li>
+</ul>
+<p>You will need to remember how to <a href="../023_Plotting/#Plotting-Graphs">plot line graphs</a></p>
+<h3 id="argmin-argmax"><code>argmin</code>, <code>argmax</code></h3>
+<p>Whilst we have generated some initial summary statistics on the dataset, it's not really enough to give us a good idea of the data characteristics.</p>
+<p>To do that, we want to be able to ask somewhat more complex questions of the data, such as:</p>
+<ul>
+<li>which <em>year</em> has the most/least launches? </li>
+<li>which month do most launches happen in? </li>
+<li>which month in which year had the most launches? </li>
+<li>which years had more than 100 launches?</li>
+</ul>
+<p>Whilst we could do some of these with loops and slicing, we expect a more convenient approach for <code>numpy</code>.</p>
+<p>To be able to address these, we need some new concepts:</p>
+<ul>
+<li>methods <code>argmin()</code> and <code>argmax()</code> that provide the <em>index</em> where the min/max occurs</li>
+<li>masking out array elements that meet some condition</li>
+</ul>
+<p>The first set of these, <code>argmin()</code> and <code>argmax()</code> are straightforward to visualise and use:</p>
+<pre><code class="python">import numpy as np
+
+# read data as before
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+# sum the data over all months (axis 0)
+sum_per_year = data.sum(axis=0)
+# Construct an array of years
+year_array = 1957 + np.arange(data.shape[1])
+
+# Find the location (year) with **most** launches
+# Find the index of sum_per_year with highest number (argmmax)
+imax = np.argmax(sum_per_year)
+
+# Find the location (year) with **least** launches
+# Find the index of sum_per_year with lowest number (argmmax)
+imin = np.argmin(sum_per_year)
+
+print(f'the year with most   launches was',\
+      f'{year_array[imax]} with {sum_per_year[imax]}')
+print(f'the year with fewest launches was',\
+      f'{year_array[imin]} with {sum_per_year[imin]}')
+</code></pre>
+
+<pre><code>the year with most   launches was 1999 with 4195
+the year with fewest launches was 1957 with 3
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<ul>
+<li>Write code to print the months with highest and lowest number of launches</li>
+</ul>
+<h3 id="masking">masking</h3>
+<p>In section <a href="../011_Python_data_types/#Data-types:-bool">011_Python_data_types</a> we came across the boolean (binary) data type that can take the states <code>True</code> or <code>False</code>.</p>
+<p>Boolean arrays in <code>numpy</code> are important in the efficient use of arrays, as they can act as a mask on an array. </p>
+<p>For example:</p>
+<p>The form of filtering above (<code>high = sum_per_year &gt;= 1000</code>) produces a numpy array of the same shape as that operated on (<code>sum_per_year</code> here) of <code>bool</code> data type.  It has entries of <code>True</code> where the condition is met, and <code>False</code> where it is not met.</p>
+<pre><code class="python">import numpy as np
+
+# read data as before
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+# sum over all months (axis 0)
+sum_per_year = data.sum(axis=0)
+
+high = sum_per_year &gt;= 1000
+print(high)
+</code></pre>
+
+<pre><code>[False False False False False False False False  True False False False
+ False False False False False False  True  True False False False False
+  True False False False False  True  True False False False False False
+  True  True False False False False  True False False False False False
+ False  True False False False False False False False False False False
+ False False False False]
+</code></pre>
+<p>We can think of this logical array as a 'data mask' that we use to select (filter) entries:</p>
+<pre><code class="python"># form the data mask
+high = (sum_per_year &gt;= 1000)
+# form an attau of years
+years = 1957 + np.arange(data.shape[1])
+# select only elements where mask is True
+print(f'years with 1000 or more launches {years[high]}')
+</code></pre>
+
+<pre><code>years with 1000 or more launches [1965 1975 1976 1981 1986 1987 1993 1994 1999 2006]
+</code></pre>
+<p>We can apply logical operators to boolean arrays:</p>
+<pre><code class="python">low = np.logical_not(high)
+print(low)
+</code></pre>
+
+<pre><code>[ True  True  True  True  True  True  True  True False  True  True  True
+  True  True  True  True  True  True False False  True  True  True  True
+ False  True  True  True  True False False  True  True  True  True  True
+ False False  True  True  True  True False  True  True  True  True  True
+  True False  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True]
+</code></pre>
+<p>including combinations of logical arrays. </p>
+<p>Suppose we want to know the years after the year 2000 that have 1000 or greater launches. We can form two boolean arrays:</p>
+<pre><code>years &gt; 2000
+sum_per_year &gt;= 1000
+</code></pre>
+<p>Since these arrays are of the same shape, we can combine them element-wise:</p>
+<pre><code class="python">c1 = (years &gt; 2000)
+c2 = (sum_per_year &gt;= 1000)
+combined = np.logical_and(c1,c2)
+print(years[combined])
+</code></pre>
+
+<pre><code>[2006]
+</code></pre>
+<h3 id="where"><code>where</code></h3>
+<p>Sometimes, instead of just applying the filter as above, we want to know the indices of the filtered values.</p>
+<p>To do this, we can use the <code>np.where()</code> method. This takes a <code>bool</code> array as its argument (such as our data masks or other conditions) and returns a tuple of the indices where this is set <code>True</code>. </p>
+<p>As an example, lets find month, year pairs where the number of launches is greater than 500. </p>
+<p>For a final flourish, we load the dataset into <code>pandas</code> to print it in a table:</p>
+<pre><code class="python"># find month, year where launches &gt; 500
+import numpy as np
+import pandas as pd
+
+# read data as before
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+month_index,year_index = np.where(data &gt; 500)
+# This gives array indices
+
+# convert index to real month and year
+# and *transpose* (swap rows and columns)
+# using .T
+high_launches = np.array([month_index+1,year_index+1957]).T
+
+# load into pandas data frame 
+df = pd.DataFrame(high_launches,columns=['month','year'])
+df
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>1986</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+      <td>1994</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>1999</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6</td>
+      <td>1981</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6</td>
+      <td>1993</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>2006</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>1976</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>9</td>
+      <td>1997</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="simplifying-shape-flatten-ravel-reshape-and-unravel_index">Simplifying shape: <code>flatten</code>, <code>ravel</code>, <code>reshape</code> and <code>unravel_index</code></h3>
+<p>We have seen that we can build multi-dimensional arrays in <code>numpy</code>. Sometimes, for processing though, we need to modify the number of dimensions of an array. There are several ways to do this.</p>
+<p>First, if we want simply to collapse a multi-dimensional array into a 1D array, we can use <code>ravel</code> or <code>flatten</code>. A useful case to consider for this is when we process on a grid.</p>
+<p>We generate a grid of <code>locations</code> similar to <a href="../031_Numpy/#np.linspace,-np.arange,-np.mgrid">previously</a>:</p>
+<pre><code class="python">import numpy as np
+
+p0min,p0max,p0step = -1.0,1.0,0.1
+p1min,p1max,p1step = -1.0,1.0,0.1
+
+p0,p1 = np.mgrid[p0min:p0max+p0step:p0step,\
+                         p1min:p1max+p1step:p1step]
+
+print(f'shape of p0 : {p0.shape}')
+print(f'shape of p1 : {p1.shape}')
+</code></pre>
+
+<pre><code>shape of p0 : (21, 21)
+shape of p1 : (21, 21)
+</code></pre>
+<p>Now, we want to calculate a function of the variables <code>p0</code> and <code>p1</code> and want to find the parameter values at which the function has a local (over the grid) minimum. We will use the function:</p>
+<pre><code>   y = 1 + 2 * (p0 - 0.5)**2 + 3 * (p1 - 0.4)**2
+</code></pre>
+<p>as an example, or the range <code>[-1,1]</code> for both parameters. It should be clear that the minimum of this function lies at <code>(0.5,0.4)</code>, but we want to show this numerically.</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+# our function
+y = 1 + 2 * (p0 - 0.5)**2 + 3 * (p1 - 0.4)**2 
+
+# plot it
+fig, axs = plt.subplots(1,1,figsize=(6,5))
+im = axs.imshow(y,interpolation='nearest',vmax=2)
+fig.colorbar(im, ax=axs)
+</code></pre>
+
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fa5ae3a6690&gt;
+</code></pre>
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_41_1.png" /></p>
+<p>We could  use <code>np.where</code> to find the index of the minimum point by seeking where it equals the minimum value. That is not always a good idea, as there might be rounding errors involved.</p>
+<p>A more robust approach is to use <code>np.argmin</code> to find the index at which the argument has its minimum.</p>
+<pre><code class="python">imin = np.argmin(y)
+print(f'index of minimum point: {imin}')
+</code></pre>
+
+<pre><code>index of minimum point: 329
+</code></pre>
+<p>The index of <code>329</code> is returned which might at first seem odd: the array <code>y</code> is two dimensional of shape <code>(21,21)</code> so how can we have a 1D index of <code>329</code>?</p>
+<p>The answer is that <code>np.argmin</code> operates on a 'flattened' version of the array. When we used it <a href="./#argmin,-argmax">above</a> this issue was not apparent because the input array was 1D.</p>
+<p>If we want to apply the flattened array index, we must first then flatten the array. There are two functions for this: <code>flatten</code> and <code>ravel</code>. They both have a similar effect, but <code>flatten</code> operates of a <em>copy</em> of the array. This means it uses more memory. But also any changes we make are not reflected in the original array. Very often we use <code>ravel</code> instead then. This takes no more memory, but any changes we make to the ravelled array will also happen to the original array. You should think carefully about which you use in any particular circumstance, but unless you really need to operate on a copy, you might generally use <code>ravel</code>.</p>
+<pre><code class="python">yrav = y.ravel()
+print(f'shape of y    : {y.shape}')
+print(f'shape of yrav : {yrav.shape}')
+
+p0min,p1min = p0.ravel()[imin],p1.ravel()[imin]
+print(f'parameter at minimum : {p0min : .3f},{p1min : .3f}')
+</code></pre>
+
+<pre><code>shape of y    : (21, 21)
+shape of yrav : (441,)
+parameter at minimum :  0.500, 0.400
+</code></pre>
+<p>which matches what we expected. </p>
+<p>These two functions are an integral part of efficient use of <code>numpy</code> for large-dimensional problems. We can recognise in the example above that it makes no difference to the processing whether we search for the <code>argmin</code> over a 1D or 2D array. It makes sense then to treat it as a 1D problem.</p>
+<p>The same sort of issues arise when we are dealing with image processing: although an image is defined over a 2D spatial extent, if the algorithm we are applying is operated independently per pixel, then this can be equally treated as a 1D problem. If we had a problem to solve over an image space and over a parameter space (as we come across see later) then we can simplify our data structure by collapsing unnecessary multi-dimensional arrays into 1D arrays. In that case, it might not always be possible to use <code>ravel</code> as we might need to 'flatten' different parts of the dataset in different fashions. For this, more refined control on array shape, we use <code>reshape</code>.</p>
+<p>To illustrate this, we generate a function y over the parameter space <code>p0</code>, <code>p1</code> that we suppose described our function at different time steps:</p>
+<pre><code class="python">y0 = 1 + 2 * (p0 - 0.5)**2 + 3 * (p1 - 0.4)**2 
+y1 = 1 + 4 * (p0 - 0.2)**2 + 3 * (p1 - 0.1)**2 
+y2 = 1 + 8 * (p0 - 0.7)**2 + 6 * (p1 - 0.3)**2 
+
+y = np.array([y0,y1,y2])
+print(f'shape of y : {y.shape}')
+</code></pre>
+
+<pre><code>shape of y : (3, 21, 21)
+</code></pre>
+<p><code>y</code> is a 3D array with the first axis representing time, and the second and third the parameter space. We can see that the minima should occur at <code>[0.5 0.2 0.7],[0.4 0.1 0.3]</code></p>
+<p>We wish to find parameters that give the minimum of the function <em>for each time step</em> (i.e. solve numerically for <code>[0.5 0.2 0.7],[0.4 0.1 0.3]</code>). The result we expect then is that each parameter should be an array of shape <code>(3,)</code>.</p>
+<p>We can use <code>np.argmin</code> again for this problem, as we can specify the axis over which to operate for <code>argmin</code>. However, it can only operate over a single axis, so we must first re-form the array to one of shape <code>(3,21 * 21)</code>. The shape of the first dimension will be simply <code>y.shape[:1]</code>. We can multiply the last two elements of the shape array together using <code>np.prod</code> as <code>np.prod(np.array(y.shape[1:]))</code>, then use the new shape with <code>np.reshape</code>:</p>
+<pre><code class="python"># get the new shape we want
+firstpart  = y.shape[:1]
+print(firstpart)
+
+secondpart = np.prod(np.array(y.shape[1:]))
+print(secondpart)
+
+# use * to unload the tuple
+newshape = (*y.shape[:1],np.prod(np.array(y.shape[1:])))
+print(newshape)
+</code></pre>
+
+<pre><code>(3,)
+441
+(3, 441)
+</code></pre>
+<pre><code class="python"># reshape 
+y_ = y.reshape(newshape)
+
+print(f'shape of y  : {y.shape}')
+print(f'shape of y_ : {y_.shape}')
+</code></pre>
+
+<pre><code>shape of y  : (3, 21, 21)
+shape of y_ : (3, 441)
+</code></pre>
+<pre><code class="python"># argmin over axis 1 (the parameters)
+imin = np.argmin(y_,axis=1)
+print(f'1D index of minimum point: {imin}')
+</code></pre>
+
+<pre><code>1D index of minimum point: [329 263 370]
+</code></pre>
+<p>We may want to know the 2D index in the parameter grid for some applications. This can be conveniently calculated with <code>np.unravel_index</code>:</p>
+<pre><code class="python">ip0min,ip1min = np.unravel_index(imin,p0.shape)
+
+print(f'2D index of minimum point: {ip0min}, {ip1min}')
+p0min = p0[ip0min,ip1min]
+p1min = p1[ip0min,ip1min]
+print(f'parameter at minimum : {p0min},{p1min}')
+</code></pre>
+
+<pre><code>2D index of minimum point: [15 12 17], [14 11 13]
+parameter at minimum : [0.5 0.2 0.7],[0.4 0.1 0.3]
+</code></pre>
+<p>which corresponds with what we expected.</p>
+<p>That's great: by appropriate use of <code>reshape</code> we have found the flattened-parameter index for each of the time samples where the function is minimum.</p>
+<p>We could then print the parameters at the minimum as above, using the index array <code>imin</code> as indices into the flattened parameter arrays:</p>
+<pre><code class="python">p0min,p1min = p0.ravel()[imin],p1.ravel()[imin]
+print(f'parameter at minimum : {p0min},{p1min}')
+</code></pre>
+
+<pre><code>parameter at minimum : [0.5 0.2 0.7],[0.4 0.1 0.3]
+</code></pre>
+<h2 id="reconciling-arrays-npnewaxis">Reconciling arrays: <code>np.newaxis</code></h2>
+<p><code>numpy</code> is very efficient at array-based processing. This means that for your codes to be efficient, you should avoid any explicit loops when dealing with large datasets. We will come across examples later where this is critical to being able to process data in a reasonable time.</p>
+<p>Let's consider the case where we have some function that calculates the linear function:</p>
+<pre><code>y = c + m*x
+</code></pre>
+<p>where <code>x</code> is some <code>numpy</code> array of values of <code>x</code> and the linear model parameters are <code>c</code> (intercept) and <code>m</code> (slope). This is efficient in <code>numpy</code> and straightforward to do if <code>c</code> and <code>m</code> are scalar values (i.e. just a float number):</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+import numpy as np
+
+def linear_func(c,m,x):
+    return m * x + c
+
+# example parameters
+c = 0.2
+m = 0.002
+
+# the x values
+x = np.arange(0,10.5,0.5)
+
+y = m* x + c
+
+fig, axs = plt.subplots(1,1,figsize=(5,5))
+axs.plot(x,y,'+')
+axs.set_xlabel('x')
+axs.set_ylabel('y')
+
+print(f'x-shape: {x.shape}')
+print(f'y-shape: {y.shape}')
+</code></pre>
+
+<pre><code>x-shape: (21,)
+y-shape: (21,)
+</code></pre>
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_58_1.png" /></p>
+<p>Now let's try to calculate the model <code>y = c * m * x</code> for these same values of <code>x</code>, but for multiple sets of <code>c</code> and <code>m</code>. We will use <a href="../031_Numpy/#np.linspace,-np.arange,-np.mgrid"><code>np.mgrid</code></a> as above to generate a grid of pairs of <code>c</code> and <code>m</code>:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+# define the min and max and step for the grid we want
+c_min,c_max,c_step = 0.0,1.,0.5
+m_min,m_max,m_step = 0.0,0.05,0.01
+
+grid_c,grid_m = np.mgrid[c_min:c_max+c_step:c_step,\
+                         m_min:m_max+m_step:m_step]
+
+print(f'grid_c is {grid_c}')
+print(f'grid_m is {grid_m}')
+
+# plot it
+fig, axs = plt.subplots(1,1,figsize=(5,5))
+axs.plot(grid_c,grid_m,'+')
+axs.set_xlabel('c')
+axs.set_ylabel('m')
+
+print(f'2d parameter grid: {grid_c.shape}')
+</code></pre>
+
+<pre><code>grid_c is [[0.  0.  0.  0.  0.  0. ]
+ [0.5 0.5 0.5 0.5 0.5 0.5]
+ [1.  1.  1.  1.  1.  1. ]]
+grid_m is [[0.   0.01 0.02 0.03 0.04 0.05]
+ [0.   0.01 0.02 0.03 0.04 0.05]
+ [0.   0.01 0.02 0.03 0.04 0.05]]
+2d parameter grid: (3, 6)
+</code></pre>
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_60_1.png" /></p>
+<p>This grid is <code>(3,6)</code> and the <code>x</code> dataset is shape <code>(21,)</code>. </p>
+<p>We would expect the output dataset <code>y</code> that describes <code>c + m*x</code> for all <code>x</code>, for each value of <code>c</code> and <code>m</code> to have a shape <code>(3,6,21)</code>. Here, axis 0 and 1 refer to the parameter grid dimensions and axis 2 to the variation over <code>x</code>. The operation is a simple element-wise manipulation that <code>numpy</code> should be efficient at, even for large arrays. We will see that the key to doing this cleanly is to use <a href="https://numpy.org/doc/stable/reference/arrays.indexing.html"><code>np.newaxis</code></a>.</p>
+<p>An <strong>inefficient</strong> way of calculating <code>y</code> for each of the grid parameters would be to use a loop over each value of <code>x</code>:</p>
+<pre><code class="python">print(f'for a single value of x, we get an output of shape {linear_func(grid_c,grid_m,0.1).shape}')
+</code></pre>
+
+<pre><code>for a single value of x, we get an output of shape (3, 6)
+</code></pre>
+<pre><code class="python"># generate an output array to pack into
+newshape = grid_c.shape + x.shape
+y = np.zeros(newshape)
+print(f'y shape: {y.shape}')
+
+# inifficient: looping over each element of x -&gt; xi
+# and inserting into grid
+for i,xi in enumerate(x):
+    y[:,:,i] = linear_func(grid_c,grid_m,xi)
+
+</code></pre>
+
+<pre><code>y shape: (3, 6, 21)
+</code></pre>
+<pre><code class="python">import matplotlib.pyplot as plt
+ymin,ymax = y.min(),y.max()
+xmin,xmax = x.min(),x.max()
+
+# plots:     
+fig, axs = plt.subplots(*(grid_c.shape),figsize=(12,5))
+plt.setp(axs, xticks=[], yticks=[])
+
+for i in range(y.shape[0]):
+    for j in range(y.shape[1]):
+        axs[i,j].plot(x,y[i,j],'k')
+        axs[i,j].set_title(f'c: {grid_c[i,j]:.2f} m: {grid_m[i,j]:.2f}')
+        axs[i,j].set_xlim(xmin,xmax)
+        axs[i,j].set_ylim(ymin,ymax)
+</code></pre>
+
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_64_0.png" /></p>
+<p>So, we know the sort of result we are looking for from this, ideally we would do it in a single call to the function with <code>numpy</code>.</p>
+<p>In all of the simple cases above, we have performed operations of arrays of the same shape, so adding an array of shape <code>(10,2)</code> to another of the same shape results in an array of shape <code>(10,2)</code>. </p>
+<p>If we have an array of shape <code>(10,2,1)</code> and add it to an array of shape <code>(1,1,5)</code>, we will get a result of shape (10,2,5):</p>
+<pre><code class="python">import numpy
+# generate some random numbers
+
+a = np.random.random((10,2,1))
+b = np.random.random((1,1,5))
+
+c = a + b
+print(c.shape)
+</code></pre>
+
+<pre><code>(10, 2, 5)
+</code></pre>
+<p>The 'rule' for combining arrays in this way can be thought of as:</p>
+<ul>
+<li>the arrays to be combined must have the same <em>number of dimensions</em> (3 here)</li>
+<li>the number of samples in any dimension must be <em>the same</em> or <code>1</code></li>
+</ul>
+<p>If we had started out with arrays of different shapes that we want to combine, e.g.:</p>
+<pre><code class="python">import numpy
+# generate some random numbers
+
+a = np.random.random((10,2))
+b = np.random.random((5))
+</code></pre>
+
+<p>Then we need to add new axes to the arrays to reconcile their dimensions. One clear way to do this is to use <code>np.newaxis</code> to add the new dimensions:</p>
+<pre><code class="python">a = np.random.random((10,2))
+b = np.random.random((5))
+print(f'a shape: {a.shape}')
+print(f'b shape: {b.shape}')
+
+a1 = a[:,:,np.newaxis]
+b1 = b[np.newaxis,np.newaxis,:]
+print(f'a1 shape: {a1.shape}')
+print(f'b1 shape: {b1.shape}')
+
+c1 = a1 + b1 
+print(f'c1 shape: {c1.shape}')
+</code></pre>
+
+<pre><code>a shape: (10, 2)
+b shape: (5,)
+a1 shape: (10, 2, 1)
+b1 shape: (1, 1, 5)
+c1 shape: (10, 2, 5)
+</code></pre>
+<p>Now, we can do element-wise operations of <code>a</code> and <code>b</code> as required, where the result will be of shape <code>(10,2,5)</code> and involve all element-wise combinations of <code>a</code> and <code>b</code>. </p>
+<h4 id="exercise-5">Exercise 5</h4>
+<pre><code>def linear_func(c,m,x):
+    return m * x + c
+
+x = np.arange(0,10.5,0.5)
+
+c_min,c_max,c_step = 0.0,1.,0.5
+m_min,m_max,m_step = 0.0,0.05,0.01
+
+grid_c,grid_m = np.mgrid[c_min:c_max+c_step:c_step,\
+                         m_min:m_max+m_step:m_step]
+</code></pre>
+<ul>
+<li>Use <code>np.newaxis</code> to reconcile the shapes of <code>grid_c</code>,<code>grid_m</code> and <code>x</code> </li>
+<li>Make a single call to the function <code>linear_func</code>  using these reconciled variables</li>
+<li>Show how the shape of the output relates to the shape of the inputs </li>
+<li>Confirm your result by plotting the results for each (c,m) value pair</li>
+</ul>
+<h2 id="formative-assessment">Formative assessment</h2>
+<p>To get some feedback on how you are doing, you should complete and submit the formative assessment <a href="../A04_Numpy/">A04 Numpy</a>.</p>
+<h3 id="summary">Summary</h3>
+<p>In this section, we have expanded our understanding of <code>numpy</code> processing to include topics such as finding the array index where some pattern occurs (e.g. <code>argmin()</code>, <code>argsort()</code> or <code>where()</code>) and how to generate and use masks for selecting data. We should now have a good grasp of the role of axes, slicing, and reconciling multi-dimensional grids for efficient processing.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../030_NASA_MODIS_Earthdata_answers/" class="btn btn-neutral float-right" title="NASA MODIS Earthdata">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../031_Numpy/" class="btn btn-neutral" title="Numpy"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../031_Numpy/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../030_NASA_MODIS_Earthdata_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,199 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://ucl-eo.github.io/geog0111/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/001_Notebook_use/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/002_Unix/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/003_Help/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/004_Accounts/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/005_Packages/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A01_Groups/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A02_Script/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A03_Part1/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A03_Part1_code/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A04_Numpy/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A05_LAI/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A06_Part2/</loc>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/001_Notebook_use_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/002_Unix_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/003_Help_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A01_Groups_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A02_Script_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A04_Numpy_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/A05_LAI_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/010_Python_Introduction/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/011_Python_data_types/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/012_Python_strings/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/013_Python_string_methods/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/014_Python_groups/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/015_Python_control/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/016_Python_for/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/017_Functions/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/018_Running_Python/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/010_Python_Introduction_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/011_Python_data_types_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/012_Python_strings_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/013_Python_string_methods_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/014_Python_groups_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/015_Python_control_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/016_Python_for_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/017_Functions_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/018_Running_Python_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/020_Python_files/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/021_Streams/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/022_Read_write_files/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/023_Plotting/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/024_Image_display/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/020_Python_files_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/021_Streams_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/022_Read_write_files_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/023_Plotting_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/024_Image_display_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/030_NASA_MODIS_Earthdata/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/031_Numpy/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/032_GDAL_mosaicing_and_masking/</loc>
-     <lastmod>2020-09-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/033_GDAL_timeseries/</loc>
-     <lastmod>2020-09-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/034_Weigthed_smoothing_and_interpolation/</loc>
-     <lastmod>2020-09-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/035_Weighted_interpolation/</loc>
-     <lastmod>2020-09-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/036_Model_Fitting/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <loc>https://ucl-eo.github.io/geog0111/032_More_numpy/</loc>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/030_NASA_MODIS_Earthdata_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://ucl-eo.github.io/geog0111/031_Numpy_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/032_GDAL_mosaicing_and_masking_answers/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <loc>https://ucl-eo.github.io/geog0111/032_More_numpy_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/040_Practical_Part1/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <loc>https://ucl-eo.github.io/geog0111/040_GDAL_mosaicing_and_masking/</loc>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://ucl-eo.github.io/geog0111/041_Practical_Part2/</loc>
-     <lastmod>2020-09-28</lastmod>
+     <loc>https://ucl-eo.github.io/geog0111/041_GDAL_timeseries/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/042_Weighted_smoothing_and_interpolation/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/043_Weighted_interpolation/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/040_GDAL_mosaicing_and_masking_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/041_GDAL_timeseries_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/043_Weighted_interpolation_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/050_Models/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/051_Phenology_model/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/050_Models_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://ucl-eo.github.io/geog0111/051_Phenology_model_answers/</loc>
+     <lastmod>2020-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

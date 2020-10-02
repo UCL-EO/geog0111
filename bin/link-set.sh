@@ -13,7 +13,7 @@
 #
 
 # which dirs
-opdirs=$(echo notebooks notebooks/work docs docs/work notebooks_lab notebooks_lab/work)
+opdirs=$(echo notebooks/work docs docs/work notebooks_lab notebooks_lab/work)
 
 here=$(pwd)
 echo "----> running $0 from $here"
@@ -45,7 +45,7 @@ cd $here
 # put links in all notebooks* directories
 echo "--> linking ${subs[*]}"
 subs=('bin' 'data' "$repo" 'images')
-mkdir -p work ${subs[*]}
+mkdir -p notebooks/work ${subs[*]}
 
 # outer loop 
 for n in ${opdirs[@]}
@@ -134,6 +134,7 @@ do
 done
 
 # dont want this!
-rm -f bin/bin
+rm -f notebooks/bin/bin
+rm -f notebooks/copy/copy
 
 echo "----> done running $0 from $here"
