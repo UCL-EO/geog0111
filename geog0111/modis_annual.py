@@ -18,8 +18,7 @@ except:
 import yaml
 from pathlib import Path
 
-def modis_annual_dataset(year,tile,product,step=1,\
-                         verbose=False,dbfile='data/my_db.yml'):
+def modis_annual_dataset(year,tile,product,step=1,verbose=False):
     # load into kwargs
     kwargs = {
     'verbose'  : verbose,
@@ -29,29 +28,8 @@ def modis_annual_dataset(year,tile,product,step=1,\
     # list of doys we want
     doys = "*"
     
-    # read the database
-    database = Path(dbfile)
-    if database.exists():
-        with database.open("r") as f:
-            db = yaml.safe_load(f) or {}
-            
-    # from above    
-    key = f'{kwargs["product"]}._{"_".join(kwargs["tile"])}_.{year}'
-
-    if key in db.keys():
-        print(f"we dont need to process {key}")
-        ifiles = db[key]
-    else:
-        modis = Modis(**kwargs)
-        ifiles = modis.get_modis(year,doys,step=step)
-
-        # put in database
-        cache = {key : ifiles}
-        db.update(cache)
-        # write out
-        with database.open("w") as f:
-            yaml.safe_dump(db,f)  
-        
+    modis = Modis(**kwargs)
+    ifiles = modis.get_modis(year,doys,step=step)
     return ifiles
 
 
@@ -76,16 +54,15 @@ def get_modis_annual(ifiles,sds=None,warp_args={}):
 
 
 def modis_annual(year,tile,product,step=1,\
-                 sds=None,warp_args={},verbose=False,\
-                 dbfile='data/my_db.yml'):
+                 sds=None,warp_args={},verbose=False):
     
     ifiles = modis_annual_dataset(year,tile,product,\
-                         step=step,dbfile=dbfile,verbose=verbose)
+                         step=step,verbose=verbose)
     mfiles = get_modis_annual(ifiles,sds=sds,warp_args=warp_args)
     # what to do is SDS is None?
     return mfiles
 
-def main():
+def mainia():
   warp_args = {
     'dstNodata'     : 255,
     'format'        : 'MEM',
@@ -96,12 +73,27 @@ def main():
   sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
   tile    = ['h17v03','h18v03','h17v04','h18v04']
   product = 'MCD15A3H'
-  year    = 2019
+  year    = 2018
   step    = 4 
-  mfiles = modis_annual(year,tile,product,step=step,sds=sds,warp_args=warp_args)
+  mfiles = modis_annual(year,tile,product,verbose=True,step=step,sds=sds,warp_args=warp_args)
   print(mfiles.keys())
 
+def main():
+  warp_args = {
+  'dstNodata'     : 255,
+  'format'        : 'MEM',
+  'cropToCutline' : True,
+  'cutlineWhere'  : "FIPS='LU'",
+  'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+  }
+  sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+  tile    = ['h17v03','h18v03','h17v04','h18v04']
+  product = 'MCD15A3H'
+  year    = 2019
+    
+  mfiles = modis_annual(year,tile,product,sds=sds,step=4,verbose=True,warp_args=warp_args)
 
+  print(mfiles.keys())
 
 if __name__ == "__main__":
     main()

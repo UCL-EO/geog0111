@@ -20,7 +20,7 @@ def get_lai_data(year,tile,fips):
     }
     
     mfiles = modis_annual(year,tile,product,\
-                          sds=sds,warp_args=warp_args)
+                          step=4,sds=sds,warp_args=warp_args)
     # scale it
     lai = mfiles['Lai_500m'] * 0.1
     std = mfiles['LaiStdDev_500m'] * 0.1
