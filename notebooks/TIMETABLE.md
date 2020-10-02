@@ -3,7 +3,7 @@ GEOG2021 Timetable 2020-21
 
 | Course Week	|  Topic	|  |  | 	| || Assessment |
 |-	|-	|-	|-	|-	|-	|-	|- |
-|  1	|  **Course basics**	|  [Notebook use](001_Notebook_use.ipynb)	|  [Unix](002_Unix.ipynb)	|  [Help](003_Help.ipynb)	| [Accounts](004_Accounts.ipynb) | [Packages](005_Packages.ipynb)| 
+|  1	|  **Course basics**	|  [Notebook use](001_Notebook_use.ipynb)	[Video](https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fweb.microsoftstream.com%2Fvideo%2F567f0e25-4345-4d7b-a0fe-ff52a849d703&data=02%7C01%7C%7C8ac06087c4354551357d08d866ec8bdd%7C1faf88fea9984c5b93c9210a11d9a5c2%7C0%7C0%7C637372513433482788&sdata=9nZefqA2caC6DrGO7fU4eHRRoYlB5HqKsYvnwVQxsg0%3D&reserved=0)|  [Unix](002_Unix.ipynb)	|  [Help](003_Help.ipynb)	| [Accounts](004_Accounts.ipynb) | [Packages](005_Packages.ipynb)| 
 |  2	|  **Python** 	| [Python Introduction](010_Python_Introduction.ipynb)	| [Data Types](011_Python_data_types.ipynb) 	|  [Stings](012_Python_strings.ipynb)	| [String methods](013_Python_string_methods.ipynb) | [Groups](014_Python_groups.ipynb) |[Lists and dictionaries](A01_Groups.ipynb)|
 |  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | [Python script](A02_Script.ipynb)|
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[Streams](021_Streams.ipynb)| [Read and Write](022_Read_write_files.ipynb) 	|
