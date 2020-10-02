@@ -21,7 +21,7 @@ except:
 import matplotlib.pyplot as plt
 
 sds     = ['NDSI_Snow_Cover']
-product = 'MOD10A1'
+product = 'MYD10A1'
 tile = ['h09v05']
 warp_args = {
       'dstNodata'     : 255,

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-Example script to get all days of data for MCD15A3H
+Example script to get all days of data for MCD64A1
 for the tiles and year spewcified. 
 
 
@@ -23,11 +23,8 @@ import matplotlib.pyplot as plt
 kwargs = {
     'verbose' : True,
     'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
-    'product'   :    'MCD15A3H',
+    'product'   :    'MCD64A1',
 }
-for year in [2017,2018,2019]:
-  # list of doys we want
-  doys = "*"
+for year in [2017,1018,2019]:
   modis = Modis(**kwargs)
-  mfiles = modis.get_modis(year,doys,step=4)
-  print(mfiles.keys())
+  modis.stitch(year,day=1,month="*")

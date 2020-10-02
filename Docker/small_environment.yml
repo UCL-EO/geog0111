@@ -19,3 +19,4 @@ dependencies:
     - mkdocs-rtd-dropdown
     - mkdocs-material
     - mkdocs-GEOG0111
+    - mkdocs-readthedocs
