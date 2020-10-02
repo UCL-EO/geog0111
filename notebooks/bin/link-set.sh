@@ -134,6 +134,7 @@ do
 done
 
 # dont want this!
-rm -f bin/bin
+rm -f notebooks/bin/bin
+rm -f notebooks/copy/copy
 
 echo "----> done running $0 from $here"

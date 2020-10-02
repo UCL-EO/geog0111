@@ -57,11 +57,11 @@ awk < ${base}/config/requirements.txt '{print "    - "$0}' >> "${base}"/Docker/s
 
 
 
-rm -rf "$base/docs/sphinx"
-mkdir -p "$base/docs/sphinx"
+#rm -rf "$base/docs/sphinx"
+#mkdir -p "$base/docs/sphinx"
 cd "$base"
-sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs/sphinx
-cp "$base/config/conf.py" docs/sphinx
+#sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs/sphinx
+#cp "$base/config/conf.py" docs/sphinx
 
 
 echo "--> re-making notebooks_lab"
@@ -105,46 +105,52 @@ EOF
 cd "$base"
 files=docs/*_files
 filedirs=$(echo $files | sed 's/docs\///g')
-cd "$base"/docs/sphinx
-for n in ${filedirs[@]}
-do
-  ln -s ../$n $n
-done
+#cd "$base"/docs/sphinx
+#for n in ${filedirs[@]}
+#do
+#  ln -s ../$n $n
+#done
 
 cd "$base"
 echo "--> generating mkdocs files for docs"
 geog0111/mkdocs_prep.py --dev
 echo "--> building mkdocs"
 
-echo "--> generating sphinx files for docs"
-cp  config/index_head.rst docs/index.rst
-awk < mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=0} (start==1 && $1!="nav"){print "  "$NF}' >> docs/index.rst
-cat config/index_tail.rst >> docs/index.rst
+#echo "--> generating sphinx files for docs"
+#cp  config/index_head.rst docs/index.rst
+#awk < mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=0} (start==1 && $1!="nav"){print "  "$NF}' >> docs/index.rst
+#cat config/index_tail.rst >> docs/index.rst
 
+cd $base/notebooks
+for i in *md ; do
+  sed < $i 's/ipynb/md/g' > $base/docs/$i
+done
+
+cd $base
 mkdocs build -v
 cd $base/docs
 cp ../config/requirements.txt .
-cd $base/docs/sphinx
-ln -s ../bin bin
-ln -s ../images images
-ln -s ../data data
-ln -s ../work work
-ln -s ../geog0111 geog0111
-ln -s ../copy copy
-sed < $base/docs/index.rst 's/index.md/docindex.md/' > tmp.$$
-mv tmp.$$ index.rst
-rm -f index.md
-cp ../*.md ../*.html .
+#cd $base/docs/sphinx
+#ln -s ../bin bin
+#ln -s ../images images
+#ln -s ../data data
+#ln -s ../work work
+#ln -s ../geog0111 geog0111
+#ln -s ../copy copy
+#sed < $base/docs/index.rst 's/index.md/docindex.md/' > tmp.$$
+#mv tmp.$$ index.rst
+#rm -f index.md
+#cp ../*.md ../*.html .
 
 # dont confuse index.md with index.rst
-if [ -f "index.md" ]; then
-  mv index.md docindex.md
-else
-  cp ../index.md docindex.md
-fi
+#if [ -f "index.md" ]; then
+#  mv index.md docindex.md
+#else
+#  cp ../index.md docindex.md
+#fi
 
 #cp ../index.rst .
-make clean html
+#make clean html
 cd $base
 echo "----> done running $0 from $base"
 echo "to upload, run:  mkdocs gh-deploy --force"
