@@ -16,4 +16,4 @@ GEOG2021 Timetable 2020-21
 |  10	|  **Recap**	|  	|  	|  	|| | [Part 2](A06_Part2.ipynb)|
 
 
-Note that [Part 1](A03_Part1.ipynb) and [Part 2](A06_Part2.ipynb) are the formal assessments for the course. [Part 1](A03_Part1.ipynb) should be submitted the Monday after Reading week. [Part 2](A06_Part2.ipynb) should be submitted in the first week of Term 2. Pleass read [Code advive](A03_Part1_code.ipynb) before subitting work.
+Note that [Part 1](A03_Part1.ipynb) and [Part 2](A06_Part2.ipynb) are the formal assessments for the course. [Part 1](A03_Part1.ipynb) should be submitted the Monday after Reading week. [Part 2](A06_Part2.ipynb) should be submitted in the first week of Term 2. Please read [Code advive](A03_Part1_code.ipynb) before subitting work.
