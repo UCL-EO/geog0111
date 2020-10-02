@@ -17,10 +17,21 @@ GEOG0111 Scientific Computing
    003_Help.md
    004_Accounts.md
    005_Packages.md
+   A01_Groups.md
+   A02_Script.md
+   A03_Part1.md
+   A03_Part1_code.md
+   A04_Numpy.md
+   A05_LAI.md
+   A06_Part2.md
   
    001_Notebook_use_answers.md
    002_Unix_answers.md
    003_Help_answers.md
+   A01_Groups_answers.md
+   A02_Script_answers.md
+   A04_Numpy_answers.md
+   A05_LAI_answers.md
   
    010_Python_Introduction.md
    011_Python_data_types.md
@@ -56,18 +67,26 @@ GEOG0111 Scientific Computing
   
    030_NASA_MODIS_Earthdata.md
    031_Numpy.md
-   032_GDAL_mosaicing_and_masking.md
-   033_GDAL_timeseries.md
-   034_Weigthed_smoothing_and_interpolation.md
-   035_Weighted_interpolation.md
-   036_Model_Fitting.md
+   032_More_numpy.md
   
    030_NASA_MODIS_Earthdata_answers.md
    031_Numpy_answers.md
-   032_GDAL_mosaicing_and_masking_answers.md
+   032_More_numpy_answers.md
   
-   040_Practical_Part1.md
-   041_Practical_Part2.md
+   040_GDAL_mosaicing_and_masking.md
+   041_GDAL_timeseries.md
+   042_Weighted_smoothing_and_interpolation.md
+   043_Weighted_interpolation.md
+  
+   040_GDAL_mosaicing_and_masking_answers.md
+   041_GDAL_timeseries_answers.md
+   043_Weighted_interpolation_answers.md
+  
+   050_Models.md
+   051_Phenology_model.md
+  
+   050_Models_answers.md
+   051_Phenology_model_answers.md
 
 Indices and tables
 ==================

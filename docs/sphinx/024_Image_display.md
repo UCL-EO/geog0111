@@ -108,12 +108,14 @@ fig.colorbar(im, ax=axs[0])
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f5510d470d0>
+    <matplotlib.colorbar.Colorbar at 0x7f7ddf932f90>
 
 
 
 
+    
 ![png](024_Image_display_files/024_Image_display_5_1.png)
+    
 
 
 #### Exercise 1
@@ -181,7 +183,9 @@ for i,c in enumerate(cmaps):
 ```
 
 
+    
 ![png](024_Image_display_files/024_Image_display_8_0.png)
+    
 
 
 #### Exercise 2
@@ -426,12 +430,14 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7f5510f4f950>
+    <matplotlib.legend.Legend at 0x7f7dd4d5dbd0>
 
 
 
 
+    
 ![png](024_Image_display_files/024_Image_display_17_1.png)
+    
 
 
 #### Exercise 3

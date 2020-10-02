@@ -1,5 +1,13 @@
 # 001 Use of Jupyter notebooks : Answers to exercises
 
+#### Exercse 1
+ This is a test exercise
+
+
+```python
+# and this is a test answer
+```
+
 #### Exercise 1
 
 We can add new cells to this document via the `Insert -> Insert Cell Below` menu in the menu bar at the top of this document.

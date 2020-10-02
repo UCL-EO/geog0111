@@ -381,6 +381,7 @@ In this section, we have learned the following `unix` commands and symbols:
 |---|---|--|
 | `~`  |  twiddle / tilde -  home | `cd ~/geog0111` |
 | `.`  |  dot  - current directory | `cd .` |
+| `..`  |  dot dot  - one level up directory | `cd ..` |
 | `*`  | wildcard   | `ls R*` |
 | `cd`  | change directory   | `cd ~/geog0111` |
 | `pwd`  | print working directory | `pwd` |

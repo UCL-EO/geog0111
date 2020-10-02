@@ -127,6 +127,8 @@ We will use a simple recipe for accessing a dataset and plotting it. All example
 
 First, we use the `Modis` class in `geog0111.modis` to get the dataset. Recall from [024 Image display](024_Image_display) that many of these datasets are cached on the system for you. If it takes a long time to retrieve a dataset, it is probably because you are downloading it, rather than using a cached copy. If it is Wednesday afternoon UK time, you will not be able to download new datasets, and can only use cached copies, as the NASA server is down for maintenance.
 
+Notice that the LAI data have a valid range 0 to 100, and that a scale factor of 0.1 must be applied to the datas to interpret as LAI.
+
 
 ```python
 from geog0111.modis import Modis
@@ -154,7 +156,9 @@ im_display(data_MCD15A3H,['Lai_500m'],x_size=16,y_size=8,vmax=100)
 ```
 
 
+    
 ![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_9_0.png)
+    
 
 
 ### masking
@@ -196,7 +200,9 @@ im_display(data_MCD15A3H,['Lai_500m'],x_size=16,y_size=8)
 ```
 
 
+    
 ![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_12_0.png)
+    
 
 
 The dataset, being a measurement, is not spatially complete. This is because of clouds and other factors meaning that the algorithm to produce LAI could not run at that time. It is very common that you will find geospatial datasets have missing values. We will learn later on when and how we might fill these gaps.
@@ -298,7 +304,9 @@ im_display(data_MCD64A1,kwargs['sds'],\
 ```
 
 
+    
 ![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_20_0.png)
+    
 
 
 ## Snow
@@ -350,7 +358,9 @@ im_display(data_MOD10A1,kwargs['sds'],\
 ```
 
 
+    
 ![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_23_0.png)
+    
 
 
 ## Land Cover dataset `MCD12Q1`
@@ -381,12 +391,14 @@ plot_lc(data_MCD12Q1['LC_Type1'])
 ```
 
 
+    
 ![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_25_0.png)
+    
 
 
 #### Exercise 5
 
-* Explore the MODIS datasets in your own time, and get to know the datasets they contain, along with the scaling factors and other interpretation information.
+* Explore the MODIS datasets in your own time, and get to know the datasets they contain, along with the scaling factors and other interpretation information. Note that if we have not already downloaded particular datasets into the cache, it  may take a short time for them to download and load.
 
 # Summary
 

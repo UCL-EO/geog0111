@@ -88,11 +88,13 @@ lthresh = [None,None]
 
 data_MCD15A3H = data_mask(data_MCD15A3H,sds,scale,uthresh,lthresh)
 # plot with different vmax for the plots!
-im_display(data_MCD15A3H,kwargs['sds'],shape=(1,2),x_size=16,y_size=3,vmax=[10,5])
+im_display(data_MCD15A3H,kwargs['sds'],shape=(1,2),x_size=16,y_size=3,vmax=[5,5])
 ```
 
 
+    
 ![png](030_NASA_MODIS_Earthdata_answers_files/030_NASA_MODIS_Earthdata_answers_5_0.png)
+    
 
 
 #### Exercise 3
@@ -125,4 +127,14 @@ def get_doy(year,month,day):
 
 assert get_doy(2019,1,1) == 1
 assert get_doy(2019,2,1) == 32
+```
+
+#### Exercise 5
+
+* Explore the MODIS datasets in your own time, and get to know the datasets they contain, along with the scaling factors and other interpretation information. Note that if we have not already downloaded particular datasets into the cache, it  may take a short time for them to download and load.
+
+
+```python
+# ANSWER
+# Explore!
 ```

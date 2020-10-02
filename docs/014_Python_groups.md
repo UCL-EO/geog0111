@@ -398,15 +398,9 @@ print(a)
     {'one': 1, 'two': 2, 'three': 3, 'four': 4}
 
 
-#### Exercise 5
+## Formative assessment
 
-* create a list called `months` with the names of the months of the year
-* create a list called `ndays` with the number of days in each month (for this year)
-* confirm that the two lists have the same length (12)
-* Use these two lists to make a dictionary called `days_in_month` with the key as month name and value as the number of days in that month.
-* print out the dictionary and confirm it is as expected
-* set a variable `m` to be the name of a month
-* using `m` and your dictionary, print out the number of days in month `m`
+To get some feedback on how you are doing, you should complete and submit the formative assessment [A01 Groups](A01_Groups.md).
 
 ## Summary
 

@@ -24,11 +24,6 @@ nav:
 - 015_Python_control.md
 - 016_Python_for.md
 - 017_Functions.md
-- 018_Python_files.md
-- 018_Running_Python.md
-- 019_Plotting.md
-- 200_NASA_MODIS_Earthdata.md
-- 201_GoogleEarthEngine.md
 plugins:
 - git-revision-date-localized
 - exclude:
@@ -40,23 +35,29 @@ plugins:
       - "*.nc"
       - "*.zip"
       - "*.npz"
+      - "data/ucl/*"
+      - "*.vrt"
 - search
-- mkdocs-jupyter:
-    include_source: true
+#- mkdocs-jupyter:
+#    include_source: true
 
 repo_url: https://github.com/UCL-EO/geog0111
 site_author: Prof P. Lewis
 site_name: GEOG0111
 site_url: https://ucl-eo.github.io/geog0111
+theme:
+  name: readthedocs
+  favicon: images/ucl.png
+
 #theme:
 #  favicon: images/ucl.png
 #  features:
 #  - search.highlight
 #  - header.hide
 #  name: material
-theme:
-   favicon: images/ucl.png
-   name: material
+#theme:
+#   favicon: images/ucl.png
+#   name: material
 #   features:
 #   - search.highlight
 #   - header.hide

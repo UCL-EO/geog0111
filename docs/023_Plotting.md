@@ -221,6 +221,29 @@ Let's plot some of this dataset now:
 ```python
 import matplotlib.pyplot as plt
 
+fig, axs = plt.subplots(1,1,figsize=(10,10))
+axs.plot(df["YEAR"],df['JAN'],label='JAN')
+```
+
+
+
+
+    [<matplotlib.lines.Line2D at 0x7fe363e47090>]
+
+
+
+
+    
+![png](023_Plotting_files/023_Plotting_10_1.png)
+    
+
+
+We can easily customise this by adding titles and labels:
+
+
+```python
+import matplotlib.pyplot as plt
+
 # make a useful title
 year0 = list(df["YEAR"])[0]
 year1 = list(df["YEAR"])[-1]
@@ -256,7 +279,9 @@ axs.set_xlabel(f'year')
 
 
 
-![png](023_Plotting_files/023_Plotting_10_1.png)
+    
+![png](023_Plotting_files/023_Plotting_12_1.png)
+    
 
 
 The code to do this sort of plot is simple and generic. This example has most of what you will need in terms of coding for line plots. 
@@ -295,7 +320,9 @@ axs.set_xlabel(f'year')
 
 
 
-![png](023_Plotting_files/023_Plotting_13_1.png)
+    
+![png](023_Plotting_files/023_Plotting_15_1.png)
+    
 
 
 If, instead, we wanted these on separate sub-plots, we specify that in the `plt.subplots` call. For a line of 2 plots, we use:
@@ -349,7 +376,9 @@ axs[1].set_xlabel(f'year')
 
 
 
-![png](023_Plotting_files/023_Plotting_15_1.png)
+    
+![png](023_Plotting_files/023_Plotting_17_1.png)
+    
 
 
 #### Exercise 1
@@ -429,9 +458,11 @@ fig.suptitle(name)
 # plot y-data and error bars
 x    = year
 y    = mean
-yerr = std * 1.95
-axs.errorbar(x,y,yerr=yerr)
-axs.plot(x,y,'o--')
+yerr = std * 1.96
+# ls="none" so that no line is plotted
+axs.errorbar(x,y,yerr=yerr,ls='none')
+axs.plot(x,y,'o')
+
 
 axs.set_ylabel(f'Precipitation (mm)')
 # x-label
@@ -444,7 +475,9 @@ plt.savefig(ofile)
 ```
 
 
-![png](023_Plotting_files/023_Plotting_21_0.png)
+    
+![png](023_Plotting_files/023_Plotting_23_0.png)
+    
 
 
 We can now load the [saved image](data/precip.png) as a figure:
@@ -484,7 +517,9 @@ axs.set_xlabel(f'year')
 
 
 
-![png](023_Plotting_files/023_Plotting_23_1.png)
+    
+![png](023_Plotting_files/023_Plotting_25_1.png)
+    
 
 
 ## Date fields
@@ -510,11 +545,11 @@ print(f'year {now.year}')
 print(f"{now.hour} O'clock")
 ```
 
-    It is now 2020-09-27 21:09:00.888192
-    day 27
+    It is now 2020-09-29 11:10:09.105651
+    day 29
     month 9
     year 2020
-    21 O'clock
+    11 O'clock
 
 
 You can set up the `datetime` fields explicitly:
@@ -562,7 +597,7 @@ yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 ```
 
-    yesterday was 2020-09-26 21:09:00.966741
+    yesterday was 2020-09-28 11:10:09.197312
 
 
 ### `strftime` and `strptime`
@@ -584,8 +619,8 @@ date_now = now.strftime("%m/%d/%Y")
 print(f"data now: {date_now}")
 ```
 
-    time now: 21:09:00
-    data now: 09/27/2020
+    time now: 11:10:09
+    data now: 09/29/2020
 
 
 and `strptime` to load a `datetime` object from a string. To do so, we need to specify the format of the string. For example:
@@ -771,7 +806,9 @@ axs.set_xlabel(f'days after {start_date.strftime("%d/%m/%Y")}')
 
 
 
-![png](023_Plotting_files/023_Plotting_45_1.png)
+    
+![png](023_Plotting_files/023_Plotting_47_1.png)
+    
 
 
 We can use the date fields directly in the plot above, which might make the information easier to understand. But by default, all of the data fields will be printed:
@@ -806,7 +843,9 @@ axs.set_xlabel(f'date')
 
 
 
-![png](023_Plotting_files/023_Plotting_47_1.png)
+    
+![png](023_Plotting_files/023_Plotting_49_1.png)
+    
 
 
 This is not a limitation of `matplotlib`, just a formatting issue. A quick [look into the matplotlib `dates` API](https://matplotlib.org/3.1.0/api/dates_api.html) shows us that we can quite simply set the x-ticks to be every month:
@@ -847,7 +886,9 @@ axs.set_xlabel(f'date')
 
 
 
-![png](023_Plotting_files/023_Plotting_49_1.png)
+    
+![png](023_Plotting_files/023_Plotting_51_1.png)
+    
 
 
 Although the default formatting in [matplotlib](https://matplotlib.org/) will do an excellent job for the vast majority of your needs, you should be aware that you may meet cases where you need to look a little deeper into the documentation to find the right solution to your problem. You should always try to find such solutions in the existing codebase, rather than attempting to hack your way around a problem.

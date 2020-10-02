@@ -152,3 +152,71 @@ df.head(5)
 </div>
 
 
+
+#### Exercise 3
+
+Read and print the data in the file '`work/dataset.csv`
+
+
+```python
+# ANSWER
+df1=pd.read_csv(Path('work/dataset.csv'))
+df1.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x data</th>
+      <th>y data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+

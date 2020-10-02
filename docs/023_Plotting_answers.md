@@ -200,7 +200,9 @@ axs[-1].set_xlabel(f'year')
 
 
 
+    
 ![png](023_Plotting_answers_files/023_Plotting_answers_3_1.png)
+    
 
 
 #### Exercise 2
@@ -720,5 +722,7 @@ for i,m in enumerate(samples):
 ```
 
 
+    
 ![png](023_Plotting_answers_files/023_Plotting_answers_9_0.png)
+    
 

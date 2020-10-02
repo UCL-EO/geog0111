@@ -52,7 +52,9 @@ for i,k in enumerate(keys):
 ```
 
 
+    
 ![png](024_Image_display_answers_files/024_Image_display_answers_2_0.png)
+    
 
 
 #### Exercise 2
@@ -167,7 +169,9 @@ im_display(data_MCD15A3H,keys,\
 ```
 
 
+    
 ![png](024_Image_display_answers_files/024_Image_display_answers_5_0.png)
+    
 
 
 
@@ -178,7 +182,9 @@ im_display(data_MCD15A3H,keys,\
 ```
 
 
+    
 ![png](024_Image_display_answers_files/024_Image_display_answers_6_0.png)
+    
 
 
 #### Exercise 3
@@ -247,5 +253,7 @@ plot_lc(data_MCD12Q1['LC_Type1'])
 ```
 
 
+    
 ![png](024_Image_display_answers_files/024_Image_display_answers_9_0.png)
+    
 

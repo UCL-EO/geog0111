@@ -86,7 +86,7 @@ print(f'wrote {nbytes} bytes to {outfile}')
     wrote 90 bytes to work/easy.txt
 
 
-#### Exercise 1
+#### Exercise 1
 
 * Using `Path.read_text()` read the text from the file `work/easy.txt` and print the text returned.
 * split the text into lines of text using `str.split()` at each newline, and print out the resulting list

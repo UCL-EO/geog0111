@@ -31,6 +31,19 @@ l = Cylog(sites)
 test = l.login()
 ```
 
+### Test
+
+You can run a test on your login to NASA Earthdata using the information you have stored this using `cylog` for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code if you set do_test to True:
+
+
+```python
+from geog0111.modis import test_login
+do_test=False
+assert test_login(do_test)
+```
+
+## Reset password
+
 If you are interested, you can see the help page for `Cylog`. It shows, for instance, how to over-ride the current entry (e.g. if you have changed your password), by using `force=True`).
 
 
@@ -59,16 +72,6 @@ help(Cylog.login)
 
 
 You should be aware that the NASA servers this connects you to go down for maintenance on Wednesdays. You can ping the servers with the follwoing code:
-
-### Test
-
-You can run a test on your login to NASA Earthdata using the information you have stored this using `cylog` according to [004_Accounts](004_Accounts.md) for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code if you set do_test to True:
-
-
-```python
-from geog0111.modis import test_login
-assert test_login(do_test)
-```
 
 If this fails, you may have entered your account information incorrectly for `https://e4ftl01.cr.usgs.gov` (or it could just be Wednesday, in which case, don't run this again).
 

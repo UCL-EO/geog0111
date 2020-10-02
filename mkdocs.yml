@@ -14,10 +14,21 @@ nav:
   - Help: 003_Help.md
   - Accounts: 004_Accounts.md
   - Packages: 005_Packages.md
+  - Groups: A01_Groups.md
+  - Script: A02_Script.md
+  - Part1: A03_Part1.md
+  - Part1 Code: A03_Part1_code.md
+  - Numpy: A04_Numpy.md
+  - Lai: A05_LAI.md
+  - Part2: A06_Part2.md
   - Answers:
     - Notebook Use: 001_Notebook_use_answers.md
     - Unix: 002_Unix_answers.md
     - Help: 003_Help_answers.md
+    - Groups: A01_Groups_answers.md
+    - Script: A02_Script_answers.md
+    - Numpy: A04_Numpy_answers.md
+    - Lai: A05_LAI_answers.md
 - Core Concepts:
   - Python Introduction: 010_Python_Introduction.md
   - Python Data Types: 011_Python_data_types.md
@@ -38,7 +49,7 @@ nav:
     - Python For: 016_Python_for_answers.md
     - Functions: 017_Functions_answers.md
     - Running Python: 018_Running_Python_answers.md
-- Datasets:
+- Data Basics:
   - Python Files: 020_Python_files.md
   - Streams: 021_Streams.md
   - Read Write Files: 022_Read_write_files.md
@@ -50,21 +61,29 @@ nav:
     - Read Write Files: 022_Read_write_files_answers.md
     - Plotting: 023_Plotting_answers.md
     - Image Display: 024_Image_display_answers.md
-- Geospatial Data:
+- Array Data:
   - NASA MODIS Earthdata: 030_NASA_MODIS_Earthdata.md
   - Numpy: 031_Numpy.md
-  - GDAL Mosaicing And Masking: 032_GDAL_mosaicing_and_masking.md
-  - GDAL Timeseries: 033_GDAL_timeseries.md
-  - Weigthed Smoothing And Interpolation: 034_Weigthed_smoothing_and_interpolation.md
-  - Weighted Interpolation: 035_Weighted_interpolation.md
-  - Model Fitting: 036_Model_Fitting.md
+  - More Numpy: 032_More_numpy.md
   - Answers:
     - NASA MODIS Earthdata: 030_NASA_MODIS_Earthdata_answers.md
     - Numpy: 031_Numpy_answers.md
-    - GDAL Mosaicing And Masking: 032_GDAL_mosaicing_and_masking_answers.md
+    - More Numpy: 032_More_numpy_answers.md
+- Geospatial Data:
+  - GDAL Mosaicing And Masking: 040_GDAL_mosaicing_and_masking.md
+  - GDAL Timeseries: 041_GDAL_timeseries.md
+  - Weighted Smoothing And Interpolation: 042_Weighted_smoothing_and_interpolation.md
+  - Weighted Interpolation: 043_Weighted_interpolation.md
+  - Answers:
+    - GDAL Mosaicing And Masking: 040_GDAL_mosaicing_and_masking_answers.md
+    - GDAL Timeseries: 041_GDAL_timeseries_answers.md
+    - Weighted Interpolation: 043_Weighted_interpolation_answers.md
 - Modelling:
-  - Practical Part1: 040_Practical_Part1.md
-  - Practical Part2: 041_Practical_Part2.md
+  - Models: 050_Models.md
+  - Phenology Model: 051_Phenology_model.md
+  - Answers:
+    - Models: 050_Models_answers.md
+    - Phenology Model: 051_Phenology_model_answers.md
 plugins:
 - git-revision-date-localized
 - exclude:
@@ -76,13 +95,10 @@ plugins:
     - '*.nc'
     - '*.zip'
     - '*.npz'
+    - data/ucl/*
+    - '*.vrt'
 - search
-- mkdocs-jupyter:
-    include_source: true
 repo_url: https://github.com/UCL-EO/geog0111
 site_author: Prof P. Lewis
 site_name: GEOG0111
 site_url: https://ucl-eo.github.io/geog0111
-theme:
-  favicon: images/ucl.png
-  name: material

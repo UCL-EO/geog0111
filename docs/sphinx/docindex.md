@@ -65,9 +65,11 @@ At the end of the module, students should:
 
 ### Running on UCL JupyterHub
 
-Follow the instructions on [UCL installation and running](Install.md)
+Follow the instructions on [UCL installation and running](docs/Install.md)
 
 ## Timetable
+
+[class timetable for 2020/21](notebooks/TIMETABLE.md)
 
 The course takes place over 10 weeks in term 1, usually in the Geography Department Unix Computing Lab (PB110) in the [Northwest wing](http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003), UCL. 
 
@@ -75,7 +77,10 @@ Due to covid restrictions, it is being run online in the 2020-21 session.
 
 Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](http://www.ucl.ac.uk/staff/term-dates) for further information.
 
-The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Wednesday mornings.
+The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Thursdays.
+
+
+
 
 ### Assessment
 
@@ -90,6 +95,6 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are takinbg this course at UCL, 
-follow the instructions on [UCL installation and running](Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md).
+follow the instructions on [UCL installation and running](docs/Install.md). If you are running from outside UCL [see these notes](docs/OutsideInstall-Local.md).
 
 

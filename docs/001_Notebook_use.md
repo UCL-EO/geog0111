@@ -16,7 +16,9 @@ You will find full, up to date information on this course GEOG0111 on the [UCL c
 
 #### Course load
 
-This course is intended to be 25 % of your course load for the term. You will find fuller information on the [GEOG0111 course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495), but that percentage should give you some idea of the amount of effort we are expecting you to put in (on average) per week.
+This course is intended to be 25 % of your course load for the term, which equates to at lesast 9 hours per week. This is the typiocal average of effort you should be putting in each week of the course.
+
+You will find fuller information on the [GEOG0111 course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495), but that percentage should give you some idea of the amount of effort we are expecting you to put in (on average) per week.
 
 #### Learning 
 
@@ -47,14 +49,21 @@ There is a useful [cheatsheet](https://www.anaconda.com/wp-content/uploads/2019/
 
 ## How we will be using notebooks
 
-We will be using Jupyter notebooks to present course notes and view and run exercises. 
+We will be using Jupyter notebooks to present course notes and view and run exercises. These will run on the [UCL notebook server](https://jupyter.data-science.rc.ucl.ac.uk/). To connect, you need either:
 
-### Saving your work
-   
-The first thing we want you to do when you open a new notebook is to **make a copy of it in the [`work`](work) folder**. 
+* a [UCL VPN connection](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn)
+* use [Desktop@UCL](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere), open a browser in there, and connect to the server.
 
-**You should make a copy of each new notebook when you start.** If you don't, then any work you do may not be there the next time you run the notebook. When you come back to run a notebook again, in a new session, you should run the saved notebook (unless you want to start afresh).
+In either case, you will need to provide your UCL ISD login and password for both the access method ([UCL VPN connection](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) or [Desktop@UCL](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere)) and for the Jupyter notebook server.
 
+
+## Use of Notebooks
+
+We recommend that you use the 'traditional' Jupyter notebooks for this course, rather than Jupyter Lab. Both are viable options, but the notebooks, in the folder `notebooks` have features that will not work properly in Jupyter Lab. In essence, if you use the notebooks in the folder `notebooks` Jupyter Lab, the exercise answers will be exposed to you as you go through the notes, whereas they should be hidden. For example:
+
+In notebooks, there will be a green button that you have to press to reveal the answer, but in Jupyter Lab, the answer will be directly on show. 
+
+## Notebooks
 
     
 ### Cells

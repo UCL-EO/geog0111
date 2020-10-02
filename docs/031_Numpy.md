@@ -156,30 +156,6 @@ print(arr1 * arr2)
         [ 9 18 27 36 45 54 63 72 81 90]
         [ 10  20  30  40  50  60  70  80  90 100]
 
-We can get a tuple of the array shape with `array.shape`.
-
-If the arrays are of the same shape, you can do standard operations between them **element-wise**:
-
-
-```python
-arr1 = np.array([3, 4, 5, 6.])
-arr2 = np.array([30, 40, 50, 60.])
-
-print(arr2 - arr1)
-print(arr1 * arr2)
-
-print("Array shapes:")
-print(f"arr1: {arr1.shape}")
-print(f"arr2: {arr2.shape}")
-```
-
-    [27. 36. 45. 54.]
-    [ 90. 160. 250. 360.]
-    Array shapes:
-    arr1: (4,)
-    arr2: (4,)
-
-
 The `numpy` documenation is huge. There's an [user's guide](https://docs.scipy.org/doc/numpy/user/index.html), as well as a reference to all the [contents of the library](https://docs.scipy.org/doc/numpy/reference/index.html). There's even [a tutorial availabe](https://docs.scipy.org/doc/numpy/user/quickstart.html) if you get bored with this one.
 
 ### More detail on `numpy.arrays` 
@@ -217,6 +193,43 @@ print(arr2)
     2*3 array:
     [[1.5 2.  3. ]
      [4.  5.  6. ]]
+
+
+### `shape`, `ndim`
+
+One of the key aspects of `numpy` is the way it deals efficiently with large, multi-dimensional arrays. To learn how to use `numpy` well, especially when we head to more complex problems later in the notes, you need to be aware of the dimensions and shape of the array you are processing.
+
+The key terms here are `array.ndim` which returns the number of dimensions of the array, and `array.shape` which gives the number of samples in each dimension. 
+
+If the arrays are of the same shape (and some other conditions we shall see later), you can do standard operations between them **element-wise**:
+
+
+```python
+import numpy as np
+
+arr1 = np.array([[3, 4, 5, 6.],[6,4,6,2]])
+arr2 = np.array([[30, 40, 50, 60.],[50,40,30,20]])
+
+print(f'the shape of arr1 is {arr1.shape} and ndim is {arr1.ndim}')
+print(f'the shape of arr2 is {arr2.shape} and ndim is {arr2.ndim}')
+
+# so we can do element-wise operations such as 
+# add, subtract, multiply etc
+
+print(arr2 - arr1)
+print(f'the shape of arr1 - arr2 is {(arr1 - arr2).shape}')
+print(arr1 * arr2)
+print(f'the shape of arr1 * arr2 is {(arr1 * arr2).shape}')
+```
+
+    the shape of arr1 is (2, 4) and ndim is 2
+    the shape of arr2 is (2, 4) and ndim is 2
+    [[27. 36. 45. 54.]
+     [44. 36. 24. 18.]]
+    the shape of arr1 - arr2 is (2, 4)
+    [[ 90. 160. 250. 360.]
+     [300. 160. 180.  40.]]
+    the shape of arr1 * arr2 is (2, 4)
 
 
 ### Array creators
@@ -367,7 +380,7 @@ The result should look like:
 
 
 
-### `np.linspace`, `np.arange`
+### `np.linspace`, `np.arange`, `np.mgrid`
 
 As well as initialising arrays with the same number as above, we often also want to initialise with common data patterns. This includes simple integer ranges `(start, stop, step)` in a similar fashion to [slicing we saw earlier](013_Python_string_methods.md#slice).
 
@@ -422,6 +435,70 @@ np.linspace(stop, start, 9)
 
 Hint: what value of skip would be appropriate here? what about `start` and `stop`?
 
+If we want to generate a multi-dimensional array with regularly-spaced numbers, we can use `np.mgrid[start:stop:step]`:
+
+
+```python
+import numpy as np
+
+# define the min and max for the grid we want
+p0min,p0max,p0step = 0.0,1.0,0.1
+
+np.mgrid[p0min:p0max:p0step]
+```
+
+
+
+
+    array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
+
+
+
+If we want the grid to be inclusive of `p0max` we must increase the maximum value by `p0step`:
+
+
+```python
+np.mgrid[p0min:p0max+p0step:p0step]
+```
+
+
+
+
+    array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])
+
+
+
+Now, for a 2-D grid we use `np.mgrid[start1:stop1:step1,start2:stop2:step2]`:
+
+
+```python
+import matplotlib.pyplot as plt
+# define the min and max and step for the grid we want
+p0min,p0max,p0step = 0.0,0.5,0.05
+p1min,p1max,p1step = 0.0,0.001,0.0001
+
+
+gridp0,gridp1 = np.mgrid[p0min:p0max+p0step:p0step,\
+                         p1min:p1max+p1step:p1step]
+
+# plot it
+fig, axs = plt.subplots(1,1,figsize=(5,5))
+axs.plot(gridp0,gridp1,'+')
+axs.set_xlabel('p1')
+axs.set_ylabel('p2')
+
+print(f'2d parameter grid: {gridp0.shape}')
+```
+
+    2d parameter grid: (11, 11)
+
+
+
+    
+![png](031_Numpy_files/031_Numpy_39_1.png)
+    
+
+
 ## Summary statistics
 
 Below are some representative arithmetic operations that you can use on arrays. Remember that they happen **elementwise** (i.e. to the whole array):
@@ -472,403 +549,8 @@ print(f'sqrt({np.sqrt(var)}) should equal {std}')
     sqrt(11.180339887498949) should equal 11.180339887498949
 
 
-### `np.loadtxt`
-
-Let's access an interesting dataset on the frequency of satellite launches to illustrate this.
-
-[![SpaceX landing](images/giphy.gif)](https://media.giphy.com/media/26DNbCqVfLJbYrXIA/giphy.gif)
-
-The library code `geog0111.nsat` accesses a database at [https://www.n2yo.com](https://www.n2yo.com) and gets a table satellite launch data.
-
-Data from this is stored in the datafile [data/satellites-1957-2021.gz](data/satellites-1957-2021.gz). This is a compressed text file.
-
-We can use `np.loadtxt` to read files of this nature into numpy arrays in a similar way to how we [read into panadas](021_Streams.md#Reading-data-into-pandas). If the dataset is not `CSV` but simply a whitespaced text file, it is often easier to use `np.loadtxt` than `pandas`.
-
-In the case of this dataset, we wish to interpret the launch counts as integers, so we convert the data we read to integers.
-
-
-```python
-import numpy as np
-
-filename = 'data/satellites-1957-2021.gz'
-data=np.loadtxt(filename).astype(np.int)
-
-# shape of data
-print(data.shape)
-```
-
-    (12, 64)
-
-
-The dataset dimensions are to `(month,year)`. Indices into the array are zero-based, so we can relate month number (1 being January) and year number to index `(i,j)` through:
-
-    i = month - 1
-    j = year - 1957
-    
-We can print some summary statistics:
-
-
-```python
-print(f'data shape {data.shape}')
-
-print(f'some summary statistics over the period 1957 to 2021:')
-print(f'The total number of launches is {data.sum()}')
-print(f'The mean number of launches is {data.mean() : .2f} per month')
-```
-
-    data shape (12, 64)
-    some summary statistics over the period 1957 to 2021:
-    The total number of launches is 45689
-    The mean number of launches is  59.49 per month
-
-
-### slicing
-
-We have seen [above](026_Numpy.md#Indexing-arrays) how we can provide a tuple of indices to access particular array elements. Often we want to access 'blocks' of an array. A set of indices would be inefficient for that. Instead, we use the idea of slices `(from:to:step)` that we have come across before for [strings](013_Python_string_methods.md#slice) . Remember that `to` is "up to but not including" the to number.
-
-If we specify `:` or `::` in the slice, it means we take the defaults for `(from:to:step)`. If we specify only one number, that is `from`. If we specify two, it is `from:to`.
-
-So:
-
-    data[0]
-    
-is the data for month index 0 (January), `data[1]` for February etc. Or:
-
-    data[0:2]
-   
-is the data for month index 0 (January) **and** 1 (February)  etc. 
-
-We can get more specific statistics then such as:
-
-
-```python
-import numpy as np
-
-filename = 'data/satellites-1957-2021.gz'
-data=np.loadtxt(filename).astype(np.int)
-
-print(f'mean launches in month 0: {data[0].mean() :.2f}')
-print(f'max  launches in month 0: {data[0].max()}')
-```
-
-    mean launches in month 0: 33.95
-    max  launches in month 0: 237
-
-
-We can refer to items in the second dimension of the array, by using a code for *all* values of the first dimension. So:
-
-    data[:,0]
-    
-refers to all elements in dimension 0 (i.e. all months here) by only year 0 (1957).
-
-
-```python
-print(f'mean launches in year 1957: {data[:,0].sum()}')
-print(f'max  launches in year 1957: {data[:,0].max()}')
-```
-
-    mean launches in year 1957: 3
-    max  launches in year 1957: 2
-
-
-#### Exercise 5
-
-* Print out the total number of launches per month, for each month.
-* Print out the total number of launches per year, for the years 2010 to 2020 inclusive
-
-### axis
-
-Whilst it is perfectly possibly to loop over one dimension of an array and calculate statistics over the other dimension, it is not very [Pythonic](https://docs.python-guide.org/writing/style/) to do it that way. 
-
-Instead. we can specify the array axes over which we want the operation to occur.
-
-For example, in our satellite launch dataset, the dimension 0 is month index and the dimension 1 is year index. To calculate the mean over all years then, we apply the `mean` function to axis 1:
-
-
-```python
-import numpy as np
-
-filename = 'data/satellites-1957-2021.gz'
-data=np.loadtxt(filename).astype(np.int)
-
-# mean over all months
-data.mean(axis=1)
-```
-
-
-
-
-    array([ 33.953125,  58.515625,  45.234375,  49.734375, 103.21875 ,
-            90.1875  ,  51.234375,  38.765625,  68.78125 ,  63.046875,
-            51.140625,  60.078125])
-
-
-
-This is much more convenient than the loop we did above. The axis keyword is widely used in `numpy`, and you can apply most operations over one or more axis. 
-
-#### Exercise 6
-
-* Plot the total number of satellite launches per year, as a function of year
-
-You will need to remember how to [plot line graphs](023_Plotting.md#Plotting-Graphs)
-
-### `argmin`, `argmax` and masking
-
-Whilst we have generated some initial summary statistics on the dataset, it's not really enough to give us a good idea of the data characteristics.
-
-To do that, we want to be able to ask somewhat more complex questions of the data, such as:
-
-* which *year* has the most/least launches? 
-* which month do most launches happen in? 
-* which month in which year had the most launches? 
-* which years had more than 100 launches?
-
-Whilst we could do some of these with loops and slicing, we expect a more convenient approach for `numpy`.
-
-To be able to address these, we need some new concepts:
-
-* methods `argmin()` and `argmax()` that provide the *index* where the min/max occurs
-* masking out array elements that meet some condition
-
-The first set of these, `argmin()` and `argmax()` are straightforward to visualise and use:
-
-
-```python
-import numpy as np
-
-# read data as before
-filename = 'data/satellites-1957-2021.gz'
-data=np.loadtxt(filename).astype(np.int)
-
-# sum the data over all months (axis 0)
-sum_per_year = data.sum(axis=0)
-# Construct an array of years
-year_array = 1957 + np.arange(data.shape[1])
-
-# Find the location (year) with **most** launches
-# Find the index of sum_per_year with highest number (argmmax)
-imax = np.argmax(sum_per_year)
-
-# Find the location (year) with **least** launches
-# Find the index of sum_per_year with lowest number (argmmax)
-imin = np.argmin(sum_per_year)
-
-print(f'the year with most   launches was',\
-      f'{year_array[imax]} with {sum_per_year[imax]}')
-print(f'the year with fewest launches was',\
-      f'{year_array[imin]} with {sum_per_year[imin]}')
-```
-
-    the year with most   launches was 1999 with 4195
-    the year with fewest launches was 1957 with 3
-
-
-#### Exercise 7
-
-* Write code to print the months with highest and lowest number of launches
-
-In section [011_Python_data_types](011_Python_data_types.md#Data-types:-bool) we came across the boolean (binary) data type that can take the states `True` or `False`.
-
-Boolean arrays in `numpy` are important in the efficient use of arrays, as they can act as a mask on an array. 
-
-For example:
-
-The form of filtering above (`high = sum_per_year >= 1000`) produces a numpy array of the same shape as that operated on (`sum_per_year` here) of `bool` data type.  It has entries of `True` where the condition is met, and `False` where it is not met.
-
-
-```python
-import numpy as np
-
-# read data as before
-filename = 'data/satellites-1957-2021.gz'
-data=np.loadtxt(filename).astype(np.int)
-# sum over all months (axis 0)
-sum_per_year = data.sum(axis=0)
-
-high = sum_per_year >= 1000
-print(high)
-```
-
-    [False False False False False False False False  True False False False
-     False False False False False False  True  True False False False False
-      True False False False False  True  True False False False False False
-      True  True False False False False  True False False False False False
-     False  True False False False False False False False False False False
-     False False False False]
-
-
-We can think of this logical array as a 'data mask' that we use to select (filter) entries:
-
-
-```python
-# form the data mask
-high = (sum_per_year >= 1000)
-# form an attau of years
-years = 1957 + np.arange(data.shape[1])
-# select only elements where mask is True
-print(f'years with 1000 or more launches {years[high]}')
-```
-
-    years with 1000 or more launches [1965 1975 1976 1981 1986 1987 1993 1994 1999 2006]
-
-
-We can apply logical operators to boolean arrays:
-
-
-```python
-low = np.logical_not(high)
-print(low)
-```
-
-    [ True  True  True  True  True  True  True  True False  True  True  True
-      True  True  True  True  True  True False False  True  True  True  True
-     False  True  True  True  True False False  True  True  True  True  True
-     False False  True  True  True  True False  True  True  True  True  True
-      True False  True  True  True  True  True  True  True  True  True  True
-      True  True  True  True]
-
-
-including combinations of logical arrays. 
-
-Suppose we want to know the years after the year 2000 that have 1000 or greater launches. We can form two boolean arrays:
-    
-    years > 2000
-    sum_per_year >= 1000
-    
-Since these arrays are of the same shape, we can combine them element-wise:
-
-
-```python
-c1 = (years > 2000)
-c2 = (sum_per_year >= 1000)
-combined = np.logical_and(c1,c2)
-print(years[combined])
-```
-
-    [2006]
-
-
-### `where`
-
-Sometimes, instead of just applying the filter as above, we want to know the indices of the filtered values.
-
-To do this, we can use the `np.where()` method. This takes a `bool` array as its argument (such as our data masks or other conditions) and returns a tuple of the indices where this is set `True`. 
-
-As an example, lets find month, year pairs where the number of launches is greater than 500. 
-
-For a final flourish, we load the dataset into `pandas` to print it in a table:
-
-
-```python
-# find month, year where launches > 500
-import numpy as np
-import pandas as pd
-
-# read data as before
-filename = 'data/satellites-1957-2021.gz'
-data=np.loadtxt(filename).astype(np.int)
-
-month_index,year_index = np.where(data > 500)
-# This gives array indices
-
-# convert index to real month and year
-# and *transpose* (swap rows and columns)
-# using .T
-high_launches = np.array([month_index+1,year_index+1957]).T
-
-# load into pandas data frame 
-df = pd.DataFrame(high_launches,columns=['month','year'])
-df
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>month</th>
-      <th>year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2</td>
-      <td>1986</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>5</td>
-      <td>1994</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>5</td>
-      <td>1999</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>6</td>
-      <td>1981</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>6</td>
-      <td>1993</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>6</td>
-      <td>2006</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>7</td>
-      <td>1976</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>9</td>
-      <td>1997</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-So `np.where()` is one way  we can derive a set of tuples such as those we saw [above](026_Numpy.md#Indexing-arrays).
-
-#### Exercise 8
-
-Recall from [previous sections](025_NASA_MODIS_Earthdata.md#MOTA) how to retrieve a MODIS LAI dataset for a particular date. Recall also values of greater than 100 are invalid, and that a scaling of 0.1 should be applied to the LAI.
-
-* Load a MODIS LAI dataset SDS `Lai_500m` for tile `h17v03` day of year 41, 2019. 
-* Call the 2D array `data` and confirm that it has a shape (2400, 2400)
-* build a mask called `mask` of invalid pixels 
-* print the percentage of invalid pixels to 2 decimal places (hint: sum with `sum`)
-* scale the data array as appropriate to obtain LAI
-* set invalid data values to 'not a number' `np.nan`
-* display the resulting image
-
 ### Summary
 
-In this section, you have been introduced to the `numpy` package and more detail on arrays. The big advantages of `numpy` are that you can easily perform array operators (such as adding two arrays together), and that `numpy` has a large number of useful functions for manipulating N-dimensional data in array form. This makes it particularly appropriate for raster geospatial data processing.
+In this section, you have been introduced to the `numpy` package and some detail on arrays. The big advantages of `numpy` are that you can easily perform array operators (such as adding two arrays together), and that `numpy` has a large number of useful functions for manipulating N-dimensional data in array form. This makes it particularly appropriate for raster geospatial data processing.
 
-We have seen how to create various forms of array (e.g. `np.ones()`, `np.arange()`), how to calculate some basic statistics (`min()`, `max()` etc), and finding the array index where some pattern occurs (e.g. `argmin()`, `argsort()` or `where()`) and how to generate and use masks for selecting data. 
+We have seen how to create various forms of array (e.g. `np.ones()`, `np.arange()`), how to calculate some basic statistics (`min()`, `max()` etc). 
