@@ -121,6 +121,12 @@ echo "--> building mkdocs"
 #awk < mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=0} (start==1 && $1!="nav"){print "  "$NF}' >> docs/index.rst
 #cat config/index_tail.rst >> docs/index.rst
 
+cd $base/notebooks
+for i in *md ; do
+  sed < $i 's/ipynb/md/g' > $base/docs/$i
+done
+
+cd $base
 mkdocs build -v
 cd $base/docs
 cp ../config/requirements.txt .
