@@ -10,24 +10,26 @@ See main() for example.
 '''
 
 import gdal
-from geog0111.modis import Modis
+try:
+  from geog0111.modis import Modis
+except:
+  from modis import Modis
+
 import yaml
 from pathlib import Path
-import sys
 
 def modis_annual_dataset(year,tile,product,step=1,\
-                         verbose=False,\
-                         dbfile='data/my_db.yml'):
+                         verbose=False,dbfile='data/my_db.yml'):
     # load into kwargs
     kwargs = {
+    'verbose'  : verbose,
     'tile'      :    list(tile),
     'product'   :    product,
-    'verbose'   :    verbose,
     }
     # list of doys we want
     doys = "*"
     
-    # read the database
+    # read the database
     database = Path(dbfile)
     if database.exists():
         with database.open("r") as f:
@@ -55,14 +57,7 @@ def modis_annual_dataset(year,tile,product,step=1,\
 
 
 def get_modis_annual(ifiles,sds=None,warp_args={}):
-    if 'cutlineDSName' in warp_args:
-        cutfile = Path(warp_args['cutlineDSName'])
-        if not cutfile.exists():
-            print(f"FATAL Error opening cutfile {str(cutfile)}:")
-            print("    - cannot proceed in get_modis_annual()")
-            sys.exit(1)
-    
-    # loop over SDS sets and read into dictionary
+    # loop over SDS sets and read into dictionary
     mfiles = {'bandnames':ifiles['bandnames']}
     del ifiles['bandnames']
     
@@ -80,12 +75,12 @@ def get_modis_annual(ifiles,sds=None,warp_args={}):
     return mfiles
 
 
-def modis_annual(year,tile,product,step=1,verbose=False,\
-                 sds=None,warp_args={},\
+def modis_annual(year,tile,product,step=1,\
+                 sds=None,warp_args={},verbose=False,\
                  dbfile='data/my_db.yml'):
     
-    ifiles = modis_annual_dataset(year,tile,product,verbose=verbose,\
-                         step=step,dbfile=dbfile)
+    ifiles = modis_annual_dataset(year,tile,product,\
+                         step=step,dbfile=dbfile,verbose=verbose)
     mfiles = get_modis_annual(ifiles,sds=sds,warp_args=warp_args)
     # what to do is SDS is None?
     return mfiles
@@ -101,10 +96,9 @@ def main():
   sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
   tile    = ['h17v03','h18v03','h17v04','h18v04']
   product = 'MCD15A3H'
-  year    = 2018
+  year    = 2019
   step    = 4 
-  verbose = True
-  mfiles = modis_annual(year,tile,product,verbose=verbose,step=step,sds=sds,warp_args=warp_args)
+  mfiles = modis_annual(year,tile,product,step=step,sds=sds,warp_args=warp_args)
   print(mfiles.keys())
 
 

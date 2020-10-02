@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import gdal
-from geog0111.modis_annual import modis_annual
+try:
+  from geog0111.modis_annual import modis_annual
+except:
+  from modis_annual import modis_annual
+
 import numpy as np
 
 def get_snow_data(year):
@@ -15,7 +19,7 @@ def get_snow_data(year):
       'dstNodata'     : 255,
       'format'        : 'MEM',
       'cropToCutline' : True,
-      'cutlineWhere'  : f"HUC=13010001",
+      'cutlineWhere'  : "HUC=13010001",
       'cutlineDSName' : 'data/Hydrologic_Units/HUC_Polygons.shp'
     }
     mfiles = modis_annual(year,tile,product,verbose=True,\
