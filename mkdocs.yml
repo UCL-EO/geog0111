@@ -14,21 +14,10 @@ nav:
   - Help: 003_Help.md
   - Accounts: 004_Accounts.md
   - Packages: 005_Packages.md
-  - Groups: A01_Groups.md
-  - Script: A02_Script.md
-  - Part1: A03_Part1.md
-  - Part1 Code: A03_Part1_code.md
-  - Numpy: A04_Numpy.md
-  - Lai: A05_LAI.md
-  - Part2: A06_Part2.md
   - Answers:
     - Notebook Use: 001_Notebook_use_answers.md
     - Unix: 002_Unix_answers.md
     - Help: 003_Help_answers.md
-    - Groups: A01_Groups_answers.md
-    - Script: A02_Script_answers.md
-    - Numpy: A04_Numpy_answers.md
-    - Lai: A05_LAI_answers.md
 - Core Concepts:
   - Python Introduction: 010_Python_Introduction.md
   - Python Data Types: 011_Python_data_types.md
@@ -84,8 +73,20 @@ nav:
   - Answers:
     - Models: 050_Models_answers.md
     - Phenology Model: 051_Phenology_model_answers.md
+- Assessment:
+  - Groups: 060_Groups.md
+  - Script: 061_Script.md
+  - Part1: 062_Part1.md
+  - Part1 Code: 063_Part1_code.md
+  - Numpy: 064_Numpy.md
+  - Lai: 065_LAI.md
+  - Part2: 066_Part2.md
+  - Answers:
+    - Groups: 060_Groups_answers.md
+    - Script: 061_Script_answers.md
+    - Numpy: 064_Numpy_answers.md
+    - Lai: 065_LAI_answers.md
 plugins:
-- git-revision-date-localized
 - exclude:
     glob:
     - work/*
@@ -101,7 +102,6 @@ plugins:
 repo_url: https://github.com/UCL-EO/geog0111
 site_author: Prof P. Lewis
 site_name: GEOG0111
-site_url: https://ucl-eo.github.io/geog0111
 theme:
   favicon: images/ucl.png
   name: readthedocs

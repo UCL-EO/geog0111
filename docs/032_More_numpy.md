@@ -868,7 +868,7 @@ Now, we can do element-wise operations of `a` and `b` as required, where the res
 
 ## Formative assessment
 
-To get some feedback on how you are doing, you should complete and submit the formative assessment [A04 Numpy](A04_Numpy.md).
+To get some feedback on how you are doing, you should complete and submit the formative assessment [A04 Numpy](064_Numpy.md).
 
 ### Summary
 

@@ -652,7 +652,7 @@ axs.legend(loc='upper right')
 
 ## Formative assessment
 
-To get some feedback on how you are doing, you should complete and submit the formative assessment [A05 LAI](A05_LAI.md).
+To get some feedback on how you are doing, you should complete and submit the formative assessment [A05 LAI](065_LAI.md).
 
 ## Summary
 

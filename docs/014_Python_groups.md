@@ -400,7 +400,7 @@ print(a)
 
 ## Formative assessment
 
-To get some feedback on how you are doing, you should complete and submit the formative assessment [A01 Groups](A01_Groups.md).
+To get some feedback on how you are doing, you should complete and submit the formative assessment [A01 Groups](060_Groups.md).
 
 ## Summary
 
