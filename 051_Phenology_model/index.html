@@ -238,6 +238,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -282,9 +287,9 @@
 <p>In the Nothern Hemisphere, and for temperate latitudes, there is a clear seasonal cycle in vegetation, particularly visible in leaf area index (LAI). We have seen that we have access to global LAI data over the last 20-odd years from MODIS. One of the indicators of a changing climate is a change in the pattern of vegetation dynamics. A warmer climate typically means that vegetation appears earlier in the year. </p>
 <p>We call a model that describes the phases of plant development over the year a phenology model. There are many types we could consider, some of the more useful of which are driven by environmental data such as temperature. In that way, we can try to explain how much of the variation we see can be explained by inter-annual temperature variations. A simpler 'descriptive' model that is often used is the "double logistic" curve. </p>
 <p>Mathematically, the function predicts the e.g. LAI (or some vegetation index) as</p>
-<p>$$
-y = p_0 - p_1\cdot\left[\frac{1}{1+\exp\left(p_2\cdot(t-p_3)\right)} + \frac{1}{1+\exp\left(-p_4\cdot(t-p_5)\right)} - 1\right].
-$$</p>
+<p>$$</p>
+<p>y = p_0 - p_1\cdot\left[\frac{1}{1+\exp\left(p_2\cdot(t-p_3)\right)} + \frac{1}{1+\exp\left(-p_4\cdot(t-p_5)\right)} - 1\right].</p>
+<p>$$</p>
 <p>If we inspect this form, we can see that $p_0$ and $p_1$ scale the vertical span of the function, whereas $p_3$ and $p_5$ are some sort of temporal shift, and the remaining parameters $p_2$ and $p_4$ control the slope of the two flanks. </p>
 <p>Let's access some LAI data that we have used before, and also look at the regularised data:</p>
 <pre><code class="python">from geog0111.get_lai_data import get_lai_data
@@ -325,7 +330,7 @@ axs.set_ylabel('LAI')
 axs.legend(loc='best')
 </code></pre>
 
-<pre><code>&lt;matplotlib.legend.Legend at 0x7f6810e60750&gt;
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f04897b83d0&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_5_1.png" /></p>
 <p>We can build a function for the model, provide an initial estimate at the model parameters:</p>
@@ -399,7 +404,7 @@ axs[1].set_title('p0')
 fig.colorbar(im, ax=axs[1])
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f68083f75d0&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047dd7ce10&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_13_1.png" /></p>
 <pre><code class="python">import numpy as np
@@ -520,7 +525,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-&lt;matplotlib.colorbar.Colorbar at 0x7f6806a24610&gt;
+&lt;matplotlib.colorbar.Colorbar at 0x7f047c486810&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_23_2.png" /></p>
 <p>Let's build a 2-D LUT as previously, and provide a flattened version. We have defined bounds above:</p>
@@ -624,7 +629,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-&lt;matplotlib.colorbar.Colorbar at 0x7f680697c610&gt;
+&lt;matplotlib.colorbar.Colorbar at 0x7f047c365310&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_33_2.png" /></p>
 <p>To find the parameters at the minimum value, simply follow the same approach as previously using <code>argmin</code>, but with one extra dimension. In this case, <code>rmse</code> has shape <code>(21350, 336)</code> so we apply the argmin over the parameter dimension (axis 1):</p>
@@ -671,7 +676,7 @@ axs[3].set_title(f'p5')
 fig.colorbar(im, ax=axs[3])
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f68068712d0&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047c1a2b10&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_36_1.png" /></p>
 <pre><code class="python">import matplotlib.pyplot as plt
@@ -690,7 +695,7 @@ axs[1].set_title(f'centre')
 fig.colorbar(im, ax=axs[1])
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f6806695a50&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f0477f788d0&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_37_1.png" /></p>
 <p>Now forward model:</p>
@@ -764,7 +769,7 @@ plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='best')
 </code></pre>
 
-<pre><code>&lt;matplotlib.legend.Legend at 0x7f6806550cd0&gt;
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f0477dfdf90&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_43_1.png" /></p>
 <p>Given the criteria we discussed in <a href="../050_Models/#Visualisation-of-RMSE">050_Models</a>, we can see this as quite a good stable solution: it is not close to the boundaries, and we can see the shape of the erro functiuon quite well. The error function is perhaps a little flat, but it has a good form.</p>

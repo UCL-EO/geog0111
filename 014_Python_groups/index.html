@@ -270,6 +270,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -615,10 +620,138 @@ print(a)
 <pre><code>{'one': 1, 'two': 2, 'three': 3, 'four': 4}
 </code></pre>
 <h2 id="formative-assessment">Formative assessment</h2>
-<p>To get some feedback on how you are doing, you should complete and submit the formative assessment <a href="../060_Groups/">A01 Groups</a>.</p>
+<p>To get some feedback on how you are doing, you should complete and submit the formative assessment <a href="../060_Groups/">060 Groups</a>.</p>
 <h2 id="summary">Summary</h2>
 <p>In this section, we have extended the types of data we might come across to include groups. We dealt with ordered groups of various types (<code>tuple</code>, <code>list</code>). We saw dictionaries as collections with which we refer to individual items with a key. We saw how we can use <code>zip()</code> to help load a dataset from arrays into a dictionary.</p>
 <p>You should know how to build, access and modify strings, lists, tuples and dictionaries. You should be very familiar with formatted print statements by now.</p>
+<table>
+<thead>
+<tr>
+<th>symbol</th>
+<th>description</th>
+<th>example</th>
+<th>access example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>()</code></td>
+<td><code>tuple</code>: low level group of items accessed by index. Cannot change once set</td>
+<td><code>(1,2,3)</code></td>
+<td><code>(1,2)[1]</code> -&gt; <code>[2]</code></td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td><code>list</code>: group of items accessed by index with range of methods. Can change, sort etc.</td>
+<td><code>[1,2,3]</code></td>
+<td><code>[1,2][1]</code> -&gt; <code>[2]</code></td>
+</tr>
+<tr>
+<td><code>{}</code></td>
+<td><code>dict</code>: dictionary, a group of items accessed by key</td>
+<td><code>{"a" : 1}</code></td>
+<td><code>{"a" : 1}["a"]</code> -&gt; <code>1</code></td>
+</tr>
+<tr>
+<td><code>[[],[]]</code></td>
+<td>hierarchical (multi-dimensional) list</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[{},{}]</code></td>
+<td>list of dictionaries</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>{"a":[],"b":[]}</code></td>
+<td>dictionary of lists</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>List methods:</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>description</th>
+<th>example</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list.index(i)</code></td>
+<td>find index of value <code>i</code> in <code>list</code></td>
+<td><code>[9,10,11].index(10)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>list.extend(l)</code></td>
+<td>in-place extend <code>list</code> with list <code>l</code></td>
+<td><code>x = [9,10,11]; x.extend([12,13])</code></td>
+<td><code>x</code> -&gt; <code>[9,10,11,12,13]</code></td>
+</tr>
+<tr>
+<td><code>list.append(l)</code></td>
+<td>in-place append <code>list</code> with list <code>l</code></td>
+<td><code>x = [9,10,11]; x.append([12,13])</code></td>
+<td><code>x</code> -&gt; <code>[9,10,11,[12,13]]</code></td>
+</tr>
+<tr>
+<td><code>list.sort(l)</code></td>
+<td>in-place sort <code>list</code></td>
+<td><code>x = [10,9,11]; x.sort()</code></td>
+<td><code>x</code> -&gt; <code>[9,10,11]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Dictionary methods:</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>description</th>
+<th>example</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a.keys()</code></td>
+<td>keys in dictionary <code>a</code></td>
+<td><code>d={"a":1,"b":2};d.keys()</code></td>
+<td><code>['a', 'b']</code></td>
+</tr>
+<tr>
+<td><code>a.values()</code></td>
+<td>values in dictionary <code>a</code></td>
+<td><code>d={"a":1,"b":2};d.values()</code></td>
+<td><code>[1, 2]</code></td>
+</tr>
+<tr>
+<td><code>a.items()</code></td>
+<td>items <code>(key,value)</code> in dictionary <code>a</code></td>
+<td><code>d={"a":1,"b":2};d.items()</code></td>
+<td><code>[('a', 1), ('b', 2)])</code></td>
+</tr>
+<tr>
+<td><code>dict(zip(a,b))</code></td>
+<td>form a dictionary from keys in list <code>a</code> and items in list <code>b</code></td>
+<td><code>dict(zip(["a","b"],[1,2]))</code></td>
+<td><code>{'a': 1, 'b': 2}</code></td>
+</tr>
+<tr>
+<td><code>a.update(d)</code></td>
+<td>update dictionary <code>a</code> with dictionary <code>d</code></td>
+<td><code>a={"a":1};d={"b":2};a.update(d)</code></td>
+<td><code>a</code> -&gt; <code>{'a': 1, 'b': 2}</code></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

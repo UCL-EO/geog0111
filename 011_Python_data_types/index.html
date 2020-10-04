@@ -296,6 +296,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -702,7 +707,7 @@ False and False is False
 </ul>
 <p>If you are unsure, or to check your answers, test the response using code, below.</p>
 <h2 id="conversion-between-data-types">Conversion between data types</h2>
-<p>You can explicitly convert between data types <strong>where this makes sense</strong> using:</p>
+<p>You can explicitly convert between ('cast') data types <strong>where this makes sense</strong> using:</p>
 <pre><code>int()
 float()
 str()
@@ -745,19 +750,154 @@ bool_number True &lt;class 'bool'&gt;
 </ul>
 <h2 id="summary">Summary</h2>
 <p>In this section, we have been introduced to the core data types in Python:</p>
-<pre><code>int
-float
-str
-bool
-</code></pre>
-<p>and how to convert between then, where this is feasible:</p>
-<pre><code>int()
-float()
-str()
-bool()
-</code></pre>
-<p>We have also learned the <code>type()</code> function to return the data type, and <code>len()</code> to find the length of a string.</p>
-<p>We should also know how to do logical combinations of boolean variables, and visualise this with truth tables.</p>
+<table>
+<thead>
+<tr>
+<th>core data types</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>x = 10</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>x = 10.0</code></td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td><code>x = "hello world"</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>x = False</code></td>
+</tr>
+</tbody>
+</table>
+<p>and how to convert ('cast') between then, where this is feasible:</p>
+<table>
+<thead>
+<tr>
+<th>cast functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int()</code></td>
+</tr>
+<tr>
+<td><code>float()</code></td>
+</tr>
+<tr>
+<td><code>str()</code></td>
+</tr>
+<tr>
+<td><code>bool()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Other functions:</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type(v)</code></td>
+<td>data type of object <code>v</code></td>
+</tr>
+<tr>
+<td><code>len(v)</code></td>
+<td>length of object <code>v</code> (e.g. <code>str</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>We have learned truth tables to list logical operations:</p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">A and B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">A or B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">not A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

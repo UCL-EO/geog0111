@@ -112,9 +112,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#editing-a-file">Editing a file</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#from-jupyterlab">From JupyterLab</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#jupyter-notebook">Jupyter notebook</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#from-jupyterlab">From JupyterLab</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#use-a-text-editor">Use a text editor</a>
     </li>
@@ -127,6 +127,8 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#adding-command-line-arguments">Adding command line arguments</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#formative-assessment">Formative assessment</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
     </li>
@@ -266,6 +268,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -341,7 +348,7 @@
 <pre><code class="python">!ls -l geog0111/helloWorld.py
 </code></pre>
 
-<pre><code>-rwxr-xr-x 1 ucfalew ucfa 514 Sep 21 13:29 geog0111/helloWorld.py
+<pre><code>-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py
 </code></pre>
 <p>The first field gives us the file permissions:</p>
 <pre><code>-rwxr-xr-x
@@ -352,7 +359,7 @@ chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 </code></pre>
 
-<pre><code>-rwxr-xr-x 1 ucfalew ucfa 514 Sep 21 13:29 geog0111/helloWorld.py
+<pre><code>-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py
 </code></pre>
 <h3 id="running-python-code-from-python">Running Python code from Python</h3>
 <p>We can also run the Python code contained in <a href="../geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a> from a <code>notebook</code> cell using <code>%run</code> (or from an <code>ipython</code> prompt using just <code>run</code>):</p>
@@ -487,6 +494,14 @@ geog0111/helloWorld.py
 </code></pre>
 <h2 id="editing-a-file">Editing a file</h2>
 <p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. There are several ways you can do this, depending on how you are using these notebooks.</p>
+<h3 id="jupyter-notebook">Jupyter notebook</h3>
+<p>If you are in the GEOG0111 class, you will most likely be using the notebook server. In this case, follow these instructions:</p>
+<p>You can open a text editor from a Jupyter notebook server from the menu on the right hand side of the Jupyter homepage window:</p>
+<p><img alt="" src="../images/te.png" /></p>
+<p>You can change file permissions using a command similar to that above (here, set for execute):</p>
+<pre><code>    from pathlib import Path
+    Path(MYFILE).chmod(int('755', base=8))
+</code></pre>
 <h3 id="from-jupyterlab">From JupyterLab</h3>
 <p>If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:</p>
 <p><img alt="JupyterLab tools" src="../images/jl.png" /></p>
@@ -497,11 +512,8 @@ geog0111/helloWorld.py
 <pre><code>chmod 755 work/test.py
 </code></pre>
 <p><img alt="JupyterLab terminal" src="../images/term.png" /></p>
-<h3 id="jupyter-notebook">Jupyter notebook</h3>
-<p>You can open a text editor from a Jupyter notebook server from the menu on the right hand side of the window:</p>
-<p><img alt="" src="../images/te.png" /></p>
 <h3 id="use-a-text-editor">Use a text editor</h3>
-<p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. Ideally, you should learn to do this outside of the notebook: invoke a text editor on your computer, put your Python code into the file, and save it to the desired location.</p>
+<p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. </p>
 <h3 id="create-in-bash">Create in bash</h3>
 <p>We can simply create a file in a bash script by following the example below:</p>
 <pre><code class="bash">%%bash
@@ -679,7 +691,7 @@ chmod 755 work/hello.py
 print(sys.argv)
 </code></pre>
 
-<pre><code>['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-0b59f88f-3901-4e76-bd87-7331f3b34bef.json']
+<pre><code>['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-e33d6fdd-6ccd-46e9-bea1-1f53f69bf1eb.json']
 </code></pre>
 <p>Running from the notebook, we get to see the full command that is run when we launch this notebook. Since <code>sys</code> is a package, we first import it:</p>
 <pre><code>import sys
@@ -708,6 +720,8 @@ chmod 755 work/test.py
 <pre><code>work/test.py Hermione
 </code></pre>
 <p>means that <code>sys.argv</code> inside the script contains the liust <code>['work/test.py', 'Hermione']</code>.</p>
+<h2 id="formative-assessment">Formative assessment</h2>
+<p>To get some feedback on how you are doing, you should complete and submit the formative assessment <a href="../061_Script/">061 Script</a>.</p>
 <h2 id="summary">Summary</h2>
 <p>In this session, we have learned the usual form of a Python script, including the <code>#! /usr/bin/env python</code>  on the first line of the file to call the Python interpreter. We have seen how to include document strings telling any user how to use the codes we develop, and well as providing lots of comments with <code>#</code> lines to describe what we are doing in the code, and why. We have seen that a Python script will typically finish with something along the lines of:</p>
 <pre><code>def main(args):

@@ -84,7 +84,6 @@ else
   echo "--> done cloning geog0111"
 fi 
 
-exit 0
 cd ~/geog0111
 echo "--> conda setup"
 conda init bash

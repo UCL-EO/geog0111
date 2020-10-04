@@ -272,6 +272,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -540,7 +545,7 @@ with json_file.open('w') as f:
 </ul>
 <h3 id="reading-data-into-pandas">Reading data into <code>pandas</code></h3>
 <p>The Python package <code>pandas</code> is widely-used to read and manipulate data in tabular or similar form. One of the most common tabular data formats is <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>.</p>
-<p>An interesting CSV-format dataset is that containing the <a href="https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv">successive pulses</a> of the oscillation signal coming from the <a href="https://www.joydivisionofficial.com/reimagined/">Pulsar PSR B1919+21</a> discovered by <a href="https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell">Jocelyn Bell</a> in 1967.</p>
+<p>An interesting CSV-format dataset is that containing the <a href="https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv">successive pulses</a> of the oscillation signal coming from the <a href="https://www.joydivisionofficial.com/reimagined/">Pulsar PSR B1919+21</a> discovered by <a href="https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell">Jocelyn Bell</a> in 1967. Some of you might also recognise it from  a <a href="https://en.wikipedia.org/wiki/Unknown_Pleasures">famous album cover</a></p>
 <p><img alt="Joy Division" src="../images/small_unknown_pleasures.png" /></p>
 <p><a href="https://raw.githubusercontent.com/igorol/unknown_pleasures_plot/master/pulsar.csv">By inspection</a> we can see the data are 80 lines of 300 columns of data. The data format is simple, with no missing values or metadata. We can straightforwardly use the <code>pandas</code> function <code>pd.read_csv</code>, specifying the URL, to read this dataset (specifying only <code>header=None</code> so that the first line is not interpreted as data column names).</p>
 <pre><code class="python">import pandas as pd

@@ -296,6 +296,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -572,8 +577,12 @@ file 7 is bin/init.sh
 file 8 is bin/howmany.sh
 file 9 is bin/sort-db.sh
 file 10 is bin/database.sh
-file 11 is bin/tidy.sh
-file 12 is bin/mv_vrt.sh
+file 11 is bin/init0111.sh
+file 12 is bin/tidy.sh
+file 13 is bin/mv_vrt.sh
+file 14 is bin/clean0111.sh
+file 15 is bin/get_datasets.sh
+file 16 is bin/fixA.sh
 </code></pre>
 <p>The advantage of a generator is that it will generally need less memory than fully calculating all items in a list. Once we move on to the next item in the generator, any memory used by current item is freed.</p>
 <p>But is the size of objects is small, you will not notice much impact if you convert the generator to a list. </p>
@@ -581,7 +590,7 @@ file 12 is bin/mv_vrt.sh
 print(filenames)
 </code></pre>
 
-<pre><code>[PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh')]
+<pre><code>[PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/get_datasets.sh'), PosixPath('bin/fixA.sh')]
 </code></pre>
 <p>Let's use <code>glob</code> now to get the file permissions of each file <code>n*</code> in the directory <code>bin</code>:</p>
 <pre><code class="python"># use glob to get a list of filenames in the directory bin 
@@ -821,19 +830,18 @@ for u in hdf_urls:
 <pre><code>https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
 
 
---&gt; retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
---&gt; got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+--&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
---&gt; retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
---&gt; got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+--&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
---&gt; retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01 from database
---&gt; got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+--&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
 --&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
---&gt; reading init file /home/ucfalew/.url_db/init.yml
 </code></pre>
 <p>This is extremely useful for dataset discovery.</p>
 <h4 id="exercise-5">Exercise 5</h4>

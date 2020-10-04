@@ -276,6 +276,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -332,6 +337,8 @@
 <pre><code class="python">!pwd
 </code></pre>
 
+<pre><code>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+</code></pre>
 <p>or by using the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code>%%bash</code>:</p>
 <pre><code class="bash">%%bash
 
@@ -394,7 +401,7 @@ cd ~/geog0111
 ls -lh README.md
 </code></pre>
 
-<pre><code>-rw-r--r-- 1 ucfalew ucfa 3.4K Sep 21 13:29 README.md
+<pre><code>-rw-r--r-- 1 ucfalew ucfa 3.7K Oct  2 18:42 README.md
 </code></pre>
 <p>Here, the file size if <code>321B</code> (321 Bytes), and the file is owned by the user <code>plewis</code>. The field <code>-rw-r--r--</code> provides information on file permissions. Ignoring the first <code>-</code>, it is in 3 sets of 3 bits:</p>
 <pre><code>rw-  r--  r--
@@ -451,20 +458,24 @@ EOF
 </code></pre>
 
 <pre><code>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-lrwxrwxrwx 1 ucfalew ucfa    7 Sep 26 17:20 bin/copy -&gt; ../copy
+-rwxr-xr-x 1 ucfalew ucfa  124 Oct  3 17:48 bin/clean0111.sh
+lrwxrwxrwx 1 ucfalew ucfa    7 Oct  2 18:58 bin/copy -&gt; ../copy
 -rwxr-xr-x 1 ucfalew ucfa   43 Sep 26 19:19 bin/database.sh
 -rwxr-xr-x 1 ucfalew ucfa  217 Sep 21 13:29 bin/docker-build
 -rwxr-xr-x 1 ucfalew ucfa  428 Sep 21 13:29 bin/docker-killall
 -rwxr-xr-x 1 ucfalew ucfa 1022 Sep 21 13:29 bin/docker-run
+-rwxr-xr-x 1 ucfalew ucfa  534 Oct  2 18:42 bin/fixA.sh
+-rwxr-xr-x 1 ucfalew ucfa  117 Oct  2 16:47 bin/get_datasets.sh
 -rwxr-xr-x 1 ucfalew ucfa  569 Sep 21 13:29 bin/git-remove-all.sh
 -rw-rw-r-- 1 ucfalew ucfa  257 Sep 25 17:56 bin/howmany.sh
--rwxr-xr-x 1 ucfalew ucfa 1.7K Sep 25 17:50 bin/init.sh
--rwxr-xr-x 1 ucfalew ucfa 3.1K Sep 24 09:51 bin/link-set.sh
+-rwxr-xr-x 1 ucfalew ucfa 2.7K Oct  3 17:48 bin/init0111.sh
+-rwxr-xr-x 1 ucfalew ucfa 1.8K Sep 27 22:28 bin/init.sh
+-rwxr-xr-x 1 ucfalew ucfa 3.1K Oct  2 17:57 bin/link-set.sh
 -rwxr-xr-x 1 ucfalew ucfa  855 Sep 27 00:38 bin/mv_vrt.sh
--rwxr-xr-x 1 ucfalew ucfa 4.0K Sep 21 13:29 bin/notebook-mkdocs.sh
+-rwxr-xr-x 1 ucfalew ucfa 4.1K Oct  2 18:13 bin/notebook-mkdocs.sh
 -rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 21 13:29 bin/notebook-run.sh
--rwxr-xr-x 1 ucfalew ucfa 1.5K Sep 23 21:28 bin/postBuild
--rwxr-xr-x 1 ucfalew ucfa   44 Sep 23 21:54 bin/pullYou
+-rwxr-xr-x 1 ucfalew ucfa 1.5K Oct  3 17:34 bin/postBuild
+-rwxr-xr-x 1 ucfalew ucfa   44 Sep 28 10:06 bin/pullYou
 -rwxr-xr-x 1 ucfalew ucfa  100 Sep 23 21:54 bin/pushMe
 -rw-r--r-- 1 ucfalew ucfa   16 Sep 21 13:29 bin/README
 -rw-r--r-- 1 ucfalew ucfa  271 Sep 23 21:54 bin/set-course.sh
@@ -496,8 +507,8 @@ ls -lh ../README.md
 chmod 644 ../README.md
 </code></pre>
 
-<pre><code>-rw-r--r-- 1 ucfalew ucfa 3.4K Sep 21 13:29 ../README.md
--rwxr-xr-x 1 ucfalew ucfa 3.4K Sep 21 13:29 ../README.md
+<pre><code>-rw-r--r-- 1 ucfalew ucfa 3.7K Oct  2 18:42 ../README.md
+-rwxr-xr-x 1 ucfalew ucfa 3.7K Oct  2 18:42 ../README.md
 </code></pre>
 <p>First the permissions of the file are 644 as we saw above, then we use <code>chmod 755</code> to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:</p>
 <pre><code>chmod 755 filename
@@ -508,14 +519,14 @@ chmod 644 ../README.md
 ls -l ~/geog0111/README.md
 </code></pre>
 
-<pre><code>-rw-r--r-- 1 ucfalew ucfa 3390 Sep 21 13:29 /home/ucfalew/geog0111/README.md
+<pre><code>-rw-r--r-- 1 ucfalew ucfa 3749 Oct  2 18:42 /home/ucfalew/geog0111/README.md
 </code></pre>
 <p>A <em>relative pathname</em> is one that does not start with <code>/</code>  or <code>~</code>. It is specified relative to where we are in the filesystem in the current shell. For example:</p>
 <pre><code class="bash">%%bash
 ls -l ../README.md
 </code></pre>
 
-<pre><code>-rw-r--r-- 1 ucfalew ucfa 3390 Sep 21 13:29 ../README.md
+<pre><code>-rw-r--r-- 1 ucfalew ucfa 3749 Oct  2 18:42 ../README.md
 </code></pre>
 <p>Recall that we use <code>..</code> to specify 'up one level'. Then:</p>
 <pre><code class="bash">%%bash
@@ -556,7 +567,7 @@ EOF
 ls -lh work/n*
 </code></pre>
 
-<pre><code>-rw-r--r-- 1 ucfalew ucfa 73 Sep 27 20:44 work/newererfile.dat
+<pre><code>-rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newererfile.dat
 </code></pre>
 <p>We can also use <code>cat</code> to see what is in a file:</p>
 <pre><code class="bash">%%bash

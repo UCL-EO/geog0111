@@ -187,7 +187,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#smooth">Smooth</a>
+    <li class="toctree-l3"><a class="reference internal" href="#smoothing_1">Smoothing</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#exercise-2">Exercise 2</a>
     </li>
@@ -262,6 +262,11 @@
                 <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
                 </li>
     </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
                     </li>
                 </ul>
       </div>
@@ -381,8 +386,8 @@ Text(0, 0.5, 'LAI')
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_6_2.png" /></p>
 <p>The LAI data, that we expect to be smoothly varying in time, has unrealistic high frequency variations (it goes up and down too much). It also has data missing for some days (e.g. when too cloudy), and is often, in the winter, highly uncertain.</p>
 <p>Despite that, we can 'see' that there should be a smoothly varying function that can go through those data points quite well. This is what we want to achieve with our regularisation.</p>
-<h3 id="smooth">Smooth</h3>
-<p>We can generate a Gaussian filter for our smoothing. The width of the filter, that in turn controls the degree of smoothing, is set by the parameter <code>sigma</code>. We will use a value of <code>5</code> here, but you should <em>not</em> assume that that will always be appropriate. We will discuss how to experiment with this later in this session.</p>
+<h3 id="smoothing_1">Smoothing</h3>
+<p>We can generate a Gaussian filter for our smoothing. The width of the filter, that in turn controls the degree of smoothing, is set by the parameter <code>sigma</code>. Recall the impact of the filter width from the <a href="../042_Weighted_smoothing_and_interpolation/#Filter-width-and-degree-of-smoothing">material in the previous session</a>. We will use a value of <code>5</code> here, but you should <em>not</em> assume that that will always be appropriate. We will discuss how to experiment with this later in this session.</p>
 <pre><code class="python">import scipy
 import scipy.ndimage.filters
 
@@ -395,10 +400,10 @@ gaussian = np.exp((-(x/sigma)**2)/2.0)
 plt.plot(x,gaussian)
 </code></pre>
 
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x7fd8fcfb1150&gt;]
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x7fba6be4e7d0&gt;]
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_8_1.png" /></p>
-<p>And now we perform the weighted regularisation by convolution.</p>
+<p>We now perform the weighted regularisation by convolution.</p>
 <pre><code class="python">numerator = scipy.ndimage.filters.convolve1d(lai * weight, gaussian, axis=0,mode='wrap')
 denominator = scipy.ndimage.filters.convolve1d(weight, gaussian, axis=0,mode='wrap')
 
@@ -427,7 +432,7 @@ axs.set_ylabel('LAI')
 axs.legend(loc='best')
 </code></pre>
 
-<pre><code>&lt;matplotlib.legend.Legend at 0x7fd8fcf26f10&gt;
+<pre><code>&lt;matplotlib.legend.Legend at 0x7fba639eaf90&gt;
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_12_1.png" /></p>
 <pre><code class="python"># Plot the interpolated_lai
@@ -707,7 +712,7 @@ plt.legend(handles=patches,
           facecolor=&quot;white&quot;)
 </code></pre>
 
-<pre><code>&lt;matplotlib.legend.Legend at 0x7fd8f245f350&gt;
+<pre><code>&lt;matplotlib.legend.Legend at 0x7fba5d278a90&gt;
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_26_1.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>
@@ -793,11 +798,11 @@ axs.set_xlim(0,365)
 axs.legend(loc='upper right')
 </code></pre>
 
-<pre><code>&lt;matplotlib.legend.Legend at 0x7fd8f29baa50&gt;
+<pre><code>&lt;matplotlib.legend.Legend at 0x7fba5ce1cf90&gt;
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_34_1.png" /></p>
 <h2 id="formative-assessment">Formative assessment</h2>
-<p>To get some feedback on how you are doing, you should complete and submit the formative assessment <a href="../065_LAI/">A05 LAI</a>.</p>
+<p>To get some feedback on how you are doing, you should complete and submit the formative assessment <a href="../065_LAI/">065 LAI</a>.</p>
 <h2 id="summary">Summary</h2>
 <p>From this session, you should be able to acquire a MODIS timeseries dataset and associated land cover map. You should be able to treat the data, so that by defining a weight for weach observation, you can produce a regularised (smoothed, interpolated) dataset from original noisy observations. In this case, we used variable weighting, according to an uncertainty measure, but if that is not available, you can simply use a weight of 1 for a valid observation and 0 when there is no valid value. </p>
 <p>You should then be able to calculate statistics from the data. You should be capable of doing this for any MODIS geophysical variable, and also of developing functiuons that bring some of these ideas together into more compact, reusable code.</p>

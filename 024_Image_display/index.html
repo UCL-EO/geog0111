@@ -260,6 +260,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -381,12 +386,12 @@ axs[0].set_title(k)
 fig.colorbar(im, ax=axs[0])
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f7ddf932f90&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fd01f4cead0&gt;
 </code></pre>
 <p><img alt="png" src="../024_Image_display_files/024_Image_display_5_1.png" /></p>
 <h4 id="exercise-1">Exercise 1</h4>
 <ul>
-<li>Plots the first datasets in <code>data_MCD15A3H</code> as subplots in a 2 x 2 shape.</li>
+<li>Plot the first datasets in <code>data_MCD15A3H</code> as subplots in a 2 x 2 shape.</li>
 </ul>
 <p>Hint: Use a loop for the keys of <code>data_MCD15A3H</code>. Set up the 2 x 2 subplots with:</p>
 <pre><code>fig, axs = plt.subplots(2,2,figsize=(x_size,y_size))
@@ -655,7 +660,7 @@ plt.legend(handles=patches,
           facecolor=&quot;white&quot;)
 </code></pre>
 
-<pre><code>&lt;matplotlib.legend.Legend at 0x7f7dd4d5dbd0&gt;
+<pre><code>&lt;matplotlib.legend.Legend at 0x7fd0292f6c10&gt;
 </code></pre>
 <p><img alt="png" src="../024_Image_display_files/024_Image_display_17_1.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>

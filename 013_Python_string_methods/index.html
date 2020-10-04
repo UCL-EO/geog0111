@@ -280,6 +280,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -998,10 +1003,6 @@ skip  = 1
 print (s[start:stop:skip])
 </code></pre>
 
-<pre><code>Hello World 11
-HloWrd
-rld
-</code></pre>
 <h4 id="exercise-5">Exercise 5</h4>
 <p>The example above allows us to access an individual character(s) of the array.</p>
 <ul>
@@ -1012,6 +1013,36 @@ rld
 <h2 id="summary">Summary</h2>
 <p>In this section, we have introduced some more detail on string, especially string methods. There are many more methods you can use, but we have tried to cover the main ones here, but there are many <a href="https://www.w3schools.com/python/python_strings.asp#:~:text=Strings%20are%20Arrays,access%20elements%20of%20the%20string.">resources</a> you can use to follow up.</p>
 <p>You should know how to make a single line or multi-line string. You  should know how to use <code>replace</code>, <code>strip</code>, <code>split</code> and <code>join</code> on a string, as well as use concepts of indexing a string array and using ideas of <code>slice</code>. You should recognise the <code>None</code> character. You shouyld know how to find information on how to use other string methods.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>str.replace(a,b)</code></td>
+<td>replace occurrences of <code>a</code> with <code>b</code> in <code>str</code></td>
+</tr>
+<tr>
+<td><code>str.strip(a)</code></td>
+<td>strip off any occurrences of <code>a</code> on left or right ends of <code>str</code> (also <code>lstrip</code>,<code>rstrip</code>)</td>
+</tr>
+<tr>
+<td><code>str.split(a)</code></td>
+<td>split <code>str</code> into list, using <code>a</code> as the separator, e.g. <code>"1:2".split(":")</code> -&gt; <code>["1","2"]</code></td>
+</tr>
+<tr>
+<td><code>a.join(l)</code></td>
+<td>join the string items in list <code>l</code> into a string with <code>a</code> as the separator, e.g. <code>"x".join(["1","2"])</code> -&gt; <code>"1x2"</code></td>
+</tr>
+<tr>
+<td><code>str[start:stop:step]</code></td>
+<td>slice <code>str</code> and return characters <code>start</code> to (but not including) <code>stop</code> skipping <code>step</code> values, e.g. <code>"hello"[1:2]</code> -&gt; <code>e</code></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

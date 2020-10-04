@@ -262,6 +262,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -670,11 +675,14 @@ step    = 4
 
 mfiles = modis_annual(year,tile,product,sds=sds,step=step,warp_args=warp_args)
 
-print(mfiles.keys())
-
+print(f'dataset keys : {mfiles.keys()}')
+print(f'dataset shape: {mfiles[&quot;Lai_500m&quot;].shape}')
+print(f'dataset size : {mfiles[&quot;Lai_500m&quot;].size/(1024**2): .2f} MB')
 </code></pre>
 
-<pre><code>dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
+<pre><code>dataset keys : dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
+dataset shape: (92, 175, 122)
+dataset size :  1.87 MB
 </code></pre>
 <pre><code class="python"># scale
 mfiles['Lai_500m'] = mfiles['Lai_500m'] * 0.1
@@ -794,12 +802,12 @@ for i in range(shape[0]):
 <pre><code>error = np.zeros_like(weight)
 </code></pre>
 <p>and then only do the division for the mask <code>weight&gt;0</code>:</p>
-<pre><code>error[weight&gt;0] = np.sqrt(1./(weight[weight&gt;0] )) * 1.97
+<pre><code>error[weight&gt;0] = np.sqrt(1./(weight[weight&gt;0] )) * 1.96
 </code></pre>
 <pre><code class="python">import matplotlib.pyplot as plt
 
 error = np.zeros_like(weight)
-error[weight&gt;0] = np.sqrt(1./(weight[weight&gt;0] )) * 1.97
+error[weight&gt;0] = np.sqrt(1./(weight[weight&gt;0] )) * 1.96
 
 doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
 p0,p1 = (107,72)
@@ -839,7 +847,7 @@ fips : country fips code (e.g. BE for Belgium)
 <p>Hint: You may find it useful to use <code>geog0111.modis_annual</code></p>
 <h2 id="summary">Summary</h2>
 <p>We now know how to combine geospatial data in both space and time VRT files using <code>gdal</code>. Remember that we can also do such things using <code>numpy</code>, but if we are able to keep the geospatial information and other metadata in a <code>gdal</code> file, so much the better. We have seen how to write the dataset to a portable file format such as GeoTiff.</p>
-<p>We have seen that some datasets such as the MODIS LAI product come with a per-pixel estimate of uncertainty. We have investigated this data field and used it to provide a weighting to associate with the reliability of each pixel. We have written a function <code>modis_annual</code> that uses a yaml database to see if it needs to reconstruct a large annual datafile.</p>
+<p>We have seen that some datasets such as the MODIS LAI product come with a per-pixel estimate of uncertainty. We have investigated this data field and used it to provide a weighting to associate with the reliability of each pixel. We have seen how to generate, filter, and process 3D spatio-temporal datasets. The examples here </p>
               
             </div>
           </div>

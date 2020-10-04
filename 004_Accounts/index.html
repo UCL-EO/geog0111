@@ -71,6 +71,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#reset-password">Reset password</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
@@ -240,6 +242,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -314,7 +321,7 @@ help(Cylog.login)
 
 <pre><code>Help on function login in module geog0111.cylog:
 
-login(self, site=False, force=False)
+login(self, site=None, force=False)
     Reads encrypted information from ~/{dest_path}/.cylog.npz
 
     Keyword arguments
@@ -332,9 +339,33 @@ login(self, site=False, force=False)
 <p>You should be aware that the NASA servers this connects you to go down for maintenance on Wednesdays. You can ping the servers with the follwoing code:</p>
 <p>If this fails, you may have entered your account information incorrectly for <code>https://e4ftl01.cr.usgs.gov</code> (or it could just be Wednesday, in which case, don't run this again).</p>
 <p>If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:</p>
-<pre><code>cy = cylog(site,force=True)
+<pre><code>cy = Cylog(sites,force=True)
 </code></pre>
 <p>and re-run.</p>
+<h2 id="summary">Summary</h2>
+<p>This short notebook is intended to let you store your NASA Earthdata login to make later calls to collect NASA data more straightforward. We have used code from the local class <code>Cylog</code> from <code>geog0111.cylog</code>, and seen how to setl, reset and test our login.</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>l = Cylog(sites); test = l.login()</code></td>
+<td>set / run login for list of URLs <code>sites</code></td>
+</tr>
+<tr>
+<td><code>cy = Cylog(sites,force=True); test = l.login()</code></td>
+<td>reset / run login for list of URLs <code>sites</code></td>
+</tr>
+<tr>
+<td><code>test_login(True)</code></td>
+<td>test the login by pulling a dataset from the NASA site</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

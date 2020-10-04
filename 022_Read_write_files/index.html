@@ -266,6 +266,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -432,7 +437,8 @@ assert data_url == data_file
 print('files are the same')
 </code></pre>
 
-<pre><code>--&gt; trying https://www.json.org/json-en.html
+<pre><code>--&gt; deleting existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/www.json.org/json-en.html.store
+--&gt; trying https://www.json.org/json-en.html
 
 
 files are the same
@@ -460,19 +466,18 @@ url = modis.get_url(year=&quot;2020&quot;,month=&quot;01&quot;,day=&quot;01&quot
 --&gt; ['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m']
 --&gt; product MCD15A3H -&gt; code MOTA
 --&gt; getting database from command line
---&gt; retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
---&gt; got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+--&gt; keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
+--&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
---&gt; retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
---&gt; got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
+--&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
---&gt; retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01 from database
---&gt; got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+--&gt; keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+--&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern 2020.01.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+--&gt; keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H*.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
---&gt; reading init file /home/ucfalew/.url_db/init.yml
 </code></pre>
 <p>We can access the binary data with <code>url.read_bytes()</code>, although we would normally want to use some package such as <a href="https://gdal.org/"><code>gdal</code></a> to interpret the data. </p>
 <p>Cached data will be used where available unless we set <code>noclobber=False</code>.</p>
@@ -481,13 +486,8 @@ print(f'data for {url} cached in {url.local()}')
 print(f'dataset is {len(b)} bytes')
 </code></pre>
 
-<pre><code>--&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
---&gt; code 401
---&gt; trying another
---&gt; getting login
---&gt; logging in to https://e4ftl01.cr.usgs.gov/
---&gt; data read from https://e4ftl01.cr.usgs.gov/
---&gt; code 200
+<pre><code>--&gt; retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
+--&gt; local file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
 --&gt; updated cache database in /shared/groups/jrole001/geog0111/work/database.db
 
 
@@ -495,7 +495,6 @@ data for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020
 dataset is 9067184 bytes
 
 
---&gt; retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
 --&gt; local file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
 </code></pre>
 <p>We could explicitly write the data to a file, but since we are using a cache, there is no real point. This means that we can just use the URL to access the dataset. If we do need to specify the filename explicitly for any other codes, we can use <code>url.local()</code>.</p>

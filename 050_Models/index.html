@@ -254,6 +254,11 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -399,7 +404,7 @@ rmse = np.sqrt(np.mean(error2))
 print(f'RMSE: {rmse} for parameters {p}')
 </code></pre>
 
-<pre><code>RMSE: 3.89127879506191 for parameters [3.e-01 1.e-04]
+<pre><code>RMSE: 4.118554746101607 for parameters [3.e-01 1.e-04]
 </code></pre>
 <pre><code class="python"># plot
 fig, axs = plt.subplots(1,1,figsize=(10,3))
@@ -439,7 +444,7 @@ axs.set_xlabel(f'measurement')
 axs.plot([0,maxvalue],[0,maxvalue],'k')
 </code></pre>
 
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x7fcc6892b050&gt;]
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x7ff6b6709f90&gt;]
 </code></pre>
 <p><img alt="png" src="../050_Models_files/050_Models_20_1.png" /></p>
 <h3 id="varying-the-parameters">Varying the parameters</h3>
@@ -566,7 +571,7 @@ print(f'min rmse\n{min_rmse}')
 
 <pre><code>rmse shape (132,)
 min rmse
-0.9572456122482587
+0.9064999558594992
 </code></pre>
 <p>Following the material in <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index">032</a> we use <code>argmin</code> to find the parameter index of minimum RMSE:</p>
 <pre><code class="python"># use np.argmin to find the minimum
@@ -576,8 +581,8 @@ print(f'1D index of minimum  : {imin}')
 print(f'parameter at minimum : {p0min},{p1min}')
 </code></pre>
 
-<pre><code>1D index of minimum  : 5
-parameter at minimum : 0.0,0.0005
+<pre><code>1D index of minimum  : 17
+parameter at minimum : 1.0,0.0005
 </code></pre>
 <p>To convert the index back to the unflattened array, we can use <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index"><code>np.unravel_index</code></a> as before:</p>
 <pre><code class="python">ip0min,ip1min = np.unravel_index(imin,p0.shape)
@@ -588,8 +593,8 @@ p1min = p1[ip0min,ip1min]
 print(f'parameter at minimum : {p0min},{p1min}')
 </code></pre>
 
-<pre><code>2D index of minimum point: 0, 5
-parameter at minimum : 0.0,0.0005
+<pre><code>2D index of minimum point: 1, 5
+parameter at minimum : 1.0,0.0005
 </code></pre>
 <p>Of the 11 x 12  combinations of parameters we examined, the parameters <code>[1.0,0.0005]</code> provide the best fit to the data. We had generated the 'measurements' with:</p>
 <pre><code>p0 = np.array([0.6,0.0005])
@@ -633,7 +638,7 @@ plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='lower right')
 </code></pre>
 
-<pre><code>&lt;matplotlib.legend.Legend at 0x7fcc687a4dd0&gt;
+<pre><code>&lt;matplotlib.legend.Legend at 0x7ff6b6593dd0&gt;
 </code></pre>
 <p><img alt="png" src="../050_Models_files/050_Models_48_1.png" /></p>
 <p>It is useful to look at such plots because we can use them to gauge  the uncertainty in the parameter solution. In this case, we see that the error surface is long and narrow in parameter 1. So even though we have reported the optimal value as 1.0, it could vary considerably and not change the RMSE value considerably. This is an important part of the interpretation of our results, and helps explain why we solved for a parameter value of 1.0 even though we fed the measurements with a value of 0.6.</p>
@@ -666,7 +671,7 @@ print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 </code></pre>
 
-<pre><code>[0.     0.0005]
+<pre><code>[1.e+00 5.e-04]
 measurements: tmdriver shape (92,)
 model output: tdriver shape  (365,)
 </code></pre>
