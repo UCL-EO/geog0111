@@ -1,0 +1,41 @@
+#!/bin/bash 
+
+NAME=$0
+image=ucleo/geog0111
+PWD=$(pwd)
+echo "--> running $0 from $PWD"
+
+# if not in repo, then use PWD for mounting
+# otherwise try OneDrive
+#declare -a LOOKS=( ${PWD} ${HOME}/OneDrive*)
+#for val in "${LOOKS[@]}"; do
+#   echo "${NAME}: examining ${val}"
+#   if [ -d "${val}" ]
+#   then
+#     MOUNT="${val}"
+#     break
+#   fi 
+#done
+MOUNT="$(pwd)"
+echo "--> mount $MOUNT"
+
+# check for an existing container
+IMAGE_NAME=$(docker ps -l | grep Exited | grep $image | head -1 | awk '{print $NF}')
+
+if [ -z "$IMAGE_NAME" ]
+then
+  echo "--> ${NAME}: no existing docker image found"
+  if [ -z "$MOUNT" ]
+  then
+    echo "--> ${NAME}: running docker with no mount"
+    docker run -p 8888:8888 -it $image
+  else
+    echo "--> ${NAME}: running docker with ${MOUNT} as /home/jovyan/notebooks/work"
+    docker run -p 8888:8888 -v "${MOUNT}":/home/jovyan/notebooks/work -it $image 
+  fi
+else
+  echo "--> ${NAME}: using docker image $IMAGE_NAME"
+  docker start -a -i $IMAGE_NAME  
+fi
+echo "--> done running $0 from $PWD"
+
