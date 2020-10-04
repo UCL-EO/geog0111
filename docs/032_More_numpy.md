@@ -499,7 +499,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7fa5ae3a6690>
+    <matplotlib.colorbar.Colorbar at 0x7f3260dcad10>
 
 
 
@@ -868,7 +868,7 @@ Now, we can do element-wise operations of `a` and `b` as required, where the res
 
 ## Formative assessment
 
-To get some feedback on how you are doing, you should complete and submit the formative assessment [A04 Numpy](064_Numpy.md).
+To get some feedback on how you are doing, you should complete and submit the formative assessment [064 Numpy](064_Numpy.md).
 
 ### Summary
 

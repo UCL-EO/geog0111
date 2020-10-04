@@ -69,6 +69,10 @@ print(files[0])
 print(sds[0])
 ```
 
+    /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
+    ['HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
+
+
     --> initial SDS ['Lai_500m']
     --> retrieving SDS MCD15A3H from database
     --> found SDS names in database
@@ -85,12 +89,6 @@ print(sds[0])
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern 2019.02.10 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
     --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
-
-
-    /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
-    ['HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
-
-
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H*.h17v03*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10
     --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
@@ -265,7 +263,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f67ffdbaf90>
+    <matplotlib.colorbar.Colorbar at 0x7f01deb99690>
 
 
 
@@ -437,7 +435,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f67f4888690>
+    <matplotlib.colorbar.Colorbar at 0x7f01cf5f70d0>
 
 
 
@@ -516,7 +514,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f67fefa3610>
+    <matplotlib.colorbar.Colorbar at 0x7f01e044b0d0>
 
 
 

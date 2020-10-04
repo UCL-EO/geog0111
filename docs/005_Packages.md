@@ -63,4 +63,12 @@ we would have needed to refer to it as `pathlib.Path`. This will over-ride any c
 
 ## Summary
 
-In this section, we have learned how to import packages using `import` and `from`. 
+In this section, we have learned how to import packages using `import` and `from`.
+    
+|  command | purpose  |   
+|---|---|
+| `import yaml` | import the package `yaml`|
+| `from pathlib import Path`  |  import the method/ class `Path` from the package `pathlib` |  
+
+
+

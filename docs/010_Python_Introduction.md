@@ -223,4 +223,31 @@ In this section, you have had an introduction to the Python programming language
 
 You have seen how to write comments in code, how to form `print` statements, `\n` and `\t` and basic concepts of variables and values.
 
-We have outlined some rules and conventions for symbol names.
+* Rules and conventions for symbol names.
+
+|  command | purpose  |   
+|-|---|
+| `#` | hash symbol, followed by comments|
+| `print()` | print function|
+| `\n` | newline character|
+| `\t` | tab character|
+| `varname = value` | set variable `varname` to `value`|
+|`__doc__, __main__` | special method names |
+
+* variables start with a lower case character and classes start with capitals
+* Reserved keywords:
+
+            False      class      finally    is         return
+            None       continue   for        lambda     try
+            True       def        from       nonlocal   while
+            and        del        global     not        with
+            as         elif       if         or         yield
+            assert     else       import     pass
+            break      except     in         raise
+            
+
+
+
+
+
+

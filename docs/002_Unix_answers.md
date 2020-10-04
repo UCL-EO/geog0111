@@ -79,7 +79,7 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Sep 27 20:44 work/newfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newfile.dat
 
 
 
@@ -95,7 +95,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Sep 27 20:44 work/newfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
@@ -133,9 +133,9 @@ ls -lh geog0111/f*
 # and only read for others
 ```
 
-    -rw------- 1 ucfalew ucfa  362 Sep 22 17:59 geog0111/fdict.py
-    -rw-r--r-- 1 ucfalew ucfa 2.2K Sep 21 13:29 geog0111/fire_practical_model.py
-    -rw-r--r-- 1 ucfalew ucfa 4.3K Sep 21 13:29 geog0111/fire_practical_satellite.py
-    -rw-r--r-- 1 ucfalew ucfa 1.9K Sep 21 13:29 geog0111/fire_practical_telecon.py
-    -rw-r--r-- 1 ucfalew ucfa   66 Sep 21 13:29 geog0111/flatten.py
+    -rw------- 1 ucfalew ucfa  362 Oct  1 13:10 geog0111/fdict.py
+    -rw-r--r-- 1 ucfalew ucfa 2.2K Oct  1 13:10 geog0111/fire_practical_model.py
+    -rw-r--r-- 1 ucfalew ucfa 4.3K Oct  1 13:10 geog0111/fire_practical_satellite.py
+    -rw-r--r-- 1 ucfalew ucfa 1.9K Oct  1 13:10 geog0111/fire_practical_telecon.py
+    -rw-r--r-- 1 ucfalew ucfa   66 Oct  1 13:10 geog0111/flatten.py
 

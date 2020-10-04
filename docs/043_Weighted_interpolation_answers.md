@@ -157,7 +157,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7fd8f25cc750>
+    <matplotlib.legend.Legend at 0x7fba607c5690>
 
 
 

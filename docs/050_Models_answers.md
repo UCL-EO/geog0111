@@ -69,9 +69,9 @@ In a file `lut_RMSE.py` do the following:
 
     original parameters: [0.4, 0.0002]
     min rmse
-    2.277747706574492
-    index: 1849: 0.45,0.0002
-    parameters: 0.45 0.0002
+    2.4414406001331534
+    index: 1447: 0.35000000000000003,0.0002
+    parameters: 0.35000000000000003 0.0002
 
 
 
@@ -85,9 +85,9 @@ RMSE,param,(measure,measure_weight,tmdriver) = runner()
 
     original parameters: [0.4, 0.0002]
     min rmse
-    2.2803257411284146
-    index: 2050: 0.5,0.0002
-    parameters: 0.5 0.0002
+    2.450846276410498
+    index: 1848: 0.45,0.00019500000000000002
+    parameters: 0.45 0.00019500000000000002
 
 
 
@@ -110,8 +110,8 @@ p = np.array([p0min,p1min])
 print(f'parameters: {p[0]} {p[1]}')
 ```
 
-    index: 2050: 0.5,0.0002
-    parameters: 0.5 0.0002
+    index: 1848: 0.45,0.00019500000000000002
+    parameters: 0.45 0.00019500000000000002
 
 
 
@@ -133,7 +133,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7fced1b642d0>
+    <matplotlib.legend.Legend at 0x7ff931478110>
 
 
 
@@ -191,15 +191,15 @@ axs.legend(loc='best')
 
     original parameters: [0.7, 0.0005]
     min rmse
-    2.5375393101824697
-    index: 3316: 0.8,0.0005
-    parameters: 0.8 0.0005
+    2.3962827740874
+    index: 1910: 0.45,0.000505
+    parameters: 0.45 0.000505
 
 
 
 
 
-    <matplotlib.legend.Legend at 0x7fced1af44d0>
+    <matplotlib.legend.Legend at 0x7ff931449d10>
 
 
 
@@ -237,7 +237,7 @@ print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 ```
 
-    [8.e-01 5.e-04]
+    [0.45     0.000505]
     measurements: tmdriver shape (92,)
     model output: tdriver shape  (365,)
 

@@ -1,4 +1,4 @@
-#  Plotting Graphs
+#  023 Plotting Graphs
 
 
 ### Purpose
@@ -228,7 +228,7 @@ axs.plot(df["YEAR"],df['JAN'],label='JAN')
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fe363e47090>]
+    [<matplotlib.lines.Line2D at 0x7f876bc11e50>]
 
 
 
@@ -480,7 +480,9 @@ plt.savefig(ofile)
     
 
 
-We can now load the [saved image](data/precip.png) as a figure:
+We can now load the [saved image](data/precip.png) as a figure with the markdown code:
+
+    ![the figure we just saved](data/precip.png)
 
 ![the figure we just saved](data/precip.png)
 
@@ -518,7 +520,7 @@ axs.set_xlabel(f'year')
 
 
     
-![png](023_Plotting_files/023_Plotting_25_1.png)
+![png](023_Plotting_files/023_Plotting_26_1.png)
     
 
 
@@ -545,11 +547,11 @@ print(f'year {now.year}')
 print(f"{now.hour} O'clock")
 ```
 
-    It is now 2020-09-29 11:10:09.105651
-    day 29
-    month 9
+    It is now 2020-10-04 08:07:59.698707
+    day 4
+    month 10
     year 2020
-    11 O'clock
+    8 O'clock
 
 
 You can set up the `datetime` fields explicitly:
@@ -597,7 +599,7 @@ yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 ```
 
-    yesterday was 2020-09-28 11:10:09.197312
+    yesterday was 2020-10-03 08:07:59.773833
 
 
 ### `strftime` and `strptime`
@@ -619,8 +621,8 @@ date_now = now.strftime("%m/%d/%Y")
 print(f"data now: {date_now}")
 ```
 
-    time now: 11:10:09
-    data now: 09/29/2020
+    time now: 08:07:59
+    data now: 10/04/2020
 
 
 and `strptime` to load a `datetime` object from a string. To do so, we need to specify the format of the string. For example:
@@ -807,7 +809,7 @@ axs.set_xlabel(f'days after {start_date.strftime("%d/%m/%Y")}')
 
 
     
-![png](023_Plotting_files/023_Plotting_47_1.png)
+![png](023_Plotting_files/023_Plotting_48_1.png)
     
 
 
@@ -844,7 +846,7 @@ axs.set_xlabel(f'date')
 
 
     
-![png](023_Plotting_files/023_Plotting_49_1.png)
+![png](023_Plotting_files/023_Plotting_50_1.png)
     
 
 
@@ -887,7 +889,7 @@ axs.set_xlabel(f'date')
 
 
     
-![png](023_Plotting_files/023_Plotting_51_1.png)
+![png](023_Plotting_files/023_Plotting_52_1.png)
     
 
 
@@ -914,6 +916,10 @@ for axis `ax` (this may be something like `axs[i]` in your code).
 The results should be reminiscent of:
 
 [![pulsar image](images/smallfig537.jpg)](https://blogs.scientificamerican.com/blogs/assets/sa-visual/Image/fig537.jpg)
+
+and 
+
+[![Joy Division](https://images-na.ssl-images-amazon.com/images/I/812FS2R2v6L._AC_SL1500_.jpg)](https://www.amazon.co.uk/Pleasures-VINYL-Joy-Division/dp/B00XILAIWI)
 
 If you want to go further towards re-creating this, you consult [the matplotlib gallery](https://matplotlib.org/3.1.0/gallery/animation/unchained.html) for ideas.
 

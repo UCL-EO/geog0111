@@ -400,10 +400,39 @@ print(a)
 
 ## Formative assessment
 
-To get some feedback on how you are doing, you should complete and submit the formative assessment [A01 Groups](060_Groups.md).
+To get some feedback on how you are doing, you should complete and submit the formative assessment [060 Groups](060_Groups.md).
 
 ## Summary
 
 In this section, we have extended the types of data we might come across to include groups. We dealt with ordered groups of various types (`tuple`, `list`). We saw dictionaries as collections with which we refer to individual items with a key. We saw how we can use `zip()` to help load a dataset from arrays into a dictionary.
 
 You should know how to build, access and modify strings, lists, tuples and dictionaries. You should be very familiar with formatted print statements by now.
+
+| symbol | description | example| access example |
+| ---|---|---|---|
+| `()` | `tuple`: low level group of items accessed by index. Cannot change once set| `(1,2,3)` | `(1,2)[1]` -> `[2]`|
+| `[]`| `list`: group of items accessed by index with range of methods. Can change, sort etc. | `[1,2,3]`| `[1,2][1]` -> `[2]` |
+| `{}` | `dict`: dictionary, a group of items accessed by key | `{"a" : 1}` | `{"a" : 1}["a"]` -> `1`|
+| `[[],[]]` | hierarchical (multi-dimensional) list | 
+| `[{},{}]` | list of dictionaries |
+| `{"a":[],"b":[]}` | dictionary of lists|
+
+List methods:
+
+| method | description | example | result |
+|---|---|---|---|
+|`list.index(i)`|find index of value `i` in `list` |`[9,10,11].index(10)`| `1`|
+| `list.extend(l)` | in-place extend `list` with list `l` | `x = [9,10,11]; x.extend([12,13])`| `x` -> `[9,10,11,12,13]`|
+| `list.append(l)` | in-place append `list` with list `l` | `x = [9,10,11]; x.append([12,13])`| `x` -> `[9,10,11,[12,13]]`|
+| `list.sort(l)` | in-place sort `list`  | `x = [10,9,11]; x.sort()`| `x` -> `[9,10,11]`|
+
+
+Dictionary methods:
+
+| method | description | example | result |
+|---|---|---|---|
+| `a.keys()` | keys in dictionary `a` | `d={"a":1,"b":2};d.keys()` | `['a', 'b']`|
+| `a.values()` | values in dictionary `a` | `d={"a":1,"b":2};d.values()` | `[1, 2]`|
+| `a.items()` | items `(key,value)` in dictionary `a` | `d={"a":1,"b":2};d.items()` | `[('a', 1), ('b', 2)])`|
+| `dict(zip(a,b))` | form a dictionary from keys in list `a` and items in list `b` | `dict(zip(["a","b"],[1,2]))` | `{'a': 1, 'b': 2}`|
+| `a.update(d)` | update dictionary `a` with dictionary `d`| `a={"a":1};d={"b":2};a.update(d)` | `a` -> `{'a': 1, 'b': 2}`|

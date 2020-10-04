@@ -471,11 +471,14 @@ step    = 4
     
 mfiles = modis_annual(year,tile,product,sds=sds,step=step,warp_args=warp_args)
 
-print(mfiles.keys())
-
+print(f'dataset keys : {mfiles.keys()}')
+print(f'dataset shape: {mfiles["Lai_500m"].shape}')
+print(f'dataset size : {mfiles["Lai_500m"].size/(1024**2): .2f} MB')
 ```
 
-    dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
+    dataset keys : dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
+    dataset shape: (92, 175, 122)
+    dataset size :  1.87 MB
 
 
 
@@ -636,14 +639,14 @@ We want to avoid the division `1/0`, so we first build an array the same as weig
     
 and then only do the division for the mask `weight>0`:
 
-    error[weight>0] = np.sqrt(1./(weight[weight>0] )) * 1.97
+    error[weight>0] = np.sqrt(1./(weight[weight>0] )) * 1.96
 
 
 ```python
 import matplotlib.pyplot as plt
 
 error = np.zeros_like(weight)
-error[weight>0] = np.sqrt(1./(weight[weight>0] )) * 1.97
+error[weight>0] = np.sqrt(1./(weight[weight>0] )) * 1.96
 
 doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
 p0,p1 = (107,72)
@@ -698,6 +701,6 @@ Hint: You may find it useful to use `geog0111.modis_annual`
 
 We now know how to combine geospatial data in both space and time VRT files using `gdal`. Remember that we can also do such things using `numpy`, but if we are able to keep the geospatial information and other metadata in a `gdal` file, so much the better. We have seen how to write the dataset to a portable file format such as GeoTiff.
 
-We have seen that some datasets such as the MODIS LAI product come with a per-pixel estimate of uncertainty. We have investigated this data field and used it to provide a weighting to associate with the reliability of each pixel. We have written a function `modis_annual` that uses a yaml database to see if it needs to reconstruct a large annual datafile.
+We have seen that some datasets such as the MODIS LAI product come with a per-pixel estimate of uncertainty. We have investigated this data field and used it to provide a weighting to associate with the reliability of each pixel. We have seen how to generate, filter, and process 3D spatio-temporal datasets. The examples here 
 
 

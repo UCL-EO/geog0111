@@ -5,39 +5,6 @@
 * Print out the total number of launches per month, for each month.
 * Print out the total number of launches per year, for the years 2010 to 2020 inclusive
 
-#### Exercise 2
-
-        import numpy as np
-        filename = 'data/satellites-1957-2021.gz'
-        data=np.loadtxt(filename).astype(np.int)
-
-* Use `slice` to produce a sub-set of the launch dataset `data` for the months January, March, and May for the years 1960-1966 inclusive. This is 3 months and 7 years, so the resultant array should have shape `(3,7)`
-
-
-```python
-# ANSWER
-import numpy as np
-filename = 'data/satellites-1957-2021.gz'
-data=np.loadtxt(filename).astype(np.int)
-
-msg = '''
- Use slice to produce a sub-set of the launch 
- dataset data for the months January, March, and May
-
- January, March, and May -> months 0,2,4 so slice(0:6:2)
-
- for the years 1960-1966 inclusive
- -> slice(1960-1957:1966-1957+1:1) -> slice(3,10)
-'''
-axis0 = slice(0,6,2)
-axis1 = slice(3,10)
-subset = data[axis0,axis1]
-print(f'subset is of shape {subset.shape}')
-```
-
-    subset is of shape (3, 7)
-
-
 
 ```python
 # ANSWER
@@ -100,6 +67,39 @@ for y in years:
     741 launches in year 2018
     735 launches in year 2019
     922 launches in year 2020
+
+
+#### Exercise 2
+
+        import numpy as np
+        filename = 'data/satellites-1957-2021.gz'
+        data=np.loadtxt(filename).astype(np.int)
+
+* Use `slice` to produce a sub-set of the launch dataset `data` for the months January, March, and May for the years 1960-1966 inclusive. This is 3 months and 7 years, so the resultant array should have shape `(3,7)`
+
+
+```python
+# ANSWER
+import numpy as np
+filename = 'data/satellites-1957-2021.gz'
+data=np.loadtxt(filename).astype(np.int)
+
+msg = '''
+ Use slice to produce a sub-set of the launch 
+ dataset data for the months January, March, and May
+
+ January, March, and May -> months 0,2,4 so slice(0:6:2)
+
+ for the years 1960-1966 inclusive
+ -> slice(1960-1957:1966-1957+1:1) -> slice(3,10)
+'''
+axis0 = slice(0,6,2)
+axis1 = slice(3,10)
+subset = data[axis0,axis1]
+print(f'subset is of shape {subset.shape}')
+```
+
+    subset is of shape (3, 7)
 
 
 #### Exercise 3

@@ -378,7 +378,7 @@ If you are unsure, or to check your answers, test the response using code, below
 
 ## Conversion between data types
 
-You can explicitly convert between data types **where this makes sense** using:
+You can explicitly convert between ('cast') data types **where this makes sense** using:
 
     int()
     float()
@@ -425,18 +425,50 @@ print('bool_number',bool_number,type(bool_number))
 
 In this section, we have been introduced to the core data types in Python:
 
-    int
-    float
-    str
-    bool
+|core data types| example |
+|---|-|
+|`int`| `x = 10`|
+|`float`| `x = 10.0`|
+|`str`| `x = "hello world"`|
+|`bool`| `x = False` |
 
-and how to convert between then, where this is feasible:
+and how to convert ('cast') between then, where this is feasible:
 
-    int()
-    float()
-    str()
-    bool()
+| cast functions |
+|---|
+|`int()`|
+|`float()`|
+|`str()`|
+|`bool()`|
+
+Other functions:
+
+|  command | purpose  |   
+|-|---|
+| `type(v)` | data type of object `v`|
+| `len(v)` | length of object `v` (e.g. `str`) |
+
+We have learned truth tables to list logical operations:
+
+
+| A  | B  | A and B  | 
+|:---:|:---:|:---:|
+|  T |  T |  T | 
+|  T |  F |  F | 
+|  F |  T |  F | 
+|  F |  F |  F | 
+
+
+
+| A  | B  | A or B  | 
+|:---:|:---:|:---:|
+|  T |  T |  T | 
+|  T |  F |  T | 
+|  F |  T |  T | 
+|  F |  F |  F | 
+
+| A  | not A  | 
+|:---:|:---:|
+|  T | F | 
+|   F |  T | 
     
-We have also learned the `type()` function to return the data type, and `len()` to find the length of a string.
-
-We should also know how to do logical combinations of boolean variables, and visualise this with truth tables.

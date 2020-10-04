@@ -168,7 +168,7 @@ LAI of the sub-region around the
 London by defining the 
 pixel coordinates of the area
 
-We can identify Corsica from searching for maps.
+We can identify London from searching for maps.
 We can see from the images above and a little trial
 and error that this is approximately
 
@@ -199,7 +199,7 @@ print(msg)
     London by defining the 
     pixel coordinates of the area
     
-    We can identify Corsica from searching for maps.
+    We can identify London from searching for maps.
     We can see from the images above and a little trial
     and error that this is approximately
     

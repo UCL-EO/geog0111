@@ -86,9 +86,15 @@ nav:
     - Script: 061_Script_answers.md
     - Numpy: 064_Numpy_answers.md
     - Lai: 065_LAI_answers.md
+- Summary:
+  - Summary: 070_Summary.md
 plugins:
+- git-revision-date-localized
 - exclude:
     glob:
+    - '*.pyc'
+    - data/Hydrologic_Units/HUC_Lines*
+    - geog0111/__pycache__/*
     - work/*
     - __pycache__
     - '*.bin'

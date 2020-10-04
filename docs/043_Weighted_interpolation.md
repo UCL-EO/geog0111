@@ -103,9 +103,9 @@ The LAI data, that we expect to be smoothly varying in time, has unrealistic hig
 
 Despite that, we can 'see' that there should be a smoothly varying function that can go through those data points quite well. This is what we want to achieve with our regularisation.
 
-### Smooth
+### Smoothing
 
-We can generate a Gaussian filter for our smoothing. The width of the filter, that in turn controls the degree of smoothing, is set by the parameter `sigma`. We will use a value of `5` here, but you should *not* assume that that will always be appropriate. We will discuss how to experiment with this later in this session.
+We can generate a Gaussian filter for our smoothing. The width of the filter, that in turn controls the degree of smoothing, is set by the parameter `sigma`. Recall the impact of the filter width from the [material in the previous session](042_Weighted_smoothing_and_interpolation.md#Filter-width-and-degree-of-smoothing). We will use a value of `5` here, but you should *not* assume that that will always be appropriate. We will discuss how to experiment with this later in this session.
 
 
 ```python
@@ -124,7 +124,7 @@ plt.plot(x,gaussian)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fd8fcfb1150>]
+    [<matplotlib.lines.Line2D at 0x7fba6be4e7d0>]
 
 
 
@@ -134,7 +134,7 @@ plt.plot(x,gaussian)
     
 
 
-And now we perform the weighted regularisation by convolution.
+We now perform the weighted regularisation by convolution.
 
 
 ```python
@@ -172,7 +172,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7fd8fcf26f10>
+    <matplotlib.legend.Legend at 0x7fba639eaf90>
 
 
 
@@ -522,7 +522,7 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7fd8f245f350>
+    <matplotlib.legend.Legend at 0x7fba5d278a90>
 
 
 
@@ -640,7 +640,7 @@ axs.legend(loc='upper right')
 
 
 
-    <matplotlib.legend.Legend at 0x7fd8f29baa50>
+    <matplotlib.legend.Legend at 0x7fba5ce1cf90>
 
 
 
@@ -652,7 +652,7 @@ axs.legend(loc='upper right')
 
 ## Formative assessment
 
-To get some feedback on how you are doing, you should complete and submit the formative assessment [A05 LAI](065_LAI.md).
+To get some feedback on how you are doing, you should complete and submit the formative assessment [065 LAI](065_LAI.md).
 
 ## Summary
 

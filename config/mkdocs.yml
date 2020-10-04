@@ -25,9 +25,12 @@ nav:
 - 016_Python_for.md
 - 017_Functions.md
 plugins:
-#- git-revision-date-localized
+- git-revision-date-localized
 - exclude:
     glob:
+      - "*.pyc"
+      - "data/Hydrologic_Units/HUC_Lines*"
+      - "geog0111/__pycache__/*"
       - "work/*"
       - "__pycache__"
       - "*.bin"
@@ -38,6 +41,8 @@ plugins:
       - "data/ucl/*"
       - "*.vrt"
 - search
+
+
 #- mkdocs-jupyter:
 #    include_source: true
 

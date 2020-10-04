@@ -254,7 +254,7 @@ with json_file.open('w') as f:
 
 The Python package `pandas` is widely-used to read and manipulate data in tabular or similar form. One of the most common tabular data formats is [CSV](https://en.wikipedia.org/wiki/Comma-separated_values).
 
-An interesting CSV-format dataset is that containing the [successive pulses](https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv) of the oscillation signal coming from the [Pulsar PSR B1919+21](https://www.joydivisionofficial.com/reimagined/) discovered by [Jocelyn Bell](https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell) in 1967.
+An interesting CSV-format dataset is that containing the [successive pulses](https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv) of the oscillation signal coming from the [Pulsar PSR B1919+21](https://www.joydivisionofficial.com/reimagined/) discovered by [Jocelyn Bell](https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell) in 1967. Some of you might also recognise it from  a [famous album cover](https://en.wikipedia.org/wiki/Unknown_Pleasures)
 
 ![Joy Division](images/small_unknown_pleasures.png)
 

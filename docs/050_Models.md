@@ -150,7 +150,7 @@ rmse = np.sqrt(np.mean(error2))
 print(f'RMSE: {rmse} for parameters {p}')
 ```
 
-    RMSE: 3.89127879506191 for parameters [3.e-01 1.e-04]
+    RMSE: 4.118554746101607 for parameters [3.e-01 1.e-04]
 
 
 
@@ -204,7 +204,7 @@ axs.plot([0,maxvalue],[0,maxvalue],'k')
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fcc6892b050>]
+    [<matplotlib.lines.Line2D at 0x7ff6b6709f90>]
 
 
 
@@ -382,7 +382,7 @@ print(f'min rmse\n{min_rmse}')
 
     rmse shape (132,)
     min rmse
-    0.9572456122482587
+    0.9064999558594992
 
 
 Following the material in [032](032_More_numpy.md#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index) we use `argmin` to find the parameter index of minimum RMSE:
@@ -397,8 +397,8 @@ print(f'1D index of minimum  : {imin}')
 print(f'parameter at minimum : {p0min},{p1min}')
 ```
 
-    1D index of minimum  : 5
-    parameter at minimum : 0.0,0.0005
+    1D index of minimum  : 17
+    parameter at minimum : 1.0,0.0005
 
 
 
@@ -414,8 +414,8 @@ p1min = p1[ip0min,ip1min]
 print(f'parameter at minimum : {p0min},{p1min}')
 ```
 
-    2D index of minimum point: 0, 5
-    parameter at minimum : 0.0,0.0005
+    2D index of minimum point: 1, 5
+    parameter at minimum : 1.0,0.0005
 
 
 Of the 11 x 12  combinations of parameters we examined, the parameters `[1.0,0.0005]` provide the best fit to the data. We had generated the 'measurements' with:
@@ -484,7 +484,7 @@ axs.legend(loc='lower right')
 
 
 
-    <matplotlib.legend.Legend at 0x7fcc687a4dd0>
+    <matplotlib.legend.Legend at 0x7ff6b6593dd0>
 
 
 
@@ -529,7 +529,7 @@ print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 ```
 
-    [0.     0.0005]
+    [1.e+00 5.e-04]
     measurements: tmdriver shape (92,)
     model output: tdriver shape  (365,)
 

@@ -371,3 +371,14 @@ Actually, there are a lot more [useful things](https://realpython.com/python-f-s
 ## Summary
 
 In this section, we have introduced some more detail on strings, especially string formatting. You should have agained an understanding of the use of quotes and escape code, as well as using `f-string`, `string.format()`.
+
+| item | description |
+|---|-|
+| `"'"` | single quote as a string |
+| `'"'` | double quote as a string |
+| `"\\"` | backslash as a string (escaped) in string|
+| ''' ... ''' | multiple line string |
+| `*` | string multiplication e.g. `"0"*2` -> `"00"` |
+| `+` | string addition e.g. `"0" + "1"` -> `"01"`|
+| `str.format()` | insert items in string e.g. `"{x}".format(x=1)` -> "1"|
+| `f"..."`| f-string, e.g. `x=1`, `f"{x}"` -> `"1"|

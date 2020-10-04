@@ -113,6 +113,7 @@ assert data_url == data_file
 print('files are the same')
 ```
 
+    --> deleting existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/www.json.org/json-en.html.store
     --> trying https://www.json.org/json-en.html
 
 
@@ -150,19 +151,18 @@ url = modis.get_url(year="2020",month="01",day="01")[0]
     --> ['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m']
     --> product MCD15A3H -> code MOTA
     --> getting database from command line
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01 from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern 2020.01.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H*.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
-    --> reading init file /home/ucfalew/.url_db/init.yml
 
 
 We can access the binary data with `url.read_bytes()`, although we would normally want to use some package such as [`gdal`](https://gdal.org/) to interpret the data. 
@@ -176,13 +176,8 @@ print(f'data for {url} cached in {url.local()}')
 print(f'dataset is {len(b)} bytes')
 ```
 
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-    --> code 401
-    --> trying another
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
+    --> retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
+    --> local file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
     --> updated cache database in /shared/groups/jrole001/geog0111/work/database.db
 
 
@@ -190,7 +185,6 @@ print(f'dataset is {len(b)} bytes')
     dataset is 9067184 bytes
 
 
-    --> retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
     --> local file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
 
 

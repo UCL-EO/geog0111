@@ -77,8 +77,12 @@ for f in filenames:
     bin/howmany.sh
     bin/sort-db.sh
     bin/database.sh
+    bin/init0111.sh
     bin/tidy.sh
     bin/mv_vrt.sh
+    bin/clean0111.sh
+    bin/get_datasets.sh
+    bin/fixA.sh
 
 
 #### Exercise 3
@@ -239,19 +243,18 @@ for u in hdf_urls:
     
 
 
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01 from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
     --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-    --> reading init file /home/ucfalew/.url_db/init.yml
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
 
 
@@ -283,11 +286,11 @@ for u in hdf_urls:
     
 
 
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
     --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
     --> parsing URLs from html file 4 items
@@ -304,10 +307,6 @@ for u in hdf_urls:
     --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
-    --> reading init file /home/ucfalew/.url_db/init.yml
-    --> reading init file /home/ucfalew/.url_db/init.yml
-    --> reading init file /home/ucfalew/.url_db/init.yml
-    --> reading init file /home/ucfalew/.url_db/init.yml
     --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
     --> code 401
     --> failed to connect

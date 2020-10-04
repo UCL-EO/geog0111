@@ -270,8 +270,12 @@ for i,f in enumerate(filenames):
     file 8 is bin/howmany.sh
     file 9 is bin/sort-db.sh
     file 10 is bin/database.sh
-    file 11 is bin/tidy.sh
-    file 12 is bin/mv_vrt.sh
+    file 11 is bin/init0111.sh
+    file 12 is bin/tidy.sh
+    file 13 is bin/mv_vrt.sh
+    file 14 is bin/clean0111.sh
+    file 15 is bin/get_datasets.sh
+    file 16 is bin/fixA.sh
 
 
 The advantage of a generator is that it will generally need less memory than fully calculating all items in a list. Once we move on to the next item in the generator, any memory used by current item is freed.
@@ -284,7 +288,7 @@ filenames = list(Path('bin').glob('*.sh'))
 print(filenames)
 ```
 
-    [PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh')]
+    [PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/get_datasets.sh'), PosixPath('bin/fixA.sh')]
 
 
 Let's use `glob` now to get the file permissions of each file `n*` in the directory `bin`:
@@ -569,19 +573,18 @@ for u in hdf_urls:
     https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
 
 
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006 from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> retrieving query https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01 from database
-    --> got response from database for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
     --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-    --> reading init file /home/ucfalew/.url_db/init.yml
 
 
 This is extremely useful for dataset discovery.

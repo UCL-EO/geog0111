@@ -108,7 +108,7 @@ fig.colorbar(im, ax=axs[0])
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f7ddf932f90>
+    <matplotlib.colorbar.Colorbar at 0x7fd01f4cead0>
 
 
 
@@ -120,7 +120,7 @@ fig.colorbar(im, ax=axs[0])
 
 #### Exercise 1
 
-* Plots the first datasets in `data_MCD15A3H` as subplots in a 2 x 2 shape.
+* Plot the first datasets in `data_MCD15A3H` as subplots in a 2 x 2 shape.
 
 Hint: Use a loop for the keys of `data_MCD15A3H`. Set up the 2 x 2 subplots with:
 
@@ -430,7 +430,7 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7f7dd4d5dbd0>
+    <matplotlib.legend.Legend at 0x7fd0292f6c10>
 
 
 

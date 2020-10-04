@@ -70,7 +70,3 @@ chmod 755 work/myFirstCode.py
 
     hello from me
 
-
-## Formative assessment
-
-To get some feedback on how you are doing, you should complete and submit the formative assessment [A02 Script](061_Script.md).

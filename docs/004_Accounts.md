@@ -54,7 +54,7 @@ help(Cylog.login)
 
     Help on function login in module geog0111.cylog:
     
-    login(self, site=False, force=False)
+    login(self, site=None, force=False)
         Reads encrypted information from ~/{dest_path}/.cylog.npz
         
         Keyword arguments
@@ -77,6 +77,19 @@ If this fails, you may have entered your account information incorrectly for `ht
 
 If you want to force the code to let you re-enter your credentials (e.g. you got it wrong before, or have changed them, or the test fails), then change the call to:
 
-    cy = cylog(site,force=True)
+    cy = Cylog(sites,force=True)
     
 and re-run.
+
+## Summary
+
+This short notebook is intended to let you store your NASA Earthdata login to make later calls to collect NASA data more straightforward. We have used code from the local class `Cylog` from `geog0111.cylog`, and seen how to setl, reset and test our login.
+
+|  command | purpose  |   
+|---|---|
+| `l = Cylog(sites); test = l.login()`  |  set / run login for list of URLs `sites` |  
+| `cy = Cylog(sites,force=True); test = l.login()`  | reset / run login for list of URLs `sites` |
+| `test_login(True)`  |  test the login by pulling a dataset from the NASA site|  
+
+
+

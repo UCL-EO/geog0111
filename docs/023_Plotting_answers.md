@@ -1,4 +1,4 @@
-#  Plotting Graphs : Answers to exercises
+#  023 Plotting Graphs : Answers to exercises
 
 #### Exercise 1
 
@@ -367,6 +367,10 @@ for axis `ax` (this may be something like `axs[i]` in your code).
 The results should be reminiscent of:
 
 [![pulsar image](images/smallfig537.jpg)](https://blogs.scientificamerican.com/blogs/assets/sa-visual/Image/fig537.jpg)
+
+and 
+
+[![Joy Division](https://images-na.ssl-images-amazon.com/images/I/812FS2R2v6L._AC_SL1500_.jpg)](https://www.amazon.co.uk/Pleasures-VINYL-Joy-Division/dp/B00XILAIWI)
 
 If you want to go further towards re-creating this, you consult [the matplotlib gallery](https://matplotlib.org/3.1.0/gallery/animation/unchained.html) for ideas.
 

@@ -777,11 +777,6 @@ skip  = 1
 print (s[start:stop:skip])
 ```
 
-    Hello World 11
-    HloWrd
-    rld
-
-
 #### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.
@@ -796,3 +791,11 @@ The example above allows us to access an individual character(s) of the array.
 In this section, we have introduced some more detail on string, especially string methods. There are many more methods you can use, but we have tried to cover the main ones here, but there are many [resources](https://www.w3schools.com/python/python_strings.asp#:~:text=Strings%20are%20Arrays,access%20elements%20of%20the%20string.) you can use to follow up.
 
 You should know how to make a single line or multi-line string. You  should know how to use `replace`, `strip`, `split` and `join` on a string, as well as use concepts of indexing a string array and using ideas of `slice`. You should recognise the `None` character. You shouyld know how to find information on how to use other string methods.
+
+| item | description |
+|---| -|
+| `str.replace(a,b)` | replace occurrences of `a` with `b` in `str` |
+| `str.strip(a)` | strip off any occurrences of `a` on left or right ends of `str` (also `lstrip`,`rstrip`)|
+| `str.split(a)` | split `str` into list, using `a` as the separator, e.g. `"1:2".split(":")` -> `["1","2"]`
+| `a.join(l)` | join the string items in list `l` into a string with `a` as the separator, e.g. `"x".join(["1","2"])` -> `"1x2"` |
+| `str[start:stop:step]` | slice `str` and return characters `start` to (but not including) `stop` skipping `step` values, e.g. `"hello"[1:2]` -> `e`|

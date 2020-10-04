@@ -130,7 +130,29 @@ Let's use that knowledge to learn something new:
 
 ## Summary
 
-In this session, we  have learned some different ways to access help on the operation and options for python commands. These include: `help()`, use of `?` and using online help. Practically, you may use one or more of these methods to find out how something works, or get some examples. 
+In this session, we  have learned some different ways to access help on the operation and options for python commands. These include: `help()`, use of `?` and using online help. Practically, you may use one or more of these methods to find out how something works, or get some examples. We have come across the following commands:
+
+
+|  command | purpose  |   
+|---|---|
+| `help(m)`  |  print document string for method `m` |  
+| `m?`  |  print short document string for method `m` |  
+
+
+We have also touched upon the following commands in the exercises:
+
+
+|  command | purpose  |   
+|---|---|
+| `list`  |  Python data type for lists |  
+| `list.append()`  | append item to list  |   
+| `list.clear()`  | clear item from list  |  
+| `list.sort`  | in-line list sort  |  
+| `range(start,stop,step)`  | list-like generator for integers from `start` to (but not including) `stop` in steps of `step`  |  
+
+
+
+
 
 You might notice that there are many online forums you can post to to get advice on coding, and we mention  [https://stackoverflow.com](https://stackoverflow.com) as an example. Remember that not all posts are equally useful: pay attention to comments from other users on any answer, as well as post votes. Do not look on `stackoverflow` until you have exhausted simpler help methods. You should *not* generally be posting on these in this course. You will find answers to all that you need in these notes or on existing online pages. You most certainly must *not* post on forums asking questions about anyt exercises you need to complete or work you need to submit. The course administrators may monitor this
 

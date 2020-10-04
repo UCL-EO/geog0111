@@ -55,7 +55,7 @@ as the first line in the file, and is executable. We can see if a file is execut
 !ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 21 13:29 geog0111/helloWorld.py
+    -rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py
 
 
 The first field gives us the file permissions:
@@ -71,7 +71,7 @@ chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 21 13:29 geog0111/helloWorld.py
+    -rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py
 
 
 ### Running Python code from Python
@@ -258,6 +258,22 @@ geog0111/helloWorld.py
 
 To do the task below, you will need to invoke a text editor of some sort to create the Python file. There are several ways you can do this, depending on how you are using these notebooks.
 
+
+### Jupyter notebook
+
+If you are in the GEOG0111 class, you will most likely be using the notebook server. In this case, follow these instructions:
+
+You can open a text editor from a Jupyter notebook server from the menu on the right hand side of the Jupyter homepage window:
+
+![](images/te.png)
+
+You can change file permissions using a command similar to that above (here, set for execute):
+
+        from pathlib import Path
+        Path(MYFILE).chmod(int('755', base=8))
+        
+        
+
 ### From JupyterLab
 
 If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:
@@ -276,16 +292,10 @@ To change the permissions on the file from JupyterLab, open a shell (e.g. using
     
 ![JupyterLab terminal](images/term.png)
 
-### Jupyter notebook
-
-You can open a text editor from a Jupyter notebook server from the menu on the right hand side of the window:
-
-![](images/te.png)
-
 
 ### Use a text editor
 
-To do the task below, you will need to invoke a text editor of some sort to create the Python file. Ideally, you should learn to do this outside of the notebook: invoke a text editor on your computer, put your Python code into the file, and save it to the desired location.
+To do the task below, you will need to invoke a text editor of some sort to create the Python file. 
 
 ### Create in bash
 
@@ -503,7 +513,7 @@ import sys
 print(sys.argv)
 ```
 
-    ['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-0b59f88f-3901-4e76-bd87-7331f3b34bef.json']
+    ['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-e33d6fdd-6ccd-46e9-bea1-1f53f69bf1eb.json']
 
 
 Running from the notebook, we get to see the full command that is run when we launch this notebook. Since `sys` is a package, we first import it:
@@ -542,6 +552,10 @@ We see that running the script:
     work/test.py Hermione
     
 means that `sys.argv` inside the script contains the liust `['work/test.py', 'Hermione']`.
+
+## Formative assessment
+
+To get some feedback on how you are doing, you should complete and submit the formative assessment [061 Script](061_Script.md).
 
 ## Summary
 
