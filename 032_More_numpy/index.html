@@ -368,7 +368,7 @@ The total number of launches is 45689
 The mean number of launches is  59.49 per month
 </code></pre>
 <h3 id="slicing-slice">slicing, <code>slice</code></h3>
-<p>We have seen <a href="026_Numpy.md#Indexing-arrays">above</a> how we can provide a tuple of indices to access particular array elements. Often we want to access 'blocks' of an array. A set of indices would be inefficient for that. Instead, we use the idea of slices <code>(from:to:step)</code> that we have come across before for <a href="../013_Python_string_methods/#slice">strings</a> . Remember that <code>to</code> is "up to but not including" the to number.</p>
+<p>We have seen <a href="../031_Numpy/#Indexing-arrays">above</a> how we can provide a tuple of indices to access particular array elements. Often we want to access 'blocks' of an array. A set of indices would be inefficient for that. Instead, we use the idea of slices <code>(from:to:step)</code> that we have come across before for <a href="../013_Python_string_methods/#slice">strings</a> . Remember that <code>to</code> is "up to but not including" the to number.</p>
 <p>If we specify <code>:</code> or <code>::</code> in the slice, it means we take the defaults for <code>(from:to:step)</code>. If we specify only one number, that is <code>from</code>. If we specify two, it is <code>from:to</code>.</p>
 <p>So:</p>
 <pre><code>data[0]
