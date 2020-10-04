@@ -35,10 +35,16 @@ mkdir -p docs
 #
 theme=$(grep 'name:' config/mkdocs.yml | grep -v '#' | tail -1 | awk '{print $NF}' | sed 's/'\''//g' | sed 's/'\"'//g')
 echo "theme: $theme"
-grep -v $theme ${base}/config/requirements.txt > tmp.$$; mv tmp.$$  ${base}/config/requirements.txt; 
+grep -v $theme ${base}/config/requirements.txt | grep -v GEOG0111 > tmp.$$; mv tmp.$$  ${base}/config/requirements.txt; 
 extras=$(grep $theme config/mkdocs.yml | awk '{print "mkdocs-"$NF}' | sed 's/://g' | sed 's/'\''//g' | sed 's/'\"'//g' )
 echo "installing $extras"
 echo $extras | awk '{for(i=1;i<=NF;i++)x[$i]=$i} END{for(i in x)print i}'  >> ${base}/config/requirements.txt
+cat ${base}/config/requirements.txt
+
+if [ $theme == "readthedocs" ]; then
+  grep -v readthedocs <  ${base}/config/requirements.txt > /tmp/tmp.$$
+  mv /tmp/tmp.$$ ${base}/config/requirements.txt 
+fi
 
 pip3 install -r ${base}/config/requirements.txt --user
 
@@ -126,17 +132,23 @@ for i in *md ; do
   sed < $i 's/ipynb/md/g' > $base/docs/$i
 done
 
+cd $base/docs
+ln -s $base/notebooks notebooks
+cp ../config/requirements.txt .
+#ln -s notebooks/images images
+##ln -s notebooks/data data
+#ln -s notebooks/work work
+##ln -s notebooks/geog0111 geog0111
+#ln -s notebooks/copy copy
+#rm -f bin/copy/copy
+
+# avoid conflict with index.md
+mv README.md GEOG0111.md
+
 cd $base
 mkdocs build -v
-cd $base/docs
-cp ../config/requirements.txt .
-#cd $base/docs/sphinx
-#ln -s ../bin bin
-#ln -s ../images images
-#ln -s ../data data
-#ln -s ../work work
-#ln -s ../geog0111 geog0111
-#ln -s ../copy copy
+
+
 #sed < $base/docs/index.rst 's/index.md/docindex.md/' > tmp.$$
 #mv tmp.$$ index.rst
 #rm -f index.md

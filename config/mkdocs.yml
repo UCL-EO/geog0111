@@ -28,6 +28,7 @@ plugins:
 - git-revision-date-localized
 - exclude:
     glob:
+      - "*blank.tif"
       - "*.pyc"
       - "data/Hydrologic_Units/HUC_Lines*"
       - "geog0111/__pycache__/*"
@@ -35,6 +36,7 @@ plugins:
       - "__pycache__"
       - "*.bin"
       - "*.hdf"
+      - "*.store"
       - "*.nc"
       - "*.zip"
       - "*.npz"

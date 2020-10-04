@@ -69,7 +69,7 @@ print(f'The mean number of launches is {data.mean() : .2f} per month')
 
 ### slicing, `slice`
 
-We have seen [above](026_Numpy.md#Indexing-arrays) how we can provide a tuple of indices to access particular array elements. Often we want to access 'blocks' of an array. A set of indices would be inefficient for that. Instead, we use the idea of slices `(from:to:step)` that we have come across before for [strings](013_Python_string_methods.md#slice) . Remember that `to` is "up to but not including" the to number.
+We have seen [above](031_Numpy.md#Indexing-arrays) how we can provide a tuple of indices to access particular array elements. Often we want to access 'blocks' of an array. A set of indices would be inefficient for that. Instead, we use the idea of slices `(from:to:step)` that we have come across before for [strings](013_Python_string_methods.md#slice) . Remember that `to` is "up to but not including" the to number.
 
 If we specify `:` or `::` in the slice, it means we take the defaults for `(from:to:step)`. If we specify only one number, that is `from`. If we specify two, it is `from:to`.
 
