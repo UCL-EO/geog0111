@@ -15,7 +15,7 @@ GEOG2021 Timetable 2020-21
 |  7	|  **Space and time**	| [Mosaicing](040_GDAL_mosaicing_and_masking.ipynb) 	|  [Timeseries](041_GDAL_timeseries.ipynb)	|  	|
 |  8	| **Regularisation** 	|  [Smoothing theory](042_Weighted_smoothing_and_interpolation.ipynb)	| [Smoothing and interpolation](043_Weighted_interpolation.ipynb) 	|  	| |  |[LAI](065_LAI.ipynb)|
 |  9	|  **Parameter estimation**	| [Models and inversion](050_Models.ipynb) 	|   [Phenology model](051_Phenology_model.ipynb) 	|  	|
-|  10	|  **Recap**	|  	|  	|  	|| | [Part 2](066_Part2.ipynb)|
+|  10	|  **Recap**	|  [Summary](070_Summary.ipynb)|  	|  	|| | [Part 2](066_Part2.ipynb)|
 
 
 Note that [Part 1](062_Part1.ipynb) and [Part 2](066_Part2.ipynb) are the formal assessments for the course. [Part 1](062_Part1.ipynb) should be submitted the Monday after Reading week. [Part 2](066_Part2.ipynb) should be submitted in the first week of Term 2. Please read [Code advice](A03_Part1_code.ipynb) before subitting work.
