@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cd ~
-rm -rf geog0111/
+rm -rf geog0111/notebooks/bin
+rm -rf geog0111
 rm -rf .url_db .cylog .jupyter .condarc .profile .ipython
 
 

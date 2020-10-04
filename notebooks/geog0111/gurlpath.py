@@ -168,7 +168,10 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     and ends .store
     '''
     if self.indb():
-      return self.local
+      if callable(self.local):
+        sys.msg(f"**unexpected method for self.local {self.local}")
+      else:
+        return self.local
     
     kwargs = fdict(self.__dict__.copy())
     if 'local_dir' in kwargs and \
@@ -209,7 +212,7 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
   def _local_file(self,mode="r"):
     '''get local file name'''
     if self.indb():
-      return self.local
+      return self.local_file
     self.call_local()
     # clobber
     if not self.noclobber:
@@ -237,7 +240,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         except:
           pass
 
-      #self.msg(f'noclobber: {self.noclobber}')
       # delete the file if noclobber is False
       if not self.noclobber:
         try:
@@ -442,7 +444,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         ifile = None
 
     ofile = self.get_name(self._local_file("w"))
-
+    if callable(ofile):
+      print(f"ERROR in type of self.lcoal {ofile}: should be str or list")
+      sys.exit(1)
     if ifile is None:
       return True,ifile,ofile
 
