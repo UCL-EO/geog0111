@@ -112,12 +112,18 @@ echo "--> done geog0111 initialisation"
 
 echo "--> setting up kernel"
 python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+python -m ipykernel install --user --name geog0111 --display-name "conda env:geog0111-geog0111"
+
 if [ $? -eq 1 ] ; then
   echo "    need to update prompt_toolkit"
   pip install prompt_toolkit --force-reinstall
   if [ $? -eq 1 ] ; then
     echo "    need to run as user"
     pip install prompt_toolkit --force-reinstall -U
+  fi
+  pip install importlib_metadata  --force-reinstall
+  if [ $? -eq 1 ] ; then
+    pip install importlib_metadata  --force-reinstall -U
   fi
   python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
 fi
