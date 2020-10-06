@@ -112,7 +112,7 @@ echo "--> done geog0111 initialisation"
 
 echo "--> setting up kernel"
 python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
-python -m ipykernel install --user --name geog0111 --display-name "conda env:geog0111-geog0111"
+python -m ipykernel install --user --name geog0111 --display-name "[conda env:geog0111-geog0111]"
 
 if [ $? -eq 1 ] ; then
   echo "    need to update prompt_toolkit"
