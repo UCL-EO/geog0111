@@ -33,6 +33,7 @@ dependencies:
   - black
   - folium
   - jupyter_console
+  - jupyter_contrib_nbextensions
   - pandocfilters
   - nbconvert
   - jupyterlab
@@ -54,7 +55,6 @@ dependencies:
   - pip:
     - mkdocs-jupyter
     - urlpath
-    - jupyter_contrib_nbextensions
     - mknotebooks
     - mkdocs-material
     - mkdocs-exclude
