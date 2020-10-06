@@ -110,4 +110,16 @@ echo "--> geog0111 initialisation"
 echo 'cd ~/geog0111 && bin/init.sh' | /bin/bash
 echo "--> done geog0111 initialisation"
 
+echo "--> setting up kernel"
+python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+if [ $? -eq 1 ] ; then
+  echo "    need to update prompt_toolkit"
+  pip install prompt_toolkit --force-reinstall
+  if [ $? -eq 1 ] ; then
+    echo "    need to run as user"
+    pip install prompt_toolkit --force-reinstall -U
+  fi
+  python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+fi
+
 echo "You should close all shells to make sure changes take effect"
