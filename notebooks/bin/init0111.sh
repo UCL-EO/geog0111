@@ -38,6 +38,7 @@ if [ -d "geog0111" ] ; then
   done
 
   echo "--> updating repository"
+  git config pull.rebase false
   git reset --hard HEAD
   git pull
   echo "--> done updating repository"
