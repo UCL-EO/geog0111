@@ -5,19 +5,31 @@
 
 # are we on the UCL system?
 isUCL=$(uname -n | awk -Frstudio '{print $2}' | wc -w)
+#if [ "$isUCL" == 0 ] ; then
+#  uname -a
+#  echo "You do not seem to be on the UCL rstudio/notebook servers"
+#  echo "FATAL: cannot proceed"
+#  exit 1
+#fi
+#echo "You are in the UCL rstudio/notebook servers"
+
 if [ "$isUCL" == 0 ] ; then
   uname -a
   echo "You do not seem to be on the UCL rstudio/notebook servers"
-  echo "FATAL: cannot proceed"
-  exit 1
+  here=$(pwd)/..
+  cd "${here}"
+  here=$(pwd)
+else
+  cd ~
+  here=$(pwd)
 fi
-echo "You are in the UCL rstudio/notebook servers"
 
 # check for geog0111 repo and clone if not there
-cd ~
+cd "$here"
+
 if [ -d "geog0111" ] ; then
   echo "--> geog0111 exists ... updating"
-  cd ~/geog0111
+  cd "$here"/geog0111
   for nb in "notebooks" "notebooks_lab"; do
     odir=${nb}_bak
     echo "--> backing up notebooks in ${nb} to ${odir}"
@@ -87,7 +99,10 @@ fi
 cd ~/geog0111
 echo "--> conda setup"
 conda init bash
-mv .bashrc .profile
+if [ -f ~/.bashrc ] ; then
+  mv ~/.bashrc ~/.profile
+fi
+
 echo "--> done conda setup"
 
 echo "--> geog0111 initialisation"

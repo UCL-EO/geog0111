@@ -11,8 +11,9 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
         cd geog0111
 
 2. Set up environment
-
-        bin/init.sh  
+     
+        conda init bash
+        bin/init.sh
         python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
         
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
@@ -28,9 +29,16 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
 5. Download the majority of the datasets you'll need (this will take an hour or so):
 
         bin/get-datasets.sh
-    
-6. Launch jupyter or jupyterlab server
 
+6. Build database and set CACHE_FILE (this will take a few minutes to run) (assuming you are using bash -- if not change profile accordingly):
+
+        bin/sort-db.sh  > ~/.url_db/.db.yml
+        touch ~/.profile
+        grep -v CACHE_FILE < ~/.bash_profile  > /tmp/.profile.$$
+        echo "export CACHE_FILE=${HOME}/.url_db/.db.yml" >> /tmp/.bash_profile.$$
+        mv /tmp/.profile.$$ ~/.bash_profile
+
+7. Launch jupyter or jupyterlab server
 
           jupyter notebook
     
