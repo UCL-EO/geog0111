@@ -7,6 +7,7 @@ docs/sphinx/_build/*/*2.doctree
 docs/sphinx/_build/*/*/*2.png
 docs/sphinx/_build
 notebooks_lab/*2.ipynb
+notebooks/geog0111/__pycache__/*
 docs/_*
 notebooks_bak/*
 notebooks_lab_bak/*

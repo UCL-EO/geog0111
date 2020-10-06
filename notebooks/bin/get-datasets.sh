@@ -27,7 +27,7 @@ fi
 
 echo "--> gathering URLs from  data/database.db -> work/data_urls.txt"
 mkdir -p "${here}/work/datasets"
-grep store "${here}/data/database.db" | sed 's/.hdf:/.hdf/' | awk '{print $1}' | tail -2 > "${here}/work/datasets/data_urls.txt"
+grep store "${here}/data/database.db" | sed 's/.hdf:/.hdf/' | awk '{print $1}' > "${here}/work/datasets/data_urls.txt"
 echo "--> testing NASA Earthdata login and password"
 
 ipython -c "from geog0111.cylog import earthdata; earthdata(True);"
@@ -54,13 +54,14 @@ echo "--> staging datasets to work/datasets"
 mkdir -p "${here}/work/datasets"
 cd  "${here}/work/datasets"
 
-# run curl
-
+# run curl to get the file if we need it
 while read url; do
   echo "== $url =="
   ofile=$(echo $url | sed 's/https:\/\///')
-  curl --create-dirs -s -u "$username":"$password" -o ${ofile}.store "$url"
+  if [ ! -f "$ofile" ] ; then
+    curl --create-dirs -s -u "$username":"$password" -o ${ofile}.store "$url"
 done <  "${here}/work/datasets/data_urls.txt"
+  fi
 
 cd ${here}
 echo "--> End of get-datasets.sh from ${here}"

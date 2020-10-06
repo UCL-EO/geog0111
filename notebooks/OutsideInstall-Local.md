@@ -25,7 +25,7 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
    
         ipython -c "from geog0111.cylog import earthdata; earthdata(do_test=True,force=True);"
 
-5. Download the majority of the datasets youy'll need (this will take some hours):
+5. Download the majority of the datasets you'll need (this will take an hour or so):
 
         bin/get-datasets.sh
     
