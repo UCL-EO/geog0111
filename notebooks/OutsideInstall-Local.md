@@ -15,10 +15,10 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
         conda init 
         bin/set-course.sh
 
+
 2. Set up environment:
 
         bin/init0111.sh
-        python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
         
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
 
