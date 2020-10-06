@@ -237,6 +237,34 @@ class  Cylog():
         return (Fernet(data['key']).decrypt(np.atleast_1d(data[f'ciphered_user_{site[0]}'])[0]),\
                 Fernet(data['key']).decrypt(np.atleast_1d(data[f'ciphered_pass_{site[0]}'])[0]))
 
+def modlog():
+    sites = ['https://n5eil01u.ecs.nsidc.org',\
+         'https://urs.earthdata.nasa.gov',\
+        'https://e4ftl01.cr.usgs.gov']
+
+    l = Cylog(sites)
+    test = l.login()
+    print(test[0].decode('utf-8'))
+    
+    
+def modpass():
+    sites = ['https://n5eil01u.ecs.nsidc.org',\
+         'https://urs.earthdata.nasa.gov',\
+        'https://e4ftl01.cr.usgs.gov']
+    l = Cylog(sites)
+    test = l.login()    
+    print(test[1].decode('utf-8'))
+    
+    
+def earthdata(do_test=False,force=False):
+    sites = ['https://n5eil01u.ecs.nsidc.org',\
+         'https://urs.earthdata.nasa.gov',\
+        'https://e4ftl01.cr.usgs.gov']
+    l = Cylog(sites)
+    test = l.login(force=force)   
+    if do_test:
+        from geog0111.modis import test_login
+        assert test_login(True)
 
 def main():
     site = "test site"

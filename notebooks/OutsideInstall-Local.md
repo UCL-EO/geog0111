@@ -14,12 +14,22 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
 
         bin/init.sh  
         python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+        
+3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
 
-3. Download the majority of the datasets youy'll need (this will take some hours):
+4. Store the Earthdata password locally. Do this by running the following, and entering your Earthdata login and password when prompted:
 
-        bin/get_datasets.sh
+        ipython -c "from geog0111.cylog import earthdata; earthdata(True);"
+        
+   The `True` argument to `earthdata` performs a test of the login that will fail if the login fails. Be aware that if you run this test on a Wednesday, it may fail simply because the NASA servers go down for maintenance. If it fails for other reasons,  reset your password cache with:
+   
+        ipython -c "from geog0111.cylog import earthdata; earthdata(do_test=True,force=True);"
+
+5. Download the majority of the datasets youy'll need (this will take some hours):
+
+        bin/get-datasets.sh
     
-4. Launch jupyter or jupyterlab server
+6. Launch jupyter or jupyterlab server
 
 
           jupyter notebook
