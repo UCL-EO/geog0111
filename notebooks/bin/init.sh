@@ -13,6 +13,8 @@ echo "--> location: $base"
 repo=$(echo $base | awk -F/ '{print $NF}')
 echo "--> repo: $repo"
 
+isUCL=$(uname -n | awk -Frstudio '{print $2}' | wc -w)
+
 # HOME may not be set on windows
 if [ -z "$HOME" ] ; then
   cd ~
@@ -41,6 +43,17 @@ else
   echo "---> failure setting active env to ${course_name}"
   exit 1
 fi
+
+touch  ~/.zsh_profile
+grep -v 'source ~/.profile' < ~/.zsh_profile > /tmp/tmp.$$
+echo 'source ~/.profile' >> /tmp/tmp.$$
+mv /tmp/tmp.$$ ~/.zsh_profile 
+
+touch  ~/.bash_profile
+grep -v 'source ~/.profile' < ~/.bash_profile > /tmp/tmp.$$
+echo 'source ~/.profile' >> /tmp/tmp.$$
+mv /tmp/tmp.$$ ~/.bash_profile 
+
 echo "--> done setting active env to ${course_name}"
 
 # postBuild to set jupyter extensions
