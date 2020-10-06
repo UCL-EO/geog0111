@@ -11,7 +11,7 @@ if [ "$isUCL" == 0 ] ; then
   conda config --prepend envs_dirs /shared/groups/jrole001/${course_name}/envs
 fi
 
-conda env create -n geog0111 -f /tmp/geog0111.yml
+conda env create -n geog0111 --force -f /tmp/geog0111.yml
 
 if [ $? -ne 0 ] ; then
   conda env update -n geog0111 -f /tmp/geog0111.yml
