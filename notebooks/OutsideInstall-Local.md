@@ -10,15 +10,13 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
         git clone https://github.com/UCL-EO/geog0111.git
         cd geog0111
 
-2. Download required Python packages (assumed shell bash) (will take minutes/tens of minutes):
+2. Download/update required Python packages (will take minutes/tens of minutes):
 
-        conda init bash
+        conda init 
         bin/set-course.sh
 
 2. Set up environment:
 
-        conda init bash
-        bin/set-course.sh
         bin/init0111.sh
         python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
         
