@@ -10,10 +10,16 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
         git clone https://github.com/UCL-EO/geog0111.git
         cd geog0111
 
-2. Set up environment
-     
+2. Download required Python packages (assumed shell bash) (will take minutes/tens of minutes):
+
         conda init bash
-        bin/init.sh
+        bin/set-course.sh
+
+2. Set up environment:
+
+        conda init bash
+        bin/set-course.sh
+        bin/init0111.sh
         python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
         
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
