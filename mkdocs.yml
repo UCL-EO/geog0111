@@ -79,7 +79,6 @@ nav:
     - Numpy: 064_Numpy_answers.md
     - Lai: 065_LAI_answers.md
 - Summary:
-  - Summary-Copy1: 070_Summary-Copy1.md
   - Summary: 070_Summary.md
 plugins:
 - git-revision-date-localized

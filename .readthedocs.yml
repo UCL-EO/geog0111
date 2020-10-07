@@ -6,16 +6,16 @@
 version: 2
 
 # Build documentation in the docs/sphinx directory with Sphinx
-sphinx:
-  configuration: docs/sphinx/conf.py
+#sphinx:
+#  configuration: docs/sphinx/conf.py
 
 # Build documentation with MkDocs
-#mkdocs:
-#  configuration: mkdocs.yml
+mkdocs:
+  configuration: mkdocs.yml
 
 # Optionally build your docs in additional formats such as PDF
-#formats:
-#  - pdf
+formats:
+  - pdf
 
 conda:
   environment: Docker/small_environment.yml
