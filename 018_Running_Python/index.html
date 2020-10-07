@@ -330,7 +330,7 @@
 <h2 id="running-python-code-in-a-file">Running Python  Code in a file</h2>
 <p>We will generally use these Jupyter notebooks for running you Python codes, but you should also learn how to develop and run Python codes outside of the notebook. We provide a quick example of that here.</p>
 <h3 id="running-a-python-script">Running a Python script</h3>
-<p>Python codes are written in files with the suffix <code>.py</code>, e.g. <a href="geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a>.</p>
+<p>Python codes are written in files with the suffix <code>.py</code>, e.g. <a href="../geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a>.</p>
 <p>If the file is defined as a Python script, then we can run. it from a shell in the same way we would run any other <code>unix</code> command:</p>
 <pre><code class="python">!geog0111/helloWorld.py
 </code></pre>
@@ -358,7 +358,7 @@ ls -l geog0111/helloWorld.py
 <pre><code>-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py
 </code></pre>
 <h3 id="running-python-code-from-python">Running Python code from Python</h3>
-<p>We can also run the Python code contained in <a href="geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a> from a <code>notebook</code> cell using <code>%run</code> (or from an <code>ipython</code> prompt using just <code>run</code>):</p>
+<p>We can also run the Python code contained in <a href="../geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a> from a <code>notebook</code> cell using <code>%run</code> (or from an <code>ipython</code> prompt using just <code>run</code>):</p>
 <pre><code class="python">%run geog0111/helloWorld.py
 </code></pre>
 
@@ -411,7 +411,7 @@ if __name__ == &quot;__main__&quot;:
 
 <pre><code>hello world
 </code></pre>
-<p>This same code is contained in the file <a href="geog0111/helloWorld.py">geog0111/helloWorld.py</a>. Although the amount of comments and code in there might seem a little overkill just to print out <code>hello world</code>, it is good for you to get into the habit of writing your Python codes in this way. </p>
+<p>This same code is contained in the file <a href="../geog0111/helloWorld.py">geog0111/helloWorld.py</a>. Although the amount of comments and code in there might seem a little overkill just to print out <code>hello world</code>, it is good for you to get into the habit of writing your Python codes in this way. </p>
 <p>To briefly explain the blocks of code:</p>
 <pre><code>#!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -463,7 +463,7 @@ def main():
     main()
 </code></pre>
 <p>This is pretty standard syntax, so we will not go into details now, other than to note that this is the mechanism by which running this file as a script makes the call to <code>main()</code>, which then calls our example code running <code>helloWorld()</code>.</p>
-<p>The final thing we need to do is to make our script executable. This involves setting some permissions on the file with the function <code>Path().chmod()</code>. The code to do this, for the file  <a href="geog0111/helloWorld.py">geog0111/helloWorld.py</a> from Python is:</p>
+<p>The final thing we need to do is to make our script executable. This involves setting some permissions on the file with the function <code>Path().chmod()</code>. The code to do this, for the file  <a href="../geog0111/helloWorld.py">geog0111/helloWorld.py</a> from Python is:</p>
 <pre><code class="python">from pathlib import Path
 Path('geog0111/helloWorld.py').chmod(int('755', base=8))
 </code></pre>
@@ -492,21 +492,21 @@ geog0111/helloWorld.py
 <h3 id="jupyter-notebook">Jupyter notebook</h3>
 <p>If you are in the GEOG0111 class, you will most likely be using the notebook server. In this case, follow these instructions:</p>
 <p>You can open a text editor from a Jupyter notebook server from the menu on the right hand side of the Jupyter homepage window:</p>
-<p><img alt="" src="images/te.png" /></p>
+<p><img alt="" src="../images/te.png" /></p>
 <p>You can change file permissions using a command similar to that above (here, set for execute):</p>
 <pre><code>    from pathlib import Path
     Path(MYFILE).chmod(int('755', base=8))
 </code></pre>
 <h3 id="from-jupyterlab">From JupyterLab</h3>
 <p>If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:</p>
-<p><img alt="JupyterLab tools" src="images/jl.png" /></p>
+<p><img alt="JupyterLab tools" src="../images/jl.png" /></p>
 <p>Among these you will see 'text file'. Launch a text file, write your Python code into the file, and save it (<code>File -&gt; Save As</code>) to the Python file name you want in your <code>work directory</code> (e.g. <code>work/test.py</code>).</p>
 <p>Alternatively, use the menu item <code>File -&gt; New -&gt; Text File</code> to open a new text file.</p>
 <p>To change the permissions on the file from JupyterLab, open a shell (e.g. using 
 <code>File -&gt; New -&gt; Terminal</code>) and in there, type (assuming your file is called <code>work/test.py</code>):</p>
 <pre><code>chmod 755 work/test.py
 </code></pre>
-<p><img alt="JupyterLab terminal" src="images/term.png" /></p>
+<p><img alt="JupyterLab terminal" src="../images/term.png" /></p>
 <h3 id="use-a-text-editor">Use a text editor</h3>
 <p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. </p>
 <h3 id="create-in-bash">Create in bash</h3>

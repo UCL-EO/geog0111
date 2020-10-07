@@ -384,7 +384,7 @@ fig.colorbar(im, ax=axs[0])
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fd01f4cead0&gt;
 </code></pre>
-<p><img alt="png" src="024_Image_display_files/024_Image_display_5_1.png" /></p>
+<p><img alt="png" src="../024_Image_display_files/024_Image_display_5_1.png" /></p>
 <h4 id="exercise-1">Exercise 1</h4>
 <ul>
 <li>Plot the first datasets in <code>data_MCD15A3H</code> as subplots in a 2 x 2 shape.</li>
@@ -437,7 +437,7 @@ for i,c in enumerate(cmaps):
     fig.colorbar(im, ax=axs[i])
 </code></pre>
 
-<p><img alt="png" src="024_Image_display_files/024_Image_display_8_0.png" /></p>
+<p><img alt="png" src="../024_Image_display_files/024_Image_display_8_0.png" /></p>
 <h4 id="exercise-2">Exercise 2</h4>
 <ul>
 <li>write a function called <code>im_display</code> that takes as input:<ul>
@@ -463,7 +463,7 @@ for i,c in enumerate(cmaps):
 <p>Note that you will have to experiment a bit with the <code>x_size,y_size</code> values to get a good plot. It is not easy to automate that.</p>
 <h2 id="quantised-data-land-cover">Quantised data: Land Cover</h2>
 <p>Sometimes we want quantised colourmaps, for example for a land cover classification map. You can do these perfectly well in <code>matplotlib</code>, but the process is a little more involved.</p>
-<p>We will take as an example the MODIS product <code>MCD12Q1</code> over the UK. The land cover layer we are interested in is called <code>LC_Type1</code>. The <a href="https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf">land cover names</a> associated with this are given in the file <a href="data/LC_Type1_colour.csv">data/LC_Type1_colour.csv</a>, along with example colour mappings.</p>
+<p>We will take as an example the MODIS product <code>MCD12Q1</code> over the UK. The land cover layer we are interested in is called <code>LC_Type1</code>. The <a href="https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf">land cover names</a> associated with this are given in the file <a href="../data/LC_Type1_colour.csv">data/LC_Type1_colour.csv</a>, along with example colour mappings.</p>
 <pre><code class="python">import pandas as pd
 
 lc_Type1 = pd.read_csv('data/LC_Type1_colour.csv')
@@ -658,7 +658,7 @@ plt.legend(handles=patches,
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fd0292f6c10&gt;
 </code></pre>
-<p><img alt="png" src="024_Image_display_files/024_Image_display_17_1.png" /></p>
+<p><img alt="png" src="../024_Image_display_files/024_Image_display_17_1.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>
 <li>Write a function called <code>plot_lc</code> that takes as input modis land cover dataset and plots the associated land cover map</li>

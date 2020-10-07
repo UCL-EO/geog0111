@@ -328,7 +328,7 @@ axs.legend(loc='best')
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7f04897b83d0&gt;
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_5_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_5_1.png" /></p>
 <p>We can build a function for the model, provide an initial estimate at the model parameters:</p>
 <pre><code class="python">import numpy as np
 
@@ -369,7 +369,7 @@ print('Luxembourg')
 
 <pre><code>Luxembourg
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_9_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_9_1.png" /></p>
 <p>We can see that even with a rough guess of the model parameters, we can produce a plot that is strikingly similar to the regularised result we saw in previous sessions. That result shows what might be interpreted as a double feature around the maximum LAI, but we have seen that spurious features of this sort can arise from the filtering process. We might consider the logistic model a better interpretation of the data then. The double-logistic model has the additional advantage that the parameters have a physical meaning that we can map from year to year and compare. The regularisation result is itself of course, the result of a model. The main difference then is that the regularisation result is from a non-parametric model, and the double-logistic  is a parametric model.</p>
 <p>We have seen that there are 6 model parameters. In the previous session, we learned rapid methods of parameter estimation that could only work with low dimensional data. We need to consider how to simply this model then, if we are to apply LUT approaches.</p>
 <p>One idea is to attempt to normalise the vertical axis of the model. If we suppose we know the maximum and minimum LAI, we can use these as estimates of $p_0$ and $p_1$. One route to this would be to use the regularised model output. Next, we might assume that the slope parameters $p_2$ and $p_4$ are equal, without too much loss of generalisation. As a further simplification, we might assume we know this parameter, and fix it, at a value of 0.07 say. We can later look at the impact of these assumptions, but they have allowed us to reduce the problem to a 2-D one that we can easily solve with a LUT.</p>
@@ -402,7 +402,7 @@ fig.colorbar(im, ax=axs[1])
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047dd7ce10&gt;
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_13_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_13_1.png" /></p>
 <pre><code class="python">import numpy as np
 
 '''
@@ -449,7 +449,7 @@ print('Luxembourg: Simplified model')
 
 <pre><code>Luxembourg: Simplified model
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_15_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_15_1.png" /></p>
 <p>As discussed previously, since we are doing pixel-by-pixel processing, we can change the 2D spatial data into a 1D flattened array. </p>
 <pre><code class="python">param0_ = param0.ravel()
 param1_ = param1.ravel()
@@ -523,7 +523,7 @@ fig.colorbar(im, ax=axs)
 
 &lt;matplotlib.colorbar.Colorbar at 0x7f047c486810&gt;
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_23_2.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_23_2.png" /></p>
 <p>Let's build a 2-D LUT as previously, and provide a flattened version. We have defined bounds above:</p>
 <pre><code class="python"># Use mgrid as previously to define a 2D grid of parameters
 sp0min,sp0max,sp0step = 100,250,10
@@ -627,7 +627,7 @@ fig.colorbar(im, ax=axs)
 
 &lt;matplotlib.colorbar.Colorbar at 0x7f047c365310&gt;
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_33_2.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_33_2.png" /></p>
 <p>To find the parameters at the minimum value, simply follow the same approach as previously using <code>argmin</code>, but with one extra dimension. In this case, <code>rmse</code> has shape <code>(21350, 336)</code> so we apply the argmin over the parameter dimension (axis 1):</p>
 <pre><code class="python"># use np.argmin to find the minimum over axis 1
 imin = np.argmin(rmse,axis=1)
@@ -674,7 +674,7 @@ fig.colorbar(im, ax=axs[3])
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047c1a2b10&gt;
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_36_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_36_1.png" /></p>
 <pre><code class="python">import matplotlib.pyplot as plt
 
 fig, axs = plt.subplots(1,2,figsize=(10,5))
@@ -693,7 +693,7 @@ fig.colorbar(im, ax=axs[1])
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f0477f788d0&gt;
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_37_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_37_1.png" /></p>
 <p>Now forward model:</p>
 <pre><code class="python">param3_ext = p3[np.newaxis,:,np.newaxis]
 param5_ext = p5[np.newaxis,:,np.newaxis]
@@ -749,7 +749,7 @@ print('Luxembourg optimised')
 
 <pre><code>Luxembourg optimised
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_42_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_42_1.png" /></p>
 <pre><code class="python">import matplotlib.pyplot as plt
 # Plot the reshaped RMSE values returned from this as an image
 
@@ -767,7 +767,7 @@ axs.legend(loc='best')
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7f0477dfdf90&gt;
 </code></pre>
-<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_43_1.png" /></p>
+<p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_43_1.png" /></p>
 <p>Given the criteria we discussed in <a href="../050_Models/#Visualisation-of-RMSE">050_Models</a>, we can see this as quite a good stable solution: it is not close to the boundaries, and we can see the shape of the erro functiuon quite well. The error function is perhaps a little flat, but it has a good form.</p>
 <h4 id="exercise-1">Exercise 1</h4>
 <ul>

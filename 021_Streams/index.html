@@ -478,8 +478,8 @@ safe_dump(data, stream=None, **kwds)
     Produce only basic YAML tags.
     If stream is None, return the produced string instead.
 </code></pre>
-<p>In the following example, we use <code>Path</code> to open the file <a href="bin/copy/environment.yml"><code>bin/copy/environment.yml</code></a> and read the open stream using the <code>yaml.safe_load()</code> function. </p>
-<p>This file, <a href="bin/copy/environment.yml"><code>bin/copy/environment.yml</code></a>, specifies which packages are loaded in our Python environment. It has a simple ASCII format, but since it is a <code>yaml</code> file, we should read it with code that interprets the format correctly and safely into a dictionary. </p>
+<p>In the following example, we use <code>Path</code> to open the file <a href="../bin/copy/environment.yml"><code>bin/copy/environment.yml</code></a> and read the open stream using the <code>yaml.safe_load()</code> function. </p>
+<p>This file, <a href="../bin/copy/environment.yml"><code>bin/copy/environment.yml</code></a>, specifies which packages are loaded in our Python environment. It has a simple ASCII format, but since it is a <code>yaml</code> file, we should read it with code that interprets the format correctly and safely into a dictionary. </p>
 <pre><code class="python">from pathlib import Path
 import yaml
 
@@ -542,7 +542,7 @@ with json_file.open('w') as f:
 <h3 id="reading-data-into-pandas">Reading data into <code>pandas</code></h3>
 <p>The Python package <code>pandas</code> is widely-used to read and manipulate data in tabular or similar form. One of the most common tabular data formats is <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>.</p>
 <p>An interesting CSV-format dataset is that containing the <a href="https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv">successive pulses</a> of the oscillation signal coming from the <a href="https://www.joydivisionofficial.com/reimagined/">Pulsar PSR B1919+21</a> discovered by <a href="https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell">Jocelyn Bell</a> in 1967. Some of you might also recognise it from  a <a href="https://en.wikipedia.org/wiki/Unknown_Pleasures">famous album cover</a></p>
-<p><img alt="Joy Division" src="images/small_unknown_pleasures.png" /></p>
+<p><img alt="Joy Division" src="../images/small_unknown_pleasures.png" /></p>
 <p><a href="https://raw.githubusercontent.com/igorol/unknown_pleasures_plot/master/pulsar.csv">By inspection</a> we can see the data are 80 lines of 300 columns of data. The data format is simple, with no missing values or metadata. We can straightforwardly use the <code>pandas</code> function <code>pd.read_csv</code>, specifying the URL, to read this dataset (specifying only <code>header=None</code> so that the first line is not interpreted as data column names).</p>
 <pre><code class="python">import pandas as pd
 from geog0111.gurlpath import URL

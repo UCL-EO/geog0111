@@ -1,0 +1,11 @@
+mkdocs
+sphinx
+mkdocs-jupyter
+mknotebooks
+mkdocs-exclude
+mkdocs-git-revision-date-localized-plugin
+recommonmark
+sphinx-markdown-tables
+sphinx-typlog-theme
+mkdocs-rtd-dropdown
+mkdocs-material

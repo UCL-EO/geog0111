@@ -320,7 +320,7 @@
 <li><a href="../021_Streams/">021 Streams</a></li>
 <li><a href="../022_Read_write_files/">022 Read write files</a></li>
 </ul>
-<p>You will need to know how to use <a href="../021_Streams/#Reading-data-into-pandas"><code>pandas</code></a> for reading a CSV dataset. Note that you can do plotting within <code>pandas</code>. But this is much the same as using <a href="https://matplotlib.org"><code>matplotlib</code></a> directly, so we will not be using <code>pandas</code> plotting. We will introduce the <a href="geog0111/modis.py"><code>Modis</code></a> class for simple downloading and reading of MODIS datasets.</p>
+<p>You will need to know how to use <a href="../021_Streams/#Reading-data-into-pandas"><code>pandas</code></a> for reading a CSV dataset. Note that you can do plotting within <code>pandas</code>. But this is much the same as using <a href="https://matplotlib.org"><code>matplotlib</code></a> directly, so we will not be using <code>pandas</code> plotting. We will introduce the <a href="../geog0111/modis.py"><code>Modis</code></a> class for simple downloading and reading of MODIS datasets.</p>
 <h2 id="simple-x-y-plot">Simple x-y plot</h2>
 <p>We have <a href="../021_Streams/#Reading-data-into-pandas">previously</a> seen a dataset of Monthly Southeast England precipitation (mm) in a tabular form on the <a href="https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt">Met Office website</a> amnd how to load this into <code>pandas</code>:</p>
 <pre><code class="python">import pandas as pd
@@ -498,7 +498,7 @@ axs.plot(df[&quot;YEAR&quot;],df['JAN'],label='JAN')
 
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x7f876bc11e50&gt;]
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_10_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_10_1.png" /></p>
 <p>We can easily customise this by adding titles and labels:</p>
 <pre><code class="python">import matplotlib.pyplot as plt
 
@@ -531,7 +531,7 @@ axs.set_xlabel(f'year')
 
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_12_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_12_1.png" /></p>
 <p>The code to do this sort of plot is simple and generic. This example has most of what you will need in terms of coding for line plots. </p>
 <p>If we wanted to do several plots over each other, we can simply call <code>axs.plot</code> again, but we will also find it useful to set a legend:</p>
 <pre><code class="python"># make a useful title
@@ -558,7 +558,7 @@ axs.set_xlabel(f'year')
 
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_15_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_15_1.png" /></p>
 <p>If, instead, we wanted these on separate sub-plots, we specify that in the <code>plt.subplots</code> call. For a line of 2 plots, we use:</p>
 <pre><code>plt.subplots(2,1,...)
 </code></pre>
@@ -597,7 +597,7 @@ axs[1].set_xlabel(f'year')
 
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_17_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_17_1.png" /></p>
 <h4 id="exercise-1">Exercise 1</h4>
 <p>We have seen how to access the dataset labels using:</p>
 <pre><code>headings = df.columns[1:-1]
@@ -676,11 +676,11 @@ ofile = 'data/precip.png'
 plt.savefig(ofile)
 </code></pre>
 
-<p><img alt="png" src="023_Plotting_files/023_Plotting_23_0.png" /></p>
-<p>We can now load the <a href="data/precip.png">saved image</a> as a figure with the markdown code:</p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_23_0.png" /></p>
+<p>We can now load the <a href="../data/precip.png">saved image</a> as a figure with the markdown code:</p>
 <pre><code>![the figure we just saved](data/precip.png)
 </code></pre>
-<p><img alt="the figure we just saved" src="data/precip.png" /></p>
+<p><img alt="the figure we just saved" src="../data/precip.png" /></p>
 <pre><code class="python">import matplotlib.pyplot as plt
 # make a useful title
 name = f'Monthly SE UK precipitation'
@@ -706,7 +706,7 @@ axs.set_xlabel(f'year')
 
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_26_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_26_1.png" /></p>
 <h2 id="date-fields">Date fields</h2>
 <p>Many datasets we deal with will be a function of time. Sometimes the date information may be presented in a format we can use as an integer (or even floating point number), an example being the year field above. But other times, we might need to work with the date format that comes with the dataset to make it something appropriate.</p>
 <p>A useful Python package for this is <a href="https://docs.python.org/3/library/datetime.html"><code>datetime</code></a>. </p>
@@ -939,7 +939,7 @@ axs.set_xlabel(f'days after {start_date.strftime(&quot;%d/%m/%Y&quot;)}')
 
 <pre><code>Text(0.5, 0, 'days after 01/01/2020')
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_48_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_48_1.png" /></p>
 <p>We can use the date fields directly in the plot above, which might make the information easier to understand. But by default, all of the data fields will be printed:</p>
 <pre><code class="python">import matplotlib.pyplot as plt
 
@@ -963,7 +963,7 @@ axs.set_xlabel(f'date')
 
 <pre><code>Text(0.5, 0, 'date')
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_50_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_50_1.png" /></p>
 <p>This is not a limitation of <code>matplotlib</code>, just a formatting issue. A quick <a href="https://matplotlib.org/3.1.0/api/dates_api.html">look into the matplotlib <code>dates</code> API</a> shows us that we can quite simply set the x-ticks to be every month:</p>
 <pre><code>months = mdates.MonthLocator() 
 axs.xaxis.set_major_locator(months)
@@ -993,7 +993,7 @@ axs.set_xlabel(f'date')
 
 <pre><code>Text(0.5, 0, 'date')
 </code></pre>
-<p><img alt="png" src="023_Plotting_files/023_Plotting_52_1.png" /></p>
+<p><img alt="png" src="../023_Plotting_files/023_Plotting_52_1.png" /></p>
 <p>Although the default formatting in <a href="https://matplotlib.org/">matplotlib</a> will do an excellent job for the vast majority of your needs, you should be aware that you may meet cases where you need to look a little deeper into the documentation to find the right solution to your problem. You should always try to find such solutions in the existing codebase, rather than attempting to hack your way around a problem.</p>
 <h4 id="exercise-3">Exercise 3</h4>
 <p>We examined a pulsar time series in a <a href="../021_Streams/#pandas-transpose">previous section of notes</a>. It contains the <a href="https://gist.githubusercontent.com/borgar/31c1e476b8e92a11d7e9/raw/0fae97dab6830ecee185a63c1cee0008f6778ff6/pulsar.csv">successive pulses</a> of the oscillation signal coming from the <a href="https://www.joydivisionofficial.com/reimagined/">Pulsar PSR B1919+21</a> discovered by <a href="https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell">Jocelyn Bell</a> in 1967.</p>
@@ -1008,7 +1008,7 @@ axs.set_xlabel(f'date')
 </code></pre>
 <p>for axis <code>ax</code> (this may be something like <code>axs[i]</code> in your code).</p>
 <p>The results should be reminiscent of:</p>
-<p><a href="https://blogs.scientificamerican.com/blogs/assets/sa-visual/Image/fig537.jpg"><img alt="pulsar image" src="images/smallfig537.jpg" /></a></p>
+<p><a href="https://blogs.scientificamerican.com/blogs/assets/sa-visual/Image/fig537.jpg"><img alt="pulsar image" src="../images/smallfig537.jpg" /></a></p>
 <p>and </p>
 <p><a href="https://www.amazon.co.uk/Pleasures-VINYL-Joy-Division/dp/B00XILAIWI"><img alt="Joy Division" src="https://images-na.ssl-images-amazon.com/images/I/812FS2R2v6L._AC_SL1500_.jpg" /></a></p>
 <p>If you want to go further towards re-creating this, you consult <a href="https://matplotlib.org/3.1.0/gallery/animation/unchained.html">the matplotlib gallery</a> for ideas.</p>

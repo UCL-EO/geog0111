@@ -480,7 +480,7 @@ axs.set_ylim(0,1)
 
 <p>According to this mode, with this parameter, about half of the melt water has reached the monitoring station after around 15 days.</p>
 <p>If we convolve this filter with out signal <code>m p</code>, we have our complete model. It is a very simple model that has only 2 parameters: <code>T0</code> and <code>f</code>, although we have assumed the flow data to be normalised to sum to 1 to avoid an additional scaling factor.</p>
-<p>We can now see the code for the model (also in <a href="geog0111/model.py">geog0111/model.py</a>):</p>
+<p>We can now see the code for the model (also in <a href="../geog0111/model.py">geog0111/model.py</a>):</p>
 <pre><code class="python">from scipy.special import expit
 import scipy
 import scipy.ndimage.filters
@@ -569,7 +569,7 @@ axs.legend(loc='best')
 <p>20% of the marks for this section will be for the content and quality of your plots. The rest will be for the code you produce. You should submit a single PDF file for the code, and another for the evidence of the file sizes and the graphs. Neither of these PDFs should be more than a few pages long.</p>
 <h4 id="advice">Advice</h4>
 <p>You will need this snow cover dataset, along with those you generated in Part A of your coursework
-You will want to use the product <code>MOD10A1</code> for the years 2018 and 2019. You should apply the catchment boundary vector dataset in the file <a href="data/Hydrologic_Units/HUC_Polygons.shp">data/Hydrologic_Units/HUC_Polygons.shp</a> to clip your region of interest, specifying the warp arguments and other parameters as follows:</p>
+You will want to use the product <code>MOD10A1</code> for the years 2018 and 2019. You should apply the catchment boundary vector dataset in the file <a href="../data/Hydrologic_Units/HUC_Polygons.shp">data/Hydrologic_Units/HUC_Polygons.shp</a> to clip your region of interest, specifying the warp arguments and other parameters as follows:</p>
 <pre><code>    sds     = ['NDSI_Snow_Cover']
     product = 'MOD10A1'
     tile = ['h09v05']
@@ -582,7 +582,7 @@ You will want to use the product <code>MOD10A1</code> for the years 2018 and 201
       'cutlineDSName' : 'data/Hydrologic_Units/HUC_Polygons.shp'
     }
 </code></pre>
-<p>You can the use a function such as <a href="geog0111/modis_annual.py"><code>modis_annual</code></a> as previously to gather the dataset for the two years of interest. Since the function  <a href="geog0111/modis_annual.py"><code>modis_annual</code></a> is able to cache the dataset, you might like to run it the first time from a shell, with the vebose flag switched on. It may take some considerable time to stitch all of the data together, so being able to see the progress from the verbose output will be important.</p>
+<p>You can the use a function such as <a href="../geog0111/modis_annual.py"><code>modis_annual</code></a> as previously to gather the dataset for the two years of interest. Since the function  <a href="../geog0111/modis_annual.py"><code>modis_annual</code></a> is able to cache the dataset, you might like to run it the first time from a shell, with the vebose flag switched on. It may take some considerable time to stitch all of the data together, so being able to see the progress from the verbose output will be important.</p>
 <p>You will use one year for model calibration and the other for model validation. As the dataset may have gaps, you should use the regularisation approach we have taken previously for LAI to fill the gaps. </p>
 <p>The dataset you produce for each year should have 365 days of snow cover data. It should broadly look like the example shown above. If your dataset appears too 'spikey', it may well be that you have forgotten to apply the regularisation/gap filling.</p>
 <p>All of the marks for this section are on the code you submit, along with the file sizes and graphs demonstrating that you code works as expected.</p>

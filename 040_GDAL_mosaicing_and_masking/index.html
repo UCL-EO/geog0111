@@ -526,7 +526,7 @@ fig.colorbar(im, ax=axs)
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01deb99690&gt;
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_14_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_14_1.png" /></p>
 <h4 id="exercise-2">Exercise 2</h4>
 <ul>
 <li>
@@ -572,7 +572,7 @@ print(f'shape now {pyrenees.shape}')
 <pre><code>shape was (4800, 4800)
 shape now (500, 1000)
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_17_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_17_1.png" /></p>
 <p>That is rather inefficient though, and it is preferable to do the slicing when we call <code>ReadAsArray()</code>. This has a similar form of syntax for sub-setting:</p>
 <pre><code>gdal.ReadAsArray(col_offset, row_offset, col_size, row_size)
 </code></pre>
@@ -595,7 +595,7 @@ print(f'shape now {pyrenees.shape}')
 
 <pre><code>shape now (500, 1000)
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_19_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_19_1.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>
 <li>For doy 41 2019, extract and plot LAI of the sub-region around London by defining the approximate pixel coordinates of the area</li>
@@ -658,7 +658,7 @@ fig.colorbar(im, ax=axs)
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01cf5f70d0&gt;
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_22_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_22_1.png" /></p>
 <p>If you want to save the resultant file, e.g. to geoTiff or VRT file, then you would use e.g.:</p>
 <pre><code>warp_args['format']   = 'GTiff'
 warp_args['options']  = ['COMPRESS=LZW']
@@ -718,7 +718,7 @@ fig.colorbar(im, ax=axs)
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01e044b0d0&gt;
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_27_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_27_1.png" /></p>
 <h4 id="exercise-5">Exercise 5</h4>
 <ul>
 <li>Use <code>Modis.get_modis</code> to plot the LAI for France for doy 49, 2019</li>

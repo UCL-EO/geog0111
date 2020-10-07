@@ -317,9 +317,9 @@
 <li>some model parameters</li>
 </ul>
 <p>The model parameters control the operation of the model. These could be related to the type of vegetation for a phenology model, or terms such as the thickness of snowpack in the case of a snow-melt model. Most often, the parameters will describe <em>states</em> and <em>rates</em>, for example, the current amount of water in a snowpack (state) or the rate at which water is released from the snowpack into runoff (rate).</p>
-<p><img alt="model" src="images/parameters1.png" /></p>
+<p><img alt="model" src="../images/parameters1.png" /></p>
 <p>We will generally have access to the driving data for our model, and we will have some set of measurements that correspond to the output, but we may not know the values of the parameters to use.</p>
-<p><img alt="model" src="images/parameters2.png" /></p>
+<p><img alt="model" src="../images/parameters2.png" /></p>
 <p>How can we use this to provide an estimate of the model parameters? We could make some educated guesses, based on previous experience with the model in different situations ('expert opinion'), and we might also be able to provide reasonable bounds for the parameters, again either based on previous experience with the model or sometimes simply from physical limits (e.g. some parameters cannot be negative). </p>
 <p>What we really want is a more objective way of estimating the parameters. This involves parameter optimisation, which is a whole field of science. We cannot cover that in this course, but we can introduce some of the main ideas to use in our codes.</p>
 <p>Before moving on to more 'realistic' models, let's build a simple example model <code>model</code> we can learn from. </p>
@@ -371,12 +371,12 @@ print(f'model output: tdriver shape  {tdriver.shape}')
 <pre><code>measurements: tmdriver shape (92,)
 model output: tdriver shape  (365,)
 </code></pre>
-<p><img alt="png" src="050_Models_files/050_Models_11_1.png" /></p>
+<p><img alt="png" src="../050_Models_files/050_Models_11_1.png" /></p>
 <p>We can see right away that there is a mis-match between the model outputs and the measurements.</p>
 <h3 id="discrepancy-and-optimisation">discrepancy and optimisation</h3>
 <p>We have a set of <em>observations</em> that correspond to the model outputs at some time samples. </p>
 <p>A simple operation we can do is to compare these then. We might suppose that a set of parameters that provides a lower discrepancy between observations and modelled values (we will often call this error) is <em>objectively better</em> than one with a poorer match. In that sense, what we would need to do would be to search for a set of parameters that which has the minimum error. Our search for parameters will be guided by any bounds we set. Then all we need to do is write some computer code that considers different values of the parameters and reports on the best (the optimal) match.</p>
-<p><img alt="model" src="images/parameters3.png" /></p>
+<p><img alt="model" src="../images/parameters3.png" /></p>
 <p>That is a reasonable approach, and one we will take in these notes. We should be aware that when we do Science however, we need to take into account uncertainty, and also that there might be other constraints we want to put on the problem.</p>
 <p>Uncertainty manifests itself at all stages of modelling and optimisation: the model itself will be uncertain, because of its nature as an abstraction of some process; the drivers will often be uncertain in their ability to the conditions at the actual place and time we are doing the modelling; and the measurements will be uncertain. We have treated uncertainty in other sections of these notes by applying a weight to observations, and we can take the same approach here. When we calculate error, for instance as the root mean square error between model predictions (output) and measurement, we can weight this to give a weighted error.</p>
 <p>Before we can calculate the (weighted) error, we need to treat the outputs so that they match the time samples of the measurements. We can either match the observations to the measurements, or the measurements to the observations. The best approach with depend on circumstances but generally it is simplest to run the model for each observation driver. If your model involves some summation (integral) over time, then you need to think carefully about how to do this.</p>
@@ -423,7 +423,7 @@ print(f'model output: tmoutput shape {tmoutput.shape}')
 <pre><code>measurements: measure shape  (92,)
 model output: tmoutput shape (92,)
 </code></pre>
-<p><img alt="png" src="050_Models_files/050_Models_19_1.png" /></p>
+<p><img alt="png" src="../050_Models_files/050_Models_19_1.png" /></p>
 <pre><code class="python"># scatter plot
 fig, axs = plt.subplots(1,1,figsize=(5,5))
 # max value over all
@@ -442,10 +442,10 @@ axs.plot([0,maxvalue],[0,maxvalue],'k')
 
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x7ff6b6709f90&gt;]
 </code></pre>
-<p><img alt="png" src="050_Models_files/050_Models_20_1.png" /></p>
+<p><img alt="png" src="../050_Models_files/050_Models_20_1.png" /></p>
 <h3 id="varying-the-parameters">Varying the parameters</h3>
 <p>We have seen how, once we have aligned the model outputs and observations, we can calculate a weighted measure if error, RMSE here. So, so some given set of measurements, a model, and a set of model parameters, we can calculate the error:</p>
-<p><img alt="model" src="images/parameters4.png" /></p>
+<p><img alt="model" src="../images/parameters4.png" /></p>
 <p>Re-generate the set of measurements:</p>
 <pre><code class="python">import numpy as np
 
@@ -507,7 +507,7 @@ print('2d parameter grid')
 
 <pre><code>2d parameter grid
 </code></pre>
-<p><img alt="png" src="050_Models_files/050_Models_28_1.png" /></p>
+<p><img alt="png" src="../050_Models_files/050_Models_28_1.png" /></p>
 <p>Recall from <a href="../032_More_numpy/#Changing-shape:-flatten,-ravel-and-reshape">032 <code>reshape</code></a> that although the LUT is 2-D, we will mostly want to operate on a 1D ravelled version. So let's generate that from the outset:</p>
 <pre><code class="python">p0_ = np.ravel(p0)
 p1_ = np.ravel(p1)
@@ -616,7 +616,7 @@ axs.set_xlabel(f'parameter index')
 
 <pre><code>Text(0.5, 0, 'parameter index')
 </code></pre>
-<p><img alt="png" src="050_Models_files/050_Models_47_1.png" /></p>
+<p><img alt="png" src="../050_Models_files/050_Models_47_1.png" /></p>
 <pre><code class="python">import matplotlib.pyplot as plt
 # Plot the RMSE values returned from this as an image
 
@@ -636,7 +636,7 @@ axs.legend(loc='lower right')
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7ff6b6593dd0&gt;
 </code></pre>
-<p><img alt="png" src="050_Models_files/050_Models_48_1.png" /></p>
+<p><img alt="png" src="../050_Models_files/050_Models_48_1.png" /></p>
 <p>It is useful to look at such plots because we can use them to gauge  the uncertainty in the parameter solution. In this case, we see that the error surface is long and narrow in parameter 1. So even though we have reported the optimal value as 1.0, it could vary considerably and not change the RMSE value considerably. This is an important part of the interpretation of our results, and helps explain why we solved for a parameter value of 1.0 even though we fed the measurements with a value of 0.6.</p>
 <p>One other thing these plots are useful for is to check that our solution does not lie on the boundary of the parameter space. Unless there is a good physical reason for the bounds we have imposed on the parameters in generating the LUT grid, if we find our solution is on a parameter boundary we might just be not sampling the parameter space well enough. Related to this, we also would like to see some spread of the RMSE values, rather than just a single low point, as this might otherwise indicate that our sampling grid is too coarse. The example above is good model for what you should be looking for the the RMSE plots, although the grid is a little coarse. Remember from above that we have thresholded the plot at 10 times the minimum RMSE so we can see the detail of the plot around the minimum point.</p>
 <p>Now visualise the model and measurents for the 'optimum' parameters:</p>
@@ -671,7 +671,7 @@ print(f'model output: tdriver shape  {tdriver.shape}')
 measurements: tmdriver shape (92,)
 model output: tdriver shape  (365,)
 </code></pre>
-<p><img alt="png" src="050_Models_files/050_Models_51_1.png" /></p>
+<p><img alt="png" src="../050_Models_files/050_Models_51_1.png" /></p>
 <p>The parameter estimation code is effective and quite fast in this case. 
 We are using quite a sparse LUT (132 points) in 2-D, but the model is able to mimic the (pseudo) observations very well, even with rather a quantised LUT. We can see from the RMSE image plot above, and the value of RMSE we obtained, that this is likely a good solution for the model. We know from that plot also that the uncertainty in parameter 1 is high. A more sophisticated analysis would take into account the parameter uncertainty in producing the modelled outputs (i.e. put error bars on the model output).</p>
 <p>When we forward model using the parameters we solved for, we see that the solution 

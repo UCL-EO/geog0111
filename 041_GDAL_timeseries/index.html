@@ -436,7 +436,7 @@ for i in range(data.shape[0]):
     axs[i].set_title(bnames[i])
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_12_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_12_0.png" /></p>
 <h3 id="modisget_modis"><code>Modis.get_modis</code></h3>
 <p>For convenience, we can again use the function <code>Modis.get_modis</code> to combine these, simply by passing a list of <code>doy</code> values, rather than a single <code>doy</code>.</p>
 <pre><code class="python">import gdal
@@ -495,7 +495,7 @@ for i in range(data.shape[0]):
     axs[i].set_title(bnames[i])
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_17_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_17_0.png" /></p>
 <h2 id="a-year-of-data">A year of data</h2>
 <p>A convenient feature of <code>Modis.get_modis</code> is that we can use wildcards for specifying dates. </p>
 <p>So, to get a year of LAI data for Luxembourg, we can specify <code>doys = "*"</code>. Note that we could have chosen any location, but we select a small country to make the running more feasible in a practical session.</p>
@@ -504,7 +504,7 @@ for i in range(data.shape[0]):
 <p>If you want to download a dataset that is not covered in these notebooks, you are of course welcome to do so, but plan your work ahead of time, and try to pre-download the data before attempting any processing. In such a case, you should take some code such as that below and paste it into a Python file and run that as a Python script from a command line. You should make sure you set:</p>
 <pre><code>'verbose' : True
 </code></pre>
-<p>in the <code>kwargs</code> dictionary. An example script you can modify is given in <a href="geog0111/get_lai.py">geog0111/get_lai.py</a>.</p>
+<p>in the <code>kwargs</code> dictionary. An example script you can modify is given in <a href="../geog0111/get_lai.py">geog0111/get_lai.py</a>.</p>
 <pre><code class="python">import gdal
 from geog0111.modis import Modis
 import matplotlib.pyplot as plt
@@ -569,7 +569,7 @@ for i in range(mfiles['Lai_500m'].shape[0]):
     fig.colorbar(im, ax=axs[i])
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_24_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_24_0.png" /></p>
 <h3 id="plotting-time-series">Plotting time series</h3>
 <p>We might now want to plot some time series.</p>
 <p>First, extract the <code>doy</code> from <code>mfiles['bandnames']</code>:</p>
@@ -614,7 +614,7 @@ for i in range(shape[0]):
         axs[i,j].set_ylim(0,7)
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_30_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_30_0.png" /></p>
 <h4 id="exercise-2">Exercise 2</h4>
 <ul>
 <li>
@@ -724,7 +724,7 @@ for i in range(mfiles['Lai_500m'].shape[0]):
     fig.colorbar(im, ax=axs[i])
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_39_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_39_0.png" /></p>
 <pre><code class="python"># Plot the weight
 import matplotlib.pyplot as plt
 
@@ -743,7 +743,7 @@ for i in range(mfiles['Lai_500m'].shape[0]):
     fig.colorbar(im, ax=axs[i])
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_40_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_40_0.png" /></p>
 <pre><code class="python"># LAI time series
 import matplotlib.pyplot as plt
 doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
@@ -767,7 +767,7 @@ for i in range(shape[0]):
         axs[i,j].set_ylim(0,7)
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_41_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_41_0.png" /></p>
 <pre><code class="python"># weight time series plots 
 import matplotlib.pyplot as plt
 doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
@@ -791,7 +791,7 @@ for i in range(shape[0]):
         axs[i,j].set_ylim(0,1)
 </code></pre>
 
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_42_0.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_42_0.png" /></p>
 <p>We can look at an individual plot now, and use the weights for error bars.</p>
 <p>In this case, we want to convert the array <code>weight</code> to an array <code>error</code>, applying the opposite of what we did above to get standard deviation, and multiplying by <a href="https://en.wikipedia.org/wiki/1.96">1.96</a>.</p>
 <p>We want to avoid the division <code>1/0</code>, so we first build an array the same as weight, but fiulled with zero values:</p>
@@ -825,7 +825,7 @@ axs.set_ylabel('LAI')
 
 <pre><code>Text(0, 0.5, 'LAI')
 </code></pre>
-<p><img alt="png" src="041_GDAL_timeseries_files/041_GDAL_timeseries_44_1.png" /></p>
+<p><img alt="png" src="../041_GDAL_timeseries_files/041_GDAL_timeseries_44_1.png" /></p>
 <p>We might question the validity of some of the LAI uncertainty here: we expect LAI to have a smnooth trajectory in time, but that is clearly not always the case here. However, they provide a traceable estimate of the reliability of each individual measurement and are useful in that respect.</p>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>

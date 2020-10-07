@@ -1,0 +1,13 @@
+code,colour,class,description
+0,#1c0dff,Water Bodies,at least 60% of area is covered by permanent water bodies.
+1,#b6ff05,Grasslands,dominated by herbaceous annuals (<2m) including cereal croplands.
+2,#dcd159,Shrublands,shrub (1-2m) cover >10%.
+3,#c24f44,Broadleaf,Croplands: bominated by herbaceous annuals (<2m) that are cultivated with broadleaf crops.
+4,#fbff13,Savannas,between 10-60% tree cover (>2m).
+5,#086a10,Evergreen Broadleaf Forests,dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.
+6,#78d203,Deciduous Broadleaf Forests,dominated by deciduous broadleaf trees (canopy >2m). Tree cover >60%.
+7,#05450a,Evergreen Needleleaf Forests,dominated by evergreen conifer trees (canopy >2m). Tree cover >60%.
+8,#54a708,Deciduous Needleleaf Forests,dominated by deciduous needleleaf (larch) trees (canopy >2m). Tree cover >60%.
+9,#f9ffa4,Non-Vegetated Lands,at least 60% of area is non-vegetated barren (sand rock soil) or permanent snow and ice with less than 10% vegetation.
+10,#a5a5a5,Urban and Built-up Lands,at least 30% impervious surface area including building materials asphalt and vehicles.
+255,#000000,Unclassified

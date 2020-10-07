@@ -320,7 +320,7 @@
 <li>denominator = smooth( weight)</li>
 <li>result = numerator/denominator</li>
 </ul>
-<p>We will now load up a dataset (LAI for LU for 2019) to explore smoothing. We will use the function <a href="geog0111/get_lai_data.py">get_lai_data</a> that we have previously developed:</p>
+<p>We will now load up a dataset (LAI for LU for 2019) to explore smoothing. We will use the function <a href="../geog0111/get_lai_data.py">get_lai_data</a> that we have previously developed:</p>
 <pre><code class="python">from geog0111.get_lai_data import get_lai_data
 import numpy as np
 
@@ -379,7 +379,7 @@ axs.set_ylabel('LAI')
 
 Text(0, 0.5, 'LAI')
 </code></pre>
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_6_2.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_6_2.png" /></p>
 <p>The LAI data, that we expect to be smoothly varying in time, has unrealistic high frequency variations (it goes up and down too much). It also has data missing for some days (e.g. when too cloudy), and is often, in the winter, highly uncertain.</p>
 <p>Despite that, we can 'see' that there should be a smoothly varying function that can go through those data points quite well. This is what we want to achieve with our regularisation.</p>
 <h3 id="smoothing_1">Smoothing</h3>
@@ -398,7 +398,7 @@ plt.plot(x,gaussian)
 
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x7fba6be4e7d0&gt;]
 </code></pre>
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_8_1.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_8_1.png" /></p>
 <p>We now perform the weighted regularisation by convolution.</p>
 <pre><code class="python">numerator = scipy.ndimage.filters.convolve1d(lai * weight, gaussian, axis=0,mode='wrap')
 denominator = scipy.ndimage.filters.convolve1d(weight, gaussian, axis=0,mode='wrap')
@@ -430,7 +430,7 @@ axs.legend(loc='best')
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fba639eaf90&gt;
 </code></pre>
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_12_1.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_12_1.png" /></p>
 <pre><code class="python"># Plot the interpolated_lai
 import matplotlib.pyplot as plt
 
@@ -448,7 +448,7 @@ for i in range(interpolated_lai.shape[0]):
     fig.colorbar(im, ax=axs[i])
 </code></pre>
 
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_13_0.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_13_0.png" /></p>
 <pre><code class="python">import matplotlib.pyplot as plt
 
 x_size,y_size=(20,20)
@@ -471,7 +471,7 @@ for i in range(shape[0]):
         axs[i,j].set_ylim(0,7)
 </code></pre>
 
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_14_0.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_14_0.png" /></p>
 <p>This achieves very plausible results for this dataset. The time series plots are particularly useful in judging this: we see that the smoothed signal describes the cloud of observations well. Further, there are no gaps in the data. A visual assessment of this kind is a useful tool for deciding if we are on the right track with our regularisation. We have not justified the filter width value we have used though.</p>
 <h4 id="exercise-2">Exercise 2</h4>
 <ul>
@@ -514,10 +514,10 @@ axs.set_title('data mask')
 
 <pre><code>Text(0.5, 1.0, 'data mask')
 </code></pre>
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_19_1.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_19_1.png" /></p>
 <h2 id="land-cover">Land cover</h2>
 <p>We have generated a gap-filled LAI dataset, and have checked the quality of it. Lets now load some land cover data so that we can examine LAI as a function of land cover class:</p>
-<p>We will use <code>LC_Type3</code> as this is the classification associated with the LAI product. You will find a CSV file defining the LC types in <a href="data/LC_Type3_colour.csv"><code>data/LC_Type3_colour.csv</code></a>.</p>
+<p>We will use <code>LC_Type3</code> as this is the classification associated with the LAI product. You will find a CSV file defining the LC types in <a href="../data/LC_Type3_colour.csv"><code>data/LC_Type3_colour.csv</code></a>.</p>
 <pre><code class="python">from geog0111.modis import Modis
 
 # LU
@@ -710,7 +710,7 @@ plt.legend(handles=patches,
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fba5d278a90&gt;
 </code></pre>
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_26_1.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_26_1.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>
 <li>Write a function <code>get_lc</code> that takes as argument:<pre><code>year    : int
@@ -796,7 +796,7 @@ axs.legend(loc='upper right')
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fba5ce1cf90&gt;
 </code></pre>
-<p><img alt="png" src="043_Weighted_interpolation_files/043_Weighted_interpolation_34_1.png" /></p>
+<p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_34_1.png" /></p>
 <h2 id="formative-assessment">Formative assessment</h2>
 <p>To get some feedback on how you are doing, you should complete and submit the formative assessment <a href="../065_LAI/">065 LAI</a>.</p>
 <h2 id="summary">Summary</h2>

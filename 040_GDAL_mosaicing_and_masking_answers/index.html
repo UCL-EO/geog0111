@@ -420,7 +420,7 @@ else:
 
 <pre><code>work/stitch_2019_041.vrt
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_6_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_6_1.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>
 <li>For doy 41 2019, extract and plot LAI of the sub-region around London by defining the approximate pixel coordinates of the area</li>
@@ -469,7 +469,7 @@ and error that this is approximately
 r0,r1 = 1900,2150
 c0,c1 = 2250,2500
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_8_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_8_1.png" /></p>
 <h4 id="exercise-4">Exercise 4</h4>
 <ul>
 <li>Plot the LAI for Luxemburg (<code>"FIPS='LU'"</code>) for doy 46, 2019</li>
@@ -528,7 +528,7 @@ This is essentially a straight copy from the notes aboive, changing UK for LU
 But if we do that, we will not have the correct tiles to cover Luxemburg
 We need to make sure we use ['h18v04','h18v03'] to get the whole country
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_10_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_10_1.png" /></p>
 <pre><code class="python">import numpy as np
 msg = '''
 Find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.
@@ -624,7 +624,7 @@ We also need to look up the FIPS code for France, since this
 is not given. This can be found to be "FIPS='FR'" from a quick 
 search.
 </code></pre>
-<p><img alt="png" src="040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_13_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_13_1.png" /></p>
 <pre><code class="python">
 msg = '''
 find the median LAI for France for doy 49, 2019 to 2 d.p.

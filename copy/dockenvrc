@@ -1,0 +1,12 @@
+#!/bin/bash
+export CONDA=conda
+export OS=Darwin
+export CONDA_DEFAULT_ENV=geog0111
+export conda_env=geog0111
+export DEBIAN_FRONTEND=noninteractive
+export PATH=$CONDA_DIR/bin:$PATH
+export PATH=$CONDA_DIR/envs/geog0111/bin:$PATH
+if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then
+    . "/opt/conda/etc/profile.d/conda.sh"
+fi
+conda activate geog0111

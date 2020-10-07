@@ -330,9 +330,9 @@
 <p>You will need to know the material  from <a href="../031_Numpy/">031_Numpy</a> in detail.</p>
 <h3 id="nploadtxt"><code>np.loadtxt</code></h3>
 <p>Let's access an interesting dataset on the frequency of satellite launches to illustrate this.</p>
-<p><a href="https://media.giphy.com/media/26DNbCqVfLJbYrXIA/giphy.gif"><img alt="SpaceX landing" src="images/giphy.gif" /></a></p>
+<p><a href="https://media.giphy.com/media/26DNbCqVfLJbYrXIA/giphy.gif"><img alt="SpaceX landing" src="../images/giphy.gif" /></a></p>
 <p>The library code <code>geog0111.nsat</code> accesses a database at <a href="https://www.n2yo.com">https://www.n2yo.com</a> and gets a table satellite launch data.</p>
-<p>Data from this is stored in the datafile <a href="data/satellites-1957-2021.gz">data/satellites-1957-2021.gz</a>. This is a compressed text file.</p>
+<p>Data from this is stored in the datafile <a href="../data/satellites-1957-2021.gz">data/satellites-1957-2021.gz</a>. This is a compressed text file.</p>
 <p>We can use <code>np.loadtxt</code> to read files of this nature into numpy arrays in a similar way to how we <a href="../021_Streams/#Reading-data-into-pandas">read into panadas</a>. If the dataset is not <code>CSV</code> but simply a whitespaced text file, it is often easier to use <code>np.loadtxt</code> than <code>pandas</code>.</p>
 <p>In the case of this dataset, we wish to interpret the launch counts as integers, so we convert the data we read to integers.</p>
 <pre><code class="python">import numpy as np
@@ -697,7 +697,7 @@ fig.colorbar(im, ax=axs)
 
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f3260dcad10&gt;
 </code></pre>
-<p><img alt="png" src="032_More_numpy_files/032_More_numpy_41_1.png" /></p>
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_41_1.png" /></p>
 <p>We could  use <code>np.where</code> to find the index of the minimum point by seeking where it equals the minimum value. That is not always a good idea, as there might be rounding errors involved.</p>
 <p>A more robust approach is to use <code>np.argmin</code> to find the index at which the argument has its minimum.</p>
 <pre><code class="python">imin = np.argmin(y)
@@ -825,7 +825,7 @@ print(f'y-shape: {y.shape}')
 <pre><code>x-shape: (21,)
 y-shape: (21,)
 </code></pre>
-<p><img alt="png" src="032_More_numpy_files/032_More_numpy_58_1.png" /></p>
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_58_1.png" /></p>
 <p>Now let's try to calculate the model <code>y = c * m * x</code> for these same values of <code>x</code>, but for multiple sets of <code>c</code> and <code>m</code>. We will use <a href="../031_Numpy/#np.linspace,-np.arange,-np.mgrid"><code>np.mgrid</code></a> as above to generate a grid of pairs of <code>c</code> and <code>m</code>:</p>
 <pre><code class="python">import matplotlib.pyplot as plt
 # define the min and max and step for the grid we want
@@ -855,7 +855,7 @@ grid_m is [[0.   0.01 0.02 0.03 0.04 0.05]
  [0.   0.01 0.02 0.03 0.04 0.05]]
 2d parameter grid: (3, 6)
 </code></pre>
-<p><img alt="png" src="032_More_numpy_files/032_More_numpy_60_1.png" /></p>
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_60_1.png" /></p>
 <p>This grid is <code>(3,6)</code> and the <code>x</code> dataset is shape <code>(21,)</code>. </p>
 <p>We would expect the output dataset <code>y</code> that describes <code>c + m*x</code> for all <code>x</code>, for each value of <code>c</code> and <code>m</code> to have a shape <code>(3,6,21)</code>. Here, axis 0 and 1 refer to the parameter grid dimensions and axis 2 to the variation over <code>x</code>. The operation is a simple element-wise manipulation that <code>numpy</code> should be efficient at, even for large arrays. We will see that the key to doing this cleanly is to use <a href="https://numpy.org/doc/stable/reference/arrays.indexing.html"><code>np.newaxis</code></a>.</p>
 <p>An <strong>inefficient</strong> way of calculating <code>y</code> for each of the grid parameters would be to use a loop over each value of <code>x</code>:</p>
@@ -894,7 +894,7 @@ for i in range(y.shape[0]):
         axs[i,j].set_ylim(ymin,ymax)
 </code></pre>
 
-<p><img alt="png" src="032_More_numpy_files/032_More_numpy_64_0.png" /></p>
+<p><img alt="png" src="../032_More_numpy_files/032_More_numpy_64_0.png" /></p>
 <p>So, we know the sort of result we are looking for from this, ideally we would do it in a single call to the function with <code>numpy</code>.</p>
 <p>In all of the simple cases above, we have performed operations of arrays of the same shape, so adding an array of shape <code>(10,2)</code> to another of the same shape results in an array of shape <code>(10,2)</code>. </p>
 <p>If we have an array of shape <code>(10,2,1)</code> and add it to an array of shape <code>(1,1,5)</code>, we will get a result of shape (10,2,5):</p>
