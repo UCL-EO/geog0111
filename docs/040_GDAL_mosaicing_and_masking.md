@@ -29,7 +29,7 @@ You will need some understanding of the following:
 
 You will need to remember:
 
-* [the SDS in MODIS datasets]((030_NASA_MODIS_Earthdata.md))
+* [the SDS in MODIS datasets](030_NASA_MODIS_Earthdata.md)
 * how to do [`numpy` slicing](032_More_numpy.md#slicing) and numpy functions to get [array statistics](031_Numpy.md#Summary-statistics)
 
 ### Test
