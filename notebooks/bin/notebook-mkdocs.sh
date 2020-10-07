@@ -28,7 +28,49 @@ cd "$base"
 echo "--> re-making docs"
 rm -rf docs
 mkdir -p docs
+mkdir -p docs/images docs/geog0111 docs/work docs/bin/copy
 
+cd "$base/notebooks"
+cp bin/copy/* "$base/docs/bin/copy"
+cp images/ucl_logo.png "$base/docs/images"
+cp images/jl.png "$base/docs/images"
+cp images/tt1.png "$base/docs/images"
+cp images/ttand.png "$base/docs/images"
+cp images/ttor.png "$base/docs/images"
+cp images/tt2.png "$base/docs/images"
+cp images/tt2and.png "$base/docs/images"
+cp images/tt2or.png "$base/docs/images"
+cp images/doycal.png "$base/docs/images"
+cp images/no_in_out.png "$base/docs/images"
+cp images/in_out.png "$base/docs/images"
+cp images/im_funct.png "$base/docs/images"
+cp images/te.png "$base/docs/images"
+cp images/jl.png "$base/docs/images"
+cp images/term.png "$base/docs/images"
+cp images/small_unknown_pleasures.png "$base/docs/images"
+cp images/smallfig537.jpg "$base/docs/images"
+cp images/MCD15A3H.png "$base/docs/images"
+cp images/1Ikn1J6siiiCSk4ivYUhdgw.png "$base/docs/images"
+cp images/giphy.gif "$base/docs/images"
+cp images/parameters1.png "$base/docs/images"
+cp images/parameters2.png "$base/docs/images"
+cp images/parameters3.png "$base/docs/images"
+cp images/parameters4.png "$base/docs/images"
+cp images/icon.png "$base/docs/images"
+
+cp geog0111/modis_annual.py "$base/docs/geog0111"
+cp geog0111/model.py "$base/docs/geog0111"
+cp geog0111/get_lai_data.py "$base/docs/geog0111"
+cp geog0111/get_lai.py "$base/docs/geog0111"
+cp geog0111/plot_lc.py "$base/docs/geog0111"
+cp geog0111/im_display.py "$base/docs/geog0111"
+cp geog0111/modis.py "$base/docs/geog0111"
+cp geog0111/gurlpath.py "$base/docs/geog0111"
+cp geog0111/helloWorld.py "$base/docs/geog0111"
+cp geog0111/cylog.py "$base/docs/geog0111"
+
+
+cd $base
 echo "--> re-making notebooks_lab"
 rm -rf notebooks_lab
 mkdir -p notebooks_lab
@@ -70,9 +112,8 @@ awk < ${base}/config/requirements.txt '{print "    - "$0}' >> "${base}"/Docker/s
 #mkdir -p "$base/docs/sphinx"
 cd "$base"
 #sphinx-quickstart -q -p "GEOG0111 Scientific Computing" -a "P. Lewis and J. Gomez-Dans" -v "1.0.1" -l "en" --ext-autodoc --ext-doctest --ext-viewcode --ext-githubpages --ext-intersphinx docs/sphinx
-#cp "$base/config/conf.py" docs/sphinx
 
-
+cd $base
 echo "--> re-making notebooks_lab"
 rm -rf site
 rm -rf */*nbconvert*
@@ -80,7 +121,7 @@ rm -rf notebooks_lab/*_files notebooks_lab/*ipynb notebooks_lab/*md
 # filter notebooks from notebooks into notebooks_lab
 geog0111/edit_notebook.py
 
-bin/link-set.sh
+#bin/link-set.sh
 
 
 echo "--> creating markdown files in notebooks_lab"
@@ -117,15 +158,9 @@ echo "--> generating mkdocs files for docs"
 geog0111/mkdocs_prep.py --dev
 echo "--> building mkdocs"
 
-#echo "--> generating sphinx files for docs"
-#cp  config/index_head.rst docs/index.rst
-#awk < mkdocs.yml -F: 'BEGIN{start=0} ($1=="nav"){start=1} ($1=="plugins"){start=0} (start==1 && $1!="nav"){print "  "$NF}' >> docs/index.rst
-#cat config/index_tail.rst >> docs/index.rst
 
 cd $base/notebooks
-#mkdir -p $base/docs/notebooks
 for i in *md ; do
-  #sed < $i 's/ipynb/md/g' > $base/docs/notebooks/$i  
   sed < $i 's/ipynb/md/g' > $base/docs/$i
 done
 
@@ -147,12 +182,6 @@ cp $base/notebooks/data/LC_Type3_colour.csv data
 #mv  /tmp/tmp.$$ index.md
 
 cp ../config/requirements.txt .
-#ln -s notebooks/images images
-##ln -s notebooks/data data
-#ln -s notebooks/work work
-##ln -s notebooks/geog0111 geog0111
-#ln -s notebooks/copy copy
-#rm -f bin/copy/copy
 
 # avoid conflict with index.md
 sed < README.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
