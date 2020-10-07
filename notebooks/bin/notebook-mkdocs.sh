@@ -163,6 +163,10 @@ cp ../config/requirements.txt .
 sed < README.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
 mv /tmp/tmp.$$ GEOG0111.md
 
+sed < index.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
+mv /tmp/tmp.$$ index.md
+
+
 rm -f $base/docs/copy
 mkdir $base/docs/copy
 cp $base/bin/copy/* $base/docs/copy
