@@ -37,7 +37,7 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
 6. Build database and set CACHE_FILE (this will take a few minutes to run) (assuming you are using bash -- if not change profile accordingly):
 
         bin/sort-db.sh  > ~/.url_db/.db.yml
-        touch ~/.profile
+        touch ~/.bash_profile 
         grep -v CACHE_FILE < ~/.bash_profile  > /tmp/.profile.$$
         echo "export CACHE_FILE=${HOME}/.url_db/.db.yml" >> /tmp/.bash_profile.$$
         mv /tmp/.profile.$$ ~/.bash_profile
