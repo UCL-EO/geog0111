@@ -356,7 +356,7 @@
 <p>Automation has many roles, and is particularly useful when you want a time series of data that might involve many files. For example, for analysing LAI or other variables over space/time) we will want to write code that pulls the time series of data. </p>
 <p>If you visit the site <a href="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006">https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006</a>, you will see 'date' style links (e.g. <code>2018.09.30</code>) through to sub-directories. </p>
 <p>In these, e.g. <a href="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/">https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/</a> you will find URLs of a set of files. </p>
-<p>The files pointed to by the URLs are the MODIS MOD15 4-day composite 500 m LAI/FPAR product <a href="https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd15a3h_v006">MCD15A3H</a>.</p>
+<p>The files pointed to by the URLs are the MODIS MOD15 4-day composite 500 m LAI/FPAR product <a href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">MCD15A3H</a>.</p>
 <p>There are links to several datasets on the page, including 'quicklook files' that are jpeg format images of the datasets, e.g.:</p>
 <p><img alt="MCD15A3H.A2018273.h17v03" src="https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2018.09.30/BROWSE.MCD15A3H.A2018273.h17v03.006.2018278143630.1.jpg" /></p>
 <p>as well as <code>xml</code> files and <code>hdf</code> datasets. </p>
@@ -680,6 +680,13 @@ plot_lc(data_MCD12Q1['LC_Type1'])
 <p>In these notes, we have introduced the characteristics of MODIS data products, and learned how to specify, access, and display them for a number of datasets. You will have accessed a number of products under a number of conditions in the exercises, but you are encouraged to explore this further.</p>
 <p>The main item to do with using data products of this sort, that we haven't covered yet, is the interpretation of Quality Assurance (QA) data. This is often packed information into bits, and can be a little tricky at first. However, as with above, once you have a little familiarisation with a few cases, you will be able to apply this more widely.</p>
 <p>You should spend some time going through the various links to explore the different datasets, and try out the exercises above for various products. The familiarity you gain from this will help when it comes to building our own codes later on.</p>
+<p>Some MODIS datasets</p>
+<ul>
+<li><a href="https://lpdaac.usgs.gov/products/mcd15a3hv006/"><code>MCD15A3H</code> LAI/fAPAR</a></li>
+<li><a href="https://lpdaac.usgs.gov/products/mcd64a1v006/"><code>MCD64A1</code> Burned Area</a>1</li>
+<li><a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD10A1#bands"><code>MOD10A1 / MYD10A1 Snow Products</code></a></li>
+<li><a href="https://lpdaac.usgs.gov/products/mcd12q1v006/"><code>Land Cover dataset MCD12Q1</code></a></li>
+</ul>
               
             </div>
           </div>

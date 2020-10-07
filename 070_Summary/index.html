@@ -262,11 +262,39 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#104-groups">104 Groups</a>
     </li>
-        </ul>
+    <li class="toctree-l4"><a class="reference internal" href="#015-python-control">015 Python control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#016-for-in">016  for ... in ...</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#017-functions">017 Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#018-python-codes">018 Python codes</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#a-few-items-to-complete-wait-for-update">A few items to complete ... wait for update</a>
+    <li class="toctree-l3"><a class="reference internal" href="#data-basics">Data basics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#020-files">020 Files</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#021-streams">021 Streams</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#022-read-and-write-files">022 Read and write files</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#023-plotting-graphs">023  Plotting Graphs</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#image-display">Image Display</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#array-data">Array data</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#030-nasa-modis-earthdata">030 NASA MODIS Earthdata</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#031-manipulating-data-numpy">031 Manipulating data: numpy</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -889,15 +917,966 @@
 </tr>
 </tbody>
 </table>
-<h2 id="a-few-items-to-complete-wait-for-update">A few items to complete ... wait for update</h2>
+<h4 id="015-python-control">015 Python control</h4>
+<p><a href="../015_Python_control/">015_Python_control</a></p>
+<p>Comparison operators:</p>
+<table>
+<thead>
+<tr>
+<th align="center">symbol</th>
+<th align="center">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">==</td>
+<td align="center">is equivalent to</td>
+</tr>
+<tr>
+<td align="center">!=</td>
+<td align="center">is not equivalent to</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">greater than</td>
+</tr>
+<tr>
+<td align="center">&gt;=</td>
+<td align="center">greater than or equal to</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">less than</td>
+</tr>
+<tr>
+<td align="center">&lt;=</td>
+<td align="center">less than or equal to</td>
+</tr>
+</tbody>
+</table>
+<p><code>If ... elif ... else</code>:</p>
+<pre><code>    if condition1:
+        # do this 1
+        doit1()
+        ...
+    elif condition2:
+        # do this 2
+        doit2()
+        ...
+    else:
+        # do this 3
+        doit3()
+        ...
+</code></pre>
+<h4 id="016-for-in">016  <code>for ... in ...</code></h4>
+<p><a href="../016_Python_for/">016 for</a></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Comment</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for item in list:</code></td>
+<td>loop, setting <code>item</code> to each value in <code>list</code> sequentially</td>
+<td>see Example 1</td>
+<td></td>
+</tr>
+<tr>
+<td><code>for key,value in list_of_tuples:</code></td>
+<td>loop, setting <code>a,b</code> to each value in list of tuples</td>
+<td>See Example 2: <code>list({"a":7,"b":3}.items())</code></td>
+<td><code>[('a', 7), ('b', 3)]</code></td>
+</tr>
+<tr>
+<td><code>range(start,stop,step)</code></td>
+<td>index iterator from <code>start</code> to <code>stop</code> in steps of <code>step</code></td>
+<td><code>list(range(1,6,2))</code></td>
+<td><code>[1, 3, 5]</code></td>
+</tr>
+<tr>
+<td><code>enumerate(list)</code></td>
+<td>provide index of <code>list</code></td>
+<td><code>list(enumerate(['a','b','c']))</code></td>
+<td><code>[(0, 'a'), (1, 'b'), (2, 'c')]</code></td>
+</tr>
+<tr>
+<td><code>assert condition</code></td>
+<td>test that condition is <code>True</code>, exit otherwise</td>
+<td><code>assert True</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 1:</strong></p>
+<pre><code>    for item in [1,2,3]:
+        # print item in loop
+        print(item)
+</code></pre>
+<p>Result:</p>
+<pre><code>    1
+    2
+    3
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>    for key,value in {"a":7,"b":3}.items():
+        print(f'key is {key}, value is {value}')
+</code></pre>
+<p>Result:</p>
+<pre><code>    key is a, value is 7
+    key is b, value is 3
+</code></pre>
+<h4 id="017-functions">017 Functions</h4>
+<p><a href="../017_Functions/">017 Functions</a></p>
+<p>Anatomy of a function:</p>
+<pre><code>    def my_function(arg1,arg2,...,kw0=...,kw1=...):
+      '''
+      Document string 
+      '''
+
+      # comments
+
+      retval =  ...
+
+      # return
+      return retval
+</code></pre>
+<p>Also written as:</p>
+<pre><code>    def my_function(*args,**kwargs):
+</code></pre>
+<h4 id="018-python-codes">018 Python codes</h4>
+<p><a href="../018_Running_Python/">018 Python codes</a></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Comment</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!unix_cmd</code></td>
+<td>Run unix command <code>unix_cmd</code> from Jupyter code cell</td>
+<td><code>!geog0111/helloWorld.py</code></td>
+<td><code>hello world</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>!ls -l geog0111/helloWorld.py</code></td>
+<td><code>-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py</code></td>
+</tr>
+<tr>
+<td><code>%%bash</code></td>
+<td>Turn Jupyter Python code cell into <code>bash</code> cell</td>
+<td><code>%%bash</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>chmod 755 geog0111/helloWorld.py</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>ls -l geog0111/helloWorld.py</code></td>
+<td><code>-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py</code></td>
+</tr>
+<tr>
+<td><code>%run script.py</code></td>
+<td>Run Python script <code>script.py</code> from Jupyter code cell</td>
+<td><code>%run geog0111/helloWorld.py</code></td>
+<td><code>hello world</code></td>
+</tr>
+<tr>
+<td><code>cat &lt;&lt; XX &gt; YY; XX</code></td>
+<td>Put  marker <code>XX</code> in bash script and send text up to <code>XX</code> into file <code>YY</code></td>
+<td><code>cat &lt;&lt; EOF &gt; work/file.py</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>hello world</code></td>
+<td><code>cat work/file.py</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>EOF</code></td>
+<td><code>hello world</code></td>
+</tr>
+</tbody>
+</table>
+<p>Form of a Python script:</p>
+<pre><code>        #!/usr/bin/env python
+        # -*- coding: utf-8 -*-
+
+        '''
+        helloWorld
+
+        Purpose:
+
+          function print the string 'hello world'
+
+        '''
+
+        __author__    = "P Lewis"
+        __copyright__ = "Copyright 2020 P Lewis"
+        __license__   = "GPLv3"
+        __email__     = "p.lewis@ucl.ac.uk"
+
+        def helloWorld():
+            '''
+            function to print the string 'hello world'
+
+            '''
+            print('hello world')
+
+
+        # example calling the function
+        def main():
+            helloWorld()
+
+        if __name__ == "__main__":
+            # execute only if run as a script
+            main()
+</code></pre>
+<h3 id="data-basics">Data basics</h3>
+<h4 id="020-files">020 Files</h4>
 <ul>
-<li><a href="../020_Python_files/">020_Python_files</a></li>
-<li><a href="../021_Streams/">021 Streams</a></li>
-<li><a href="../022_Read_write_files/">022 Read write files</a></li>
-<li><a href="../023_Plotting/">023 Plotting</a></li>
-<li><a href="../024_Image_display/">024_Image_display</a></li>
-<li><a href="../030_NASA_MODIS_Earthdata/">030_NASA_MODIS_Earthdata</a></li>
+<li><a href="../020_Python_files/">020_Python_files</a><pre><code>    from pathlib import Path
+</code></pre>
+</li>
 </ul>
+<p>Common <code>Path</code> methods:</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>unix-equivalent</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.cwd()</code></td>
+<td><code>pwd</code></td>
+<td>Return path object representing the current working directory</td>
+</tr>
+<tr>
+<td><code>Path.home()</code></td>
+<td><code>~</code></td>
+<td>Return path object representing the home directory</td>
+</tr>
+<tr>
+<td><code>Path.stat()</code></td>
+<td><code>ls -l</code>*</td>
+<td>return info about the path. File size is <code>Path.stat().st_size</code></td>
+</tr>
+<tr>
+<td><code>Path.chmod()</code></td>
+<td><code>chmod</code></td>
+<td>change file mode and permissions</td>
+</tr>
+<tr>
+<td><code>Path.glob(pattern)</code></td>
+<td><code>ls *</code></td>
+<td>Glob the pattern given in the directory that is represented by the path, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>Path.mkdir()</code></td>
+<td><code>mkdir</code></td>
+<td>to create a new directory at the given path</td>
+</tr>
+<tr>
+<td><code>Path.rename()</code></td>
+<td><code>mv</code></td>
+<td>Rename a file or directory to the given target</td>
+</tr>
+<tr>
+<td><code>Path.rmdir()</code></td>
+<td><code>rmdir</code></td>
+<td>Remove the empty directory</td>
+</tr>
+<tr>
+<td><code>Path.unlink()</code></td>
+<td><code>rm</code></td>
+<td>Remove the file or symbolic link</td>
+</tr>
+</tbody>
+</table>
+<p><code>*</code> Really, <code>Path.stat()</code> equates to the <code>unix</code> command <code>stat</code>, but this contains the information we access using <code>ls -l</code>.</p>
+<pre><code>        from geog0111.gurlpath import URL
+</code></pre>
+<p>Common <code>URL</code> methods:</p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>URL.name</code></td>
+<td>filename</td>
+</tr>
+<tr>
+<td><code>URL.parent</code></td>
+<td>parent</td>
+</tr>
+<tr>
+<td><code>URL.parts</code></td>
+<td>parts</td>
+</tr>
+<tr>
+<td><code>URL.stat()</code></td>
+<td>return info about the file. N.B. Only <code>URL.stat().st_size</code> is used for remote files</td>
+</tr>
+<tr>
+<td><code>URL.glob(pattern)</code></td>
+<td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>URL.exists()</code></td>
+<td>test to see if a url is accessible</td>
+</tr>
+</tbody>
+</table>
+<h4 id="021-streams">021 Streams</h4>
+<ul>
+<li><a href="../021_Streams/">021 Streams</a><pre><code>    from pathlib import Path
+</code></pre>
+</li>
+</ul>
+<p>Common <code>Path</code> methods:</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.open()</code></td>
+<td>open a file and return a file descriptor</td>
+</tr>
+<tr>
+<td><code>Path.read_text()</code></td>
+<td>read text</td>
+</tr>
+<tr>
+<td><code>Path.write_text()</code></td>
+<td>write text</td>
+</tr>
+<tr>
+<td><code>Path.read_bytes()</code></td>
+<td>read byte data</td>
+</tr>
+<tr>
+<td><code>Path.write_bytes()</code></td>
+<td>write byte data</td>
+</tr>
+</tbody>
+</table>
+<pre><code>        from geog0111.gurlpath import URL
+</code></pre>
+<p>Common <code>URL</code> methods:</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>URL.open()</code></td>
+<td>open a file descriptor with data from a URL</td>
+</tr>
+<tr>
+<td><code>URL.read_text()</code></td>
+<td>read text from URL</td>
+</tr>
+<tr>
+<td><code>URL.write_text()</code></td>
+<td>write text to file</td>
+</tr>
+<tr>
+<td><code>URL.read_bytes()</code></td>
+<td>read byte data from URL</td>
+</tr>
+<tr>
+<td><code>URL.write_bytes()</code></td>
+<td>write byte data to file</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that the <code>write</code> functions (and <code>open</code> when used for write) write to local files, not to the URL. </p>
+<p>Other methods and syntax:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Command</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>with Path(filename).open('r') as f:</code></td>
+<td>Open file <code>filename</code> for reading with file descriptor set to <code>f</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>pandas</code>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Command</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>pd.read_csv(f)</code></td>
+<td>Read CSV data from file or URL <code>f</code></td>
+</tr>
+<tr>
+<td align="right"><code>pd.read_table(f)</code></td>
+<td>Read table data from file or URL <code>f</code></td>
+</tr>
+<tr>
+<td align="right"><code>skiprows=N</code></td>
+<td>Keyword to skip <code>N</code> rows in reading for <code>pd.read_table</code></td>
+</tr>
+<tr>
+<td align="right"><code>na_values=[-99.9]</code></td>
+<td>Keyword to set list of values to ignore (<code>-99.9</code> here)</td>
+</tr>
+<tr>
+<td align="right"><code>sep</code></td>
+<td>Keyword to define field separator</td>
+</tr>
+<tr>
+<td align="right"><code>engine='python'</code> or <code>engine='C'</code></td>
+<td>Keyword to set reading engine. <code>python</code> is more flexible, but <code>C</code> is faster.</td>
+</tr>
+<tr>
+<td align="right"><code>df.transpose()</code></td>
+<td>Transpose (rows-&gt;columns, columns-&gt;rows) pandas dataframe <code>df</code></td>
+</tr>
+<tr>
+<td align="right"><code>df.head(N)</code></td>
+<td>first <code>N</code> lines of data (default 5)</td>
+</tr>
+<tr>
+<td align="right"><code>df.columns</code></td>
+<td>list-like object of column headings</td>
+</tr>
+<tr>
+<td align="right"><code>df[cname]</code></td>
+<td>Select column with name <code>cname</code></td>
+</tr>
+<tr>
+<td align="right"><code>df[[c1,c2,c3]]</code></td>
+<td>Select columns with names <code>c1</code>, <code>c2</code> and <code>c3</code></td>
+</tr>
+<tr>
+<td align="right"><code>pd.DataFrame(list,columns=cnames)</code></td>
+<td>Create <code>pandas</code> dataframe from information in list-like structures <code>list</code> with names from list <code>cnames</code></td>
+</tr>
+<tr>
+<td align="right"><code>pd.to_datetime(str_list)</code></td>
+<td>convert list of date strings (e.g. of form <code>YYYY-MM-DD</code>) to <code>datetime</code> representation</td>
+</tr>
+<tr>
+<td align="right"><code>df[datetimes].dt.month</code></td>
+<td>month from <code>datetime</code> field fromn <code>datetime</code>-format column with name <code>datetimes</code></td>
+</tr>
+<tr>
+<td align="right"><code>df[datetimes].dt.year</code></td>
+<td>year from <code>datetime</code> field fromn <code>datetime</code>-format column with name <code>datetimes</code></td>
+</tr>
+<tr>
+<td align="right"><code>df[datetimes].dt.day</code></td>
+<td>day from <code>datetime</code> field fromn <code>datetime</code>-format column with name <code>datetimes</code></td>
+</tr>
+<tr>
+<td align="right"><code>df.to_csv(filename,index=False)</code></td>
+<td>Write dataframe <code>df</code> to CSV format file, with no index column</td>
+</tr>
+</tbody>
+</table>
+<h4 id="022-read-and-write-files">022 Read and write files</h4>
+<ul>
+<li><a href="../022_Read_write_files/">022 Read write files</a></li>
+</ul>
+<p>Modis library</p>
+<pre><code>        from  geog0111.modis import Modis
+        modis = Modis(**kwargs)
+
+
+        get_url(**kwargs) method of geog0111.modis.Modis instance
+            Get URL object list for NASA MODIS products
+            for the specified product, tile, year, month, day
+
+            Keyword Arguments:
+
+            verbose:  bool
+            site    : str 
+            product : str e.g. 'MCD15A3H'
+            tile    : str e.g. 'h08v06'
+            year    : str valid 2000-present
+            month   : str 01-12
+            day     : str 01-(28,29,30,31)
+</code></pre>
+<p><code>gdal</code></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>g = gdal.Open(filename)</code></td>
+<td>Open geospatial file <code>filename</code> and return <code>gdal</code> object <code>g</code> (<code>None</code> if file not opened correctly)</td>
+</tr>
+<tr>
+<td><code>g.GetSubDatasets()</code></td>
+<td>Get list of sub-datasets from <code>gdal</code> object <code>g</code></td>
+</tr>
+<tr>
+<td><code>g.ReadAsArray()</code></td>
+<td>Read dataset from <code>gdal</code> object <code>g</code> into array</td>
+</tr>
+</tbody>
+</table>
+<h4 id="023-plotting-graphs">023  Plotting Graphs</h4>
+<ul>
+<li><a href="../023_Plotting/">023 Plotting</a><pre><code>    import matplotlib.pyplot as plt
+    import matplotlib.dates as mdates
+</code></pre>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Comment</th>
+<th>Keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fig, axs = plt.subplots(xshape,yshape)</code></td>
+<td>set up new figure as array of sub-plots <code>xshape</code> by <code>yshape</code> and return <code>fig</code> object for figure and <code>axs</code> object for subplots. <code>axs</code> is array of objects shape <code>(xshape,yshape)</code>, or single object if <code>(1,1)</code>. We often use <code>axs = axs.flatten()</code> to flatten the <code>axs</code> array to 1D.</td>
+<td><code>figsize=(sx,sy)</code> : set figure size <code>sx</code> by <code>sy</code></td>
+</tr>
+<tr>
+<td><code>plt.savefig("ofile.png")</code></td>
+<td>Save plot to file <code>"ofile.png"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fig.suptitle(name)</code></td>
+<td>set title <code>name</code> at top of figure <code>fig</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>im = axs.plot(xdata,ydata,cs)</code></td>
+<td>plot line graph with <code>ydata</code> as a function of <code>xdata</code> and return plot object <code>im</code>. If argument <code>cs</code> is given, this is a colour/symbol e.g. <code>k+</code> for black crosses.</td>
+<td><code>label=str</code> : set <code>str</code> as label for this line. For use with <code>legend</code></td>
+</tr>
+<tr>
+<td><code>im = plt.errorbar(xdata,ydata)</code></td>
+<td>Error bar plot for <code>ydata</code> as a function of <code>xdata</code>. Needs kwarg</td>
+<td><code>yerr=yerr</code> : set y-error bar to values in array <code>yerr</code></td>
+</tr>
+<tr>
+<td><code>axs.set_xlim(x0,x1)</code></td>
+<td>Set plot x-extent to from <code>x0</code> to <code>x1</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_ylim(y0,y1)</code></td>
+<td>Set plot x-extent to from <code>y0</code> to <code>y1</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_title(name)</code></td>
+<td>set sub-plot <code>axs</code> title to <code>name</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_xlabel(xlab)</code></td>
+<td>set x-axis label to <code>xlab</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_ylabel(ylab)</code></td>
+<td>set y-axis label to <code>ylab</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>axs.legend()</code></td>
+<td>set legend in plot</td>
+<td><code>loc='best'</code> : best location, otherwise <code>top left</code> etc.</td>
+</tr>
+<tr>
+<td><code>mdates.MonthLocator()</code></td>
+<td><code>MonthLocator</code> object of month locators, e.g. <code>months = mdates.MonthLocator()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.xaxis.set_major_locator(months)</code></td>
+<td>set major ticks on x-axis to <code>Locator</code> object of <code>months</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Some colours and symbols:</p>
+<table>
+<thead>
+<tr>
+<th>symbol/colour</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'k+'</td>
+<td>black plus</td>
+</tr>
+<tr>
+<td>'r.'</td>
+<td>red dot</td>
+</tr>
+<tr>
+<td>'go'</td>
+<td>green circle</td>
+</tr>
+<tr>
+<td>'b-'</td>
+<td>blue line</td>
+</tr>
+<tr>
+<td>'c--'</td>
+<td>cyan dashed line</td>
+</tr>
+<tr>
+<td>'y-o'</td>
+<td>yellow  line with circles</td>
+</tr>
+</tbody>
+</table>
+<p><code>datetime</code></p>
+<pre><code>        from datetime import datetime
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>datetime.now()</code></td>
+<td>date and time for now</td>
+</tr>
+<tr>
+<td><code>datetime(year, month, day, hour, minute, second, millisecond)</code></td>
+<td>return <code>datatime</code> object for time/date specified. Not all fields need be given. Can also use keywords but <code>year</code>, <code>month</code> and <code>day</code> must be given e.g.: <code>datetime(2020,day=1,month=2,hour=12)</code></td>
+</tr>
+<tr>
+<td><code>datetime.day</code></td>
+<td>day etc.</td>
+</tr>
+<tr>
+<td><code>timedelta</code></td>
+<td>subtract two <code>datetime</code>s to get a <code>timedelta</code></td>
+</tr>
+<tr>
+<td><code>timedelta.days</code></td>
+<td>number of days in <code>timedelta</code></td>
+</tr>
+<tr>
+<td><code>dt.strftime("%H:%M:%S")</code></td>
+<td>represent <code>datetime</code> object <code>dt</code> as <code>hour:minute:second</code></td>
+</tr>
+<tr>
+<td><code>dt.strftime("%m/%d/%Y")</code></td>
+<td>represent <code>datetime</code> object <code>dt</code> as <code>month/day/year</code></td>
+</tr>
+<tr>
+<td><code>datetime.strptime(str,format)</code></td>
+<td>load string <code>str</code> into <code>datetime</code> object interpreting as format <code>format</code>, e.g. <code>datetime.strptime("11 November, 1918", "%d %B, %Y")</code> -&gt; <code>1918-11-11 00:00:00</code>; e.g. <code>datetime.strptime("2020-06-20", "%Y-%m-%d")</code> -&gt; <code>2020-06-20 00:00:00</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="image-display">Image Display</h4>
+<ul>
+<li><a href="../024_Image_display/">024_Image_display</a><pre><code>    import matplotlib
+    import matplotlib.pyplot as plt
+</code></pre>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>comment</th>
+<th align="left">keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>im = axs.imshow(data2D)</code></td>
+<td>Display image of 2D data array <code>data2D</code> on sub-plot axis <code>axs</code> and return display object <code>im</code></td>
+<td align="left"><code>vmin=</code> : minimum threshold for image display</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>vmax=</code> : maximum threshold for image display</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>interpolation=</code> : interpolation style (e.g. <code>'nearest'</code></td>
+</tr>
+<tr>
+<td><code>fig.colorbar(im)</code></td>
+<td>Set colour bar for image plot object <code>im</code></td>
+<td align="left"><code>ax=axs</code> plot on sub-plot <code>axs</code></td>
+</tr>
+<tr>
+<td><code>im.set_cmap(c)</code></td>
+<td>set colourmap <code>c</code> for image object <code>im</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td></td>
+<td>Examples being <code>['Greys','gray','inferno_r','seismic']</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>cmap = matplotlib.colors.ListedColormap(list_of_colours)</code></td>
+<td>set <code>cmap</code> to <code>Colormap</code> object from list of colours <code>list_of_colours</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>norm = matplotlib.colors.BoundaryNorm(list, nbound)</code></td>
+<td>set <code>BoundaryNorm</code> object <code>norm</code> to boundaries of values from <code>list</code> with <code>nbound</code> values</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>matplotlib.patches.Patch(color=c, label=l)</code></td>
+<td>Set patches for legend with colours from list <code>c</code> and labedl from list <code>l</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>plt.legend(handles=patches)</code></td>
+<td>set figure legend using <code>patches</code></td>
+<td align="left"><code>bbox_to_anchor=(1.4, 1)</code> : shift of legend</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>facecolor="white"</code> : facecolourt of legend (white here)</td>
+</tr>
+</tbody>
+</table>
+<p>Modis library: </p>
+<pre><code>        from  geog0111.modis import Modis
+        modis = Modis(**kwargs)
+
+
+
+        get_data(year, doy=None, idict=None, month=None, day=None, step=1, fatal=False) 
+        method of geog0111.modis.Modis instance
+
+            Return data dictionary of MODIS dataset for specified time period
+
+            args:
+              year  : year (2000 to present for MOD, or 2002 to present if using MYD)
+                      NB this is ignoired if idict is given
+
+            options:
+              doy   : day in year, or day in month if month specified, or None
+                      when specified as day in year, or day in month, can be a list
+                      1-365/366 or 1-28-31 as appropriate
+              day   : day in month or None. Can be list.
+              month : month index 1-12 or None. Can be list.
+              step  : dataset step. Default 1, but set to 4 for 4-day product, i
+                      8 for 8-day, 365/366 for year etc.
+              fatal : default False. If True, exit if dataset not found.
+              idict : data file dictionary provided by eg call to
+                      self.get_modis(year,doy=None,month=None,step=1,fatal=False)
+                      see get_modis for more details
+
+            returns:
+              data dictionary with keys specified by:
+                    - self.sds list 
+                    - or all SDS if self.sds is None (default)
+              data dictionary key 'bandnames' of DOY
+
+              Each data item a 2- or 3-dimensional numpy array
+</code></pre>
+<h3 id="array-data">Array data</h3>
+<h4 id="030-nasa-modis-earthdata">030 NASA MODIS Earthdata</h4>
+<p><a href="../030_NASA_MODIS_Earthdata/">030_NASA_MODIS_Earthdata</a></p>
+<p><a href="https://urs.earthdata.nasa.gov/">NASA Earthdata</a></p>
+<p>Some MODIS datasets</p>
+<p><img alt="MODIS tiles" src="https://www.researchgate.net/profile/J_Townshend/publication/220473201/figure/fig5/AS:277546596880390@1443183673583/The-global-MODIS-Sinusoidal-tile-grid.png" /></p>
+<ul>
+<li><a href="https://lpdaac.usgs.gov/products/mcd15a3hv006/"><code>MCD15A3H</code> LAI/fAPAR</a></li>
+<li><a href="https://lpdaac.usgs.gov/products/mcd64a1v006/"><code>MCD64A1</code> Burned Area</a>1</li>
+<li><a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD10A1#bands"><code>MOD10A1 / MYD10A1 Snow Products</code></a></li>
+<li><a href="https://lpdaac.usgs.gov/products/mcd12q1v006/"><code>Land Cover dataset MCD12Q1</code></a></li>
+</ul>
+<h4 id="031-manipulating-data-numpy">031 Manipulating data: <code>numpy</code></h4>
+<p><a href="../031_Numpy/">031_Numpy</a></p>
+<pre><code>        import numpy as np
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>description</th>
+<th>keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.array(x)</code></td>
+<td>convert <code>x</code> (e.g. list) to <code>numpy</code> array</td>
+<td><code>dtype=</code> : specify data type, e.g. <code>np.float</code>, <code>np.bool</code>, <code>np.int</code></td>
+</tr>
+<tr>
+<td><code>np.ones(s)</code></td>
+<td>generate array of values <code>1</code> of shape <code>s</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>np.zeros(s)</code></td>
+<td>generate array of values <code>0</code> of shape <code>s</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>np.linspace(start,stop,nsamp)</code></td>
+<td>generate array of <code>nsamp</code> values from <code>start</code> to <code>stop</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>np.arange(start,stop,step)</code></td>
+<td>generate array of numbers from <code>start</code> to (but not including) <code>stop</code> in steps of <code>step</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>p0,p1 = np.mgrid[p0min:p0max:p0step,p1min:p1max:p1step]</code></td>
+<td>generate grids <code>p0</code>, <code>p1</code> of combinations of samples from <code>p0min</code> to (but not including) <code>p0max</code> in steps of <code>p0step</code> and <code>p1min</code> to (but not including) <code>p1max</code> in steps of <code>p1step</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.astype(dtype)</code></td>
+<td>convert array <code>a</code> to data type <code>dtype</code></td>
+<td></td>
+</tr>
+<tr>
+<td>a * b</td>
+<td>multiply array <code>a</code> element-wise by array <code>b</code> , etc. for arithmetic</td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.shape</code></td>
+<td>tuple giving shape of array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.ndim</code></td>
+<td>tuple giving number of dimensions  of array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.size</code></td>
+<td>tuple giving total number of elements in array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a[start:stop:step]</code></td>
+<td>array indexing for slice from <code>start</code> to <code>stop</code> in steps of <code>step</code> e.g. <code>np.array([2,5,3])[2:3])</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a[index]</code></td>
+<td>array indexing by explicit index tuple or tuple list e.g. <code>np.array([2,5,3])[(1,)]</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.min()</code></td>
+<td>minimum value in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.max()</code></td>
+<td>maximum value in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.mean()</code></td>
+<td>mean value in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.std()</code></td>
+<td>standard deviation of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.var()</code></td>
+<td>variance of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.sum()</code></td>
+<td>sum of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.prod()</code></td>
+<td>product of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>np.median(a)</code></td>
+<td>median of values in array <code>a</code>, assumed <code>a</code> values in radians</td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>np.sqrt(a)</code></td>
+<td>square root of values in array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>np.sin(a)</code></td>
+<td>sine of values in array <code>a</code>, assumed <code>a</code> values in radians etc.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

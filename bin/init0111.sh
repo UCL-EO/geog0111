@@ -5,19 +5,31 @@
 
 # are we on the UCL system?
 isUCL=$(uname -n | awk -Frstudio '{print $2}' | wc -w)
+#if [ "$isUCL" == 0 ] ; then
+#  uname -a
+#  echo "You do not seem to be on the UCL rstudio/notebook servers"
+#  echo "FATAL: cannot proceed"
+#  exit 1
+#fi
+#echo "You are in the UCL rstudio/notebook servers"
+
 if [ "$isUCL" == 0 ] ; then
   uname -a
   echo "You do not seem to be on the UCL rstudio/notebook servers"
-  echo "FATAL: cannot proceed"
-  exit 1
+  here=$(pwd)/..
+  cd "${here}"
+  here=$(pwd)
+else
+  cd ~
+  here=$(pwd)
 fi
-echo "You are in the UCL rstudio/notebook servers"
 
 # check for geog0111 repo and clone if not there
-cd ~
+cd "$here"
+
 if [ -d "geog0111" ] ; then
   echo "--> geog0111 exists ... updating"
-  cd ~/geog0111
+  cd "$here"/geog0111
   for nb in "notebooks" "notebooks_lab"; do
     odir=${nb}_bak
     echo "--> backing up notebooks in ${nb} to ${odir}"
@@ -26,6 +38,7 @@ if [ -d "geog0111" ] ; then
   done
 
   echo "--> updating repository"
+  git config pull.rebase false
   git reset --hard HEAD
   git pull
   echo "--> done updating repository"
@@ -87,11 +100,33 @@ fi
 cd ~/geog0111
 echo "--> conda setup"
 conda init bash
-mv .bashrc .profile
+if [ -f ~/.bashrc ] ; then
+  mv ~/.bashrc ~/.profile
+fi
+
 echo "--> done conda setup"
 
 echo "--> geog0111 initialisation"
 echo 'cd ~/geog0111 && bin/init.sh' | /bin/bash
 echo "--> done geog0111 initialisation"
+
+echo "--> setting up kernel"
+python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+python -m ipykernel install --user --name conda-env-geog0111-geog0111-py --display-name "conda env:geog0111-geog0111"
+
+if [ $? -eq 1 ] ; then
+  echo "    need to update prompt_toolkit"
+  pip install prompt_toolkit --force-reinstall
+  if [ $? -eq 1 ] ; then
+    echo "    need to run as user"
+    pip install prompt_toolkit --force-reinstall -U
+  fi
+  pip install importlib_metadata  --force-reinstall
+  if [ $? -eq 1 ] ; then
+    pip install importlib_metadata  --force-reinstall -U
+  fi
+  python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+  python -m ipykernel install --user --name conda-env-geog0111-geog0111-py --display-name "conda env:geog0111-geog0111"
+fi
 
 echo "You should close all shells to make sure changes take effect"

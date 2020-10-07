@@ -467,7 +467,7 @@ for i,c in enumerate(cmaps):
 <p>Note that you will have to experiment a bit with the <code>x_size,y_size</code> values to get a good plot. It is not easy to automate that.</p>
 <h2 id="quantised-data-land-cover">Quantised data: Land Cover</h2>
 <p>Sometimes we want quantised colourmaps, for example for a land cover classification map. You can do these perfectly well in <code>matplotlib</code>, but the process is a little more involved.</p>
-<p>We will take as an example the MODIS product <code>MCD12Q1</code> over the UK. The land cover layer we are interested in is called <code>LC_Type1</code>. The <a href="https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf">land cover names</a> associated with this are given in the file <a href="data/LC_Type1_class.csv">data/LC_Type1_class.csv</a>, along with example colour mappings.</p>
+<p>We will take as an example the MODIS product <code>MCD12Q1</code> over the UK. The land cover layer we are interested in is called <code>LC_Type1</code>. The <a href="https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf">land cover names</a> associated with this are given in the file <a href="../data/LC_Type1_colour.csv">data/LC_Type1_colour.csv</a>, along with example colour mappings.</p>
 <pre><code class="python">import pandas as pd
 
 lc_Type1 = pd.read_csv('data/LC_Type1_colour.csv')
@@ -671,6 +671,112 @@ plt.legend(handles=patches,
 <h2 id="summary">Summary</h2>
 <p>In this section, we have learned how to plot images from datasets we have read in or downloaded from the web. We have concentrated on MODIS datasets, stored in a data dictionary. We used <code>modis.get_data</code> to load the MODIS datasets. We developed a function called <code>im_display</code> to provide a simple wrapper for plotting.</p>
 <p>We have also looked into how to do categorised mapping, for example for land cover, and written a function called <code>plot_lc</code> to achieve this.</p>
+<p>Remember:</p>
+<pre><code>        import matplotlib
+        import matplotlib.pyplot as plt
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>comment</th>
+<th align="left">keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>im = axs.imshow(data2D)</code></td>
+<td>Display image of 2D data array <code>data2D</code> on sub-plot axis <code>axs</code> and return display object <code>im</code></td>
+<td align="left"><code>vmin=</code> : minimum threshold for image display</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>vmax=</code> : maximum threshold for image display</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>interpolation=</code> : interpolation style (e.g. <code>'nearest'</code></td>
+</tr>
+<tr>
+<td><code>fig.colorbar(im)</code></td>
+<td>Set colour bar for image plot object <code>im</code></td>
+<td align="left"><code>ax=axs</code> plot on sub-plot <code>axs</code></td>
+</tr>
+<tr>
+<td><code>im.set_cmap(c)</code></td>
+<td>set colourmap <code>c</code> for image object <code>im</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td></td>
+<td>Examples being <code>['Greys','gray','inferno_r','seismic']</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>cmap = matplotlib.colors.ListedColormap(list_of_colours)</code></td>
+<td>set <code>cmap</code> to <code>Colormap</code> object from list of colours <code>list_of_colours</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>norm = matplotlib.colors.BoundaryNorm(list, nbound)</code></td>
+<td>set <code>BoundaryNorm</code> object <code>norm</code> to boundaries of values from <code>list</code> with <code>nbound</code> values</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>matplotlib.patches.Patch(color=c, label=l)</code></td>
+<td>Set patches for legend with colours from list <code>c</code> and labedl from list <code>l</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>plt.legend(handles=patches)</code></td>
+<td>set figure legend using <code>patches</code></td>
+<td align="left"><code>bbox_to_anchor=(1.4, 1)</code> : shift of legend</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>facecolor="white"</code> : facecolourt of legend (white here)</td>
+</tr>
+</tbody>
+</table>
+<p>Modis library: </p>
+<pre><code>        from  geog0111.modis import Modis
+        modis = Modis(**kwargs)
+
+
+
+        get_data(year, doy=None, idict=None, month=None, day=None, step=1, fatal=False) 
+        method of geog0111.modis.Modis instance
+
+            Return data dictionary of MODIS dataset for specified time period
+
+            args:
+              year  : year (2000 to present for MOD, or 2002 to present if using MYD)
+                      NB this is ignoired if idict is given
+
+            options:
+              doy   : day in year, or day in month if month specified, or None
+                      when specified as day in year, or day in month, can be a list
+                      1-365/366 or 1-28-31 as appropriate
+              day   : day in month or None. Can be list.
+              month : month index 1-12 or None. Can be list.
+              step  : dataset step. Default 1, but set to 4 for 4-day product, i
+                      8 for 8-day, 365/366 for year etc.
+              fatal : default False. If True, exit if dataset not found.
+              idict : data file dictionary provided by eg call to
+                      self.get_modis(year,doy=None,month=None,step=1,fatal=False)
+                      see get_modis for more details
+
+            returns:
+              data dictionary with keys specified by:
+                    - self.sds list 
+                    - or all SDS if self.sds is None (default)
+              data dictionary key 'bandnames' of DOY
+
+              Each data item a 2- or 3-dimensional numpy array
+</code></pre>
               
             </div>
           </div>

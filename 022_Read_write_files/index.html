@@ -569,6 +569,48 @@ dataset read is shape (2400, 2400) and type &lt;class 'numpy.ndarray'&gt;
 <p>In this section, we have used <code>Path</code> and <code>URL</code> classes to read and write text and binary files. We have combined these ideas with earlier work to access MODIS datafiles and other text and binary datasets. For data we access through a URL, we can do file operations on a cached version of the file. We have refreshed our memory of some of the earlier material, especially string formatting.</p>
 <p>We have learned how to use <code>gdal</code> to look at the sub-datasets in an HDF file and also how to read them.</p>
 <p>You should now have some confidence in these matters, so that if you were set a task of downloading and saving datasets, as well as other tasks such as finding their size, whether the exists or not, you could do this. </p>
+<p>Remember:</p>
+<p>Modis library</p>
+<pre><code>        from  geog0111.modis import Modis
+        modis = Modis(**kwargs)
+
+
+        get_url(**kwargs) method of geog0111.modis.Modis instance
+            Get URL object list for NASA MODIS products
+            for the specified product, tile, year, month, day
+
+            Keyword Arguments:
+
+            verbose:  bool
+            product : str e.g. 'MCD15A3H'
+            tile    : str e.g. 'h08v06'
+            year    : str valid 2000-present
+            month   : str 01-12
+            day     : str 01-(28,29,30,31)
+</code></pre>
+<p><code>gdal</code></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>g = gdal.Open(filename)</code></td>
+<td>Open geospatial file <code>filename</code> and return <code>gdal</code> object <code>g</code> (<code>None</code> if file not opened correctly)</td>
+</tr>
+<tr>
+<td><code>g.GetSubDatasets()</code></td>
+<td>Get list of sub-datasets from <code>gdal</code> object <code>g</code></td>
+</tr>
+<tr>
+<td><code>g.ReadAsArray()</code></td>
+<td>Read dataset from <code>gdal</code> object <code>g</code> into array</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

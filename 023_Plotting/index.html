@@ -1019,6 +1019,166 @@ axs.set_xlabel(f'date')
 <h2 id="summary">Summary</h2>
 <p>In this section, we have learned how to plot graphs from datasets we have read in or downloaded from the web. We have concentrated in simple line graphs, with possibly multiple sub-plots here, although there are many other types of graph you may consider. </p>
 <p>The <a href="https://matplotlib.org/3.3.1/gallery/index.html"><code>matplotlib</code> gallery</a> provides a useful starting point for other types of plot. You might also consider the Python packages <a href="https://bokeh.org/"><code>bokeh</code></a> and <a href="https://seaborn.pydata.org/"><code>seaborn</code></a> for improved visualisation and interaction.</p>
+<p>Remember:</p>
+<pre><code>        import matplotlib.pyplot as plt
+        import matplotlib.dates as mdates
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Comment</th>
+<th>Keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fig, axs = plt.subplots(xshape,yshape)</code></td>
+<td>set up new figure as array of sub-plots <code>xshape</code> by <code>yshape</code> and return <code>fig</code> object for figure and <code>axs</code> object for subplots. <code>axs</code> is array of objects shape <code>(xshape,yshape)</code>, or single object if <code>(1,1)</code>. We often use <code>axs = axs.flatten()</code> to flatten the <code>axs</code> array to 1D.</td>
+<td><code>figsize=(sx,sy)</code> : set figure size <code>sx</code> by <code>sy</code></td>
+</tr>
+<tr>
+<td><code>plt.savefig("ofile.png")</code></td>
+<td>Save plot to file <code>"ofile.png"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fig.suptitle(name)</code></td>
+<td>set title <code>name</code> at top of figure <code>fig</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>im = axs.plot(xdata,ydata,cs)</code></td>
+<td>plot line graph with <code>ydata</code> as a function of <code>xdata</code> and return plot object <code>im</code>. If argument <code>cs</code> is given, this is a colour/symbol e.g. <code>k+</code> for black crosses.</td>
+<td><code>label=str</code> : set <code>str</code> as label for this line. For use with <code>legend</code></td>
+</tr>
+<tr>
+<td><code>im = plt.errorbar(xdata,ydata)</code></td>
+<td>Error bar plot for <code>ydata</code> as a function of <code>xdata</code>. Needs kwarg</td>
+<td><code>yerr=yerr</code> : set y-error bar to values in array <code>yerr</code></td>
+</tr>
+<tr>
+<td><code>axs.set_xlim(x0,x1)</code></td>
+<td>Set plot x-extent to from <code>x0</code> to <code>x1</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_ylim(y0,y1)</code></td>
+<td>Set plot x-extent to from <code>y0</code> to <code>y1</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_title(name)</code></td>
+<td>set sub-plot <code>axs</code> title to <code>name</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_xlabel(xlab)</code></td>
+<td>set x-axis label to <code>xlab</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.set_ylabel(ylab)</code></td>
+<td>set y-axis label to <code>ylab</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>axs.legend()</code></td>
+<td>set legend in plot</td>
+<td><code>loc='best'</code> : best location, otherwise <code>top left</code> etc.</td>
+</tr>
+<tr>
+<td><code>mdates.MonthLocator()</code></td>
+<td><code>MonthLocator</code> object of month locators, e.g. <code>months = mdates.MonthLocator()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>axs.xaxis.set_major_locator(months)</code></td>
+<td>set major ticks on x-axis to <code>Locator</code> object of <code>months</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Some colours and symbols:</p>
+<table>
+<thead>
+<tr>
+<th>symbol/colour</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'k+'</td>
+<td>black plus</td>
+</tr>
+<tr>
+<td>'r.'</td>
+<td>red dot</td>
+</tr>
+<tr>
+<td>'go'</td>
+<td>green circle</td>
+</tr>
+<tr>
+<td>'b-'</td>
+<td>blue line</td>
+</tr>
+<tr>
+<td>'c--'</td>
+<td>cyan dashed line</td>
+</tr>
+<tr>
+<td>'y-o'</td>
+<td>yellow  line with circles</td>
+</tr>
+</tbody>
+</table>
+<p><code>datetime</code></p>
+<pre><code>        from datetime import datetime
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>datetime.now()</code></td>
+<td>date and time for now</td>
+</tr>
+<tr>
+<td><code>datetime(year, month, day, hour, minute, second, millisecond)</code></td>
+<td>return <code>datatime</code> object for time/date specified. Not all fields need be given. Can also use keywords but <code>year</code>, <code>month</code> and <code>day</code> must be given e.g.: <code>datetime(2020,day=1,month=2,hour=12)</code></td>
+</tr>
+<tr>
+<td><code>datetime.day</code></td>
+<td>day etc.</td>
+</tr>
+<tr>
+<td><code>timedelta</code></td>
+<td>subtract two <code>datetime</code>s to get a <code>timedelta</code></td>
+</tr>
+<tr>
+<td><code>timedelta.days</code></td>
+<td>number of days in <code>timedelta</code></td>
+</tr>
+<tr>
+<td><code>dt.strftime("%H:%M:%S")</code></td>
+<td>represent <code>datetime</code> object <code>dt</code> as <code>hour:minute:second</code></td>
+</tr>
+<tr>
+<td><code>dt.strftime("%m/%d/%Y")</code></td>
+<td>represent <code>datetime</code> object <code>dt</code> as <code>month/day/year</code></td>
+</tr>
+<tr>
+<td><code>datetime.strptime(str,format)</code></td>
+<td>load string <code>str</code> into <code>datetime</code> object interpreting as format <code>format</code>, e.g. <code>datetime.strptime("11 November, 1918", "%d %B, %Y")</code> -&gt; <code>1918-11-11 00:00:00</code>; e.g. <code>datetime.strptime("2020-06-20", "%Y-%m-%d")</code> -&gt; <code>2020-06-20 00:00:00</code></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

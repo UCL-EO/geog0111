@@ -168,7 +168,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#more-detail-on-numpyarrays">More detail on numpy.arrays</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#shape-ndim">shape, ndim</a>
+    <li class="toctree-l3"><a class="reference internal" href="#shape-ndim-size">shape, ndim, size</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#array-creators">Array creators</a>
     </li>
@@ -442,7 +442,7 @@ print(arr1 * arr2)
 <p>The <code>numpy</code> documenation is huge. There's an <a href="https://docs.scipy.org/doc/numpy/user/index.html">user's guide</a>, as well as a reference to all the <a href="https://docs.scipy.org/doc/numpy/reference/index.html">contents of the library</a>. There's even <a href="https://docs.scipy.org/doc/numpy/user/quickstart.html">a tutorial availabe</a> if you get bored with this one.</p>
 <h3 id="more-detail-on-numpyarrays">More detail on <code>numpy.arrays</code></h3>
 <p>So far, we have seen a 1D array, which is the equivalent to a vector. But arrays can have more dimensions: a 2D array would be equivalent to a matrix (or an image, with rows and columns), and a 3D array would be a volume split into voxels, as seen below</p>
-<p><a href="https://cdn-images-1.medium.com/max/1120/1*Ikn1J6siiiCSk4ivYUhdgw.png"><img alt="numpy arrays" src="../images/1%2AIkn1J6siiiCSk4ivYUhdgw.png" /></a></p>
+<p><a href="https://cdn-images-1.medium.com/max/1120/1*Ikn1J6siiiCSk4ivYUhdgw.png"><img alt="numpy arrays" src="../images/1Ikn1J6siiiCSk4ivYUhdgw.png" /></a></p>
 <p>So a 1D array has one axis, a 2D array has 2 axes, a 3D array 3, and so on. The <code>shape</code> of the array provides a tuple with the number of elements along each axis. Let's see this with some generally useful array creation options:</p>
 <pre><code class="python"># Create a 2D array from a list of rows. 
 # Note that the 3 rows have the same number of elements!
@@ -468,17 +468,17 @@ print(arr2)
 [[1.5 2.  3. ]
  [4.  5.  6. ]]
 </code></pre>
-<h3 id="shape-ndim"><code>shape</code>, <code>ndim</code></h3>
+<h3 id="shape-ndim-size"><code>shape</code>, <code>ndim</code>, <code>size</code></h3>
 <p>One of the key aspects of <code>numpy</code> is the way it deals efficiently with large, multi-dimensional arrays. To learn how to use <code>numpy</code> well, especially when we head to more complex problems later in the notes, you need to be aware of the dimensions and shape of the array you are processing.</p>
-<p>The key terms here are <code>array.ndim</code> which returns the number of dimensions of the array, and <code>array.shape</code> which gives the number of samples in each dimension. </p>
+<p>The key terms here are <code>array.ndim</code> which returns the number of dimensions of the array, <code>array.size</code> that gives the total number of elements in the array, and <code>array.shape</code> which gives the number of samples in each dimension. </p>
 <p>If the arrays are of the same shape (and some other conditions we shall see later), you can do standard operations between them <strong>element-wise</strong>:</p>
 <pre><code class="python">import numpy as np
 
 arr1 = np.array([[3, 4, 5, 6.],[6,4,6,2]])
 arr2 = np.array([[30, 40, 50, 60.],[50,40,30,20]])
 
-print(f'the shape of arr1 is {arr1.shape} and ndim is {arr1.ndim}')
-print(f'the shape of arr2 is {arr2.shape} and ndim is {arr2.ndim}')
+print(f'the shape of arr1 is {arr1.shape} and ndim is {arr1.ndim} and size is {arr1.size}')
+print(f'the shape of arr2 is {arr2.shape} and ndim is {arr2.ndim} and size is {arr2.size}')
 
 # so we can do element-wise operations such as 
 # add, subtract, multiply etc
@@ -489,8 +489,8 @@ print(arr1 * arr2)
 print(f'the shape of arr1 * arr2 is {(arr1 * arr2).shape}')
 </code></pre>
 
-<pre><code>the shape of arr1 is (2, 4) and ndim is 2
-the shape of arr2 is (2, 4) and ndim is 2
+<pre><code>the shape of arr1 is (2, 4) and ndim is 2 and size is 8
+the shape of arr2 is (2, 4) and ndim is 2 and size is 8
 [[27. 36. 45. 54.]
  [44. 36. 24. 18.]]
 the shape of arr1 - arr2 is (2, 4)
@@ -746,7 +746,136 @@ print(f'sqrt({np.sqrt(var)}) should equal {std}')
 </code></pre>
 <h3 id="summary">Summary</h3>
 <p>In this section, you have been introduced to the <code>numpy</code> package and some detail on arrays. The big advantages of <code>numpy</code> are that you can easily perform array operators (such as adding two arrays together), and that <code>numpy</code> has a large number of useful functions for manipulating N-dimensional data in array form. This makes it particularly appropriate for raster geospatial data processing.</p>
-<p>We have seen how to create various forms of array (e.g. <code>np.ones()</code>, <code>np.arange()</code>), how to calculate some basic statistics (<code>min()</code>, <code>max()</code> etc). </p>
+<p>We have seen how to create various forms of array (e.g. <code>np.ones()</code>, <code>np.arange()</code>), how to calculate some basic statistics (<code>min()</code>, <code>max()</code> etc). and come across a range of <code>numpy</code> functions and concepts. </p>
+<p>Remember:</p>
+<pre><code>        import numpy as np
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>description</th>
+<th>keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.array(x)</code></td>
+<td>convert <code>x</code> (e.g. list) to <code>numpy</code> array</td>
+<td><code>dtype=</code> : specify data type, e.g. <code>np.float</code>, <code>np.bool</code>, <code>np.int</code></td>
+</tr>
+<tr>
+<td><code>np.ones(s)</code></td>
+<td>generate array of values <code>1</code> of shape <code>s</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>np.zeros(s)</code></td>
+<td>generate array of values <code>0</code> of shape <code>s</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>np.linspace(start,stop,nsamp)</code></td>
+<td>generate array of <code>nsamp</code> values from <code>start</code> to <code>stop</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>np.arange(start,stop,step)</code></td>
+<td>generate array of numbers from <code>start</code> to (but not including) <code>stop</code> in steps of <code>step</code></td>
+<td><code>dtype=</code></td>
+</tr>
+<tr>
+<td><code>p0,p1 = np.mgrid[p0min:p0max:p0step,p1min:p1max:p1step]</code></td>
+<td>generate grids <code>p0</code>, <code>p1</code> of combinations of samples from <code>p0min</code> to (but not including) <code>p0max</code> in steps of <code>p0step</code> and <code>p1min</code> to (but not including) <code>p1max</code> in steps of <code>p1step</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.astype(dtype)</code></td>
+<td>convert array <code>a</code> to data type <code>dtype</code></td>
+<td></td>
+</tr>
+<tr>
+<td>a * b</td>
+<td>multiply array <code>a</code> element-wise by array <code>b</code> , etc. for arithmetic</td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.shape</code></td>
+<td>tuple giving shape of array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.ndim</code></td>
+<td>tuple giving number of dimensions  of array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.size</code></td>
+<td>tuple giving total number of elements in array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a[start:stop:step]</code></td>
+<td>array indexing for slice from <code>start</code> to <code>stop</code> in steps of <code>step</code> e.g. <code>np.array([2,5,3])[2:3])</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a[index]</code></td>
+<td>array indexing by explicit index tuple or tuple list e.g. <code>np.array([2,5,3])[(1,)]</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>a.min()</code></td>
+<td>minimum value in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.max()</code></td>
+<td>maximum value in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.mean()</code></td>
+<td>mean value in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.std()</code></td>
+<td>standard deviation of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.var()</code></td>
+<td>variance of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.sum()</code></td>
+<td>sum of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>a.prod()</code></td>
+<td>product of values in array <code>a</code></td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>np.median(a)</code></td>
+<td>median of values in array <code>a</code>, assumed <code>a</code> values in radians</td>
+<td><code>axis=N</code> : value taken over axis <code>N</code></td>
+</tr>
+<tr>
+<td><code>np.sqrt(a)</code></td>
+<td>square root of values in array <code>a</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>np.sin(a)</code></td>
+<td>sine of values in array <code>a</code>, assumed <code>a</code> values in radians etc.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

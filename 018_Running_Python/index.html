@@ -370,7 +370,6 @@ ls -l geog0111/helloWorld.py
 </code></pre>
 <p>Another thing we can do is to <code>import</code> the code from the Python file into Python:</p>
 <pre><code class="python">from geog0111.helloWorld import helloWorld
-
 helloWorld()
 </code></pre>
 
@@ -739,6 +738,107 @@ EOF
 </code></pre>
 <p>in a bash script to generate and document our Python files, though we would also typically edits the file through some text editor.</p>
 <p>We have seen how to run a Python script from a notebook, using <code>%run</code> or via a bash shell with <code>%%bash</code>. We have seen that to 'run' a Python script, we need to change the file permissions iusing <code>chmod</code>, either in <code>bash</code> or using <code>Path().chmod()</code>. We have used the octal code <code>755</code> to change the file permissions for execution.</p>
+<p>Remember:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Comment</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!unix_cmd</code></td>
+<td>Run unix command <code>unix_cmd</code> from Jupyter code cell</td>
+<td><code>!geog0111/helloWorld.py</code></td>
+<td><code>hello world</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>!ls -l geog0111/helloWorld.py</code></td>
+<td><code>-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py</code></td>
+</tr>
+<tr>
+<td><code>%%bash</code></td>
+<td>Turn Jupyter Python code cell into <code>bash</code> cell</td>
+<td><code>%%bash</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>chmod 755 geog0111/helloWorld.py</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>ls -l geog0111/helloWorld.py</code></td>
+<td><code>-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py</code></td>
+</tr>
+<tr>
+<td><code>%run script.py</code></td>
+<td>Run Python script <code>script.py</code> from Jupyter code cell</td>
+<td><code>%run geog0111/helloWorld.py</code></td>
+<td><code>hello world</code></td>
+</tr>
+<tr>
+<td><code>cat &lt;&lt; XX &gt; YY; XX</code></td>
+<td>Put  marker <code>XX</code> in bash script and send text up to <code>XX</code> into file <code>YY</code></td>
+<td><code>cat &lt;&lt; EOF &gt; work/file.py</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>hello world</code></td>
+<td><code>cat work/file.py</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>EOF</code></td>
+<td><code>hello world</code></td>
+</tr>
+</tbody>
+</table>
+<p>Form of a Python script:</p>
+<pre><code>        #!/usr/bin/env python
+        # -*- coding: utf-8 -*-
+
+        '''
+        helloWorld
+
+        Purpose:
+
+          function print the string 'hello world'
+
+        '''
+
+        __author__    = "P Lewis"
+        __copyright__ = "Copyright 2020 P Lewis"
+        __license__   = "GPLv3"
+        __email__     = "p.lewis@ucl.ac.uk"
+
+        def helloWorld():
+            '''
+            function to print the string 'hello world'
+
+            '''
+            print('hello world')
+
+
+        # example calling the function
+        def main():
+            helloWorld()
+
+        if __name__ == "__main__":
+            # execute only if run as a script
+            main()
+</code></pre>
               
             </div>
           </div>

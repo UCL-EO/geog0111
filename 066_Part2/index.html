@@ -342,7 +342,7 @@ Model inversion [60%]    </p>
 <ul>
 <li>None of these files should be more than a few pages long: we do not want you to print or submit the datasets you download.</li>
 <li>Look over the <a href="#Structure-of-the-Report">requirements</a> to make sure you have completed all parts.</li>
-<li>Make sure you read the advice on <a href="062_Part1_code.md">computer codes and plagiarism</a></li>
+<li>Make sure you read the advice on <a href="../063_Part1_code/">computer codes and plagiarism</a></li>
 </ul>
 <h2 id="background">Background</h2>
 <p>The hydrology of the Rio Grande Headwaters in Colorado, USA is snowmelt dominated. It varies considerably from year to year and may very further under a changing climate. One of the tools we use to understand monitor processes in such an area is a mathemetical ('environmental') model describing the main physical processes affecting hydrology in the catchment. Such a model could help understand current behaviour and allow some prediction about possible future scenarios. </p>
@@ -573,7 +573,7 @@ axs.legend(loc='best')
 <p>20% of the marks for this section will be for the content and quality of your plots. The rest will be for the code you produce. You should submit a single PDF file for the code, and another for the evidence of the file sizes and the graphs. Neither of these PDFs should be more than a few pages long.</p>
 <h4 id="advice">Advice</h4>
 <p>You will need this snow cover dataset, along with those you generated in Part A of your coursework
-You will want to use the product <code>MOD10A1</code> for the years 2018 and 2019. You should apply the catchment boundary vector dataset in the file <a href="data/Hydrological_Units/HUC_Polygons.shp">data/Hydrological_Units/HUC_Polygons.shp</a> to clip your region of interest, specifying the warp arguments and other parameters as follows:</p>
+You will want to use the product <code>MOD10A1</code> for the years 2018 and 2019. You should apply the catchment boundary vector dataset in the file <a href="../data/Hydrologic_Units/HUC_Polygons.shp">data/Hydrologic_Units/HUC_Polygons.shp</a> to clip your region of interest, specifying the warp arguments and other parameters as follows:</p>
 <pre><code>    sds     = ['NDSI_Snow_Cover']
     product = 'MOD10A1'
     tile = ['h09v05']
@@ -583,7 +583,7 @@ You will want to use the product <code>MOD10A1</code> for the years 2018 and 201
       'format'        : 'MEM',
       'cropToCutline' : True,
       'cutlineWhere'  : f"HUC=13010001",
-      'cutlineDSName' : 'data/Hydrological_Units/HUC_Polygons.shp'
+      'cutlineDSName' : 'data/Hydrologic_Units/HUC_Polygons.shp'
     }
 </code></pre>
 <p>You can the use a function such as <a href="../geog0111/modis_annual.py"><code>modis_annual</code></a> as previously to gather the dataset for the two years of interest. Since the function  <a href="../geog0111/modis_annual.py"><code>modis_annual</code></a> is able to cache the dataset, you might like to run it the first time from a shell, with the vebose flag switched on. It may take some considerable time to stitch all of the data together, so being able to see the progress from the verbose output will be important.</p>
@@ -618,7 +618,7 @@ You will want to use the product <code>MOD10A1</code> for the years 2018 and 201
 </ul>
 <p>70% of the marks for this section will be awarded for the computer code, and 30% for the graphs and tables. </p>
 <p>You need to submit you coursework in the usual manner by the usual submission date.</p>
-<p>You <strong>must</strong> work individually on this task. If you do not, it will be treated as plagiarism. By reading these instructions for this exercise, we assume that you are aware of the UCL rules on plagiarism. You can find more information on this matter in your student handbook. If in doubt about what might constitute plagiarism, ask one of the course conveners. You should read the <a href="A03_Part1_code.md">advice on plagiarism and computer codes</a> we have supplied.</p>
+<p>You <strong>must</strong> work individually on this task. If you do not, it will be treated as plagiarism. By reading these instructions for this exercise, we assume that you are aware of the UCL rules on plagiarism. You can find more information on this matter in your student handbook. If in doubt about what might constitute plagiarism, ask one of the course conveners. You should read the <a href="../063_Part1_code/">advice on plagiarism and computer codes</a> we have supplied.</p>
               
             </div>
           </div>

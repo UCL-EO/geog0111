@@ -478,6 +478,56 @@ retval is True
 <p>We should know know how to use <code>if</code> statements in Python to control program flow. We can make choices as to what happens in the code, depending on whether or not one or more tests are passed. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.</p>
 <p>We know that conditions inside <code>if</code> statements use indentation in Python, and we know to be careful in our use of this.</p>
 <p>There are additional notes in <a href="https://docs.python.org/3/tutorial/controlflow.html#the-range-function">docs.python.org</a> you can follow up to deepen your understanding of these topics. </p>
+<p>Summary of material in this notebook:</p>
+<p>Comparison operators:</p>
+<table>
+<thead>
+<tr>
+<th align="center">symbol</th>
+<th align="center">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">==</td>
+<td align="center">is equivalent to</td>
+</tr>
+<tr>
+<td align="center">!=</td>
+<td align="center">is not equivalent to</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">greater than</td>
+</tr>
+<tr>
+<td align="center">&gt;=</td>
+<td align="center">greater than or equal to</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">less than</td>
+</tr>
+<tr>
+<td align="center">&lt;=</td>
+<td align="center">less than or equal to</td>
+</tr>
+</tbody>
+</table>
+<p><code>If ... elif ... else</code>:</p>
+<pre><code>    if condition1:
+        # do this 1
+        doit1()
+        ...
+    elif condition2:
+        # do this 2
+        doit2()
+        ...
+    else:
+        # do this 3
+        doit3()
+        ...
+</code></pre>
               
             </div>
           </div>

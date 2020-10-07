@@ -571,6 +571,66 @@ Month December has 31 days
 <p>We know that conditions inside <code>if</code> statements use indentation in Python, and we know to be careful in our use of this. We have learnt about <code>enumerate()</code> and <code>range()</code>.</p>
 <p>We have also seen the use of <code>assert</code> to do some checking that our code is correct.</p>
 <p>There are additional notes in <a href="https://docs.python.org/3/tutorial/controlflow.html#the-range-function">docs.python.org</a> you can follow up to deepen your understanding of these topics. You can get more practice with <code>assert</code> at <a href="https://www.w3schools.com/python/ref_keyword_assert.asp">w3schools</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Comment</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for item in list:</code></td>
+<td>loop, setting <code>item</code> to each value in <code>list</code> sequentially</td>
+<td>see Example 1</td>
+<td></td>
+</tr>
+<tr>
+<td><code>for key,value in list_of_tuples:</code></td>
+<td>loop, setting <code>a,b</code> to each value in list of tuples</td>
+<td>See Example 2: <code>list({"a":7,"b":3}.items())</code></td>
+<td><code>[('a', 7), ('b', 3)]</code></td>
+</tr>
+<tr>
+<td><code>range(start,stop,step)</code></td>
+<td>index iterator from <code>start</code> to <code>stop</code> in steps of <code>step</code></td>
+<td><code>list(range(1,6,2))</code></td>
+<td><code>[1, 3, 5]</code></td>
+</tr>
+<tr>
+<td><code>enumerate(list)</code></td>
+<td>provide index of <code>list</code></td>
+<td><code>list(enumerate(['a','b','c']))</code></td>
+<td><code>[(0, 'a'), (1, 'b'), (2, 'c')]</code></td>
+</tr>
+<tr>
+<td><code>assert condition</code></td>
+<td>test that condition is <code>True</code>, exit otherwise</td>
+<td><code>assert True</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 1:</strong></p>
+<pre><code>    for item in [1,2,3]:
+        # print item in loop
+        print(item)
+</code></pre>
+<p>Result:</p>
+<pre><code>    1
+    2
+    3
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>    for key,value in {"a":7,"b":3}.items():
+        print(f'key is {key}, value is {value}')
+</code></pre>
+<p>Result:</p>
+<pre><code>    key is a, value is 7
+    key is b, value is 3
+</code></pre>
               
             </div>
           </div>

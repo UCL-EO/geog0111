@@ -86,11 +86,16 @@ else
 fi
 echo "--> done examining UCLDATA"
 
+isUCL=$(uname -n | awk -Frstudio '{print $2}' | wc -w)
 
 echo "--> examining CACHE_FILE"
 if [ -z "$CACHE_FILE" ] ; then
   echo "--> CACHE_FILE not set"
-  export CACHE_FILE="/shared/groups/jrole001/geog0111/work/database.db"
+  if [ "$isUCL" == 0 ] ; then
+    export CACHE_FILE="${HOME}/.url_db/.db.yml"
+  else
+    export CACHE_FILE="/shared/groups/jrole001/geog0111/work/database.db"
+  fi
 fi
 echo "--> setting CACHE_FILE=$CACHE_FILE"
 touch ~/.profile

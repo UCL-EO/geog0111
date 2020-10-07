@@ -144,7 +144,14 @@ def ginit(self,**kwargs):
         self.local_file = name_resolve(self.local_file)
       except:
         self.local_file = name_resolve(self.local_dir,name=self.name)
-      self.db_dir     = list_resolve(self.db_dir)
+      try:
+        self.db_dir     = list_resolve(self.db_dir)
+      except:
+        self.db_dir     = list_resolve(['work'])
       [d.mkdir(parents=True,exist_ok=True) for d in self.db_dir]
-      self.db_file    = self.db_file or name_resolve(self.db_dir,name='.db.yml')
+      try:
+        self.db_file    = self.db_file or name_resolve(self.db_dir,name='.db.yml')
+      except:
+        # fallback 
+        self.db_file    = ['work/.db.yml']
       return self.__dict__

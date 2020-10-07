@@ -762,6 +762,23 @@ print(*args,**kwargs)
 <h2 id="summary">Summary</h2>
 <p>In this section, we have learned about writing a function. We have seen that they generally will have zero or more input positional arguments and zero or more keyword arguments. They will typically return some value. We have also seen how we can define a <code>doc string</code> to give the user information on how to use the function, and also how we can use <code>assert</code> to build tests for our codes. We have been through some design considerations, and seen that it is best to plan you functions by thinking about the purpose, the inputs and the outputs. Then, for the core code, you just need to develop a skeleton code and docstring structure, test that, and insert your core code. You should think about modifications using keyword arguments that you might want to include, but these will often come in a second pass of development.</p>
 <p>When we write Python codes from now on, we will often make use of functions.</p>
+<p>Remember:</p>
+<p>Anatomy of a function:</p>
+<pre><code>    def my_function(arg1,arg2,...,kw0=...,kw1=...):
+      '''
+      Document string 
+      '''
+
+      # comments
+
+      retval =  ...
+
+      # return
+      return retval
+</code></pre>
+<p>Also written as:</p>
+<pre><code>    def my_function(*args,**kwargs):
+</code></pre>
               
             </div>
           </div>

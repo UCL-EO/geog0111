@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 # shell to sort nb
 # documentation
@@ -29,6 +29,9 @@ echo "--> re-making docs"
 rm -rf docs
 mkdir -p docs
 
+echo "--> re-making notebooks_lab"
+rm -rf notebooks_lab
+mkdir -p notebooks_lab
 #
 # get the theme from config/mkdocs.yml
 # and update ${base}/config/requirements.txt
@@ -128,12 +131,29 @@ echo "--> building mkdocs"
 #cat config/index_tail.rst >> docs/index.rst
 
 cd $base/notebooks
+#mkdir -p $base/docs/notebooks
 for i in *md ; do
+  #sed < $i 's/ipynb/md/g' > $base/docs/notebooks/$i  
   sed < $i 's/ipynb/md/g' > $base/docs/$i
 done
 
+# only copy the data files we really need for links
 cd $base/docs
-ln -s $base/notebooks notebooks
+rm -f data
+mkdir -p data/Hydrologic_Units
+cp $base/notebooks/data/LC_Type1_colour.csv data
+cp $base/notebooks/data/Hydrologic_Units/HUC_Polygons.shp data/Hydrologic_Units
+cp $base/notebooks/data/json-en.html data
+cp $base/notebooks/data/precip.png data
+cp $base/notebooks/data/satellites-1957-2021.gz data
+cp $base/notebooks/data/LC_Type3_colour.csv data
+
+#cp $base/notebooks/data/
+#ln -s $base/notebooks notebooks
+
+sed < index.md 's/notebooks\///g'| sed  's/docs\///g' > /tmp/tmp.$$
+mv  /tmp/tmp.$$ index.md
+
 cp ../config/requirements.txt .
 #ln -s notebooks/images images
 ##ln -s notebooks/data data
@@ -143,8 +163,12 @@ cp ../config/requirements.txt .
 #rm -f bin/copy/copy
 
 # avoid conflict with index.md
-mv README.md GEOG0111.md
+sed < README.md 's/docs\///g' | sed 's/notebooks\///g' > GEOG0111.md
+rm -f README.md
 
+rm -f $base/docs/copy
+mkdir $base/docs/copy
+cp $base/bin/copy/* $base/docs/copy
 cd $base
 mkdocs build -v
 

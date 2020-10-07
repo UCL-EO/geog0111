@@ -279,14 +279,41 @@ cd geog0111
 </code></pre>
 </li>
 <li>
-<p>Set up environment</p>
-<pre><code>bin/init.sh  
-python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+<p>Download/update required Python packages (will take minutes/tens of minutes):</p>
+<pre><code>conda init 
+bin/set-course.sh
 </code></pre>
 </li>
 <li>
-<p>Download the majority of the datasets youy'll need (this will take some hours):</p>
-<pre><code>bin/get_datasets.sh
+<p>Set up environment:</p>
+<pre><code>bin/init0111.sh
+</code></pre>
+</li>
+<li>
+<p>Set up your NASA Earthdata login on the site <a href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>. </p>
+</li>
+<li>
+<p>Store the Earthdata password locally. Do this by running the following, and entering your Earthdata login and password when prompted:</p>
+<pre><code>ipython -c "from geog0111.cylog import earthdata; earthdata(True);"
+</code></pre>
+</li>
+</ol>
+<p>The <code>True</code> argument to <code>earthdata</code> performs a test of the login that will fail if the login fails. Be aware that if you run this test on a Wednesday, it may fail simply because the NASA servers go down for maintenance. If it fails for other reasons,  reset your password cache with:</p>
+<pre><code>    ipython -c "from geog0111.cylog import earthdata; earthdata(do_test=True,force=True);"
+</code></pre>
+<ol>
+<li>
+<p>Download the majority of the datasets you'll need (this will take an hour or so):</p>
+<pre><code>bin/get-datasets.sh
+</code></pre>
+</li>
+<li>
+<p>Build database and set CACHE_FILE (this will take a few minutes to run) (assuming you are using bash -- if not change profile accordingly):</p>
+<pre><code>bin/sort-db.sh  &gt; ~/.url_db/.db.yml
+touch ~/.bash_profile 
+grep -v CACHE_FILE &lt; ~/.bash_profile  &gt; /tmp/.profile.$$
+echo "export CACHE_FILE=${HOME}/.url_db/.db.yml" &gt;&gt; /tmp/.bash_profile.$$
+mv /tmp/.profile.$$ ~/.bash_profile
 </code></pre>
 </li>
 <li>

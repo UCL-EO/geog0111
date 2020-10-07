@@ -2044,6 +2044,85 @@ df.to_csv(Path('work/dataset.csv'),index=False)
 <p>In this section, we have used <code>Path</code> and <code>URL</code> classes to open streams from files and URLs. We have seen how to use this to read the stream into packages that can interpret various formats of data, such as <code>yaml</code>, <code>json</code>, and CSV and tabular data. </p>
 <p>We have seen that using these object-oriented classes to deal with files and URLs means that we can use essentially the same functions throughout. </p>
 <p>We have come across the <code>pandas</code> package for reading tabular and similar datasets.</p>
+<p><code>pandas</code>:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Command</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>pd.read_csv(f)</code></td>
+<td>Read CSV data from file or URL <code>f</code></td>
+</tr>
+<tr>
+<td align="right"><code>pd.read_table(f)</code></td>
+<td>Read table data from file or URL <code>f</code></td>
+</tr>
+<tr>
+<td align="right"><code>skiprows=N</code></td>
+<td>Keyword to skip <code>N</code> rows in reading for <code>pd.read_table</code></td>
+</tr>
+<tr>
+<td align="right"><code>na_values=[-99.9]</code></td>
+<td>Keyword to set list of values to ignore (<code>-99.9</code> here)</td>
+</tr>
+<tr>
+<td align="right"><code>sep</code></td>
+<td>Keyword to define field separator</td>
+</tr>
+<tr>
+<td align="right"><code>engine='python'</code> or <code>engine='C'</code></td>
+<td>Keyword to set reading engine. <code>python</code> is more flexible, but <code>C</code> is faster.</td>
+</tr>
+<tr>
+<td align="right"><code>df.transpose()</code></td>
+<td>Transpose (rows-&gt;columns, columns-&gt;rows) pandas dataframe <code>df</code></td>
+</tr>
+<tr>
+<td align="right"><code>df.head(N)</code></td>
+<td>first <code>N</code> lines of data (default 5)</td>
+</tr>
+<tr>
+<td align="right"><code>df.columns</code></td>
+<td>list-like object of column headings</td>
+</tr>
+<tr>
+<td align="right"><code>df[cname]</code></td>
+<td>Select column with name <code>cname</code></td>
+</tr>
+<tr>
+<td align="right"><code>df[[c1,c2,c3]]</code></td>
+<td>Select columns with names <code>c1</code>, <code>c2</code> and <code>c3</code></td>
+</tr>
+<tr>
+<td align="right"><code>pd.DataFrame(list,columns=cnames)</code></td>
+<td>Create <code>pandas</code> dataframe from information in list-like structures <code>list</code> with names from list <code>cnames</code></td>
+</tr>
+<tr>
+<td align="right"><code>pd.to_datetime(str_list)</code></td>
+<td>convert list of date strings (e.g. of form <code>YYYY-MM-DD</code>) to <code>datetime</code> representation</td>
+</tr>
+<tr>
+<td align="right"><code>df[datetimes].dt.month</code></td>
+<td>month from <code>datetime</code> field fromn <code>datetime</code>-format column with name <code>datetimes</code></td>
+</tr>
+<tr>
+<td align="right"><code>df[datetimes].dt.year</code></td>
+<td>year from <code>datetime</code> field fromn <code>datetime</code>-format column with name <code>datetimes</code></td>
+</tr>
+<tr>
+<td align="right"><code>df[datetimes].dt.day</code></td>
+<td>day from <code>datetime</code> field fromn <code>datetime</code>-format column with name <code>datetimes</code></td>
+</tr>
+<tr>
+<td align="right"><code>df.to_csv(filename,index=False)</code></td>
+<td>Write dataframe <code>df</code> to CSV format file, with no index column</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
