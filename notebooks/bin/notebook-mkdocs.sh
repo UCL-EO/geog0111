@@ -129,11 +129,6 @@ for i in *md ; do
   sed < $i 's/ipynb/md/g' > $base/docs/$i
 done
 
-cat << EOF >> docs/index.md
-
-Last update: {{ git_revision_date_localized }}
-
-EOF
 # only copy the data files we really need for links
 cd $base/docs
 rm -f data
@@ -166,6 +161,11 @@ mv /tmp/tmp.$$ GEOG0111.md
 sed < index.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
 mv /tmp/tmp.$$ index.md
 
+cat << EOF >> index.md
+
+Last update: {{ git_revision_date_localized }}
+
+EOF
 
 rm -f $base/docs/copy
 mkdir $base/docs/copy
