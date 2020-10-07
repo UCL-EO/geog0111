@@ -100,15 +100,7 @@ do
   mv /tmp/$$ $i
 done
 
-# generate docs/index.md 
-
 echo "--> adding to docs/index.md"
-
-cat << EOF >> docs/index.md 
-
-Last update: {{ git_revision_date_localized }}
-
-EOF
 
 # get files
 cd "$base"
@@ -137,6 +129,11 @@ for i in *md ; do
   sed < $i 's/ipynb/md/g' > $base/docs/$i
 done
 
+cat << EOF >> docs/index.md
+
+Last update: {{ git_revision_date_localized }}
+
+EOF
 # only copy the data files we really need for links
 cd $base/docs
 rm -f data
@@ -151,8 +148,8 @@ cp $base/notebooks/data/LC_Type3_colour.csv data
 #cp $base/notebooks/data/
 #ln -s $base/notebooks notebooks
 
-sed < index.md 's/notebooks\///g'| sed  's/docs\///g' > /tmp/tmp.$$
-mv  /tmp/tmp.$$ index.md
+#sed < index.md 's/notebooks\///g'| sed  's/docs\///g' > /tmp/tmp.$$
+#mv  /tmp/tmp.$$ index.md
 
 cp ../config/requirements.txt .
 #ln -s notebooks/images images
@@ -163,8 +160,8 @@ cp ../config/requirements.txt .
 #rm -f bin/copy/copy
 
 # avoid conflict with index.md
-sed < README.md 's/docs\///g' | sed 's/notebooks\///g' > GEOG0111.md
-rm -f README.md
+sed < README.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
+mv /tmp/tmp.$$ GEOG0111.md
 
 rm -f $base/docs/copy
 mkdir $base/docs/copy
