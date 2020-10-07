@@ -1869,3 +1869,27 @@ In this section, we have used `Path` and `URL` classes to open streams from file
 We have seen that using these object-oriented classes to deal with files and URLs means that we can use essentially the same functions throughout. 
 
 We have come across the `pandas` package for reading tabular and similar datasets.
+
+
+`pandas`:
+
+| Command | Comment | 
+| --:|---|
+|`pd.read_csv(f)`| Read CSV data from file or URL `f`|
+|`pd.read_table(f)`| Read table data from file or URL `f`|
+| `skiprows=N` | Keyword to skip `N` rows in reading for `pd.read_table`|
+| `na_values=[-99.9]` | Keyword to set list of values to ignore (`-99.9` here) |
+| `sep` | Keyword to define field separator |
+| `engine='python'` or `engine='C'` | Keyword to set reading engine. `python` is more flexible, but `C` is faster. |
+|`df.transpose()` | Transpose (rows->columns, columns->rows) pandas dataframe `df`|
+|`df.head(N)` | first `N` lines of data (default 5) |
+|`df.columns` | list-like object of column headings |
+|`df[cname]` | Select column with name `cname`|
+|`df[[c1,c2,c3]]` | Select columns with names `c1`, `c2` and `c3`|
+| `pd.DataFrame(list,columns=cnames)` | Create `pandas` dataframe from information in list-like structures `list` with names from list `cnames`|
+|`pd.to_datetime(str_list)` | convert list of date strings (e.g. of form `YYYY-MM-DD`) to `datetime` representation |
+| `df[datetimes].dt.month` | month from `datetime` field fromn `datetime`-format column with name `datetimes`|
+| `df[datetimes].dt.year` | year from `datetime` field fromn `datetime`-format column with name `datetimes`|
+| `df[datetimes].dt.day` | day from `datetime` field fromn `datetime`-format column with name `datetimes`|
+|`df.to_csv(filename,index=False)` |Write dataframe `df` to CSV format file, with no index column|
+

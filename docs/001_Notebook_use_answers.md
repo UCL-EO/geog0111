@@ -1,6 +1,6 @@
 # 001 Use of Jupyter notebooks : Answers to exercises
 
-#### Exercse 1
+#### Exercise 1
  This is a test exercise
 
 

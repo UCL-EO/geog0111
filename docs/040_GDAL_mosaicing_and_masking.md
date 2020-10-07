@@ -23,9 +23,9 @@ You will need some understanding of the following:
 * [022 Read write files](022_Read_write_files.md)
 * [023 Plotting](023_Plotting.md)
 * [024 Image display](024_Image_display.md)
-* [030_NASA_MODIS_Earthdata](030_NASA_MODIS_Earthdata.md)
-* [031_Numpy](031_Numpy.md)
-* [032_More_numpy](032_More_numpy.md)
+* [030 NASA MODIS Earthdata](030_NASA_MODIS_Earthdata.md)
+* [031 Numpy](031_Numpy.md)
+* [032 More numpy](032_More_numpy.md)
 
 You will need to remember:
 
@@ -39,7 +39,7 @@ You should run a [NASA account test](004_Accounts.md) if you have not already do
 ## MODIS dataset access
 
 You should by now be able to access MODIS data, either through specifying the URL of the file to download, or through using the `geog0111.modis` library as we have done in [024 Image display](024_Image_display.md#MODIS)
- and [025 NASA MODIS Earthdata](025_NASA_MODIS_Earthdata.md#MOTA).
+ and [030 NASA MODIS Earthdata](030_NASA_MODIS_Earthdata.md).
  
  If we want to access only the local filename and/or SDS information for a particular, we can use the function:
  

@@ -279,3 +279,32 @@ In this section, we have used `Path` and `URL` classes to read and write text an
 We have learned how to use `gdal` to look at the sub-datasets in an HDF file and also how to read them.
 
 You should now have some confidence in these matters, so that if you were set a task of downloading and saving datasets, as well as other tasks such as finding their size, whether the exists or not, you could do this. 
+
+Remember:
+
+Modis library
+
+            from  geog0111.modis import Modis
+            modis = Modis(**kwargs)
+            
+
+            get_url(**kwargs) method of geog0111.modis.Modis instance
+                Get URL object list for NASA MODIS products
+                for the specified product, tile, year, month, day
+
+                Keyword Arguments:
+
+                verbose:  bool
+                product : str e.g. 'MCD15A3H'
+                tile    : str e.g. 'h08v06'
+                year    : str valid 2000-present
+                month   : str 01-12
+                day     : str 01-(28,29,30,31)
+
+`gdal`
+
+| Command | Comment |
+|---|---|
+|`g = gdal.Open(filename)` | Open geospatial file `filename` and return `gdal` object `g` (`None` if file not opened correctly)|
+|`g.GetSubDatasets()` | Get list of sub-datasets from `gdal` object `g`| 
+|`g.ReadAsArray()` | Read dataset from `gdal` object `g` into array |

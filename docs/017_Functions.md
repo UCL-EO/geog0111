@@ -591,3 +591,25 @@ The use of `**kwargs` can be useful sometimes, as you can more easily keep track
 In this section, we have learned about writing a function. We have seen that they generally will have zero or more input positional arguments and zero or more keyword arguments. They will typically return some value. We have also seen how we can define a `doc string` to give the user information on how to use the function, and also how we can use `assert` to build tests for our codes. We have been through some design considerations, and seen that it is best to plan you functions by thinking about the purpose, the inputs and the outputs. Then, for the core code, you just need to develop a skeleton code and docstring structure, test that, and insert your core code. You should think about modifications using keyword arguments that you might want to include, but these will often come in a second pass of development.
 
 When we write Python codes from now on, we will often make use of functions.
+
+Remember:
+
+Anatomy of a function:
+
+        def my_function(arg1,arg2,...,kw0=...,kw1=...):
+          '''
+          Document string 
+          '''
+
+          # comments
+
+          retval =  ... 
+
+          # return
+          return retval
+
+
+Also written as:
+
+        def my_function(*args,**kwargs):
+

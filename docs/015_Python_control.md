@@ -189,3 +189,35 @@ We should know know how to use `if` statements in Python to control program flow
 We know that conditions inside `if` statements use indentation in Python, and we know to be careful in our use of this.
 
 There are additional notes in [docs.python.org](https://docs.python.org/3/tutorial/controlflow.html#the-range-function) you can follow up to deepen your understanding of these topics. 
+
+Summary of material in this notebook:
+
+Comparison operators:
+
+|symbol| meaning|
+|:---:|:---:|
+| == | is equivalent to |
+| != | is not equivalent to |
+| > | greater than |
+|>= | greater than or equal to|
+|<  | less than|
+|<=  | less than or equal to    |
+
+
+`If ... elif ... else`:
+
+
+        if condition1:
+            # do this 1
+            doit1()
+            ...
+        elif condition2:
+            # do this 2
+            doit2()
+            ...
+        else:
+            # do this 3
+            doit3()
+            ...
+
+

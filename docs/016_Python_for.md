@@ -325,3 +325,35 @@ We know that conditions inside `if` statements use indentation in Python, and we
 We have also seen the use of `assert` to do some checking that our code is correct.
 
 There are additional notes in [docs.python.org](https://docs.python.org/3/tutorial/controlflow.html#the-range-function) you can follow up to deepen your understanding of these topics. You can get more practice with `assert` at [w3schools](https://www.w3schools.com/python/ref_keyword_assert.asp).
+
+
+| Command | Comment | Example | Result| 
+|---|---|---|---|
+|  `for item in list:` | loop, setting `item` to each value in `list` sequentially| see Example 1|
+| `for key,value in list_of_tuples:`|loop, setting `a,b` to each value in list of tuples | See Example 2: `list({"a":7,"b":3}.items())` | `[('a', 7), ('b', 3)]`|
+| `range(start,stop,step)` | index iterator from `start` to `stop` in steps of `step`| `list(range(1,6,2))`| `[1, 3, 5]` |
+|`enumerate(list)`| provide index of `list` | `list(enumerate(['a','b','c']))` | `[(0, 'a'), (1, 'b'), (2, 'c')]`|
+| `assert condition` | test that condition is `True`, exit otherwise | `assert True` ||
+
+**Example 1:**
+
+        for item in [1,2,3]:
+            # print item in loop
+            print(item)
+    
+Result:
+
+        1
+        2
+        3
+
+
+**Example 2:**
+
+        for key,value in {"a":7,"b":3}.items():
+            print(f'key is {key}, value is {value}')
+            
+Result:
+
+        key is a, value is 7
+        key is b, value is 3

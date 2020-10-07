@@ -214,7 +214,7 @@ Note that you will have to experiment a bit with the `x_size,y_size` values to g
 
 Sometimes we want quantised colourmaps, for example for a land cover classification map. You can do these perfectly well in `matplotlib`, but the process is a little more involved.
 
-We will take as an example the MODIS product `MCD12Q1` over the UK. The land cover layer we are interested in is called `LC_Type1`. The [land cover names](https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf) associated with this are given in the file [data/LC_Type1_class.csv](data/LC_Type1_class.csv), along with example colour mappings.
+We will take as an example the MODIS product `MCD12Q1` over the UK. The land cover layer we are interested in is called `LC_Type1`. The [land cover names](https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf) associated with this are given in the file [data/LC_Type1_colour.csv](data/LC_Type1_colour.csv), along with example colour mappings.
 
 
 ```python
@@ -450,3 +450,63 @@ plt.legend(handles=patches,
 In this section, we have learned how to plot images from datasets we have read in or downloaded from the web. We have concentrated on MODIS datasets, stored in a data dictionary. We used `modis.get_data` to load the MODIS datasets. We developed a function called `im_display` to provide a simple wrapper for plotting.
 
 We have also looked into how to do categorised mapping, for example for land cover, and written a function called `plot_lc` to achieve this.
+
+Remember:
+
+
+            import matplotlib
+            import matplotlib.pyplot as plt
+
+            
+|function|comment|  keywords|
+|---|---|:--|
+| `im = axs.imshow(data2D)` | Display image of 2D data array `data2D` on sub-plot axis `axs` and return display object `im` | `vmin=` : minimum threshold for image display |
+| | | `vmax=` : maximum threshold for image display |
+| | | `interpolation=` : interpolation style (e.g. `'nearest'` |
+| `fig.colorbar(im)` | Set colour bar for image plot object `im` | `ax=axs` plot on sub-plot `axs` |
+| `im.set_cmap(c)` | set colourmap `c` for image object `im` | 
+| | Examples being `['Greys','gray','inferno_r','seismic']`|
+| `cmap = matplotlib.colors.ListedColormap(list_of_colours)` | set `cmap` to `Colormap` object from list of colours `list_of_colours` |
+|`norm = matplotlib.colors.BoundaryNorm(list, nbound)` | set `BoundaryNorm` object `norm` to boundaries of values from `list` with `nbound` values |
+|`matplotlib.patches.Patch(color=c, label=l)`| Set patches for legend with colours from list `c` and labedl from list `l`|  
+| `plt.legend(handles=patches)` | set figure legend using `patches` |`bbox_to_anchor=(1.4, 1)` : shift of legend|
+| | | `facecolor="white"` : facecolourt of legend (white here) |
+        
+
+Modis library: 
+
+            from  geog0111.modis import Modis
+            modis = Modis(**kwargs)
+            
+
+
+            get_data(year, doy=None, idict=None, month=None, day=None, step=1, fatal=False) 
+            method of geog0111.modis.Modis instance
+            
+                Return data dictionary of MODIS dataset for specified time period
+
+                args:
+                  year  : year (2000 to present for MOD, or 2002 to present if using MYD)
+                          NB this is ignoired if idict is given
+
+                options:
+                  doy   : day in year, or day in month if month specified, or None
+                          when specified as day in year, or day in month, can be a list
+                          1-365/366 or 1-28-31 as appropriate
+                  day   : day in month or None. Can be list.
+                  month : month index 1-12 or None. Can be list.
+                  step  : dataset step. Default 1, but set to 4 for 4-day product, i
+                          8 for 8-day, 365/366 for year etc.
+                  fatal : default False. If True, exit if dataset not found.
+                  idict : data file dictionary provided by eg call to
+                          self.get_modis(year,doy=None,month=None,step=1,fatal=False)
+                          see get_modis for more details
+
+                returns:
+                  data dictionary with keys specified by:
+                        - self.sds list 
+                        - or all SDS if self.sds is None (default)
+                  data dictionary key 'bandnames' of DOY 
+
+                  Each data item a 2- or 3-dimensional numpy array            
+         

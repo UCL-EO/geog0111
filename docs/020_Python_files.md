@@ -20,11 +20,11 @@ You will need some understanding of the following:
 * [002 Unix](002_Unix.md) with a good familiarity with the UNIX commands we have been through.
 * [003 Getting help](003_Help.md)
 * [004_Accounts](004_Accounts.md)
+* [005_Packages](005_Packages.md)
 * [010 Variables, comments and print()](010_Python_Introduction.md)
 * [011 Data types](011_Python_data_types.md) 
 * [012 String formatting](012_Python_strings.md)
 * [013_Python_string_methods](013_Python_string_methods.md)
-* [018_Packages](018_Packages.md)
 
 ### Test
 

@@ -165,7 +165,7 @@ The `numpy` documenation is huge. There's an [user's guide](https://docs.scipy.o
 So far, we have seen a 1D array, which is the equivalent to a vector. But arrays can have more dimensions: a 2D array would be equivalent to a matrix (or an image, with rows and columns), and a 3D array would be a volume split into voxels, as seen below
 
 
-[![numpy arrays](images/1*Ikn1J6siiiCSk4ivYUhdgw.png)](https://cdn-images-1.medium.com/max/1120/1*Ikn1J6siiiCSk4ivYUhdgw.png)
+[![numpy arrays](images/1Ikn1J6siiiCSk4ivYUhdgw.png)](https://cdn-images-1.medium.com/max/1120/1*Ikn1J6siiiCSk4ivYUhdgw.png)
 
 
 So a 1D array has one axis, a 2D array has 2 axes, a 3D array 3, and so on. The `shape` of the array provides a tuple with the number of elements along each axis. Let's see this with some generally useful array creation options:
@@ -197,11 +197,11 @@ print(arr2)
      [4.  5.  6. ]]
 
 
-### `shape`, `ndim`
+### `shape`, `ndim`, `size`
 
 One of the key aspects of `numpy` is the way it deals efficiently with large, multi-dimensional arrays. To learn how to use `numpy` well, especially when we head to more complex problems later in the notes, you need to be aware of the dimensions and shape of the array you are processing.
 
-The key terms here are `array.ndim` which returns the number of dimensions of the array, and `array.shape` which gives the number of samples in each dimension. 
+The key terms here are `array.ndim` which returns the number of dimensions of the array, `array.size` that gives the total number of elements in the array, and `array.shape` which gives the number of samples in each dimension. 
 
 If the arrays are of the same shape (and some other conditions we shall see later), you can do standard operations between them **element-wise**:
 
@@ -212,8 +212,8 @@ import numpy as np
 arr1 = np.array([[3, 4, 5, 6.],[6,4,6,2]])
 arr2 = np.array([[30, 40, 50, 60.],[50,40,30,20]])
 
-print(f'the shape of arr1 is {arr1.shape} and ndim is {arr1.ndim}')
-print(f'the shape of arr2 is {arr2.shape} and ndim is {arr2.ndim}')
+print(f'the shape of arr1 is {arr1.shape} and ndim is {arr1.ndim} and size is {arr1.size}')
+print(f'the shape of arr2 is {arr2.shape} and ndim is {arr2.ndim} and size is {arr2.size}')
 
 # so we can do element-wise operations such as 
 # add, subtract, multiply etc
@@ -224,8 +224,8 @@ print(arr1 * arr2)
 print(f'the shape of arr1 * arr2 is {(arr1 * arr2).shape}')
 ```
 
-    the shape of arr1 is (2, 4) and ndim is 2
-    the shape of arr2 is (2, 4) and ndim is 2
+    the shape of arr1 is (2, 4) and ndim is 2 and size is 8
+    the shape of arr2 is (2, 4) and ndim is 2 and size is 8
     [[27. 36. 45. 54.]
      [44. 36. 24. 18.]]
     the shape of arr1 - arr2 is (2, 4)
@@ -555,4 +555,35 @@ print(f'sqrt({np.sqrt(var)}) should equal {std}')
 
 In this section, you have been introduced to the `numpy` package and some detail on arrays. The big advantages of `numpy` are that you can easily perform array operators (such as adding two arrays together), and that `numpy` has a large number of useful functions for manipulating N-dimensional data in array form. This makes it particularly appropriate for raster geospatial data processing.
 
-We have seen how to create various forms of array (e.g. `np.ones()`, `np.arange()`), how to calculate some basic statistics (`min()`, `max()` etc). 
+We have seen how to create various forms of array (e.g. `np.ones()`, `np.arange()`), how to calculate some basic statistics (`min()`, `max()` etc). and come across a range of `numpy` functions and concepts. 
+
+Remember:
+
+
+            import numpy as np
+            
+ | Function | description   | keywords | 
+ |---|---|---|
+ |`np.array(x)` | convert `x` (e.g. list) to `numpy` array | `dtype=` : specify data type, e.g. `np.float`, `np.bool`, `np.int` |
+ |`np.ones(s)` | generate array of values `1` of shape `s` |  `dtype=` 
+  |`np.zeros(s)` | generate array of values `0` of shape `s` |  `dtype=` 
+  |`np.linspace(start,stop,nsamp)` | generate array of `nsamp` values from `start` to `stop` |  `dtype=` |
+| `np.arange(start,stop,step)` | generate array of numbers from `start` to (but not including) `stop` in steps of `step` | `dtype=` |
+| `p0,p1 = np.mgrid[p0min:p0max:p0step,p1min:p1max:p1step]` | generate grids `p0`, `p1` of combinations of samples from `p0min` to (but not including) `p0max` in steps of `p0step` and `p1min` to (but not including) `p1max` in steps of `p1step`|
+  | `a.astype(dtype)` | convert array `a` to data type `dtype` ||
+  | a * b | multiply array `a` element-wise by array `b` , etc. for arithmetic|
+ | `a.shape` | tuple giving shape of array `a` | 
+ | `a.ndim` | tuple giving number of dimensions  of array `a` | 
+ | `a.size` | tuple giving total number of elements in array `a` | 
+ | `a[start:stop:step]` | array indexing for slice from `start` to `stop` in steps of `step` e.g. `np.array([2,5,3])[2:3])`|
+ | `a[index]` | array indexing by explicit index tuple or tuple list e.g. `np.array([2,5,3])[(1,)]` |
+ | `a.min()` | minimum value in array `a` | `axis=N` : value taken over axis `N` |
+ | `a.max()` | maximum value in array `a` | `axis=N` : value taken over axis `N` |
+ | `a.mean()` | mean value in array `a` | `axis=N` : value taken over axis `N` |
+ | `a.std()` | standard deviation of values in array `a` | `axis=N` : value taken over axis `N` |
+ | `a.var()` | variance of values in array `a` | `axis=N` : value taken over axis `N` |
+ | `a.sum()` | sum of values in array `a` | `axis=N` : value taken over axis `N` |
+ | `a.prod()` | product of values in array `a` | `axis=N` : value taken over axis `N` |
+ |`np.median(a)` | median of values in array `a`, assumed `a` values in radians |`axis=N` : value taken over axis `N` |
+ |`np.sqrt(a)` | square root of values in array `a` ||
+  |`np.sin(a)` | sine of values in array `a`, assumed `a` values in radians etc.|

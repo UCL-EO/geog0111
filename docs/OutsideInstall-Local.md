@@ -10,17 +10,39 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
         git clone https://github.com/UCL-EO/geog0111.git
         cd geog0111
 
-2. Set up environment
+2. Download/update required Python packages (will take minutes/tens of minutes):
 
-        bin/init.sh  
-        python -m ipykernel install --user --name geog0111 --display-name "conda-env-geog0111-geog0111-py"
+        conda init 
+        bin/set-course.sh
 
-3. Download the majority of the datasets youy'll need (this will take some hours):
 
-        bin/get_datasets.sh
-    
-4. Launch jupyter or jupyterlab server
+2. Set up environment:
 
+        bin/init0111.sh
+        
+3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
+
+4. Store the Earthdata password locally. Do this by running the following, and entering your Earthdata login and password when prompted:
+
+        ipython -c "from geog0111.cylog import earthdata; earthdata(True);"
+        
+   The `True` argument to `earthdata` performs a test of the login that will fail if the login fails. Be aware that if you run this test on a Wednesday, it may fail simply because the NASA servers go down for maintenance. If it fails for other reasons,  reset your password cache with:
+   
+        ipython -c "from geog0111.cylog import earthdata; earthdata(do_test=True,force=True);"
+
+5. Download the majority of the datasets you'll need (this will take an hour or so):
+
+        bin/get-datasets.sh
+
+6. Build database and set CACHE_FILE (this will take a few minutes to run) (assuming you are using bash -- if not change profile accordingly):
+
+        bin/sort-db.sh  > ~/.url_db/.db.yml
+        touch ~/.bash_profile 
+        grep -v CACHE_FILE < ~/.bash_profile  > /tmp/.profile.$$
+        echo "export CACHE_FILE=${HOME}/.url_db/.db.yml" >> /tmp/.bash_profile.$$
+        mv /tmp/.profile.$$ ~/.bash_profile
+
+7. Launch jupyter or jupyterlab server
 
           jupyter notebook
     

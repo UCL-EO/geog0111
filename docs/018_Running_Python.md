@@ -91,7 +91,6 @@ Another thing we can do is to `import` the code from the Python file into Python
 
 ```python
 from geog0111.helloWorld import helloWorld
-
 helloWorld()
 ```
 
@@ -579,3 +578,55 @@ We have also seen how we can use
 in a bash script to generate and document our Python files, though we would also typically edits the file through some text editor.
 
 We have seen how to run a Python script from a notebook, using `%run` or via a bash shell with `%%bash`. We have seen that to 'run' a Python script, we need to change the file permissions iusing `chmod`, either in `bash` or using `Path().chmod()`. We have used the octal code `755` to change the file permissions for execution.
+
+Remember:
+
+
+
+|Command| Comment| Example| Result|
+|---|---|---|---|
+|`!unix_cmd` | Run unix command `unix_cmd` from Jupyter code cell | `!geog0111/helloWorld.py`| `hello world`|
+|| | `!ls -l geog0111/helloWorld.py`| `-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py`|
+|`%%bash` | Turn Jupyter Python code cell into `bash` cell | `%%bash` | | 
+| | | `chmod 755 geog0111/helloWorld.py`
+| | |`ls -l geog0111/helloWorld.py` | `-rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py`|
+| `%run script.py` | Run Python script `script.py` from Jupyter code cell| `%run geog0111/helloWorld.py` | `hello world`|
+|     `cat << XX > YY; XX` | Put  marker `XX` in bash script and send text up to `XX` into file `YY` | `cat << EOF > work/file.py` |
+|||    `hello world` | `cat work/file.py`
+|||    `EOF` | `hello world`|
+
+Form of a Python script:
+
+
+            #!/usr/bin/env python
+            # -*- coding: utf-8 -*- 
+
+            '''
+            helloWorld
+
+            Purpose:
+
+              function print the string 'hello world'
+
+            '''
+
+            __author__    = "P Lewis"
+            __copyright__ = "Copyright 2020 P Lewis"
+            __license__   = "GPLv3"
+            __email__     = "p.lewis@ucl.ac.uk"
+
+            def helloWorld():
+                '''
+                function to print the string 'hello world'
+
+                '''
+                print('hello world')
+
+
+            # example calling the function
+            def main():
+                helloWorld()
+
+            if __name__ == "__main__":
+                # execute only if run as a script
+                main()

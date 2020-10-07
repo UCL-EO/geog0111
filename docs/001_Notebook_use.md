@@ -61,6 +61,9 @@ In either case, you will need to provide your UCL ISD login and password for bot
 
 We recommend that you use the 'traditional' Jupyter notebooks for this course, rather than Jupyter Lab. Both are viable options, but the notebooks, in the folder `notebooks` have features that will not work properly in Jupyter Lab. In essence, if you use the notebooks in the folder `notebooks` Jupyter Lab, the exercise answers will be exposed to you as you go through the notes, whereas they should be hidden. For example:
 
+#### Exercise 1
+ This is a test exercise
+
 In notebooks, there will be a green button that you have to press to reveal the answer, but in Jupyter Lab, the answer will be directly on show. 
 
 ## Notebooks
@@ -124,6 +127,9 @@ first_string = "hello world"
 # print this
 print(first_string)
 ```
+
+    hello world
+
 
 The type of cell we use is `Code` (rather than `Markdown` above).
 

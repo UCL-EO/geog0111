@@ -928,3 +928,56 @@ If you want to go further towards re-creating this, you consult [the matplotlib 
 In this section, we have learned how to plot graphs from datasets we have read in or downloaded from the web. We have concentrated in simple line graphs, with possibly multiple sub-plots here, although there are many other types of graph you may consider. 
 
 The [`matplotlib` gallery](https://matplotlib.org/3.3.1/gallery/index.html) provides a useful starting point for other types of plot. You might also consider the Python packages [`bokeh`](https://bokeh.org/) and [`seaborn`](https://seaborn.pydata.org/) for improved visualisation and interaction.
+
+Remember:
+
+
+
+            import matplotlib.pyplot as plt
+            import matplotlib.dates as mdates
+
+
+| Function | Comment | Keywords |
+|---|---|---|
+|`fig, axs = plt.subplots(xshape,yshape)` | set up new figure as array of sub-plots `xshape` by `yshape` and return `fig` object for figure and `axs` object for subplots. `axs` is array of objects shape `(xshape,yshape)`, or single object if `(1,1)`. We often use `axs = axs.flatten()` to flatten the `axs` array to 1D.|`figsize=(sx,sy)` : set figure size `sx` by `sy`|
+| `plt.savefig("ofile.png")` | Save plot to file `"ofile.png"` | 
+| `fig.suptitle(name)` | set title `name` at top of figure `fig`
+| `im = axs.plot(xdata,ydata,cs)` | plot line graph with `ydata` as a function of `xdata` and return plot object `im`. If argument `cs` is given, this is a colour/symbol e.g. `k+` for black crosses. | `label=str` : set `str` as label for this line. For use with `legend`| 
+| `im = plt.errorbar(xdata,ydata)` | Error bar plot for `ydata` as a function of `xdata`. Needs kwarg | `yerr=yerr` : set y-error bar to values in array `yerr` |
+| `axs.set_xlim(x0,x1)` | Set plot x-extent to from `x0` to `x1` |
+| `axs.set_ylim(y0,y1)` | Set plot x-extent to from `y0` to `y1` |
+| `axs.set_title(name)` | set sub-plot `axs` title to `name` |
+| `axs.set_xlabel(xlab)` | set x-axis label to `xlab` |
+| `axs.set_ylabel(ylab)` | set y-axis label to `ylab` |1
+| `axs.legend()` | set legend in plot | `loc='best'` : best location, otherwise `top left` etc. |
+| `mdates.MonthLocator()` | `MonthLocator` object of month locators, e.g. `months = mdates.MonthLocator()` |
+| `axs.xaxis.set_major_locator(months)` | set major ticks on x-axis to `Locator` object of `months`|
+
+
+Some colours and symbols:
+
+| symbol/colour | name |
+|---|---|
+|'k+' | black plus |
+|'r.' | red dot  |
+|'go' | green circle  |
+|'b-' | blue line  |
+|'c--' | cyan dashed line  |
+|'y-o' | yellow  line with circles  |
+
+
+`datetime`
+
+            from datetime import datetime
+            
+            
+| function | comment |
+|---|---|
+|`datetime.now()` | date and time for now |
+|`datetime(year, month, day, hour, minute, second, millisecond)` | return `datatime` object for time/date specified. Not all fields need be given. Can also use keywords but `year`, `month` and `day` must be given e.g.: `datetime(2020,day=1,month=2,hour=12)`|
+| `datetime.day` | day etc. |
+| `timedelta` | subtract two `datetime`s to get a `timedelta`|
+|`timedelta.days` | number of days in `timedelta` |
+| `dt.strftime("%H:%M:%S")` | represent `datetime` object `dt` as `hour:minute:second`|
+| `dt.strftime("%m/%d/%Y")` | represent `datetime` object `dt` as `month/day/year`|
+| `datetime.strptime(str,format)` | load string `str` into `datetime` object interpreting as format `format`, e.g. `datetime.strptime("11 November, 1918", "%d %B, %Y")` -> `1918-11-11 00:00:00`; e.g. `datetime.strptime("2020-06-20", "%Y-%m-%d")` -> `2020-06-20 00:00:00`|
