@@ -1,11 +1,3 @@
-extra:
-  social:
-  - icon: fontawesome/brands/twitter
-    link: https://twitter.com/prof_plewis
-  - icon: fontawesome/brands/docker
-    link: https://hub.docker.com/r/proflewis/geog0111
-  - icon: fontawesome/brands/github
-    link: https://github.com/UCL-EO/geog0111
 nav:
 - Introduction: index.md
 - Course Basics:
@@ -106,7 +98,6 @@ plugins:
     - '*.npz'
     - data/ucl/*
     - '*.vrt'
-- search
 repo_url: https://github.com/UCL-EO/geog0111
 site_author: Prof P. Lewis
 site_name: GEOG0111
