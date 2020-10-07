@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Python Control - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Python Control";
+    var mkdocs_page_input_path = "015_Python_control_answers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Answers</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Python Control</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Answers &raquo;</li>
+        
+      
+        
+          <li>Core Concepts &raquo;</li>
+        
+      
+    
+    <li>Python Control</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/015_Python_control_answers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="015-control-in-python-if-answers-to-exercises">015 Control in Python: <code>if</code> : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>insert a new cell below here. Use f-strings in forming strings.</li>
+<li>copy the code above </li>
+<li>add a <code>print</code> statement to your code that tests for non equivalence of <code>a</code> and <code>b</code></li>
+<li>repeat this in a new cell, but now change the values (or type) of the variables <code>a</code> and <code>b</code> to <code>float</code> or <code>bool</code></li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# copy the code above 
+a = 100
+b = 10
+#
+# These are *not* the same, so we expect 
+# a == b : False
+
+# Note the use of \n and \t in here
+# from 010 for formatting
+print (f'a is {a} and b is {b}')
+print (f'a is equivalent to b? {a == b}')
+
+# add a print statement to your code that tests 
+# for non equivalence of a and b
+print (f'a is not equivalent to b? {a != b}')
+</code></pre>
+
+<pre><code>a is 100 and b is 10
+a is equivalent to b? False
+a is not equivalent to b? True
+</code></pre>
+<pre><code class="python"># ANSWER
+
+# repeat this in a new cell, but now change the values 
+# (or type) of the variables `a` and `b` to `float` or `bool`
+# FLOAT
+
+# copy the code above 
+a = 100.0
+b = 10.0
+#
+# These are *not* the same, so we expect 
+# a == b : False
+
+# Note the use of \n and \t in here
+# from 010 for formatting
+print (f'a is {a} and b is {b}')
+print (f'a is equivalent to b? {a == b}')
+
+# add a print statement to your code that tests 
+# for non equivalence of a and b
+print (f'a is not equivalent to b? {a != b}')
+</code></pre>
+
+<pre><code>a is 100.0 and b is 10.0
+a is equivalent to b? False
+a is not equivalent to b? True
+</code></pre>
+<pre><code class="python"># ANSWER
+
+# repeat this in a new cell, but now change the values 
+# (or type) of the variables `a` and `b` to `float` or `bool`
+# BOOL
+
+# copy the code above 
+a = True
+b = True
+#
+# These are *not* the same, so we expect 
+# a == b : False
+
+# Note the use of \n and \t in here
+# from 010 for formatting
+print (f'a is {a} and b is {b}')
+print (f'a is equivalent to b? {a == b}')
+
+# add a print statement to your code that tests 
+# for non equivalence of a and b
+print (f'a is not equivalent to b? {a != b}')
+</code></pre>
+
+<pre><code>a is True and b is True
+a is equivalent to b? True
+a is not equivalent to b? False
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>create variables <code>a</code> and <code>b</code> and set them to types and values of your choice</li>
+<li>create a variable called <code>gt_test</code> and set it to the result of <code>a &gt; b</code></li>
+<li>print a statement of what you have used, and the value of <code>gt_test</code></li>
+<li>explain why you get the result you do</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# create variables a and b and set them to values of your choice
+# here, we choose int values 2 and 4 respectively
+a = 2
+b = 4
+
+# create a variable called `gt_test` and set it to the result of `a &gt; b`
+gt_test = a &gt; b
+
+# print the statement you have used, and the value of `gt_test`
+print(f'a &gt; b test for a = {a} and b = {b} :   {gt_test}')
+
+# explain why you get the result you do
+msg = '''
+  explain why you get the result you do
+
+  gt_test is False here, because the statement that a &gt; b
+  is not True since a is 2 and b is 4 
+'''
+print(msg)
+</code></pre>
+
+<pre><code>a &gt; b test for a = 2 and b = 4 :   False
+
+  explain why you get the result you do
+
+  gt_test is False here, because the statement that a &gt; b
+  is not True since a is 2 and b is 4
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>set a variable <code>doy</code> to represent the day of year and initialise it to some integer between 1 and 365 inclusive</li>
+<li>set a variable <code>month</code> to be <code>'January'</code></li>
+<li>set a variable <code>year</code> to be <code>'2020'</code></li>
+<li>Write a series of conditional statements that set the variable <code>month</code> to the correct month for the value of <code>doy</code></li>
+<li>Print the month for the given doy</li>
+<li>Test that you get the right result for several <code>doy</code> values</li>
+</ul>
+<p>You should assume that <code>doy</code> value <code>1</code> represents January 1st.</p>
+<p>You might find a <a href="https://www.esrl.noaa.gov/gmd/grad/neubrew/Calendar.jsp">DOY calendar</a> helpful here.</p>
+<p><img alt="DOY calendar" src="images/doycal.png" /></p>
+<pre><code class="python"># ANSWER
+# set a variable doy to represent the day of year and 
+# initialise it to some integer between 1 and 365 inclusive
+doy = 230
+
+# set a variable month to be 'January'
+month = 'January'
+
+# set a variable year to be '2020'
+year = '2020'
+
+# Write a series of conditional statements that set the 
+# variable month to the correct month for the value of doy
+if ( doy &lt; 1 ) or (doy &gt; 366):
+    # good to catch errors
+    month = 'out of bounds error: doy='+doy
+elif ( doy &lt;= 31 ):
+    month = 'January'
+elif ( doy &lt;= 60 ):
+    month = 'February'
+elif ( doy &lt;= 91 ):
+    month = 'March'
+elif ( doy &lt;= 121 ):
+    month = 'April'
+elif ( doy &lt;= 152 ):
+    month = 'May'
+elif ( doy &lt;= 182 ):
+    month = 'June'
+elif ( doy &lt;= 213 ):
+    month = 'July'
+elif ( doy &lt;= 244 ):
+    month = 'August'
+elif ( doy &lt;= 274 ):
+    month = 'September'
+elif ( doy &lt;= 305 ):
+    month = 'October'
+elif ( doy &lt;= 335 ):
+    month = 'November'
+else:
+    # it must be December !
+    month = 'December'
+
+# Print the month for the given doy
+print(f'for doy {doy} year {year} the month is {month}')
+
+# Test that you get the right result for several doy values
+</code></pre>
+
+<pre><code>for doy 230 year 2020 the month is August
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../016_Python_for_answers/" class="btn btn-neutral float-right" title="Python For">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../014_Python_groups_answers/" class="btn btn-neutral" title="Python Groups"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../014_Python_groups_answers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../016_Python_for_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

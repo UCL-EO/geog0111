@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Phenology Model - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Phenology Model";
+    var mkdocs_page_input_path = "051_Phenology_model.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Phenology Model</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Modelling &raquo;</li>
+        
+      
+    
+    <li>Phenology Model</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/051_Phenology_model.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="051-a-phenology-model">051 A Phenology model</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In the Nothern Hemisphere, and for temperate latitudes, there is a clear seasonal cycle in vegetation, particularly visible in leaf area index (LAI). We have seen that we have access to global LAI data over the last 20-odd years from MODIS. One of the indicators of a changing climate is a change in the pattern of vegetation dynamics. A warmer climate typically means that vegetation appears earlier in the year. </p>
+<p>We call a model that describes the phases of plant development over the year a phenology model. There are many types we could consider, some of the more useful of which are driven by environmental data such as temperature. In that way, we can try to explain how much of the variation we see can be explained by inter-annual temperature variations. A simpler 'descriptive' model that is often used is the "double logistic" curve. </p>
+<p>Mathematically, the function predicts the e.g. LAI (or some vegetation index) as</p>
+<p>$$</p>
+<p>y = p_0 - p_1\cdot\left[\frac{1}{1+\exp\left(p_2\cdot(t-p_3)\right)} + \frac{1}{1+\exp\left(-p_4\cdot(t-p_5)\right)} - 1\right].</p>
+<p>$$</p>
+<p>If we inspect this form, we can see that $p_0$ and $p_1$ scale the vertical span of the function, whereas $p_3$ and $p_5$ are some sort of temporal shift, and the remaining parameters $p_2$ and $p_4$ control the slope of the two flanks. </p>
+<p>Let's access some LAI data that we have used before, and also look at the regularised data:</p>
+<pre><code class="python">from geog0111.get_lai_data import get_lai_data
+from geog0111.regularise import regularise
+import numpy as np
+
+# load some data
+tile    = ['h17v03','h18v03','h17v04','h18v04']
+year    = 2019
+fips    = &quot;LU&quot;
+
+lai,std,doy =  get_lai_data(year,tile,fips)
+std[std&lt;1] = 1
+weight = np.zeros_like(std)
+mask = (std &gt; 0)
+weight[mask] = 1./(std[mask]**2)
+weight[lai &gt; 10] = 0.
+
+interpolated_lai = regularise(lai,weight,5.0)
+</code></pre>
+
+<pre><code class="python">import matplotlib.pyplot as plt
+
+p0,p1 = (107,72)
+x_size,y_size=(10,5)
+
+fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
+x = doy
+axs.plot(x,lai[:,p0,p1],'+',label='LAI')
+axs.plot(x,interpolated_lai[:,p0,p1],'g',label='smoothed LAI')
+axs.plot(x,weight[:,p0,p1],'+',label='weight')
+
+axs.set_title(f'{p0} {p1}')
+# ensure the same scale for all
+axs.set_ylim(0,7)
+axs.set_xlabel('DOY 2019')
+axs.set_ylabel('LAI')
+axs.legend(loc='best')
+</code></pre>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f04897b83d0&gt;
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_5_1.png" /></p>
+<p>We can build a function for the model, provide an initial estimate at the model parameters:</p>
+<pre><code class="python">import numpy as np
+
+def dbl_sigmoid_function(p, t):
+    &quot;&quot;&quot;The double sigmoid function defined over t (where t is an array).
+    Takes a vector of 6 parameters&quot;&quot;&quot;
+
+    sigma1 = 1./(1+np.exp(p[2]*(t-p[3])))
+    sigma2 = 1./(1+np.exp(-p[4]*(t-p[5])))
+    y = p[0] - p[1]*(sigma1 + sigma2 - 1)
+    return y
+
+t = np.arange(1, 366)
+p = np.array([0.5, 4, 0.07, 100, 0.07, 260])
+y = dbl_sigmoid_function(p, t)
+</code></pre>
+
+<p>and plot the observations and model:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+p0,p1 = (107,72)
+
+fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
+x = doy
+axs.plot(x,lai[:,p0,p1],'+',label='LAI')
+axs.plot(x,interpolated_lai[:,p0,p1],'g',label='smoothed LAI')
+axs.plot(t,y,'r',label='model')
+axs.plot(x,weight[:,p0,p1],'+',label='weight')
+
+axs.set_title(f'{p0} {p1}')
+# ensure the same scale for all
+axs.set_ylim(0,7)
+axs.set_xlabel('DOY 2019')
+axs.set_ylabel('LAI')
+axs.legend(loc='best')
+print('Luxembourg')
+</code></pre>
+
+<pre><code>Luxembourg
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_9_1.png" /></p>
+<p>We can see that even with a rough guess of the model parameters, we can produce a plot that is strikingly similar to the regularised result we saw in previous sessions. That result shows what might be interpreted as a double feature around the maximum LAI, but we have seen that spurious features of this sort can arise from the filtering process. We might consider the logistic model a better interpretation of the data then. The double-logistic model has the additional advantage that the parameters have a physical meaning that we can map from year to year and compare. The regularisation result is itself of course, the result of a model. The main difference then is that the regularisation result is from a non-parametric model, and the double-logistic  is a parametric model.</p>
+<p>We have seen that there are 6 model parameters. In the previous session, we learned rapid methods of parameter estimation that could only work with low dimensional data. We need to consider how to simply this model then, if we are to apply LUT approaches.</p>
+<p>One idea is to attempt to normalise the vertical axis of the model. If we suppose we know the maximum and minimum LAI, we can use these as estimates of $p_0$ and $p_1$. One route to this would be to use the regularised model output. Next, we might assume that the slope parameters $p_2$ and $p_4$ are equal, without too much loss of generalisation. As a further simplification, we might assume we know this parameter, and fix it, at a value of 0.07 say. We can later look at the impact of these assumptions, but they have allowed us to reduce the problem to a 2-D one that we can easily solve with a LUT.</p>
+<p>The remaining parameters $p_3$ and $p_5$ the times at which the curve most rapidly increases or decreases. For a LUT, these can be better phrased as:</p>
+<pre><code>       width  = p5 - p3
+       centre = (p3 + p5)/2
+</code></pre>
+<p>so:</p>
+<pre><code>       p5 =  centre + width/2
+       p3 =  centre - width/2
+</code></pre>
+<p>We might bound the width at between 50 and 250 days, and the centre at by 100 to 300 days. We must take the definition of time as modulo 365 to allow the model to operate in the Southern Hemisphere.</p>
+<p>A simplified model and dataset then is:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+param0 = np.min(interpolated_lai,axis=0)
+param1 = np.max(interpolated_lai,axis=0) - param0
+
+fig, axs = plt.subplots(1,2,figsize=(14,8))
+axs=axs.flatten()
+im = axs[0].imshow(param1,interpolation=&quot;nearest&quot;,\
+                vmax=7,cmap=plt.cm.inferno_r)
+axs[0].set_title('p1')
+fig.colorbar(im, ax=axs[0])
+im = axs[1].imshow(param0,interpolation=&quot;nearest&quot;,\
+                vmax=7,cmap=plt.cm.inferno_r)
+axs[1].set_title('p0')
+fig.colorbar(im, ax=axs[1])
+</code></pre>
+
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047dd7ce10&gt;
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_13_1.png" /></p>
+<pre><code class="python">import numpy as np
+
+'''
+Define an interface to the simplified function
+which we feed with known values in p
+but ones we will wish to solve for in sp
+'''
+def simple_dbl_sigmoid_function(sp,p, t):
+    &quot;&quot;&quot;The double sigmoid function defined over t (where t is an array).
+    p is vector of 6 parameters
+    p2 is 2 parameters: width and centre&quot;&quot;&quot;
+    width,centre = sp
+    p[5] =  (centre + width/2)
+    p[3] =  (centre - width/2)
+    p[2] =  p[4] = 0.07
+    return dbl_sigmoid_function(p,t)
+
+# use np.newaxis to resolve shapes of t and parameters
+t = np.arange(1, 366)[:,np.newaxis,np.newaxis]
+sp = [200.,200.]
+p = [param0[np.newaxis,:,:],param1[np.newaxis,:,:],0,0,0,0]
+y = simple_dbl_sigmoid_function(sp,p,t)
+</code></pre>
+
+<pre><code class="python">import matplotlib.pyplot as plt
+
+p0,p1 = (107,72)
+
+fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
+x = doy
+axs.plot(x,lai[:,p0,p1],'+',label='LAI')
+axs.plot(x,interpolated_lai[:,p0,p1],'g',label='smoothed LAI')
+axs.plot(t[:,0,0],y[:,p0,p1],'r',label='model')
+axs.plot(x,weight[:,p0,p1],'+',label='weight')
+
+axs.set_title(f'{p0} {p1}')
+# ensure the same scale for all
+axs.set_ylim(0,7)
+axs.set_xlabel('DOY 2019')
+axs.set_ylabel('LAI')
+axs.legend(loc='best')
+print('Luxembourg: Simplified model')
+</code></pre>
+
+<pre><code>Luxembourg: Simplified model
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_15_1.png" /></p>
+<p>As discussed previously, since we are doing pixel-by-pixel processing, we can change the 2D spatial data into a 1D flattened array. </p>
+<pre><code class="python">param0_ = param0.ravel()
+param1_ = param1.ravel()
+print(f'param1  shape:  {param1.shape}')
+print(f'param1_ shape:  {param1_.shape}')
+</code></pre>
+
+<pre><code>param1  shape:  (175, 122)
+param1_ shape:  (21350,)
+</code></pre>
+<pre><code class="python">print(f'lai shape:    {lai.shape}')
+print(f'weight shape: {weight.shape}')
+</code></pre>
+
+<pre><code>lai shape:    (92, 175, 122)
+weight shape: (92, 175, 122)
+</code></pre>
+<p>And the same for the observations and weight but using <code>reshape</code> following the method in <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index">032_More_numpy</a>:</p>
+<pre><code class="python">newshape = (*lai.shape[:1],np.prod(np.array(lai.shape[1:])))
+print(newshape)
+# reshape 
+lai_    = lai.reshape(newshape)
+weight_ = weight.reshape(newshape)
+
+print(f'shape of lai  : {lai.shape}')
+print(f'shape of lai_ : {lai_.shape}')
+</code></pre>
+
+<pre><code>(92, 21350)
+shape of lai  : (92, 175, 122)
+shape of lai_ : (92, 21350)
+</code></pre>
+<p>As with the previous exercise, we need to reconcile the observations and modelling time grid. In this case all we need do is to use <code>doy</code> in place of <code>t</code>.</p>
+<p>We will form axes:</p>
+<pre><code>(time,image index)
+</code></pre>
+<pre><code class="python">sp = [200.,200.]
+
+t = doy[:,np.newaxis]
+p = [param0_[np.newaxis,:],param1_[np.newaxis,:],0,0,0,0]
+print(f't    shape:  {t.shape}')
+print(f'p[1] shape:  {p[1].shape}')
+
+y = simple_dbl_sigmoid_function(sp,p,t)
+print(f'y shape:  {y.shape}')
+</code></pre>
+
+<pre><code>t    shape:  (92, 1)
+p[1] shape:  (1, 21350)
+y shape:  (92, 21350)
+</code></pre>
+<pre><code class="python"># weighted error
+err = (lai_ - y) * weight_
+# mean over time
+rmse = np.sqrt(np.mean(err*err,axis=0))
+print(rmse.shape)
+
+
+fig, axs = plt.subplots(1,1,figsize=(5,5))
+im = axs.imshow(rmse.reshape(lai[0].shape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs.set_title(f'RMSE for parameters {sp}')
+fig.colorbar(im, ax=axs)
+</code></pre>
+
+<pre><code>(21350,)
+
+
+
+
+
+&lt;matplotlib.colorbar.Colorbar at 0x7f047c486810&gt;
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_23_2.png" /></p>
+<p>Let's build a 2-D LUT as previously, and provide a flattened version. We have defined bounds above:</p>
+<pre><code class="python"># Use mgrid as previously to define a 2D grid of parameters
+sp0min,sp0max,sp0step = 100,250,10
+sp1min,sp1max,sp1step = 100,300,10
+sp0,sp1 = np.mgrid[sp0min:sp0max+sp0step:sp0step,\
+                 sp1min:sp1max+sp1step:sp1step]
+sp0_ = sp0.ravel()
+sp1_ = sp1.ravel()
+
+print(f'shape of sp0  : {sp0.shape}')
+print(f'shape of sp0_ : {sp0_.shape}')
+</code></pre>
+
+<pre><code>shape of sp0  : (16, 21)
+shape of sp0_ : (336,)
+</code></pre>
+<p>We re-process the LAI just to make sure we have it handy and re-shaped:</p>
+<pre><code class="python">newshape = (*lai.shape[:1],np.prod(np.array(lai.shape[1:])))
+print(newshape)
+# reshape 
+lai_    = lai.reshape(newshape)
+weight_ = weight.reshape(newshape)
+
+print(f'shape of lai  : {lai.shape}')
+print(f'shape of lai_ : {lai_.shape}')
+</code></pre>
+
+<pre><code>(92, 21350)
+shape of lai  : (92, 175, 122)
+shape of lai_ : (92, 21350)
+</code></pre>
+<p>Assigning the dimensions now is a little more complex, but we can revert to using the original model. We have one dimension that is time, one space, and one parameter space using the flattened arrays:</p>
+<pre><code class="python"># dimensions: [t,npix,nsamp]
+# more complex for this case
+sp0_ext    = sp0_[np.newaxis,np.newaxis,:]
+sp1_ext    = sp1_[np.newaxis,np.newaxis,:]
+lai_ext    = lai_[:,:,np.newaxis]
+weight_ext = weight_[:,:,np.newaxis]
+t_ext      = doy[:,np.newaxis,np.newaxis]
+param0_ext = param0_[np.newaxis,:,np.newaxis]
+param1_ext = param1_[np.newaxis,:,np.newaxis]
+param2_ext = 0.07
+param3_ext = sp1_ext - sp0_ext/2.
+param4_ext = 0.07
+param5_ext = sp1_ext + sp0_ext/2.
+
+# print out to check they line up
+print(f'sp0_ext:    {sp0_ext.shape}')
+print(f'sp1_ext:    {sp1_ext.shape}')
+print(f'param0_ext: {param0_ext.shape}')
+print(f'param1_ext: {param1_ext.shape}')
+print(f'lai_ext:    {lai_ext.shape}')
+print(f'weight_ext: {weight_ext.shape}')
+print(f't_ext:      {t_ext.shape}')
+</code></pre>
+
+<pre><code>sp0_ext:    (1, 1, 336)
+sp1_ext:    (1, 1, 336)
+param0_ext: (1, 21350, 1)
+param1_ext: (1, 21350, 1)
+lai_ext:    (92, 21350, 1)
+weight_ext: (92, 21350, 1)
+t_ext:      (92, 1, 1)
+</code></pre>
+<pre><code class="python">sp = [sp0_ext,sp1_ext]
+p = [param0_ext,param1_ext,param2_ext,\
+     param3_ext,param4_ext,param5_ext]
+
+y = dbl_sigmoid_function(p,t_ext)
+print(y.shape)
+</code></pre>
+
+<pre><code>(92, 21350, 336)
+</code></pre>
+<pre><code class="python">error_ext = (y - lai_ext)*weight_ext
+error_ext = error_ext*error_ext
+rmse = np.sqrt(np.mean(error_ext,axis=0))
+print(rmse.shape)
+</code></pre>
+
+<pre><code>(21350, 336)
+</code></pre>
+<p>We now have a value of RMSE for each element on the parameter grid (axis 1), for each pixel in the dataset (axis 0). </p>
+<p>We next want to know the minimum over the parameter set (<code>axis 1</code>):</p>
+<pre><code class="python">minrmse = rmse.min(axis=1)
+print(minrmse.shape)
+
+fig, axs = plt.subplots(1,1,figsize=(5,5))
+# reshape for plotting
+im = axs.imshow(minrmse.reshape(lai[0].shape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs.set_title(f'Min RMSE')
+fig.colorbar(im, ax=axs)
+</code></pre>
+
+<pre><code>(21350,)
+
+
+
+
+
+&lt;matplotlib.colorbar.Colorbar at 0x7f047c365310&gt;
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_33_2.png" /></p>
+<p>To find the parameters at the minimum value, simply follow the same approach as previously using <code>argmin</code>, but with one extra dimension. In this case, <code>rmse</code> has shape <code>(21350, 336)</code> so we apply the argmin over the parameter dimension (axis 1):</p>
+<pre><code class="python"># use np.argmin to find the minimum over axis 1
+imin = np.argmin(rmse,axis=1)
+p0min,p1min = sp0_[imin],sp1_[imin]
+print(f'1D index shape of minimum  : {imin.shape}')
+print(f'parameter shape at minimum : {p0min.shape},{p1min.shape}')
+
+width, centre = p0min,p1min
+p3 = centre - width/2
+p5 = centre + width/2
+</code></pre>
+
+<pre><code>1D index shape of minimum  : (21350,)
+parameter shape at minimum : (21350,),(21350,)
+</code></pre>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+# reshape p0min,p1min before plotting
+
+fig, axs = plt.subplots(2,2,figsize=(10,10))
+axs = axs.flatten()
+ishape = lai[0].shape
+
+im = axs[0].imshow(param0.reshape(ishape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs[0].set_title(f'p0')
+fig.colorbar(im, ax=axs[0])
+
+im = axs[1].imshow(param1.reshape(ishape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs[1].set_title(f'p1')
+fig.colorbar(im, ax=axs[1])
+
+im = axs[2].imshow(p3.reshape(ishape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs[2].set_title(f'p3')
+fig.colorbar(im, ax=axs[2])
+
+im = axs[3].imshow(p5.reshape(ishape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs[3].set_title(f'p5')
+fig.colorbar(im, ax=axs[3])
+</code></pre>
+
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047c1a2b10&gt;
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_36_1.png" /></p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+fig, axs = plt.subplots(1,2,figsize=(10,5))
+axs = axs.flatten()
+
+im = axs[0].imshow(width.reshape(ishape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs[0].set_title(f'width')
+fig.colorbar(im, ax=axs[0])
+
+im = axs[1].imshow(centre.reshape(ishape),interpolation=&quot;nearest&quot;,\
+                cmap=plt.cm.inferno_r)
+axs[1].set_title(f'centre')
+fig.colorbar(im, ax=axs[1])
+</code></pre>
+
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f0477f788d0&gt;
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_37_1.png" /></p>
+<p>Now forward model:</p>
+<pre><code class="python">param3_ext = p3[np.newaxis,:,np.newaxis]
+param5_ext = p5[np.newaxis,:,np.newaxis]
+
+p = [param0_ext,param1_ext,param2_ext,\
+     param3_ext,param4_ext,param5_ext]
+
+# reshape to original lai shape
+y = dbl_sigmoid_function(p,t_ext).reshape(lai.shape)
+</code></pre>
+
+<p>And visualise our test pixel:</p>
+<pre><code class="python"># visualise RMSE for this pixel
+# shape is npixels,ngrid
+# RMSE full grid is nx,ny, npx,npy
+newshape = (*(lai.shape[1:]),*(sp0.shape))
+print(f'rmse full shape: {newshape}')
+rmse_grid = rmse.reshape(newshape)[p0,p1]
+min_rmse = rmse_grid.min()
+
+# use np.argmin to find the minimum
+imin = np.argmin(rmse_grid)
+ip0min,ip1min = np.unravel_index(imin,sp0.shape)
+
+p0min,p1min = sp0.ravel()[imin],sp1.ravel()[imin]
+print(f'1D index of minimum  : {imin}')
+print(f'parameter at minimum : {p0min},{p1min}')
+</code></pre>
+
+<pre><code>rmse full shape: (175, 122, 16, 21)
+1D index of minimum  : 136
+parameter at minimum : 160,200
+</code></pre>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+p0,p1 = (107,72)
+
+fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
+x = doy
+axs.plot(x,lai[:,p0,p1],'+',label='LAI')
+axs.plot(x,interpolated_lai[:,p0,p1],'g',label='smoothed LAI')
+axs.plot(doy,y[:,p0,p1],'r',label='model')
+axs.plot(x,weight[:,p0,p1],'+',label='weight')
+
+axs.set_title(f'{p0} {p1}: parameters {p0min} {p1min}')
+# ensure the same scale for all
+axs.set_ylim(0,7)
+axs.set_xlabel('DOY 2019')
+axs.set_ylabel('LAI')
+axs.legend(loc='best')
+print('Luxembourg optimised')
+</code></pre>
+
+<pre><code>Luxembourg optimised
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_42_1.png" /></p>
+<pre><code class="python">import matplotlib.pyplot as plt
+# Plot the reshaped RMSE values returned from this as an image
+
+# plot it
+fig, axs = plt.subplots(1,1,figsize=(15,8))
+im = axs.imshow(rmse_grid,interpolation=&quot;nearest&quot;,\
+                vmax=5*min_rmse,cmap=plt.cm.inferno_r)
+fig.colorbar(im, ax=axs)
+axs.set_title(f'{p0} {p1}: parameters {p0min} {p1min}')
+axs.set_xlabel('p0')
+axs.set_ylabel('p1')
+plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
+axs.legend(loc='best')
+</code></pre>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f0477dfdf90&gt;
+</code></pre>
+<p><img alt="png" src="051_Phenology_model_files/051_Phenology_model_43_1.png" /></p>
+<p>Given the criteria we discussed in <a href="../050_Models/#Visualisation-of-RMSE">050_Models</a>, we can see this as quite a good stable solution: it is not close to the boundaries, and we can see the shape of the erro functiuon quite well. The error function is perhaps a little flat, but it has a good form.</p>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>
+<p>From the code above, develop a function <code>solver</code> in a file <code>work/lut_solver.py</code> that takes the following inputs:</p>
+<ul>
+<li>lai, weight : datasets of shape (Nt,Nx,Ny) for observations and reliability</li>
+<li>2D parameter grids for model parameters p3 and p5 with shape (Np0,Np1)</li>
+<li>function slope parameters p2 and p4 for the double sigmoid: float</li>
+<li>function vertical min and extent parameters p0 and p1 of shape (Nx,Ny)</li>
+</ul>
+</li>
+</ul>
+<p>and solves for the optimal weighted fit between LAI and modelled LAI using the parameters pi
+  It should return:</p>
+<pre><code>*  p : list of 6 parameter arrays solved for, so 6 of shape (Nx,Ny)
+* RMSE : the RMSE
+</code></pre>
+<ul>
+<li>Produce a plot of all 6 model parameters    </li>
+<li>The code could be made more efficient by not processing invalid pixels. Develop and use a mask of valid pixels to implement this.</li>
+</ul>
+<p>Hint: You might usefully define some utility functions such as <code>get_lai</code> and <code>get_p0p1</code> to allow you to easily load the datasets you need top run. You might base these around <code>geog0111.get_lai_data</code> and <code>geog0111.regularise</code>.</p>
+<h2 id="summary">Summary</h2>
+<p>We have shown that, with an initial estimate of 4 of the 6 model parameters, we can use a quite sparse 2-D LUT to provide a mapping of phenolology parameters for a given year for a country the size of Luxembourg in very fast time. The approach could be refined, for instance by other pair-wise inversions to refine the solution, but the improvement in this would likely be quite small. This is evidenced by the low overall RMSE for most of the country (all pixels RMSE less than 1.2 in weighted LAI).</p>
+<p>For geospatial model parameter estimation, rapid methods such as this are vital because of the very large dataset dimensions. </p>
+<p>To achieve this LUT-based parameter estimation, we have had to make extensive use of the fast array-processing facilities of <code>numpy</code>. As with the previous section, this involved building parameter grids using <code>np.mgrid</code>, and careful matching of dataset dimensions with <code>np.newaxis</code>. We used <code>np.argmin</code> to find the LUT index with the minimum RMSE value, for each pixel in the scene. This was slightly complicated by needing to flatten the LUT dimensions use a 1-D index for the minimum RMSE, and involved use of <code>np.reshape</code> and <code>np.flatten</code>. </p>
+<p>The programming task here is quite complex, but a very practical one. You will not need to anything quite this complex for formal coursework submission (i.e. to pass the course) but you should all be able to follow and understand the approach taken here, and re-implement it for any similar situation.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../050_Models_answers/" class="btn btn-neutral float-right" title="Models">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../050_Models/" class="btn btn-neutral" title="Models"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../050_Models/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../050_Models_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

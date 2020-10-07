@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Models - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Models";
+    var mkdocs_page_input_path = "050_Models_answers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Answers</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Models</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Answers &raquo;</li>
+        
+      
+        
+          <li>Modelling &raquo;</li>
+        
+      
+    
+    <li>Models</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/050_Models_answers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="050-models-answers-to-exercises">050 Models : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<p>In a file <code>lut_RMSE.py</code> do the following:</p>
+<pre><code>    import numpy as np
+    # define the min and max and step for the grid we want
+    p0min,p0max,p0step = 0.0,10.0,0.05
+    p1min,p1max,p1step = 0.0,0.001,0.000005
+
+    gridp0,gridp1 = np.mgrid[p0min:p0max+p0step:p0step,\
+                             p1min:p1max+p1step:p1step]
+</code></pre>
+<ul>
+<li>
+<p>Write a function <code>gen_lut</code> to return a 2D parameter (Look up table -- LUT) grid using <code>np.mgrid</code> as above as <code>param = [gridp0,gridp1]</code></p>
+<pre><code># simple model 
+def model(driver,param):
+    '''2-parameter quadratic model with noise'''
+    return param[0] + param[1] * driver * driver
+</code></pre>
+</li>
+<li>
+<p>Write a function <code>model</code> to describe the model we will be using from the code above</p>
+<pre><code># code to use
+# time driver every 4 days for measurement    
+tmdriver = np.arange(0,365,4,dtype=np.int)
+# generate a pseudo-measurement
+p0 = np.array([5.0,0.0005])
+measure = model(tmdriver,p0) + 5*(np.random.random(tmdriver.shape)-0.5)
+# just make up some weights for this exercise
+measure_weight = (2 + np.random.random(tmdriver.shape))/4
+</code></pre>
+</li>
+<li>
+<p>Write a function <code>gen_meas</code> to generate a pseudo-measurement based on the model and some noise. It should print the value of the parameters used in the model, and return <code>tmdriver, measure, measure_weight</code> corresponding to:</p>
+<pre><code>* tmdriver:       array of (Nm,) floats of the day of year on which to do modelling
+* measure:        array of (Nm,) floats of measurements over sampled days of the year
+* measure_weight: array of (Nm,) floats of the weights associated with the measurements
+</code></pre>
+</li>
+<li>
+<p>Write a function <code>lut_RMSE</code> that takes as inputs:</p>
+<pre><code>* `param`:          list of `[p0,p1]` with `p0` and `p1` being arrays of shape `(Np0,Np1)` representing a the LUT grid over parameter space
+* `tmdriver`:       array of (Nm,) integers: the days on which the measurements occur 
+* `measure:`        array of (Nm,) floats of measurements over sampled days of the year
+* `measure_weight`: array of (Nm,) floats of the weights associated with the measurements
+</code></pre>
+</li>
+</ul>
+<p>That runs the model <code>model(tmdriver,param)</code>, calculates the weighted RMSE between the measurements and the modelled values for each parameter pair, and returns a grid of shape <code>(Np0,Np1)</code> values of RMSE associated with each parameter pair.</p>
+<ul>
+<li>
+<p>Write a function <code>runner()</code> that </p>
+<ul>
+<li>generates tmdriver, the array of (92,) floats for every 4 day of year on which to do modelling</li>
+<li>gets a LUT <code>param</code> from <code>gen_lut</code></li>
+<li>gets a pseudo-measurement from <code>gen_meas</code></li>
+<li>gets a 2-D array of RMSE corresponding to the parameter grid</li>
+<li>calculated and prints the value of the parameters corresponding to the minimum RMSE,</li>
+<li>returns the RMSE array, the LUT, and the measurements</li>
+</ul>
+</li>
+<li>
+<p>Run <code>runner()</code> in a notebook</p>
+</li>
+<li>Plot the RMSE values returned from this as an image</li>
+<li>Verify that you have identified the minimum RMSE</li>
+<li>Set different parameters in <code>gen_meas</code> to generate a different pseudo-measurement and repeat the process.</li>
+<li>Comment on the results</li>
+</ul>
+<pre><code class="python"># ANSWER
+# run your own script 
+!geog0111/lut_RMSE.py
+</code></pre>
+
+<pre><code>original parameters: [0.4, 0.0002]
+min rmse
+2.4414406001331534
+index: 1447: 0.35000000000000003,0.0002
+parameters: 0.35000000000000003 0.0002
+</code></pre>
+<pre><code class="python"># ANSWER
+import numpy as np
+# Run runner() in a notebook
+from geog0111.lut_RMSE import runner, model, gen_lut
+RMSE,param,(measure,measure_weight,tmdriver) = runner()
+</code></pre>
+
+<pre><code>original parameters: [0.4, 0.0002]
+min rmse
+2.450846276410498
+index: 1848: 0.45,0.00019500000000000002
+parameters: 0.45 0.00019500000000000002
+</code></pre>
+<pre><code class="python"># confirm: same as in runner?
+# use argmin to find min, but need to flatten/reshape arrays first
+p0,p1 = param
+p0_ = np.ravel(p0)
+p1_ = np.ravel(p1)
+# min over time axis
+imin = np.argmin(RMSE,axis=0)
+
+print(f'index: {imin}: {p0_[imin]},{p1_[imin]}')
+# back to 2D
+ip0min,ip1min = np.unravel_index(imin,p0.shape)
+p0min = p0[ip0min,ip1min]
+p1min = p1[ip0min,ip1min]
+
+p = np.array([p0min,p1min])
+print(f'parameters: {p[0]} {p[1]}')
+</code></pre>
+
+<pre><code>index: 1848: 0.45,0.00019500000000000002
+parameters: 0.45 0.00019500000000000002
+</code></pre>
+<pre><code class="python">import matplotlib.pyplot as plt
+# Plot the reshaped RMSE values returned from this as an image
+
+# plot it
+fig, axs = plt.subplots(1,1,figsize=(10,8))
+im = axs.imshow(RMSE.reshape(p0.shape),interpolation=&quot;nearest&quot;,\
+                vmax=10,cmap=plt.cm.inferno_r)
+fig.colorbar(im, ax=axs)
+axs.set_xlabel('p0')
+axs.set_ylabel('p1')
+plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
+axs.legend(loc='best')
+</code></pre>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7ff931478110&gt;
+</code></pre>
+<p><img alt="png" src="050_Models_answers_files/050_Models_answers_5_1.png" /></p>
+<pre><code class="python">import numpy as np
+from geog0111.lut_RMSE import gen_meas,model,lut_RMSE
+
+# change the original parameters 
+tdriver = np.arange(0,365,1,dtype=np.int)
+# gets a LUT `param` from `gen_lut`
+param = gen_lut()
+# gets a pseudo-measurement from `gen_meas`
+tmdriver,measure,measure_weight = gen_meas(p0=[0.7,0.0005])
+# gets a 2-D array of RMSE corresponding to the parameter grid
+RMSE = lut_RMSE(param,tmdriver,measure,measure_weight)
+# calculated and prints the value of the parameters corresponding to the minimum RMSE,
+min_rmse = RMSE.min()
+print(f'min rmse\n{min_rmse}')
+
+# use argmin to find min, but need to flatten/reshape arrays first
+p0,p1 = param
+p0_ = np.ravel(p0)
+p1_ = np.ravel(p1)
+# min over time axis
+imin = np.argmin(RMSE,axis=0)
+
+print(f'index: {imin}: {p0_[imin]},{p1_[imin]}')
+# back to 2D
+ip0min,ip1min = np.unravel_index(imin,p0.shape)
+p0min = p0[ip0min,ip1min]
+p1min = p1[ip0min,ip1min]
+
+p = np.array([p0min,p1min])
+print(f'parameters: {p[0]} {p[1]}')
+
+
+min_rmse = RMSE.min()
+
+fig, axs = plt.subplots(1,1,figsize=(10,8))
+im = axs.imshow(RMSE.reshape(p0.shape),interpolation=&quot;nearest&quot;,\
+                vmax=10,cmap=plt.cm.inferno_r)
+fig.colorbar(im, ax=axs)
+axs.set_xlabel('p0')
+axs.set_ylabel('p1')
+plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
+axs.legend(loc='best')
+</code></pre>
+
+<pre><code>original parameters: [0.7, 0.0005]
+min rmse
+2.3962827740874
+index: 1910: 0.45,0.000505
+parameters: 0.45 0.000505
+
+
+
+
+
+&lt;matplotlib.legend.Legend at 0x7ff931449d10&gt;
+</code></pre>
+<p><img alt="png" src="050_Models_answers_files/050_Models_answers_6_2.png" /></p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+# error bars
+std = 1./np.sqrt(measure_weight) * 1.96
+
+# time driver every day
+tdriver = np.arange(0,365,1,dtype=np.int)
+# get the parameters we siolved for
+p = np.array([p0min,p1min])
+print(p)
+output  = model(tdriver,p)
+
+# plot
+fig, axs = plt.subplots(1,1,figsize=(10,3))
+axs.set_xlim(0,365)
+axs.plot(tdriver,output,'k',label='modelled values')
+axs.errorbar(tmdriver,measure,yerr=std,ls='none')
+axs.plot(tmdriver,measure,'r+',label='measured values')
+# set legend now
+axs.legend(loc='best')
+axs.set_xlabel(f'time / days')
+
+print(f'measurements: tmdriver shape {tmdriver.shape}')
+print(f'model output: tdriver shape  {tdriver.shape}')
+</code></pre>
+
+<pre><code>[0.45     0.000505]
+measurements: tmdriver shape (92,)
+model output: tdriver shape  (365,)
+</code></pre>
+<p><img alt="png" src="050_Models_answers_files/050_Models_answers_7_1.png" /></p>
+<pre><code class="python"># Comment on the results
+
+msg = '''
+We confirm the findings above, but are now able to see the form of the error surface in much greater detail. 
+'''
+print(msg)
+</code></pre>
+
+<pre><code>We confirm the findings above, but are now able to see the form of the error surface in much greater detail.
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../051_Phenology_model_answers/" class="btn btn-neutral float-right" title="Phenology Model">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../051_Phenology_model/" class="btn btn-neutral" title="Phenology Model"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../051_Phenology_model/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../051_Phenology_model_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

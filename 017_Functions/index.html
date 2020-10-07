@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Functions - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Functions";
+    var mkdocs_page_input_path = "017_Functions.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#introduction-to-functions">Introduction to Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#function-specification">Function specification</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#anatomy-of-a-function">Anatomy of a function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#code-design">Code design</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#more-on-arguments">More on arguments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#positional-arguments">Positional arguments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#keyword-arguments">Keyword arguments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Core Concepts &raquo;</li>
+        
+      
+    
+    <li>Functions</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/017_Functions.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="017-functions-in-python">017 Functions in Python</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="purpose">Purpose</h3>
+<p>In this session, we will learn about Functions in Python. In essence, a function allows us to write better, more compact and re-usable code. This is a concept we will use a lot in later sessions, so make sure you fully familiarise yourself with the material.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+<li><a href="../011_Python_data_types/">011 Data types</a> </li>
+<li><a href="../012_Python_strings/">012 String formatting</a></li>
+<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
+<li><a href="../014_Python_groups/">014_Python_groups</a></li>
+<li><a href="../015_Python_control/">015_Python_control</a></li>
+<li><a href="../016_Python_for/">016_Python_for</a></li>
+</ul>
+<p>In particular, you will need to recall how to use:</p>
+<ul>
+<li><a href="../016_Python_for/#looping-over-dictionaries,-and-assert"><code>assert</code></a></li>
+<li><a href="../013_Python_string_methods/#split()-and-join()"><code>str.join()</code></a></li>
+<li><a href="../014_Python_groups/#dict"><code>zip</code></a></li>
+</ul>
+<h2 id="introduction-to-functions">Introduction to Functions</h2>
+<p>A <a href="https://docs.python.org/3/glossary.html#term-function">function</a> is a block of code statements that we can use to carry out a specific purpose. </p>
+<p>The simplest form of function has no inputs or outputs, but simply performs some task when we call it:</p>
+<p><img alt="function" src="images/no_in_out.png" /></p>
+<p>An example of a simple function in Python is:</p>
+<pre><code class="python">def hello_world():
+    '''
+    Purpose:
+      print the string 'hello world'
+    '''
+    print('hello world')
+</code></pre>
+
+<p>This is designed to print the string <code>hello world</code> when we call it.</p>
+<p>Notice the formatting here: the function is declared:</p>
+<pre><code>def hello_world():
+</code></pre>
+<p>and the <em>contents</em> of the function are indented in (by 4 spaces here).</p>
+<p>We use the function in Python code as:</p>
+<pre><code class="python">hello_world()
+</code></pre>
+
+<pre><code>hello world
+</code></pre>
+<p>and access the function document string by:</p>
+<pre><code class="python">help(hello_world)
+</code></pre>
+
+<pre><code>Help on function hello_world in module __main__:
+
+hello_world()
+    Purpose:
+      print the string 'hello world'
+</code></pre>
+<h3 id="exercise-1">Exercise 1</h3>
+<ul>
+<li>in a new code cell below, write a function called <code>my_name</code> that prints your name</li>
+<li>demonstrate that your code works (i.e. run it in a code cell)</li>
+<li>show the doc string using <code>help()</code> </li>
+</ul>
+<p><strong>Advice</strong>: make sure it has an appropriate document string, based on the example in the notes, and also check that you have the indentation correct for the code in the function. Notice the semicolon <code>:</code> at the end of the <code>def</code> statement.</p>
+<h2 id="function-specification">Function specification</h2>
+<p>More generally, we could think of the the function as <strong>a sort of filter</strong>: it takes some <strong>inputs</strong> (specified in the arguments), makes some calculation based on these, i.e. that is a <em>function</em> of these inputs, and returns an <strong>output</strong>.</p>
+<p><img alt="function" src="images/in_out.png" /></p>
+<p>In this sense:</p>
+<ul>
+<li>It will generally have one or more <a href="https://docs.python.org/3/glossary.html#argument">arguments</a>: <code>(arg1, arg2, ...)</code> that form the <strong>inputs</strong>.</li>
+<li>It will often return some value (or set of values) as the <strong>output</strong>: <code>retval</code></li>
+<li>It will have a name: <code>my_function</code></li>
+</ul>
+<p><img alt="function io" src="images/im_funct.png" /></p>
+<h3 id="anatomy-of-a-function">Anatomy of a function</h3>
+<p>The format of a function in Python is:</p>
+<pre><code>def my_function(arg1,arg2,...):
+  '''
+  Document string 
+  '''
+
+  # comments
+
+  retval =  ...
+
+  # return
+  return retval
+</code></pre>
+<p>The keyword <code>def</code> defines a function, followed by the function name, a list (actually, a <a href="https://docs.python.org/3/library/stdtypes.html?highlight=tuple#tuple"><code>tuple</code></a>) of arguments, then a semicolon <code>:</code>.</p>
+<p>The contents of the function are indented to a consistent level of spaces.</p>
+<p>The function will typically have a document string, generally a multi-line string defined within triple quotes. We use this to document information about the function, such as its author, purpose, and inputs and outputs.</p>
+<p>Within the function, we can refer to the arguments (<code>arg1</code> and <code>arg2</code> here, though they will generally have more meaningful names), make some calculation based on these, and generally, return some value (<code>retval</code> here).</p>
+<h3 id="code-design">Code design</h3>
+<p>This idea of a <em>filter</em> can be useful when thinking how to design a function. We can see that we need to define:</p>
+<pre><code>* purpose
+* inputs
+* output
+</code></pre>
+<p>Let's suppose we need to design a function that will take a first name and last name, and combine them into your full name (assuming for now that you have two names).</p>
+<p>The <em>purpose</em> of our function could be stated as:</p>
+<pre><code>purpose:
+
+    generate a name string from list of strings
+</code></pre>
+<p>The inputs could be:</p>
+<pre><code>inputs:
+  - name_list : list of names
+</code></pre>
+<p>And the output:</p>
+<pre><code>return:
+  - the full name
+</code></pre>
+<p>Without knowing any real coding then, we could develop the template for this function, along with an initial document string. </p>
+<p>We do need to give the function a name, so let's use <code>full_name</code> here.</p>
+<p>We have started with the idea of some purpose for our code, then defined what the expected inputs and outputs would be. We can call coding at that level of generalisation <a href="https://en.wikipedia.org/wiki/Pseudocode">pseudocode</a>. We could have written our task is a form of pseudocode such as:</p>
+<pre><code>algorithm full_name is
+    input: List of strings in variable name_list
+    output: string in variable retval
+
+    purpose: generate a name string from list of strings
+
+    # CODE BLOCK to achieve aim (NOT DONE)
+    # test by passing input to output
+    retval = name_list
+</code></pre>
+<p>where we have left the <code>CODE BLOCK</code> blank at the moment, and replaced it by simply sending the function input to the output so we can test the code structure. It can be of value when designing codes to first develop some pseudocode such as above, but in reality such statements are very closely related to what we would write in high-level codes like Python:</p>
+<pre><code class="python">def full_name(name_list):
+    '''
+
+    purpose: 
+      generate a name string from list of strings 
+
+    inputs:
+    - name_list : list of names
+
+    return:
+    - the full name
+    '''
+    # CODE BLOCK to achieve aim (NOT DONE)
+    # test by passing input to output
+    retval = name_list
+
+    # return
+    return retval
+</code></pre>
+
+<p>That's a good start, and it allows us to develop a function that we can run and test. </p>
+<p>To test, we can set a list of example strings. We then <em>call</em> the function <code>full_name()</code> with this argument, and set the value returned in the variable <code>full</code>.</p>
+<pre><code class="python">names = ['Fred','Bloggs']
+
+full = full_name(names)
+print(full)
+</code></pre>
+
+<pre><code>['Fred', 'Bloggs']
+</code></pre>
+<p>From our test, we can see that the function doesn't yet achieve what we wanted: it simply returns the input list, rather than the full name.</p>
+<p>To proceed, we need to know how to make a combined string. It can be useful to test our understanding of the code we will need to achieve the aim of the function. We do not need to do that inside the function, but can instead try to think of some examples we could use to test the ideas.</p>
+<p>One way to achieve the aim of the function this would be to use the string <a href="https://docs.python.org/3/library/stdtypes.html#str.join"><code>join</code></a> operation that we came across the in <a href="../013_Python_string_methods/#split()-and-join()">Python string methods</a> notes.</p>
+<p>This works by placing a key string between string items in a list. For example, if we want to separate strings by <code>:</code>, we would use:</p>
+<pre><code>':'.join(names)
+</code></pre>
+<pre><code class="python">':'.join(names)
+</code></pre>
+
+<pre><code>'Fred:Bloggs'
+</code></pre>
+<p>In our function, we want to use a single 'whitespace' value, so <code>' '</code> as the key:</p>
+<pre><code class="python">' '.join(names)
+</code></pre>
+
+<pre><code>'Fred Bloggs'
+</code></pre>
+<p>Now we are sure of the coding concept to achieve what we want in the filter, we can write the function:</p>
+<pre><code class="python">def full_name(name_list):
+    '''
+
+    purpose: 
+      generate a name string from list of strings 
+
+    inputs:
+    - name_list : list of names
+
+    return:
+    - the full name
+    '''
+    # join the names in name_list together
+    retval = ' '.join(name_list)
+
+    # return
+    return retval
+</code></pre>
+
+<p>we try to make the docstring useful and test what it shows:</p>
+<pre><code class="python">help(full_name)
+</code></pre>
+
+<pre><code>Help on function full_name in module __main__:
+
+full_name(name_list)
+    purpose: 
+      generate a name string from list of strings
+
+    inputs:
+    - name_list : list of names
+
+    return:
+    - the full name
+</code></pre>
+<p>then run our code:</p>
+<pre><code class="python">full = full_name(['Fred','Bloggs'])
+print(full)
+</code></pre>
+
+<pre><code>Fred Bloggs
+</code></pre>
+<h2 id="test">Test</h2>
+<p>It is a good idea if we can write a test for our function. This should cover some typical case or cases, and check that we get the correct output for a particular input. We can use the <a href="https://www.w3schools.com/python/ref_keyword_assert.asp">assert</a> method that we have seen in the <a href="../016_Python_for/#looping-over-dictionaries,-and-assert">Python for</a> notes:</p>
+<pre><code>assert True
+</code></pre>
+<p>For example:</p>
+<pre><code class="python">assert full_name(['Fred','Bloggs']) == &quot;Fred Bloggs&quot;
+print('test passed')
+</code></pre>
+
+<pre><code>test passed
+</code></pre>
+<p>remember that if this assertion fails, we get an <code>AssertionError</code> (you can try that out by putting something incorrect in the assertion above and re-running the cell). If the error is raised, our code will strop running and report the error.  </p>
+<p>We will learn more about code testing later, but for the moment, we suggest that you use one or more <code>assert</code> statements that try out different inputs-output matches with your function. </p>
+<h3 id="exercise-2">Exercise 2</h3>
+<p>We assume for this exercise that you know how to create a dictionary from two lists of the same length. This was covered in the <a href="../014_Python_groups/#dict">Python_Groups</a> notes.</p>
+<p>In this exercise, we suggest that you follow the design approach we took above:</p>
+<ul>
+<li>Think first what you will use as inputs and outputs to the function, and come up with some examples of inputs and outputs</li>
+<li>Then consider the Python code you would need to go from the inputs to the outputs<ul>
+<li>Develop and test the core code to achieve the function purpose in a notebook cell with an example input</li>
+<li>Consider what you might use as a test for your code</li>
+</ul>
+</li>
+<li>Develop skeleton<ul>
+<li>Write a skeleton function defining the purpose, inputs and outputs. In the skeleton code, you can just pass the inputs straight to the outputs. </li>
+<li>Confirm that that works before going further.</li>
+<li>Confirm that your document string is useful.</li>
+<li>Write a test</li>
+</ul>
+</li>
+<li>Implement the core code in the function <ul>
+<li>Confirm that that works</li>
+<li>Confirm that your document string is useful.</li>
+<li>Write a test</li>
+</ul>
+</li>
+<li>Consider any flaws in your code and how you might improve it</li>
+</ul>
+<p><strong>Your task for the exercise is:</strong></p>
+<ul>
+<li>design a function to convert two lists of the same length into a dictionary</li>
+<li>the design must include relevant comments, document strings and tests</li>
+</ul>
+<h2 id="more-on-arguments">More on arguments</h2>
+<p>Python functions can take <a href="https://book.pythontips.com/en/latest/args_and_kwargs.html">two types of arguments</a>:</p>
+<ul>
+<li>positional arguments</li>
+<li>keyword arguments</li>
+</ul>
+<h3 id="positional-arguments">Positional arguments</h3>
+<p>The arguments we have used above are positional arguments, in that their definition in the function depends on the order they are specified in. For example:</p>
+<pre><code class="python">def hello(s1,s2):
+    '''
+    Purpose:
+      print out positional arguments
+
+    Inputs:
+      s1 : first argument
+      s2 : secopnd argument
+    '''
+    print(f'argument 0 is {s1}')
+    print(f'argument 1 is {s2}')
+
+hello('hello','world')
+</code></pre>
+
+<pre><code>argument 0 is hello
+argument 1 is world
+</code></pre>
+<p>Sometimes in Python documentation, you will see the arguments specified simply as:</p>
+<pre><code>example(*args, *kwargs)
+</code></pre>
+<p>This is the most general way of specifying function arguments. The first item in this case <code>*args</code> are the positional arguments. Although we generally specify them explicitly as above, we can also use</p>
+<pre><code>*args
+</code></pre>
+<p>to specify them, where <code>args</code> is a list-like object. In this form, the example above becomes:</p>
+<pre><code class="python">def hello(*args):
+    '''
+    print out positional arguments
+
+    Inputs:
+        *args : list of positional arguments
+    '''
+    # loop over the list
+    for i,s in enumerate(args):
+        print(f'argument {i} is {s}')
+
+hello('hello','world','again')
+</code></pre>
+
+<pre><code>argument 0 is hello
+argument 1 is world
+argument 2 is again
+</code></pre>
+<pre><code class="python"># or using *args where args is a list
+l = ['hello','world','again','as','list']
+hello(*l)
+</code></pre>
+
+<pre><code>argument 0 is hello
+argument 1 is world
+argument 2 is again
+argument 3 is as
+argument 4 is list
+</code></pre>
+<p>In this example, we have not specified how many positional arguments there are, but obviously we need to attach some meaning to each of them in the order supplied. Sometimes this is useful in code, where we just want to loop over a list of arguments, but you should mostly be wary about using it unless you really need to. </p>
+<p>A good example of the use of <code>*args</code> is the <code>print()</code> statement. It will print out however many positional arguments we specify:</p>
+<pre><code class="python">print('hello','world','again')
+
+l = ['hello','world','again','as','list']
+# print the list, specifying l as a single positional argument
+print(l)
+# print the list passing each list item as a positional argument
+print(*l)
+</code></pre>
+
+<pre><code>hello world again
+['hello', 'world', 'again', 'as', 'list']
+hello world again as list
+</code></pre>
+<h3 id="keyword-arguments">Keyword arguments</h3>
+<p>The second type of argument we mentioned above was keyword arguments. These are typically used to modify the behaviour of a function are are of the form:</p>
+<pre><code>verbose=True
+sep=' '
+</code></pre>
+<p>We can see examples of these with the <code>print</code> function:</p>
+<pre><code class="python">help(print)
+</code></pre>
+
+<pre><code>Help on built-in function print in module builtins:
+
+print(...)
+    print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+
+    Prints the values to a stream, or to sys.stdout by default.
+    Optional keyword arguments:
+    file:  a file-like object (stream); defaults to the current sys.stdout.
+    sep:   string inserted between values, default a space.
+    end:   string appended after the last value, default a newline.
+    flush: whether to forcibly flush the stream.
+</code></pre>
+<p>where a set of optional keyword arguments are specified. All keyword arguments are specified with a default value (<code>sep=' ', end='\n', file=sys.stdout, flush=False</code> above). If we do not specify a keyword when we call the function, this is the value that that variable will take within the function.</p>
+<p>Note that keywords must be specified <strong>after</strong> positional arguments. The keywords can be in any order (they are not positional). Keywords can only be given once.</p>
+<p>But, if we want, we can override the defaults by setting the keyword when we call the function:</p>
+<pre><code class="python">l = ['hello','world','again','as','list']
+# print the list passing each list item as a positional argument
+# default with sep as ' '
+print(*l)
+# with sep as 'X'
+print(*l,sep='X')
+# with sep as ':'
+print(*l,sep=':')
+</code></pre>
+
+<pre><code>hello world again as list
+helloXworldXagainXasXlist
+hello:world:again:as:list
+</code></pre>
+<p>This is a very useful feature for functions: we can set default behaviour, but the user cxan modify this when they call the function. </p>
+<p>For example, let's add a <code>verbose</code> keyword to our <code>hello()</code> function. The behaviour we want is that if the verbose flag is set, we print lots of information to the user. In this case:</p>
+<pre><code>print(f'argument {i}:',end=' ')
+</code></pre>
+<p>which will print the index <code>i</code>. We have used the <code>kwarg</code> <code>end=''</code> for <code>print()</code> so that if this is called, it does not print a newline, but a space instead.</p>
+<pre><code class="python">def hello(*args,verbose=False):
+    '''
+    print out positional arguments
+
+    Inputs:
+        *args : list of positional arguments
+
+    Optional keyword arguments:
+        verbose : print the index 
+    '''
+    # loop over the list
+    for i,s in enumerate(args):
+        # if the verbose flag is set
+        # then print detailed information
+        if verbose:
+            print(f'argument {i}:',end=' ')
+        print(f'{s}')
+
+</code></pre>
+
+<pre><code class="python">dash='='*5
+
+# call without verbose
+print(f'{dash} verbose=False {dash}')
+hello('hello','world','again')
+
+# call with verbose
+print(f'{dash} verbose=False {dash}')
+hello('hello','world','again',verbose=True)
+</code></pre>
+
+<pre><code>===== verbose=False =====
+hello
+world
+again
+===== verbose=False =====
+argument 0: hello
+argument 1: world
+argument 2: again
+</code></pre>
+<h3 id="exercise-3">Exercise 3</h3>
+<ul>
+<li>Starting from the function <code>list2dict(keys,values)</code> that you developed above, add keyword arguments to the code to achieve the following:<ul>
+<li>if check=True   : perform checks on the input data</li>
+<li>if verbose=True : print out information on what is going on in the function</li>
+<li>set all default keywords to False</li>
+</ul>
+</li>
+<li>Make sure you perform tests as above, and that you update document strings</li>
+</ul>
+<p>As a final point of <code>kwargs</code>, you might still be wondering why this was specified as:</p>
+<pre><code>   example(*args,**kwargs)
+</code></pre>
+<p>above. We have seen what the <code>*args</code> part means: if <code>args</code> is a list, then each item in the list is passed as a positional argument. The same idea applies to <code>**kwargs</code> but instead of a list, <code>kwargs</code> refers to a dictionary. If you think about the information you need to pass for keword arguments, you would understand why this is the case. </p>
+<p>By using <code>**kwargs</code>, where <code>kwargs</code> is a dictionary, the key-value pairs in the dictionary are passed as <code>key=value</code>. For example:</p>
+<pre><code class="python">args = ['hello','world','again','as','list']
+# set up dictionary for kwargs
+# with X as sep and a string at the end oif the line
+kwargs = {'sep' : 'X', 'end' : '&lt;- end of the line\n'}
+
+print(*args,**kwargs)
+</code></pre>
+
+<pre><code>helloXworldXagainXasXlist&lt;- end of the line
+</code></pre>
+<p>The use of <code>**kwargs</code> can be useful sometimes, as you can more easily keep track of keywords for some particular configuration of running a code. For that reason, and because you will see it sometimes in documentation, you should be aware of it. Most likely you won't be using it a lot in your early code development though.</p>
+<h2 id="summary">Summary</h2>
+<p>In this section, we have learned about writing a function. We have seen that they generally will have zero or more input positional arguments and zero or more keyword arguments. They will typically return some value. We have also seen how we can define a <code>doc string</code> to give the user information on how to use the function, and also how we can use <code>assert</code> to build tests for our codes. We have been through some design considerations, and seen that it is best to plan you functions by thinking about the purpose, the inputs and the outputs. Then, for the core code, you just need to develop a skeleton code and docstring structure, test that, and insert your core code. You should think about modifications using keyword arguments that you might want to include, but these will often come in a second pass of development.</p>
+<p>When we write Python codes from now on, we will often make use of functions.</p>
+<p>Remember:</p>
+<p>Anatomy of a function:</p>
+<pre><code>    def my_function(arg1,arg2,...,kw0=...,kw1=...):
+      '''
+      Document string 
+      '''
+
+      # comments
+
+      retval =  ...
+
+      # return
+      return retval
+</code></pre>
+<p>Also written as:</p>
+<pre><code>    def my_function(*args,**kwargs):
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../018_Running_Python/" class="btn btn-neutral float-right" title="Running Python">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../016_Python_for/" class="btn btn-neutral" title="Python For"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../016_Python_for/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../018_Running_Python/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

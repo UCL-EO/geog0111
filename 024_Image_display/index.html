@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Image Display - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Image Display";
+    var mkdocs_page_input_path = "024_Image_display.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Image Display</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#read-and-plot-a-dataset">Read and plot a dataset</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#modis">MODIS</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#colourmaps">Colourmaps</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quantised-data-land-cover">Quantised data: Land Cover</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Data Basics &raquo;</li>
+        
+      
+    
+    <li>Image Display</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/024_Image_display.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="024-image-display">024 Image display</h1>
+<h3 id="purpose">Purpose</h3>
+<p>We have seen from <a href="../021_Streams/">021 Streams</a> and <a href="../022_Read_write_files/">022 Read write files</a> how to access both text and binary datasets, either from the local file system or from a URL and in <a href="../023_Plotting/">023 Plotting</a> how to use <a href="https://matplotlib.org"><code>matplotlib</code></a> for plotting graphs. </p>
+<p>In this section, we will learn how to view images using <a href="https://matplotlib.org/3.3.1/tutorials/introductory/images.html"><code>matplotlib</code></a>.</p>
+<p>You might follow these notes up by looking at the Python package <a href="https://python-visualization.github.io/folium/"><code>folium</code></a> for interactive displays.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../002_Unix/">002 Unix</a> with a good familiarity with the UNIX commands we have been through.</li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+<li><a href="../011_Python_data_types/">011 Data types</a> </li>
+<li><a href="../012_Python_strings/">012 String formatting</a></li>
+<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
+<li><a href="../020_Python_files/">020_Python_files</a></li>
+<li><a href="../021_Streams/">021 Streams</a></li>
+<li><a href="../022_Read_write_files/">022 Read write files</a></li>
+<li><a href="../023_Plotting/">023 Plotting</a></li>
+</ul>
+<h3 id="test">Test</h3>
+<p>You should run a <a href="../004_Accounts/">NASA account test</a> if you have not already done so.</p>
+<h2 id="read-and-plot-a-dataset">Read and plot a dataset</h2>
+<h3 id="modis">MODIS</h3>
+<p>We have seen in <a href="../022_Read_write_files/#read-and-write-binary-data">022 Read write files</a> how we can access a MODIS dataset. In an <a href="../022_Read_write_files/#Exercise-3">exercise</a> we wrote a function <code>get_data</code> that returned a dictionary of spatial datasets, given a MODIS HDF filename. Here, we will use the similar function <code>modis.get_data</code> that returns the same form of data dictionary, but driven by the year and day of year (<code>doy</code>). The product and other parameters are specified in the keyword arguments. We will look into MODIS products in more detail in a subsequent session. In this session, we will use <code>MCD15A3H</code> and </p>
+<p>For example, to get the LAI product <code>MCD15A3H</code> and the land cover product <code>MCD12Q1</code>, layer <code>LC_Type1</code> to visualise. Many of these datasets are pre-cached for you, so you should get a fast response. If the plotting seems to be taking too long, set <code>verbose=True</code> in the <code>kwargs</code> to get details of the underlying processing.</p>
+<p>First then, we access the product <code>MCD15A3H</code>. This is produced every 4 days in a year, so in specifying <code>doy</code>, we use <code>doy=4*n + 1</code> for the <code>nth</code> dataset of the year.</p>
+<pre><code class="python">from  geog0111.modis import Modis
+
+kwargs = {
+    'product'    : 'MCD15A3H',
+    'tile'       : ['h17v03'],
+}
+
+modis = Modis(**kwargs)
+# specify day of year (DOY) and year
+data_MCD15A3H = modis.get_data(2019,1+4*10)
+
+# loop over dictionary items
+for k,v in data_MCD15A3H.items():
+    if k in modis.sds:
+        # do some neat formatting on k
+        print(f'{k:&lt;20s}: {v.shape}')
+</code></pre>
+
+<pre><code>FparExtra_QC        : (2400, 2400)
+FparLai_QC          : (2400, 2400)
+FparStdDev_500m     : (2400, 2400)
+Fpar_500m           : (2400, 2400)
+LaiStdDev_500m      : (2400, 2400)
+Lai_500m            : (2400, 2400)
+</code></pre>
+<p>So any of these datasets, <code>data[Fpar_500m]</code>, <code>data[Lai_500m]</code> are two dimensional datasets (<code>(2400, 2400)</code>) that we might display as images. For example <code>data[Lai_500m]</code>.</p>
+<p>We follow much the same recipe as for <a href="../023_Plotting/">plotting line graphs</a>, but instead of using <code>axs.plot()</code> we use <code>axs.imshow()</code>. Further, we can set the subplot title with <code>axs.set_title(k)</code> as before. We can usefully include a colour wedge with the plot with <code>fig.colorbar(im, ax=axs)</code>.</p>
+<p>When we plot with <code>axs.imshow()</code>, we can optionally use the keywords <code>vmin=</code> and <code>vmax=</code> to set upper and lower thresholds for the data plotted.</p>
+<p>You should generally use <code>interpolation='nearest'</code> when plotting an image dataset as a measurement (e.g. a remote sensing dataset), otherwise it may be interpolated.</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+k = 'Lai_500m'
+name = f'{kwargs[&quot;product&quot;]}'
+
+# plot size 
+x_size,y_size = 8,6
+shape = (1,1)
+
+fig, axs = plt.subplots(shape[0],shape[1],figsize=(x_size,y_size))
+# dont flatten if shape is (1,1)
+if shape[0] == 1 and shape[1] == 1:  
+    axs = [axs]
+else:
+    axs = axs.flatten()
+# set the figure title
+fig.suptitle(name)
+
+# plot image data: use vmin and vmax to set limits
+im = axs[0].imshow(data_MCD15A3H[k],\
+                   vmin=0,vmax=100,\
+                   interpolation='nearest')
+axs[0].set_title(k)
+fig.colorbar(im, ax=axs[0])
+</code></pre>
+
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fd01f4cead0&gt;
+</code></pre>
+<p><img alt="png" src="024_Image_display_files/024_Image_display_5_1.png" /></p>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>Plot the first datasets in <code>data_MCD15A3H</code> as subplots in a 2 x 2 shape.</li>
+</ul>
+<p>Hint: Use a loop for the keys of <code>data_MCD15A3H</code>. Set up the 2 x 2 subplots with:</p>
+<pre><code>fig, axs = plt.subplots(2,2,figsize=(x_size,y_size))
+axs = axs.flatten()
+</code></pre>
+<p>then you can refer to the subplot axes as <code>ax[0]</code>, <code>ax[1]</code>, <code>ax[2]</code> and <code>ax[3]</code> when you loop over the keys. Don't forget to increase <code>x_size,y_size</code> appropriately.</p>
+<h2 id="colourmaps">Colourmaps</h2>
+<p>As you would expect, you can customise your plots. We illustrate this by changing the colourmap used here in a pseudocolour display of the data. For some others, <a href="https://matplotlib.org/tutorials/introductory/images.html">please see the matplotlib tutorial</a>.</p>
+<p>There are various ways to set the colour map, but when working with sub-images, trhe easiest is of the form:</p>
+<pre><code>im = ax.imshow(data)
+im.set_cmap(c)
+</code></pre>
+<p>where <code>c</code> here is some colourmap.</p>
+<p>For further discussions on colourmaps and options see the <a href="https://matplotlib.org/3.1.1/tutorials/colors/colormaps.html">relevant tutorial</a> and the <a href="https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html">colour map reference</a>.</p>
+<p>In this set of sub-plots, we switch off the image ticks for a clearer plot.</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+k = 'Lai_500m'
+name = f'{kwargs[&quot;product&quot;]}'
+
+# plot size 
+x_size,y_size = 8,6
+shape = (2,2)
+
+fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
+# dont flatten if shape is (1,1)
+if shape[0] == 1 and shape[1] == 1:  
+    axs = [axs]
+else:
+    axs = axs.flatten()
+
+# this new cmd switches off the tick
+plt.setp(axs, xticks=[], yticks=[])
+
+# set the figure title
+fig.suptitle(name)
+
+cmaps = ['Greys','gray','inferno_r','seismic']
+
+for i,c in enumerate(cmaps):
+    # plot image data
+    im = axs[i].imshow(data_MCD15A3H[k],\
+                   vmin=0,vmax=100,\
+                   interpolation='nearest')
+    im.set_cmap(c)
+    axs[i].set_title(c)
+    fig.colorbar(im, ax=axs[i])
+</code></pre>
+
+<p><img alt="png" src="024_Image_display_files/024_Image_display_8_0.png" /></p>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>write a function called <code>im_display</code> that takes as input:<ul>
+<li>a data dictionary</li>
+<li>a list of keywords of datasets to plot</li>
+<li>optionally:<ul>
+<li>a title</li>
+<li>a colourmap name</li>
+<li>lower and upper limits for plot data (vmin, vmax)</li>
+<li>x_size,y_size</li>
+<li>subplots shape : e.g. (2,2)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>You should assume some default values for the optional items if not given. For the subplots shape, assume it is <code>(n,1)</code> where <code>n</code> is the length of the keyword list.</p>
+<p>You should set the default values of <code>vmin</code> and <code>vmax</code> to <code>None</code>, as this just then takes the dataset default minimum and maximum.</p>
+<p>Your code should be well-documented.</p>
+<ul>
+<li>test your code</li>
+</ul>
+<p>Note that you will have to experiment a bit with the <code>x_size,y_size</code> values to get a good plot. It is not easy to automate that.</p>
+<h2 id="quantised-data-land-cover">Quantised data: Land Cover</h2>
+<p>Sometimes we want quantised colourmaps, for example for a land cover classification map. You can do these perfectly well in <code>matplotlib</code>, but the process is a little more involved.</p>
+<p>We will take as an example the MODIS product <code>MCD12Q1</code> over the UK. The land cover layer we are interested in is called <code>LC_Type1</code>. The <a href="https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf">land cover names</a> associated with this are given in the file <a href="data/LC_Type1_colour.csv">data/LC_Type1_colour.csv</a>, along with example colour mappings.</p>
+<pre><code class="python">import pandas as pd
+
+lc_Type1 = pd.read_csv('data/LC_Type1_colour.csv')
+lc_Type1
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>class</th>
+      <th>colour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1</td>
+      <td>Unclassified</td>
+      <td>black</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Evergreen_Needleleaf_Forests</td>
+      <td>darkgreen</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Evergreen_Broadleaf_Forests</td>
+      <td>darkolivegreen</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Deciduous_Needleleaf_Forests</td>
+      <td>green</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Deciduous_Broadleaf_Forests</td>
+      <td>lightgreen</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>Mixed_Forests</td>
+      <td>yellow</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>Closed_Shrublands</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>Open_Shrublands</td>
+      <td>tan</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>Woody_Savannas</td>
+      <td>brown</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>Savannas</td>
+      <td>khaki</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>Grasslands</td>
+      <td>springgreen</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>Permanent_Wetlands</td>
+      <td>cyan</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>Croplands</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13</td>
+      <td>Urban_and_Built_up_Lands</td>
+      <td>grey</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>14</td>
+      <td>Cropland_Natural_Vegetation_Mosaics</td>
+      <td>violet</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>15</td>
+      <td>Permanent_Snow_and_Ice</td>
+      <td>snow</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>16</td>
+      <td>Barren</td>
+      <td>sienna</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>17</td>
+      <td>Water_Bodies</td>
+      <td>navy</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>The process of setting up a colourmap is explained in this <a href="https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-raster-plots/customize-matplotlib-raster-maps/">Earth Lab</a> page.</p>
+<p>The three steps are:</p>
+<pre><code>* set up colour names associated with the class names
+* generate matplotlib cmap and norm objects from these
+* set up the legend
+</code></pre>
+<p>We can choose colour names from the <a href="https://matplotlib.org/3.1.0/gallery/color/named_colors.html"><code>matplotlib</code> gallery</a> if we don't like the defaults set up.</p>
+<p>It is an annual dataset, with only valid files for January 1st of the year.</p>
+<pre><code class="python">from geog0111.modis import Modis
+
+# UK
+kwargs = {
+    'tile'      :    ['h17v03', 'h18v03'],
+    'product'   :    'MCD12Q1',
+}
+
+year  = 2019
+
+# get the data
+modis = Modis(**kwargs)
+# specify day of year (DOY) and year
+data_MCD12Q1 = modis.get_data(year,1)
+</code></pre>
+
+<pre><code class="python"># generate matplotlib cmap and norm objects from these
+import matplotlib
+
+cmap = matplotlib.colors.\
+        ListedColormap(list(lc_Type1['colour']))
+norm = matplotlib.colors.\
+        BoundaryNorm(list(lc_Type1['code']), len(lc_Type1['code']))
+</code></pre>
+
+<pre><code class="python">import matplotlib.patches
+# set up the legend
+legend_labels = dict(zip(list(lc_Type1['colour']),list(lc_Type1['class'])))
+patches = [matplotlib.patches.Patch(color=c, label=l)
+           for c,l in legend_labels.items()]
+</code></pre>
+
+<pre><code class="python"># plot
+import matplotlib.pyplot as plt
+x_size,y_size = 12,12
+fig, axs = plt.subplots(1,figsize=(x_size,y_size))
+im = axs.imshow(data_MCD12Q1['LC_Type1'],cmap=cmap,norm=norm,interpolation='nearest')
+plt.legend(handles=patches,
+          bbox_to_anchor=(1.4, 1),
+          facecolor=&quot;white&quot;)
+</code></pre>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7fd0292f6c10&gt;
+</code></pre>
+<p><img alt="png" src="024_Image_display_files/024_Image_display_17_1.png" /></p>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>Write a function called <code>plot_lc</code> that takes as input modis land cover dataset and plots the associated land cover map</li>
+<li>You might use <code>x_size,y_size</code> as optional inputs to improve scaling</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>In this section, we have learned how to plot images from datasets we have read in or downloaded from the web. We have concentrated on MODIS datasets, stored in a data dictionary. We used <code>modis.get_data</code> to load the MODIS datasets. We developed a function called <code>im_display</code> to provide a simple wrapper for plotting.</p>
+<p>We have also looked into how to do categorised mapping, for example for land cover, and written a function called <code>plot_lc</code> to achieve this.</p>
+<p>Remember:</p>
+<pre><code>        import matplotlib
+        import matplotlib.pyplot as plt
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>comment</th>
+<th align="left">keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>im = axs.imshow(data2D)</code></td>
+<td>Display image of 2D data array <code>data2D</code> on sub-plot axis <code>axs</code> and return display object <code>im</code></td>
+<td align="left"><code>vmin=</code> : minimum threshold for image display</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>vmax=</code> : maximum threshold for image display</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>interpolation=</code> : interpolation style (e.g. <code>'nearest'</code></td>
+</tr>
+<tr>
+<td><code>fig.colorbar(im)</code></td>
+<td>Set colour bar for image plot object <code>im</code></td>
+<td align="left"><code>ax=axs</code> plot on sub-plot <code>axs</code></td>
+</tr>
+<tr>
+<td><code>im.set_cmap(c)</code></td>
+<td>set colourmap <code>c</code> for image object <code>im</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td></td>
+<td>Examples being <code>['Greys','gray','inferno_r','seismic']</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>cmap = matplotlib.colors.ListedColormap(list_of_colours)</code></td>
+<td>set <code>cmap</code> to <code>Colormap</code> object from list of colours <code>list_of_colours</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>norm = matplotlib.colors.BoundaryNorm(list, nbound)</code></td>
+<td>set <code>BoundaryNorm</code> object <code>norm</code> to boundaries of values from <code>list</code> with <code>nbound</code> values</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>matplotlib.patches.Patch(color=c, label=l)</code></td>
+<td>Set patches for legend with colours from list <code>c</code> and labedl from list <code>l</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><code>plt.legend(handles=patches)</code></td>
+<td>set figure legend using <code>patches</code></td>
+<td align="left"><code>bbox_to_anchor=(1.4, 1)</code> : shift of legend</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td align="left"><code>facecolor="white"</code> : facecolourt of legend (white here)</td>
+</tr>
+</tbody>
+</table>
+<p>Modis library: </p>
+<pre><code>        from  geog0111.modis import Modis
+        modis = Modis(**kwargs)
+
+
+
+        get_data(year, doy=None, idict=None, month=None, day=None, step=1, fatal=False) 
+        method of geog0111.modis.Modis instance
+
+            Return data dictionary of MODIS dataset for specified time period
+
+            args:
+              year  : year (2000 to present for MOD, or 2002 to present if using MYD)
+                      NB this is ignoired if idict is given
+
+            options:
+              doy   : day in year, or day in month if month specified, or None
+                      when specified as day in year, or day in month, can be a list
+                      1-365/366 or 1-28-31 as appropriate
+              day   : day in month or None. Can be list.
+              month : month index 1-12 or None. Can be list.
+              step  : dataset step. Default 1, but set to 4 for 4-day product, i
+                      8 for 8-day, 365/366 for year etc.
+              fatal : default False. If True, exit if dataset not found.
+              idict : data file dictionary provided by eg call to
+                      self.get_modis(year,doy=None,month=None,step=1,fatal=False)
+                      see get_modis for more details
+
+            returns:
+              data dictionary with keys specified by:
+                    - self.sds list 
+                    - or all SDS if self.sds is None (default)
+              data dictionary key 'bandnames' of DOY
+
+              Each data item a 2- or 3-dimensional numpy array
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../020_Python_files_answers/" class="btn btn-neutral float-right" title="Python Files">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../023_Plotting/" class="btn btn-neutral" title="Plotting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../023_Plotting/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../020_Python_files_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Python Strings - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Python Strings";
+    var mkdocs_page_input_path = "012_Python_strings_answers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Answers</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Python Strings</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-6">Exercise 6</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Answers &raquo;</li>
+        
+      
+        
+          <li>Core Concepts &raquo;</li>
+        
+      
+    
+    <li>Python Strings</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/012_Python_strings_answers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="012-string-formatting-answers-to-exercises">012 String formatting : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>Use what we have learned above to print the phrase <code>"beware of \n and \t"</code>, including quotes.</li>
+</ul>
+<pre><code class="python"># ANSWER
+# Use what we have learned above to print the phrase
+# &quot;beware of \n and \t&quot;, including quotes.
+
+# try this first
+string = &quot;beware of \n and \t&quot;
+print('wrong:\t\t',string)
+
+# now escape the \ characters
+string = &quot;beware of \\n and \\t&quot;
+print('good:\t\t',string,'\t\tbut no quotes')
+
+# now escape the \ characters
+# and add quotes
+string = '&quot;beware of \\n and \\t&quot;'
+print('great:\t\t',string)
+
+# now escape the \ characters
+# and add quotes by escaping
+string = &quot;\&quot;beware of \\n and \\t\&quot;&quot;
+print('great:\t\t',string)
+</code></pre>
+
+<pre><code>wrong:       beware of 
+ and    
+good:        beware of \n and \t        but no quotes
+great:       "beware of \n and \t"
+great:       "beware of \n and \t"
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>Insert a new cell below here</li>
+<li>
+<p>Write Python code that prints a string containing the following text, spaced over four lines as intended. There should be no space at the start of the line.</p>
+<pre><code>The Owl and the Pussy-cat went to sea 
+In a beautiful pea-green boat, 
+They took some honey, and plenty of money, 
+Wrapped up in a five-pound note.
+</code></pre>
+</li>
+<li>
+<p>Write Python code that prints a string containing the above text, all on a single line.</p>
+</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# Write Python code that prints a string containing 
+# the following text, spaced over four lines as intended.
+
+lear = '''
+The Owl and the Pussy-cat went to sea
+In a beautiful pea-green boat,
+They took some honey, and plenty of money,
+Wrapped up in a five-pound note.
+  '''
+print(lear)
+</code></pre>
+
+<pre><code>The Owl and the Pussy-cat went to sea
+In a beautiful pea-green boat,
+They took some honey, and plenty of money,
+Wrapped up in a five-pound note.
+</code></pre>
+<pre><code class="python"># ANSWER
+
+# Write Python code that prints a string 
+# containing the above text, all on a single line.
+
+
+# we can still space it out clearly, but 
+# now escape the new lines
+lear = \
+&quot;The Owl and the Pussy-cat went to sea \
+In a beautiful pea-green boat, \
+They took some honey, and plenty of money, \
+Wrapped up in a five-pound note.&quot;
+print(lear)
+</code></pre>
+
+<pre><code>The Owl and the Pussy-cat went to sea In a beautiful pea-green boat, They took some honey, and plenty of money, Wrapped up in a five-pound note.
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>In a new cell below, generate a string called <code>base</code> and set this to the string <code>Hello</code> </li>
+<li>print base and its length</li>
+<li>set a new variable <code>mult</code> to <code>base * 10</code></li>
+<li>print <code>mult</code> and its length</li>
+<li>comment on why the lengths are the values reported</li>
+</ul>
+<pre><code class="python"># ANSWER
+# In a new cell below, generate a string called base and set this to the string Hello
+base = 'Hello'
+
+#print base and its length
+print(base,len(base))
+
+#set a new variable mult to base * 10
+mult = base * 10
+
+#print mult and its length
+print (mult,len(mult))
+
+#comment on why the lengths are the values reported
+msg = '''
+The string 'Hello' has 5 characters. We set the evariable base
+to be this, so the length of the string base is 5.
+
+We set mult to be base * 10. For a string, * repeats the string,
+so we end up with a string the same as base but repeated 10 times.
+Since th length of base was 5, the length of mult will be 5 * 10 = 50
+'''
+print(msg)
+</code></pre>
+
+<pre><code>Hello 5
+HelloHelloHelloHelloHelloHelloHelloHelloHelloHello 50
+
+The string 'Hello' has 5 characters. We set the evariable base
+to be this, so the length of the string base is 5.
+
+We set mult to be base * 10. For a string, * repeats the string,
+so we end up with a string the same as base but repeated 10 times.
+Since th length of base was 5, the length of mult will be 5 * 10 = 50
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<p>You may have noticed that when we use <code>+</code> to join <code>hello + world</code> above, there is no space between the words. This is because we have not told the computer to put any such space in.</p>
+<ul>
+<li>Copy the code from the hello world example above</li>
+<li>create a new string called <code>gap</code> containing whitespace: <code>gap = ' '</code></li>
+<li>using <code>gap</code>, edit the code so that <code>cstring</code> has a gap between the words</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# Copy the code from the hello world example above
+astring = 'hello'
+bstring = 'world'
+
+# create a new string called `gap` containing whitespace: `gap = ' '`
+gap = ' '
+
+# using `gap`, edit the code so that `cstring` has a gap between the words
+cstring = astring + gap + bstring
+print('I joined',astring,'to',gap,'to',bstring,'with + and got',cstring)
+</code></pre>
+
+<pre><code>I joined hello to   to world with + and got hello world
+</code></pre>
+<pre><code class="python"># ANSWER
+
+# in a new cell below, generate a string called base and set this to the string Hello
+base = 'Hello'
+
+# print base and its length
+print(base,len(base))
+
+# set a new variable mult to base * 10
+mult = base * 10
+
+# print mult and its length
+print(mult,len(mult))
+
+# comment on why the lengths are the values reported
+msg = '''
+    comment on why the lengths are the values reported
+
+    The string called base had length 5
+    The new string called mult was a repeat of the string
+    base, 10 times, using the multiplication operator *
+
+    As we would expect, the new string had length 10 * 5 = 50
+'''
+print(msg)
+</code></pre>
+
+<pre><code>Hello 5
+HelloHelloHelloHelloHelloHelloHelloHelloHelloHello 50
+
+    comment on why the lengths are the values reported
+
+    The string called base had length 5
+    The new string called mult was a repeat of the string
+    base, 10 times, using the multiplication operator *
+
+    As we would expect, the new string had length 10 * 5 = 50
+</code></pre>
+<h4 id="exercise-5">Exercise 5</h4>
+<ul>
+<li>set a variable <code>index</code> to be an integer between <code>0</code> and <code>99999999</code>.</li>
+<li>use this to generate a zero-padded filename of the form <code>00000010.dat</code></li>
+<li>print out the filename</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# set a variable index to be an integer between 0 and 99999999.
+index = 1265
+
+# use this to generate a zero-padded filename of the form 00000010.dat
+# Note that we use 8d here as we want at the string part with
+# the number to be of length 8
+filename = &quot;{:0&gt;8d}.dat&quot;.format(index)
+
+# print out the filename
+print(filename)
+</code></pre>
+
+<pre><code>00001265.dat
+</code></pre>
+<h4 id="exercise-6">Exercise 6</h4>
+<ul>
+<li>Insert a new cell below here</li>
+<li>
+<p>create a template string of the form:</p>
+<pre><code>"what have the {people} ever done for us?"
+</code></pre>
+</li>
+<li>
+<p>assign the word <code>Romans</code> to the variable <code>people</code> and print the formatted template: hint: use the <code>str.format()</code> method to insert this into the template.</p>
+</li>
+<li>repeat this using an f-string directly.</li>
+</ul>
+<pre><code class="python"># ANSWER
+# Insert a new cell below here
+# create a template string of the form:
+
+template=&quot;what have the {people} ever done for us?&quot;
+
+# assign the word Romans to the variable people and print 
+# the formatted template: hint: use the str.format() 
+# method to insert this into the template.
+
+print(template.format(people='Romans'))
+
+# repeat this using an f-string directly.
+people='Romans'
+print(f&quot;what have the {people} ever done for us?&quot;)
+</code></pre>
+
+<pre><code>what have the Romans ever done for us?
+what have the Romans ever done for us?
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../013_Python_string_methods_answers/" class="btn btn-neutral float-right" title="Python String Methods">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../011_Python_data_types_answers/" class="btn btn-neutral" title="Python Data Types"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../011_Python_data_types_answers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../013_Python_string_methods_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

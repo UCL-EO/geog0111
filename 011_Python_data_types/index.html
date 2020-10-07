@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Python Data Types - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Python Data Types";
+    var mkdocs_page_input_path = "011_Python_data_types.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Python Data Types</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-types">Data types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data-types-str">Data types: str</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#len">len()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#type">type()</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-types-float">Data types: float</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-types-int">Data types: int</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-types-bool">Data types: bool</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-6">Exercise 6</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logical-operators-not-and-or">Logical Operators: not, and, or</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-7">Exercise 7</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-8">Exercise 8</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-9">Exercise 9</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conversion-between-data-types">Conversion between data types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-10">Exercise 10</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Core Concepts &raquo;</li>
+        
+      
+    
+    <li>Python Data Types</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/011_Python_data_types.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="011-python-data-types">011 Python data types</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="purpose">Purpose</h3>
+<p>In this section we will learn some of the fundamental data types in Python (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>), how to convert between data types, and use of the <code>type()</code> function.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+</ul>
+<p>Remember that you can 'run' the code in a code block using the 'run' widget (above) or hitting the keys ('typing') <shift> and <return> at the same time. </p>
+<h2 id="data-types">Data types</h2>
+<h3 id="data-types-str">Data types: <code>str</code></h3>
+<p>Recall how we can print out a message by first storing the text in a variable:</p>
+<pre><code class="python"># set a variable called message to contain the string hello world
+message = 'hello world'
+
+# print the value of the variable message
+print(message)
+</code></pre>
+
+<pre><code>hello world
+</code></pre>
+<p>Above, we set the variable to be a string <code>str</code> type, because we wanted to use it to represent a string.</p>
+<p>In a string, each character is represented by an <a href="http://www.asciitable.com">ASCII</a> codes.</p>
+<p>So the <a href="https://en.wikibooks.org/wiki/Python_Programming/Text">string</a> <code>one</code> is built up of <code>o</code> + <code>n</code> + <code>e</code>, represented by the ASCII codes <code>111</code>, <code>110</code> and <code>101</code> respectively.</p>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>If the ASCII code for <code>e</code> is <code>101</code> and the code for <code>n</code> is <code>110</code>, what is the code for <code>a</code>?</li>
+</ul>
+<h3 id="len"><code>len()</code></h3>
+<p>We can find the length of the string using the function <code>len()</code>, for example:</p>
+<pre><code class="python"># set a variable called message to contain the string hello world
+message = 'hello world'
+
+# print the value of the variable message
+print(message,len(message))
+</code></pre>
+
+<pre><code>hello world 11
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>in a code cell below, create a variable called <code>name</code> and set it to your name</li>
+<li>print the string name, and its length</li>
+<li>comment on why the length is the value you find</li>
+</ul>
+<h3 id="type"><code>type()</code></h3>
+<p>In a computing language, the <em>sort of thing</em> the variable can be set to is called its <strong>data type</strong>.  In Python, we can access this with the function <code>type()</code>:</p>
+<pre><code class="python"># assign the value 'one' to the variable (key) my_store
+my_store = 'one'
+
+# Print the value of my_store
+print('this has type', type(my_store))
+</code></pre>
+
+<pre><code>this has type &lt;class 'str'&gt;
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>set a variable called message to contain the string <code>hello world</code></li>
+<li>print the value and data type of the variable message</li>
+</ul>
+<h3 id="data-types-float">Data types: <code>float</code></h3>
+<p>Another fundamental data type is <code>float</code>, used to store decimal numbers such as <code>120.23</code>.</p>
+<p>Not surprisingly, we can use floating point numbers (and other number representations) to do arithmetic. We can use <code>print()</code> similarly to above to print an integer value. </p>
+<p>Sometimes, such as for very large or very small floating point values, we use <a href="https://en.wikibooks.org/wiki/A-level_Computing/AQA/Paper_2/Fundamentals_of_data_representation/Floating_point_numbers">scientific notation</a>, e.g. to represent Plank's constant:</p>
+<p>$$h = 6.62607015 \times 10^{−34} J \dot s $$</p>
+<p>we would not want to have to write out over zero values after the decimal point. Instead, we use the <strong>mantissa</strong> $6.62607015$ and <strong>exponent</strong> $-34$ directly:</p>
+<pre><code> h = 6.62607015e-34
+</code></pre>
+<p>You will sometimes see float numbers represented in this way. It is of additional interest because it is related more closely to how floating point numbers are <a href="https://users.cs.fiu.edu/~downeyt/cop2400/float.htm#:~:text=Eight%20digits%20are%20used%20to,means%20negative%2C%200%20means%20positive.">stored on a computer</a>.</p>
+<p>As an example of floating point arithmetic, let us consider the energy associated with a photon of a given wavelength $\lambda$ (nm) using the <a href="https://web.archive.org/web/20160712123152/http://pveducation.org/pvcdrom/2-properties-sunlight/energy-photon">Planck-Einstein equation</a>:</p>
+<p>$$ E = \frac{hc}{\lambda}$$</p>
+<p>with:</p>
+<ul>
+<li>$h$ as above, $=6.62607015 \times 10^{−34} J \dot s$</li>
+<li>$c$ the speed of light $= 2.99792458 \times 10^8 m/s$</li>
+<li>$E$ the photon energy (in $J$)</li>
+</ul>
+<p>Given light with a wavelength of 1024 nanometers ($nm$), calculate the energy in $J$.</p>
+<p>First, since</p>
+<p>$$1\ nm = 1 \times 10^{−9} m$$</p>
+<p>we calculate the wavelength in $m$:</p>
+<pre><code>l_m = l_nm * 1e-9
+</code></pre>
+<p>Then, implement the Planck-Einstein equation:</p>
+<pre><code>E = h * c / l_m
+</code></pre>
+<pre><code class="python"># values of c and h
+# in scientific notation
+c = 2.99792458e8       # m/s
+h = 6.62607015e-34     # J s
+
+# wavelength in nm
+l_nm = 1024.0          # nm
+
+# wavelength in m
+l_m = l_nm * 1e-9      # m
+
+# Planck-Einstein in J
+E_J = h * c / l_m      # J
+
+print('Photon of wavelength', l_nm, 'nm')
+print('has an energy of', E_J, 'J')
+</code></pre>
+
+<pre><code>Photon of wavelength 1024.0 nm
+has an energy of 1.9398885323720004e-19 J
+</code></pre>
+<p>We can compare the value of energy we get in $J$ with that using a <a href="http://www.calctool.org/CALC/other/converters/e_of_photon">web calculator</a> and confirm the value of <code>1.93989e-19</code> for Near Infrared light (<code>1024</code> nm).</p>
+<h4 id="exercise-4">Exercise 4</h4>
+<p>Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:</p>
+<p>$$
+    1\ Electron\ volt\ (eV) = 1.602176565 \times 10^{-19} J
+$$</p>
+<ul>
+<li>Insert a new cell below here</li>
+<li>calculate the energy associated with a blue photon at 450 nm, in eV</li>
+<li>confirm your answer using a <a href="http://www.calctool.org/CALC/other/converters/e_of_photon">web calculator</a></li>
+</ul>
+<h3 id="data-types-int">Data types: <code>int</code></h3>
+<p>Another fundamental data type is <code>int</code>, used to store integer (whole) numbers (in base 10). We often use them for counting and similar tasks.</p>
+<pre><code class="python">i = 0
+print(i,'this has type', type(i))
+
+# increment i by 1
+# same as i = i + 1
+i += 1
+print('increment i:',i)
+i += 1
+print('increment i:',i)
+</code></pre>
+
+<pre><code>0 this has type &lt;class 'int'&gt;
+increment i: 1
+increment i: 2
+</code></pre>
+<p>Not surprisingly, we can also use integers to do all sorts of arithmetic. Because of potential rounding issues though, we have to pay a little attention to whether we want the result of division to remain an integer or become a floating point number. </p>
+<p>We can use <code>print()</code> similarly to above to print an integer value.</p>
+<pre><code class="python"># set the variable x,m and c to integer
+# values
+x = 10
+m = 20
+c = 6
+
+# calculate y from the formula
+y = m * x + c
+
+# print the value of y
+print('y =', y)
+</code></pre>
+
+<pre><code>y = 206
+</code></pre>
+<p>We have seen examples of addition <code>+</code> and multiplication <code>*</code>. We use <code>x ** y</code> to represent <code>x</code> to the power of <code>y</code>. For division, we use <code>//</code> to enforce integer division (<a href="https://python-reference.readthedocs.io/en/latest/docs/operators/floor_division.html">floor division</a>).</p>
+<h4 id="exercise-5">Exercise 5</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>using integer arithmetic, print the result of:</li>
+<li>2 to the power of 8</li>
+<li>1024 divided by 2</li>
+<li>set a variable called <code>x</code> to the result of 7 (floor) divided by 3.</li>
+<li>print the value of <code>x</code>, and confirm its data type is <code>int</code></li>
+</ul>
+<h3 id="data-types-bool">Data types: <code>bool</code></h3>
+<p>The last fundamental data type we will deal with here is the Boolean or 'logical' type <code>bool</code>. Here, a variable can represent the value of <code>True</code> (equivalent to <code>1</code>) or <code>False</code> (equivalent to <code>0</code>).</p>
+<p>There are a great many uses for this in using logic in coding.</p>
+<pre><code class="python"># examples of bool type
+is_set = True
+is_ready = False
+</code></pre>
+
+<h4 id="exercise-6">Exercise 6</h4>
+<ul>
+<li>Insert a new cell below here</li>
+<li>Set a variable called <code>is_class_today</code> to the value <code>True</code></li>
+<li>print the variable name, its value, and its data type</li>
+</ul>
+<h3 id="logical-operators-not-and-or">Logical Operators: <code>not</code>, <code>and</code>, <code>or</code></h3>
+<p>Logical operators combine boolean variables. Recall from above:</p>
+<pre><code class="python">print (type(True),type(False));
+</code></pre>
+
+<pre><code>&lt;class 'bool'&gt; &lt;class 'bool'&gt;
+</code></pre>
+<p>The three main logical operators you will use are:</p>
+<pre><code>not, and, or
+</code></pre>
+<p>The impact of the <code>not</code> operator should be straightforward to understand, though we can first write it in a 'truth table':   </p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">not A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="python">print('not True is',not True)
+print('not False is',not False)
+</code></pre>
+
+<pre><code>not True is False
+not False is True
+</code></pre>
+<h4 id="exercise-7">Exercise 7</h4>
+<ul>
+<li>Insert a new cell below here</li>
+<li>write a statement to set a variable <code>x</code> to <code>True</code> and print the value of <code>x</code> and <code>not x</code> </li>
+<li>what does <code>not not x</code> give? Make sure you understand why </li>
+</ul>
+<p>The operators <code>and</code> and <code>or</code> should also be quite straightforward to understand: they have the same meaning as in normal english. Note that <code>or</code> is 'inclusive' (so, read <code>A or B</code> as 'either A or B or both of them').</p>
+<pre><code class="python">print('True and True is', True and True)
+print('True and False is', True and False)
+print('False and True is', False and True)
+print('False and False is', False and False)
+</code></pre>
+
+<pre><code>True and True is True
+True and False is False
+False and True is False
+False and False is False
+</code></pre>
+<p>So, <code>A and B</code> is <code>True</code>, if and only if both <code>A</code> is <code>True</code> and <code>B</code> is <code>True</code>. Otherwise, it is <code>False</code></p>
+<p>We can represent this in a 'truth table':</p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">A and B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<h4 id="exercise-8">Exercise 8</h4>
+<ul>
+<li>draw a truth table <em>on some paper</em>, label the columns <code>A</code>, <code>B</code> and <code>A and B</code> and fill in the columns <code>A</code> and <code>B</code> as above</li>
+<li>without looking at the example above, write the value of <code>A and B</code> in the third column.</li>
+<li>draw another truth table <em>on some paper</em>, label the columns <code>A</code>, <code>B</code> and <code>A and B</code> and fill in the columns <code>A</code> and <code>B</code> as above</li>
+<li>write the value of <code>A or B</code> in the third column.</li>
+</ul>
+<p>If you are unsure, test the response using code, below:</p>
+<p>We can apply these principles to more complex compound statements. In building a truth table, we must state all of the possible permutations for the variables.</p>
+<p>For two variables (<code>A</code> and <code>B</code>) we had:</p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<p>Notice the pattern of alternating <code>T</code> and <code>F</code> in the columns.</p>
+<p>For three variables, the equivalent table is:</p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<p>Again, notice the alternating patterns in the columns so that we cover all permutations.</p>
+<h4 id="exercise-9">Exercise 9</h4>
+<ul>
+<li>Copy the 3 variable truth table from above onto paper </li>
+<li>fill out a column with <code>A and B</code></li>
+<li>fill out a column with <code>((A and B) or C)</code></li>
+<li>Try some other compound statements</li>
+</ul>
+<p>If you are unsure, or to check your answers, test the response using code, below.</p>
+<h2 id="conversion-between-data-types">Conversion between data types</h2>
+<p>You can explicitly convert between ('cast') data types <strong>where this makes sense</strong> using:</p>
+<pre><code>int()
+float()
+str()
+bool()
+</code></pre>
+<pre><code class="python">start_number = 1
+print(&quot;starting with&quot;,start_number)
+
+int_number = int(start_number) 
+print('int_number',int_number,type(int_number))
+
+# now convert to float
+float_number = float(start_number)
+print('float_number',float_number,type(float_number))
+
+# now convert to str
+str_number = str(start_number)
+print('str_number',str_number,type(str_number))
+
+# now convert to bool
+bool_number = bool(start_number)
+print('bool_number',bool_number,type(bool_number))
+
+</code></pre>
+
+<pre><code>starting with 1
+int_number 1 &lt;class 'int'&gt;
+float_number 1.0 &lt;class 'float'&gt;
+str_number 1 &lt;class 'str'&gt;
+bool_number True &lt;class 'bool'&gt;
+</code></pre>
+<h4 id="exercise-10">Exercise 10</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>copy the code in the cell above, set <code>start_number</code> to <code>0</code>, and run<ul>
+<li>What are the boolean representations of <code>0</code> and <code>1</code>?</li>
+</ul>
+</li>
+<li>What would happen if you set <code>start_number</code> to the string <code>'zero'</code>, and why?</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>In this section, we have been introduced to the core data types in Python:</p>
+<table>
+<thead>
+<tr>
+<th>core data types</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>x = 10</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>x = 10.0</code></td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td><code>x = "hello world"</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>x = False</code></td>
+</tr>
+</tbody>
+</table>
+<p>and how to convert ('cast') between then, where this is feasible:</p>
+<table>
+<thead>
+<tr>
+<th>cast functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int()</code></td>
+</tr>
+<tr>
+<td><code>float()</code></td>
+</tr>
+<tr>
+<td><code>str()</code></td>
+</tr>
+<tr>
+<td><code>bool()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Other functions:</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type(v)</code></td>
+<td>data type of object <code>v</code></td>
+</tr>
+<tr>
+<td><code>len(v)</code></td>
+<td>length of object <code>v</code> (e.g. <code>str</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>We have learned truth tables to list logical operations:</p>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">A and B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">B</th>
+<th align="center">A or B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">A</th>
+<th align="center">not A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../012_Python_strings/" class="btn btn-neutral float-right" title="Python Strings">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../010_Python_Introduction/" class="btn btn-neutral" title="Python Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../010_Python_Introduction/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../012_Python_strings/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

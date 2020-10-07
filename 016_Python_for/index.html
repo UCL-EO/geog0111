@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Python For - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Python For";
+    var mkdocs_page_input_path = "016_Python_for.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Python For</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#looping-with-for">Looping with for</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#for-in">for ... in ...</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#range">range()</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enumerate">enumerate()</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#looping-over-dictionaries-and-assert">looping over dictionaries, and assert</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Core Concepts &raquo;</li>
+        
+      
+    
+    <li>Python For</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/016_Python_for.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="016-more-control-in-python-for">016 More control in Python: <code>for</code></h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="purpose">Purpose</h3>
+<p>In this section we will learn how to add more control to our code by using loops. We will mainly be using the <code>for</code> statements for this. We will also learn about the use of <code>assert</code> statements to check our code is operating as intended.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+<li><a href="../011_Python_data_types/">011 Data types</a> </li>
+<li><a href="../012_Python_strings/">012 String formatting</a></li>
+<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
+<li><a href="../014_Python_groups/">014_Python_groups</a></li>
+<li><a href="../015_Python_control/">015_Python_control</a></li>
+</ul>
+<h2 id="looping-with-for">Looping with <code>for</code></h2>
+<h3 id="for-in"><code>for ... in ...</code></h3>
+<p>Very commonly, we need to iterate or 'loop' over some set of items.</p>
+<p>The basic stucture for doing this (in Python, and many other languages) is <code>for item in group:</code>, where <code>item</code> is the name of some variable and <code>group</code> is a set of values. </p>
+<p>The loop is run so that <code>item</code> takes on the first value in <code>group</code>, then the second, etc. Notice in the code below that the expressions inside the loop use indentation to indicate the loop. As when we discussed indentation in <code>if</code> statements, be careful to align your statements or the code will fail.</p>
+<pre><code class="python">'''
+for loop
+'''
+
+group = [4,3,2,1]
+
+for item in group:
+    # print item in loop
+    print(item)
+
+print ('blast off!')
+</code></pre>
+
+<pre><code>4
+3
+2
+1
+blast off!
+</code></pre>
+<p>The <code>group</code> in this example is the list of integer numbers <code>[4,3,2,1]</code>. A <code>list</code> is a group of comma-separated items contained in square brackets <code>[]</code> as we have seen before.</p>
+<p>In Python, the statement(s) we run whilst looping (here <code>print(item)</code>) are <em>indented</em>. </p>
+<p>The indent can be one or more spaces, the choice is up to the programmer. You can use <code>&lt;tab&gt;</code> but should probably avoid it. Whatever you use, it <strong>must be consistent</strong>. We suggest you use 4 spaces.</p>
+<p>It is important to note the difference between the code above and:</p>
+<pre><code class="python">'''
+for loop
+'''
+
+group = [4,3,2,1]
+
+for item in group:
+    # print item in loop
+    print(item)
+    print ('blast off!')
+</code></pre>
+
+<pre><code>4
+blast off!
+3
+blast off!
+2
+blast off!
+1
+blast off!
+</code></pre>
+<p>In the second case, we have the <code>print ('blast off!')</code> statement inside the loop as it is indented. So it is executed each time we are in the loop. In the first case, it is outside the loop and is only run once the loop is completed.</p>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>generate a list of strings called <code>group</code> with the names of (some of) the items in your pocket or bag (or make some up!)</li>
+<li>set up a <code>for</code> loop with <code>group</code>, setting the variable <code>item</code></li>
+<li>within the loop, print each value of item in turn</li>
+<li>at the end of the loop, print <code>I'm done</code></li>
+</ul>
+<p>Quite often, we want to keep track of the 'index' of the item in the loop (the 'item number').</p>
+<p>One way to do this would be to use a variable (called <code>count</code> here).</p>
+<p>Before we enter the loop, we initialise the <code>count</code> to zero. Then, within the loop, we would need to increment <code>count</code> b y one each time (i.e. add <code>1</code> to <code>count</code>):</p>
+<pre><code class="python">'''
+for loop with enumeration
+'''
+
+group = ['cat', 'fish', '🦄', 'house']
+
+# Before we enter the loop, we initialise the `count` to zero.
+count = 0
+
+for item in group:
+    # print the count value and item
+    print(f'count: {count} : {item}')
+    # increment count by 1
+    count += 1
+
+</code></pre>
+
+<pre><code>count: 0 : cat
+count: 1 : fish
+count: 2 : 🦄
+count: 3 : house
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>copy the code above</li>
+<li>check to see if the value of <code>count</code> at the end of the loop is the same as the length of the list. </li>
+<li>Why should this be so?</li>
+</ul>
+<h2 id="range"><code>range()</code></h2>
+<p>If we want to use in index to count explicitly, we can use the <code>range()</code> function. The arguments of this are <code>(stop)</code>,  <code>(start,stop)</code> or <code>(start,stop,step)</code>. If not sepcified, the default values os <code>start</code> is <code>0</code>, and <code>step</code>, <code>1</code>, so <code>range(10)</code> is equivalent to <code>range(0,10,1)</code>.</p>
+<p>The function returns an object similar to a <code>list</code> type, but known as an iterator. An iterator can be thought of as a list that returns a single item at a time. We generally use them in a for loop or similar structure. The iterator returns integers starting at <code>start</code>, up to (but not including) <code>stop</code>, in steps of <code>step</code>. </p>
+<p>For example:</p>
+<pre><code class="python"># (0,6,1) -&gt; 0 to 6 (but not 6) in steps of 1
+for i in range(6):
+    print(i)
+</code></pre>
+
+<pre><code>0
+1
+2
+3
+4
+5
+</code></pre>
+<pre><code class="python"># (2,10,2) -&gt; 0 to 10 (but not 10) in steps of 2
+for i in range(2,10,2):
+    print(i)
+</code></pre>
+
+<pre><code>2
+4
+6
+8
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>use <code>range()</code> to print numbers counting down from 10 to 1 (<strong>inclusive</strong>)</li>
+<li>include comments to explain your answer</li>
+</ul>
+<h2 id="enumerate"><code>enumerate()</code></h2>
+<p>Since counting in loops is a common task, we can use the built in method <a href="https://docs.python.org/3/library/functions.html#enumerate"><code>enumerate()</code></a> to achieve the same thing as above. </p>
+<p>The syntax to achieve the same as the code above is then:</p>
+<pre><code class="python">'''
+for loop with enumerate()
+'''
+group = ['hat','dog','keys']
+
+for count,item in enumerate(group):
+    # print counter in loop
+    print(f'item {count} is {item}')
+
+</code></pre>
+
+<pre><code>item 0 is hat
+item 1 is dog
+item 2 is keys
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<ul>
+<li>copy the code above</li>
+<li>as in the previous exercise, check to see if the value of <code>count</code> at the end of the loop is the same as the length of the list. </li>
+<li>Explain why you get the result you do</li>
+</ul>
+<h2 id="looping-over-dictionaries-and-assert">looping over dictionaries, and <code>assert</code></h2>
+<p>Let's set up a dictionary with the names of the months as keys, and the n umber of days in. each month as the item.</p>
+<p>We will introduce a new term <code>assert</code> to test that the lengths of the lists are equal before we proceed. This takes the form:</p>
+<pre><code>asset statement
+</code></pre>
+<p>If statement is <code>True</code>, the assertion passes (the code flow continues). If it is <code>false</code>, the code execution will stop at that point. It is very useful for error checking.  </p>
+<pre><code class="python">'''
+Using the months exercise from 014_Python_groups
+
+first construct the dictionary we want: days_in_month
+'''
+months = [&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,\
+         &quot;June&quot;,&quot;July&quot;,&quot;August&quot;,&quot;September&quot;,&quot;October&quot;,\
+         &quot;November&quot;,&quot;December&quot;]
+# create a list called `ndays` with the number of days in each month (for this year)
+ndays = [31,29,31,30,31,30,31,31,30,31,30,31]
+
+# now use assert to test if the lengths are equal:
+# we will do that by making the statement:
+#    len(months) == len(ndays)
+# which can be True or False
+
+assert len(months) == len(ndays)
+
+# Use these two lists to make a dictionary called `days_in_month` 
+# with the key as month name and value as the number of days in that month.
+days_in_month = dict(zip(months,ndays))
+
+# what are the keys
+print(f'the keys are: {days_in_month.keys()}')
+</code></pre>
+
+<pre><code>the keys are: dict_keys(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
+</code></pre>
+<p>The <code>for ... in ...</code> structure we saw above applies to any group of items (or more formally, any <a href="https://www.w3schools.com/python/python_iterators.asp">iterable item</a>). How could we apply this to looping over dictionaries for instance?</p>
+<p>One straightforward way would be to simply loop over the dictionary keys:</p>
+<pre><code class="python">'''
+loop over the keys and print key and value
+'''
+for k in days_in_month.keys():
+    d = days_in_month[k]
+    print(f'Month {k} has {d} days')
+</code></pre>
+
+<pre><code>Month January has 31 days
+Month February has 29 days
+Month March has 31 days
+Month April has 30 days
+Month May has 31 days
+Month June has 30 days
+Month July has 31 days
+Month August has 31 days
+Month September has 30 days
+Month October has 31 days
+Month November has 30 days
+Month December has 31 days
+</code></pre>
+<p>This works fine, but we can simplify the structure by looping over the iterable object <code>items()</code> instead of `keys(). </p>
+<pre><code class="python">print(list(days_in_month.items()))
+</code></pre>
+
+<pre><code>[('January', 31), ('February', 29), ('March', 31), ('April', 30), ('May', 31), ('June', 30), ('July', 31), ('August', 31), ('September', 30), ('October', 31), ('November', 30), ('December', 31)]
+</code></pre>
+<p><code>items()</code> returns a set of tuples containing (<code>key</code>, <code>value</code>). So we can directly loop over that to have the much simpler code:</p>
+<pre><code class="python">'''
+use items
+'''
+for k,d in days_in_month.items():
+    print(f'Month {k} has {d} days')
+</code></pre>
+
+<pre><code>Month January has 31 days
+Month February has 29 days
+Month March has 31 days
+Month April has 30 days
+Month May has 31 days
+Month June has 30 days
+Month July has 31 days
+Month August has 31 days
+Month September has 30 days
+Month October has 31 days
+Month November has 30 days
+Month December has 31 days
+</code></pre>
+<h4 id="exercise-5">Exercise 5</h4>
+<ul>
+<li>set up  list of numbers (years) from 2008 to 2019 <strong>inclusive</strong>,</li>
+<li>set up a list of corresponding chinese zodiac names as the items (look <a href="https://www.chinahighlights.com/travelguide/chinese-zodiac/#:~:text=In%20order%2C%20the%2012%20Chinese,a%20year%20of%20the%20Rat.">online</a> for this information). </li>
+<li>check that the lists have the same length</li>
+<li>form a dictionary from the two lists, using <code>dict(zip())</code> as in the examples above</li>
+<li>use <code>.items()</code> as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: <code>f'{y} is the year of the {z}'</code>, assuming <code>y</code> is the key and <code>z</code> the item.</li>
+<li>Describe what you are doing at each step</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>We should know know how to use <code>if</code> statements in Python to control program flow. We can make choices as to what happens in the code, depending on whether or not one or more tests are passed. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.</p>
+<p>We know that conditions inside <code>if</code> statements use indentation in Python, and we know to be careful in our use of this. We have learnt about <code>enumerate()</code> and <code>range()</code>.</p>
+<p>We have also seen the use of <code>assert</code> to do some checking that our code is correct.</p>
+<p>There are additional notes in <a href="https://docs.python.org/3/tutorial/controlflow.html#the-range-function">docs.python.org</a> you can follow up to deepen your understanding of these topics. You can get more practice with <code>assert</code> at <a href="https://www.w3schools.com/python/ref_keyword_assert.asp">w3schools</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Comment</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for item in list:</code></td>
+<td>loop, setting <code>item</code> to each value in <code>list</code> sequentially</td>
+<td>see Example 1</td>
+<td></td>
+</tr>
+<tr>
+<td><code>for key,value in list_of_tuples:</code></td>
+<td>loop, setting <code>a,b</code> to each value in list of tuples</td>
+<td>See Example 2: <code>list({"a":7,"b":3}.items())</code></td>
+<td><code>[('a', 7), ('b', 3)]</code></td>
+</tr>
+<tr>
+<td><code>range(start,stop,step)</code></td>
+<td>index iterator from <code>start</code> to <code>stop</code> in steps of <code>step</code></td>
+<td><code>list(range(1,6,2))</code></td>
+<td><code>[1, 3, 5]</code></td>
+</tr>
+<tr>
+<td><code>enumerate(list)</code></td>
+<td>provide index of <code>list</code></td>
+<td><code>list(enumerate(['a','b','c']))</code></td>
+<td><code>[(0, 'a'), (1, 'b'), (2, 'c')]</code></td>
+</tr>
+<tr>
+<td><code>assert condition</code></td>
+<td>test that condition is <code>True</code>, exit otherwise</td>
+<td><code>assert True</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 1:</strong></p>
+<pre><code>    for item in [1,2,3]:
+        # print item in loop
+        print(item)
+</code></pre>
+<p>Result:</p>
+<pre><code>    1
+    2
+    3
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>    for key,value in {"a":7,"b":3}.items():
+        print(f'key is {key}, value is {value}')
+</code></pre>
+<p>Result:</p>
+<pre><code>    key is a, value is 7
+    key is b, value is 3
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../017_Functions/" class="btn btn-neutral float-right" title="Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../015_Python_control/" class="btn btn-neutral" title="Python Control"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../015_Python_control/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../017_Functions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

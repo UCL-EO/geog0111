@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Python Files - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Python Files";
+    var mkdocs_page_input_path = "020_Python_files.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../011_Python_data_types_answers/">Python Data Types</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Python Files</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test">Test</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-resources">Data resources</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#resource-location">Resource location</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#binary-and-text-data">binary and text data</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#path-import">Path, import</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#posix">posix</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-path-methods">Common Path methods</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#file-information">File information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#glob-generators">glob generators</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#absolute-parts-name-parent">absolute, parts, name, parent</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resources-from-a-url">Resources from a URL</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#gurlpath-st_size">gurlpath, st_size</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#login-and-password">login and password</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exists">exists</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#glob-and-nasa-datasets">glob and NASA datasets</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Data Basics &raquo;</li>
+        
+      
+    
+    <li>Python Files</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/020_Python_files.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="020-files-and-other-resources">020 Files and other Resources</h1>
+<h2 id="introduction">Introduction</h2>
+<h3 id="purpose">Purpose</h3>
+<p>In this session, we will learn about files and similar resources. We will introduce the standard Python library <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> which is how we deal with file paths, as well as the local package <a href="geog0111/gurlpath.py">gurlpath</a> that allows a similar object-oriented approach with files and other objects on the web. The treatment is intentionally high-level. If you need to go deeper into calls to URLs, you should look at the Python packages: <a href="https://docs.python.org/3.7/library/urllib.parse.html">urllib.parse</a>, <a href="https://requests.readthedocs.io/en/master/">requests</a> and <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>You will need some understanding of the following:</p>
+<ul>
+<li><a href="../001_Notebook_use/">001 Using Notebooks</a></li>
+<li><a href="../002_Unix/">002 Unix</a> with a good familiarity with the UNIX commands we have been through.</li>
+<li><a href="../003_Help/">003 Getting help</a></li>
+<li><a href="../004_Accounts/">004_Accounts</a></li>
+<li><a href="../005_Packages/">005_Packages</a></li>
+<li><a href="../010_Python_Introduction/">010 Variables, comments and print()</a></li>
+<li><a href="../011_Python_data_types/">011 Data types</a> </li>
+<li><a href="../012_Python_strings/">012 String formatting</a></li>
+<li><a href="../013_Python_string_methods/">013_Python_string_methods</a></li>
+</ul>
+<h3 id="test">Test</h3>
+<p>You should run a <a href="../004_Accounts/">NASA account test</a> if you have not already done so.</p>
+<h2 id="data-resources">Data resources</h2>
+<h3 id="resource-location">Resource location</h3>
+<p>We store information on a computer in files, or file-like resources. We will use the term 'file' below to mean either of these concepts, other than specific issues relating to particular types of file/resource.</p>
+<p>To get information from files, we need to be able to specify some <strong>address</strong> for the file/resource location, along with some way of interacting with the file. These concepts are captured in the idea of a <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a> (Uniform Resource Indicator). You will most likely have come across the related idea of a <a href="https://en.wikipedia.org/wiki/URL">Uniform Resource Locator (URL)</a>, which is a URL such as <a href="https://www.geog.ucl.ac.uk/people/academic-staff/philip-lewis">https://www.geog.ucl.ac.uk/people/academic-staff/philip-lewis</a>
+that gives:</p>
+<ul>
+<li>the location of the resource: <code>people/academic-staff/philip-lewis</code></li>
+<li>the access and interpretation protocol: <a href="https://en.wikipedia.org/wiki/HTTPS"><code>https</code></a> (secure <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol"><code>http</code></a>)</li>
+<li>the network domain name: <a href="https://www.geog.ucl.ac.uk"><code>www.geog.ucl.ac.uk</code></a></li>
+</ul>
+<p>When we visit this URL using an appropriate tool such as a browser, the tool can access and interpret the information in the resource: in this case, interpret the <a href="https://www.w3schools.com/html">html code</a> in the file pointed to by the URL.</p>
+<p>Similarly, we will be used to the idea of accessing <code>files</code> on the computer. These may be in the local file system, or on some network or cloud storage that might be accessible from the local file system. An example of such a file would be some Python code file such as 
+<a href="http://localhost:8888/edit/notebooks/geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a>.</p>
+<h3 id="binary-and-text-data">binary and text data</h3>
+<p>It is useful at this point to distinguish text (ASCII) and binary resources. Text resources are in a human-readable format, so you can just directly 'look at' the file contents to see what is there. Examples of this are <a href="https://en.wikipedia.org/wiki/Comma-separated_values">csv-format</a> files, <a href="https://en.wikipedia.org/wiki/HTML">html pages</a>, <a href="https://en.wikipedia.org/wiki/YAML">yaml</a> or <a href="https://en.wikipedia.org/wiki/JSON">json</a> configuration files, and even these <a href="https://jupyter.org/">Jupyter notebooks</a>. </p>
+<p>Information in text files is, as noted, easily readable: you can open the file in any text editor to see the contents. However, for large datasets, and datasets with particular structures (e.g. on grids), it is very inefficient.</p>
+<p>Typical <strong>binary</strong> files include (most) image data and compressed data (e.g. <a href="https://en.wikipedia.org/wiki/Zip_(file_format)">zip</a> files), where size is more important, as well as encrypted data, where human-readability might not be desirable.</p>
+<p>Text files designed for different purposes will mostly have some format definition or conventions. This means that although we can easily scan e.g. a <a href="https://json.org/example.html`">json file</a>, there is a set way of laying such files out, so we can interpret them by eye or in software.</p>
+<p>Binary files will also have some defined format, but in this case, the user is generally forced to use some software reader to interpret the data correctly.</p>
+<p>When you wish to access some file or dataset, you will generally know which format the file will be in, so can target an appropriate reader. Quite often though, we have to we might need to examine a dataset before deciding on some parameters for an interpreter, particularly with text datasets. </p>
+<p>In these notes, we will learn how to access and use binary and text datasets in Python, but from the local file system, and online from URLs.</p>
+<p>We first need to learn some core tools for file and URL access. We will be using the object-oriented <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> package for local files, and a local variant of <a href="https://github.com/chrono-meter/urlpath"><code>urlpath</code></a> called <a href="geog0111/gurlpath.py"><code>gurlpath</code></a>.</p>
+<p>We will be also using <code>yaml</code>, <code>json</code> and <a href="https://pandas.pydata.org/"><code>pandas</code></a> packages for reading particular text file types, and introducing <a href="https://gdal.org/python/"><code>gdal</code></a> for binary image files.</p>
+<h2 id="path-import"><code>Path</code>, <code>import</code></h2>
+<p>We have come across the idea of packages in <a href="../005_Packages/">005 Packages</a>. <code>Path</code> is part of the <code>pathlib</code> package, so in any Python codes, we first must import this into our workspace:</p>
+<pre><code class="python">from pathlib import Path
+</code></pre>
+
+<p>This imports the module <code>Path</code> from the library <code>pathlib</code>.</p>
+<p>We may repeat this <code>import</code> in the codes below, for illustration purposes. You need only import it once in any file or session though. </p>
+<h3 id="posix"><code>posix</code></h3>
+<p>The main class we will use from <code>pathlib</code> is <code>Path</code>. This provides an object-oriented way of dealing with files and paths, that is portable to any operating system. Recall from <a href="../002_Unix/">002 Unix</a> that unix-like operating systems use <code>posix</code> filenames, separated by forward slash <code>/</code> (or just <em>slash</em>). Windows uses a backslash <code>\</code>. But <em>we</em> want to write Python codes that are generic and shouldn't need to greatly worry about such issues. Using <code>Path</code> greatly helps in this regard, though there will always the occasional time we do need to distinguish <code>posix</code> and non-<code>posix</code> systems.</p>
+<h3 id="common-path-methods">Common <code>Path</code> methods</h3>
+<p>We can start with a table of <a href="https://stackabuse.com/introduction-to-the-python-pathlib-module/#:~:text=The%20Pathlib%20module%20can%20deal,(usually%20the%20current%20directory).">commonly-used methods</a> using <code>Path</code> and give their <a href="../002_Unix/">Unix equivalents</a>, most of which we have already learned.</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>unix-equivalent</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.cwd()</code></td>
+<td><code>pwd</code></td>
+<td>Return path object representing the current working directory</td>
+</tr>
+<tr>
+<td><code>Path.home()</code></td>
+<td><code>~</code></td>
+<td>Return path object representing the home directory</td>
+</tr>
+<tr>
+<td><code>Path.stat()</code></td>
+<td><code>ls -l</code>*</td>
+<td>return info about the path. File size is <code>Path.stat().st_size</code></td>
+</tr>
+<tr>
+<td><code>Path.chmod()</code></td>
+<td><code>chmod</code></td>
+<td>change file mode and permissions</td>
+</tr>
+<tr>
+<td><code>Path.glob(pattern)</code></td>
+<td><code>ls *</code></td>
+<td>Glob the pattern given in the directory that is represented by the path, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>Path.mkdir()</code></td>
+<td><code>mkdir</code></td>
+<td>to create a new directory at the given path</td>
+</tr>
+<tr>
+<td><code>Path.rename()</code></td>
+<td><code>mv</code></td>
+<td>Rename a file or directory to the given target</td>
+</tr>
+<tr>
+<td><code>Path.rmdir()</code></td>
+<td><code>rmdir</code></td>
+<td>Remove the empty directory</td>
+</tr>
+<tr>
+<td><code>Path.unlink()</code></td>
+<td><code>rm</code></td>
+<td>Remove the file or symbolic link</td>
+</tr>
+</tbody>
+</table>
+<p><code>*</code> Really, <code>Path.stat()</code> equates to the <code>unix</code> command <code>stat</code>, but this contains the information we access using <code>ls -l</code>.</p>
+<p>Since we are already familiar with most of these commands in <code>unix</code>, we can get straight into using them:</p>
+<pre><code class="python">from pathlib import Path
+
+print(f'I am in directory {Path.cwd()}')
+print(f'My home is {Path.home()}')
+</code></pre>
+
+<pre><code>I am in directory /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+My home is /home/ucfalew
+</code></pre>
+<p>To keep the filenames generic, we can form a filename from a list using <code>Path()</code>, so <code>Path('bin','README')</code> would refer to the filename <code>bin/README</code> on a <code>posix</code> system, and <code>bin/README</code> on Windows. However, this is interpreted the same as just using <code>bin/README</code> which will often be clearer.</p>
+<pre><code class="python">assert Path('bin','README') == Path('bin/README')
+print('they are the same')
+</code></pre>
+
+<pre><code>they are the same
+</code></pre>
+<p>We can use the function <code>exists</code> to check if a file exists:</p>
+<pre><code class="python">readme_file = Path('bin/README')
+print(f'Does {readme_file} exist? {readme_file.exists()}')
+</code></pre>
+
+<pre><code>Does bin/README exist? True
+</code></pre>
+<p>To add a sub-directory or file to a <code>Path</code> object, we can use the list form, or we can just specify the separator '/' between the components, provided the first term is a <code>Path</code> object:</p>
+<pre><code class="python">from pathlib import Path
+
+# the relative directory bin
+bindir = Path('bin')
+print(f'starting from the relative directory &quot;bin&quot;: {bindir}')
+
+# add README to the path
+readme_file = Path(bindir,'README')
+print(f'README file is: {readme_file}')
+
+# another way to do it using /
+readme_file = bindir/'README'
+print(f'README file is: {readme_file}')
+</code></pre>
+
+<pre><code>starting from the relative directory "bin": bin
+README file is: bin/README
+README file is: bin/README
+</code></pre>
+<h4 id="exercise-1">Exercise 1</h4>
+<p>There is a file called <code>environment.yml</code> in the directory <code>copy</code>.</p>
+<ul>
+<li>use <code>Path</code> to generate the a variable <code>copy_dir</code> containing the pathname of the <code>copy</code> directory</li>
+<li>create a variable <code>env_file</code> which adds add the file <code>environment.yml</code> to this </li>
+<li>check to see if the file exists</li>
+</ul>
+<p>To create a directory, use:</p>
+<pre><code>Path().mkdir()
+</code></pre>
+<p>We can use the options:</p>
+<pre><code>Path().mkdir(parents=True,exist_ok=True)
+</code></pre>
+<p>which will make all of the sub-directories needed, and also no fail if the directory already exists. This is often the safest way to make a directory in your code, provided you are sure that your path will be reasonable.</p>
+<p>To remove an empty directory, use:</p>
+<pre><code>Path().rmdir()
+</code></pre>
+<p>Note that there is no recursive delete in <code>pathlib</code>: you have to delete files and directories explicitly.</p>
+<pre><code class="python"># make a temp directory
+tmp = Path('tmp')
+tmp.mkdir(parents=True,exist_ok=True)
+
+# look inside tmp
+print(f'files in {tmp}: {list(tmp.glob(&quot;*&quot;))}')
+
+# generate directory inside
+inside = tmp / 'inside'
+# create this
+inside.mkdir(parents=True,exist_ok=True)
+# look inside tmp
+print(f'files in {tmp}: {list(tmp.glob(&quot;*&quot;))}')
+
+# delete inside if it is a directory
+inside.is_dir and inside.rmdir()
+# then delete tmp
+tmp.is_dir and tmp.rmdir()
+</code></pre>
+
+<pre><code>files in tmp: []
+files in tmp: [PosixPath('tmp/inside')]
+</code></pre>
+<h3 id="file-information">File information</h3>
+<p>The file permissions format we are used to from <code>ls -l</code> is accessed through <code>filename.stat().st_mode</code> but needs to be converted to octal to match to <code>ls</code></p>
+<pre><code>oct(filename.stat().st_mode)
+</code></pre>
+<pre><code class="python">from pathlib import Path
+
+# similar information to ls -l
+readme=Path('bin','README')
+print(f'README file is {readme}')
+print(f'       size is {readme.stat().st_size} bytes')
+print(f'       mode is {oct(readme.stat().st_mode)}')
+print(f'      owner is {readme.owner()}')
+</code></pre>
+
+<pre><code>README file is bin/README
+       size is 16 bytes
+       mode is 0o100644
+      owner is ucfalew
+</code></pre>
+<h3 id="glob-generators"><code>glob</code> generators</h3>
+<p>To use a wildcard (or any pattern) to refer to a list of files, we use <code>Path.glob()</code> (or <code>Path.rglob()</code> for a recursive list). This function returns a generator, which is a special type of list whereby the items in the list are produced on demand (as we use them).</p>
+<pre><code class="python"># use glob to get a list of filenames in the directory bin 
+# that end with .sh -&gt; pattern *.sh using a wildcard
+filenames = Path('bin').glob('*.sh')
+</code></pre>
+
+<p>The generator does not have all of the attributes of a list, so we cannot, for example, know the length, withjout first converting it tot a list. It is intended that you step through it one item at a time. This is usually done in a <code>for</code> loop, or similar construct:</p>
+<pre><code class="python">for i,f in enumerate(filenames):
+    print(f'file {i} is {f}')
+</code></pre>
+
+<pre><code>file 0 is bin/git-remove-all.sh
+file 1 is bin/link-set.sh
+file 2 is bin/notebook-mkdocs.sh
+file 3 is bin/notebook-run.sh
+file 4 is bin/setup.sh
+file 5 is bin/shellMe.sh
+file 6 is bin/set-course.sh
+file 7 is bin/init.sh
+file 8 is bin/howmany.sh
+file 9 is bin/sort-db.sh
+file 10 is bin/database.sh
+file 11 is bin/init0111.sh
+file 12 is bin/tidy.sh
+file 13 is bin/mv_vrt.sh
+file 14 is bin/clean0111.sh
+file 15 is bin/get_datasets.sh
+file 16 is bin/fixA.sh
+</code></pre>
+<p>The advantage of a generator is that it will generally need less memory than fully calculating all items in a list. Once we move on to the next item in the generator, any memory used by current item is freed.</p>
+<p>But is the size of objects is small, you will not notice much impact if you convert the generator to a list. </p>
+<pre><code class="python">filenames = list(Path('bin').glob('*.sh'))
+print(filenames)
+</code></pre>
+
+<pre><code>[PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/get_datasets.sh'), PosixPath('bin/fixA.sh')]
+</code></pre>
+<p>Let's use <code>glob</code> now to get the file permissions of each file <code>n*</code> in the directory <code>bin</code>:</p>
+<pre><code class="python"># use glob to get a list of filenames in the directory bin 
+# that end with .sh -&gt; pattern n* using a wildcard
+filenames = Path('bin').glob('n*')
+for f in filenames:
+    print(f'{str(f):25s}')
+</code></pre>
+
+<pre><code>bin/notebook-mkdocs.sh   
+bin/notebook-run.sh
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>Use <code>Path</code> to show the file permissions of all files that end <code>.sh</code> in the directory <code>bin</code></li>
+</ul>
+<h3 id="absolute-parts-name-parent"><code>absolute</code>, <code>parts</code>, <code>name</code>, <code>parent</code></h3>
+<p>We can use <code>Path</code> to convert filenames between relative and absolute representations using <code>absolute()</code> and <code>relative_to()</code>:</p>
+<pre><code class="python">print(f'I am in {Path.cwd()}')
+
+# define a relative path name
+readme=Path('bin/README')
+print(f'original relative name:\n\t{readme}')
+
+# convert to absolute
+readme = readme.absolute()
+print(f'absolute name:\n\t{readme}')
+
+# now make a relative pathname, 
+# reletive to current working directory
+readme = readme.relative_to(Path.cwd())
+print(f'name relative to {Path.cwd()}:\n\t{readme}')
+</code></pre>
+
+<pre><code>I am in /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+original relative name:
+    bin/README
+absolute name:
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/bin/README
+name relative to /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks:
+    bin/README
+</code></pre>
+<p>Quite often we need to split some filename up into its constituent parts. This is achieved with <code>paths</code> which gives a list of the file name tree:</p>
+<pre><code class="python">readme=Path('bin/README')
+print(readme.parts)
+</code></pre>
+
+<pre><code>('bin', 'README')
+</code></pre>
+<p>We could use that to get at the filename <code>README</code> from the last item in the list, but a more object-oriented way is to use <code>name</code> (and <code>parent</code> to get the directory up to that point):</p>
+<pre><code class="python">readme=Path('bin','README')
+print(f'name   of {readme} is {readme.name}')
+print(f'parent of {readme} is {readme.parent}')
+</code></pre>
+
+<pre><code>name   of bin/README is README
+parent of bin/README is bin
+</code></pre>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>print out the absolute pathname of the directory that <code>images/ucl.png</code> is in</li>
+<li>check that the file exists</li>
+<li>if it does, print the size of the file in KB to two decimal places</li>
+</ul>
+<p>You will need to know how many Bytes in a Kilobyte, and how to <a href="../012_Python_strings/#String-formating">format a string to two decimal places</a>. You will also need to remember how to use <a href="../015_Python_control/#Comparison-Operators-and-if"><code>if</code> statements</a>.</p>
+<h2 id="resources-from-a-url">Resources from a URL</h2>
+<h3 id="gurlpath-st_size"><code>gurlpath</code>, <code>st_size</code></h3>
+<p>The library <a href="geog0111/gurlpath.py"><code>gurlpath</code></a> in <a href="geog0111">geog0111</a> is designed to operate in a similar manner to <code>pathlib</code> for reading data from URLs. It is derived from <a href="https://github.com/chrono-meter/urlpath"><code>urlpath</code></a>  which in turn is based on <a href="https://docs.python.org/3/library/urllib.parse.html">urllib.parse</a> and <a href="https://requests.readthedocs.io/en/master/">requests</a>. It uses <a href="https://www.crummy.com/software/BeautifulSoup/"><code>BeautifulSoup</code></a> for parsing <code>html</code> data. At some point you may wish to learn how to use these lower-level packages, but for learning on this course, you will find it convenient to use this higher-level package.</p>
+<p>The object in <code>gurlpath</code> corresponding to <code>Path</code> is <code>URL</code>.</p>
+<p>A text file example:</p>
+<pre><code class="python">from geog0111.gurlpath import URL
+site = 'https://www.metoffice.gov.uk/'
+site_dir = 'hadobs/hadukp/data/monthly'
+site_file = 'HadSEEP_monthly_qc.txt'
+
+url = URL(site,site_dir,site_file)
+print(f'remote file {url}')
+print(f'size is {url.stat().st_size/1024 :.2f} KB')
+</code></pre>
+
+<pre><code>remote file https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
+size is 4.77 KB
+</code></pre>
+<p>A binary file example:</p>
+<pre><code class="python">from geog0111.gurlpath import URL
+
+site = 'https://e4ftl01.cr.usgs.gov'
+site_dir = 'MOTA/MCD15A3H.006/2020.01.01'
+site_file = 'MCD15A3H.A2020001.h08v06.006.2020006032951.hdf'
+
+url = URL(site,site_dir,site_file)
+print(f'remote file {url}')
+print(f'size is {url.stat().st_size/1024 :.2f} KB')
+</code></pre>
+
+<pre><code>remote file https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+size is -0.00 KB
+</code></pre>
+<p>We have similar functionality in <code>URL</code> to <code>Path</code> for manipulating filenames, but more limited file information:</p>
+<pre><code class="python">print(f'URL    : {url}')
+print(f'name   : {url.name}')
+print(f'parent : {url.parent}')
+</code></pre>
+
+<pre><code>URL    : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+name   : MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
+parent : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+</code></pre>
+<p>but also some other helpful ones on the URL:</p>
+<pre><code class="python">print(f'anchor   : {url.anchor}')
+print(f'hostname : {url.hostinfo}')
+print(f'scheme   : {url.scheme}')
+</code></pre>
+
+<pre><code>anchor   : https://e4ftl01.cr.usgs.gov
+hostname : e4ftl01.cr.usgs.gov
+scheme   : https
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<ul>
+<li>create a <code>URL</code> object for the file <code>table.html</code> in the directory <code>psd/enso/mei/</code> on the site <code>http://www.esrl.noaa.gov/</code>.</li>
+<li>print out the url and check it is <code>table.html</code></li>
+</ul>
+<p>For accessing URLs, will mostly make use of the following functions in <code>URL</code> that you will see are very similar to those for <code>Path</code>:</p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>URL.name</code></td>
+<td>filename</td>
+</tr>
+<tr>
+<td><code>URL.parent</code></td>
+<td>parent</td>
+</tr>
+<tr>
+<td><code>URL.parts</code></td>
+<td>parts</td>
+</tr>
+<tr>
+<td><code>URL.stat()</code></td>
+<td>return info about the file. N.B. Only <code>URL.stat().st_size</code> is used for remote files</td>
+</tr>
+<tr>
+<td><code>URL.glob(pattern)</code></td>
+<td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>URL.exists()</code></td>
+<td>test to see if a url is accessible</td>
+</tr>
+</tbody>
+</table>
+<h3 id="login-and-password">login and password</h3>
+<p>Some web resources require you to use a login and password. This can be specified for the <code>URL</code> class by with the functiuon <code>URL.with_userinfo</code>:</p>
+<pre><code class="python">help(URL.with_userinfo)
+</code></pre>
+
+<pre><code>Help on function with_userinfo in module urlpath:
+
+with_userinfo(self, username, password)
+    Return a new url with the userinfo changed.
+</code></pre>
+<p>This is the main way you can pass your username and password to the relevant functions. However, in any public information (like these notebooks) we do not want to expose sensitive information such as usernames and passwords.</p>
+<p>To that end <code>URL</code> can make use of stored passwords and usernames using the local <a href="geog0111/cylog.py">cylog</a> package that was covered in <a href="../004_Accounts/">004_Accounts</a>. You should have already tested that your NASA Earthdata login works for files on the site <code>https://e4ftl01.cr.usgs.gov</code>.</p>
+<h3 id="exists"><code>exists</code></h3>
+<p>We can use the function <code>URL.exists()</code> to test to see if some URL is accessible to us. The function first tries without a password, but if that fails, tries to find an appropriate password and username in the <code>cyclog</code> database.</p>
+<p>Several of the URL functions have <code>verbose</code> options (unlike those from <code>Path</code>). This is to allow the user to gain more insight into what is going on in accessing the URL. We will use <code>exists()</code> with <code>verbose=True</code> below:</p>
+<pre><code class="python">from geog0111.gurlpath import URL
+from pathlib import Path
+
+site = 'https://e4ftl01.cr.usgs.gov'
+site_dir = '/MOLA/MYD11_L2.006/2002.07.04'
+site_file = 'MYD11_L2.A2002185.0325.006.2015142192613.hdf'
+
+url = URL(site,site_dir,site_file,verbose=True)
+if url.exists():
+    print(f'I can access {url}')
+else:
+    print(f'I cannot access {url}')
+</code></pre>
+
+<pre><code>--&gt; trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+--&gt; trying get
+--&gt; trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+--&gt; code 401
+--&gt; trying another
+--&gt; getting login
+--&gt; logging in to https://e4ftl01.cr.usgs.gov/
+
+
+I can access https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
+
+
+--&gt; data read from https://e4ftl01.cr.usgs.gov/
+--&gt; code 200
+</code></pre>
+<p>When we try to access a datafile on the site <a href="https://e4ftl01.cr.usgs.gov"><code>https://e4ftl01.cr.usgs.gov</code></a> we need to use our NASA Earthdata login and password. This is done automatically withing the call to <code>url.exists()</code> or for any function requiring passwords.</p>
+<h3 id="glob-and-nasa-datasets"><code>glob</code> and NASA datasets</h3>
+<p>The <code>glob</code> function is particularly useful for finding datasets on websites, as we might not always know the full file specification. Using <code>rglob()</code> (recursive glob) on a website is generally too slow to be worthwhile, so we will avoid using it.</p>
+<p>Suppose we want to access some NASA hdf files for the product <code>MCD15A3H</code> for the data tile <code>h08v06</code>. On the site <code>https://e4ftl01.cr.usgs.gov</code> the data will be in the folder <code>'MOTA/MCD15A3H.006</code>. Data for a particular date then are in a directory of the form <code>/{year}.{month}.{day}/</code> where <code>month</code> and <code>day</code> must be a 2-digit string, left zero-padded (e.g. <code>02</code> instead of <code>2</code>). Files in there will have the form <code>*.h08v06*.hdf</code>. This is a perfect case for the use of <code>glob</code>:</p>
+<p>If we specify a date (1-based for month, so <code>1</code> is January):</p>
+<pre><code>year, month, day = '2020', '06', '01'
+</code></pre>
+<p>then the directory will be given by:</p>
+<pre><code>site_dir = f'MOTA/MCD15A3H.006/{year:4d}.{month:02d}.{day:02d}'
+</code></pre>
+<p>and the file, with wildcard <code>*</code> by:</p>
+<pre><code>site_file = '*.h08v06*.hdf'
+</code></pre>
+<p>we can use <code>glob</code> to discover the full URL specification:</p>
+<pre><code class="python">from geog0111.gurlpath import URL
+
+# settings
+product = 'MCD15A3H'
+year, month, day = '2020', '06', '01'
+tile = 'h08v06'
+
+# url with wildcards
+site = 'https://e4ftl01.cr.usgs.gov'
+site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
+site_file = f'*.{tile}*.hdf'
+
+# get the information
+url = URL(site,site_dir,verbose=True)\
+# convert generator to list to make it easier to understand
+hdf_urls = url.glob(site_file)
+for u in hdf_urls:
+    print(u)
+</code></pre>
+
+<pre><code>https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
+
+
+--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+--&gt; parsing URLs from html file 1 items
+--&gt; discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
+--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+--&gt; parsing URLs from html file 1 items
+--&gt; discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
+--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+--&gt; parsing URLs from html file 1 items
+--&gt; discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
+--&gt; parsing URLs from html file 1 items
+--&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
+</code></pre>
+<p>This is extremely useful for dataset discovery.</p>
+<h4 id="exercise-5">Exercise 5</h4>
+<p>based on the code from above:</p>
+<pre><code># settings
+product = 'MCD15A3H'
+year, month, day = '2020', '06', '01'
+tile = 'h08v06'
+
+# url with wildcards
+site = 'https://e4ftl01.cr.usgs.gov'
+site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
+site_file = f'*.{tile}*.hdf'
+
+# get the information
+url = URL(site,site_dir,verbose=True)
+hdf_urls = list(url.glob(site_file))[0]
+</code></pre>
+<ul>
+<li>write a function called <code>modis_dataset</code> with arguments corresponding to the settings above</li>
+<li>the function should return the URL objects of the NASA datasets specified by your arguments</li>
+<li>your function should be fully documented and include some error checks</li>
+<li>run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places</li>
+<li>what happens if you use a wildcard for the date?</li>
+</ul>
+<p>The utility function <code>modis_dataset</code> we have developed here is available as <code>get_url</code> in the <code>Modis</code> class in  <code>geog0111.modis</code>:</p>
+<pre><code class="python">from  geog0111.modis import Modis
+
+help(Modis.get_url)
+</code></pre>
+
+<pre><code>Help on function get_url in module geog0111.modis:
+
+get_url(self, **kwargs)
+    Get URL object list for NASA MODIS products
+    for the specified product, tile, year, month, day
+
+    Keyword Arguments:
+
+    verbose:  bool
+    site    : str 
+    product : str e.g. 'MCD15A3H'
+    tile    : str e.g. 'h08v06'
+    year    : str valid 2000-present
+    month   : str 01-12
+    day     : str 01-(28,29,30,31)
+</code></pre>
+<pre><code class="python">from  geog0111.modis import Modis
+
+modis = Modis(product='MCD15A3H',verbose=False)
+hdf_urls = modis.get_url(year=&quot;2020&quot;,month=&quot;*&quot;,day=&quot;01&quot;)
+for u in hdf_urls:
+    print(f'{u.name} : {u.exists()}')
+</code></pre>
+
+<pre><code>MCD15A3H.A2020001.h08v06.006.2020006032951.hdf : True
+MCD15A3H.A2020061.h08v06.006.2020066032716.hdf : True
+MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
+MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
+</code></pre>
+<h2 id="summary">Summary</h2>
+<p>In this section, we have considered URLs and filenames in some detail, and made use of functions from <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> and <a href="geog0111/gurlpath.py">gurlpath</a> to access them. These high-level routines will work for a large number of cases. If you need to go deeper into calls to URLs, you should look at the Python packages: <a href="https://docs.python.org/3.7/library/urllib.parse.html">urllib.parse</a>, <a href="https://requests.readthedocs.io/en/master/">requests</a> and <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>.</p>
+<p>The first batch of <code>Path</code> commands we saw had much commonality with the core <code>unix</code> commands we had previously come across for moving around the file system and finding file information:</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>unix-equivalent</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.cwd()</code></td>
+<td><code>pwd</code></td>
+<td>Return path object representing the current working directory</td>
+</tr>
+<tr>
+<td><code>Path.home()</code></td>
+<td><code>~</code></td>
+<td>Return path object representing the home directory</td>
+</tr>
+<tr>
+<td><code>Path.stat()</code></td>
+<td><code>ls -l</code>*</td>
+<td>return info about the path. File size is <code>Path.stat().st_size</code></td>
+</tr>
+<tr>
+<td><code>Path.chmod()</code></td>
+<td><code>chmod</code></td>
+<td>change file mode and permissions</td>
+</tr>
+<tr>
+<td><code>Path.mkdir()</code></td>
+<td><code>mkdir</code></td>
+<td>to create a new directory at the given path</td>
+</tr>
+<tr>
+<td><code>Path.rename()</code></td>
+<td><code>mv</code></td>
+<td>Rename a file or directory to the given target</td>
+</tr>
+<tr>
+<td><code>Path.rmdir()</code></td>
+<td><code>rmdir</code></td>
+<td>Remove the empty directory</td>
+</tr>
+<tr>
+<td><code>Path.unlink()</code></td>
+<td><code>rm</code></td>
+<td>Remove the file or symbolic link</td>
+</tr>
+</tbody>
+</table>
+<p>The second set is common to both <code>Path</code> and <code>URL</code>, and involves queries on the <code>Path</code> (<code>URL</code>) name, testing for file existence, and using wildcards to access a list of files matching a pattern:</p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Path.name</code></td>
+<td>filename</td>
+</tr>
+<tr>
+<td><code>Path.parent</code></td>
+<td>parent</td>
+</tr>
+<tr>
+<td><code>Path.parts</code></td>
+<td>parts</td>
+</tr>
+<tr>
+<td><code>Path.stat()</code></td>
+<td>return info about the path</td>
+</tr>
+<tr>
+<td><code>Path.glob(pattern)</code></td>
+<td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>Path.exists()</code></td>
+<td>test to see if a url is accessible</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>URL.name</code></td>
+<td>filename</td>
+</tr>
+<tr>
+<td><code>URL.parent</code></td>
+<td>parent</td>
+</tr>
+<tr>
+<td><code>URL.parts</code></td>
+<td>parts</td>
+</tr>
+<tr>
+<td><code>URL.stat()</code></td>
+<td>return info about the file. N.B. Only <code>URL.stat().st_size</code> is used for remote files</td>
+</tr>
+<tr>
+<td><code>URL.glob(pattern)</code></td>
+<td>Glob the pattern given in the URL directory, yielding matching files of any kind</td>
+</tr>
+<tr>
+<td><code>URL.exists()</code></td>
+<td>test to see if a url is accessible</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../021_Streams/" class="btn btn-neutral float-right" title="Streams">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../018_Running_Python_answers/" class="btn btn-neutral" title="Running Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../018_Running_Python_answers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../021_Streams/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

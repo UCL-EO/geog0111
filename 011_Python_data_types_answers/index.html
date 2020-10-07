@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Prof P. Lewis">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Python Data Types - GEOG0111</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Python Data Types";
+    var mkdocs_page_input_path = "011_Python_data_types_answers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> GEOG0111</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Course Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../001_Notebook_use/">Notebook Use</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../002_Unix/">Unix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../003_Help/">Help</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../004_Accounts/">Accounts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../005_Packages/">Packages</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../001_Notebook_use_answers/">Notebook Use</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../002_Unix_answers/">Unix</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../003_Help_answers/">Help</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Core Concepts</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../010_Python_Introduction/">Python Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../011_Python_data_types/">Python Data Types</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../012_Python_strings/">Python Strings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../013_Python_string_methods/">Python String Methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../014_Python_groups/">Python Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../015_Python_control/">Python Control</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../016_Python_for/">Python For</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../017_Functions/">Functions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../018_Running_Python/">Running Python</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Answers</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../010_Python_Introduction_answers/">Python Introduction</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Python Data Types</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-1">Exercise 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-2">Exercise 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#answer">Answer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-4">Exercise 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-5">Exercise 5</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-6">Exercise 6</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-7">Exercise 7</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-9">Exercise 9</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercise-10">Exercise 10</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../012_Python_strings_answers/">Python Strings</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../013_Python_string_methods_answers/">Python String Methods</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../014_Python_groups_answers/">Python Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../015_Python_control_answers/">Python Control</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../016_Python_for_answers/">Python For</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../017_Functions_answers/">Functions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../018_Running_Python_answers/">Running Python</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Basics</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../020_Python_files/">Python Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../021_Streams/">Streams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../022_Read_write_files/">Read Write Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../023_Plotting/">Plotting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../024_Image_display/">Image Display</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../020_Python_files_answers/">Python Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../021_Streams_answers/">Streams</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../022_Read_write_files_answers/">Read Write Files</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../023_Plotting_answers/">Plotting</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../024_Image_display_answers/">Image Display</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Array Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../030_NASA_MODIS_Earthdata/">NASA MODIS Earthdata</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../031_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../032_More_numpy/">More Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../030_NASA_MODIS_Earthdata_answers/">NASA MODIS Earthdata</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../031_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../032_More_numpy_answers/">More Numpy</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Geospatial Data</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking/">GDAL Mosaicing And Masking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../041_GDAL_timeseries/">GDAL Timeseries</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../042_Weighted_smoothing_and_interpolation/">Weighted Smoothing And Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../043_Weighted_interpolation/">Weighted Interpolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../040_GDAL_mosaicing_and_masking_answers/">GDAL Mosaicing And Masking</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../041_GDAL_timeseries_answers/">GDAL Timeseries</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../043_Weighted_interpolation_answers/">Weighted Interpolation</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modelling</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../050_Models/">Models</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../051_Phenology_model/">Phenology Model</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../050_Models_answers/">Models</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../051_Phenology_model_answers/">Phenology Model</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Assessment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../060_Groups/">Groups</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../061_Script/">Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../062_Part1/">Part1</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../063_Part1_code/">Part1 Code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../064_Numpy/">Numpy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../065_LAI/">Lai</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../066_Part2/">Part2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Answers</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../060_Groups_answers/">Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../061_Script_answers/">Script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../064_Numpy_answers/">Numpy</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../065_LAI_answers/">Lai</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Summary</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../070_Summary/">Summary</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">GEOG0111</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Answers &raquo;</li>
+        
+      
+        
+          <li>Core Concepts &raquo;</li>
+        
+      
+    
+    <li>Python Data Types</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/011_Python_data_types_answers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="011-python-data-types-answers-to-exercises">011 Python data types : Answers to exercises</h1>
+<h4 id="exercise-1">Exercise 1</h4>
+<ul>
+<li>If the ASCII code for <code>e</code> is <code>101</code> and the code for <code>n</code> is <code>110</code>, what is the code for <code>a</code>?</li>
+</ul>
+<pre><code class="python"># ANSWER
+msg = '''
+e -&gt; 101
+n -&gt; 110
+
+since e is the 5th letter of the alphabet and n is the 14th
+it follows that a is 101 - 4 == 110 - 13 = 97
+
+so
+
+a -&gt; 97
+
+Confirm this e.g. on http://www.asciitable.com/
+'''
+print(msg)
+</code></pre>
+
+<pre><code>e -&gt; 101
+n -&gt; 110
+
+since e is the 5th letter of the alphabet and n is the 14th
+it follows that a is 101 - 4 == 110 - 13 = 97
+
+so
+
+a -&gt; 97
+
+Confirm this e.g. on http://www.asciitable.com/
+</code></pre>
+<h4 id="exercise-2">Exercise 2</h4>
+<ul>
+<li>in a code cell below, create a variable called <code>name</code> and set it to your name</li>
+<li>print the string name, and its length</li>
+<li>comment on why the length is the value you find</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# in a code cell below, create a variable called `name` and set it to your name
+name = 'Charlie Walker'
+
+# print the string name, and its length
+print(name,len(name))
+
+# comment on why the length is the value you find
+msg = '''
+    The string 'Charlie' has 7 characters
+    the string 'Walker' has 6 characters
+    plus we have a space iun the middle
+    so, the length we would expect is 7 + 6 + 1 = 14
+
+    This is what is returned by len(name)
+'''
+print(msg)
+</code></pre>
+
+<pre><code>Charlie Walker 14
+
+    The string 'Charlie' has 7 characters
+    the string 'Walker' has 6 characters
+    plus we have a space iun the middle
+    so, the length we would expect is 7 + 6 + 1 = 14
+
+    This is what is returned by len(name)
+</code></pre>
+<h4 id="answer">Answer</h4>
+<p>We could find this by examining ASCII code <a href="http://www.asciitable.com">tables</a> and see that <code>a</code> (lower case a) has the code 97.</p>
+<p>Alternatively, we could search for help on this topic, and find that the python function <code>ord()</code> converts from string to ASCII code: </p>
+<pre><code class="python"># ANSWER
+print(&quot;the ASCII code for 'a' is&quot;,ord('a'))
+</code></pre>
+
+<pre><code>the ASCII code for 'a' is 97
+</code></pre>
+<p>Alternatively, we might notice that <code>n</code> is the 14th letter of the alphabet, and <code>e</code>the 5th, so the code seems to be <code>97 + N</code> where <code>N</code> is the order the letter appears in the alphabet. We can confirm this with the 15th letter <code>o</code> which we see from above has the code <code>111</code>. </p>
+<h4 id="exercise-3">Exercise 3</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>set a variable called message to contain the string <code>hello world</code></li>
+<li>print the value and data type of the variable message</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# set a variable called message to contain the string hello world
+message = 'hello world'
+
+# print the value and data type of the variable message
+print(message,type(message))
+</code></pre>
+
+<pre><code>hello world &lt;class 'str'&gt;
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<p>Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:</p>
+<p>$$
+    1\ Electron\ volt\ (eV) = 1.602176565 \times 10^{-19} J
+$$</p>
+<ul>
+<li>Insert a new cell below here</li>
+<li>calculate the energy associated with a blue photon at 450 nm, in eV</li>
+<li>confirm your answer using a <a href="http://www.calctool.org/CALC/other/converters/e_of_photon">web calculator</a></li>
+</ul>
+<pre><code class="python"># Answer
+# Copy mostly from above:
+
+# values of c and h
+c = 2.99792458e8
+h = 6.62607015e-34
+
+print(h * c)
+# wavelength in nm: BLUE
+# calculate the energy associated with a blue photon at 450 nm, in eV
+l_nm = 450.0
+
+# wavelength in m
+l_m = l_nm * 1e-9
+
+# Planck-Einstein in J
+E_J = h * c / l_m
+
+# conversion formula given above
+E_eV = E_J / 1.602176565e-19
+print('Photon of wavelength', l_nm, 'nm')
+print('has an energy of', E_eV, 'eV')
+# which compares with 2.75520 eV given in the web calculator
+</code></pre>
+
+<pre><code>1.9864458571489286e-25
+Photon of wavelength 450.0 nm
+has an energy of 2.7552045282834468 eV
+</code></pre>
+<h4 id="exercise-5">Exercise 5</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>using integer arithmetic, print the result of:</li>
+<li>2 to the power of 8</li>
+<li>1024 divided by 2</li>
+<li>set a variable called <code>x</code> to the result of 7 (floor) divided by 3.</li>
+<li>print the value of <code>x</code>, and confirm its data type is <code>int</code></li>
+</ul>
+<pre><code class="python">#
+# answer
+# using integer arithmetic, print the result of:
+
+# 2 to the power of 8
+print(2**8)
+
+# 1024 divided by 2 integer division (floor)
+print(1024 // 2)
+
+# set a variable called x to the result of 7 divided by 3
+x = 7 // 3
+print('Integer: 7 divided by 3 is', x, type(x))
+
+# We contrast this with the use of /
+# which results in a variable of type float
+x = 7 / 3
+print('7 divided by 3 is', x, type(x))
+</code></pre>
+
+<pre><code>256
+512
+Integer: 7 divided by 3 is 2 &lt;class 'int'&gt;
+7 divided by 3 is 2.3333333333333335 &lt;class 'float'&gt;
+</code></pre>
+<h4 id="exercise-6">Exercise 6</h4>
+<ul>
+<li>Insert a new cell below here</li>
+<li>Set a variable called <code>is_class_today</code> to the value <code>True</code></li>
+<li>print the variable name, its value, and its data type</li>
+</ul>
+<pre><code class="python"># ANSWER
+# Insert a new cell below here
+# Set a variable called `is_class_today` to the value `True`
+
+is_class_today = True
+
+# print the variable name, its value, and its data type
+
+print('is_class_today',is_class_today,type(is_class_today))
+</code></pre>
+
+<pre><code>is_class_today True &lt;class 'bool'&gt;
+</code></pre>
+<h4 id="exercise-7">Exercise 7</h4>
+<ul>
+<li>Insert a new cell below here</li>
+<li>write a statement to set a variable <code>x</code> to <code>True</code> and print the value of <code>x</code> and <code>not x</code> </li>
+<li>what does <code>not not x</code> give? Make sure you understand why </li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# write a statement to set a variable x to True 
+x = True
+
+# and print the value of x and not x
+print('x is',x)
+print('not x is',not x)
+
+# what does not not x give? 
+print('not not x is',not not x)
+msg = '''
+answer
+------
+not not x is the same as just x
+
+A double negative cancels out, in effect
+'''
+print(msg)
+</code></pre>
+
+<pre><code>x is True
+not x is False
+not not x is True
+
+answer
+------
+not not x is the same as just x
+
+A double negative cancels out, in effect
+</code></pre>
+<pre><code class="python"># ANSWER
+# do the testing here e.g.
+print (True or False)
+</code></pre>
+
+<pre><code>True
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">blank</th>
+<th align="center">A and B</th>
+<th align="center">A or B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="blank" src="images/tt1.png" /></td>
+<td align="center"><img alt="blank" src="images/ttand.png" /></td>
+<td align="center"><img alt="blank" src="images/ttor.png" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="exercise-9">Exercise 9</h4>
+<ul>
+<li>Copy the 3 variable truth table from above onto paper </li>
+<li>fill out a column with <code>A and B</code></li>
+<li>fill out a column with <code>((A and B) or C)</code></li>
+<li>Try some other compound statements</li>
+</ul>
+<p>If you are unsure, or to check your answers, test the response using code, below.</p>
+<pre><code class="python"># ANSWER
+# do the testing here e.g.
+print ((True and False) or True)
+</code></pre>
+
+<pre><code>True
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">blank</th>
+<th align="center">A and B</th>
+<th align="center">((A and B) or C)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="blank" src="images/tt2.png" /></td>
+<td align="center"><img alt="blank" src="images/tt2and.png" /></td>
+<td align="center"><img alt="blank" src="images/tt2or.png" /></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="python"># ANSWER
+
+# write a statement to set a variable x to True a
+x = True
+
+# print the value of x 
+print('x is',x)
+
+# print the value of not x 
+print('not x is',not x)
+
+# what does not not x give?
+print('not not x is',not not x)
+# not not cancels out (double negative)
+</code></pre>
+
+<pre><code>x is True
+not x is False
+not not x is True
+</code></pre>
+<pre><code class="python"># ANSWER
+
+# Set a variable called `is_class_today` to the value `True`
+is_class_today = True
+
+# print the variable name, its value, and its data type
+print('is_class_today',is_class_today,type(is_class_today))
+</code></pre>
+
+<pre><code>is_class_today True &lt;class 'bool'&gt;
+</code></pre>
+<h4 id="exercise-10">Exercise 10</h4>
+<ul>
+<li>insert a new cell below here</li>
+<li>copy the code in the cell above, set <code>start_number</code> to <code>0</code>, and run<ul>
+<li>What are the boolean representations of <code>0</code> and <code>1</code>?</li>
+</ul>
+</li>
+<li>What would happen if you set <code>start_number</code> to the string <code>'zero'</code>, and why?</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+# copy the code in the cell above, and set start_number to 0
+start_number = 0
+
+print(&quot;starting with&quot;, start_number)
+int_number = int(start_number)
+print('int_number', int_number, type(int_number))
+# now convert to float
+float_number = float(int_number)
+print('float_number', float_number, type(float_number))
+# now convert to str
+str_number = str(int_number)
+print('str_number', str_number, type(str_number))
+# now convert to bool
+bool_number = bool(int_number)
+print('bool_number', bool_number, type(bool_number))
+
+# What is the boolean representation of 0?
+msg = '''
+
+What would happen if you set start_number to the string 'zero', and why?
+
+Answer
+------
+  1 -&gt; True
+  0 -&gt; False
+
+  If we set start_number to 'zero' then int('zero') will fail
+  because it cannot convert a word representation of this sort to an integer
+  only a character representation such as '0' or '1'
+'''
+print(msg)
+</code></pre>
+
+<pre><code>starting with 0
+int_number 0 &lt;class 'int'&gt;
+float_number 0.0 &lt;class 'float'&gt;
+str_number 0 &lt;class 'str'&gt;
+bool_number False &lt;class 'bool'&gt;
+
+
+What would happen if you set start_number to the string 'zero', and why?
+
+Answer
+------
+  1 -&gt; True
+  0 -&gt; False
+
+  If we set start_number to 'zero' then int('zero') will fail
+  because it cannot convert a word representation of this sort to an integer
+  only a character representation such as '0' or '1'
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../012_Python_strings_answers/" class="btn btn-neutral float-right" title="Python Strings">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../010_Python_Introduction_answers/" class="btn btn-neutral" title="Python Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UCL-EO/geog0111/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../010_Python_Introduction_answers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../012_Python_strings_answers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
