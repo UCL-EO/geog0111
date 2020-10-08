@@ -22,6 +22,7 @@ These instructions assume that you will run these commands in a bash shell. You 
 
 2. Set up environment:
 
+        conda activate geog0111
         bin/init0111.sh
         
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
