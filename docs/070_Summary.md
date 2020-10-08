@@ -592,36 +592,17 @@ Modis library:
             modis = Modis(**kwargs)
             
 
+            kwargs = {
+                'tile'      :    ['h17v03'],
+                'product'   :    'MCD15A3H',
+                'sds'       :    'Lai_500m',
+            }
 
-            get_data(year, doy=None, idict=None, month=None, day=None, step=1, fatal=False) 
-            method of geog0111.modis.Modis instance
-            
-                Return data dictionary of MODIS dataset for specified time period
 
-                args:
-                  year  : year (2000 to present for MOD, or 2002 to present if using MYD)
-                          NB this is ignoired if idict is given
+| function|comment|example|
+|---|---|---|
+| `modis.get_data(year,doy)` | Dictionary of 2D data arrays by SDS key for MODIS product | `Modis(product='MCD15A3H',tile=['h17v03']).get_data(2019,41)`|
 
-                options:
-                  doy   : day in year, or day in month if month specified, or None
-                          when specified as day in year, or day in month, can be a list
-                          1-365/366 or 1-28-31 as appropriate
-                  day   : day in month or None. Can be list.
-                  month : month index 1-12 or None. Can be list.
-                  step  : dataset step. Default 1, but set to 4 for 4-day product, i
-                          8 for 8-day, 365/366 for year etc.
-                  fatal : default False. If True, exit if dataset not found.
-                  idict : data file dictionary provided by eg call to
-                          self.get_modis(year,doy=None,month=None,step=1,fatal=False)
-                          see get_modis for more details
-
-                returns:
-                  data dictionary with keys specified by:
-                        - self.sds list 
-                        - or all SDS if self.sds is None (default)
-                  data dictionary key 'bandnames' of DOY 
-
-                  Each data item a 2- or 3-dimensional numpy array            
             
 
 ### Array data
@@ -677,3 +658,170 @@ Some MODIS datasets
  |`np.median(a)` | median of values in array `a`, assumed `a` values in radians |`axis=N` : value taken over axis `N` |
  |`np.sqrt(a)` | square root of values in array `a` ||
   |`np.sin(a)` | sine of values in array `a`, assumed `a` values in radians etc.|
+    |`np.exp(a)` | exponential of values in array `a`|
+    
+#### 031 More `numpy`
+
+[032_More_numpy](032_More_numpy.md)
+
+
+| Function | description   | keywords | 
+ |---|---|---|
+ | `np.loadtxt(f)` | Load datra from file `f` into numpy array ||
+ | x[start:stop:step] | 1-D slice of array `x` ||
+ | `slice(start:stop:step)` | function to apply to slice e.g. `x[slice(start:stop:step)]`|
+ | `np.argmin(x)` | return 1D index of minimum value in array (/axis) |  `axis=N` : value taken over axis `N` |
+ | `np.argmax(x)` | return 1D index of maximum value in array (/axis) |  `axis=N` : value taken over axis `N` |
+ | `x > 1` | logical operator resulting in boolean array e.g. to use for masks |
+ | `np.logical_not(x)` | element-wise not over array |
+ | `np.logical_or(x,y)` | element-wise `a` or `b`  over array |
+ | `np.logical_and(x,y)` | element-wise `a` and `b`  over array |
+ | `np.where(x)` |  list of indices where `x` is `True` |
+ | `x.flatten()` | convert copy of ND array `x` into 1D array |
+  | `x.ravel()` | convert ND array `x` into 1D array |
+| `x.reshape(shape)` | apply shape `shape` to array `x` |
+| `np.unravel_index(indices,shape)` | unravel 1D indices `indices` to ND defined by `shape` |
+| `np.newaxis` | add a new axis to array for reconciling multiple dimensions making a copy. Effectively makes new dimension of size `(1,)` |
+
+
+### Geospatial data
+
+#### 040 GDAL: mosaicing and masking
+
+[040_GDAL_mosaicing_and_masking](040_GDAL_mosaicing_and_masking.md)
+
+
+Modis library: 
+
+            from  geog0111.modis import Modis
+            modis = Modis(**kwargs)
+            
+
+            kwargs = {
+                'tile'      :    ['h17v03'],
+                'product'   :    'MCD15A3H',
+                'sds'       :    'Lai_500m',
+            }
+
+
+| function|comment|example|
+|---|---|---|
+| `modis.get_data(year,doy)` | Dictionary of 2D data arrays by SDS key for MODIS product for year `year` and day of year `doy` | `idict = modis.get_data(2019,41)`|
+|`modis.get_files(year,doy)`| Filename and SDS list of MODIS product for year `year` and day of year `doy` | `files, sds = modis.get_data(2019,41)`|
+|`modis.get_modis(year,doy,warp_args=warp_args)` | Dictionary of 2D/3D data arrays by SDS key for MODIS product for year `year` and day of year `doy`, warped by `warp_args` (see `gdal.Warp()`). Note that `doy` can be list of `doys` or wildcard. If > 1 band, then dataset is 3D and key `bandnames` included |
+            
+`gdal`:
+
+
+|function|comment|example and keywords|
+|---|---|---|
+|`g = gdal.Open(filename)` | Open geospatial file `filename` and return `gdal` object `g` (`None` if file not opened correctly)|
+|`g.GetSubDatasets()` | Get list of sub-datasets from `gdal` object `g`| 
+|`g.ReadAsArray(c0,r0,nc,nr)` | Read dataset from `gdal` object `g` into array. Form `c0` for `nc` columns and `r0` for `nr` rows. Set as `None` for defaults or don't give.|
+|`gdal.BuildVRT(ofile, sds)` | create `gdal` VRT (wrapper) file called `ofile` for SDS/file `sds` | `files,sds = modis.get_files(year,doy)`|
+||| `separate=True` for separate bands |
+||| `ofile = f"work/stitch_full_{year}_{doy:03d}.vrt"`|
+|||`stitch_vrt = gdal.BuildVRT(ofile, sds[0])`|
+|`gdal.Info(f)` | Print information about geospatial file `f` ||
+| `gdal.Warp(ofile,ifile)` | Warp `ifile` to `ofile` with keyword parameters | Keywords: 
+|||`format = 'MEM'` or `format = 'GTiff'` : output format|
+||| `options=['COMPRESS=LZW']` : compression option for GTiff etc.
+||| `dstNodata=255`: no data value |
+||| `cropToCutline = True` : whether to crop to cutline or bounds |
+||| `cutlineDSName = 'data/TM_WORLD_BORDERS-0.3.shp'` : vector dataset for cutline|
+||| `cutlineWhere = "FIPS='UK'"` : identifier information for cutline 
+|`g.FlushCache()` | flush open `gdal` object `g` (force write to file) |
+
+#### 041 GDAL: mosaicing and masking
+
+[041_GDAL timeseries](041_GDAL_timeseries.md)
+
+
+
+
+```python
+from geog0111.modis_annual import modis_annual_dataset
+help(modis_annual_dataset)
+```
+
+    Help on function modis_annual_dataset in module geog0111.modis_annual:
+    
+    modis_annual_dataset(year, tile, product, step=1, verbose=False)
+    
+
+
+
+```python
+from geog0111.modis_annual import get_modis_annual
+help(get_modis_annual)
+```
+
+    Help on function get_modis_annual in module geog0111.modis_annual:
+    
+    get_modis_annual(ifiles, sds=None, warp_args={})
+    
+
+
+
+```python
+from geog0111.modis_annual import modis_annual
+help(modis_annual)
+```
+
+    Help on function modis_annual in module geog0111.modis_annual:
+    
+    modis_annual(year, tile, product, step=1, sds=None, warp_args={}, verbose=False)
+    
+
+
+
+```python
+from geog0111.get_lai_data import get_lai_data
+help(get_lai_data)
+```
+
+    Help on function get_lai_data in module geog0111.get_lai_data:
+    
+    get_lai_data(year, tile, fips)
+        Get the annual LAI dataset for fips, tile and year
+        and return lai,std,doy
+    
+
+
+#### 043 Weighted interpolation
+
+[043_Weighted_interpolation](043_Weighted_interpolation.md)
+
+|function|comment|
+|---|---|
+|`scipy.ndimage.filters` | `scipy` filters |
+|`zscipy.ndimage.filters.convolve1d(data,filter)` | 1D convolution of `filter` with `data`. Keywords : `axis=0,mode='wrap'`|
+
+
+```python
+from geog0111 import regularise
+help(regularise)
+```
+
+    Help on module geog0111.regularise in geog0111:
+    
+    NAME
+        geog0111.regularise
+    
+    FUNCTIONS
+        regularise(lai, weight, sigma)
+            takes as argument:
+            
+                lai     : MODIS LAI dataset:     shape (Nt,Nx,Ny)
+                weight  : MODIS LAI weight:      shape (Nt,Nx,Ny)
+                sigma   : Gaussian filter width: float
+                
+            returns an array the same shape as 
+            lai of regularised LAI. Regularisation takes place along
+            axis 0 (the time axis)
+    
+    FILE
+        /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/geog0111/regularise.py
+    
+    
+

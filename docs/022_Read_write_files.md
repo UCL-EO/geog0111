@@ -113,7 +113,6 @@ assert data_url == data_file
 print('files are the same')
 ```
 
-    --> deleting existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/www.json.org/json-en.html.store
     --> trying https://www.json.org/json-en.html
 
 
@@ -146,21 +145,18 @@ modis = Modis(**kwargs)
 url = modis.get_url(year="2020",month="01",day="01")[0]
 ```
 
-    --> retrieving SDS MCD15A3H from database
-    --> found SDS names in database
-    --> ['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m']
     --> product MCD15A3H -> code MOTA
     --> getting database from command line
-    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern 2020.01.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01.store
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H*.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
 
@@ -176,16 +172,14 @@ print(f'data for {url} cached in {url.local()}')
 print(f'dataset is {len(b)} bytes')
 ```
 
-    --> retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
-    --> local file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
-    --> updated cache database in /shared/groups/jrole001/geog0111/work/database.db
-
-
-    data for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf cached in /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store
+    data for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf cached in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store
     dataset is 9067184 bytes
 
 
-    --> local file /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
+    --> retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
+    --> local file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
+    --> updated cache database in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+    --> local file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
 
 
 We could explicitly write the data to a file, but since we are using a cache, there is no real point. This means that we can just use the URL to access the dataset. If we do need to specify the filename explicitly for any other codes, we can use `url.local()`.
@@ -228,7 +222,8 @@ returns a list of sub-dataset information. Each item in the list is a tuple of t
 
 We read the dataset with:
 
-    gdal.Open(filename).ReadAsArray()
+    gsub = gdal.Open(filename)
+    data = gsub.ReadAsArray()
     
 In the illustration below, we will examine only the first sub-dataset `g.GetSubDatasets()[0]`.
 
@@ -246,21 +241,21 @@ kwargs = {
 modis = Modis(**kwargs)
 url = modis.get_url(year="2020",month="01",day="01")[0]
 
-# open
-g = gdal.Open(str(url.local()))
+# set True to force download of the local file
+filename = url.local(True).as_posix()
 
+# open the local file associated with the dataset
+g = gdal.Open(filename)
 if g:
     # get the first SDS only for illustration
     filename,name = g.GetSubDatasets()[0]
     print(f'dataset info is: {name}')
     # read the dataset
-    data = gdal.Open(filename).ReadAsArray()
-    print(f'dataset read is shape {data.shape} and type {type(data)}')
+    gsub = gdal.Open(filename)
+    if gsub:
+        data = gsub.ReadAsArray()
+        print(f'dataset read is shape {data.shape} and type {type(data)}')
 ```
-
-    dataset info is: [2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)
-    dataset read is shape (2400, 2400) and type <class 'numpy.ndarray'>
-
 
 #### Exercise 3
 

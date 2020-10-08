@@ -536,3 +536,51 @@ We have started to do some fuller geospatial processing now. WE have seen how to
 We have also seen some utility functions to aid our use of these data: `Modis.get_files` to get the SDS or filenames for a particular configuration, and `Modis.get_modis` and to get a `gdal` VRT file with mosaiced tiles and vector masking.
 
 You should make sure that you are able to use one or more of these methods to obtain a numpy array with a MODIS datatset for a particular place and time.
+
+Remember:
+
+
+Modis library: 
+
+            from  geog0111.modis import Modis
+            modis = Modis(**kwargs)
+            
+
+            kwargs = {
+                'tile'      :    ['h17v03'],
+                'product'   :    'MCD15A3H',
+                'sds'       :    'Lai_500m',
+            }
+
+
+| function|comment|example|
+|---|---|---|
+| `modis.get_data(year,doy)` | Dictionary of 2D data arrays by SDS key for MODIS product for year `year` and day of year `doy` | `idict = modis.get_data(2019,41)`|
+|`modis.get_files(year,doy)`| Filename and SDS list of MODIS product for year `year` and day of year `doy` | `files, sds = modis.get_data(2019,41)`|
+|`modis.get_modis(year,doy,warp_args=warp_args)` | Dictionary of 2D/3D data arrays by SDS key for MODIS product for year `year` and day of year `doy`, warped by `warp_args` (see `gdal.Warp()`). Note that `doy` can be list of `doys` or wildcard. If > 1 band, then dataset is 3D and key `bandnames` included |
+            
+`gdal`:
+
+
+|function|comment|example and keywords|
+|---|---|---|
+|`g = gdal.Open(filename)` | Open geospatial file `filename` and return `gdal` object `g` (`None` if file not opened correctly)|
+|`g.GetSubDatasets()` | Get list of sub-datasets from `gdal` object `g`| 
+|`g.ReadAsArray(c0,r0,nc,nr)` | Read dataset from `gdal` object `g` into array. Form `c0` for `nc` columns and `r0` for `nr` rows. Set as `None` for defaults or don't give.|
+|`gdal.BuildVRT(ofile, sds)` | create `gdal` VRT (wrapper) file called `ofile` for SDS/file `sds` | `files,sds = modis.get_files(year,doy)`|
+||| `separate=True` for separate bands |
+||| `ofile = f"work/stitch_full_{year}_{doy:03d}.vrt"`|
+|||`stitch_vrt = gdal.BuildVRT(ofile, sds[0])`|
+|`gdal.Info(f)` | Print information about geospatial file `f` ||
+| `gdal.Warp(ofile,ifile)` | Warp `ifile` to `ofile` with keyword parameters | Keywords: 
+|||`format = 'MEM'` or `format = 'GTiff'` : output format|
+||| `options=['COMPRESS=LZW']` : compression option for GTiff etc.
+||| `dstNodata=255`: no data value |
+||| `cropToCutline = True` : whether to crop to cutline or bounds |
+||| `cutlineDSName = 'data/TM_WORLD_BORDERS-0.3.shp'` : vector dataset for cutline|
+||| `cutlineWhere = "FIPS='UK'"` : identifier information for cutline 
+|`g.FlushCache()` | flush open `gdal` object `g` (force write to file) |
+
+
+
+

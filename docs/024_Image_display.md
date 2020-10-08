@@ -52,8 +52,8 @@ kwargs = {
 
 modis = Modis(**kwargs)
 # specify day of year (DOY) and year
-data_MCD15A3H = modis.get_data(2019,1+4*10)
 
+data_MCD15A3H = modis.get_data(2019,41)
 # loop over dictionary items
 for k,v in data_MCD15A3H.items():
     if k in modis.sds:
@@ -108,7 +108,7 @@ fig.colorbar(im, ax=axs[0])
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7fd01f4cead0>
+    <matplotlib.colorbar.Colorbar at 0x7f390b53de90>
 
 
 
@@ -430,7 +430,7 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7fd0292f6c10>
+    <matplotlib.legend.Legend at 0x7f3915363190>
 
 
 

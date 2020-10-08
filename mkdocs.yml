@@ -81,6 +81,7 @@ nav:
 - Summary:
   - Summary: 070_Summary.md
 plugins:
+- git-revision-date-localized
 - exclude:
     glob:
     - '*blank.tif'

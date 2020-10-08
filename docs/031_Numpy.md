@@ -507,9 +507,14 @@ Below are some representative arithmetic operations that you can use on arrays. 
 
 
 ```python
+import numpy as np
+
 # initialise some numbers
 b = np.arange(4)
 print(f'{b}^2 = {b**2}\n')
+
+b = np.arange(4)
+print(f'e^{b} = {np.exp(b)}\n')
 
 a = np.array([20, 30, 40, 50])
 print(f"assuming in radians,\n10*sin({a}) = {10 * np.sin(a)}")
@@ -523,6 +528,8 @@ print(f"Find the std dev of an array: a.std():   {a.std() : >5.2f}")
 ```
 
     [0 1 2 3]^2 = [0 1 4 9]
+    
+    e^[0 1 2 3] = [ 1.          2.71828183  7.3890561  20.08553692]
     
     assuming in radians,
     10*sin([20 30 40 50]) = [ 9.12945251 -9.88031624  7.4511316  -2.62374854]
@@ -587,3 +594,4 @@ Remember:
  |`np.median(a)` | median of values in array `a`, assumed `a` values in radians |`axis=N` : value taken over axis `N` |
  |`np.sqrt(a)` | square root of values in array `a` ||
   |`np.sin(a)` | sine of values in array `a`, assumed `a` values in radians etc.|
+      |`np.exp(a)` | exponential of values in array `a`|

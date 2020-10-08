@@ -10,7 +10,7 @@ GEOG0111 Timetable 2020-21
 |	| |[![Python Introduction](images/icon.png)](https://web.microsoftstream.com/video/ada31325-4f42-4d6e-bd4e-69d980ccdc6e) | [![Data Types](images/icon.png)](https://web.microsoftstream.com/video/484a82d4-0159-41f5-a088-8079f511c449)|[![Strings](images/icon.png)](https://web.microsoftstream.com/video/5395e966-9d6b-4ae7-9495-bc6af514b84c)|[![String methods](images/icon.png)](https://web.microsoftstream.com/video/15c2b8a1-ee07-4b51-972f-9902b31ff7fd)| [![Groups](images/icon.png)](https://web.microsoftstream.com/video/b4e0005a-866a-4d56-bfcb-4373121979a3)
 |  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | [Python script](061_Script.ipynb)|
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[Streams](021_Streams.ipynb)| [Read and Write](022_Read_write_files.ipynb) 	|
-|  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](062_Part1.ipynb) [Code advice](062_Part1_code.ipynb)|
+|  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](062_Part1.ipynb) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [NASA MODIS](030_NASA_MODIS_Earthdata.ipynb)	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| || [Numpy exercise](064_Numpy.ipynb)|
 |  7	|  **Space and time**	| [Mosaicing](040_GDAL_mosaicing_and_masking.ipynb) 	|  [Timeseries](041_GDAL_timeseries.ipynb)	|  	|
@@ -19,4 +19,4 @@ GEOG0111 Timetable 2020-21
 |  10	|  **Recap**	|  [Summary](070_Summary.ipynb)|  	|  	|| | [Part 2](066_Part2.ipynb)|
 
 
-Note that [Part 1](062_Part1.ipynb) and [Part 2](066_Part2.ipynb) are the formal assessments for the course. [Part 1](062_Part1.ipynb) should be submitted the Monday after Reading week. [Part 2](066_Part2.ipynb) should be submitted in the first week of Term 2. Please read [Code advice](062_Part1_code.ipynb) before subitting work.
+Note that [Part 1](062_Part1.ipynb) and [Part 2](066_Part2.ipynb) are the formal assessments for the course. [Part 1](062_Part1.ipynb) should be submitted the Monday after Reading week. [Part 2](066_Part2.ipynb) should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before subitting work.

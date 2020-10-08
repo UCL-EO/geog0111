@@ -659,3 +659,39 @@ To get some feedback on how you are doing, you should complete and submit the fo
 From this session, you should be able to acquire a MODIS timeseries dataset and associated land cover map. You should be able to treat the data, so that by defining a weight for weach observation, you can produce a regularised (smoothed, interpolated) dataset from original noisy observations. In this case, we used variable weighting, according to an uncertainty measure, but if that is not available, you can simply use a weight of 1 for a valid observation and 0 when there is no valid value. 
 
 You should then be able to calculate statistics from the data. You should be capable of doing this for any MODIS geophysical variable, and also of developing functiuons that bring some of these ideas together into more compact, reusable code.
+
+Remember:
+
+|function|comment|
+|---|---|
+|`scipy.ndimage.filters` | `scipy` filters |
+|`zscipy.ndimage.filters.convolve1d(data,filter)` | 1D convolution of `filter` with `data`. Keywords : `axis=0,mode='wrap'`|
+
+
+```python
+from geog0111 import regularise
+help(regularise)
+```
+
+    Help on module geog0111.regularise in geog0111:
+    
+    NAME
+        geog0111.regularise
+    
+    FUNCTIONS
+        regularise(lai, weight, sigma)
+            takes as argument:
+            
+                lai     : MODIS LAI dataset:     shape (Nt,Nx,Ny)
+                weight  : MODIS LAI weight:      shape (Nt,Nx,Ny)
+                sigma   : Gaussian filter width: float
+                
+            returns an array the same shape as 
+            lai of regularised LAI. Regularisation takes place along
+            axis 0 (the time axis)
+    
+    FILE
+        /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/geog0111/regularise.py
+    
+    
+

@@ -703,4 +703,56 @@ We now know how to combine geospatial data in both space and time VRT files usin
 
 We have seen that some datasets such as the MODIS LAI product come with a per-pixel estimate of uncertainty. We have investigated this data field and used it to provide a weighting to associate with the reliability of each pixel. We have seen how to generate, filter, and process 3D spatio-temporal datasets. The examples here 
 
+Remember:
+
+
+
+
+```python
+from geog0111.modis_annual import modis_annual_dataset
+help(modis_annual_dataset)
+```
+
+    Help on function modis_annual_dataset in module geog0111.modis_annual:
+    
+    modis_annual_dataset(year, tile, product, step=1, verbose=False)
+    
+
+
+
+```python
+from geog0111.modis_annual import get_modis_annual
+help(get_modis_annual)
+```
+
+    Help on function get_modis_annual in module geog0111.modis_annual:
+    
+    get_modis_annual(ifiles, sds=None, warp_args={})
+    
+
+
+
+```python
+from geog0111.modis_annual import modis_annual
+help(modis_annual)
+```
+
+    Help on function modis_annual in module geog0111.modis_annual:
+    
+    modis_annual(year, tile, product, step=1, sds=None, warp_args={}, verbose=False)
+    
+
+
+
+```python
+from geog0111.get_lai_data import get_lai_data
+help(get_lai_data)
+```
+
+    Help on function get_lai_data in module geog0111.get_lai_data:
+    
+    get_lai_data(year, tile, fips)
+        Get the annual LAI dataset for fips, tile and year
+        and return lai,std,doy
+    
 

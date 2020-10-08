@@ -12,6 +12,7 @@ nav:
 - 016_Python_for.md
 - 017_Functions.md
 plugins:
+- git-revision-date-localized
 - exclude:
     glob:
       - "*blank.tif"

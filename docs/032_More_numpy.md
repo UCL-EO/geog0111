@@ -499,7 +499,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f3260dcad10>
+    <matplotlib.colorbar.Colorbar at 0x7f1e3a320f50>
 
 
 
@@ -873,3 +873,26 @@ To get some feedback on how you are doing, you should complete and submit the fo
 ### Summary
 
 In this section, we have expanded our understanding of `numpy` processing to include topics such as finding the array index where some pattern occurs (e.g. `argmin()`, `argsort()` or `where()`) and how to generate and use masks for selecting data. We should now have a good grasp of the role of axes, slicing, and reconciling multi-dimensional grids for efficient processing.
+
+Remember:
+
+
+| Function | description   | keywords | 
+ |---|---|---|
+ | `np.loadtxt(f)` | Load datra from file `f` into numpy array ||
+ | x[start:stop:step] | 1-D slice of array `x` ||
+ | `slice(start:stop:step)` | function to apply to slice e.g. `x[slice(start:stop:step)]`|
+ | `np.argmin(x)` | return 1D index of minimum value in array (/axis) |  `axis=N` : value taken over axis `N` |
+ | `np.argmax(x)` | return 1D index of maximum value in array (/axis) |  `axis=N` : value taken over axis `N` |
+ | `x > 1` | logical operator resulting in boolean array e.g. to use for masks |
+ | `np.logical_not(x)` | element-wise not over array |
+ | `np.logical_or(x,y)` | element-wise `a` or `b`  over array |
+ | `np.logical_and(x,y)` | element-wise `a` and `b`  over array |
+ | `np.where(x)` |  list of indices where `x` is `True` |
+ | `x.flatten()` | convert copy of ND array `x` into 1D array |
+  | `x.ravel()` | convert ND array `x` into 1D array |
+| `x.reshape(shape)` | apply shape `shape` to array `x` |
+| `np.unravel_index(indices,shape)` | unravel 1D indices `indices` to ND defined by `shape` |
+| `np.newaxis` | add a new axis to array for reconciling multiple dimensions making a copy. Effectively makes new dimension of size `(1,)` |
+
+
