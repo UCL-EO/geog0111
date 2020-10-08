@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1865,7 +1835,7 @@
 <p>We will use a simple recipe for accessing a dataset and plotting it. All examples below will follow the same pattern.</p>
 <p>First, we use the <code>Modis</code> class in <code>geog0111.modis</code> to get the dataset. Recall from <a href="024_Image_display">024 Image display</a> that many of these datasets are cached on the system for you. If it takes a long time to retrieve a dataset, it is probably because you are downloading it, rather than using a cached copy. If it is Wednesday afternoon UK time, you will not be able to download new datasets, and can only use cached copies, as the NASA server is down for maintenance.</p>
 <p>Notice that the LAI data have a valid range 0 to 100, and that a scale factor of 0.1 must be applied to the datas to interpret as LAI.</p>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 #######################
 # specify what we want
 # in a dictionary
@@ -1881,17 +1851,15 @@ modis = Modis(**kwargs)
 # specify day of year (DOY) and year
 data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
 </code></pre>
-
-<pre><code class="python">from geog0111.im_display import im_display
+<pre><code class="language-python">from geog0111.im_display import im_display
 
 im_display(data_MCD15A3H,['Lai_500m'],x_size=16,y_size=8,vmax=100)
 </code></pre>
-
 <p><img alt="png" src="../030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_9_0.png" /></p>
 <h3 id="masking">masking</h3>
 <p>We can see from the  <a href="https://lpdaac.usgs.gov/products/mcd15a3hv006/">product specification page</a> for <code>MCD15A3H</code> that values above <code>100</code> for <code>Lai_500m</code> are invalid. In addition, a scale factor of 0.1 should be applied.</p>
 <p>We will learn more of this later, but for now, note that we can use code such as the following to apply the scaling factor and mask invalid numbers. We need to import the <code>numpy</code> package for this first (<code>import numpy as np</code>).</p>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 
 kwargs = {
     'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
@@ -1903,8 +1871,7 @@ modis = Modis(**kwargs)
 # repull dataset
 data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
 </code></pre>
-
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 # multiply by scale
 scale = 0.1
 ds = data_MCD15A3H['Lai_500m'] * scale
@@ -1917,7 +1884,6 @@ data_MCD15A3H['Lai_500m'] = ds
 # plot
 im_display(data_MCD15A3H,['Lai_500m'],x_size=16,y_size=8)
 </code></pre>
-
 <p><img alt="png" src="../030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_12_0.png" /></p>
 <p>The dataset, being a measurement, is not spatially complete. This is because of clouds and other factors meaning that the algorithm to produce LAI could not run at that time. It is very common that you will find geospatial datasets have missing values. We will learn later on when and how we might fill these gaps.</p>
 <h4 id="exercise-2-mask-invalid-data">Exercise 2: mask invalid data</h4>
@@ -1941,7 +1907,7 @@ im_display(data_MCD15A3H,['Lai_500m'],x_size=16,y_size=8)
 <p>We can use the same codes to access different MODIS datasets. For example the monthly <a href="https://lpdaac.usgs.gov/products/mcd64a1v006/"><code>MCD64A1</code></a> product:</p>
 <p><a href="https://lpdaac.usgs.gov/products/mcd64a1v006/"><img alt="MCD15A3H" src="../images/MCD15A3H.png" /></a></p>
 <p>For the <code>Burn Date</code> field, values of -2 to 0 are invalid. We can visualise this with code as above, but first we need to get the day of year for the month we want. Recall from <a href="../023_Plotting/#datetime">023 Plotting</a> that we can use <code>datetime</code> for this. We do this by working out the difference between the day of the month in question and the 31st day of December for the previous year.</p>
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 
 year = 2019
 day = 1
@@ -1949,7 +1915,6 @@ for month in range(1,13):
     doy = (datetime(year,month,day) - datetime(year-1,12,31)).days
     print(f'1st of {month:&lt;2d} is doy {doy}')
 </code></pre>
-
 <pre><code>1st of 1  is doy 1
 1st of 2  is doy 32
 1st of 3  is doy 60
@@ -1969,7 +1934,7 @@ for month in range(1,13):
 <li>test it</li>
 </ul>
 <p>We now simply need to encode any scale factors or invalidity thresholds, and we can plot the dataset:</p>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 from geog0111.im_display import im_display
 from geog0111.data_mask import data_mask
 from geog0111.get_doy import get_doy
@@ -1992,10 +1957,9 @@ modis = Modis(**kwargs)
 data_MCD64A1 = modis.get_data(2019,doy=doy)
 
 </code></pre>
-
 <pre><code>152
 </code></pre>
-<pre><code class="python">scale   = [1]
+<pre><code class="language-python">scale   = [1]
 uthresh = [200]
 lthresh = [0]
 
@@ -2007,11 +1971,10 @@ im_display(data_MCD64A1,kwargs['sds'],\
            x_size=10,y_size=8,\
            r=[1800,2000],c=[1000,1200])
 </code></pre>
-
 <p><img alt="png" src="../030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_20_0.png" /></p>
 <h2 id="snow">Snow</h2>
 <p>There are two MODIS daily snow cover datasets: <a href="https://modis-snow-ice.gsfc.nasa.gov/?c=MOD10A1"><code>MOD10A1</code> and <code>MYD10A1</code></a> for data from the MODIS Terra and Aqua sensors, respectively. The field <a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD10A1"><code>NDSI_Snow_Cover</code></a> has valid values in the range 0 to 100.</p>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 from geog0111.im_display import im_display
 from geog0111.data_mask import data_mask
 from geog0111.get_doy import get_doy
@@ -2040,20 +2003,18 @@ modis = Modis(**kwargs)
 data_MOD10A1 = modis.get_data(2019,doy=doy)
 data_MOD10A1 = data_mask(data_MOD10A1,sds,scale,uthresh,lthresh)
 </code></pre>
-
 <pre><code>335
 </code></pre>
-<pre><code class="python"># have to take sub-area to see anything here:
+<pre><code class="language-python"># have to take sub-area to see anything here:
 # define row and column min/max with r=[1500,2000],c=[1000,1500]
 im_display(data_MOD10A1,kwargs['sds'],\
            x_size=10,y_size=8,colourmap='gray')
 </code></pre>
-
 <p><img alt="png" src="../030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_23_0.png" /></p>
 <h2 id="land-cover-dataset-mcd12q1">Land Cover dataset <code>MCD12Q1</code></h2>
 <p>One of the MODIS land cover products is <code>MCD12Q1</code>. We briefly examined this product in the previous session, but can take the chance now to explore it further. The datasets are yearly, given for <code>doy</code> 1. Details of the product can be found at the product page (<code>MCD12Q1</code>)[https://lpdaac.usgs.gov/products/mcd12q1v006/].</p>
 <p>We previously developed a code <a href="../geog0111/plot_lc.py"><code>get_lc</code></a> to set up the colourmaps and plot the <code>LC_Type1</code> for a given year and set of tiles. This is the <code>Land Cover Type 1: Annual International Geosphere-Biosphere Programme (IGBP) classification</code>. </p>
-<pre><code class="python">from geog0111.plot_lc import plot_lc
+<pre><code class="language-python">from geog0111.plot_lc import plot_lc
 from geog0111.modis import Modis
 # Madagascar
 year,tiles = 2018,['h22v10']
@@ -2071,7 +2032,6 @@ data_MCD12Q1 = modis.get_data(year,doy=1)
 # the data we want here
 plot_lc(data_MCD12Q1['LC_Type1'])
 </code></pre>
-
 <p><img alt="png" src="../030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_25_0.png" /></p>
 <h4 id="exercise-5">Exercise 5</h4>
 <ul>
@@ -2088,19 +2048,6 @@ plot_lc(data_MCD12Q1['LC_Type1'])
 <li><a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD10A1#bands"><code>MOD10A1 / MYD10A1 Snow Products</code></a></li>
 <li><a href="https://lpdaac.usgs.gov/products/mcd12q1v006/"><code>Land Cover dataset MCD12Q1</code></a></li>
 </ul>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2173,7 +2120,7 @@ plot_lc(data_MCD12Q1['LC_Type1'])
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

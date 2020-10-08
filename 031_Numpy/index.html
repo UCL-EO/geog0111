@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1756,7 +1726,7 @@
 </code></pre>
 <p>This means that all the functionality of <code>numpy</code> is accessed by the prefix <code>np.</code>: e.g. <code>np.array</code>. The main element of <code>numpy</code> is the numpy array. </p>
 <p>An array is in some ways like the <a href="../014_Python_groups/#list">list object we have seen before</a>, but unlike a list, all the elements are of the same type, for example floating point numbers. Further, the range of things we can do with a <code>numpy</code> list is much greater than with the basic list.</p>
-<pre><code class="python">import numpy as np  # Import the numpy library
+<pre><code class="language-python">import numpy as np  # Import the numpy library
 
 # Example 1
 # An array with 5 ones
@@ -1777,7 +1747,6 @@ arr = np.array([1., 2, 3, 4])
 print(f'--&gt; Array started from a list of floats (some implicit):\n{arr}')
 
 </code></pre>
-
 <pre><code>--&gt; Array with 5 ones:
 [1. 1. 1. 1. 1.]
 --&gt; type of array:
@@ -1789,19 +1758,18 @@ print(f'--&gt; Array started from a list of floats (some implicit):\n{arr}')
 </code></pre>
 <p>In the example above we have generated an array where all the elements are <code>1.0</code>, using <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html"><code>np.ones</code></a>, and then we have been able to generate arrays from lists using the <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html"><code>np.array</code></a> function. The difference between the 2nd and 3rd examples is that in the 2nd example, all the elements of the list are integers, and in the 3rd example, one is a floating point number. <code>numpy</code> automatically makes the array floating point by converting the integers to floating point numbers.</p>
 <p>We saw in an <a href="../011_Python_data_types/#Conversion-between-data-types">earlier session</a> how we could convert a floating point number to integer with:</p>
-<pre><code class="python">float_version = 10.5
+<pre><code class="language-python">float_version = 10.5
 print(f'float version: {float_version}')
 
 # convert individual number to int
 int_version = int(float_version)
 print(f'int version  : {int_version}')
 </code></pre>
-
 <pre><code>float version: 10.5
 int version  : 10
 </code></pre>
 <p>We can similarly convert between numpy data types (where appropriate) with <code>np.astype()</code>:</p>
-<pre><code class="python"># An array started from a list of numbers, what's the difference??
+<pre><code class="language-python"># An array started from a list of numbers, what's the difference??
 float_version = np.array([1., 2., 3., 4.])
 print(f'float version: {float_version}')
 
@@ -1809,21 +1777,19 @@ print(f'float version: {float_version}')
 int_version = float_version.astype(np.int)
 print(f'int version  : {int_version}')
 </code></pre>
-
 <pre><code>float version: [1. 2. 3. 4.]
 int version  : [1 2 3 4]
 </code></pre>
 <h3 id="array-arithmetic">Array arithmetic</h3>
 <p>What else can we do with arrays? Perhaps the most significant thing is that can efficiently operate all array elements without loops, by treating the array as an object:</p>
-<pre><code class="python">arr = np.ones(10)
+<pre><code class="language-python">arr = np.ones(10)
 print(f'2 x {arr} \n  = {2 * arr}')
 </code></pre>
-
 <pre><code>2 x [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] 
   = [2. 2. 2. 2. 2. 2. 2. 2. 2. 2.]
 </code></pre>
 <p><code>numpy</code> is clever enough to figure out that the 2 multiplying the array is applied to all elements of the array, and returns an array of the same size as <code>arr</code> with the elements of <code>arr</code> multiplied by 2. We can also multiply two arrays of the same size. So let's create an array with the numbers 0 to 9 and one with the numbers 9 to 0 and do a times table:</p>
-<pre><code class="python">arr1 = 9 * np.ones(10).astype(np.int)
+<pre><code class="language-python">arr1 = 9 * np.ones(10).astype(np.int)
 arr2 = np.arange(1, 11)  # arange gives an array from 1 to 11, 11 not included
 
 print(arr1)
@@ -1831,7 +1797,6 @@ print(arr2)
 
 print(arr1 * arr2)
 </code></pre>
-
 <pre><code>[9 9 9 9 9 9 9 9 9 9]
 [ 1  2  3  4  5  6  7  8  9 10]
 [ 9 18 27 36 45 54 63 72 81 90]
@@ -1855,7 +1820,7 @@ print(arr1 * arr2)
 <p>So far, we have seen a 1D array, which is the equivalent to a vector. But arrays can have more dimensions: a 2D array would be equivalent to a matrix (or an image, with rows and columns), and a 3D array would be a volume split into voxels, as seen below</p>
 <p><a href="https://cdn-images-1.medium.com/max/1120/1*Ikn1J6siiiCSk4ivYUhdgw.png"><img alt="numpy arrays" src="../images/1Ikn1J6siiiCSk4ivYUhdgw.png" /></a></p>
 <p>So a 1D array has one axis, a 2D array has 2 axes, a 3D array 3, and so on. The <code>shape</code> of the array provides a tuple with the number of elements along each axis. Let's see this with some generally useful array creation options:</p>
-<pre><code class="python"># Create a 2D array from a list of rows. 
+<pre><code class="language-python"># Create a 2D array from a list of rows. 
 # Note that the 3 rows have the same number of elements!
 arr1 = np.array([[0,  1,  2,  3,  4],\
                  [5,  6,  7,  8,  9],\
@@ -1870,7 +1835,6 @@ print(arr1)
 print(&quot;2*3 array:&quot;)
 print(arr2)
 </code></pre>
-
 <pre><code>3*5 array:
 [[ 0  1  2  3  4]
  [ 5  6  7  8  9]
@@ -1883,7 +1847,7 @@ print(arr2)
 <p>One of the key aspects of <code>numpy</code> is the way it deals efficiently with large, multi-dimensional arrays. To learn how to use <code>numpy</code> well, especially when we head to more complex problems later in the notes, you need to be aware of the dimensions and shape of the array you are processing.</p>
 <p>The key terms here are <code>array.ndim</code> which returns the number of dimensions of the array, <code>array.size</code> that gives the total number of elements in the array, and <code>array.shape</code> which gives the number of samples in each dimension. </p>
 <p>If the arrays are of the same shape (and some other conditions we shall see later), you can do standard operations between them <strong>element-wise</strong>:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 arr1 = np.array([[3, 4, 5, 6.],[6,4,6,2]])
 arr2 = np.array([[30, 40, 50, 60.],[50,40,30,20]])
@@ -1899,7 +1863,6 @@ print(f'the shape of arr1 - arr2 is {(arr1 - arr2).shape}')
 print(arr1 * arr2)
 print(f'the shape of arr1 * arr2 is {(arr1 * arr2).shape}')
 </code></pre>
-
 <pre><code>the shape of arr1 is (2, 4) and ndim is 2 and size is 8
 the shape of arr2 is (2, 4) and ndim is 2 and size is 8
 [[27. 36. 45. 54.]
@@ -1913,7 +1876,7 @@ the shape of arr1 * arr2 is (2, 4)
 <p>Quite often, we will want to initialise an array to be all the same number. The methods for doing this as 0,1 in <code>numpy</code> are <code>np.zeros()</code> and <code>np.ones()</code> respectively.</p>
 <p>We specify the shape of the array we want with an appropriate tuple.</p>
 <p>We can specify the data type of the array with the keyword <code>dtype=np.int</code> (for integer). This would have the same effect as using <code>array.astype(np.int)</code> as above, but is shorter, clearer and neater. </p>
-<pre><code class="python"># Creates a 3*4 array of 0s
+<pre><code class="language-python"># Creates a 3*4 array of 0s
 arr = np.zeros((3, 4))
 print(&quot;3*4 array of 0s&quot;)
 print(arr)
@@ -1923,7 +1886,6 @@ print(&quot;2*3*4 array of 1s (integers)&quot;)
 arr = np.ones((2, 3, 4), dtype=np.int)
 print(arr)
 </code></pre>
-
 <pre><code>3*4 array of 0s
 [[0. 0. 0. 0.]
  [0. 0. 0. 0.]
@@ -1938,13 +1900,12 @@ print(arr)
   [1 1 1 1]]]
 </code></pre>
 <p>A similar useful set of functions are <code>np.ones_like</code> and <code>np.zeros_like</code>. These create a copy of an array, with the values set to 1 or 0 respectively:</p>
-<pre><code class="python">base = np.array([[1,2,3],[4,7,0]])
+<pre><code class="language-python">base = np.array([[1,2,3],[4,7,0]])
 print(f'base:\n{base}')
 
 z = np.zeros_like(base)
 print(f'z:\n{z}')
 </code></pre>
-
 <pre><code>base:
 [[1 2 3]
  [4 7 0]]
@@ -1955,7 +1916,7 @@ z:
 <h3 id="indexing-arrays">Indexing arrays</h3>
 <p>We can refer to a particular value within an array with a tuple describing an index. </p>
 <p>For example:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 arr = np.array([[0,  1,  2,  3,  4],\
                  [5,  6,  7,  8,  9],\
@@ -1965,21 +1926,19 @@ arr = np.array([[0,  1,  2,  3,  4],\
 # so index is (2,3)
 print(arr[2,3])
 </code></pre>
-
 <pre><code>13
 </code></pre>
 <p>In the example above, the index was implicitly a tuple, but we can also be explicit:</p>
-<pre><code class="python"># row 2, column 3
+<pre><code class="language-python"># row 2, column 3
 # so index is (2,3)
 # make an index tuple
 index = (2,3)
 print(arr[index])
 </code></pre>
-
 <pre><code>13
 </code></pre>
 <p>If we want to refer to a set of indices, we can use a 2D index tuple:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 arr = np.array([[0,  1,  2,  3,  4],\
                  [5,  6,  7,  8,  9],\
@@ -1997,7 +1956,6 @@ print(f'data:\n{arr}')
 index = ((2,0,1),(3,4,1))
 print(f'values at {index} are {arr[index]}')
 </code></pre>
-
 <pre><code>shape is (3, 5)
 data:
 [[ 0  1  2  3  4]
@@ -2036,7 +1994,7 @@ values at ((2, 0, 1), (3, 4, 1)) are [13  4  6]
 </code></pre>
 <p>will produce a list of integer numbers from <code>start</code> to <code>stop</code> in steps of <code>step</code>. It is similar to the <a href="../016_Python_for/#range()"><code>range</code> function we have seen perviously</a>.</p>
 <p>We will introduce the function <code>np.linspace(start, stop, nsamp)</code> that creates an array of equally-spaced numbers according to the pattern <code>(start, stop, nsamp)</code>.</p>
-<pre><code class="python"># array creators
+<pre><code class="language-python"># array creators
 
 print(&quot;1D array of numbers from 0 to 2 in increments of 0.3&quot;)
 start = 0
@@ -2055,7 +2013,6 @@ print(
 
 np.linspace(stop, start, 9)
 </code></pre>
-
 <pre><code>1D array of numbers from 0 to 2 in increments of 0.3
 arr of shape (7,):
     [0.  0.3 0.6 0.9 1.2 1.5 1.8]
@@ -2075,24 +2032,22 @@ array([34.  , 29.75, 25.5 , 21.25, 17.  , 12.75,  8.5 ,  4.25,  0.  ])
 </ul>
 <p>Hint: what value of skip would be appropriate here? what about <code>start</code> and <code>stop</code>?</p>
 <p>If we want to generate a multi-dimensional array with regularly-spaced numbers, we can use <code>np.mgrid[start:stop:step]</code>:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 # define the min and max for the grid we want
 p0min,p0max,p0step = 0.0,1.0,0.1
 
 np.mgrid[p0min:p0max:p0step]
 </code></pre>
-
 <pre><code>array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
 </code></pre>
 <p>If we want the grid to be inclusive of <code>p0max</code> we must increase the maximum value by <code>p0step</code>:</p>
-<pre><code class="python">np.mgrid[p0min:p0max+p0step:p0step]
+<pre><code class="language-python">np.mgrid[p0min:p0max+p0step:p0step]
 </code></pre>
-
 <pre><code>array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])
 </code></pre>
 <p>Now, for a 2-D grid we use <code>np.mgrid[start1:stop1:step1,start2:stop2:step2]</code>:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # define the min and max and step for the grid we want
 p0min,p0max,p0step = 0.0,0.5,0.05
 p1min,p1max,p1step = 0.0,0.001,0.0001
@@ -2109,13 +2064,12 @@ axs.set_ylabel('p2')
 
 print(f'2d parameter grid: {gridp0.shape}')
 </code></pre>
-
 <pre><code>2d parameter grid: (11, 11)
 </code></pre>
 <p><img alt="png" src="../031_Numpy_files/031_Numpy_39_1.png" /></p>
 <h2 id="summary-statistics">Summary statistics</h2>
 <p>Below are some representative arithmetic operations that you can use on arrays. Remember that they happen <strong>elementwise</strong> (i.e. to the whole array):</p>
-<pre><code class="python"># initialise some numbers
+<pre><code class="language-python"># initialise some numbers
 b = np.arange(4)
 print(f'{b}^2 = {b**2}\n')
 
@@ -2129,7 +2083,6 @@ print(f&quot;Find the sum of an array: a.sum():       {a.sum()}&quot;)
 print(f&quot;Find the mean of an array: a.mean():     {a.mean(): &gt;5.2f}&quot;)
 print(f&quot;Find the std dev of an array: a.std():   {a.std() : &gt;5.2f}&quot;)
 </code></pre>
-
 <pre><code>[0 1 2 3]^2 = [0 1 4 9]
 
 assuming in radians,
@@ -2143,7 +2096,7 @@ Find the sum of an array: a.sum():       140
 Find the mean of an array: a.mean():     35.00
 Find the std dev of an array: a.std():   11.18
 </code></pre>
-<pre><code class="python"># variance and standard deviation:
+<pre><code class="language-python"># variance and standard deviation:
 #
 # try var and see if it is the same as std * std
 var = a.var()
@@ -2152,7 +2105,6 @@ std = a.std()
 # use np.sqrt for square root
 print(f'sqrt({np.sqrt(var)}) should equal {std}')
 </code></pre>
-
 <pre><code>sqrt(11.180339887498949) should equal 11.180339887498949
 </code></pre>
 <h3 id="summary">Summary</h3>
@@ -2288,19 +2240,6 @@ print(f'sqrt({np.sqrt(var)}) should equal {std}')
 </tbody>
 </table>
                 
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2020</span>
-    
-  </small>
-</div>
-                  
-                
               
               
                 
@@ -2372,7 +2311,7 @@ print(f'sqrt({np.sqrt(var)}) should equal {std}')
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

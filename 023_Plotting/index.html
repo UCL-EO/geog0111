@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1660,7 +1630,7 @@
 <p>You will need to know how to use <a href="../021_Streams/#Reading-data-into-pandas"><code>pandas</code></a> for reading a CSV dataset. Note that you can do plotting within <code>pandas</code>. But this is much the same as using <a href="https://matplotlib.org"><code>matplotlib</code></a> directly, so we will not be using <code>pandas</code> plotting. We will introduce the <a href="../geog0111/modis.py"><code>Modis</code></a> class for simple downloading and reading of MODIS datasets.</p>
 <h2 id="simple-x-y-plot">Simple x-y plot</h2>
 <p>We have <a href="../021_Streams/#Reading-data-into-pandas">previously</a> seen a dataset of Monthly Southeast England precipitation (mm) in a tabular form on the <a href="https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt">Met Office website</a> amnd how to load this into <code>pandas</code>:</p>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 from geog0111.gurlpath import URL
 
 # Monthly Southeast England precipitation (mm) 
@@ -1682,7 +1652,6 @@ df=pd.read_table(url.open('r'),**panda_format)
 # df.head: first n lines
 df.head()
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1809,35 +1778,32 @@ df.head()
 
 <p>The <code>pandas</code> dataframe is essentially a dictionary, so we refer to the data for column <code>JAN</code> and <code>df['JAN']</code> etc. </p>
 <p>We can access the column headings as:</p>
-<pre><code class="python">headings = df.columns
+<pre><code class="language-python">headings = df.columns
 print(headings)
 </code></pre>
-
 <pre><code>Index(['YEAR', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
        'OCT', 'NOV', 'DEC', 'ANN'],
       dtype='object')
 </code></pre>
 <p>so, if we wanted just the months, we would want to leave out the first and last entry, and this would be:</p>
-<pre><code class="python">headings = df.columns[1:-1]
+<pre><code class="language-python">headings = df.columns[1:-1]
 print(headings)
 </code></pre>
-
 <pre><code>Index(['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT',
        'NOV', 'DEC'],
       dtype='object')
 </code></pre>
 <p>Let's plot some of this dataset now:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 fig, axs = plt.subplots(1,1,figsize=(10,10))
 axs.plot(df[&quot;YEAR&quot;],df['JAN'],label='JAN')
 </code></pre>
-
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x7f876bc11e50&gt;]
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_10_1.png" /></p>
 <p>We can easily customise this by adding titles and labels:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # make a useful title
 year0 = list(df[&quot;YEAR&quot;])[0]
@@ -1865,13 +1831,12 @@ axs.set_ylabel(f'Precipitation (mm)')
 # x-label
 axs.set_xlabel(f'year')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_12_1.png" /></p>
 <p>The code to do this sort of plot is simple and generic. This example has most of what you will need in terms of coding for line plots. </p>
 <p>If we wanted to do several plots over each other, we can simply call <code>axs.plot</code> again, but we will also find it useful to set a legend:</p>
-<pre><code class="python"># make a useful title
+<pre><code class="language-python"># make a useful title
 name = f'Monthly SE UK precipitation'
 
 # plot size 
@@ -1892,7 +1857,6 @@ axs.set_ylabel(f'Precipitation (mm)')
 # x-label
 axs.set_xlabel(f'year')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_15_1.png" /></p>
@@ -1905,7 +1869,7 @@ axs.set_xlabel(f'year')
 </code></pre>
 <p>after it has been created. Then we refer to the sub-plots simply as <code>axs[0]</code>, <code>axs[1]</code>, <code>axs[2]</code> and <code>axs[3]</code>.</p>
 <p>Below, we also choose to set the line colour to black (<code>k</code> in the <code>axs[...].plot()</code> command).</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 name = f'Monthly SE UK precipitation'
 
@@ -1931,7 +1895,6 @@ axs[1].set_xlim(year0,year1)
 # x-label
 axs[1].set_xlabel(f'year')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_17_1.png" /></p>
@@ -1954,7 +1917,7 @@ axs[1].set_xlabel(f'year')
 </code></pre>
 <p>will plot small circles at the data points. This can be customised by <a href="https://matplotlib.org/3.1.0/api/markers_api.html">symbol</a> and/or <a href="https://matplotlib.org/2.1.1/api/_as_gen/matplotlib.pyplot.plot.html">colour</a>. </p>
 <p>We also show here how to save the plot to an image file, using <code>plt.savefig</code>:</p>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 from geog0111.gurlpath import URL
 
 # Monthly Southeast England precipitation (mm) 
@@ -1974,16 +1937,14 @@ panda_format = {
 df=pd.read_table(url.open('r'),**panda_format)
 # get mean and std over all months
 </code></pre>
-
 <p>We will go into the details of <code>numpy</code> in a future session, but here we just need to calculate the mean and standard deviation of precipitation over all months.</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 months = df.columns[1:-1]
 year   = df[&quot;YEAR&quot;]
 mean = np.array(df[months]).mean(axis=1)
 std  = np.array(df[months]).std(axis=1)
 </code></pre>
-
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # make a useful title
 year0 = list(df[&quot;YEAR&quot;])[0]
 year1 = list(df[&quot;YEAR&quot;])[-1]
@@ -2012,13 +1973,12 @@ axs.set_xlim(year0,year1)
 ofile = 'data/precip.png'
 plt.savefig(ofile)
 </code></pre>
-
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_23_0.png" /></p>
 <p>We can now load the <a href="../data/precip.png">saved image</a> as a figure with the markdown code:</p>
 <pre><code>![the figure we just saved](data/precip.png)
 </code></pre>
 <p><img alt="the figure we just saved" src="../data/precip.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # make a useful title
 name = f'Monthly SE UK precipitation'
 
@@ -2040,7 +2000,6 @@ axs.set_ylabel(f'Precipitation (mm)')
 # x-label
 axs.set_xlabel(f'year')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_26_1.png" /></p>
@@ -2049,7 +2008,7 @@ axs.set_xlabel(f'year')
 <p>A useful Python package for this is <a href="https://docs.python.org/3/library/datetime.html"><code>datetime</code></a>. </p>
 <p>Core elements of this is are: <code>datetime</code> class, the </p>
 <h3 id="datetime"><code>datetime</code></h3>
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 # now
 now = datetime.now()
 print(f'It is now {now}')
@@ -2059,7 +2018,6 @@ print(f'month {now.month}')
 print(f'year {now.year}')
 print(f&quot;{now.hour} O'clock&quot;)
 </code></pre>
-
 <pre><code>It is now 2020-10-04 08:07:59.698707
 day 4
 month 10
@@ -2067,7 +2025,7 @@ year 2020
 8 O'clock
 </code></pre>
 <p>You can set up the <code>datetime</code> fields explicitly:</p>
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 
 # datetime(year, month, day, hour, minute, second, microsecond)
 then = datetime(1918, 11, 11, 11, 0, 0, 0)
@@ -2077,34 +2035,31 @@ print(f'It was then {then}')
 then = datetime(year=1918, month=11, day=11, hour=11)
 print(f'It was then {then}')
 </code></pre>
-
 <pre><code>It was then 1918-11-11 11:00:00
 It was then 1918-11-11 11:00:00
 </code></pre>
 <p>And do operations such as subtraction:</p>
-<pre><code class="python">jan1_2019 = datetime(2019,1,1)
+<pre><code class="language-python">jan1_2019 = datetime(2019,1,1)
 jan1_2020 = datetime(2020,1,1)
 
 days_in_year = (jan1_2020-jan1_2019).days
 print(f'year 2019 had {days_in_year} days')
 </code></pre>
-
 <pre><code>year 2019 had 365 days
 </code></pre>
 <p>To add/subtract one day, or smaller unit, use timedelta:</p>
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 from datetime import timedelta
 
 now = datetime.now()
 yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 </code></pre>
-
 <pre><code>yesterday was 2020-10-03 08:07:59.773833
 </code></pre>
 <h3 id="strftime-and-strptime"><code>strftime</code> and <code>strptime</code></h3>
 <p>We use <code>strftime</code> to format a date string:</p>
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 
 # current date and time
 now = datetime.now()
@@ -2116,35 +2071,32 @@ date_now = now.strftime(&quot;%m/%d/%Y&quot;)
 # mm/dd/YY H:M:S format
 print(f&quot;data now: {date_now}&quot;)
 </code></pre>
-
 <pre><code>time now: 08:07:59
 data now: 10/04/2020
 </code></pre>
 <p>and <code>strptime</code> to load a <code>datetime</code> object from a string. To do so, we need to specify the format of the string. For example:</p>
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 
 date_then = &quot;11 November, 1918&quot;
 # %d, %B and %Y -&gt; day, month, year
 date_object = datetime.strptime(date_then, &quot;%d %B, %Y&quot;)
 print(f&quot;date: {date_object}&quot;)
 </code></pre>
-
 <pre><code>date: 1918-11-11 00:00:00
 </code></pre>
 <p>or</p>
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 
 date_then = &quot;2020-06-20&quot;
 date_object = datetime.strptime(date_then, &quot;%Y-%m-%d&quot;)
 print(f&quot;date: {date_object}&quot;)
 </code></pre>
-
 <pre><code>date: 2020-06-20 00:00:00
 </code></pre>
 <h3 id="noaa-precipitation">NOAA precipitation</h3>
 <p>The file <a href="https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv">2276931.csv</a> contains precipitation data for an <a href="https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY">NOAA weather station</a> <code>HAVANA 4.2 SW, FL US</code> for the year 2020 to date. Precipitation data are in inches.</p>
 <p>We want to plot precipitation as a function of time. First, we read the data as previously:</p>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
@@ -2160,7 +2112,6 @@ df=pd.read_csv(url.open('r'))
 # print the first 5 lines of data
 df.head(5)
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2247,7 +2198,7 @@ date = df["DATE"][0]
 <li>Use a loop structure to convert the all elements in <code>dates</code> to be the n umber of days after the start date</li>
 </ul>
 <p>Let's do a simple plot of <code>df['PRCP']</code> as a function of days after 01/01/2020:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 from datetime import datetime
 
 name = df['NAME'][0]
@@ -2273,12 +2224,11 @@ axs.set_ylabel(f'PRCP / inches')
 # format date string with strftime
 axs.set_xlabel(f'days after {start_date.strftime(&quot;%d/%m/%Y&quot;)}')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'days after 01/01/2020')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_48_1.png" /></p>
 <p>We can use the date fields directly in the plot above, which might make the information easier to understand. But by default, all of the data fields will be printed:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 name = df['NAME'][0]
 
@@ -2297,7 +2247,6 @@ axs.plot(df['DATE'],df['PRCP'])
 axs.set_ylabel(f'PRCP / inches')
 axs.set_xlabel(f'date')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'date')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_50_1.png" /></p>
@@ -2305,7 +2254,7 @@ axs.set_xlabel(f'date')
 <pre><code>months = mdates.MonthLocator() 
 axs.xaxis.set_major_locator(months)
 </code></pre>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 name = df['NAME'][0]
@@ -2327,7 +2276,6 @@ axs.xaxis.set_major_locator(months)
 axs.set_ylabel(f'PRCP / inches')
 axs.set_xlabel(f'date')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'date')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_52_1.png" /></p>
@@ -2513,19 +2461,6 @@ axs.set_xlabel(f'date')
 </tbody>
 </table>
                 
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2020</span>
-    
-  </small>
-</div>
-                  
-                
               
               
                 
@@ -2597,7 +2532,7 @@ axs.set_xlabel(f'date')
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

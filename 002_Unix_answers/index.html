@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1483,7 +1453,7 @@
 <li>Use <code>cd</code> and <code>..</code> to move one directory at a time to your home directory. Check where you are at each stage using <code>pwd</code>.</li>
 <li>Use <code>cd</code> and <code>~</code> to go straight to your home directory. Then go from there back to the notebook directory. Check where you are at each stage using <code>pwd</code>.</li>
 </ul>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # ANSWER
 
 # Use cd and .. to move one directory at a time to your home directory. 
@@ -1504,13 +1474,12 @@ pwd
 cd ../..
 pwd
 </code></pre>
-
 <pre><code>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
 /nfs/cfs/home3/Uucfa6/ucfalew/geog0111
 /nfs/cfs/home3/Uucfa6/ucfalew
 /nfs/cfs/home3
 </code></pre>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # ANSWER
 
 # Use cd and ~ to go straight to your home directory. 
@@ -1525,7 +1494,6 @@ pwd
 cd geog0111/notebooks
 pwd
 </code></pre>
-
 <pre><code>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
 /home/ucfalew
 /home/ucfalew/geog0111/notebooks
@@ -1537,7 +1505,7 @@ pwd
 <li>Use <code>cat</code> to show the new file content</li>
 <li>delete the file</li>
 </ul>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # ANSWER
 # Create a file `work/newfile.dat` using cat and check the new file size.
 cat &lt;&lt; EOF &gt; work/newfile.dat
@@ -1548,10 +1516,9 @@ hello world - this is some text in a file
 EOF
 ls -l work/newfile.dat
 </code></pre>
-
 <pre><code>-rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newfile.dat
 </code></pre>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # ANSWER
 # Use the menu item File -&gt; Open to edit the 
 # file you have created and print the new file size
@@ -1561,25 +1528,23 @@ ls -l work/newfile.dat
 # Use cat to show the new file content
 cat work/newfile.dat
 </code></pre>
-
 <pre><code>-rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newfile.dat
 
 # this will go into the file
 hello world - this is some text in a file
 </code></pre>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # ANSWER
 # delete the file
 rm work/newfile.dat
 </code></pre>
-
 <h4 id="exercise-4">Exercise 4</h4>
 <p>Using the <code>unix</code> commands and ideas from above:</p>
 <ul>
 <li>show a listing of the files in the relative directory <code>geog0111</code> that start with the letter <code>f</code></li>
 <li>interpret the file permissions and sizes of the files in there</li>
 </ul>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # ANSWER
 # show a listing of the files in the relative 
 # directory geog0111 that start with the letter f
@@ -1592,26 +1557,12 @@ ls -lh geog0111/f*
 # the file permissions are all 644, so, read and write for the user, 
 # and only read for others
 </code></pre>
-
 <pre><code>-rw------- 1 ucfalew ucfa  362 Oct  1 13:10 geog0111/fdict.py
 -rw-r--r-- 1 ucfalew ucfa 2.2K Oct  1 13:10 geog0111/fire_practical_model.py
 -rw-r--r-- 1 ucfalew ucfa 4.3K Oct  1 13:10 geog0111/fire_practical_satellite.py
 -rw-r--r-- 1 ucfalew ucfa 1.9K Oct  1 13:10 geog0111/fire_practical_telecon.py
 -rw-r--r-- 1 ucfalew ucfa   66 Oct  1 13:10 geog0111/flatten.py
 </code></pre>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -1684,7 +1635,7 @@ ls -lh geog0111/f*
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

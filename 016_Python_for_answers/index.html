@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1513,7 +1483,7 @@
 <li>within the loop, print each value of item in turn</li>
 <li>at the end of the loop, print <code>I'm done</code></li>
 </ul>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 # ANSWER 
 
 for loop
@@ -1533,7 +1503,6 @@ for item in group:
 # note the quote types
 print(&quot;I'm done&quot;)
 </code></pre>
-
 <pre><code>keys
 hat
 💄
@@ -1546,7 +1515,7 @@ I'm done
 <li>check to see if the value of <code>count</code> at the end of the loop is the same as the length of the list. </li>
 <li>Why should this be so?</li>
 </ul>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 # ANSWER
 
 for loop with enumeration
@@ -1583,7 +1552,6 @@ msg = '''
 '''
 print(msg)
 </code></pre>
-
 <pre><code>count: 0 : cat
 count: 1 : fish
 count: 2 : 🦄
@@ -1607,7 +1575,7 @@ the length of the list group is 4
 <li>use <code>range()</code> to print numbers counting down from 10 to 1 (<strong>inclusive</strong>)</li>
 <li>include comments to explain your answer</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # use range() to print numbers counting down from 10 to 1 (inclusive)
 for i in range(10,0,-1):
     print(i)
@@ -1621,7 +1589,6 @@ To count down, we use a step of -1
 '''
 print(msg)
 </code></pre>
-
 <pre><code>10
 9
 8
@@ -1645,7 +1612,7 @@ To count down, we use a step of -1
 <li>as in the previous exercise, check to see if the value of <code>count</code> at the end of the loop is the same as the length of the list. </li>
 <li>Explain why you get the result you do</li>
 </ul>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 # ANSWER
 
 for loop with enumerate()
@@ -1680,7 +1647,6 @@ msg = '''
 '''
 print(msg)
 </code></pre>
-
 <pre><code>item 0 is hat
 item 1 is dog
 item 2 is keys
@@ -1708,7 +1674,7 @@ the length of the list group is 3
 <li>use <code>.items()</code> as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: <code>f'{y} is the year of the {z}'</code>, assuming <code>y</code> is the key and <code>z</code> the item.</li>
 <li>Describe what you are doing at each step</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # Set up list of numbers (years) from 2008 to 2019 inclusive,
 years = [2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019]
@@ -1737,7 +1703,6 @@ for y,z in zodiacYear.items():
 
 # it prints the results fine
 </code></pre>
-
 <pre><code>2008 is the year of the rat
 2009 is the year of the ox
 2010 is the year of the tiger
@@ -1751,19 +1716,6 @@ for y,z in zodiacYear.items():
 2018 is the year of the dog
 2019 is the year of the pig
 </code></pre>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 14, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -1836,7 +1788,7 @@ for y,z in zodiacYear.items():
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

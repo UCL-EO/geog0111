@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1911,7 +1881,7 @@
 <p>If you use a piece of code verbatim that you have taken from the course pages or any other source, <strong>you must acknowledge this</strong> in comments in your text. <strong>Not to do so is plagiarism</strong>. Where you have taken some part (e.g. a few lines) of someone else's code, <strong>you should also indicate this</strong>. If some of your code is heavily based on code from elsewhere, <strong>you must also indicate that</strong>.</p>
 <p>Some examples. </p>
 <p>The first example is guilty of strong plagiarism, it does not seek to acknowledge the source of this code of code from one of the course pages, even though it is just a direct copy, pasted into a method called <code>model()</code>:</p>
-<pre><code class="python">def model(tempThresh=9.0,K=2000.0,p=0.96):
+<pre><code class="language-python">def model(tempThresh=9.0,K=2000.0,p=0.96):
     '''...'''
     import numpy as np
     meltDays = np.where(temperature &gt; tempThresh)[0]
@@ -1924,10 +1894,9 @@
         accum += m * water
     return accum
 </code></pre>
-
 <p>This is <strong>not</strong> acceptable.</p>
 <p>This would be better as:</p>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 This code is taken directly from
 &quot;Modelling delay in a hydrological network&quot;
 by P. Lewis http://www2.geog.ucl.ac.uk/~plewis/geogg122/DelNorte.html
@@ -1950,10 +1919,9 @@ def model(tempThresh=9.0,K=2000.0,p=0.96):
     # my code: return accumulator
     return accum
 </code></pre>
-
 <p>Now, we acknowledge that this is in essence a direct copy of someone else’s code, and clearly state this. We do also show that we have added some new lines to the code, and that we have wrapped this into a method.</p>
 <p>In the next example, we have seen that the way m is generated is in fact rather inefficient, and have re-structured the code. It is partially developed from the original code, and acknowledges this:</p>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 This code after the model developed in
 &quot;Modelling delay in a hydrological network&quot;
 by P. Lewis
@@ -1985,7 +1953,6 @@ def model(tempThresh=9.0,K=2000.0,p=0.96):
     # my code: return accumulator
     return accum
 </code></pre>
-
 <p>This example makes it clear that significant modifications have been made to the code structure (and probably to its efficiency) although the basic model and looping comes from an existing piece of code. It clearly highlights what the actual modifications have been. Note that this is not a working example! Note also that this is a poor example of a function, as there is no real document string and little comment on the code operation.</p>
 <p>We stress that this must be your own work. We do not want you to get anyone else to significantly helped you to develop the code (e.g. written the main part of it for you &amp; you've just copied that with some minor modifications). This is not acceptable, but if for some reason it does happen, you must acknowledge it in your submission.</p>
 <p>If you take a piece of code from somewhere else and all you do is change the variable names and/or other cosmetic changes, you <strong>must</strong> acknowledge the source of the original code (with a URL if available).</p>
@@ -2006,7 +1973,7 @@ def model(tempThresh=9.0,K=2000.0,p=0.96):
 <p>some text on keywords, e.g.:</p>
 </li>
 </ul>
-<pre><code class="python">def complex(real=0.0, imag=0.0):
+<pre><code class="language-python">def complex(real=0.0, imag=0.0):
     &quot;&quot;&quot;Form a complex number.
 
     Keyword arguments:
@@ -2019,10 +1986,9 @@ def model(tempThresh=9.0,K=2000.0,p=0.96):
     if imag == 0.0 and real == 0.0: return complex_zero
 
 </code></pre>
-
 <p>You should look at the <a href="http://www.python.org/dev/peps/pep-0257/">document on good docstring conventions</a> when considering how to document methods, classes etc.</p>
 <p>To demonstrate your documentation, you <strong>must</strong> include the help text generated by your code after you include the code. e.g.:</p>
-<pre><code class="python">def print_something(this,stderr=False):
+<pre><code class="language-python">def print_something(this,stderr=False):
     '''This does something.
 
     Keyword arguments:
@@ -2045,11 +2011,9 @@ def model(tempThresh=9.0,K=2000.0,p=0.96):
     return
 
 </code></pre>
-
 <p>Then the help text would be:</p>
-<pre><code class="python">help(print_something)
+<pre><code class="language-python">help(print_something)
 </code></pre>
-
 <pre><code>Help on function print_something in module __main__:
 
 print_something(this, stderr=False)
@@ -2060,7 +2024,7 @@ print_something(this, stderr=False)
 </code></pre>
 <p>The above example represents a ‘good’ level of commenting as the code broadly adheres to the style suggestions and most of the major features are covered. It is not quite ‘very good/excellent’ as the description of the purpose of the method (rather important) is trivial and it fails to describe the input this in any way. An excellent piece would do all of these things, and might well tell us about any dependencies (e.g. requires sys if stderr set to True).</p>
 <p>An inadequate example would be:</p>
-<pre><code class="python">def print_something(this,stderr=False):
+<pre><code class="language-python">def print_something(this,stderr=False):
     '''This prints something'''
     if stderr:
         from sys import stderr
@@ -2068,25 +2032,11 @@ print_something(this, stderr=False)
         return
     print (str(this))
 </code></pre>
-
 <p>It is inadequate because it still only has a trivial description of the purpose of the method, it tells us nothing about inputs/outputs and there is no commenting inside the method.</p>
 <h4 id="word-limit">Word limit</h4>
 <p>There is no word limit per se on the computer codes, though as with all writing, you should try to be succint rather than overly verbose.</p>
 <h4 id="code-style">Code style</h4>
 <p>A good to excellent piece of code would take into account issues raised in the <a href="http://www.python.org/dev/peps/pep-0008/">style guide</a>. The ‘degree of excellence’ would depend on how well you take those points on board.</p>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 3, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2159,7 +2109,7 @@ print_something(this, stderr=False)
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

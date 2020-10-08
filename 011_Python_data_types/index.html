@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1890,13 +1860,12 @@
 <h2 id="data-types">Data types</h2>
 <h3 id="data-types-str">Data types: <code>str</code></h3>
 <p>Recall how we can print out a message by first storing the text in a variable:</p>
-<pre><code class="python"># set a variable called message to contain the string hello world
+<pre><code class="language-python"># set a variable called message to contain the string hello world
 message = 'hello world'
 
 # print the value of the variable message
 print(message)
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>Above, we set the variable to be a string <code>str</code> type, because we wanted to use it to represent a string.</p>
@@ -1908,13 +1877,12 @@ print(message)
 </ul>
 <h3 id="len"><code>len()</code></h3>
 <p>We can find the length of the string using the function <code>len()</code>, for example:</p>
-<pre><code class="python"># set a variable called message to contain the string hello world
+<pre><code class="language-python"># set a variable called message to contain the string hello world
 message = 'hello world'
 
 # print the value of the variable message
 print(message,len(message))
 </code></pre>
-
 <pre><code>hello world 11
 </code></pre>
 <h4 id="exercise-2">Exercise 2</h4>
@@ -1925,13 +1893,12 @@ print(message,len(message))
 </ul>
 <h3 id="type"><code>type()</code></h3>
 <p>In a computing language, the <em>sort of thing</em> the variable can be set to is called its <strong>data type</strong>.  In Python, we can access this with the function <code>type()</code>:</p>
-<pre><code class="python"># assign the value 'one' to the variable (key) my_store
+<pre><code class="language-python"># assign the value 'one' to the variable (key) my_store
 my_store = 'one'
 
 # Print the value of my_store
 print('this has type', type(my_store))
 </code></pre>
-
 <pre><code>this has type &lt;class 'str'&gt;
 </code></pre>
 <h4 id="exercise-3">Exercise 3</h4>
@@ -1966,7 +1933,7 @@ print('this has type', type(my_store))
 <p>Then, implement the Planck-Einstein equation:</p>
 <pre><code>E = h * c / l_m
 </code></pre>
-<pre><code class="python"># values of c and h
+<pre><code class="language-python"># values of c and h
 # in scientific notation
 c = 2.99792458e8       # m/s
 h = 6.62607015e-34     # J s
@@ -1983,7 +1950,6 @@ E_J = h * c / l_m      # J
 print('Photon of wavelength', l_nm, 'nm')
 print('has an energy of', E_J, 'J')
 </code></pre>
-
 <pre><code>Photon of wavelength 1024.0 nm
 has an energy of 1.9398885323720004e-19 J
 </code></pre>
@@ -2000,7 +1966,7 @@ $$</p>
 </ul>
 <h3 id="data-types-int">Data types: <code>int</code></h3>
 <p>Another fundamental data type is <code>int</code>, used to store integer (whole) numbers (in base 10). We often use them for counting and similar tasks.</p>
-<pre><code class="python">i = 0
+<pre><code class="language-python">i = 0
 print(i,'this has type', type(i))
 
 # increment i by 1
@@ -2010,14 +1976,13 @@ print('increment i:',i)
 i += 1
 print('increment i:',i)
 </code></pre>
-
 <pre><code>0 this has type &lt;class 'int'&gt;
 increment i: 1
 increment i: 2
 </code></pre>
 <p>Not surprisingly, we can also use integers to do all sorts of arithmetic. Because of potential rounding issues though, we have to pay a little attention to whether we want the result of division to remain an integer or become a floating point number. </p>
 <p>We can use <code>print()</code> similarly to above to print an integer value.</p>
-<pre><code class="python"># set the variable x,m and c to integer
+<pre><code class="language-python"># set the variable x,m and c to integer
 # values
 x = 10
 m = 20
@@ -2029,7 +1994,6 @@ y = m * x + c
 # print the value of y
 print('y =', y)
 </code></pre>
-
 <pre><code>y = 206
 </code></pre>
 <p>We have seen examples of addition <code>+</code> and multiplication <code>*</code>. We use <code>x ** y</code> to represent <code>x</code> to the power of <code>y</code>. For division, we use <code>//</code> to enforce integer division (<a href="https://python-reference.readthedocs.io/en/latest/docs/operators/floor_division.html">floor division</a>).</p>
@@ -2045,11 +2009,10 @@ print('y =', y)
 <h3 id="data-types-bool">Data types: <code>bool</code></h3>
 <p>The last fundamental data type we will deal with here is the Boolean or 'logical' type <code>bool</code>. Here, a variable can represent the value of <code>True</code> (equivalent to <code>1</code>) or <code>False</code> (equivalent to <code>0</code>).</p>
 <p>There are a great many uses for this in using logic in coding.</p>
-<pre><code class="python"># examples of bool type
+<pre><code class="language-python"># examples of bool type
 is_set = True
 is_ready = False
 </code></pre>
-
 <h4 id="exercise-6">Exercise 6</h4>
 <ul>
 <li>Insert a new cell below here</li>
@@ -2058,9 +2021,8 @@ is_ready = False
 </ul>
 <h3 id="logical-operators-not-and-or">Logical Operators: <code>not</code>, <code>and</code>, <code>or</code></h3>
 <p>Logical operators combine boolean variables. Recall from above:</p>
-<pre><code class="python">print (type(True),type(False));
+<pre><code class="language-python">print (type(True),type(False));
 </code></pre>
-
 <pre><code>&lt;class 'bool'&gt; &lt;class 'bool'&gt;
 </code></pre>
 <p>The three main logical operators you will use are:</p>
@@ -2085,10 +2047,9 @@ is_ready = False
 </tr>
 </tbody>
 </table>
-<pre><code class="python">print('not True is',not True)
+<pre><code class="language-python">print('not True is',not True)
 print('not False is',not False)
 </code></pre>
-
 <pre><code>not True is False
 not False is True
 </code></pre>
@@ -2099,12 +2060,11 @@ not False is True
 <li>what does <code>not not x</code> give? Make sure you understand why </li>
 </ul>
 <p>The operators <code>and</code> and <code>or</code> should also be quite straightforward to understand: they have the same meaning as in normal english. Note that <code>or</code> is 'inclusive' (so, read <code>A or B</code> as 'either A or B or both of them').</p>
-<pre><code class="python">print('True and True is', True and True)
+<pre><code class="language-python">print('True and True is', True and True)
 print('True and False is', True and False)
 print('False and True is', False and True)
 print('False and False is', False and False)
 </code></pre>
-
 <pre><code>True and True is True
 True and False is False
 False and True is False
@@ -2248,7 +2208,7 @@ float()
 str()
 bool()
 </code></pre>
-<pre><code class="python">start_number = 1
+<pre><code class="language-python">start_number = 1
 print(&quot;starting with&quot;,start_number)
 
 int_number = int(start_number) 
@@ -2267,7 +2227,6 @@ bool_number = bool(start_number)
 print('bool_number',bool_number,type(bool_number))
 
 </code></pre>
-
 <pre><code>starting with 1
 int_number 1 &lt;class 'int'&gt;
 float_number 1.0 &lt;class 'float'&gt;
@@ -2434,19 +2393,6 @@ bool_number True &lt;class 'bool'&gt;
 </tbody>
 </table>
                 
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
-    
-  </small>
-</div>
-                  
-                
               
               
                 
@@ -2518,7 +2464,7 @@ bool_number True &lt;class 'bool'&gt;
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

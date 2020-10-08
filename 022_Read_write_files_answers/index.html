@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1484,7 +1454,7 @@
 <li>split the text into lines of text using <code>str.split()</code> at each newline, and print out the resulting list</li>
 </ul>
 <p>You learned how to split strings in <a href="../013_Python_string_methods/#split()-and-join()">013_Python_string_methods</a></p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Using `Path.read_text()` read the text from the 
 # file `work/easy.txt` and print the text returned.
 
@@ -1496,7 +1466,6 @@ print(f'I have read:\n{text}')
 text_list = text.split('\n')
 print(f'lines list:\n{text_list}')
 </code></pre>
-
 <pre><code>I have read:
 
 It is easy for humans to read and write.
@@ -1521,7 +1490,7 @@ hdf_urls = modis.get_url(year="2020",month="01",day="01")
 <li>write a function called <code>get_locals</code> that loops over each entry in the list <code>hdf_urls</code> and returns the local filename </li>
 <li>write code to test the function and print results using data from <code>modis.get_url("2020","01","*")</code></li>
 </ul>
-<pre><code class="python">from geog0111.gurlpath import URL
+<pre><code class="language-python">from geog0111.gurlpath import URL
 
 # BETTER ANSWER
 # write a function called `get_locals` that loops 
@@ -1532,8 +1501,7 @@ def get_locals(hdf_urls):
     '''
     return [f.local() for f in hdf_urls]
 </code></pre>
-
-<pre><code class="python"># write code to test the function and print results 
+<pre><code class="language-python"># write code to test the function and print results 
 # using data from modis.get_url(&quot;2020&quot;,&quot;01&quot;,&quot;*&quot;)
 kwargs = {
     'product'    : 'MCD15A3H',
@@ -1546,7 +1514,6 @@ hdf_urls = modis.get_url(year=&quot;2020&quot;,month=&quot;01&quot;,day=&quot;*&
 # test
 print(get_locals(hdf_urls))
 </code></pre>
-
 <pre><code>[PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store'), PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf.store'), PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.09/MCD15A3H.A2020009.h08v06.006.2020014204616.hdf.store'), PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.13/MCD15A3H.A2020013.h08v06.006.2020018030252.hdf.store'), PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.17/MCD15A3H.A2020017.h08v06.006.2020022034013.hdf.store'), PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.21/MCD15A3H.A2020021.h08v06.006.2020026032135.hdf.store'), PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.25/MCD15A3H.A2020025.h08v06.006.2020030025757.hdf.store'), PosixPath('/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.29/MCD15A3H.A2020029.h08v06.006.2020034165001.hdf.store')]
 </code></pre>
 <h4 id="exercise-3">Exercise 3</h4>
@@ -1558,7 +1525,7 @@ print(get_locals(hdf_urls))
 <li>test the code by showing the keys in the dictionary returned and the shape of their dataset</li>
 </ul>
 <p>You will need to recall how to split a string, that was covered in <a href="../013_Python_string_methods/#split()-and-join()">013 Python string methods</a>. You will also need to recall how to <a href="../016_Python_for/#looping-over-dictionaries,-and-assert">loop over a dictionary</a>. We saw how to find the shape of the dataset returned above (<code>.shape</code>).</p>
-<pre><code class="python"># ANSWER 
+<pre><code class="language-python"># ANSWER 
 name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
 
 # Take the string variable name above, split it to obtain the 
@@ -1568,10 +1535,9 @@ name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
 sds_name = name.split()[1]
 print(sds_name)
 </code></pre>
-
 <pre><code>Fpar_500m
 </code></pre>
-<pre><code class="python"># Write a function called get_data that reads an HDF (MODIS) filename, 
+<pre><code class="language-python"># Write a function called get_data that reads an HDF (MODIS) filename, 
 # and returns a dictionary of all of the data in the file,
 # using ReadAsArray(). 
 # The dictionary keys should correspond to the items in sds_name above.
@@ -1594,8 +1560,7 @@ def get_data(hdf_filename):
         odict[sds_name] = data
     return odict
 </code></pre>
-
-<pre><code class="python"># test the code by showing the keys in the dictionary 
+<pre><code class="language-python"># test the code by showing the keys in the dictionary 
 # returned and the shape of their dataset
 import gdal
 from  geog0111.modis import Modis
@@ -1619,7 +1584,6 @@ for k,v in hdf_dict.items():
     # do some neat formatting on k
     print(f'{k:&lt;20s}: {v.shape}')
 </code></pre>
-
 <pre><code>Fpar_500m           : (2400, 2400)
 Lai_500m            : (2400, 2400)
 FparLai_QC          : (2400, 2400)
@@ -1627,19 +1591,6 @@ FparExtra_QC        : (2400, 2400)
 FparStdDev_500m     : (2400, 2400)
 LaiStdDev_500m      : (2400, 2400)
 </code></pre>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -1712,7 +1663,7 @@ LaiStdDev_500m      : (2400, 2400)
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

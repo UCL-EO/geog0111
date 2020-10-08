@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1680,7 +1650,7 @@
 <li>result = numerator/denominator</li>
 </ul>
 <p>We will now load up a dataset (LAI for LU for 2019) to explore smoothing. We will use the function <a href="../geog0111/get_lai_data.py">get_lai_data</a> that we have previously developed:</p>
-<pre><code class="python">from geog0111.get_lai_data import get_lai_data
+<pre><code class="language-python">from geog0111.get_lai_data import get_lai_data
 import numpy as np
 
 # load some data
@@ -1697,7 +1667,6 @@ mask = (std &gt; 0)
 weight[mask] = 1./(std[mask]**2)
 weight[lai &gt; 10] = 0.
 </code></pre>
-
 <h4 id="exercise-1">Exercise 1</h4>
 <ul>
 <li>Write a function <code>get_weight</code> that takes as argument:<pre><code>lai  : MODIS LAI dataset
@@ -1708,7 +1677,7 @@ std  : MODIS LAI uncertainty dataset
 <p>and returns an array the same shape as lai/std of per-pixel pixel weights
 * Read a MODIS LAI dataset, calculate the weights, and print some statistics of the weights</p>
 <p>We can plot the dataset for a given pixel (<code>(107,72)</code> here) to see some of the features of the data:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # look at some stats
 print(weight.min(),weight.max(),doy.min(),doy.max())
@@ -1729,7 +1698,6 @@ axs.set_ylim(0,7)
 axs.set_xlabel('DOY 2019')
 axs.set_ylabel('LAI')
 </code></pre>
-
 <pre><code>0.0 1.0 1 365
 
 
@@ -1743,7 +1711,7 @@ Text(0, 0.5, 'LAI')
 <p>Despite that, we can 'see' that there should be a smoothly varying function that can go through those data points quite well. This is what we want to achieve with our regularisation.</p>
 <h3 id="smoothing_1">Smoothing</h3>
 <p>We can generate a Gaussian filter for our smoothing. The width of the filter, that in turn controls the degree of smoothing, is set by the parameter <code>sigma</code>. Recall the impact of the filter width from the <a href="../042_Weighted_smoothing_and_interpolation/#Filter-width-and-degree-of-smoothing">material in the previous session</a>. We will use a value of <code>5</code> here, but you should <em>not</em> assume that that will always be appropriate. We will discuss how to experiment with this later in this session.</p>
-<pre><code class="python">import scipy
+<pre><code class="language-python">import scipy
 import scipy.ndimage.filters
 
 # sigma controls the width of the smoother
@@ -1754,12 +1722,11 @@ gaussian = np.exp((-(x/sigma)**2)/2.0)
 
 plt.plot(x,gaussian)
 </code></pre>
-
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x7fba6be4e7d0&gt;]
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_8_1.png" /></p>
 <p>We now perform the weighted regularisation by convolution.</p>
-<pre><code class="python">numerator = scipy.ndimage.filters.convolve1d(lai * weight, gaussian, axis=0,mode='wrap')
+<pre><code class="language-python">numerator = scipy.ndimage.filters.convolve1d(lai * weight, gaussian, axis=0,mode='wrap')
 denominator = scipy.ndimage.filters.convolve1d(weight, gaussian, axis=0,mode='wrap')
 
 # avoid divide by 0 problems by setting zero values
@@ -1768,9 +1735,8 @@ denominator[denominator==0] = np.nan
 
 interpolated_lai = numerator/denominator
 </code></pre>
-
 <p>We can plot the results in various ways:</p>
-<pre><code class="python">p0,p1 = (107,72)
+<pre><code class="language-python">p0,p1 = (107,72)
 x_size,y_size=(10,5)
 
 fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
@@ -1786,11 +1752,10 @@ axs.set_xlabel('DOY 2019')
 axs.set_ylabel('LAI')
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fba639eaf90&gt;
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_12_1.png" /></p>
-<pre><code class="python"># Plot the interpolated_lai
+<pre><code class="language-python"># Plot the interpolated_lai
 import matplotlib.pyplot as plt
 
 shape=(12,8)
@@ -1806,9 +1771,8 @@ for i in range(interpolated_lai.shape[0]):
     axs[i].set_title(doy[i])
     fig.colorbar(im, ax=axs[i])
 </code></pre>
-
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_13_0.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 x_size,y_size=(20,20)
 
@@ -1829,7 +1793,6 @@ for i in range(shape[0]):
         # ensure the same scale for all
         axs[i,j].set_ylim(0,7)
 </code></pre>
-
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_14_0.png" /></p>
 <p>This achieves very plausible results for this dataset. The time series plots are particularly useful in judging this: we see that the smoothed signal describes the cloud of observations well. Further, there are no gaps in the data. A visual assessment of this kind is a useful tool for deciding if we are on the right track with our regularisation. We have not justified the filter width value we have used though.</p>
 <h4 id="exercise-2">Exercise 2</h4>
@@ -1852,7 +1815,7 @@ sigma   : Gaussian filter width
 <pre><code>    mask = np.sum(interpolated_lai,axis=0)
 </code></pre>
 <p>This will build a 2D dataset that is <code>np.nan</code> if invalid. We can then use <code>~np.isnan</code> to build a boolean mask. The <code>~</code> symbol is the same as doing <code>np.logical_not()</code> in this context. It will be <code>True</code> where invalid, and <code>False</code> where valid:</p>
-<pre><code class="python"># reload the dataset
+<pre><code class="language-python"># reload the dataset
 from geog0111.get_lai_data import get_lai_data
 from geog0111.get_weight import get_weight
 from geog0111.regularise import regularise
@@ -1861,8 +1824,7 @@ lai,std,doy =  get_lai_data(year,tile,fips)
 weight = get_weight(lai,std)
 interpolated_lai = regularise(lai,weight,5.0)
 </code></pre>
-
-<pre><code class="python">mask = ~np.isnan(np.sum(interpolated_lai,axis=0))
+<pre><code class="language-python">mask = ~np.isnan(np.sum(interpolated_lai,axis=0))
 
 x_size,y_size=(10,10)
 fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
@@ -1870,14 +1832,13 @@ x = doy
 axs.imshow(mask)
 axs.set_title('data mask')
 </code></pre>
-
 <pre><code>Text(0.5, 1.0, 'data mask')
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_19_1.png" /></p>
 <h2 id="land-cover">Land cover</h2>
 <p>We have generated a gap-filled LAI dataset, and have checked the quality of it. Lets now load some land cover data so that we can examine LAI as a function of land cover class:</p>
 <p>We will use <code>LC_Type3</code> as this is the classification associated with the LAI product. You will find a CSV file defining the LC types in <a href="../data/LC_Type3_colour.csv"><code>data/LC_Type3_colour.csv</code></a>.</p>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 
 # LU
 kwargs = {
@@ -1902,15 +1863,13 @@ warp_args = {
 lcfiles = modis.get_modis(year,doy,warp_args=warp_args)
 lcfiles.keys()
 </code></pre>
-
 <pre><code>dict_keys(['LC_Prop1', 'LC_Prop1_Assessment', 'LC_Prop2', 'LC_Prop2_Assessment', 'LC_Prop3', 'LC_Prop3_Assessment', 'LC_Type1', 'LC_Type2', 'LC_Type3', 'LC_Type4', 'LC_Type5', 'LW', 'QC', 'bandnames'])
 </code></pre>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 # read the colour data
 lc_Type3 = pd.read_csv('data/LC_Type3_colour.csv')
 lc_Type3
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2024,7 +1983,7 @@ lc_Type3
 </table>
 </div>
 
-<pre><code class="python"># generate matplotlib cmap and norm objects from these
+<pre><code class="language-python"># generate matplotlib cmap and norm objects from these
 # as in session 024
 import matplotlib
 import matplotlib.patches
@@ -2039,8 +1998,7 @@ legend_labels = dict(zip(list(lc_Type3['colour']),list(lc_Type3['class'])))
 patches = [matplotlib.patches.Patch(color=c, label=l)
            for c,l in legend_labels.items()]
 </code></pre>
-
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 import numpy as np
 
 # read the LC_Type3 dataset
@@ -2053,11 +2011,10 @@ land_cover = g.ReadAsArray()
 print(np.unique(land_cover))
 print(lcfiles['LC_Type3'])
 </code></pre>
-
 <pre><code>[  1   3   4   5   6   7  10 255]
 /shared/groups/jrole001/geog0111/work/MCD12Q1/data.LC_Type3._h17v03_h18v03_h17v04_h18v04_.2019.001.001_warp.vrt
 </code></pre>
-<pre><code class="python"># plot
+<pre><code class="language-python"># plot
 import matplotlib.pyplot as plt
 x_size,y_size=(10,10)
 fig, axs = plt.subplots(1,figsize=(x_size,y_size))
@@ -2066,7 +2023,6 @@ plt.legend(handles=patches,
           bbox_to_anchor=(1.6, 1),
           facecolor=&quot;white&quot;)
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fba5d278a90&gt;
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_26_1.png" /></p>
@@ -2083,7 +2039,7 @@ fips    : country FIPS code, str
 * Write a function <code>plot_LC_Type3</code> that will plot LC_Type3 data with an appropriate colourmap.
 * Produce a plot of the land cover of Belgium for 2018</p>
 <p>We can now consider masking both for valid pixels and for a particular land cover type.</p>
-<pre><code class="python"># reload the dataset
+<pre><code class="language-python"># reload the dataset
 from geog0111.get_lai_data import get_lai_data
 from geog0111.get_weight import get_weight
 from geog0111.regularise import regularise
@@ -2097,20 +2053,18 @@ lai,std,doy =  get_lai_data(year,tile,fips)
 weight = get_weight(lai,std)
 interpolated_lai = regularise(lai,weight,5.0)
 </code></pre>
-
 <pre><code>class codes: [  1   3   4   5   6   7  10 255]
 </code></pre>
-<pre><code class="python"># get the code for Grasslands
+<pre><code class="language-python"># get the code for Grasslands
 # might be easier to look in the table ...
 # but we can extract it
 classy = 'Grasslands'
 code = int(lc_Type3[lc_Type3['class'] == classy]['code'])
 print(f'code for {classy} is {code}')
 </code></pre>
-
 <pre><code>code for Grasslands is 1
 </code></pre>
-<pre><code class="python"># code 
+<pre><code class="language-python"># code 
 code_mask = (land_cover == code)
 valid_mask = ~np.isnan(np.sum(interpolated_lai,axis=0))
 
@@ -2119,12 +2073,11 @@ mask = np.logical_and(code_mask,valid_mask)
 masked_lai = interpolated_lai[:,mask]
 print(masked_lai.shape)
 </code></pre>
-
 <pre><code>(92, 2661)
 </code></pre>
 <p>Notice how we used <code>interpolated_lai[:,mask]</code> to apply the mask to the last 2 dimensions of the `interpolated_laia dataset. The result is 2D, the first dimension being the number of time samples.</p>
 <p>Now, take the mean, over axis 1:</p>
-<pre><code class="python">mean_lai = np.mean(masked_lai,axis=(1))
+<pre><code class="language-python">mean_lai = np.mean(masked_lai,axis=(1))
 median_lai = np.median(masked_lai,axis=(1))
 max_lai = np.max(masked_lai,axis=(1))
 min_lai = np.min(masked_lai,axis=(1))
@@ -2132,10 +2085,9 @@ min_lai = np.min(masked_lai,axis=(1))
 # check they have the same shape before we plot them!
 masked_lai.shape,doy.shape
 </code></pre>
-
 <pre><code>((92, 2661), (92,))
 </code></pre>
-<pre><code class="python"># plot 
+<pre><code class="language-python"># plot 
 x_size,y_size=(10,5)
 
 fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
@@ -2152,7 +2104,6 @@ axs.set_xlabel('DOY 2019')
 axs.set_xlim(0,365)
 axs.legend(loc='upper right')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fba5ce1cf90&gt;
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_files/043_Weighted_interpolation_34_1.png" /></p>
@@ -2161,19 +2112,6 @@ axs.legend(loc='upper right')
 <h2 id="summary">Summary</h2>
 <p>From this session, you should be able to acquire a MODIS timeseries dataset and associated land cover map. You should be able to treat the data, so that by defining a weight for weach observation, you can produce a regularised (smoothed, interpolated) dataset from original noisy observations. In this case, we used variable weighting, according to an uncertainty measure, but if that is not available, you can simply use a weight of 1 for a valid observation and 0 when there is no valid value. </p>
 <p>You should then be able to calculate statistics from the data. You should be capable of doing this for any MODIS geophysical variable, and also of developing functiuons that bring some of these ideas together into more compact, reusable code.</p>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2246,7 +2184,7 @@ axs.legend(loc='upper right')
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

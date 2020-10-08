@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1808,10 +1778,9 @@
 <h2 id="string-features">String features</h2>
 <h3 id="quotes-and-escapes">Quotes and escapes</h3>
 <p>We have seen strings before, and noted that they are collections of characters (<code>a</code>, <code>b</code>, <code>1</code>, ...). Strings and characters are input by surrounding the relevant text in either double (<code>"</code>) or single (<code>'</code>) quotes. You can use this feature to print out a string with quotes, for example:</p>
-<pre><code class="python">print (&quot;'a string in single quotes'&quot;)
+<pre><code class="language-python">print (&quot;'a string in single quotes'&quot;)
 print ('&quot;a string in double quotes&quot;')
 </code></pre>
-
 <pre><code>'a string in single quotes'
 "a string in double quotes"
 </code></pre>
@@ -1820,10 +1789,9 @@ print ('&quot;a string in double quotes&quot;')
 <pre><code>    "beware of \n and \t"
 </code></pre>
 <p>we will find that they are (as we probably suspected) interpreted. Using single or double quotes will make no difference:</p>
-<pre><code class="python">print(&quot;beware of \n and \t&quot;)
+<pre><code class="language-python">print(&quot;beware of \n and \t&quot;)
 print('beware of \n and \t')
 </code></pre>
-
 <pre><code>beware of 
  and    
 beware of 
@@ -1834,9 +1802,8 @@ beware of
 </code></pre>
 <p>the code would fail, because <code>\"</code> means <em>don't</em> interpret <code>"</code> in its usual sense (i.e. as a quote) and we would have an unclosed string.</p>
 <p>The trick then, is to use <code>\</code> to escape the meaning of <code>\</code>. So, if we want to print <code>\</code>, we set the string as <code>\\</code>:</p>
-<pre><code class="python">print(&quot;\\&quot;)
+<pre><code class="language-python">print(&quot;\\&quot;)
 </code></pre>
-
 <pre><code>\
 </code></pre>
 <h4 id="exercise-1">Exercise 1</h4>
@@ -1846,7 +1813,7 @@ beware of
 </ul>
 <p>Another time we use the <code>\</code> as an escape character is in trying to make long strings in our code more readable. We can do this by putting an escape <code>\</code> <strong>just before</strong> we hit the return key (newline!) on the keyboard, and so spread what would be a command or variable over a single long line over multiple lines.</p>
 <p>For example:</p>
-<pre><code class="python"># from https://www.usgs.gov/faqs/what-remote-sensing-and-what-it-used?
+<pre><code class="language-python"># from https://www.usgs.gov/faqs/what-remote-sensing-and-what-it-used?
 string = \
 &quot;Remote sensing is the process of detecting and \
 monitoring the physical characteristics of an \
@@ -1856,7 +1823,6 @@ satellite or aircraft).&quot;
 
 print(string)
 </code></pre>
-
 <pre><code>Remote sensing is the process of detecting and monitoring the physical characteristics of an area by measuring its reflected and emitted radiation at a distance (typically from satellite or aircraft).
 </code></pre>
 <p>Here, when we type <code>string =</code> on the first line, the Python interpreter expects a string to be specified next. By using instead <code>\</code> <em>just before we hit the return</em>, we are essentially escaping that newline, and the rest of the command (the string definition here) can take place on the following line. We repeat this idea to spread the string over multiple lines.</p>
@@ -1869,7 +1835,7 @@ string
 '''
 </code></pre>
 <p>that means we don't need to escape each end of line within the text.</p>
-<pre><code class="python"># from https://www.usgs.gov/faqs/what-remote-sensing-and-what-it-used?
+<pre><code class="language-python"># from https://www.usgs.gov/faqs/what-remote-sensing-and-what-it-used?
 string = '''
 Remote sensing is the process of detecting and 
 monitoring the physical characteristics of an 
@@ -1880,7 +1846,6 @@ satellite or aircraft).
 
 print(string)
 </code></pre>
-
 <pre><code>Remote sensing is the process of detecting and 
 monitoring the physical characteristics of an 
 area by measuring its reflected and emitted 
@@ -1907,13 +1872,12 @@ Wrapped up in a five-pound note.
 <p>We can use some of the arithmetic operators with strings. In particular <code>*</code> and <code>+</code>.</p>
 <h3 id="_1"><code>*</code></h3>
 <p>In the context of a string, the operator <code>*</code> is used to repeat the string. For example:</p>
-<pre><code class="python"># multiplication example
+<pre><code class="language-python"># multiplication example
 dash = '-'
 dash10 = dash * 10
 print(dash,len(dash))
 print(dash10,len(dash10))
 </code></pre>
-
 <pre><code>- 1
 ---------- 10
 </code></pre>
@@ -1927,14 +1891,13 @@ print(dash10,len(dash10))
 </ul>
 <h3 id="_2"><code>+</code></h3>
 <p>The plus operator <code>+</code> adds two strings together, in the sense of <a href="https://en.wikipedia.org/wiki/Concatenation">concatenating</a> the strings. For example:</p>
-<pre><code class="python"># hello world
+<pre><code class="language-python"># hello world
 astring = 'hello'
 bstring = 'world'
 
 cstring = astring + bstring
 print('I joined',astring,'to',bstring,'with + and got',cstring)
 </code></pre>
-
 <pre><code>I joined hello to world with + and got helloworld
 </code></pre>
 <h4 id="exercise-4">Exercise 4</h4>
@@ -1948,15 +1911,14 @@ print('I joined',astring,'to',bstring,'with + and got',cstring)
 <h3 id="strformat"><code>str.format()</code></h3>
 <p>We know that we can join strings together with <code>+</code> or, from a list with <code>str.join()</code>. </p>
 <p>Whilst we have seen that you can print a string with some variables in it, e.g.:</p>
-<pre><code class="python">float_val = 10.6
+<pre><code class="language-python">float_val = 10.6
 guess_value = 13.4
 print(&quot;The number you are thinking of is&quot;,float_val,'but I guessed',guess_value)
 </code></pre>
-
 <pre><code>The number you are thinking of is 10.6 but I guessed 13.4
 </code></pre>
 <p>strings of that nature can soon become unwieldy. We could have converted each item to a string, and then joined the strings:</p>
-<pre><code class="python">float_val = 10.6
+<pre><code class="language-python">float_val = 10.6
 guess_value = 13.4
 # using + &amp; inserting the correct white spaces
 string = &quot;The number you are thinking of is &quot; + \
@@ -1965,7 +1927,6 @@ string = &quot;The number you are thinking of is &quot; + \
           str(guess_value)
 print(string)
 </code></pre>
-
 <pre><code>The number you are thinking of is 10.6 but I guessed 13.4
 </code></pre>
 <p>but neither of these is very readable, or indeed very re-useable.</p>
@@ -1983,7 +1944,7 @@ print(string)
 </code></pre>
 <p>with variables <code>float_val</code> and <code>guess_value</code> defined between braces <code>{}</code>.</p>
 <p>To insert values into this template, we use the string method <code>format()</code>. If the template variables are named (as in <code>{think}</code> and <code>{guess}</code> here), then we use <strong>keyword arguments</strong> with <code>format()</code>. For example:</p>
-<pre><code class="python">string_template = \
+<pre><code class="language-python">string_template = \
     &quot;The number you are thinking of is {think} but I guessed {guess}&quot;
 
 float_val = 10.6
@@ -1992,12 +1953,11 @@ guess_value = 13.4
 print(string_template.format(think=float_val,\
                              guess=guess_value))
 </code></pre>
-
 <pre><code>The number you are thinking of is 10.6 but I guessed 13.4
 </code></pre>
 <p>This has the advantage that the template is easily re-useable, that we have been explicit about the variables we insert.</p>
 <p>A further refinement on this is to specify some formatting statement for the variables we use. For example, we might want the value <code>float_val</code> or <code>guess_value</code> to be specified to two decimal places. To do this, we can provide a formatting statement to associate with the variable name in the template. This is done using a <code>:</code> qualifier, followed by a description of the format. For example, the format statement of two figures after the decimal point for a <code>float</code>is <code>:.2f</code>. </p>
-<pre><code class="python">string_template = \
+<pre><code class="language-python">string_template = \
     &quot;The number you are thinking of is {think:.2f} but I guessed {guess:.2f}&quot;
 
 float_val = 10.6
@@ -2006,7 +1966,6 @@ guess_value = 13.4
 print(string_template.format(think=float_val,\
                              guess=guess_value))
 </code></pre>
-
 <pre><code>The number you are thinking of is 10.60 but I guessed 13.40
 </code></pre>
 <p>Other useful format statements examples include:</p>
@@ -2029,12 +1988,11 @@ print(string_template.format(think=float_val,\
     use &lt; for left align   &lt;-| |-&gt; 10 is length of string
 </code></pre>
 <p>The syntax might seem a little awkward at first, but its is <a href="https://docs.python.org/3/library/string.html#formatstrings">very powerful</a>. So long as you are aware that it exists and know of some examples, you should be able to pick it up.</p>
-<pre><code class="python">print(&quot;  : &gt;.2f  -&gt; {x: &gt;.2f}&quot;.format(x=10.3))
+<pre><code class="language-python">print(&quot;  : &gt;.2f  -&gt; {x: &gt;.2f}&quot;.format(x=10.3))
 print(&quot;  :0&gt;8d    -&gt; {x:0&gt;8d}&quot;.format(x=10))
 print(&quot;  :_&gt;10s   -&gt; {x:_&gt;10s}&quot;.format(x='hello'))
 print(&quot;  :_&lt;10s   -&gt; {x:_&lt;10s}&quot;.format(x='hello'))
 </code></pre>
-
 <pre><code>  : &gt;.2f  -&gt; 10.30
   :0&gt;8d    -&gt; 00000010
   :_&gt;10s   -&gt; _____hello
@@ -2052,10 +2010,9 @@ print(&quot;  :_&lt;10s   -&gt; {x:_&lt;10s}&quot;.format(x='hello'))
 <h3 id="f-string"><code>f-string</code></h3>
 <p>An alternative way of formatting a string that can be useful is the use of the <code>f-string</code>. In this, we place an <code>f</code> character at the start of the string. It is a sort of short-hand for what we do with the format statement, where the variables given in the braces are directly inserted.</p>
 <p>Note that we can use the same sort of formatting statements for the f-string as when using <code>.format()</code> above.</p>
-<pre><code class="python">string = f'The number you are thinking of is {float_val} but I guessed {guess_value}'
+<pre><code class="language-python">string = f'The number you are thinking of is {float_val} but I guessed {guess_value}'
 print(string)
 </code></pre>
-
 <pre><code>The number you are thinking of is 10.6 but I guessed 13.4
 </code></pre>
 <h4 id="exercise-6">Exercise 6</h4>
@@ -2116,19 +2073,6 @@ print(string)
 </tr>
 </tbody>
 </table>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2201,7 +2145,7 @@ print(string)
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1747,7 +1717,7 @@ Model inversion [60%]    </p>
 <pre><code>m = expit(T-T0)
 </code></pre>
 <p>where <code>expit</code> the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.expit.html">logistic function</a> that we have previously used in phenology modelling.</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 from scipy.special import expit
 
@@ -1762,10 +1732,9 @@ for T0 in [-5,0,5]:
     axs.plot(T,m,label=f'T0={T0}')
 axs.legend(loc='best')
 </code></pre>
-
 <p>This is a convenient 'soft switch' function that is widely used in modelling and  computing. If the temperature is much less that <code>T0</code> then <code>m</code> is 0. If it is much greater, them <code>m</code> is 1. For a transition zone around <code>T0</code>, it varies smoothly.</p>
 <p>The water release from the snow pack is now proportional to <code>p m</code>, so is controlled by temperature and current snow cover. We now load up some example datasets of temperature, snow cover and flow. You are <em>not</em> to use these in your submission. They are for illustration only.</p>
-<pre><code class="python">import pickle
+<pre><code class="language-python">import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 '''
@@ -1787,8 +1756,7 @@ Q /= Q.sum()
 p = data['snowprop']
 t = data['doy']
 </code></pre>
-
-<pre><code class="python">fig, axs = plt.subplots(1,1,figsize=(10,5))
+<pre><code class="language-python">fig, axs = plt.subplots(1,1,figsize=(10,5))
 T0 = 9
 m = expit(T-T0)
 # m * p
@@ -1803,9 +1771,8 @@ axs.plot(t,50 * Q/Q.max(),'k',lw=2,label='flow (scaled)')
 axs.set_xlim(0,365)
 axs.legend(loc='best')
 </code></pre>
-
 <p>In the figure, we see the melt water that corresponds to a temperature of 9 degrees. It is remarkably similar to the flow data, but much noisier. We also see that it occurs some time before we see the water flow at the me=onitoring station. The reason for this is that there is a 'network delay' between the melt happening in thge snopack and it reaching the monitoring station. This final component of our model is a network response function (NRF) that models this delay:</p>
-<pre><code class="python"># build the NRF filter
+<pre><code class="language-python"># build the NRF filter
 #
 # use centred filter time 
 # parameter f = 0.05
@@ -1825,10 +1792,9 @@ axs.set_xlim(-p.size/2,p.size/2)
 axs.set_ylabel('NRF filter magnitude')
 axs.set_xlabel('time')
 </code></pre>
-
 <p>The NRF is effectively a one-sided smoothing filter. It imparts a delay on the signal, and smooths it. </p>
 <p>If we look at the cumulative effect of the filter using <code>np.cumsum</code>, we can see how long it takes for the water to reach the monitoring station:</p>
-<pre><code class="python">fig, axs = plt.subplots(1,1,figsize=(10,3))
+<pre><code class="language-python">fig, axs = plt.subplots(1,1,figsize=(10,3))
 axs.plot(nrf_x,np.cumsum(nrf),'k',lw=2,label='flow (scaled)')
 axs.set_xlim(-p.size/2,p.size/2)
 axs.set_ylabel('NRF filter cumulative magnitude')
@@ -1836,11 +1802,10 @@ axs.set_xlabel('time')
 axs.set_xlim(-1,40)
 axs.set_ylim(0,1)
 </code></pre>
-
 <p>According to this mode, with this parameter, about half of the melt water has reached the monitoring station after around 15 days.</p>
 <p>If we convolve this filter with out signal <code>m p</code>, we have our complete model. It is a very simple model that has only 2 parameters: <code>T0</code> and <code>f</code>, although we have assumed the flow data to be normalised to sum to 1 to avoid an additional scaling factor.</p>
 <p>We can now see the code for the model (also in <a href="../geog0111/model.py">geog0111/model.py</a>):</p>
-<pre><code class="python">from scipy.special import expit
+<pre><code class="language-python">from scipy.special import expit
 import scipy
 import scipy.ndimage.filters
 
@@ -1888,8 +1853,7 @@ def model(T0,f,T,p,xp=1.0):
                        for i in range(y.shape[1])]).T
     return Q_nrf/Q_nrf.sum(axis=0)
 </code></pre>
-
-<pre><code class="python"># Run the model
+<pre><code class="language-python"># Run the model
 T0,f = 9,0.05
 # T and p are input time series
 Q_nrf = model(T0,f,T,p).ravel()
@@ -1901,7 +1865,6 @@ axs.plot(t,Q,'k',label='measured flow (normalised)')
 axs.set_xlim(0,365)
 axs.legend(loc='best')
 </code></pre>
-
 <p>The model appears to be capable of following the features of the measured flow data quite well, although it its slightly over-smoothed.</p>
 <p>So, we have defined a simple snow melt model. It has two parameters that we3 can vary:</p>
 <ul>
@@ -1928,7 +1891,7 @@ axs.legend(loc='best')
 <p>20% of the marks for this section will be for the content and quality of your plots. The rest will be for the code you produce. You should submit a single PDF file for the code, and another for the evidence of the file sizes and the graphs. Neither of these PDFs should be more than a few pages long.</p>
 <h4 id="advice">Advice</h4>
 <p>You will need this snow cover dataset, along with those you generated in Part A of your coursework
-You will want to use the product <code>MOD10A1</code> for the years 2018 and 2019. You should apply the catchment boundary vector dataset in the file <a href="../data/Hydrologic_Units/HUC_Polygons.shp">data/Hydrologic_Units/HUC_Polygons.shp</a> to clip your region of interest, specifying the warp arguments and other parameters as follows:</p>
+You will want to use the product <code>MOD10A1</code> for the years 2018 and 2019. You should apply the catchment boundary vector dataset in the file <a href="data/Hydrologic_Units/HUC_Polygons.shp">data/Hydrologic_Units/HUC_Polygons.shp</a> to clip your region of interest, specifying the warp arguments and other parameters as follows:</p>
 <pre><code>    sds     = ['NDSI_Snow_Cover']
     product = 'MOD10A1'
     tile = ['h09v05']
@@ -1974,19 +1937,6 @@ You will want to use the product <code>MOD10A1</code> for the years 2018 and 201
 <p>70% of the marks for this section will be awarded for the computer code, and 30% for the graphs and tables. </p>
 <p>You need to submit you coursework in the usual manner by the usual submission date.</p>
 <p>You <strong>must</strong> work individually on this task. If you do not, it will be treated as plagiarism. By reading these instructions for this exercise, we assume that you are aware of the UCL rules on plagiarism. You can find more information on this matter in your student handbook. If in doubt about what might constitute plagiarism, ask one of the course conveners. You should read the <a href="../063_Part1_code/">advice on plagiarism and computer codes</a> we have supplied.</p>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2059,7 +2009,7 @@ You will want to use the product <code>MOD10A1</code> for the years 2018 and 201
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1518,31 +1488,29 @@ measure_weight = (2 + np.random.random(tmdriver.shape))/4
 <li>Set different parameters in <code>gen_meas</code> to generate a different pseudo-measurement and repeat the process.</li>
 <li>Comment on the results</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # run your own script 
 !geog0111/lut_RMSE.py
 </code></pre>
-
 <pre><code>original parameters: [0.4, 0.0002]
 min rmse
 2.4414406001331534
 index: 1447: 0.35000000000000003,0.0002
 parameters: 0.35000000000000003 0.0002
 </code></pre>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 import numpy as np
 # Run runner() in a notebook
 from geog0111.lut_RMSE import runner, model, gen_lut
 RMSE,param,(measure,measure_weight,tmdriver) = runner()
 </code></pre>
-
 <pre><code>original parameters: [0.4, 0.0002]
 min rmse
 2.450846276410498
 index: 1848: 0.45,0.00019500000000000002
 parameters: 0.45 0.00019500000000000002
 </code></pre>
-<pre><code class="python"># confirm: same as in runner?
+<pre><code class="language-python"># confirm: same as in runner?
 # use argmin to find min, but need to flatten/reshape arrays first
 p0,p1 = param
 p0_ = np.ravel(p0)
@@ -1559,11 +1527,10 @@ p1min = p1[ip0min,ip1min]
 p = np.array([p0min,p1min])
 print(f'parameters: {p[0]} {p[1]}')
 </code></pre>
-
 <pre><code>index: 1848: 0.45,0.00019500000000000002
 parameters: 0.45 0.00019500000000000002
 </code></pre>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # Plot the reshaped RMSE values returned from this as an image
 
 # plot it
@@ -1576,11 +1543,10 @@ axs.set_ylabel('p1')
 plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7ff931478110&gt;
 </code></pre>
 <p><img alt="png" src="../050_Models_answers_files/050_Models_answers_5_1.png" /></p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 from geog0111.lut_RMSE import gen_meas,model,lut_RMSE
 
 # change the original parameters 
@@ -1623,7 +1589,6 @@ axs.set_ylabel('p1')
 plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>original parameters: [0.7, 0.0005]
 min rmse
 2.3962827740874
@@ -1637,7 +1602,7 @@ parameters: 0.45 0.000505
 &lt;matplotlib.legend.Legend at 0x7ff931449d10&gt;
 </code></pre>
 <p><img alt="png" src="../050_Models_answers_files/050_Models_answers_6_2.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # error bars
 std = 1./np.sqrt(measure_weight) * 1.96
@@ -1662,35 +1627,20 @@ axs.set_xlabel(f'time / days')
 print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 </code></pre>
-
 <pre><code>[0.45     0.000505]
 measurements: tmdriver shape (92,)
 model output: tdriver shape  (365,)
 </code></pre>
 <p><img alt="png" src="../050_Models_answers_files/050_Models_answers_7_1.png" /></p>
-<pre><code class="python"># Comment on the results
+<pre><code class="language-python"># Comment on the results
 
 msg = '''
 We confirm the findings above, but are now able to see the form of the error surface in much greater detail. 
 '''
 print(msg)
 </code></pre>
-
 <pre><code>We confirm the findings above, but are now able to see the form of the error surface in much greater detail.
 </code></pre>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -1763,7 +1713,7 @@ print(msg)
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

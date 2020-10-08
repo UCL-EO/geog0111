@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1675,10 +1645,9 @@
 <h2 id="help-method">Help Method</h2>
 <h3 id="help">help()</h3>
 <p>You can get help on an object using the <code>help()</code> method. This will return a full manual page of the class documentation. You need to gain some experience in reading these and understanding some of the terminology. </p>
-<pre><code class="python">#the method help()
+<pre><code class="language-python">#the method help()
 help(list.append)
 </code></pre>
-
 <h4 id="exercise-1">Exercise 1</h4>
 <ul>
 <li>In a new code cell, type <code>help(list)</code> and look through the information provided.</li>
@@ -1690,12 +1659,11 @@ help(list.append)
 <li>It has some methods such as <code>append(self, object, /)</code> and <code>clear(self, /)</code>.</li>
 </ul>
 <p>We now create two object instances of a list class:</p>
-<pre><code class="python">alist = [1, 2, 3]
+<pre><code class="language-python">alist = [1, 2, 3]
 blist = [4, 5, 6]
 </code></pre>
-
 <p>and apply methods we see in the Help documentation, here: <code>append()</code> and <code>clear()</code>:</p>
-<pre><code class="python">alist = [1, 2, 3]
+<pre><code class="language-python">alist = [1, 2, 3]
 blist = [4, 5, 6]
 
 # append blist as the last element of alist
@@ -1706,7 +1674,6 @@ print('alist =', alist)
 blist.clear()
 print('blist =', blist)
 </code></pre>
-
 <pre><code>alist = [1, 2, 3, [4, 5, 6]]
 blist = []
 </code></pre>
@@ -1741,9 +1708,8 @@ blist = ['four','six','zero']
 <h2 id="help_1">help?</h2>
 <p>You can get a shorter set of basic help by putting <code>?</code> after the object. </p>
 <p>In a notebook, this will show in a new window at the bottom of the book. You can get rid of this by clicking the <code>x</code>.</p>
-<pre><code class="python">list?
+<pre><code class="language-python">list?
 </code></pre>
-
 <h3 id="learning-new-things">Learning new things</h3>
 <p>Let's use that knowledge to learn something new:</p>
 <ul>
@@ -1806,19 +1772,6 @@ blist = ['four','six','zero']
 </tbody>
 </table>
 <p>You might notice that there are many online forums you can post to to get advice on coding, and we mention  <a href="https://stackoverflow.com">https://stackoverflow.com</a> as an example. Remember that not all posts are equally useful: pay attention to comments from other users on any answer, as well as post votes. Do not look on <code>stackoverflow</code> until you have exhausted simpler help methods. You should <em>not</em> generally be posting on these in this course. You will find answers to all that you need in these notes or on existing online pages. You most certainly must <em>not</em> post on forums asking questions about anyt exercises you need to complete or work you need to submit. The course administrators may monitor this</p>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -1891,7 +1844,7 @@ blist = ['four','six','zero']
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

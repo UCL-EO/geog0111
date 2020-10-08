@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1625,14 +1595,13 @@
 <p>What we really want is a more objective way of estimating the parameters. This involves parameter optimisation, which is a whole field of science. We cannot cover that in this course, but we can introduce some of the main ideas to use in our codes.</p>
 <p>Before moving on to more 'realistic' models, let's build a simple example model <code>model</code> we can learn from. </p>
 <p>This has two parameters <code>p[0]</code> and <code>p[0]</code> and a driver that represents time:</p>
-<pre><code class="python"># simple model 
+<pre><code class="language-python"># simple model 
 def model(driver,param):
     '''2-parameter quadratic model with noise'''
     return param[0] + param[1] * driver * driver
 </code></pre>
-
 <p>We will generate a dataset <code>measure</code> at time samples <code>tmdriver</code> to represent our measurements, We generate them with the model with a set of parameters and some additive noise. We will also generate a set of weights for the observations, which we will use to indicate their reliability:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 # time driver every 4 days for measurement
 tmdriver = np.arange(0,365,4,dtype=np.int)
@@ -1644,9 +1613,8 @@ measure_weight = (2 + np.random.random(tmdriver.shape))/4
 # convert to std for plotting as previously
 std = 1./np.sqrt(measure_weight) * 1.96
 </code></pre>
-
 <p>Now we forget that we know the parameters, make a guess that they are <code>[0.3,0.0001]</code>, and use the model to make a prediction <code>output</code>. Note that <code>output</code> exists every day, whereas the measurements are only every 4 days.</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # time driver every day
 tdriver = np.arange(0,365,1,dtype=np.int)
@@ -1668,7 +1636,6 @@ axs.set_xlabel(f'time / days')
 print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 </code></pre>
-
 <pre><code>measurements: tmdriver shape (92,)
 model output: tdriver shape  (365,)
 </code></pre>
@@ -1682,28 +1649,26 @@ model output: tdriver shape  (365,)
 <p>Uncertainty manifests itself at all stages of modelling and optimisation: the model itself will be uncertain, because of its nature as an abstraction of some process; the drivers will often be uncertain in their ability to the conditions at the actual place and time we are doing the modelling; and the measurements will be uncertain. We have treated uncertainty in other sections of these notes by applying a weight to observations, and we can take the same approach here. When we calculate error, for instance as the root mean square error between model predictions (output) and measurement, we can weight this to give a weighted error.</p>
 <p>Before we can calculate the (weighted) error, we need to treat the outputs so that they match the time samples of the measurements. We can either match the observations to the measurements, or the measurements to the observations. The best approach with depend on circumstances but generally it is simplest to run the model for each observation driver. If your model involves some summation (integral) over time, then you need to think carefully about how to do this.</p>
 <p>In this example though it is straightforward: we just run the model for the time locations that we have observations.</p>
-<pre><code class="python"># run the model for measurement times only
+<pre><code class="language-python"># run the model for measurement times only
 tmoutput = model(tmdriver,p)
 # check the shape
 print(f'tmoutput shape: {tmoutput.shape}')
 print(f'tmdriver shape: {tmdriver.shape}')
 print(f'tdriver shape: {tdriver.shape}')
 </code></pre>
-
 <pre><code>tmoutput shape: (92,)
 tmdriver shape: (92,)
 tdriver shape: (365,)
 </code></pre>
-<pre><code class="python"># now we can calculate the weighted discrepency 
+<pre><code class="language-python"># now we can calculate the weighted discrepency 
 error = (tmoutput - measure)*measure_weight
 error2 = error**2
 rmse = np.sqrt(np.mean(error2))
 print(f'RMSE: {rmse} for parameters {p}')
 </code></pre>
-
 <pre><code>RMSE: 4.118554746101607 for parameters [3.e-01 1.e-04]
 </code></pre>
-<pre><code class="python"># plot
+<pre><code class="language-python"># plot
 fig, axs = plt.subplots(1,1,figsize=(10,3))
 axs.set_xlim(0,365)
 axs.plot(tmdriver,tmoutput,'r+',label='modelled values')
@@ -1720,12 +1685,11 @@ axs.set_xlabel(f'time / days')
 print(f'measurements: measure shape  {measure.shape}')
 print(f'model output: tmoutput shape {tmoutput.shape}')
 </code></pre>
-
 <pre><code>measurements: measure shape  (92,)
 model output: tmoutput shape (92,)
 </code></pre>
 <p><img alt="png" src="../050_Models_files/050_Models_19_1.png" /></p>
-<pre><code class="python"># scatter plot
+<pre><code class="language-python"># scatter plot
 fig, axs = plt.subplots(1,1,figsize=(5,5))
 # max value over all
 maxvalue = np.array([measure,tmoutput]).max()
@@ -1740,7 +1704,6 @@ axs.set_xlabel(f'measurement')
 # 1:1 line
 axs.plot([0,maxvalue],[0,maxvalue],'k')
 </code></pre>
-
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x7ff6b6709f90&gt;]
 </code></pre>
 <p><img alt="png" src="../050_Models_files/050_Models_20_1.png" /></p>
@@ -1748,7 +1711,7 @@ axs.plot([0,maxvalue],[0,maxvalue],'k')
 <p>We have seen how, once we have aligned the model outputs and observations, we can calculate a weighted measure if error, RMSE here. So, so some given set of measurements, a model, and a set of model parameters, we can calculate the error:</p>
 <p><img alt="model" src="../images/parameters4.png" /></p>
 <p>Re-generate the set of measurements:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 # simple model 
 def model(driver,param):
@@ -1769,9 +1732,8 @@ measure_weight = (2 + np.random.random(tmdriver.shape))/4
 # convert to std for plotting as previously
 std = 1./np.sqrt(measure_weight) * 1.96
 </code></pre>
-
 <p>Recap on the core components so far, but setting the parameters to <code>numpy</code> arrays:</p>
-<pre><code class="python"># some test parameters
+<pre><code class="language-python"># some test parameters
 p0,p1 = np.array([0.1]),np.array([0.2])
 
 tmoutput  = model(tmdriver,[p0,p1])
@@ -1781,14 +1743,13 @@ print(f'p1 shape:    {p1.shape}')
 print(f'tmdriver shape: {tmdriver.shape}')
 print(f'tmoutput shape: {tmoutput.shape}')
 </code></pre>
-
 <pre><code>p0 shape:    (1,)
 p1 shape:    (1,)
 tmdriver shape: (92,)
 tmoutput shape: (92,)
 </code></pre>
 <p>We will now build a Look-up table (LUT) in parameter space to examine how the RMSE varies as we vary the model parameters.</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 # Use mgrid as previously to define a 2D grid of parameters
 p0min,p0max,p0step = 0.0,10.0,1
@@ -1796,8 +1757,7 @@ p1min,p1max,p1step = 0.0,0.0011,0.0001
 p0,p1 = np.mgrid[p0min:p0max+p0step:p0step,\
                  p1min:p1max+p1step:p1step]
 </code></pre>
-
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 fig, axs = plt.subplots(1,1,figsize=(5,5))
 axs.plot(p0,p1,'+')
 axs.set_xlabel('p0')
@@ -1805,22 +1765,20 @@ axs.set_ylabel('p1')
 
 print('2d parameter grid')
 </code></pre>
-
 <pre><code>2d parameter grid
 </code></pre>
 <p><img alt="png" src="../050_Models_files/050_Models_28_1.png" /></p>
 <p>Recall from <a href="../032_More_numpy/#Changing-shape:-flatten,-ravel-and-reshape">032 <code>reshape</code></a> that although the LUT is 2-D, we will mostly want to operate on a 1D ravelled version. So let's generate that from the outset:</p>
-<pre><code class="python">p0_ = np.ravel(p0)
+<pre><code class="language-python">p0_ = np.ravel(p0)
 p1_ = np.ravel(p1)
 print(f'shape of p0 : {p0.shape}')
 print(f'shape of p0_ : {p0_.shape}')
 </code></pre>
-
 <pre><code>shape of p0 : (11, 12)
 shape of p0_ : (132,)
 </code></pre>
 <p>In <a href="../032_More_numpy/#Reconciling-arrays:-np.newaxis">032 <code>np.newaxis</code></a> we saw how to use <code>np.newaxis</code> to reconcile two arrays for element-wise processing. Here, have the 1D arrays <code>tdriver</code> and the <code>p0_</code> and <code>p1_</code> and we want to be able to describe all parameters for all time locations;</p>
-<pre><code class="python">p0_ext       = p0_[np.newaxis,:]
+<pre><code class="language-python">p0_ext       = p0_[np.newaxis,:]
 p1_ext       = p1_[np.newaxis,:]
 tmdriver_ext = tmdriver[:,np.newaxis]
 
@@ -1834,62 +1792,56 @@ print(f'tmdriver_ext shape: {tmdriver_ext.shape}')
 tmoutput  = model(tmdriver_ext,[p0_ext,p1_ext])
 print(f'tmoutput shape:     {tmoutput.shape}')
 </code></pre>
-
 <pre><code>p0_ext shape:       (1, 132)
 p1_ext shape:       (1, 132)
 tmdriver_ext shape: (92, 1)
 tmoutput shape:     (92, 132)
 </code></pre>
 <p>We need to be able to compare <code>tmoutput</code> with <code>measure</code> and <code>measure_weight</code>, so lets do that to align with the parameter grid:</p>
-<pre><code class="python">measure_ext        = measure[:,np.newaxis]
+<pre><code class="language-python">measure_ext        = measure[:,np.newaxis]
 measure_weight_ext = measure_weight[:,np.newaxis]
 print(f'measure_ext shape:        {measure_ext.shape}')
 print(f'measure_weight_ext shape: {measure_weight_ext.shape}')
 </code></pre>
-
 <pre><code>measure_ext shape:        (92, 1)
 measure_weight_ext shape: (92, 1)
 </code></pre>
 <p>We can now perform element-wise operations involving <code>measure_ext</code>, <code>measure_weight_ext</code> and <code>tmoutput</code>:</p>
-<pre><code class="python">error_ext = (tmoutput - measure_ext)*measure_weight_ext
+<pre><code class="language-python">error_ext = (tmoutput - measure_ext)*measure_weight_ext
 error_ext = error_ext*error_ext
 print(f'error_ext shape: {error_ext.shape}')
 </code></pre>
-
 <pre><code>error_ext shape: (92, 132)
 </code></pre>
 <p>Now calculate the square root of the mean of this squared error term <code>error_ext</code> over time samples (axis 0):</p>
-<pre><code class="python">rmse = np.sqrt(np.mean(error_ext,axis=0))
+<pre><code class="language-python">rmse = np.sqrt(np.mean(error_ext,axis=0))
 
 print(f'rmse shape {rmse.shape}')
 min_rmse = rmse.min()
 print(f'min rmse\n{min_rmse}')
 </code></pre>
-
 <pre><code>rmse shape (132,)
 min rmse
 0.9064999558594992
 </code></pre>
 <p>Following the material in <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index">032</a> we use <code>argmin</code> to find the parameter index of minimum RMSE:</p>
-<pre><code class="python"># use np.argmin to find the minimum
+<pre><code class="language-python"># use np.argmin to find the minimum
 imin = np.argmin(rmse)
 p0min,p1min = p0_[imin],p1_[imin]
 print(f'1D index of minimum  : {imin}')
 print(f'parameter at minimum : {p0min},{p1min}')
 </code></pre>
-
 <pre><code>1D index of minimum  : 17
 parameter at minimum : 1.0,0.0005
 </code></pre>
 <p>To convert the index back to the unflattened array, we can use <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index"><code>np.unravel_index</code></a> as before:</p>
-<pre><code class="python">ip0min,ip1min = np.unravel_index(imin,p0.shape)
+<pre><code class="language-python">ip0min,ip1min = np.unravel_index(imin,p0.shape)
 
 print(f'2D index of minimum point: {ip0min}, {ip1min}')
 p0min = p0[ip0min,ip1min]
 p1min = p1[ip0min,ip1min]
 print(f'parameter at minimum : {p0min},{p1min}')
 </code></pre>
-
 <pre><code>2D index of minimum point: 1, 5
 parameter at minimum : 1.0,0.0005
 </code></pre>
@@ -1898,12 +1850,11 @@ parameter at minimum : 1.0,0.0005
 </code></pre>
 <h4 id="visualisation-of-rmse">Visualisation of RMSE</h4>
 <p>We can find it useful to visualise the RMSE 'error surface' and then plot the measurements and forward model. Since we have a flattened version, we will need to apply <code>reshape</code> before loading it. We reshape it to the same shape as <code>p0</code>:</p>
-<pre><code class="python"># reshape to plot
+<pre><code class="language-python"># reshape to plot
 _rmse = rmse.reshape(p0.shape)
 </code></pre>
-
 <p>Now, a graph of the RMSE values as a function of parameter 0 index. We set the maximum value in the plots below to 10 times the minimum RMSE value, as this should let us see some detail in the error function, without swamping the plot with error values that are not at all feasible. This factor of 5 is a little arbitrary, and you might need to experiment with it, but it is not a bad rule of thumb.</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # plot rmse as function of parameter index
 pindex = np.arange(_rmse.shape[0])
@@ -1914,11 +1865,10 @@ axs.plot([p0min],[min_rmse],'ko',label='minimum RMSE')
 axs.set_ylim(0,min_rmse*5)
 axs.set_xlabel(f'parameter index')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'parameter index')
 </code></pre>
 <p><img alt="png" src="../050_Models_files/050_Models_47_1.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # Plot the RMSE values returned from this as an image
 
 # plot it
@@ -1934,14 +1884,13 @@ axs.set_ylabel('p1')
 plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='lower right')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7ff6b6593dd0&gt;
 </code></pre>
 <p><img alt="png" src="../050_Models_files/050_Models_48_1.png" /></p>
 <p>It is useful to look at such plots because we can use them to gauge  the uncertainty in the parameter solution. In this case, we see that the error surface is long and narrow in parameter 1. So even though we have reported the optimal value as 1.0, it could vary considerably and not change the RMSE value considerably. This is an important part of the interpretation of our results, and helps explain why we solved for a parameter value of 1.0 even though we fed the measurements with a value of 0.6.</p>
 <p>One other thing these plots are useful for is to check that our solution does not lie on the boundary of the parameter space. Unless there is a good physical reason for the bounds we have imposed on the parameters in generating the LUT grid, if we find our solution is on a parameter boundary we might just be not sampling the parameter space well enough. Related to this, we also would like to see some spread of the RMSE values, rather than just a single low point, as this might otherwise indicate that our sampling grid is too coarse. The example above is good model for what you should be looking for the the RMSE plots, although the grid is a little coarse. Remember from above that we have thresholded the plot at 10 times the minimum RMSE so we can see the detail of the plot around the minimum point.</p>
 <p>Now visualise the model and measurents for the 'optimum' parameters:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # time driver every day
 tdriver = np.arange(0,365,1,dtype=np.int)
@@ -1967,7 +1916,6 @@ axs.set_xlabel(f'time / days')
 print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 </code></pre>
-
 <pre><code>[1.e+00 5.e-04]
 measurements: tmdriver shape (92,)
 model output: tdriver shape  (365,)
@@ -2053,19 +2001,6 @@ measure_weight = (2 + np.random.random(tmdriver.shape))/4
 <p>We have seen how we can apply the concepts we learned in the <a href="../032_More_numpy/#032-More-numpy"><code>numpy</code></a> sessions to build a parameter LUT and rapidly calculate a goodness of fit measure between some set of observations and the model output. We have seen how to use this to provide an estimate of the model parameters. This is known as model calibration. </p>
 <p>Technically, we have seen how we need to reconcile the dimensions of the parameter LUT and the model outputs in <code>numpy</code> using <code>np.newaxis</code> so we can calculate the model outputs for all parameters in the LUT efficiently, all at once. We have seen that parameter estimation in this way can be effective, but may be limited to a relatively small-dimensional problem. If we have a larger number of parameters, we may need to devise other strategies for parameter estimation.</p>
                 
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
-    
-  </small>
-</div>
-                  
-                
               
               
                 
@@ -2137,7 +2072,7 @@ measure_weight = (2 + np.random.random(tmdriver.shape))/4
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

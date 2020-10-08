@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1731,29 +1701,26 @@
 <p>The simplest form of function has no inputs or outputs, but simply performs some task when we call it:</p>
 <p><img alt="function" src="../images/no_in_out.png" /></p>
 <p>An example of a simple function in Python is:</p>
-<pre><code class="python">def hello_world():
+<pre><code class="language-python">def hello_world():
     '''
     Purpose:
       print the string 'hello world'
     '''
     print('hello world')
 </code></pre>
-
 <p>This is designed to print the string <code>hello world</code> when we call it.</p>
 <p>Notice the formatting here: the function is declared:</p>
 <pre><code>def hello_world():
 </code></pre>
 <p>and the <em>contents</em> of the function are indented in (by 4 spaces here).</p>
 <p>We use the function in Python code as:</p>
-<pre><code class="python">hello_world()
+<pre><code class="language-python">hello_world()
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>and access the function document string by:</p>
-<pre><code class="python">help(hello_world)
+<pre><code class="language-python">help(hello_world)
 </code></pre>
-
 <pre><code>Help on function hello_world in module __main__:
 
 hello_world()
@@ -1829,7 +1796,7 @@ hello_world()
     retval = name_list
 </code></pre>
 <p>where we have left the <code>CODE BLOCK</code> blank at the moment, and replaced it by simply sending the function input to the output so we can test the code structure. It can be of value when designing codes to first develop some pseudocode such as above, but in reality such statements are very closely related to what we would write in high-level codes like Python:</p>
-<pre><code class="python">def full_name(name_list):
+<pre><code class="language-python">def full_name(name_list):
     '''
 
     purpose: 
@@ -1848,15 +1815,13 @@ hello_world()
     # return
     return retval
 </code></pre>
-
 <p>That's a good start, and it allows us to develop a function that we can run and test. </p>
 <p>To test, we can set a list of example strings. We then <em>call</em> the function <code>full_name()</code> with this argument, and set the value returned in the variable <code>full</code>.</p>
-<pre><code class="python">names = ['Fred','Bloggs']
+<pre><code class="language-python">names = ['Fred','Bloggs']
 
 full = full_name(names)
 print(full)
 </code></pre>
-
 <pre><code>['Fred', 'Bloggs']
 </code></pre>
 <p>From our test, we can see that the function doesn't yet achieve what we wanted: it simply returns the input list, rather than the full name.</p>
@@ -1865,19 +1830,17 @@ print(full)
 <p>This works by placing a key string between string items in a list. For example, if we want to separate strings by <code>:</code>, we would use:</p>
 <pre><code>':'.join(names)
 </code></pre>
-<pre><code class="python">':'.join(names)
+<pre><code class="language-python">':'.join(names)
 </code></pre>
-
 <pre><code>'Fred:Bloggs'
 </code></pre>
 <p>In our function, we want to use a single 'whitespace' value, so <code>' '</code> as the key:</p>
-<pre><code class="python">' '.join(names)
+<pre><code class="language-python">' '.join(names)
 </code></pre>
-
 <pre><code>'Fred Bloggs'
 </code></pre>
 <p>Now we are sure of the coding concept to achieve what we want in the filter, we can write the function:</p>
-<pre><code class="python">def full_name(name_list):
+<pre><code class="language-python">def full_name(name_list):
     '''
 
     purpose: 
@@ -1895,11 +1858,9 @@ print(full)
     # return
     return retval
 </code></pre>
-
 <p>we try to make the docstring useful and test what it shows:</p>
-<pre><code class="python">help(full_name)
+<pre><code class="language-python">help(full_name)
 </code></pre>
-
 <pre><code>Help on function full_name in module __main__:
 
 full_name(name_list)
@@ -1913,10 +1874,9 @@ full_name(name_list)
     - the full name
 </code></pre>
 <p>then run our code:</p>
-<pre><code class="python">full = full_name(['Fred','Bloggs'])
+<pre><code class="language-python">full = full_name(['Fred','Bloggs'])
 print(full)
 </code></pre>
-
 <pre><code>Fred Bloggs
 </code></pre>
 <h2 id="test">Test</h2>
@@ -1924,10 +1884,9 @@ print(full)
 <pre><code>assert True
 </code></pre>
 <p>For example:</p>
-<pre><code class="python">assert full_name(['Fred','Bloggs']) == &quot;Fred Bloggs&quot;
+<pre><code class="language-python">assert full_name(['Fred','Bloggs']) == &quot;Fred Bloggs&quot;
 print('test passed')
 </code></pre>
-
 <pre><code>test passed
 </code></pre>
 <p>remember that if this assertion fails, we get an <code>AssertionError</code> (you can try that out by putting something incorrect in the assertion above and re-running the cell). If the error is raised, our code will strop running and report the error.  </p>
@@ -1970,7 +1929,7 @@ print('test passed')
 </ul>
 <h3 id="positional-arguments">Positional arguments</h3>
 <p>The arguments we have used above are positional arguments, in that their definition in the function depends on the order they are specified in. For example:</p>
-<pre><code class="python">def hello(s1,s2):
+<pre><code class="language-python">def hello(s1,s2):
     '''
     Purpose:
       print out positional arguments
@@ -1984,7 +1943,6 @@ print('test passed')
 
 hello('hello','world')
 </code></pre>
-
 <pre><code>argument 0 is hello
 argument 1 is world
 </code></pre>
@@ -1995,7 +1953,7 @@ argument 1 is world
 <pre><code>*args
 </code></pre>
 <p>to specify them, where <code>args</code> is a list-like object. In this form, the example above becomes:</p>
-<pre><code class="python">def hello(*args):
+<pre><code class="language-python">def hello(*args):
     '''
     print out positional arguments
 
@@ -2008,16 +1966,14 @@ argument 1 is world
 
 hello('hello','world','again')
 </code></pre>
-
 <pre><code>argument 0 is hello
 argument 1 is world
 argument 2 is again
 </code></pre>
-<pre><code class="python"># or using *args where args is a list
+<pre><code class="language-python"># or using *args where args is a list
 l = ['hello','world','again','as','list']
 hello(*l)
 </code></pre>
-
 <pre><code>argument 0 is hello
 argument 1 is world
 argument 2 is again
@@ -2026,7 +1982,7 @@ argument 4 is list
 </code></pre>
 <p>In this example, we have not specified how many positional arguments there are, but obviously we need to attach some meaning to each of them in the order supplied. Sometimes this is useful in code, where we just want to loop over a list of arguments, but you should mostly be wary about using it unless you really need to. </p>
 <p>A good example of the use of <code>*args</code> is the <code>print()</code> statement. It will print out however many positional arguments we specify:</p>
-<pre><code class="python">print('hello','world','again')
+<pre><code class="language-python">print('hello','world','again')
 
 l = ['hello','world','again','as','list']
 # print the list, specifying l as a single positional argument
@@ -2034,7 +1990,6 @@ print(l)
 # print the list passing each list item as a positional argument
 print(*l)
 </code></pre>
-
 <pre><code>hello world again
 ['hello', 'world', 'again', 'as', 'list']
 hello world again as list
@@ -2045,9 +2000,8 @@ hello world again as list
 sep=' '
 </code></pre>
 <p>We can see examples of these with the <code>print</code> function:</p>
-<pre><code class="python">help(print)
+<pre><code class="language-python">help(print)
 </code></pre>
-
 <pre><code>Help on built-in function print in module builtins:
 
 print(...)
@@ -2063,7 +2017,7 @@ print(...)
 <p>where a set of optional keyword arguments are specified. All keyword arguments are specified with a default value (<code>sep=' ', end='\n', file=sys.stdout, flush=False</code> above). If we do not specify a keyword when we call the function, this is the value that that variable will take within the function.</p>
 <p>Note that keywords must be specified <strong>after</strong> positional arguments. The keywords can be in any order (they are not positional). Keywords can only be given once.</p>
 <p>But, if we want, we can override the defaults by setting the keyword when we call the function:</p>
-<pre><code class="python">l = ['hello','world','again','as','list']
+<pre><code class="language-python">l = ['hello','world','again','as','list']
 # print the list passing each list item as a positional argument
 # default with sep as ' '
 print(*l)
@@ -2072,7 +2026,6 @@ print(*l,sep='X')
 # with sep as ':'
 print(*l,sep=':')
 </code></pre>
-
 <pre><code>hello world again as list
 helloXworldXagainXasXlist
 hello:world:again:as:list
@@ -2082,7 +2035,7 @@ hello:world:again:as:list
 <pre><code>print(f'argument {i}:',end=' ')
 </code></pre>
 <p>which will print the index <code>i</code>. We have used the <code>kwarg</code> <code>end=''</code> for <code>print()</code> so that if this is called, it does not print a newline, but a space instead.</p>
-<pre><code class="python">def hello(*args,verbose=False):
+<pre><code class="language-python">def hello(*args,verbose=False):
     '''
     print out positional arguments
 
@@ -2101,8 +2054,7 @@ hello:world:again:as:list
         print(f'{s}')
 
 </code></pre>
-
-<pre><code class="python">dash='='*5
+<pre><code class="language-python">dash='='*5
 
 # call without verbose
 print(f'{dash} verbose=False {dash}')
@@ -2112,7 +2064,6 @@ hello('hello','world','again')
 print(f'{dash} verbose=False {dash}')
 hello('hello','world','again',verbose=True)
 </code></pre>
-
 <pre><code>===== verbose=False =====
 hello
 world
@@ -2137,14 +2088,13 @@ argument 2: again
 </code></pre>
 <p>above. We have seen what the <code>*args</code> part means: if <code>args</code> is a list, then each item in the list is passed as a positional argument. The same idea applies to <code>**kwargs</code> but instead of a list, <code>kwargs</code> refers to a dictionary. If you think about the information you need to pass for keword arguments, you would understand why this is the case. </p>
 <p>By using <code>**kwargs</code>, where <code>kwargs</code> is a dictionary, the key-value pairs in the dictionary are passed as <code>key=value</code>. For example:</p>
-<pre><code class="python">args = ['hello','world','again','as','list']
+<pre><code class="language-python">args = ['hello','world','again','as','list']
 # set up dictionary for kwargs
 # with X as sep and a string at the end oif the line
 kwargs = {'sep' : 'X', 'end' : '&lt;- end of the line\n'}
 
 print(*args,**kwargs)
 </code></pre>
-
 <pre><code>helloXworldXagainXasXlist&lt;- end of the line
 </code></pre>
 <p>The use of <code>**kwargs</code> can be useful sometimes, as you can more easily keep track of keywords for some particular configuration of running a code. For that reason, and because you will see it sometimes in documentation, you should be aware of it. Most likely you won't be using it a lot in your early code development though.</p>
@@ -2168,19 +2118,6 @@ print(*args,**kwargs)
 <p>Also written as:</p>
 <pre><code>    def my_function(*args,**kwargs):
 </code></pre>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2253,7 +2190,7 @@ print(*args,**kwargs)
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

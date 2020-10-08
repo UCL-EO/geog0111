@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1497,7 +1467,7 @@
 <p>$$</p>
 <p>If we inspect this form, we can see that $p_0$ and $p_1$ scale the vertical span of the function, whereas $p_3$ and $p_5$ are some sort of temporal shift, and the remaining parameters $p_2$ and $p_4$ control the slope of the two flanks. </p>
 <p>Let's access some LAI data that we have used before, and also look at the regularised data:</p>
-<pre><code class="python">from geog0111.get_lai_data import get_lai_data
+<pre><code class="language-python">from geog0111.get_lai_data import get_lai_data
 from geog0111.regularise import regularise
 import numpy as np
 
@@ -1515,8 +1485,7 @@ weight[lai &gt; 10] = 0.
 
 interpolated_lai = regularise(lai,weight,5.0)
 </code></pre>
-
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 p0,p1 = (107,72)
 x_size,y_size=(10,5)
@@ -1534,12 +1503,11 @@ axs.set_xlabel('DOY 2019')
 axs.set_ylabel('LAI')
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7f04897b83d0&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_5_1.png" /></p>
 <p>We can build a function for the model, provide an initial estimate at the model parameters:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 def dbl_sigmoid_function(p, t):
     &quot;&quot;&quot;The double sigmoid function defined over t (where t is an array).
@@ -1554,9 +1522,8 @@ t = np.arange(1, 366)
 p = np.array([0.5, 4, 0.07, 100, 0.07, 260])
 y = dbl_sigmoid_function(p, t)
 </code></pre>
-
 <p>and plot the observations and model:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 p0,p1 = (107,72)
 
@@ -1575,7 +1542,6 @@ axs.set_ylabel('LAI')
 axs.legend(loc='best')
 print('Luxembourg')
 </code></pre>
-
 <pre><code>Luxembourg
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_9_1.png" /></p>
@@ -1592,7 +1558,7 @@ print('Luxembourg')
 </code></pre>
 <p>We might bound the width at between 50 and 250 days, and the centre at by 100 to 300 days. We must take the definition of time as modulo 365 to allow the model to operate in the Southern Hemisphere.</p>
 <p>A simplified model and dataset then is:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 param0 = np.min(interpolated_lai,axis=0)
 param1 = np.max(interpolated_lai,axis=0) - param0
@@ -1608,11 +1574,10 @@ im = axs[1].imshow(param0,interpolation=&quot;nearest&quot;,\
 axs[1].set_title('p0')
 fig.colorbar(im, ax=axs[1])
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047dd7ce10&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_13_1.png" /></p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 '''
 Define an interface to the simplified function
@@ -1635,8 +1600,7 @@ sp = [200.,200.]
 p = [param0[np.newaxis,:,:],param1[np.newaxis,:,:],0,0,0,0]
 y = simple_dbl_sigmoid_function(sp,p,t)
 </code></pre>
-
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 p0,p1 = (107,72)
 
@@ -1655,29 +1619,26 @@ axs.set_ylabel('LAI')
 axs.legend(loc='best')
 print('Luxembourg: Simplified model')
 </code></pre>
-
 <pre><code>Luxembourg: Simplified model
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_15_1.png" /></p>
 <p>As discussed previously, since we are doing pixel-by-pixel processing, we can change the 2D spatial data into a 1D flattened array. </p>
-<pre><code class="python">param0_ = param0.ravel()
+<pre><code class="language-python">param0_ = param0.ravel()
 param1_ = param1.ravel()
 print(f'param1  shape:  {param1.shape}')
 print(f'param1_ shape:  {param1_.shape}')
 </code></pre>
-
 <pre><code>param1  shape:  (175, 122)
 param1_ shape:  (21350,)
 </code></pre>
-<pre><code class="python">print(f'lai shape:    {lai.shape}')
+<pre><code class="language-python">print(f'lai shape:    {lai.shape}')
 print(f'weight shape: {weight.shape}')
 </code></pre>
-
 <pre><code>lai shape:    (92, 175, 122)
 weight shape: (92, 175, 122)
 </code></pre>
 <p>And the same for the observations and weight but using <code>reshape</code> following the method in <a href="../032_More_numpy/#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index">032_More_numpy</a>:</p>
-<pre><code class="python">newshape = (*lai.shape[:1],np.prod(np.array(lai.shape[1:])))
+<pre><code class="language-python">newshape = (*lai.shape[:1],np.prod(np.array(lai.shape[1:])))
 print(newshape)
 # reshape 
 lai_    = lai.reshape(newshape)
@@ -1686,7 +1647,6 @@ weight_ = weight.reshape(newshape)
 print(f'shape of lai  : {lai.shape}')
 print(f'shape of lai_ : {lai_.shape}')
 </code></pre>
-
 <pre><code>(92, 21350)
 shape of lai  : (92, 175, 122)
 shape of lai_ : (92, 21350)
@@ -1695,7 +1655,7 @@ shape of lai_ : (92, 21350)
 <p>We will form axes:</p>
 <pre><code>(time,image index)
 </code></pre>
-<pre><code class="python">sp = [200.,200.]
+<pre><code class="language-python">sp = [200.,200.]
 
 t = doy[:,np.newaxis]
 p = [param0_[np.newaxis,:],param1_[np.newaxis,:],0,0,0,0]
@@ -1705,12 +1665,11 @@ print(f'p[1] shape:  {p[1].shape}')
 y = simple_dbl_sigmoid_function(sp,p,t)
 print(f'y shape:  {y.shape}')
 </code></pre>
-
 <pre><code>t    shape:  (92, 1)
 p[1] shape:  (1, 21350)
 y shape:  (92, 21350)
 </code></pre>
-<pre><code class="python"># weighted error
+<pre><code class="language-python"># weighted error
 err = (lai_ - y) * weight_
 # mean over time
 rmse = np.sqrt(np.mean(err*err,axis=0))
@@ -1723,7 +1682,6 @@ im = axs.imshow(rmse.reshape(lai[0].shape),interpolation=&quot;nearest&quot;,\
 axs.set_title(f'RMSE for parameters {sp}')
 fig.colorbar(im, ax=axs)
 </code></pre>
-
 <pre><code>(21350,)
 
 
@@ -1734,7 +1692,7 @@ fig.colorbar(im, ax=axs)
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_23_2.png" /></p>
 <p>Let's build a 2-D LUT as previously, and provide a flattened version. We have defined bounds above:</p>
-<pre><code class="python"># Use mgrid as previously to define a 2D grid of parameters
+<pre><code class="language-python"># Use mgrid as previously to define a 2D grid of parameters
 sp0min,sp0max,sp0step = 100,250,10
 sp1min,sp1max,sp1step = 100,300,10
 sp0,sp1 = np.mgrid[sp0min:sp0max+sp0step:sp0step,\
@@ -1745,12 +1703,11 @@ sp1_ = sp1.ravel()
 print(f'shape of sp0  : {sp0.shape}')
 print(f'shape of sp0_ : {sp0_.shape}')
 </code></pre>
-
 <pre><code>shape of sp0  : (16, 21)
 shape of sp0_ : (336,)
 </code></pre>
 <p>We re-process the LAI just to make sure we have it handy and re-shaped:</p>
-<pre><code class="python">newshape = (*lai.shape[:1],np.prod(np.array(lai.shape[1:])))
+<pre><code class="language-python">newshape = (*lai.shape[:1],np.prod(np.array(lai.shape[1:])))
 print(newshape)
 # reshape 
 lai_    = lai.reshape(newshape)
@@ -1759,13 +1716,12 @@ weight_ = weight.reshape(newshape)
 print(f'shape of lai  : {lai.shape}')
 print(f'shape of lai_ : {lai_.shape}')
 </code></pre>
-
 <pre><code>(92, 21350)
 shape of lai  : (92, 175, 122)
 shape of lai_ : (92, 21350)
 </code></pre>
 <p>Assigning the dimensions now is a little more complex, but we can revert to using the original model. We have one dimension that is time, one space, and one parameter space using the flattened arrays:</p>
-<pre><code class="python"># dimensions: [t,npix,nsamp]
+<pre><code class="language-python"># dimensions: [t,npix,nsamp]
 # more complex for this case
 sp0_ext    = sp0_[np.newaxis,np.newaxis,:]
 sp1_ext    = sp1_[np.newaxis,np.newaxis,:]
@@ -1788,7 +1744,6 @@ print(f'lai_ext:    {lai_ext.shape}')
 print(f'weight_ext: {weight_ext.shape}')
 print(f't_ext:      {t_ext.shape}')
 </code></pre>
-
 <pre><code>sp0_ext:    (1, 1, 336)
 sp1_ext:    (1, 1, 336)
 param0_ext: (1, 21350, 1)
@@ -1797,27 +1752,25 @@ lai_ext:    (92, 21350, 1)
 weight_ext: (92, 21350, 1)
 t_ext:      (92, 1, 1)
 </code></pre>
-<pre><code class="python">sp = [sp0_ext,sp1_ext]
+<pre><code class="language-python">sp = [sp0_ext,sp1_ext]
 p = [param0_ext,param1_ext,param2_ext,\
      param3_ext,param4_ext,param5_ext]
 
 y = dbl_sigmoid_function(p,t_ext)
 print(y.shape)
 </code></pre>
-
 <pre><code>(92, 21350, 336)
 </code></pre>
-<pre><code class="python">error_ext = (y - lai_ext)*weight_ext
+<pre><code class="language-python">error_ext = (y - lai_ext)*weight_ext
 error_ext = error_ext*error_ext
 rmse = np.sqrt(np.mean(error_ext,axis=0))
 print(rmse.shape)
 </code></pre>
-
 <pre><code>(21350, 336)
 </code></pre>
 <p>We now have a value of RMSE for each element on the parameter grid (axis 1), for each pixel in the dataset (axis 0). </p>
 <p>We next want to know the minimum over the parameter set (<code>axis 1</code>):</p>
-<pre><code class="python">minrmse = rmse.min(axis=1)
+<pre><code class="language-python">minrmse = rmse.min(axis=1)
 print(minrmse.shape)
 
 fig, axs = plt.subplots(1,1,figsize=(5,5))
@@ -1827,7 +1780,6 @@ im = axs.imshow(minrmse.reshape(lai[0].shape),interpolation=&quot;nearest&quot;,
 axs.set_title(f'Min RMSE')
 fig.colorbar(im, ax=axs)
 </code></pre>
-
 <pre><code>(21350,)
 
 
@@ -1838,7 +1790,7 @@ fig.colorbar(im, ax=axs)
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_33_2.png" /></p>
 <p>To find the parameters at the minimum value, simply follow the same approach as previously using <code>argmin</code>, but with one extra dimension. In this case, <code>rmse</code> has shape <code>(21350, 336)</code> so we apply the argmin over the parameter dimension (axis 1):</p>
-<pre><code class="python"># use np.argmin to find the minimum over axis 1
+<pre><code class="language-python"># use np.argmin to find the minimum over axis 1
 imin = np.argmin(rmse,axis=1)
 p0min,p1min = sp0_[imin],sp1_[imin]
 print(f'1D index shape of minimum  : {imin.shape}')
@@ -1848,11 +1800,10 @@ width, centre = p0min,p1min
 p3 = centre - width/2
 p5 = centre + width/2
 </code></pre>
-
 <pre><code>1D index shape of minimum  : (21350,)
 parameter shape at minimum : (21350,),(21350,)
 </code></pre>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # reshape p0min,p1min before plotting
 
@@ -1880,11 +1831,10 @@ im = axs[3].imshow(p5.reshape(ishape),interpolation=&quot;nearest&quot;,\
 axs[3].set_title(f'p5')
 fig.colorbar(im, ax=axs[3])
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f047c1a2b10&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_36_1.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 fig, axs = plt.subplots(1,2,figsize=(10,5))
 axs = axs.flatten()
@@ -1899,12 +1849,11 @@ im = axs[1].imshow(centre.reshape(ishape),interpolation=&quot;nearest&quot;,\
 axs[1].set_title(f'centre')
 fig.colorbar(im, ax=axs[1])
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f0477f788d0&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_37_1.png" /></p>
 <p>Now forward model:</p>
-<pre><code class="python">param3_ext = p3[np.newaxis,:,np.newaxis]
+<pre><code class="language-python">param3_ext = p3[np.newaxis,:,np.newaxis]
 param5_ext = p5[np.newaxis,:,np.newaxis]
 
 p = [param0_ext,param1_ext,param2_ext,\
@@ -1913,9 +1862,8 @@ p = [param0_ext,param1_ext,param2_ext,\
 # reshape to original lai shape
 y = dbl_sigmoid_function(p,t_ext).reshape(lai.shape)
 </code></pre>
-
 <p>And visualise our test pixel:</p>
-<pre><code class="python"># visualise RMSE for this pixel
+<pre><code class="language-python"># visualise RMSE for this pixel
 # shape is npixels,ngrid
 # RMSE full grid is nx,ny, npx,npy
 newshape = (*(lai.shape[1:]),*(sp0.shape))
@@ -1931,12 +1879,11 @@ p0min,p1min = sp0.ravel()[imin],sp1.ravel()[imin]
 print(f'1D index of minimum  : {imin}')
 print(f'parameter at minimum : {p0min},{p1min}')
 </code></pre>
-
 <pre><code>rmse full shape: (175, 122, 16, 21)
 1D index of minimum  : 136
 parameter at minimum : 160,200
 </code></pre>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 p0,p1 = (107,72)
 
@@ -1955,11 +1902,10 @@ axs.set_ylabel('LAI')
 axs.legend(loc='best')
 print('Luxembourg optimised')
 </code></pre>
-
 <pre><code>Luxembourg optimised
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_42_1.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # Plot the reshaped RMSE values returned from this as an image
 
 # plot it
@@ -1973,7 +1919,6 @@ axs.set_ylabel('p1')
 plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7f0477dfdf90&gt;
 </code></pre>
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_43_1.png" /></p>
@@ -2005,19 +1950,6 @@ axs.legend(loc='best')
 <p>For geospatial model parameter estimation, rapid methods such as this are vital because of the very large dataset dimensions. </p>
 <p>To achieve this LUT-based parameter estimation, we have had to make extensive use of the fast array-processing facilities of <code>numpy</code>. As with the previous section, this involved building parameter grids using <code>np.mgrid</code>, and careful matching of dataset dimensions with <code>np.newaxis</code>. We used <code>np.argmin</code> to find the LUT index with the minimum RMSE value, for each pixel in the scene. This was slightly complicated by needing to flatten the LUT dimensions use a 1-D index for the minimum RMSE, and involved use of <code>np.reshape</code> and <code>np.flatten</code>. </p>
 <p>The programming task here is quite complex, but a very practical one. You will not need to anything quite this complex for formal coursework submission (i.e. to pass the course) but you should all be able to follow and understand the approach taken here, and re-implement it for any similar situation.</p>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2090,7 +2022,7 @@ axs.legend(loc='best')
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)

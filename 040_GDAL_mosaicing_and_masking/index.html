@@ -93,36 +93,6 @@
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header-nav__source">
         
@@ -1723,7 +1693,7 @@
 <p>If we want to access only the local filename and/or SDS information for a particular, we can use the function:</p>
 <pre><code> files,sds = modis.get_files(year,doy)
 </code></pre>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 
 kwargs = {
     'verbose' : True,
@@ -1742,7 +1712,6 @@ files,sds = modis.get_files(year,doy)
 print(files[0])
 print(sds[0])
 </code></pre>
-
 <pre><code>/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
 ['HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
 
@@ -1769,7 +1738,7 @@ print(sds[0])
 </code></pre>
 <p>The SDS description (in <code>sds[0][0]</code> here) is rather long-winded, but contains the full pathname of the dataset, along with the specification for the <code>Lai_500m</code> sub-dataset.</p>
 <p>Armed with the SDS description, we can read a dataset from the MODIS file using <code>g.ReadAsArray()</code> after we have opened it. It returns a numpy array. We introduce <code>np.unique</code> that returns the unique values in a numpy array:</p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 import numpy as np
 
 this_sds = sds[0][0]
@@ -1783,7 +1752,6 @@ print('max:',data.min())
 # get unique values, for interst
 print('unique values:',np.unique(data))
 </code></pre>
-
 <pre><code>&lt;class 'numpy.ndarray'&gt;
 max: 255
 max: 0
@@ -1819,7 +1787,7 @@ year = 2019
 <p>Instead then, we can use <code>gdal</code> to stitch together geospatial data. A convenient way of doing this is to form a new <code>gdal</code> <a href="https://www.gdal.org/gdal_vrttut.html">virtual file</a>, using gdal.BuildVRT (check the documentation). </p>
 <p>This function takes two inputs: the output filename (in the variable <code>ofile</code>) and a set of GDAL format filenames. </p>
 <p>We will use <code>modis.stitch_date</code> as above to provide the SDS of four MODIS tiles <code>['h17v03','h18v03','h17v04','h18v04']</code></p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from geog0111.modis import Modis
 
 kwargs = {
@@ -1839,15 +1807,13 @@ print(f'saving to {ofile}')
 stitch_vrt = gdal.BuildVRT(ofile, sds[0])
 del stitch_vrt
 </code></pre>
-
 <pre><code>saving to work/stitch_full_2019_041.vrt
 </code></pre>
 <p>We can check what it looks like with e.g. <code>gdal.Info</code>.</p>
-<pre><code class="python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
+<pre><code class="language-python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
 print(gdal.Info(stitch_vrt))
 </code></pre>
-
 <pre><code>Driver: VRT/Virtual Raster
 Files: work/stitch_full_2019_041.vrt
 Size is 4800, 4800
@@ -1893,7 +1859,7 @@ Band 1 Block=128x128 Type=Byte, ColorInterp=Gray
   Offset: 0,   Scale:0.1
 </code></pre>
 <p>So we see that we now have 4800 columns by 4800 rows dataset, centered around 0 degrees North, 0 degrees W. Let's plot the data.</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
@@ -1904,7 +1870,6 @@ im = axs.imshow(stitch_vrt.ReadAsArray()*0.1,vmax=7,\
 fig.colorbar(im, ax=axs)
 
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01deb99690&gt;
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_14_1.png" /></p>
@@ -1932,7 +1897,7 @@ fig.colorbar(im, ax=axs)
 <pre><code>array[3900:4400,2000:3000]
 </code></pre>
 <p>We can use standard <a href="../032_More_numpy/#slicing"><code>numpy</code> slicing</a> to sub-set then:</p>
-<pre><code class="python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
+<pre><code class="language-python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
 # get the lai data
 lai = stitch_vrt.ReadAsArray()*0.1
@@ -1949,7 +1914,6 @@ fig.colorbar(im, ax=axs)
 print(f'shape was {lai.shape}')
 print(f'shape now {pyrenees.shape}')
 </code></pre>
-
 <pre><code>shape was (4800, 4800)
 shape now (500, 1000)
 </code></pre>
@@ -1957,7 +1921,7 @@ shape now (500, 1000)
 <p>That is rather inefficient though, and it is preferable to do the slicing when we call <code>ReadAsArray()</code>. This has a similar form of syntax for sub-setting:</p>
 <pre><code>gdal.ReadAsArray(col_offset, row_offset, col_size, row_size)
 </code></pre>
-<pre><code class="python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
+<pre><code class="language-python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
 
 # get the lai data as sub-set directly
@@ -1973,7 +1937,6 @@ fig.colorbar(im, ax=axs)
 
 print(f'shape now {pyrenees.shape}')
 </code></pre>
-
 <pre><code>shape now (500, 1000)
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_19_1.png" /></p>
@@ -2001,7 +1964,7 @@ print(f'shape now {pyrenees.shape}')
 * <code>cutlineDSName = 'data/TM_WORLD_BORDERS-0.3.shp'</code> specifies the vector boundary dataset
 * <code>cutlineWhere = "FIPS='UK'"</code> provides the condition for sub-setting</p>
 <p>We choose a value of 255 for <code>dstNodata</code> because we have seen that only values between 0 and 100 are valid for this dataset.</p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from geog0111.modis import Modis
 import matplotlib.pyplot as plt
 
@@ -2036,7 +1999,6 @@ im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
 fig.colorbar(im, ax=axs)
 
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01cf5f70d0&gt;
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_22_1.png" /></p>
@@ -2061,7 +2023,7 @@ g.FlushCache()
 </ul>
 <h3 id="modisget_modis"><code>Modis.get_modis</code></h3>
 <p>For convenience, we can use the function <code>Modis.get_modis</code> to combine these:</p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from geog0111.modis import Modis
 import matplotlib.pyplot as plt
 
@@ -2086,17 +2048,15 @@ warp_args = {
 mfiles = modis.get_modis(year,doy,warp_args=warp_args)
 print(mfiles.keys())
 </code></pre>
-
 <pre><code>dict_keys(['Lai_500m', 'bandnames'])
 </code></pre>
-<pre><code class="python">g = gdal.Open(mfiles['Lai_500m'])
+<pre><code class="language-python">g = gdal.Open(mfiles['Lai_500m'])
 fig, axs = plt.subplots(1,1,figsize=(12,6))
 im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
                 cmap=plt.cm.inferno_r,interpolation='nearest')
 axs.set_title(mfiles['bandnames'][0])
 fig.colorbar(im, ax=axs)
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01e044b0d0&gt;
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_27_1.png" /></p>
@@ -2109,19 +2069,6 @@ fig.colorbar(im, ax=axs)
 <p>We have started to do some fuller geospatial processing now. WE have seen how to use <code>gdal</code> for reading datasets, as well as mosaicing them and filtering by some vector dataset. We can take a subset of an image when we use <code>gdal.ReadAsArray()</code>. We have learned how to do these things using the MODIS HDF files and SDS descriptors.</p>
 <p>We have also seen some utility functions to aid our use of these data: <code>Modis.get_files</code> to get the SDS or filenames for a particular configuration, and <code>Modis.get_modis</code> and to get a <code>gdal</code> VRT file with mosaiced tiles and vector masking.</p>
 <p>You should make sure that you are able to use one or more of these methods to obtain a numpy array with a MODIS datatset for a particular place and time.</p>
-                
-                  
-                    
-
-<hr>
-<div class="md-source-date">
-  <small>
-    
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2020</span>
-    
-  </small>
-</div>
-                  
                 
               
               
@@ -2194,7 +2141,7 @@ fig.colorbar(im, ax=axs)
       <script>
         app = initialize({
           base: "..",
-          features: ['search.highlight', 'header.hide'],
+          features: [],
           search: Object.assign({
             worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
