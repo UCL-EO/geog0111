@@ -60,8 +60,8 @@ while read url; do
   ofile=$(echo $url | sed 's/https:\/\///')
   if [ ! -f "$ofile" ] ; then
     curl --create-dirs -s -u "$username":"$password" -o ${ofile}.store "$url"
-done <  "${here}/work/datasets/data_urls.txt"
   fi
+done <  "${here}/work/datasets/data_urls.txt"
 
 cd ${here}
 echo "--> End of get-datasets.sh from ${here}"
