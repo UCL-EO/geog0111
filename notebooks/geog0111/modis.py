@@ -722,6 +722,7 @@ class Modis():
     site_file = f'*.{tile}*.hdf'
     kwargs = {"verbose"    : self.verbose,\
               "full_url"   : True,\
+              "skipper"    : True,
               "noclobber"  : self.noclobber,\
               "db_dir"     : self.db_dir,\
               "db_file"    : self.db_file,\
@@ -813,7 +814,7 @@ def test_login(do_test,verbose=True):
     test_dir='MOLA/MYD11_L2.006/2002.07.04'
     test_file='MYD11_L2*0325*.hdf'
     # this glob interprets the wildcards to get at a suitable test file
-    url = URL(site,test_dir,verbose=verbose).glob(test_file)[0]
+    url = URL(site,test_dir,skipper=True,verbose=verbose).glob(test_file)[0]
     # test ping returns True
     return url.ping()   
 

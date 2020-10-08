@@ -26,6 +26,6 @@ RUN . /opt/conda/etc/profile.d/conda.sh && conda init bash
 RUN . /opt/conda/etc/profile.d/conda.sh && conda activate ${CONDA_DEFAULT_ENV}
 
 RUN cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
-    bin/postBuild
+    notebooks/bin/postBuild
 
 WORKDIR "${HOME}"/geog0111/notebooks

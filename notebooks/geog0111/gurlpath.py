@@ -577,12 +577,19 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     u.msg(f'failed to connect')
     return None
 
-  def local(self):
+  def local(self,get_file=False):
     ''' local filename'''
     u = self
     get_download,ifile,ofile = u._test_already_local()
     for f in [ifile,ofile]:
-      if f:
+      if f and get_file:
+        if  Path(f).exists():
+          return Path(f)
+        else:
+          # pull file
+          self.read_bytes()
+          return self.local(get_file=get_file)
+      elif f:
         return Path(f)
     return None
 
@@ -780,6 +787,12 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       None                     : on failure 
       requests.models.Response : on connection problem
     '''
+
+    if 'skipper' in self.__dict__:
+      skipper = self.skipper
+    else:
+      skipper = False
+
     u = self
     store_url  = str(u)
     store_flag = 'data'
@@ -814,10 +827,12 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
       return data
 
     try:
-      u.msg(f'trying {u}')
-      r = u.get()
-      if type(r) == requests.models.Response:
-        if r.status_code == 200:
+      if not skipper: 
+        u.msg(f'trying {u}')
+        r = u.get()
+        
+      if skipper or (type(r) == requests.models.Response):
+        if (not skipper) and r.status_code == 200:
           u.msg(f'code {r.status_code}')
           data = r.content
           if ofile:
@@ -828,9 +843,10 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
             cache = {store_flag : { str(store_url) : str(ofile) }}
             self.database.set_db(cache,write=True)
           return data
-        if r.status_code == 401:
-          u.msg(f'code {r.status_code}')
-          u.msg(f'trying another')
+        if skipper or (r.status_code == 401):
+          if not skipper:
+            u.msg(f'code {r.status_code}')
+            u.msg(f'trying another')
           # unauthorised
           # more complex session login and auth
           # e.g. needed for NASA Earthdata login
@@ -857,7 +873,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
 
     u.msg(f'failed to connect')
     return None 
-
 
   def _convert_to_abs(self,ilist):
     # this is slow and may be not needed
