@@ -48,22 +48,22 @@ subs=('bin' 'data' "$repo" 'images')
 mkdir -p notebooks/work ${subs[*]}
 
 # outer loop 
-for n in ${opdirs[@]}
-do
-  cd $base
-  echo "--> sorting links in $n"
-  mkdir -p "$n"
-  cd ${base}/$n
-  for link in ${subs[@]}
-  do
-    echo "--> $link"
-    rm -f $link
-    # dont link work
-    if [ $link != "work" ]; then
-      ln -s ../$link $link
-    fi
-  done
-done
+#for n in ${opdirs[@]}
+#do
+#  cd $base
+#  echo "--> sorting links in $n"
+#  mkdir -p "$n"
+#  cd ${base}/$n
+#  for link in ${subs[@]}
+#  do
+#    echo "--> $link"
+#    rm -f $link
+#    # dont link work
+#    if [ $link != "work" ]; then
+#      ln -s ../$link $link
+#    fi
+#  done
+#done
 cd "${here}"
 
 echo "--> examining UCLDATA"
@@ -113,12 +113,12 @@ fi
 echo "--> done examining CACHE_FILE"
 
 # UCL data link
-cd $base
-echo "--> sorting link to UCL data store"
-rm -f data/ucl
-cd data
-ln -s $UCLDATA ucl
-echo "--> done"
+#cd $base
+#echo "--> sorting link to UCL data store"
+#rm -f data/ucl
+#cd data
+#ln -s $UCLDATA ucl
+#echo "--> done"
 
 csubs=('docs' 'bin' 'notebooks' 'notebooks_lab')
 # outer loop
