@@ -3,7 +3,11 @@
 
 First, you will need to make sure you have Python (3.6+) installed on your computer. 
 
-We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. If you choose another version of Python, you will need to convert the environment files and modify the instructions below.
+We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. If you choose another version of Python, you will need to convert the environment files and modify the instructions below. 
+
+You will also need to install the tool [git](https://git-scm.com) if you don't already have it.
+
+These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.
 
 1. Clone this repository and cd to the local directory
 
@@ -18,6 +22,7 @@ We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the 
 
 2. Set up environment:
 
+        conda activate geog0111
         bin/init0111.sh
         
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
