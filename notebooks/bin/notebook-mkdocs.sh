@@ -168,13 +168,6 @@ done
 
 echo "--> adding to docs/index.md"
 
-echo "--> fixing movies in 042_Weighted_smoothing_and_interpolation.md"
-# remove all code cells
-# and replace by html
-
-echo "--> done fixing movies in 042_Weighted_smoothing_and_interpolation.md"
-
-
 # get files
 cd "$base"
 files=docs/*_files
@@ -247,7 +240,7 @@ EOF
 echo "--> dealing with special case of 042_Weighted_smoothing_and_interpolation.ipynb"
 cd $base
 geog0111/filter_movies.py 
-mv work/042_Weighted_smoothing_and_interpolation.md .
+mv $base/work/042_Weighted_smoothing_and_interpolation.md $base/docs
 echo "--> done dealing with special case of 042_Weighted_smoothing_and_interpolation.ipynb"
 
 
