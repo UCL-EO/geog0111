@@ -1971,48 +1971,116 @@ Month December has 31 days
         ...
 </code></pre>
 <p>This is very flexible, allows us to put multiple items in the loop, nest conditional or other statements and is the standard looping structure in Python. </p>
-<p>Quite often though, we want to gather the information processed in the loop into a list, perhaps with some conditional filter on what gets put into the list. One way to do this is:</p>
-<pre><code>    blist = []
+<p>Quite often though, we want to gather the information processed in the loop into a list. One way to do this is:</p>
+<pre><code>    # initiate list called blist
+    blist = []
+
+    # loop over items in list alist
     for x in alist:
-        b = result(x)
-        if b == c:
-            blist.extend(b)
-</code></pre>
-<p>A trivial example of this, where we filter out zero values of a function is:</p>
-<pre><code class="python">def result(x):
-    # a function of x
-    return 2.0*(x-3)*(x-4)
 
+        # call function `a_function with argument b
+        b = a_function(x)
+
+        # append b to blist
+        blist.append(b)
+</code></pre>
+<p>This is quite explicit in what is going on, and contains good comments on the process, but it is not at all an <em>elegant</em> piece of code, and is overly-complicated for what it achieves.</p>
+<p>We have mentioned the word <a href="https://towardsdatascience.com/how-to-be-pythonic-and-why-you-should-care-188d63a5037e">Pythonic</a> previously, meaning taking advantage of the (elegant) features of the programming language to write beautiful code. It is perhaps worth introducing the following Python <a href="https://en.wikipedia.org/wiki/Easter_egg_(media)">Easter egg</a> at this point, from <a href="https://www.python.org/dev/peps/pep-0020/">PEP20</a>:</p>
+<pre><code class="python">import this
+</code></pre>
+
+<pre><code>The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+</code></pre>
+<p>A more elegant way to write a simple loop code that results in a list, is to use a feature called <a href="https://www.programiz.com/python-programming/list-comprehension">list comprehensions</a>.</p>
+<p>The basic syntax to replace what we saw above is:</p>
+<pre><code>        [a_function(x) for x in alist]
+</code></pre>
+<p>which returns a list with the function <code>a_function(x)</code> applied to each element in the list <code>alist</code>. Some examples:</p>
+<pre><code class="python"># x^2 for integers 0,...,9
+# First, using full for loop
 blist = []
-# loop 0 to 9
-for x in range(10):
-    # get function of x
-    b = result(x)
-    # filter out zero values
-    if b != 0:
-        blist.extend([b])
+for  x in range(10):
+    blist.append(x*x)
 
-print(f'blist is {blist}')
-print(f'len(blist) is {len(blist)}')
+blist
 </code></pre>
 
-<pre><code>blist is [24.0, 12.0, 4.0, 4.0, 12.0, 24.0, 40.0, 60.0]
-len(blist) is 8
+<pre><code>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 </code></pre>
-<p>This is such a common type of expression, that Python has a special structure, called a <a href="https://www.programiz.com/python-programming/list-comprehension">list comprehension</a> to allow us to do it neatly.</p>
-<p>As a list comprehension, the above code is:</p>
-<pre><code class="python">blist = [result(x) for x in range(10) if result(x) != 0]
-
-print(f'blist is {blist}')
-print(f'len(blist) is {len(blist)}')
+<pre><code class="python"># x^2 for integers 0,...,9
+# list comprehension
+[x*x for x in range(10)]
 </code></pre>
 
-<pre><code>blist is [24.0, 12.0, 4.0, 4.0, 12.0, 24.0, 40.0, 60.0]
-len(blist) is 8
+<pre><code>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 </code></pre>
-<p>Later on, we shall see that array programming (in <code>numpy</code>) would be a more efficient (and neater) way to solve this particular problem. If a for loop, whether explicit of in a list comprehension, can be avoided by processing a whole array as one object, then, in the vast majority of cases we should aim to do so. But not all objects lend themselves to processing in that way. Long, complicated loops can make for hard and easy to break to read code, so often the use of list comprehensions makes for simpler, more efficient and more <a href="https://towardsdatascience.com/how-to-be-pythonic-and-why-you-should-care-188d63a5037e">Pythonic</a> code.</p>
-<p>We will make a lot of use of list comprehensions in the course from this point. </p>
+<p>We can apply conditional statements in a list comprehension. The syntax is:</p>
+<pre><code>        [a_function(x) for x in alist if condition]
+</code></pre>
+<p>or, if an <code>else</code> is required</p>
+<pre><code>        [a_function(x) if condition else b_function(x) for x in alist]
+</code></pre>
+<pre><code class="python">adict = {&quot;first&quot;: &quot;gold&quot;,&quot;second&quot;: &quot;silver&quot;,&quot;third&quot;: &quot;bronze&quot;}
+alist = [&quot;gold&quot;,&quot;silver&quot;,&quot;bronze&quot;]
+
+# given a list of items of strings and integers, interpret
+# position as a list of Olympic medal types
+# the positions may be integers 1,2,3 or strings
+# &quot;first&quot;, &quot;second&quot;, &quot;third&quot;
+
+# an example input list
+items = [&quot;first&quot;,1,3,&quot;third&quot;,2,&quot;second&quot;]
+</code></pre>
+
+<pre><code class="python"># first, as a full for / if set
+blist = []
+for v in items:
+    if type(v) == str:
+        # look it up in the dictionary
+        blist.append(adict[v])
+    else:
+        # get from list
+        # index for list is v-1
+        blist.append(alist[v-1])
+
+print(f'{items} -&gt;\n{blist}')
+</code></pre>
+
+<pre><code>['first', 1, 3, 'third', 2, 'second'] -&gt;
+['gold', 'gold', 'bronze', 'bronze', 'silver', 'silver']
+</code></pre>
+<pre><code class="python"># now using list comprehension
+[adict[v] if (type(v) == str) else alist[v-1] for v in items]
+</code></pre>
+
+<pre><code>['gold', 'gold', 'bronze', 'bronze', 'silver', 'silver']
+</code></pre>
+<p>This is such a common type of expression that you will find lots of cases you will use a list comprehension. Don't make them too complicated however, as you may defeat the purpose of making it elegant, and instead make it simply unreadable.</p>
+<p>Consider using them whenever you have a simple expression in a list. You can nest these expressions (i.e. put one inside the other) but again, and that can be an elegant solution, but be wary of making the code an unreadable mess.</p>
 <h4 id="exercise-6">Exercise 6</h4>
+<ul>
+<li>Use a list comprehension to generate a list of squared numbers from $0^2$ to $10^2$</li>
+</ul>
 <h2 id="summary">Summary</h2>
 <p>We should now know how to use <code>for</code> statements in Python to control program flow. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.</p>
 <p>We know that conditions inside <code>for</code> statements use indentation in Python, and we know to be careful in our use of this. We have learnt about <code>enumerate()</code> and <code>range()</code>.</p>
@@ -2057,6 +2125,24 @@ len(blist) is 8
 <td>test that condition is <code>True</code>, exit otherwise</td>
 <td><code>assert True</code></td>
 <td></td>
+</tr>
+<tr>
+<td><code>[f(x) for x in alist]</code></td>
+<td>list comprehension, applying <code>f(x)</code> to each item <code>x</code> in <code>alist</code></td>
+<td><code>[i*i for i in range(3)]</code></td>
+<td><code>[0, 1, 4]</code></td>
+</tr>
+<tr>
+<td><code>[af(x) for x in alist if ca(x)]</code></td>
+<td>list comprehension with conditional statement, applying <code>af(x)</code> to each element <code>x</code> in <code>alist</code> if <code>ca(x)</code> is <code>True</code></td>
+<td><code>[i for i in range(11) if i%2]</code></td>
+<td><code>[1, 3, 5, 7, 9]</code></td>
+</tr>
+<tr>
+<td><code>[af(x) if ca(x) else bf(x) for x in alist]</code></td>
+<td>list comprehension with conditional statement, applying <code>af(x)</code> to each element <code>x</code> in <code>alist</code> if <code>ca(x)</code> is <code>True</code>, otherwise applying <code>bf(x)</code></td>
+<td><code>[i if i%2 else 0 for i in range(4)]</code></td>
+<td><code>[0, 1, 0, 3]</code></td>
 </tr>
 </tbody>
 </table>

@@ -2597,6 +2597,24 @@
 <td><code>assert True</code></td>
 <td></td>
 </tr>
+<tr>
+<td><code>[f(x) for x in alist]</code></td>
+<td>list comprehension, applying <code>f(x)</code> to each item <code>x</code> in <code>alist</code></td>
+<td><code>[i*i for i in range(3)]</code></td>
+<td><code>[0, 1, 4]</code></td>
+</tr>
+<tr>
+<td><code>[af(x) for x in alist if ca(x)]</code></td>
+<td>list comprehension with conditional statement, applying <code>af(x)</code> to each element <code>x</code> in <code>alist</code> if <code>ca(x)</code> is <code>True</code></td>
+<td><code>[i for i in range(11) if i%2]</code></td>
+<td><code>[1, 3, 5, 7, 9]</code></td>
+</tr>
+<tr>
+<td><code>[af(x) if ca(x) else bf(x) for x in alist]</code></td>
+<td>list comprehension with conditional statement, applying <code>af(x)</code> to each element <code>x</code> in <code>alist</code> if <code>ca(x)</code> is <code>True</code>, otherwise applying <code>bf(x)</code></td>
+<td><code>[i if i%2 else 0 for i in range(4)]</code></td>
+<td><code>[0, 1, 0, 3]</code></td>
+</tr>
 </tbody>
 </table>
 <p><strong>Example 1:</strong></p>
@@ -2634,6 +2652,9 @@
 </code></pre>
 <p>Also written as:</p>
 <pre><code>    def my_function(*args,**kwargs):
+</code></pre>
+<p>We have also seen <code>lambda</code> functions, used for short functions:</p>
+<pre><code>    function_name = lambda args : function_code
 </code></pre>
 <h4 id="018-python-codes">018 Python codes</h4>
 <p><a href="../018_Running_Python/">018 Python codes</a></p>

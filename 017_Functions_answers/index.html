@@ -603,6 +603,19 @@
     Exercise 3
   </a>
   
+    <nav class="md-nav" aria-label="Exercise 3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1430,6 +1443,19 @@
     Exercise 3
   </a>
   
+    <nav class="md-nav" aria-label="Exercise 3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1983,6 +2009,147 @@ test passed
 --&gt; perfoming sanity check on array lengths
 --&gt; zipping dictionary for lists of length 2
 tests passed
+</code></pre>
+<h4 id="exercise-4">Exercise 4</h4>
+<p>Consider the function:</p>
+<pre><code>    def power_of_2(ilist):
+        """
+        output a list of 2 raised to the power of 
+        the values of the input arguments
+
+        Inputs:
+            ilist : list of integers
+
+        Output:
+            list of [2**arg[0],2**arg[1],...]
+        """
+
+        # initialise list
+        olist = []
+
+        # loop over the arg list
+        for i in ilist:
+            # append the 2**i value
+            olist.append(2**i)
+        # return the list
+        return olist
+</code></pre>
+<ul>
+<li>Test this function, inputting a list of integers from 0 to 4 inclusive</li>
+<li>Write a more Pythonic version of this, making use of list comprehensions and <code>lambda</code> functions</li>
+</ul>
+<pre><code class="python"># ANSWER
+
+msg = '''
+Consider the function:
+
+        def power_of_2(ilist):
+            &quot;&quot;&quot;
+            output a list of 2 raised to the power of 
+            the values of the input arguments 
+
+            Inputs:
+                ilist : list of integers
+
+            Output:
+                list of [2**arg[0],2**arg[1],...]
+            &quot;&quot;&quot;
+
+            # initialise list
+            olist = []
+
+            # loop over the arg list
+            for i in ilist:
+                # append the 2**i value
+                olist.append(2**i)
+            # return the list
+            return olist
+
+'''
+print(msg)
+
+def power_of_2(ilist):
+    &quot;&quot;&quot;
+    output a list of 2 raised to the power of 
+    the values of the input arguments 
+
+    Inputs:
+        ilist : list of integers
+
+    Output:
+        list of [2**arg[0],2**arg[1],...]
+    &quot;&quot;&quot;
+
+    # initialise list
+    olist = []
+
+    # loop over the arg list
+    for i in ilist:
+        # append the 2**i value
+        olist.append(2**i)
+    # return the list
+    return olist
+msg = '''
+* Test this function, inputting a list of integers from 0 to 4 inclusive
+'''
+print(msg)
+
+ilist = [0,1,2,3,4]
+olist = power_of_2(ilist)
+print(f'inputs:    {ilist}\noutputs: -&gt;{olist}')
+</code></pre>
+
+<pre><code>Consider the function:
+
+        def power_of_2(ilist):
+            """
+            output a list of 2 raised to the power of 
+            the values of the input arguments
+
+            Inputs:
+                ilist : list of integers
+
+            Output:
+                list of [2**arg[0],2**arg[1],...]
+            """
+
+            # initialise list
+            olist = []
+
+            # loop over the arg list
+            for i in ilist:
+                # append the 2**i value
+                olist.append(2**i)
+            # return the list
+            return olist
+
+
+
+* Test this function, inputting a list of integers from 0 to 4 inclusive
+
+inputs:    [0, 1, 2, 3, 4]
+outputs: -&gt;[1, 2, 4, 8, 16]
+</code></pre>
+<pre><code class="python">msg='''
+* Write a more Pythonic version of this, 
+  making use of list comprehensions and lambda functions
+'''
+print(msg)
+
+# lambda function
+twop = lambda x : 2**x
+
+ilist = [0,1,2,3,4]
+# list comp using lambda
+olist = [twop(i) for i in ilist]
+print(f'inputs:    {ilist}\noutputs: -&gt;{olist}')
+</code></pre>
+
+<pre><code>* Write a more Pythonic version of this, 
+  making use of list comprehensions and lambda functions
+
+inputs:    [0, 1, 2, 3, 4]
+outputs: -&gt;[1, 2, 4, 8, 16]
 </code></pre>
                 
                   
