@@ -316,7 +316,7 @@ for k,d in days_in_month.items():
 * use `.items()` as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: `f'{y} is the year of the {z}'`, assuming `y` is the key and `z` the item.
 * Describe what you are doing at each step
 
-## list comprehensions
+## list comprehensions 
 
 So far, we have dealt with explicit `for` loops of the form:
 
@@ -325,62 +325,156 @@ So far, we have dealt with explicit `for` loops of the form:
             
 This is very flexible, allows us to put multiple items in the loop, nest conditional or other statements and is the standard looping structure in Python. 
 
-Quite often though, we want to gather the information processed in the loop into a list, perhaps with some conditional filter on what gets put into the list. One way to do this is:
+Quite often though, we want to gather the information processed in the loop into a list. One way to do this is:
 
+        # initiate list called blist
         blist = []
-        for x in alist:
-            b = result(x)
-            if b == c:
-                blist.extend(b)
- 
- A trivial example of this, where we filter out zero values of a function is:
-
-
-```python
-def result(x):
-    # a function of x
-    return 2.0*(x-3)*(x-4)
-
-blist = []
-# loop 0 to 9
-for x in range(10):
-    # get function of x
-    b = result(x)
-    # filter out zero values
-    if b != 0:
-        blist.extend([b])
         
-print(f'blist is {blist}')
-print(f'len(blist) is {len(blist)}')
-```
-
-    blist is [24.0, 12.0, 4.0, 4.0, 12.0, 24.0, 40.0, 60.0]
-    len(blist) is 8
-
-
-This is such a common type of expression, that Python has a special structure, called a [list comprehension](https://www.programiz.com/python-programming/list-comprehension) to allow us to do it neatly.
-
-As a list comprehension, the above code is:
+        # loop over items in list alist
+        for x in alist:
+        
+            # call function `a_function with argument b
+            b = a_function(x)
+            
+            # append b to blist
+            blist.append(b)
+ 
+ This is quite explicit in what is going on, and contains good comments on the process, but it is not at all an *elegant* piece of code, and is overly-complicated for what it achieves.
+ 
+ We have mentioned the word [Pythonic](https://towardsdatascience.com/how-to-be-pythonic-and-why-you-should-care-188d63a5037e) previously, meaning taking advantage of the (elegant) features of the programming language to write beautiful code. It is perhaps worth introducing the following Python [Easter egg](https://en.wikipedia.org/wiki/Easter_egg_(media)) at this point, from [PEP20](https://www.python.org/dev/peps/pep-0020/):
 
 
 ```python
-blist = [result(x) for x in range(10) if result(x) != 0]
-
-print(f'blist is {blist}')
-print(f'len(blist) is {len(blist)}')
+import this
 ```
 
-    blist is [24.0, 12.0, 4.0, 4.0, 12.0, 24.0, 40.0, 60.0]
-    len(blist) is 8
+    The Zen of Python, by Tim Peters
+    
+    Beautiful is better than ugly.
+    Explicit is better than implicit.
+    Simple is better than complex.
+    Complex is better than complicated.
+    Flat is better than nested.
+    Sparse is better than dense.
+    Readability counts.
+    Special cases aren't special enough to break the rules.
+    Although practicality beats purity.
+    Errors should never pass silently.
+    Unless explicitly silenced.
+    In the face of ambiguity, refuse the temptation to guess.
+    There should be one-- and preferably only one --obvious way to do it.
+    Although that way may not be obvious at first unless you're Dutch.
+    Now is better than never.
+    Although never is often better than *right* now.
+    If the implementation is hard to explain, it's a bad idea.
+    If the implementation is easy to explain, it may be a good idea.
+    Namespaces are one honking great idea -- let's do more of those!
 
 
-Later on, we shall see that array programming (in `numpy`) would be a more efficient (and neater) way to solve this particular problem. If a for loop, whether explicit of in a list comprehension, can be avoided by processing a whole array as one object, then, in the vast majority of cases we should aim to do so. But not all objects lend themselves to processing in that way. Long, complicated loops can make for hard and easy to break to read code, so often the use of list comprehensions makes for simpler, more efficient and more [Pythonic](https://towardsdatascience.com/how-to-be-pythonic-and-why-you-should-care-188d63a5037e) code.
+A more elegant way to write a simple loop code that results in a list, is to use a feature called [list comprehensions](https://www.programiz.com/python-programming/list-comprehension).
 
-We will make a lot of use of list comprehensions in the course from this point. 
+The basic syntax to replace what we saw above is:
+
+            [a_function(x) for x in alist]
+            
+     
+which returns a list with the function `a_function(x)` applied to each element in the list `alist`. Some examples:
+
+
+```python
+# x^2 for integers 0,...,9
+# First, using full for loop
+blist = []
+for  x in range(10):
+    blist.append(x*x)
+    
+blist
+```
+
+
+
+
+    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+
+
+```python
+# x^2 for integers 0,...,9
+# list comprehension
+[x*x for x in range(10)]
+```
+
+
+
+
+    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+
+We can apply conditional statements in a list comprehension. The syntax is:
+
+            [a_function(x) for x in alist if condition]
+
+or, if an `else` is required
+
+            [a_function(x) if condition else b_function(x) for x in alist]
+
+
+
+```python
+adict = {"first": "gold","second": "silver","third": "bronze"}
+alist = ["gold","silver","bronze"]
+
+# given a list of items of strings and integers, interpret
+# position as a list of Olympic medal types
+# the positions may be integers 1,2,3 or strings
+# "first", "second", "third"
+
+# an example input list
+items = ["first",1,3,"third",2,"second"]
+```
+
+
+```python
+# first, as a full for / if set
+blist = []
+for v in items:
+    if type(v) == str:
+        # look it up in the dictionary
+        blist.append(adict[v])
+    else:
+        # get from list
+        # index for list is v-1
+        blist.append(alist[v-1])
+        
+print(f'{items} ->\n{blist}')
+```
+
+    ['first', 1, 3, 'third', 2, 'second'] ->
+    ['gold', 'gold', 'bronze', 'bronze', 'silver', 'silver']
+
+
+
+```python
+# now using list comprehension
+[adict[v] if (type(v) == str) else alist[v-1] for v in items]
+```
+
+
+
+
+    ['gold', 'gold', 'bronze', 'bronze', 'silver', 'silver']
+
+
+
+This is such a common type of expression that you will find lots of cases you will use a list comprehension. Don't make them too complicated however, as you may defeat the purpose of making it elegant, and instead make it simply unreadable.
+
+Consider using them whenever you have a simple expression in a list. You can nest these expressions (i.e. put one inside the other) but again, and that can be an elegant solution, but be wary of making the code an unreadable mess.
 
 #### Exercise 6
 
-
+* Use a list comprehension to generate a list of squared numbers from $0^2$ to $10^2$
 
 ## Summary
 
@@ -400,6 +494,9 @@ There are additional notes in [docs.python.org](https://docs.python.org/3/tutori
 | `range(start,stop,step)` | index iterator from `start` to `stop` in steps of `step`| `list(range(1,6,2))`| `[1, 3, 5]` |
 |`enumerate(list)`| provide index of `list` | `list(enumerate(['a','b','c']))` | `[(0, 'a'), (1, 'b'), (2, 'c')]`|
 | `assert condition` | test that condition is `True`, exit otherwise | `assert True` ||
+| `[f(x) for x in alist]` | list comprehension, applying `f(x)` to each item `x` in `alist` | `[i*i for i in range(3)]` | `[0, 1, 4]`
+|`[af(x) for x in alist if ca(x)]` | list comprehension with conditional statement, applying `af(x)` to each element `x` in `alist` if `ca(x)` is `True`| `[i for i in range(11) if i%2]` | `[1, 3, 5, 7, 9]`
+|`[af(x) if ca(x) else bf(x) for x in alist]` | list comprehension with conditional statement, applying `af(x)` to each element `x` in `alist` if `ca(x)` is `True`, otherwise applying `bf(x)` | `[i if i%2 else 0 for i in range(4)]` | `[0, 1, 0, 3]`
 
 **Example 1:**
 

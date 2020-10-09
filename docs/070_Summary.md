@@ -268,6 +268,10 @@ Comparison operators:
 | `range(start,stop,step)` | index iterator from `start` to `stop` in steps of `step`| `list(range(1,6,2))`| `[1, 3, 5]` |
 |`enumerate(list)`| provide index of `list` | `list(enumerate(['a','b','c']))` | `[(0, 'a'), (1, 'b'), (2, 'c')]`|
 | `assert condition` | test that condition is `True`, exit otherwise | `assert True` ||
+| `[f(x) for x in alist]` | list comprehension, applying `f(x)` to each item `x` in `alist` | `[i*i for i in range(3)]` | `[0, 1, 4]`
+|`[af(x) for x in alist if ca(x)]` | list comprehension with conditional statement, applying `af(x)` to each element `x` in `alist` if `ca(x)` is `True`| `[i for i in range(11) if i%2]` | `[1, 3, 5, 7, 9]`
+|`[af(x) if ca(x) else bf(x) for x in alist]` | list comprehension with conditional statement, applying `af(x)` to each element `x` in `alist` if `ca(x)` is `True`, otherwise applying `bf(x)` | `[i if i%2 else 0 for i in range(4)]` | `[0, 1, 0, 3]`
+
 
 **Example 1:**
 
@@ -314,6 +318,11 @@ Anatomy of a function:
 Also written as:
 
         def my_function(*args,**kwargs):
+        
+We have also seen `lambda` functions, used for short functions:
+
+        function_name = lambda args : function_code
+
 
 #### 018 Python codes
 

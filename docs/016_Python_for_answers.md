@@ -262,3 +262,21 @@ for y,z in zodiacYear.items():
     2018 is the year of the dog
     2019 is the year of the pig
 
+
+#### Exercise 6
+
+* Use a list comprehension to generate a list of squared numbers from $0^2$ to $10^2$
+
+
+```python
+# ANSWER
+# Use a list comprehension to generate a list of squared numbers from 0^2 to 10^2
+[i*i for i in range(11)]
+```
+
+
+
+
+    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+

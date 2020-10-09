@@ -567,3 +567,155 @@ print('tests passed')
     --> zipping dictionary for lists of length 2
     tests passed
 
+
+#### Exercise 4
+
+Consider the function:
+
+
+        def power_of_2(ilist):
+            """
+            output a list of 2 raised to the power of 
+            the values of the input arguments 
+
+            Inputs:
+                ilist : list of integers
+
+            Output:
+                list of [2**arg[0],2**arg[1],...]
+            """
+
+            # initialise list
+            olist = []
+
+            # loop over the arg list
+            for i in ilist:
+                # append the 2**i value
+                olist.append(2**i)
+            # return the list
+            return olist
+
+
+* Test this function, inputting a list of integers from 0 to 4 inclusive
+* Write a more Pythonic version of this, making use of list comprehensions and `lambda` functions
+
+
+```python
+# ANSWER
+
+msg = '''
+Consider the function:
+
+        def power_of_2(ilist):
+            """
+            output a list of 2 raised to the power of 
+            the values of the input arguments 
+
+            Inputs:
+                ilist : list of integers
+
+            Output:
+                list of [2**arg[0],2**arg[1],...]
+            """
+
+            # initialise list
+            olist = []
+
+            # loop over the arg list
+            for i in ilist:
+                # append the 2**i value
+                olist.append(2**i)
+            # return the list
+            return olist
+
+'''
+print(msg)
+
+def power_of_2(ilist):
+    """
+    output a list of 2 raised to the power of 
+    the values of the input arguments 
+
+    Inputs:
+        ilist : list of integers
+
+    Output:
+        list of [2**arg[0],2**arg[1],...]
+    """
+
+    # initialise list
+    olist = []
+
+    # loop over the arg list
+    for i in ilist:
+        # append the 2**i value
+        olist.append(2**i)
+    # return the list
+    return olist
+msg = '''
+* Test this function, inputting a list of integers from 0 to 4 inclusive
+'''
+print(msg)
+
+ilist = [0,1,2,3,4]
+olist = power_of_2(ilist)
+print(f'inputs:    {ilist}\noutputs: ->{olist}')
+```
+
+    
+    Consider the function:
+    
+            def power_of_2(ilist):
+                """
+                output a list of 2 raised to the power of 
+                the values of the input arguments 
+    
+                Inputs:
+                    ilist : list of integers
+    
+                Output:
+                    list of [2**arg[0],2**arg[1],...]
+                """
+    
+                # initialise list
+                olist = []
+    
+                # loop over the arg list
+                for i in ilist:
+                    # append the 2**i value
+                    olist.append(2**i)
+                # return the list
+                return olist
+    
+    
+    
+    * Test this function, inputting a list of integers from 0 to 4 inclusive
+    
+    inputs:    [0, 1, 2, 3, 4]
+    outputs: ->[1, 2, 4, 8, 16]
+
+
+
+```python
+msg='''
+* Write a more Pythonic version of this, 
+  making use of list comprehensions and lambda functions
+'''
+print(msg)
+
+# lambda function
+twop = lambda x : 2**x
+
+ilist = [0,1,2,3,4]
+# list comp using lambda
+olist = [twop(i) for i in ilist]
+print(f'inputs:    {ilist}\noutputs: ->{olist}')
+```
+
+    
+    * Write a more Pythonic version of this, 
+      making use of list comprehensions and lambda functions
+    
+    inputs:    [0, 1, 2, 3, 4]
+    outputs: ->[1, 2, 4, 8, 16]
+

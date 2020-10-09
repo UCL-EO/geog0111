@@ -586,6 +586,78 @@ print(*args,**kwargs)
 
 The use of `**kwargs` can be useful sometimes, as you can more easily keep track of keywords for some particular configuration of running a code. For that reason, and because you will see it sometimes in documentation, you should be aware of it. Most likely you won't be using it a lot in your early code development though.
 
+## `lambda` functions
+
+Sometimes the function we want to write is very simple, and might consist of only a few statements on a single line. As an example, consider the function `y(x)` here:
+
+
+```python
+def y(x):
+    '''
+    a function y(x) with
+    zeros at x=4,x=3
+    '''
+    return 2.0*(x-3)*(x-4)
+```
+
+Whilst it is fine to write a function in this way, and it has the advantage of being quite explicit about what it is doing, it is not very efficient: there is a computational cost to calling a function, especially in a high-level language like Python. 
+
+If we were only ever going to use this function in places in the code where performance is unimportant, then we can go ahead with the above.
+
+If we are worried that it might be used in a case when we would not want to slow it down unnecessarily with as function call, we can use a special type of function, called a [`lambda` function](https://www.w3schools.com/python/python_lambda.asp). The syntax is:
+
+        function_name = lambda args : function_code
+
+where `function_name` is the name of the function, `args` is a list of arguments, and `function_code` here represents the (short!) code inside the function.
+
+Our example above translates to:
+
+
+```python
+y = lambda x : 2.0*(x-3)*(x-4)
+```
+
+which is a much *neater* and more efficient code than a full function. Use these when appropriate.
+
+Generally, you are not expected to use a docstring with a `lambda` function, as it should be a simple statement that is self-evident from the code. If you do feel the need, you can add one with:
+
+        y.__doc__ = '''
+        a function y(x) with
+        zeros at x=4,x=3
+        '''
+
+
+#### Exercise 4
+
+Consider the function:
+
+
+        def power_of_2(ilist):
+            """
+            output a list of 2 raised to the power of 
+            the values of the input arguments 
+
+            Inputs:
+                ilist : list of integers
+
+            Output:
+                list of [2**arg[0],2**arg[1],...]
+            """
+
+            # initialise list
+            olist = []
+
+            # loop over the arg list
+            for i in ilist:
+                # append the 2**i value
+                olist.append(2**i)
+            # return the list
+            return olist
+
+
+* Test this function, inputting a list of integers from 0 to 4 inclusive
+* Write a more Pythonic version of this, making use of list comprehensions and `lambda` functions
+
 ## Summary
 
 In this section, we have learned about writing a function. We have seen that they generally will have zero or more input positional arguments and zero or more keyword arguments. They will typically return some value. We have also seen how we can define a `doc string` to give the user information on how to use the function, and also how we can use `assert` to build tests for our codes. We have been through some design considerations, and seen that it is best to plan you functions by thinking about the purpose, the inputs and the outputs. Then, for the core code, you just need to develop a skeleton code and docstring structure, test that, and insert your core code. You should think about modifications using keyword arguments that you might want to include, but these will often come in a second pass of development.
@@ -612,4 +684,8 @@ Anatomy of a function:
 Also written as:
 
         def my_function(*args,**kwargs):
+
+We have also seen `lambda` functions, used for short functions:
+
+        function_name = lambda args : function_code
 
