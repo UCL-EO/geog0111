@@ -10,7 +10,7 @@ GEOG0111 Timetable 2020-21
 |	| |[![Python Introduction](images/icon.png)](https://web.microsoftstream.com/video/ada31325-4f42-4d6e-bd4e-69d980ccdc6e) | [![Data Types](images/icon.png)](https://web.microsoftstream.com/video/484a82d4-0159-41f5-a088-8079f511c449)|[![Strings](images/icon.png)](https://web.microsoftstream.com/video/5395e966-9d6b-4ae7-9495-bc6af514b84c)|[![String methods](images/icon.png)](https://web.microsoftstream.com/video/15c2b8a1-ee07-4b51-972f-9902b31ff7fd)| [![Groups](images/icon.png)](https://web.microsoftstream.com/video/b4e0005a-866a-4d56-bfcb-4373121979a3)
 |  3	|  **Control**	| [Control in Python](015_Python_control.md) 	| [For](016_Python_for.md) 	| [Functions](017_Functions.md) 	| [Scripts](018_Running_Python.md) | | [Python script](061_Script.md)|
 |  4	| **Files** 	|  [Files](020_Python_files.md)	|  	[Streams](021_Streams.md)| [Read and Write](022_Read_write_files.md) 	|
-|  5	| **Graphics** 	|  [Plotting](023_Plotting.md)	|  [Image display](024_Image_display.md)	|  	| | |[Part 1](062_Part1.md) [Code advice](062_Part1_code.md)|
+|  5	| **Graphics** 	|  [Plotting](023_Plotting.md)	|  [Image display](024_Image_display.md)	|  	| | |[Part 1](062_Part1.md) [Code advice](063_Part1_code.md)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [NASA MODIS](030_NASA_MODIS_Earthdata.md)	|  [numpy](031_Numpy.md)	|  [more numpy](032_More_numpy.md)	| || [Numpy exercise](064_Numpy.md)|
 |  7	|  **Space and time**	| [Mosaicing](040_GDAL_mosaicing_and_masking.md) 	|  [Timeseries](041_GDAL_timeseries.md)	|  	|
@@ -19,4 +19,4 @@ GEOG0111 Timetable 2020-21
 |  10	|  **Recap**	|  [Summary](070_Summary.md)|  	|  	|| | [Part 2](066_Part2.md)|
 
 
-Note that [Part 1](062_Part1.md) and [Part 2](066_Part2.md) are the formal assessments for the course. [Part 1](062_Part1.md) should be submitted the Monday after Reading week. [Part 2](066_Part2.md) should be submitted in the first week of Term 2. Please read [Code advice](062_Part1_code.md) before subitting work.
+Note that [Part 1](062_Part1.md) and [Part 2](066_Part2.md) are the formal assessments for the course. [Part 1](062_Part1.md) should be submitted the Monday after Reading week. [Part 2](066_Part2.md) should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.md) before subitting work.

@@ -316,6 +316,72 @@ for k,d in days_in_month.items():
 * use `.items()` as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: `f'{y} is the year of the {z}'`, assuming `y` is the key and `z` the item.
 * Describe what you are doing at each step
 
+## list comprehensions
+
+So far, we have dealt with explicit `for` loops of the form:
+
+        for x in alist:
+            ...
+            
+This is very flexible, allows us to put multiple items in the loop, nest conditional or other statements and is the standard looping structure in Python. 
+
+Quite often though, we want to gather the information processed in the loop into a list, perhaps with some conditional filter on what gets put into the list. One way to do this is:
+
+        blist = []
+        for x in alist:
+            b = result(x)
+            if b == c:
+                blist.extend(b)
+ 
+ A trivial example of this, where we filter out zero values of a function is:
+
+
+```python
+def result(x):
+    # a function of x
+    return 2.0*(x-3)*(x-4)
+
+blist = []
+# loop 0 to 9
+for x in range(10):
+    # get function of x
+    b = result(x)
+    # filter out zero values
+    if b != 0:
+        blist.extend([b])
+        
+print(f'blist is {blist}')
+print(f'len(blist) is {len(blist)}')
+```
+
+    blist is [24.0, 12.0, 4.0, 4.0, 12.0, 24.0, 40.0, 60.0]
+    len(blist) is 8
+
+
+This is such a common type of expression, that Python has a special structure, called a [list comprehension](https://www.programiz.com/python-programming/list-comprehension) to allow us to do it neatly.
+
+As a list comprehension, the above code is:
+
+
+```python
+blist = [result(x) for x in range(10) if result(x) != 0]
+
+print(f'blist is {blist}')
+print(f'len(blist) is {len(blist)}')
+```
+
+    blist is [24.0, 12.0, 4.0, 4.0, 12.0, 24.0, 40.0, 60.0]
+    len(blist) is 8
+
+
+Later on, we shall see that array programming (in `numpy`) would be a more efficient (and neater) way to solve this particular problem. If a for loop, whether explicit of in a list comprehension, can be avoided by processing a whole array as one object, then, in the vast majority of cases we should aim to do so. But not all objects lend themselves to processing in that way. Long, complicated loops can make for hard and easy to break to read code, so often the use of list comprehensions makes for simpler, more efficient and more [Pythonic](https://towardsdatascience.com/how-to-be-pythonic-and-why-you-should-care-188d63a5037e) code.
+
+We will make a lot of use of list comprehensions in the course from this point. 
+
+#### Exercise 6
+
+
+
 ## Summary
 
 We should now know how to use `for` statements in Python to control program flow. This is a common feature of all coding languages, but it is important here that you get used to doing this in Python.

@@ -1,3 +1,14 @@
+extra:
+  social:
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/prof_plewis
+  - icon: fontawesome/brands/docker
+    link: https://hub.docker.com/r/proflewis/geog0111
+  - icon: fontawesome/brands/github
+    link: https://github.com/UCL-EO/geog0111
+google_analytics:
+- UA-1347772-1
+- auto
 nav:
 - Introduction: index.md
 - Course Basics:

@@ -136,17 +136,7 @@ ls -lh README.md
     -rw-r--r-- 1 ucfalew ucfa 3.3K Oct  5 09:38 README.md
 
 
- 
-             100
-             
-          
-             1 x 2^2 + 0 x 2^1 + 0 x 2^0
-             
-             
-             110 
-             
-
-Here, the file size if `321B` (321 Bytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
+Here, the file size if `3.3K` (3.3 KBytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
 
     rw-  r--  r--
     
