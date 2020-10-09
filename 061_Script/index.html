@@ -1424,39 +1424,24 @@
 <h4 id="exercise-1">Exercise 1</h4>
 <ul>
 <li>
-<p>Create a Python code in a file called <code>work/greet.py</code> that does the following:</p>
+<p>Create a Python code in a file called <code>work/count.py</code> that does the following:</p>
 <ul>
-<li>define a function <code>greet(name)</code> that prints out a greeting from the name in the argument  <code>name</code></li>
-<li>define a function <code>main() that passes a string from the script command line to a function</code>greet(name)`</li>
-<li>calls <code>main()</code> if the file is run as a Python script </li>
+<li>define a function <code>count(istop)</code> that prints out numbers from 0 to <code>istop</code> <strong>(inclusive)</strong> on the same line. Your function should test that the variable <code>istop</code> is an integer, and if not, try to convert it to one (hint: it might well be a string when you pass it from <code>sys.argv</code> below).</li>
+<li>define a function <code>main(vlist)</code> that loops over each item in the list <code>vlist</code> and sends it to <code>count(...)</code></li>
+<li>calls <code>main(vlist)</code> if the file is run as a Python script with <code>vlist</code> being <strong>all arguments</strong> after <code>sys.argv[0]</code> on the  script command line</li>
 <li>show a test of the script working</li>
 <li>
 <p>has plentiful commenting and document strings</p>
 </li>
 <li>
 <p>As a test, when you run the script:</p>
-<pre><code>%run work/greet.py Fred
+<pre><code>%run work/count.py 4 5
 </code></pre>
 </li>
 </ul>
 <p>you would expect to get a response of the form:</p>
-<pre><code>    greetings from Fred
-</code></pre>
-<p>and if you run:
-        %run work/greet.py Hermione</p>
-<p>then
-        greetings from Hermione</p>
-</li>
-<li>
-<p>To go further with this exercise, you might test to see that the length of <code>sys.argv</code> is as long as you expect it to be, so you can tell the user when they forget toi include the name</p>
-</li>
-<li>
-<p>To go even further with this exercise, you might attempt to make the script function so that if you run it as:</p>
-<pre><code>%run work/greet.py Fred Hermione
-</code></pre>
-<p>it responds:</p>
-<pre><code>greetings from Fred
-greetings from Hermione
+<pre><code>    0 1 2 3 4
+    0 1 2 3 4 5
 </code></pre>
 </li>
 </ul>
