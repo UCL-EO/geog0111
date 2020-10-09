@@ -48,4 +48,3 @@ theme:
   logo: images/ucl.png
   favicon: images/ucl.png
   name: material
-  - header.hide

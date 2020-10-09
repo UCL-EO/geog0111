@@ -135,7 +135,18 @@ echo "--> staging markdown files into docs"
 mv notebooks_lab/*_files docs
 mv notebooks_lab/*md docs
 #rm -f docs/README.md
+# buggy bit
+rm -rf docs/*' 3' docs/*' 2'  docs/*' 4' 
+rm -f docs/*/*' 3'.* docs/*/*' 2'.*  docs/*/*' 4'.* 
+rm -f docs/*' 3.md' docs/*' 2.md' docs/*' 4.md'
+rm -f docs/*/*/*' 2'* docs/*/*/*' 3'* docs/*/*/*' 4'* 
 
+rm -rf notebooks_lab/*' 3' notebooks_lab/*' 2'  /*' notebooks_lab4' 
+rm -f notebooks_lab/*/*' 3'.* notebooks_lab/*/*' 2'.*  notebooks_lab/*/*' 4'.* 
+rm -f notebooks_lab/*' 3.'* notebooks_lab/*' 2.'* notebooks_lab/*' 4.'*
+rm -f notebooks_lab/*/*/*' 2'* notebooks_lab/*/*/*' 3'* notebooks_lab/*/*/*' 4'* 
+rm -f docs/copy/*' '2
+rm -f docs/*/*' '2.* docs/*/*' '4.* docs/*/*' '3.* 
 for i in docs/*md
 do
   sed < $i > /tmp/$$ 's/.ipynb/.md/g'
@@ -179,18 +190,20 @@ cp $base/notebooks/data/LC_Type3_colour.csv data
 #cp $base/notebooks/data/
 #ln -s $base/notebooks notebooks
 
-#sed < index.md 's/notebooks\///g'| sed  's/docs\///g' > /tmp/tmp.$$
-#mv  /tmp/tmp.$$ index.md
+sed < index.md 's/notebooks\///g'| sed  's/docs\///g' > /tmp/tmp.$$
+mv  /tmp/tmp.$$ index.md
 
 cp ../config/requirements.txt .
 
 # avoid conflict with index.md
 sed < README.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
 mv /tmp/tmp.$$ GEOG0111.md
-rm -f README.md
+#mv GEOG0111.md index.md
 
-sed < index.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
-mv /tmp/tmp.$$ index.md
+#rm -f README.md
+
+#sed < index.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
+#mv /tmp/tmp.$$ index.md
 
 #cat << EOF >> index.md
 #
