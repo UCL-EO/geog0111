@@ -2,36 +2,24 @@
 
 #### Exercise 1
 
-* Create a Python code in a file called `work/greet.py` that does the following:
-    - define a function `greet(name)` that prints out a greeting from the name in the argument  `name`
-    - define a function `main() that passes a string from the script command line to a function `greet(name)`
-    - calls `main()` if the file is run as a Python script 
+* Create a Python code in a file called `work/count.py` that does the following:
+
+    - define a function `count(istop)` that prints out numbers from 0 to `istop` **(inclusive)** on the same line. Your function should test that the variable `istop` is an integer, and if not, try to convert it to one (hint: it might well be a string when you pass it from `sys.argv` below).
+    - define a function `main(vlist)` that loops over each item in the list `vlist` and sends it to `count(...)`
+    - calls `main(vlist)` if the file is run as a Python script with `vlist` being **all arguments** after `sys.argv[0]` on the  script command line
     - show a test of the script working
     - has plentiful commenting and document strings
    
     - As a test, when you run the script:
 
-            %run work/greet.py Fred
+            %run work/count.py 4 5 
 
     you would expect to get a response of the form:
 
-            greetings from Fred
+            0 1 2 3 4
+            0 1 2 3 4 5
 
-    and if you run:
-            %run work/greet.py Hermione
-
-    then
-            greetings from Hermione
-    
-* To go further with this exercise, you might test to see that the length of `sys.argv` is as long as you expect it to be, so you can tell the user when they forget toi include the name
-* To go even further with this exercise, you might attempt to make the script function so that if you run it as:
-
-        %run work/greet.py Fred Hermione
-    
-    it responds:
-
-        greetings from Fred
-        greetings from Hermione
+ 
 
 
 ```bash
@@ -42,18 +30,18 @@
 # code between the next line and the 
 # End Of File (EOF) marker will be saved in 
 # to the file work/greet.py
-cat << EOF > work/greet.py
+cat << EOF > work/count.py
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
-
 import sys
 
 '''
-greet
+count
 
 Purpose:
 
-  script to print hello from name
+  script to prints out numbers from 0 to istop
+  (inclusive) on the same line.
   
 '''
 __author__    = "P Lewis"
@@ -62,43 +50,77 @@ __license__   = "GPLv3"
 __email__     = "p.lewis@ucl.ac.uk"
 
 '''
-Instructions:
-Create a Python code in a file called work/greet.py that does the following:
-define a function greet(name) that prints out a greeting from the name 
-  in the argument name
-define a function main() that passes a string from the script command 
-  line to a function greet(name)
-calls main() if the file is run as a Python script
-has plentiful commenting and document strings
+Create a Python code in a file called work/count.py 
+that does the following:
+
+- define a function count(istop) that prints out numbers 
+  from 0 to istop (inclusive) on the same line. 
+  Your function should test that the variable istop is an integer, 
+  and if not, try to convert it to one 
+  (hint: it might well be a string when you pass it 
+  from sys.argv below).
+- define a function main(vlist) that loops over each item 
+  in the list vlist and sends it to count(...)
+- calls main(vlist) if the file is run as a Python 
+  script with vlist being all arguments after 
+  sys.argv[0] on the  script command line
+- show a test of the script working
+- has plentiful commenting and document strings
+
+- As a test, when you run the script:
+
+        run work/count.py 4 5 
+
+you would expect to get a response of the form:
+
+        0 1 2 3 4
+        0 1 2 3 4 5
+
 '''
 
-# define a function greet(name) that prints 
-#   out a greeting from the name in the argument name
-def greet(name):
+# define a function count(istop) that prints out numbers 
+#  from 0 to istop (inclusive) on the same line. 
+#  Your function should test that the variable istop is an integer, 
+#  and if not, try to convert it to one 
+def count(istop):
     '''
-    function to print "greetings from {name}"
+    print out numbers (integer)
+    from 0 to istop (inclusive) on the same line.
     '''
-    print(f'greetings from {name}')
+    # force istop to be an integer
+    # this will fail if you pass something 
+    # that cant be made into an integer, so you could possibly 
+    # be neater about trapping that
+    istop = int(istop)
     
+    # from 0 to istop (inclusive) on the same line.
+    # several ways to do this e.g.
+    print(' '.join([str(i) for i in range(istop+1)]))
     
-# define a function main() that passes a string 
-#   from the script command line to a function greet(name)
+    # return from function
+    return
+    
+# - define a function main(vlist) that loops over each item 
+#  in the list vlist and sends it to count(...)
+def main(values):
+    for istop in values:
+        count(istop)
 
-# call name with a string 
-# name that we pass to greet(name)
-def main(name):
-    greet(name)
-
-# calls main() if the file is run as a Python script
+# calls main(vlist) if the file is run as a Python 
+#  script with vlist being all arguments after 
+#  sys.argv[0] on the  script command line
 if __name__ == "__main__":
     # execute only if run as a script
     # we pass the first command line argument argv[1]
-    # remembering that argv[0[ is the program name
-    main(sys.argv[1])
+    # remembering that argv[0] is the program name
+    
+    # we pass the list *after* argument 0, i.e.
+    # the slice argv[1:]
+    main(sys.argv[1:])
 EOF
 
 # Chmod 755 to make the file executable
-chmod 755 work/greet.py
+chmod 755 work/count.py
 ```
 
 
@@ -106,255 +128,66 @@ chmod 755 work/greet.py
 msg = '''
 As a test, when you run the script:
 
-  %run work/greet.py Fred
+  %run work/count.py 4 5 
 you would expect to get a response of the form:
 
-  greetings from Fred
-and if you run:
-
-  %run work/greet.py Hermione
-then
-
-  greetings from Hermione
-
+  0 1 2 3 4
+  0 1 2 3 4 5
 '''
 print(msg)
 
-print('work/greet.py Fred ->')
-%run work/greet.py Fred
-print('work/greet.py Hermione ->')
-%run work/greet.py Hermione
+print('work/count.py 4 5 ->')
+%run work/count.py 4 5
 ```
 
     
     As a test, when you run the script:
     
-      %run work/greet.py Fred
+      %run work/count.py 4 5 
     you would expect to get a response of the form:
     
-      greetings from Fred
-    and if you run:
+      0 1 2 3 4
+      0 1 2 3 4 5
     
-      %run work/greet.py Hermione
-    then
-    
-      greetings from Hermione
-    
-    
-    work/greet.py Fred ->
-    greetings from Fred
-    work/greet.py Hermione ->
-    greetings from Hermione
+    work/count.py 4 5 ->
+    0 1 2 3 4
+    0 1 2 3 4 5
 
-
-
-```bash
-%%bash
-# ANSWER 2
-#
-# To go further with this exercise, you might test to see that the length of sys.argv is as long as you expect it to be, 
-# so you can tell the user when they forget to include the name
-
-# code between the next line and the 
-# End Of File (EOF) marker will be saved in 
-# to the file work/greet.py
-cat << EOF > work/greet.py
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- 
-
-# import required package(s)
-import sys
-
-'''
-greet
-
-Purpose:
-
-  script to print hello from name
-  
-'''
-__author__    = "P Lewis"
-__copyright__ = "Copyright 2020 P Lewis"
-__license__   = "GPLv3"
-__email__     = "p.lewis@ucl.ac.uk"
-
-
-
-'''
-Instructions:
-
-Create a Python code in a file called work/greet.py that does the following:
-define a function greet(name) that prints out a greeting from the name 
-  in the argument name
-define a function main() that passes a string from the script command 
-  line to a function greet(name)
-calls main() if the file is run as a Python script
-has plentiful commenting and document strings
-'''
-
-# define a function greet(name) that prints 
-#   out a greeting from the name in the argument name
-def greet(name):
-    '''
-    function to print "greetings from {name}"
-    '''
-    print(f'greetings from {name}')
-    
-    
-# define a function main() that passes a string 
-#   from the script command line to a function greet(name)
-
-# call name with a string 
-# name that we pass to greet(name)
-def main(name):
-    greet(name)
-
-# calls main() if the file is run as a Python script
-if __name__ == "__main__":
-    # execute only if run as a script
-    # we pass the first command line argument argv[1]
-    # remembering that argv[0[ is the program name
-    
-    # TEST for string length in here:
-    # To go further with this exercise, you might test to see that the length of sys.argv is as long as you expect it to be, 
-    # so you can tell the user when they forget to include the name
-    if len(sys.argv) > 1:
-      main(sys.argv[1])
-    else:
-      print(f'{sys.argv[0]}: error - no command line name given')
-EOF
-
-# Chmod 755 to make the file executable
-chmod 755 work/greet.py
-```
 
 
 ```python
-# test
-print('work/greet.py  ->')
-%run work/greet.py 
-print('work/greet.py Hermione ->')
-%run work/greet.py Hermione
-```
+istop = 10
 
-    work/greet.py  ->
-    work/greet.py: error - no command line name given
-    work/greet.py Hermione ->
-    greetings from Hermione
-
-
-
-```bash
-%%bash
-# ANSWER 3
-#
-# To go even further with this exercise, you might attempt to 
-# make the script function so that if you run it as:
-# %run work/greet.py Fred Hermione
-# it responds:
-#   greetings from Fred
-#   greetings from Hermione
-# in many ways, this is easier than answer 2
-# as we just use a loop
-
-# code between the next line and the 
-# End Of File (EOF) marker will be saved in 
-# to the file work/greet.py
-cat << EOF > work/greet.py
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- 
-
-# import required package(s)
-import sys
-
+msg = '''
+some other ways to achieve the printing
 '''
-greet
-
-Purpose:
-
-  script to print hello from name
-  
-Author: P. Lewis
-Email:  p.lewis@ucl.ac.uk
-Date:   28 Aug 2020
-
-Instructions:
-Create a Python code in a file called work/greet.py that does the following:
-define a function greet(name) that prints out a greeting from the name 
-  in the argument name
-define a function main() that passes a string from the script command 
-  line to a function greet(name)
-calls main() if the file is run as a Python script
-has plentiful commenting and document strings
-'''
-
-# define a function greet(name) that prints 
-#   out a greeting from the name in the argument name
-def greet(name):
-    '''
-    function to print "greetings from {name}"
-    '''
-    print(f'greetings from {name}')
-    
-    
-# define a function main() that passes a string 
-#   from the script command line to a function greet(name)
-
-# call name with a string 
-# name that we pass to greet(name)
-def main(name):
-    greet(name)
-
-# calls main() if the file is run as a Python script
-if __name__ == "__main__":
-    # execute only if run as a script
-    # we pass the first command line argument argv[1]
-    # remembering that argv[0[ is the program name
-    
-    # To go even further with this exercise, you might attempt to 
-    # make the script function so that if you run it as:
-    # %run work/greet.py Fred Hermione
-    # it responds:
-    #   greetings from Fred
-    #   greetings from Hermione
-    # in many ways, this is easier than answer 2
-    # as we just use a loop
-    for n in sys.argv[1:]:
-      # and call main() with n
-      main(n)
-EOF
-
-# Chmod 755 to make the file executable
-chmod 755 work/greet.py
-```
+print(msg)
+# as above: this is quite neat and Pythonic
+# make a list of strings, then use join
+# to make into a single string
+print('1.',' '.join([str(i) for i in range(istop+1)]))
 
 
-```python
-# test
-# separate the responses to see them easier
-dash = '\n'+'='*10
+# use an explicit for loop 
+# to build the string. Not the most
+# Pythonic, but will work.
+mystr = ''
+# loop over each integer 
+for i in range(istop+1):
+    # extend the string in an f-string
+    mystr = f'{mystr} {i}'    
+print('2.',mystr)
 
-print(f'{dash}\nwork/greet.py  ->{dash}')
-%run work/greet.py 
-print(f'{dash}\nwork/greet.py Hermione ->{dash}')
-%run work/greet.py Hermione
-print(f'{dash}\nwork/greet.py Hermione Fred ->{dash}')
-%run work/greet.py Hermione Fred
+# make use of changing end='\n' in print
+# which you may recall from help(print)
+print('3.',end=' ')
+for i in range(istop+1):
+    print(i,end=' ') 
 ```
 
     
-    ==========
-    work/greet.py  ->
-    ==========
+    some other ways to achieve the printing
     
-    ==========
-    work/greet.py Hermione ->
-    ==========
-    greetings from Hermione
-    
-    ==========
-    work/greet.py Hermione Fred ->
-    ==========
-    greetings from Hermione
-    greetings from Fred
-
+    1. 0 1 2 3 4 5 6 7 8 9 10
+    2.  0 1 2 3 4 5 6 7 8 9 10
+    3. 0 1 2 3 4 5 6 7 8 9 10 

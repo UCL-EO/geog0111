@@ -240,7 +240,7 @@ EOF
 echo "--> dealing with special case of 042_Weighted_smoothing_and_interpolation.ipynb"
 cd $base
 geog0111/filter_movies.py 
-mv $base/work/042_Weighted_smoothing_and_interpolation.md $base/docs
+sed < $base/work/042_Weighted_smoothing_and_interpolation.md > $base/docs/042_Weighted_smoothing_and_interpolation.md 's/.ipynb/.md/g'
 echo "--> done dealing with special case of 042_Weighted_smoothing_and_interpolation.ipynb"
 
 

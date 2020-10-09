@@ -6,7 +6,7 @@ We have seen that geospatial datasets often have missing values, and also that t
 
 If we have some expectation that the data should be smooth (in time and/or space), then we can use ideas of regularisation (smoothing) to **improve the accuracy** of the data. Note that any such claimed improvement is conditional on the data being smooth. Any violation of that will be inconsistent with our assumptions and may lead us to mis-interpret the data. Although we will not be doing so here, we can also provide updates on the data uncertainty after regularisation.
 
-When we regularise the data, we want to respond to the variable uncertainty of the data. We have seen in [041_GDAL_timeseries](041_GDAL_timeseries.ipynb) that we can phrase the inverse of uncertainty (i.e. certainty) via a weight. For a single parameter (i.e. assumed no correlations between parameters), this is just a single weight to associate with a data point. If there is no data at some location, we simply have a weight of zero. So, we want to do a weighted regularisation responding to this.
+When we regularise the data, we want to respond to the variable uncertainty of the data. We have seen in [041_GDAL_timeseries](041_GDAL_timeseries.md) that we can phrase the inverse of uncertainty (i.e. certainty) via a weight. For a single parameter (i.e. assumed no correlations between parameters), this is just a single weight to associate with a data point. If there is no data at some location, we simply have a weight of zero. So, we want to do a weighted regularisation responding to this.
 
 There are many approaches to weighted interpolation. One such is to use a convolution smoothing operation.
 

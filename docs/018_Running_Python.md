@@ -55,7 +55,7 @@ as the first line in the file, and is executable. We can see if a file is execut
 !ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py
+    -rwxr-xr-x  1 plewis  staff  514  8 Oct 19:46 [31mgeog0111/helloWorld.py[m[m
 
 
 The first field gives us the file permissions:
@@ -71,7 +71,7 @@ chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x 1 ucfalew ucfa 514 Oct  1 13:10 geog0111/helloWorld.py
+    -rwxr-xr-x  1 plewis  staff  514  8 Oct 19:46 geog0111/helloWorld.py
 
 
 ### Running Python code from Python
@@ -346,6 +346,9 @@ chmod 755 work/myHelloWorld.py
 
 This should have created a file called `work/myHelloWorld.py` and made it executable (using bash to call chmod, rather than doing it in Python as above). 
 
+**Be aware that backquotes `` have a special meaning in `bash`, so make sure you do not copy any backquotes from the text in these documents when you use them in `bash`.**
+
+
 Now run it as above:
 
 
@@ -482,7 +485,7 @@ chmod 755 work/hello.py
 
 
 ```python
-# run coxde
+# run code
 %run work/hello.py
 ```
 
@@ -512,7 +515,7 @@ import sys
 print(sys.argv)
 ```
 
-    ['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-e33d6fdd-6ccd-46e9-bea1-1f53f69bf1eb.json']
+    ['/Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/Users/plewis/Library/Jupyter/runtime/kernel-68697deb-b842-43cd-a11f-4edaa8a97834.json']
 
 
 Running from the notebook, we get to see the full command that is run when we launch this notebook. Since `sys` is a package, we first import it:
@@ -529,9 +532,37 @@ Lets see how this applies to running our own code. We generate a short test scri
 
 cat << EOF > work/test.py
 #!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
 import sys
 
-print(sys.argv)
+'''
+helloWorld
+
+Purpose:
+
+  function print the string 'hello world'
+
+'''
+__author__    = "P Lewis"
+__copyright__ = "Copyright 2020 P Lewis"
+__license__   = "GPLv3"
+__email__     = "p.lewis@ucl.ac.uk"
+
+def hello(name):
+    '''
+    function to print 'hello from {name}'
+    '''
+    print(f'hello from {name}')
+    
+# example calling the function    
+def main(name):
+    hello(name)
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    # only pass argv[1] here
+    main(sys.argv[1])
 EOF
 
 # Chmod 755 to make the file executable
@@ -543,14 +574,14 @@ chmod 755 work/test.py
 %run work/test.py Hermione
 ```
 
-    ['work/test.py', 'Hermione']
+    hello from Hermione
 
 
 We see that running the script:
 
     work/test.py Hermione
     
-means that `sys.argv` inside the script contains the liust `['work/test.py', 'Hermione']`.
+means that `sys.argv` inside the script contains the list `['work/test.py', 'Hermione']`.
 
 ## Formative assessment
 
