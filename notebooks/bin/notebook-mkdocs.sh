@@ -186,15 +186,16 @@ cp ../config/requirements.txt .
 # avoid conflict with index.md
 sed < README.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
 mv /tmp/tmp.$$ GEOG0111.md
+rm -f README.md
 
 sed < index.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
 mv /tmp/tmp.$$ index.md
 
-cat << EOF >> index.md
-
-Last update: {{ git_revision_date_localized }}
-
-EOF
+#cat << EOF >> index.md
+#
+#Last update: {{ git_revision_date_localized }}
+#
+#EOF
 
 rm -f $base/docs/copy
 mkdir $base/docs/copy
