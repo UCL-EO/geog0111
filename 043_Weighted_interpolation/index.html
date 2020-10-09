@@ -1644,10 +1644,10 @@
 <h3 id="test">Test</h3>
 <p>You should run a <a href="../004_Accounts/">NASA account test</a> if you have not already done so.</p>
 <h2 id="smoothing">Smoothing</h2>
-<p>In convolution, we combine a <em>signal</em> $y$ with a <em>filter</em> $f$ to achieve a filtered signal. For example, if we have an noisy signal, we will attempt to reduce the influence of high frequency information in the signal (a 'low pass' filter, as we let the low frequency information <em>pass</em>).</p>
+<p>In convolution, we combine a <em>signal</em> <span class="arithmatex">\(y\)</span> with a <em>filter</em> <span class="arithmatex">\(f\)</span> to achieve a filtered signal. For example, if we have an noisy signal, we will attempt to reduce the influence of high frequency information in the signal (a 'low pass' filter, as we let the low frequency information <em>pass</em>).</p>
 <p>We can perform a weighted interpolation by:</p>
 <ul>
-<li>numerator   = smooth( signal $\times$ weight)</li>
+<li>numerator   = smooth( signal <span class="arithmatex">\(\times\)</span> weight)</li>
 <li>denominator = smooth( weight)</li>
 <li>result = numerator/denominator</li>
 </ul>
@@ -2298,6 +2298,8 @@ FILE
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../javascripts/config.js"></script>
       
     
   </body>

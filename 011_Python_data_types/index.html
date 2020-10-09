@@ -1916,23 +1916,23 @@ print('this has type', type(my_store))
 <p>Another fundamental data type is <code>float</code>, used to store decimal numbers such as <code>120.23</code>.</p>
 <p>Not surprisingly, we can use floating point numbers (and other number representations) to do arithmetic. We can use <code>print()</code> similarly to above to print an integer value. </p>
 <p>Sometimes, such as for very large or very small floating point values, we use <a href="https://en.wikibooks.org/wiki/A-level_Computing/AQA/Paper_2/Fundamentals_of_data_representation/Floating_point_numbers">scientific notation</a>, e.g. to represent Plank's constant:</p>
-<p>$$h = 6.62607015 \times 10^{−34} J \dot s $$</p>
-<p>we would not want to have to write out over zero values after the decimal point. Instead, we use the <strong>mantissa</strong> $6.62607015$ and <strong>exponent</strong> $-34$ directly:</p>
+<div class="arithmatex">\[h = 6.62607015 \times 10^{−34} J \dot s \]</div>
+<p>we would not want to have to write out over zero values after the decimal point. Instead, we use the <strong>mantissa</strong> <span class="arithmatex">\(6.62607015\)</span> and <strong>exponent</strong> <span class="arithmatex">\(-34\)</span> directly:</p>
 <pre><code> h = 6.62607015e-34
 </code></pre>
 <p>You will sometimes see float numbers represented in this way. It is of additional interest because it is related more closely to how floating point numbers are <a href="https://users.cs.fiu.edu/~downeyt/cop2400/float.htm#:~:text=Eight%20digits%20are%20used%20to,means%20negative%2C%200%20means%20positive.">stored on a computer</a>.</p>
-<p>As an example of floating point arithmetic, let us consider the energy associated with a photon of a given wavelength $\lambda$ (nm) using the <a href="https://web.archive.org/web/20160712123152/http://pveducation.org/pvcdrom/2-properties-sunlight/energy-photon">Planck-Einstein equation</a>:</p>
-<p>$$ E = \frac{hc}{\lambda}$$</p>
+<p>As an example of floating point arithmetic, let us consider the energy associated with a photon of a given wavelength <span class="arithmatex">\(\lambda\)</span> (nm) using the <a href="https://web.archive.org/web/20160712123152/http://pveducation.org/pvcdrom/2-properties-sunlight/energy-photon">Planck-Einstein equation</a>:</p>
+<div class="arithmatex">\[ E = \frac{hc}{\lambda}\]</div>
 <p>with:</p>
 <ul>
-<li>$h$ as above, $=6.62607015 \times 10^{−34} J \dot s$</li>
-<li>$c$ the speed of light $= 2.99792458 \times 10^8 m/s$</li>
-<li>$E$ the photon energy (in $J$)</li>
+<li><span class="arithmatex">\(h\)</span> as above, <span class="arithmatex">\(=6.62607015 \times 10^{−34} J \dot s\)</span></li>
+<li><span class="arithmatex">\(c\)</span> the speed of light <span class="arithmatex">\(= 2.99792458 \times 10^8 m/s\)</span></li>
+<li><span class="arithmatex">\(E\)</span> the photon energy (in <span class="arithmatex">\(J\)</span>)</li>
 </ul>
-<p>Given light with a wavelength of 1024 nanometers ($nm$), calculate the energy in $J$.</p>
+<p>Given light with a wavelength of 1024 nanometers (<span class="arithmatex">\(nm\)</span>), calculate the energy in <span class="arithmatex">\(J\)</span>.</p>
 <p>First, since</p>
-<p>$$1\ nm = 1 \times 10^{−9} m$$</p>
-<p>we calculate the wavelength in $m$:</p>
+<div class="arithmatex">\[1\ nm = 1 \times 10^{−9} m\]</div>
+<p>we calculate the wavelength in <span class="arithmatex">\(m\)</span>:</p>
 <pre><code>l_m = l_nm * 1e-9
 </code></pre>
 <p>Then, implement the Planck-Einstein equation:</p>
@@ -1959,12 +1959,12 @@ print('has an energy of', E_J, 'J')
 <pre><code>Photon of wavelength 1024.0 nm
 has an energy of 1.9398885323720004e-19 J
 </code></pre>
-<p>We can compare the value of energy we get in $J$ with that using a <a href="http://www.calctool.org/CALC/other/converters/e_of_photon">web calculator</a> and confirm the value of <code>1.93989e-19</code> for Near Infrared light (<code>1024</code> nm).</p>
+<p>We can compare the value of energy we get in <span class="arithmatex">\(J\)</span> with that using a <a href="http://www.calctool.org/CALC/other/converters/e_of_photon">web calculator</a> and confirm the value of <code>1.93989e-19</code> for Near Infrared light (<code>1024</code> nm).</p>
 <h4 id="exercise-4">Exercise 4</h4>
-<p>Since the energy level expressed in $J$ is quite small, we might more conveniently express it in units of eV. Given that:</p>
-<p>$$
+<p>Since the energy level expressed in <span class="arithmatex">\(J\)</span> is quite small, we might more conveniently express it in units of eV. Given that:</p>
+<div class="arithmatex">\[
     1\ Electron\ volt\ (eV) = 1.602176565 \times 10^{-19} J
-$$</p>
+\]</div>
 <ul>
 <li>Insert a new cell below here</li>
 <li>calculate the energy associated with a blue photon at 450 nm, in eV</li>
@@ -2527,6 +2527,8 @@ bool_number True &lt;class 'bool'&gt;
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../javascripts/config.js"></script>
       
     
   </body>

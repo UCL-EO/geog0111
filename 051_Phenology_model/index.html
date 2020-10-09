@@ -1464,10 +1464,10 @@
 <p>In the Nothern Hemisphere, and for temperate latitudes, there is a clear seasonal cycle in vegetation, particularly visible in leaf area index (LAI). We have seen that we have access to global LAI data over the last 20-odd years from MODIS. One of the indicators of a changing climate is a change in the pattern of vegetation dynamics. A warmer climate typically means that vegetation appears earlier in the year. </p>
 <p>We call a model that describes the phases of plant development over the year a phenology model. There are many types we could consider, some of the more useful of which are driven by environmental data such as temperature. In that way, we can try to explain how much of the variation we see can be explained by inter-annual temperature variations. A simpler 'descriptive' model that is often used is the "double logistic" curve. </p>
 <p>Mathematically, the function predicts the e.g. LAI (or some vegetation index) as</p>
-<p>$$
+<div class="arithmatex">\[
 y = p_0 - p_1\cdot\left[\frac{1}{1+\exp\left(p_2\cdot(t-p_3)\right)} + \frac{1}{1+\exp\left(-p_4\cdot(t-p_5)\right)} - 1\right].
-$$</p>
-<p>If we inspect this form, we can see that $p_0$ and $p_1$ scale the vertical span of the function, whereas $p_3$ and $p_5$ are some sort of temporal shift, and the remaining parameters $p_2$ and $p_4$ control the slope of the two flanks. </p>
+\]</div>
+<p>If we inspect this form, we can see that <span class="arithmatex">\(p_0\)</span> and <span class="arithmatex">\(p_1\)</span> scale the vertical span of the function, whereas <span class="arithmatex">\(p_3\)</span> and <span class="arithmatex">\(p_5\)</span> are some sort of temporal shift, and the remaining parameters <span class="arithmatex">\(p_2\)</span> and <span class="arithmatex">\(p_4\)</span> control the slope of the two flanks. </p>
 <p>Let's access some LAI data that we have used before, and also look at the regularised data:</p>
 <pre><code class="python">from geog0111.get_lai_data import get_lai_data
 from geog0111.regularise import regularise
@@ -1553,8 +1553,8 @@ print('Luxembourg')
 <p><img alt="png" src="../051_Phenology_model_files/051_Phenology_model_9_1.png" /></p>
 <p>We can see that even with a rough guess of the model parameters, we can produce a plot that is strikingly similar to the regularised result we saw in previous sessions. That result shows what might be interpreted as a double feature around the maximum LAI, but we have seen that spurious features of this sort can arise from the filtering process. We might consider the logistic model a better interpretation of the data then. The double-logistic model has the additional advantage that the parameters have a physical meaning that we can map from year to year and compare. The regularisation result is itself of course, the result of a model. The main difference then is that the regularisation result is from a non-parametric model, and the double-logistic  is a parametric model.</p>
 <p>We have seen that there are 6 model parameters. In the previous session, we learned rapid methods of parameter estimation that could only work with low dimensional data. We need to consider how to simply this model then, if we are to apply LUT approaches.</p>
-<p>One idea is to attempt to normalise the vertical axis of the model. If we suppose we know the maximum and minimum LAI, we can use these as estimates of $p_0$ and $p_1$. One route to this would be to use the regularised model output. Next, we might assume that the slope parameters $p_2$ and $p_4$ are equal, without too much loss of generalisation. As a further simplification, we might assume we know this parameter, and fix it, at a value of 0.07 say. We can later look at the impact of these assumptions, but they have allowed us to reduce the problem to a 2-D one that we can easily solve with a LUT.</p>
-<p>The remaining parameters $p_3$ and $p_5$ the times at which the curve most rapidly increases or decreases. For a LUT, these can be better phrased as:</p>
+<p>One idea is to attempt to normalise the vertical axis of the model. If we suppose we know the maximum and minimum LAI, we can use these as estimates of <span class="arithmatex">\(p_0\)</span> and <span class="arithmatex">\(p_1\)</span>. One route to this would be to use the regularised model output. Next, we might assume that the slope parameters <span class="arithmatex">\(p_2\)</span> and <span class="arithmatex">\(p_4\)</span> are equal, without too much loss of generalisation. As a further simplification, we might assume we know this parameter, and fix it, at a value of 0.07 say. We can later look at the impact of these assumptions, but they have allowed us to reduce the problem to a 2-D one that we can easily solve with a LUT.</p>
+<p>The remaining parameters <span class="arithmatex">\(p_3\)</span> and <span class="arithmatex">\(p_5\)</span> the times at which the curve most rapidly increases or decreases. For a LUT, these can be better phrased as:</p>
 <pre><code>       width  = p5 - p3
        centre = (p3 + p5)/2
 </code></pre>
@@ -2099,6 +2099,8 @@ axs.legend(loc='best')
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../javascripts/config.js"></script>
       
     
   </body>
