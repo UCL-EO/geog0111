@@ -134,7 +134,7 @@ echo "--> staging markdown files into docs"
 # mv into docs
 mv notebooks_lab/*_files docs
 mv notebooks_lab/*md docs
-rm -f docs/README.md
+#rm -f docs/README.md
 
 for i in docs/*md
 do
