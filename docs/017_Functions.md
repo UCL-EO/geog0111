@@ -502,7 +502,7 @@ print(*l,sep=':')
     hello:world:again:as:list
 
 
-This is a very useful feature for functions: we can set default behaviour, but the user cxan modify this when they call the function. 
+This is a very useful feature for functions: we can set default behaviour, but the user can modify this when they call the function. 
 
 For example, let's add a `verbose` keyword to our `hello()` function. The behaviour we want is that if the verbose flag is set, we print lots of information to the user. In this case:
 
@@ -541,7 +541,7 @@ print(f'{dash} verbose=False {dash}')
 hello('hello','world','again')
 
 # call with verbose
-print(f'{dash} verbose=False {dash}')
+print(f'{dash} verbose=True {dash}')
 hello('hello','world','again',verbose=True)
 ```
 
@@ -549,7 +549,7 @@ hello('hello','world','again',verbose=True)
     hello
     world
     again
-    ===== verbose=False =====
+    ===== verbose=True =====
     argument 0: hello
     argument 1: world
     argument 2: again
