@@ -2089,7 +2089,7 @@ print(*l,sep=':')
 helloXworldXagainXasXlist
 hello:world:again:as:list
 </code></pre>
-<p>This is a very useful feature for functions: we can set default behaviour, but the user cxan modify this when they call the function. </p>
+<p>This is a very useful feature for functions: we can set default behaviour, but the user can modify this when they call the function. </p>
 <p>For example, let's add a <code>verbose</code> keyword to our <code>hello()</code> function. The behaviour we want is that if the verbose flag is set, we print lots of information to the user. In this case:</p>
 <pre><code>print(f'argument {i}:',end=' ')
 </code></pre>
@@ -2121,7 +2121,7 @@ print(f'{dash} verbose=False {dash}')
 hello('hello','world','again')
 
 # call with verbose
-print(f'{dash} verbose=False {dash}')
+print(f'{dash} verbose=True {dash}')
 hello('hello','world','again',verbose=True)
 </code></pre>
 
@@ -2129,7 +2129,7 @@ hello('hello','world','again',verbose=True)
 hello
 world
 again
-===== verbose=False =====
+===== verbose=True =====
 argument 0: hello
 argument 1: world
 argument 2: again
