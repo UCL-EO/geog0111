@@ -29,6 +29,19 @@ echo "--> re-making docs"
 rm -rf docs
 mkdir -p docs
 mkdir -p docs/images docs/geog0111 docs/work docs/bin/copy
+mkdir -p docs/javascripts
+
+# generate movies
+echo "--> making movies in work/*.html"
+if [ ! -f work/demofilt1.html ] ; then
+  geog0111/demofilt1.py
+  geog0111/demofilt2.py
+  geog0111/demofilt3.py
+  geog0111/demofilt4.py
+  geog0111/demofilt5.py
+fi
+echo "--> done making movies in work/*.html"
+
 
 cd "$base/notebooks"
 cp bin/copy/* "$base/docs/bin/copy"
@@ -155,6 +168,13 @@ done
 
 echo "--> adding to docs/index.md"
 
+echo "--> fixing movies in 042_Weighted_smoothing_and_interpolation.md"
+# remove all code cells
+# and replace by html
+
+echo "--> done fixing movies in 042_Weighted_smoothing_and_interpolation.md"
+
+
 # get files
 cd "$base"
 files=docs/*_files
@@ -205,11 +225,33 @@ mv /tmp/tmp.$$ GEOG0111.md
 #sed < index.md 's/docs\///g' | sed 's/notebooks\///g' > /tmp/tmp.$$
 #mv /tmp/tmp.$$ index.md
 
-#cat << EOF >> index.md
-#
-#Last update: {{ git_revision_date_localized }}
-#
-#EOF
+# mathjax for rendering latex
+# see https://squidfunk.github.io/mkdocs-material/reference/mathjax/#arithmatex
+
+cat << EOF > javascripts/config.js
+window.MathJax = {
+  tex: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: ".*|",
+    processHtmlClass: "arithmatex"
+  }
+};
+EOF
+
+# deal with animated notebook
+echo "--> dealing with special case of 042_Weighted_smoothing_and_interpolation.ipynb"
+cd $base
+geog0111/filter_movies.py 
+mv work/042_Weighted_smoothing_and_interpolation.md .
+echo "--> done dealing with special case of 042_Weighted_smoothing_and_interpolation.ipynb"
+
+
+cd $base/docs
 
 rm -f $base/docs/copy
 mkdir $base/docs/copy

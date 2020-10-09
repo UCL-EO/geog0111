@@ -6,9 +6,14 @@ extra:
     link: https://hub.docker.com/r/proflewis/geog0111
   - icon: fontawesome/brands/github
     link: https://github.com/UCL-EO/geog0111
+extra_javascript:
+- javascripts/config.js
 google_analytics:
 - UA-1347772-1
 - auto
+markdown_extensions:
+- pymdownx.arithmatex:
+    generic: true
 nav:
 - Introduction: index.md
 - Course Basics:

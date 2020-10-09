@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import matplotlib.pyplot as plt
 import matplotlib.animation
 import numpy as np
@@ -88,3 +91,13 @@ def demofilt3():
                                blit=True)
 
   return(anim)
+
+
+def main():
+  with open("work/demofilt3.html","w") as f:
+    f.write(demofilt3().to_html5_video())
+
+if __name__ == "__main__":
+    main()
+
+
