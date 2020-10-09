@@ -57,6 +57,7 @@ cp images/parameters2.png "$base/docs/images"
 cp images/parameters3.png "$base/docs/images"
 cp images/parameters4.png "$base/docs/images"
 cp images/icon.png "$base/docs/images"
+cp images/ucl.png "$base/docs/images"
 
 cp geog0111/modis_annual.py "$base/docs/geog0111"
 cp geog0111/model.py "$base/docs/geog0111"

@@ -13,8 +13,13 @@ nav:
 - Introduction: index.md
 - Course Basics:
   - Notebook Use: 001_Notebook_use.md
+  - Unix 3: 002_Unix 3.md
   - Unix: 002_Unix.md
+  - Unix Answers 3: 002_Unix_answers 3.md
+  - Help 3: 003_Help 3.md
   - Help: 003_Help.md
+  - Help Answers 3: 003_Help_answers 3.md
+  - Accounts 2: 004_Accounts 2.md
   - Accounts: 004_Accounts.md
   - Packages: 005_Packages.md
   - Answers:
@@ -114,4 +119,5 @@ site_author: Prof P. Lewis
 site_name: GEOG0111
 theme:
   favicon: images/ucl.png
+  logo: images/ucl.png
   name: material
