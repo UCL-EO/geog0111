@@ -335,7 +335,7 @@ class Modis():
     # check in db
     #store for diagnostics
     kwargs = {'year': year, 'doy':doy,'day':day,'month':month,'step':step,\
-              'warp_args':warp_args,'dstNodata':dstNodata}
+              'warp_args':warp_args,'dstNodata':dstNodata, product: self.product, tile: self.tile}
     mkey = json.dumps(kwargs)
     response = self.database.get_from_db("modis",mkey)
     if response is not None:
