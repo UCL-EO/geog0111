@@ -335,7 +335,7 @@ class Modis():
     # check in db
     #store for diagnostics
     kwargs = {'year': year, 'doy':doy,'day':day,'month':month,'step':step,\
-              'warp_args':warp_args,'dstNodata':dstNodata, product: self.product, tile: self.tile}
+              'warp_args':warp_args,'product': self.product, 'dstNodata':dstNodata, 'tile': self.tile}
     mkey = json.dumps(kwargs)
     response = self.database.get_from_db("modis",mkey)
     if response is not None:
@@ -579,9 +579,14 @@ class Modis():
 
     if not test and not get_files:
       # look up in db
-      this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
-      store_flag = 'modis'
-      response = self.database.get_from_db(store_flag,this_set)
+      warp_args = None
+      dstNodata = None
+      #this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
+      #store_flag = 'modis'
+      kwargs = {'year': self.year, 'doy':doy,'day':self.day,'month':self.month,'step':step,\
+              'warp_args':warp_args,'product': self.product, 'dstNodata':dstNodata, 'tile': self.tile}
+      mkey = json.dumps(kwargs)
+      response = self.database.get_from_db("modis",mkey)
       if response and self.noclobber:
         # test 
         if self.test_ok(response[0]):
