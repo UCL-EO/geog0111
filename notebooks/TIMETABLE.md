@@ -14,7 +14,7 @@ GEOG0111 Timetable 2020-21
 |  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](062_Part1.ipynb) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [NASA MODIS](030_NASA_MODIS_Earthdata.ipynb)	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| || [Numpy exercise](064_Numpy.ipynb)|
-|	| |[![NASA MODIS](images/icon.png)](https://web.microsoftstream.com/video/4ccb5435-7d58-4a4f-a7dc-c766d5d189c4) |
+|	| |[![NASA MODIS](images/icon.png)](https://web.microsoftstream.com/video/4ccb5435-7d58-4a4f-a7dc-c766d5d189c4) | [![numpy](images/icon.png)](https://web.microsoftstream.com/video/63e742a0-3d7a-4b30-8608-e3d3d0bb6e61)
 |  7	|  **Space and time**	| [Mosaicing](040_GDAL_mosaicing_and_masking.ipynb) 	|  [Timeseries](041_GDAL_timeseries.ipynb)	|  	|
 |  8	| **Regularisation** 	|  [Smoothing theory](042_Weighted_smoothing_and_interpolation.ipynb)	| [Smoothing and interpolation](043_Weighted_interpolation.ipynb) 	|  	| |  |[LAI](065_LAI.ipynb)|
 |  9	|  **Parameter estimation**	| [Models and inversion](050_Models.ipynb) 	|   [Phenology model](051_Phenology_model.ipynb) 	|  	|
