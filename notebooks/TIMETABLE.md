@@ -11,6 +11,7 @@ GEOG0111 Timetable 2020-21
 |  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For loop](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | [Python script](061_Script.ipynb)|
 |	| |[![Control in Python](images/icon.png)](https://web.microsoftstream.com/video/bca9c0f5-93f3-4e0e-9514-afbfb7636467) | [![For loop](images/icon.png)](https://web.microsoftstream.com/video/20bac8b4-2aa7-442b-bdbc-7f1e247102c1)|[![Function](images/icon.png)](https://web.microsoftstream.com/video/16fdbf94-2ae9-4679-8693-7ae8d47dd949)|[![Scripts](images/icon.png)](https://web.microsoftstream.com/video/087a1c32-9bd4-4a45-a481-826cb1f39279)
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[Streams](021_Streams.ipynb)| [Read and Write](022_Read_write_files.ipynb) 	|
+|	| |[![Files](images/icon.png)](https://web.microsoftstream.com/video/89d9af9f-bd43-466e-9773-72fba61b5cc7) | [![Streams](images/icon.png)](https://web.microsoftstream.com/video/6c5e1f73-1f6a-478b-ad84-aec29ba86f0e)|[![Read_and_Write](images/icon.png)](https://web.microsoftstream.com/video/60ace003-7dbf-4b0f-b52f-fc43a3fde7f9)
 |  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](062_Part1.ipynb) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [NASA MODIS](030_NASA_MODIS_Earthdata.ipynb)	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| || [Numpy exercise](064_Numpy.ipynb)|
