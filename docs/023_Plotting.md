@@ -228,7 +228,7 @@ axs.plot(df["YEAR"],df['JAN'],label='JAN')
 
 
 
-    [<matplotlib.lines.Line2D at 0x7f876bc11e50>]
+    [<matplotlib.lines.Line2D at 0x7fa25862dc50>]
 
 
 
@@ -547,11 +547,11 @@ print(f'year {now.year}')
 print(f"{now.hour} O'clock")
 ```
 
-    It is now 2020-10-04 08:07:59.698707
-    day 4
+    It is now 2020-10-30 17:06:46.213218
+    day 30
     month 10
     year 2020
-    8 O'clock
+    17 O'clock
 
 
 You can set up the `datetime` fields explicitly:
@@ -599,7 +599,7 @@ yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 ```
 
-    yesterday was 2020-10-03 08:07:59.773833
+    yesterday was 2020-10-29 17:06:46.235809
 
 
 ### `strftime` and `strptime`
@@ -621,8 +621,8 @@ date_now = now.strftime("%m/%d/%Y")
 print(f"data now: {date_now}")
 ```
 
-    time now: 08:07:59
-    data now: 10/04/2020
+    time now: 17:06:46
+    data now: 10/30/2020
 
 
 and `strptime` to load a `datetime` object from a string. To do so, we need to specify the format of the string. For example:
@@ -666,7 +666,7 @@ import pandas as pd
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
-site_dir = '/UCL-EO/geog0111/master/data'
+site_dir = '/UCL-EO/geog0111/master/notebooks/data'
 site_file = '2276931.csv'
 
 # form the URL
