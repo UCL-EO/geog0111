@@ -32,11 +32,11 @@ print(f'file {json_file} size {json_file.stat().st_size / 1024 : .2f}')
 
 #### Exercise 2
 
-The file [2276931.csv](https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv) contains precipitation data for an [NOAA weather station](https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY) `HAVANA 4.2 SW, FL US` for the year 2020 to date.
+The file [2276931.csv](https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv) contains precipitation data for an [NOAA weather station](https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY) `HAVANA 4.2 SW, FL US` for the year 2020 to date.
 
 The dataset URL is:
 
-https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv
+https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv
 
 * Inspect the file to discover any issues you must account for.
 * Read the file into `pandas` using `url.open('r')`.
@@ -57,7 +57,7 @@ import pandas as pd
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
-site_dir = '/UCL-EO/geog0111/master/data'
+site_dir = '/UCL-EO/geog0111/master/notebooks/data'
 site_file = '2276931.csv'
 
 # form the URL

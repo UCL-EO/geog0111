@@ -82,16 +82,17 @@ f = url.open()
 print(f'remote file {url}\ncached file {url.local()}')
 ```
 
+    --> WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
     --> reading data from https://covid.ourworldindata.org/data/ecdc/full_data.csv
     --> open() text stream
     --> trying https://covid.ourworldindata.org/data/ecdc/full_data.csv
 
 
     remote file https://covid.ourworldindata.org/data/ecdc/full_data.csv
-    cached file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
+    cached file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
 
 
-    --> deleting existing file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
+    --> deleting existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
 
 
 The call to `url.local()` returns `None` here. No cached file is used. If we re-run the code block, then the data is re-downloaded.
@@ -111,12 +112,17 @@ data = url.open()
 print(f'remote file {url}\ncached file {url.local()}')
 ```
 
+    --> WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+    --> reading data from https://covid.ourworldindata.org/data/ecdc/locations.csv
+    --> open() text stream
+    --> trying https://covid.ourworldindata.org/data/ecdc/locations.csv
+
+
     remote file https://covid.ourworldindata.org/data/ecdc/locations.csv
-    cached file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
+    cached file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
 
 
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
 
 
 Now, we use the local cached version of the file.
@@ -211,7 +217,7 @@ import yaml
 # form the file name
 site = 'https://raw.githubusercontent.com'
 site_dir = '/UCL-EO/geog0111/master'
-site_file = 'copy/environment.yml'
+site_file = 'notebooks/copy/environment.yml'
 yaml_file = URL(site,site_dir,site_file,verbose=True)
 
 # notice that we can use verbose=True for URL open
@@ -222,11 +228,14 @@ print(f'env is type {type(env)}')
 print(f'env keys: {env.keys()}')
 ```
 
+    --> WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+    --> reading data from https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/copy/environment.yml
+    --> open() text stream
+    --> trying https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/copy/environment.yml
+
+
     env is type <class 'dict'>
     env keys: dict_keys(['name', 'channels', 'dependencies'])
-
-
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/raw.githubusercontent.com/UCL-EO/geog0111/master/copy/environment.yml.store
 
 
 We can similarly use a stream to write the information in `env` into a `json` format file:
@@ -1107,11 +1116,11 @@ df.head()
 
 #### Exercise 2
 
-The file [2276931.csv](https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv) contains precipitation data for an [NOAA weather station](https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY) `HAVANA 4.2 SW, FL US` for the year 2020 to date.
+The file [2276931.csv](https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv) contains precipitation data for an [NOAA weather station](https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY) `HAVANA 4.2 SW, FL US` for the year 2020 to date.
 
 The dataset URL is:
 
-https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv
+https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv
 
 * Inspect the file to discover any issues you must account for.
 * Read the file into `pandas` using `url.open('r')`.

@@ -28,7 +28,7 @@ You will need to recall details from [020_Python_files](020_Python_files.md) on 
 
 ### Test
 
-You should run a NASA account test](004_Accounts.md) if you have not already done so.
+You should run a [NASA account test](004_Accounts.md) if you have not already done so.
 
 ## Reading and writing
 
@@ -105,14 +105,19 @@ from pathlib import Path
 u = 'https://www.json.org/json-en.html'
 url = URL(u,local_dir='work',verbose=True,noclobber=False)
 data_url = url.read_text()
-
 # then from file in directory data
 data_file = Path('data/json-en.html').read_text()
 
-assert data_url == data_file
-print('files are the same')
+try:
+    assert data_url == data_file
+    print('files are the same')
+except:
+    print('files are not the same')
+    print(data_file)
+    
 ```
 
+    --> WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
     --> trying https://www.json.org/json-en.html
 
 
@@ -145,18 +150,19 @@ modis = Modis(**kwargs)
 url = modis.get_url(year="2020",month="01",day="01")[0]
 ```
 
+    --> WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
     --> product MCD15A3H -> code MOTA
-    --> getting database from command line
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
+    --> WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+    --> trying https://e4ftl01.cr.usgs.gov/
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern 2020.01.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01.store
+    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H*.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
 
@@ -172,13 +178,18 @@ print(f'data for {url} cached in {url.local()}')
 print(f'dataset is {len(b)} bytes')
 ```
 
+    --> getting login
+    --> logging in to https://e4ftl01.cr.usgs.gov/
+    --> data read from https://e4ftl01.cr.usgs.gov/
+    --> code 200
+
+
     data for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf cached in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store
     dataset is 9067184 bytes
 
 
-    --> retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
-    --> local file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
     --> updated cache database in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+    --> retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
     --> local file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
 
 
@@ -256,6 +267,10 @@ if g:
         data = gsub.ReadAsArray()
         print(f'dataset read is shape {data.shape} and type {type(data)}')
 ```
+
+    dataset info is: [2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)
+    dataset read is shape (2400, 2400) and type <class 'numpy.ndarray'>
+
 
 #### Exercise 3
 

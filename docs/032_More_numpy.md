@@ -92,10 +92,13 @@ import numpy as np
 filename = 'data/satellites-1957-2021.gz'
 data=np.loadtxt(filename).astype(np.int)
 
+print(data[0].shape)
+
 print(f'mean launches in month 0: {data[0].mean() :.2f}')
 print(f'max  launches in month 0: {data[0].max()}')
 ```
 
+    (64,)
     mean launches in month 0: 33.95
     max  launches in month 0: 237
 
@@ -108,10 +111,13 @@ refers to all elements in dimension 0 (i.e. all months here) by only year 0 (195
 
 
 ```python
+print(data[:,0].shape)
+
 print(f'mean launches in year 1957: {data[:,0].sum()}')
 print(f'max  launches in year 1957: {data[:,0].max()}')
 ```
 
+    (12,)
     mean launches in year 1957: 3
     max  launches in year 1957: 2
 
@@ -187,7 +193,7 @@ import numpy as np
 filename = 'data/satellites-1957-2021.gz'
 data=np.loadtxt(filename).astype(np.int)
 
-# mean over all months
+# mean over all years
 data.mean(axis=1)
 ```
 
@@ -248,13 +254,14 @@ imax = np.argmax(sum_per_year)
 # Find the location (year) with **least** launches
 # Find the index of sum_per_year with lowest number (argmmax)
 imin = np.argmin(sum_per_year)
-
+print(imin,imax)
 print(f'the year with most   launches was',\
       f'{year_array[imax]} with {sum_per_year[imax]}')
 print(f'the year with fewest launches was',\
       f'{year_array[imin]} with {sum_per_year[imin]}')
 ```
 
+    0 42
     the year with most   launches was 1999 with 4195
     the year with fewest launches was 1957 with 3
 
@@ -499,7 +506,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f1e3a320f50>
+    <matplotlib.colorbar.Colorbar at 0x7f2513d8bf50>
 
 
 
@@ -791,7 +798,7 @@ If we have an array of shape `(10,2,1)` and add it to an array of shape `(1,1,5)
 
 
 ```python
-import numpy
+import numpy as np
 # generate some random numbers
 
 a = np.random.random((10,2,1))
@@ -813,7 +820,7 @@ If we had started out with arrays of different shapes that we want to combine, e
 
 
 ```python
-import numpy
+import numpy as np
 # generate some random numbers
 
 a = np.random.random((10,2))
@@ -825,7 +832,7 @@ Then we need to add new axes to the arrays to reconcile their dimensions. One cl
 
 ```python
 a = np.random.random((10,2))
-b = np.random.random((5))
+b = np.random.random((5,))
 print(f'a shape: {a.shape}')
 print(f'b shape: {b.shape}')
 

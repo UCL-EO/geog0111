@@ -385,7 +385,7 @@ hello('hello','world')
 
 Sometimes in Python documentation, you will see the arguments specified simply as:
 
-    example(*args, *kwargs)
+    example(*args, **kwargs)
     
 This is the most general way of specifying function arguments. The first item in this case `*args` are the positional arguments. Although we generally specify them explicitly as above, we can also use
 

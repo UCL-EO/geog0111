@@ -116,8 +116,8 @@ print(f'I am in directory {Path.cwd()}')
 print(f'My home is {Path.home()}')
 ```
 
-    I am in directory /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-    My home is /home/ucfalew
+    I am in directory /Users/plewis/Documents/GitHub/geog0111/notebooks
+    My home is /Users/plewis
 
 
 To keep the filenames generic, we can form a filename from a list using `Path()`, so `Path('bin','README')` would refer to the filename `bin/README` on a `posix` system, and `bin/README` on Windows. However, this is interpreted the same as just using `bin/README` which will often be clearer.
@@ -237,7 +237,7 @@ print(f'      owner is {readme.owner()}')
     README file is bin/README
            size is 16 bytes
            mode is 0o100644
-          owner is ucfalew
+          owner is plewis
 
 
 ### `glob` generators 
@@ -259,23 +259,22 @@ for i,f in enumerate(filenames):
     print(f'file {i} is {f}')
 ```
 
-    file 0 is bin/git-remove-all.sh
-    file 1 is bin/link-set.sh
-    file 2 is bin/notebook-mkdocs.sh
-    file 3 is bin/notebook-run.sh
-    file 4 is bin/setup.sh
-    file 5 is bin/shellMe.sh
-    file 6 is bin/set-course.sh
+    file 0 is bin/notebook-mkdocs.sh
+    file 1 is bin/setup.sh
+    file 2 is bin/notebook-run.sh
+    file 3 is bin/fixA.sh
+    file 4 is bin/link-set.sh
+    file 5 is bin/clean0111.sh
+    file 6 is bin/tidy.sh
     file 7 is bin/init.sh
-    file 8 is bin/howmany.sh
-    file 9 is bin/sort-db.sh
-    file 10 is bin/database.sh
-    file 11 is bin/init0111.sh
-    file 12 is bin/tidy.sh
-    file 13 is bin/mv_vrt.sh
-    file 14 is bin/clean0111.sh
-    file 15 is bin/get_datasets.sh
-    file 16 is bin/fixA.sh
+    file 8 is bin/sort-db.sh
+    file 9 is bin/get-datasets.sh
+    file 10 is bin/init0111.sh
+    file 11 is bin/set-course.sh
+    file 12 is bin/howmany.sh
+    file 13 is bin/shellMe.sh
+    file 14 is bin/database.sh
+    file 15 is bin/git-remove-all.sh
 
 
 The advantage of a generator is that it will generally need less memory than fully calculating all items in a list. Once we move on to the next item in the generator, any memory used by current item is freed.
@@ -288,7 +287,7 @@ filenames = list(Path('bin').glob('*.sh'))
 print(filenames)
 ```
 
-    [PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/get_datasets.sh'), PosixPath('bin/fixA.sh')]
+    [PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/fixA.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/init.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/get-datasets.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/database.sh'), PosixPath('bin/git-remove-all.sh')]
 
 
 Let's use `glob` now to get the file permissions of each file `n*` in the directory `bin`:
@@ -333,12 +332,12 @@ readme = readme.relative_to(Path.cwd())
 print(f'name relative to {Path.cwd()}:\n\t{readme}')
 ```
 
-    I am in /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    I am in /Users/plewis/Documents/GitHub/geog0111/notebooks
     original relative name:
     	bin/README
     absolute name:
-    	/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/bin/README
-    name relative to /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks:
+    	/Users/plewis/Documents/GitHub/geog0111/notebooks/bin/README
+    name relative to /Users/plewis/Documents/GitHub/geog0111/notebooks:
     	bin/README
 
 
@@ -416,7 +415,7 @@ print(f'size is {url.stat().st_size/1024 :.2f} KB')
 ```
 
     remote file https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-    size is -0.00 KB
+    size is 8854.67 KB
 
 
 We have similar functionality in `URL` to `Path` for manipulating filenames, but more limited file information:
@@ -570,19 +569,21 @@ for u in hdf_urls:
     print(u)
 ```
 
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
+    --> parsing URLs from html file 1 items
+    --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> parsing URLs from html file 1 items
+    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> parsing URLs from html file 1 items
+    --> discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
+
+
     https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
 
 
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 

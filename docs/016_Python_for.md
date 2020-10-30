@@ -520,3 +520,14 @@ Result:
 
         key is a, value is 7
         key is b, value is 3
+        
+
+**Example 3:**
+
+        for i,(key,value) in enumerate({"a":7,"b":3}.items()):
+            print(f'key {i} is {key}, value is {value}')
+            
+Result:
+
+        key 0 is a, value is 7
+        key 1 is b, value is 3
