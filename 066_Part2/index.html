@@ -1735,6 +1735,9 @@ for T0 in [-5,0,5]:
 axs.legend(loc='best')
 </code></pre>
 
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f92309d5b90&gt;
+</code></pre>
+<p><img alt="png" src="../066_Part2_files/066_Part2_9_1.png" /></p>
 <p>This is a convenient 'soft switch' function that is widely used in modelling and  computing. If the temperature is much less that <code>T0</code> then <code>m</code> is 0. If it is much greater, them <code>m</code> is 1. For a transition zone around <code>T0</code>, it varies smoothly.</p>
 <p>The water release from the snow pack is now proportional to <code>p m</code>, so is controlled by temperature and current snow cover. We now load up some example datasets of temperature, snow cover and flow. You are <em>not</em> to use these in your submission. They are for illustration only.</p>
 <pre><code class="python">import pickle
@@ -1776,6 +1779,9 @@ axs.set_xlim(0,365)
 axs.legend(loc='best')
 </code></pre>
 
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f9250a1d3d0&gt;
+</code></pre>
+<p><img alt="png" src="../066_Part2_files/066_Part2_13_1.png" /></p>
 <p>In the figure, we see the melt water that corresponds to a temperature of 9 degrees. It is remarkably similar to the flow data, but much noisier. We also see that it occurs some time before we see the water flow at the me=onitoring station. The reason for this is that there is a 'network delay' between the melt happening in thge snopack and it reaching the monitoring station. This final component of our model is a network response function (NRF) that models this delay:</p>
 <pre><code class="python"># build the NRF filter
 #
@@ -1798,6 +1804,9 @@ axs.set_ylabel('NRF filter magnitude')
 axs.set_xlabel('time')
 </code></pre>
 
+<pre><code>Text(0.5, 0, 'time')
+</code></pre>
+<p><img alt="png" src="../066_Part2_files/066_Part2_15_1.png" /></p>
 <p>The NRF is effectively a one-sided smoothing filter. It imparts a delay on the signal, and smooths it. </p>
 <p>If we look at the cumulative effect of the filter using <code>np.cumsum</code>, we can see how long it takes for the water to reach the monitoring station:</p>
 <pre><code class="python">fig, axs = plt.subplots(1,1,figsize=(10,3))
@@ -1809,6 +1818,9 @@ axs.set_xlim(-1,40)
 axs.set_ylim(0,1)
 </code></pre>
 
+<pre><code>(0.0, 1.0)
+</code></pre>
+<p><img alt="png" src="../066_Part2_files/066_Part2_18_1.png" /></p>
 <p>According to this mode, with this parameter, about half of the melt water has reached the monitoring station after around 15 days.</p>
 <p>If we convolve this filter with out signal <code>m p</code>, we have our complete model. It is a very simple model that has only 2 parameters: <code>T0</code> and <code>f</code>, although we have assumed the flow data to be normalised to sum to 1 to avoid an additional scaling factor.</p>
 <p>We can now see the code for the model (also in <a href="../geog0111/model.py">geog0111/model.py</a>):</p>
@@ -1874,6 +1886,9 @@ axs.set_xlim(0,365)
 axs.legend(loc='best')
 </code></pre>
 
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f9241286610&gt;
+</code></pre>
+<p><img alt="png" src="../066_Part2_files/066_Part2_22_1.png" /></p>
 <p>The model appears to be capable of following the features of the measured flow data quite well, although it its slightly over-smoothed.</p>
 <p>So, we have defined a simple snow melt model. It has two parameters that we3 can vary:</p>
 <ul>
