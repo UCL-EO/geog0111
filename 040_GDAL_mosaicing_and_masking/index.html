@@ -1715,29 +1715,31 @@ print(files[0])
 print(sds[0])
 </code></pre>
 
-<pre><code>/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
-['HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
-
-
---&gt; initial SDS ['Lai_500m']
+<pre><code>--&gt; initial SDS ['Lai_500m']
 --&gt; retrieving SDS MCD15A3H from database
 --&gt; found SDS names in database
 --&gt; ['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m']
 --&gt; product MCD15A3H -&gt; code MOTA
 --&gt; getting database from command line
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+--&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+--&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+--&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern 2019.02.10 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
+--&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
+
+
+/nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
+['HDF4_EOS:EOS_GRID:"/nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
+
+
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H*.h17v03*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
+--&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
 </code></pre>
 <p>The SDS description (in <code>sds[0][0]</code> here) is rather long-winded, but contains the full pathname of the dataset, along with the specification for the <code>Lai_500m</code> sub-dataset.</p>
 <p>Armed with the SDS description, we can read a dataset from the MODIS file using <code>g.ReadAsArray()</code> after we have opened it. It returns a numpy array. We introduce <code>np.unique</code> that returns the unique values in a numpy array:</p>
@@ -1748,7 +1750,7 @@ this_sds = sds[0][0]
 # open the SDS of dataset 0
 g = gdal.Open(sds[0][0])
 data = g.ReadAsArray()
-
+del g
 print(type(data))
 print('max:',data.max())
 print('max:',data.min())
@@ -1804,7 +1806,7 @@ year = 2019
 
 modis = Modis(**kwargs)
 files,sds = modis.get_files(year,doy)
-
+#print(files)
 # build a VRT 
 ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 print(f'saving to {ofile}')
@@ -1877,7 +1879,7 @@ fig.colorbar(im, ax=axs)
 
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01deb99690&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fae4d1db210&gt;
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_14_1.png" /></p>
 <h4 id="exercise-2">Exercise 2</h4>
@@ -1993,7 +1995,7 @@ files,sds = modis.get_files(year,doy)
 warp_args = {
     'dstNodata'     : 255,
     'format'        : 'MEM',
-    'cropToCutline' : True,
+    'cropToCutline' : False,
     'cutlineWhere'  : &quot;FIPS='UK'&quot;,
     'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
 }
@@ -2009,7 +2011,7 @@ fig.colorbar(im, ax=axs)
 
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01cf5f70d0&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fae40e2ff10&gt;
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_22_1.png" /></p>
 <p>If you want to save the resultant file, e.g. to geoTiff or VRT file, then you would use e.g.:</p>
@@ -2059,7 +2061,12 @@ mfiles = modis.get_modis(year,doy,warp_args=warp_args)
 print(mfiles.keys())
 </code></pre>
 
-<pre><code>dict_keys(['Lai_500m', 'bandnames'])
+<pre><code>dict_keys(['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m', 'bandnames'])
+</code></pre>
+<pre><code class="python">mfiles['bandnames']
+</code></pre>
+
+<pre><code>['2019-041']
 </code></pre>
 <pre><code class="python">g = gdal.Open(mfiles['Lai_500m'])
 fig, axs = plt.subplots(1,1,figsize=(12,6))
@@ -2069,9 +2076,9 @@ axs.set_title(mfiles['bandnames'][0])
 fig.colorbar(im, ax=axs)
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f01e044b0d0&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fae4bc10b90&gt;
 </code></pre>
-<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_27_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_28_1.png" /></p>
 <h4 id="exercise-5">Exercise 5</h4>
 <ul>
 <li>Use <code>Modis.get_modis</code> to plot the LAI for France for doy 49, 2019</li>

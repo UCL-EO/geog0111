@@ -334,15 +334,23 @@ class Modis():
     '''
     # check in db
     #store for diagnostics
+    
     kwargs = {'year': year, 'doy':doy,'day':day,'month':month,'step':step,\
-              'warp_args':warp_args,'dstNodata':dstNodata}
+              'warp_args':warp_args,'product': self.product, 'dstNodata':dstNodata, 'tile': self.tile}
     mkey = json.dumps(kwargs)
-    response = self.database.get_from_db("modis",mkey)
+    response = self.database.get_from_db("modis-vrt",mkey)
+
     if response is not None:
       if (type(response) is list) and (len(response)):
         return response[0]
       elif (type(response) is dict):
-        return response
+        # test to see it has all SDS
+        ok = True
+        for s in self.sds:
+          if s not in response.keys():
+            ok = False  
+        if ok:
+          return response
       else:
         return response
 
@@ -363,6 +371,13 @@ class Modis():
       except:
         return {None:None}
 
+    # cache before selection
+    odict  = dict(zip(self.sds,vfiles))
+    odict['bandnames'] = bandnames
+    cache = {"modis-vrt": {mkey: odict}}
+    self.database.set_db(cache,write=True)
+
+    # now filter to just what was asked for
     if 'required_sds' in self.__dict__:
       sds = self.required_sds
     else:
@@ -371,8 +386,6 @@ class Modis():
     vfiles = self.sort_vfiles(vfiles,sds)
     odict  = dict(zip(sds,vfiles))
     odict['bandnames'] = bandnames
-    cache = {"modis": {mkey: odict}}
-    self.database.set_db(cache,write=True)
     return odict
 
   def tidy(self,s):
@@ -579,9 +592,16 @@ class Modis():
 
     if not test and not get_files:
       # look up in db
-      this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
+      warp_args = None
+      dstNodata = None
+      step = 1
+      #this_set = f"{self.product}.{'_'.join(self.tile)}.{self.year}.{self.month}.{self.day}"
       store_flag = 'modis'
-      response = self.database.get_from_db(store_flag,this_set)
+      kwargs = {'year': self.year, 'doy':doy,'day':self.day,'month':self.month,'step':step,\
+              'warp_args':warp_args,'product': self.product, 'dstNodata':dstNodata, 'tile': self.tile}
+      mkey = json.dumps(kwargs)
+      # this is an hdf file
+      response = self.database.get_from_db(store_flag,mkey)
       if response and self.noclobber:
         # test 
         if self.test_ok(response[0]):
@@ -641,7 +661,7 @@ class Modis():
       del g
       ofiles.append(Path(spatial_file).absolute().as_posix())
     # store in db
-    cache = {store_flag : { this_set : ofiles }}
+    cache = {store_flag : { mkey : ofiles }}
     #self.database.set_db(cache,write=True)
     return ofiles
 

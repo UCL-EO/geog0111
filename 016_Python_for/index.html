@@ -2164,6 +2164,14 @@ print(f'{items} -&gt;\n{blist}')
 <pre><code>    key is a, value is 7
     key is b, value is 3
 </code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code>    for i,(key,value) in enumerate({"a":7,"b":3}.items()):
+        print(f'key {i} is {key}, value is {value}')
+</code></pre>
+<p>Result:</p>
+<pre><code>    key 0 is a, value is 7
+    key 1 is b, value is 3
+</code></pre>
                 
                   
                     

@@ -1778,22 +1778,28 @@ The mean number of launches is  59.49 per month
 filename = 'data/satellites-1957-2021.gz'
 data=np.loadtxt(filename).astype(np.int)
 
+print(data[0].shape)
+
 print(f'mean launches in month 0: {data[0].mean() :.2f}')
 print(f'max  launches in month 0: {data[0].max()}')
 </code></pre>
 
-<pre><code>mean launches in month 0: 33.95
+<pre><code>(64,)
+mean launches in month 0: 33.95
 max  launches in month 0: 237
 </code></pre>
 <p>We can refer to items in the second dimension of the array, by using a code for <em>all</em> values of the first dimension. So:</p>
 <pre><code>data[:,0]
 </code></pre>
 <p>refers to all elements in dimension 0 (i.e. all months here) by only year 0 (1957).</p>
-<pre><code class="python">print(f'mean launches in year 1957: {data[:,0].sum()}')
+<pre><code class="python">print(data[:,0].shape)
+
+print(f'mean launches in year 1957: {data[:,0].sum()}')
 print(f'max  launches in year 1957: {data[:,0].max()}')
 </code></pre>
 
-<pre><code>mean launches in year 1957: 3
+<pre><code>(12,)
+mean launches in year 1957: 3
 max  launches in year 1957: 2
 </code></pre>
 <h4 id="exercise-1">Exercise 1</h4>
@@ -1844,7 +1850,7 @@ slices: slice(4, 7, None),slice(33, 44, None)
 filename = 'data/satellites-1957-2021.gz'
 data=np.loadtxt(filename).astype(np.int)
 
-# mean over all months
+# mean over all years
 data.mean(axis=1)
 </code></pre>
 
@@ -1892,14 +1898,15 @@ imax = np.argmax(sum_per_year)
 # Find the location (year) with **least** launches
 # Find the index of sum_per_year with lowest number (argmmax)
 imin = np.argmin(sum_per_year)
-
+print(imin,imax)
 print(f'the year with most   launches was',\
       f'{year_array[imax]} with {sum_per_year[imax]}')
 print(f'the year with fewest launches was',\
       f'{year_array[imin]} with {sum_per_year[imin]}')
 </code></pre>
 
-<pre><code>the year with most   launches was 1999 with 4195
+<pre><code>0 42
+the year with most   launches was 1999 with 4195
 the year with fewest launches was 1957 with 3
 </code></pre>
 <h4 id="exercise-4">Exercise 4</h4>
@@ -2094,7 +2101,7 @@ im = axs.imshow(y,interpolation='nearest',vmax=2)
 fig.colorbar(im, ax=axs)
 </code></pre>
 
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f1e3a320f50&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f2513d8bf50&gt;
 </code></pre>
 <p><img alt="png" src="../032_More_numpy_files/032_More_numpy_41_1.png" /></p>
 <p>We could  use <code>np.where</code> to find the index of the minimum point by seeking where it equals the minimum value. That is not always a good idea, as there might be rounding errors involved.</p>
@@ -2297,7 +2304,7 @@ for i in range(y.shape[0]):
 <p>So, we know the sort of result we are looking for from this, ideally we would do it in a single call to the function with <code>numpy</code>.</p>
 <p>In all of the simple cases above, we have performed operations of arrays of the same shape, so adding an array of shape <code>(10,2)</code> to another of the same shape results in an array of shape <code>(10,2)</code>. </p>
 <p>If we have an array of shape <code>(10,2,1)</code> and add it to an array of shape <code>(1,1,5)</code>, we will get a result of shape (10,2,5):</p>
-<pre><code class="python">import numpy
+<pre><code class="python">import numpy as np
 # generate some random numbers
 
 a = np.random.random((10,2,1))
@@ -2315,7 +2322,7 @@ print(c.shape)
 <li>the number of samples in any dimension must be <em>the same</em> or <code>1</code></li>
 </ul>
 <p>If we had started out with arrays of different shapes that we want to combine, e.g.:</p>
-<pre><code class="python">import numpy
+<pre><code class="python">import numpy as np
 # generate some random numbers
 
 a = np.random.random((10,2))
@@ -2324,7 +2331,7 @@ b = np.random.random((5))
 
 <p>Then we need to add new axes to the arrays to reconcile their dimensions. One clear way to do this is to use <code>np.newaxis</code> to add the new dimensions:</p>
 <pre><code class="python">a = np.random.random((10,2))
-b = np.random.random((5))
+b = np.random.random((5,))
 print(f'a shape: {a.shape}')
 print(f'b shape: {b.shape}')
 

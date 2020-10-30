@@ -1786,16 +1786,17 @@ f = url.open()
 print(f'remote file {url}\ncached file {url.local()}')
 </code></pre>
 
-<pre><code>--&gt; reading data from https://covid.ourworldindata.org/data/ecdc/full_data.csv
+<pre><code>--&gt; WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+--&gt; reading data from https://covid.ourworldindata.org/data/ecdc/full_data.csv
 --&gt; open() text stream
 --&gt; trying https://covid.ourworldindata.org/data/ecdc/full_data.csv
 
 
 remote file https://covid.ourworldindata.org/data/ecdc/full_data.csv
-cached file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
+cached file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
 
 
---&gt; deleting existing file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
+--&gt; deleting existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/full_data.csv.store
 </code></pre>
 <p>The call to <code>url.local()</code> returns <code>None</code> here. No cached file is used. If we re-run the code block, then the data is re-downloaded.</p>
 <p>We now remove <code>noclobber=False</code> (the same as setting the default <code>noclobber=True</code>):</p>
@@ -1810,12 +1811,17 @@ data = url.open()
 print(f'remote file {url}\ncached file {url.local()}')
 </code></pre>
 
-<pre><code>remote file https://covid.ourworldindata.org/data/ecdc/locations.csv
-cached file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
+<pre><code>--&gt; WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+--&gt; reading data from https://covid.ourworldindata.org/data/ecdc/locations.csv
+--&gt; open() text stream
+--&gt; trying https://covid.ourworldindata.org/data/ecdc/locations.csv
 
 
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
+remote file https://covid.ourworldindata.org/data/ecdc/locations.csv
+cached file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
+
+
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/covid.ourworldindata.org/data/ecdc/locations.csv.store
 </code></pre>
 <p>Now, we use the local cached version of the file.</p>
 <p>Mostly, you will want to use caching, so just use the default settings for <code>URL</code>. But be aware that you can switch it off if you need to.</p>
@@ -1881,7 +1887,7 @@ import yaml
 # form the file name
 site = 'https://raw.githubusercontent.com'
 site_dir = '/UCL-EO/geog0111/master'
-site_file = 'copy/environment.yml'
+site_file = 'notebooks/copy/environment.yml'
 yaml_file = URL(site,site_dir,site_file,verbose=True)
 
 # notice that we can use verbose=True for URL open
@@ -1892,11 +1898,14 @@ print(f'env is type {type(env)}')
 print(f'env keys: {env.keys()}')
 </code></pre>
 
-<pre><code>env is type &lt;class 'dict'&gt;
+<pre><code>--&gt; WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
+--&gt; reading data from https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/copy/environment.yml
+--&gt; open() text stream
+--&gt; trying https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/copy/environment.yml
+
+
+env is type &lt;class 'dict'&gt;
 env keys: dict_keys(['name', 'channels', 'dependencies'])
-
-
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/raw.githubusercontent.com/UCL-EO/geog0111/master/copy/environment.yml.store
 </code></pre>
 <p>We can similarly use a stream to write the information in <code>env</code> into a <code>json</code> format file:</p>
 <pre><code class="python">from pathlib import Path
@@ -2737,9 +2746,9 @@ df.head()
 </div>
 
 <h4 id="exercise-2">Exercise 2</h4>
-<p>The file <a href="https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv">2276931.csv</a> contains precipitation data for an <a href="https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY">NOAA weather station</a> <code>HAVANA 4.2 SW, FL US</code> for the year 2020 to date.</p>
+<p>The file <a href="https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv">2276931.csv</a> contains precipitation data for an <a href="https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY">NOAA weather station</a> <code>HAVANA 4.2 SW, FL US</code> for the year 2020 to date.</p>
 <p>The dataset URL is:</p>
-<p>https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv</p>
+<p>https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv</p>
 <ul>
 <li>Inspect the file to discover any issues you must account for.</li>
 <li>Read the file into <code>pandas</code> using <code>url.open('r')</code>.</li>

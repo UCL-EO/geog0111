@@ -1478,9 +1478,9 @@ print(f'file {json_file} size {json_file.stat().st_size / 1024 : .2f}')
 file bin/copy/environment.json size  0.78
 </code></pre>
 <h4 id="exercise-2">Exercise 2</h4>
-<p>The file <a href="https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv">2276931.csv</a> contains precipitation data for an <a href="https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY">NOAA weather station</a> <code>HAVANA 4.2 SW, FL US</code> for the year 2020 to date.</p>
+<p>The file <a href="https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv">2276931.csv</a> contains precipitation data for an <a href="https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY">NOAA weather station</a> <code>HAVANA 4.2 SW, FL US</code> for the year 2020 to date.</p>
 <p>The dataset URL is:</p>
-<p>https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv</p>
+<p>https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv</p>
 <ul>
 <li>Inspect the file to discover any issues you must account for.</li>
 <li>Read the file into <code>pandas</code> using <code>url.open('r')</code>.</li>
@@ -1499,7 +1499,7 @@ import pandas as pd
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
-site_dir = '/UCL-EO/geog0111/master/data'
+site_dir = '/UCL-EO/geog0111/master/notebooks/data'
 site_file = '2276931.csv'
 
 # form the URL
