@@ -13,6 +13,7 @@ GEOG0111 Timetable 2020-21
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[Streams](021_Streams.ipynb)| [Read and Write](022_Read_write_files.ipynb) 	|
 |	| |[![Files](images/icon.png)](https://web.microsoftstream.com/video/89d9af9f-bd43-466e-9773-72fba61b5cc7) | [![Streams](images/icon.png)](https://web.microsoftstream.com/video/6c5e1f73-1f6a-478b-ad84-aec29ba86f0e)|[![Read_and_Write](images/icon.png)](https://web.microsoftstream.com/video/60ace003-7dbf-4b0f-b52f-fc43a3fde7f9)
 |  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](062_Part1.ipynb) [Code advice](063_Part1_code.ipynb)|
+|	| |[![Plotting](images/icon.png)](https://web.microsoftstream.com/video/58c9847b-d8f4-474f-a886-e5495a3caad0) | [![Image display](images/icon.png)](https://)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [NASA MODIS](030_NASA_MODIS_Earthdata.ipynb)	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| || [Numpy exercise](064_Numpy.ipynb)|
 |	| |[![NASA MODIS](images/icon.png)](https://web.microsoftstream.com/video/4ccb5435-7d58-4a4f-a7dc-c766d5d189c4) | [![numpy](images/icon.png)](https://web.microsoftstream.com/video/63e742a0-3d7a-4b30-8608-e3d3d0bb6e61) | [![More numpy](images/icon.png)](https://web.microsoftstream.com/video/bcb063e5-a23c-47ad-9f61-78400c83efc0)
