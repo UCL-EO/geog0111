@@ -252,6 +252,13 @@ geog0111/helloWorld.py
     hello world
 
 
+### Follow-up on doc-strings
+
+Please note that document strings are an important part of Python code. There are several helpful tutorials on the internet that will help you write better documentation that you may wish to follow up:
+
+* [PEP-0257](https://www.python.org/dev/peps/pep-0257/)
+* [Datacamp tutorial](https://www.datacamp.com/community/tutorials/docstrings-python)
+
 
 ## Editing a file
 
@@ -429,7 +436,7 @@ Last then, when we make the call to `hello()` from the `main()` function, we nee
     def main():
         hello('Fred')
 
-Otherwise, if we leeave `main()` as:
+Otherwise, if we leave `main()` as:
 
     def main():
         hello()

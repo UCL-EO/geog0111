@@ -76,11 +76,15 @@ kwargs = {
     'sds'       :    ['Lai_500m','LaiStdDev_500m']
 }
 
+kwargs = {
+    'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    ['Lai_500m','LaiStdDev_500m'],
+}
 # get the data
 modis = Modis(**kwargs)
 # specify day of year (DOY) and year
 data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
-
 sds     = kwargs['sds']
 scale   = [0.1, 0.1]
 uthresh = [100,100]
@@ -88,7 +92,7 @@ lthresh = [None,None]
 
 data_MCD15A3H = data_mask(data_MCD15A3H,sds,scale,uthresh,lthresh)
 # plot with different vmax for the plots!
-im_display(data_MCD15A3H,kwargs['sds'],shape=(1,2),x_size=16,y_size=3,vmax=[5,5])
+im_display(data_MCD15A3H,kwargs['sds'],shape=(1,2),x_size=16,y_size=3,vmax=[5,1])
 ```
 
 

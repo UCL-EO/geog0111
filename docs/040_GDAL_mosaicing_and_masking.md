@@ -69,29 +69,31 @@ print(files[0])
 print(sds[0])
 ```
 
-    /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
-    ['HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
-
-
     --> initial SDS ['Lai_500m']
     --> retrieving SDS MCD15A3H from database
     --> found SDS names in database
     --> ['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m']
     --> product MCD15A3H -> code MOTA
     --> getting database from command line
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+    --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+    --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+
+
+    /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
+    ['HDF4_EOS:EOS_GRID:"/nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
+
+
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern 2019.02.10 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
+    --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H*.h17v03*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
+    --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
 
 
 The SDS description (in `sds[0][0]` here) is rather long-winded, but contains the full pathname of the dataset, along with the specification for the `Lai_500m` sub-dataset.
@@ -263,7 +265,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f01deb99690>
+    <matplotlib.colorbar.Colorbar at 0x7f8a1d593a50>
 
 
 
@@ -435,7 +437,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f01cf5f70d0>
+    <matplotlib.colorbar.Colorbar at 0x7f8a0eea8550>
 
 
 
@@ -514,7 +516,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f01e044b0d0>
+    <matplotlib.colorbar.Colorbar at 0x7f8a1faab110>
 
 
 
