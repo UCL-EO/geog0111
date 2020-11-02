@@ -20,6 +20,7 @@ GEOG0111 Timetable 2020-21
 |  7	|  **Space and time**	| [Mosaicing](040_GDAL_mosaicing_and_masking.ipynb) 	|  [Timeseries](041_GDAL_timeseries.ipynb)	|  	|
 |	| |[![Mosaicing](images/icon.png)](https://web.microsoftstream.com/video/cf2d7286-2b3e-471d-b13c-697020797712) | [![Timeseries](images/icon.png)](https://web.microsoftstream.com/video/126c2d15-2dda-4c76-b1aa-eb7ef0125623)
 |  8	| **Regularisation** 	|  [Smoothing theory](042_Weighted_smoothing_and_interpolation.ipynb)	| [Smoothing and interpolation](043_Weighted_interpolation.ipynb) 	|  	| |  |[LAI](065_LAI.ipynb)|
+|	| |[![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/143428cb-d1f2-48bd-b064-d15c224025a4)
 |  9	|  **Parameter estimation**	| [Models and inversion](050_Models.ipynb) 	|   [Phenology model](051_Phenology_model.ipynb) 	|  	|
 |  10	|  **Recap**	|  [Summary](070_Summary.ipynb)|  	|  	|| | [Part 2](066_Part2.ipynb)|
 
