@@ -1459,7 +1459,7 @@
 axs = axs.flatten()
 </code></pre>
 <p>then you can refer to the subplot axes as <code>ax[0]</code>, <code>ax[1]</code>, <code>ax[2]</code> and <code>ax[3]</code> when you loop over the keys. Don't forget to increase <code>x_size,y_size</code> appropriately.</p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Plot the first datasets in `data_MCD15A3H` as subplots in a 2 x 2 shape.
 
 import matplotlib.pyplot as plt
@@ -1509,7 +1509,6 @@ for i,k in enumerate(keys):
     axs[i].set_title(k)
     fig.colorbar(im, ax=axs[i])
 </code></pre>
-
 <p><img alt="png" src="../024_Image_display_answers_files/024_Image_display_answers_2_0.png" /></p>
 <h4 id="exercise-2">Exercise 2</h4>
 <ul>
@@ -1534,7 +1533,7 @@ for i,k in enumerate(keys):
 <li>test your code</li>
 </ul>
 <p>Note that you will have to experiment a bit with the <code>x_size,y_size</code> values to get a good plot. It is not easy to automate that.</p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # write a function called im_display that takes as input:
 #   a data dictionary
 #   a list of keywords of datasets to plot
@@ -1636,8 +1635,7 @@ def im_display(data,names,\
         fig.colorbar(im, ax=axs[i])    
 
 </code></pre>
-
-<pre><code class="python"># test
+<pre><code class="language-python"># test
 import matplotlib.pyplot as plt
 from  geog0111.modis import Modis
 
@@ -1659,20 +1657,18 @@ im_display(data_MCD15A3H,keys,\
                title=None,colourmap=None,\
                x_size=4,y_size=14,shape=(4,1))
 </code></pre>
-
 <p><img alt="png" src="../024_Image_display_answers_files/024_Image_display_answers_5_0.png" /></p>
-<pre><code class="python">im_display(data_MCD15A3H,keys,\
+<pre><code class="language-python">im_display(data_MCD15A3H,keys,\
                title=None,colourmap='gray',\
                x_size=4,y_size=3,shape=(2,2))
 </code></pre>
-
 <p><img alt="png" src="../024_Image_display_answers_files/024_Image_display_answers_6_0.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>
 <li>Write a function called <code>plot_lc</code> that takes as input modis land cover dataset and plots the associated land cover map</li>
 <li>You might use <code>x_size,y_size</code> as optional inputs to improve scaling</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # this is a little long-winded, but just wraps up the codes above
 import matplotlib
 import matplotlib.patches
@@ -1709,8 +1705,7 @@ def plot_lc(data,x_size=12,y_size=12):
               bbox_to_anchor=(1.4, 1),
               facecolor=&quot;white&quot;)
 </code></pre>
-
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 from geog0111.plot_lc import plot_lc
 year,tiles = 2018,['h31v10']
 
@@ -1727,7 +1722,6 @@ data_MCD12Q1 = modis.get_data(year,doy=1)
 # the data we want here
 plot_lc(data_MCD12Q1['LC_Type1'])
 </code></pre>
-
 <p><img alt="png" src="../024_Image_display_answers_files/024_Image_display_answers_9_0.png" /></p>
                 
                   

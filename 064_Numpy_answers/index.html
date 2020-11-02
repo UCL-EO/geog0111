@@ -1433,7 +1433,7 @@
 <li>set invalid data values to 'not a number' <code>np.nan</code></li>
 <li>display the resulting image</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 import numpy as np
 from geog0111.modis import Modis
 
@@ -1466,17 +1466,15 @@ data = data * 0.1
 # set invalid data values to 'not a number' np.nan
 data[mask] = np.nan
 </code></pre>
-
 <pre><code> 77.22% invalid pixels
 </code></pre>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 fig, axs = plt.subplots(1,1,figsize=(16,8))
 # plot image data: use vmin and vmax to set limits
 im = axs.imshow(data,vmax=10,interpolation=None)
 fig.colorbar(im, ax=axs)
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f1cca4e4850&gt;
 </code></pre>
 <p><img alt="png" src="../064_Numpy_answers_files/064_Numpy_answers_3_1.png" /></p>

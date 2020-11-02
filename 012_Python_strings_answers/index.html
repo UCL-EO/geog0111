@@ -1497,7 +1497,7 @@
 <li>insert a new cell below here</li>
 <li>Use what we have learned above to print the phrase <code>"beware of \n and \t"</code>, including quotes.</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Use what we have learned above to print the phrase
 # &quot;beware of \n and \t&quot;, including quotes.
 
@@ -1519,7 +1519,6 @@ print('great:\t\t',string)
 string = &quot;\&quot;beware of \\n and \\t\&quot;&quot;
 print('great:\t\t',string)
 </code></pre>
-
 <pre><code>wrong:       beware of 
  and    
 good:        beware of \n and \t        but no quotes
@@ -1541,7 +1540,7 @@ Wrapped up in a five-pound note.
 <p>Write Python code that prints a string containing the above text, all on a single line.</p>
 </li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # Write Python code that prints a string containing 
 # the following text, spaced over four lines as intended.
@@ -1554,13 +1553,12 @@ Wrapped up in a five-pound note.
   '''
 print(lear)
 </code></pre>
-
 <pre><code>The Owl and the Pussy-cat went to sea
 In a beautiful pea-green boat,
 They took some honey, and plenty of money,
 Wrapped up in a five-pound note.
 </code></pre>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # Write Python code that prints a string 
 # containing the above text, all on a single line.
@@ -1575,7 +1573,6 @@ They took some honey, and plenty of money, \
 Wrapped up in a five-pound note.&quot;
 print(lear)
 </code></pre>
-
 <pre><code>The Owl and the Pussy-cat went to sea In a beautiful pea-green boat, They took some honey, and plenty of money, Wrapped up in a five-pound note.
 </code></pre>
 <h4 id="exercise-3">Exercise 3</h4>
@@ -1586,7 +1583,7 @@ print(lear)
 <li>print <code>mult</code> and its length</li>
 <li>comment on why the lengths are the values reported</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # In a new cell below, generate a string called base and set this to the string Hello
 base = 'Hello'
 
@@ -1610,7 +1607,6 @@ Since th length of base was 5, the length of mult will be 5 * 10 = 50
 '''
 print(msg)
 </code></pre>
-
 <pre><code>Hello 5
 HelloHelloHelloHelloHelloHelloHelloHelloHelloHello 50
 
@@ -1628,7 +1624,7 @@ Since th length of base was 5, the length of mult will be 5 * 10 = 50
 <li>create a new string called <code>gap</code> containing whitespace: <code>gap = ' '</code></li>
 <li>using <code>gap</code>, edit the code so that <code>cstring</code> has a gap between the words</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # Copy the code from the hello world example above
 astring = 'hello'
@@ -1641,10 +1637,9 @@ gap = ' '
 cstring = astring + gap + bstring
 print('I joined',astring,'to',gap,'to',bstring,'with + and got',cstring)
 </code></pre>
-
 <pre><code>I joined hello to   to world with + and got hello world
 </code></pre>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # in a new cell below, generate a string called base and set this to the string Hello
 base = 'Hello'
@@ -1670,7 +1665,6 @@ msg = '''
 '''
 print(msg)
 </code></pre>
-
 <pre><code>Hello 5
 HelloHelloHelloHelloHelloHelloHelloHelloHelloHello 50
 
@@ -1688,7 +1682,7 @@ HelloHelloHelloHelloHelloHelloHelloHelloHelloHello 50
 <li>use this to generate a zero-padded filename of the form <code>00000010.dat</code></li>
 <li>print out the filename</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # set a variable index to be an integer between 0 and 99999999.
 index = 1265
@@ -1701,7 +1695,6 @@ filename = &quot;{:0&gt;8d}.dat&quot;.format(index)
 # print out the filename
 print(filename)
 </code></pre>
-
 <pre><code>00001265.dat
 </code></pre>
 <h4 id="exercise-6">Exercise 6</h4>
@@ -1717,7 +1710,7 @@ print(filename)
 </li>
 <li>repeat this using an f-string directly.</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Insert a new cell below here
 # create a template string of the form:
 
@@ -1733,7 +1726,6 @@ print(template.format(people='Romans'))
 people='Romans'
 print(f&quot;what have the {people} ever done for us?&quot;)
 </code></pre>
-
 <pre><code>what have the Romans ever done for us?
 what have the Romans ever done for us?
 </code></pre>

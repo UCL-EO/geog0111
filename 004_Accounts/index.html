@@ -1497,7 +1497,7 @@
 <p>Information is encrypted in a user read-only file in your home directory (mode <code>400</code>) and accessed through the <code>Cylog</code>  <code>login</code> function.</p>
 <p>You need to store your username and password in a database file (that only you can access) to be able to make convenient use oof the notes in later classes.</p>
 <p>You can do this by running through the following cell, and responding as appropriate.</p>
-<pre><code class="python">from geog0111.cylog import Cylog
+<pre><code class="language-python">from geog0111.cylog import Cylog
 
 sites = ['https://n5eil01u.ecs.nsidc.org',\
          'https://urs.earthdata.nasa.gov',\
@@ -1507,14 +1507,12 @@ l = Cylog(sites)
 test = l.login()
 
 </code></pre>
-
 <h3 id="test">Test</h3>
 <p>You can run a test on your login to NASA Earthdata using the information you have stored this using <code>cylog</code> for the site <code>https://e4ftl01.cr.usgs.gov</code>. We can test this with the following code if you set do_test to True:</p>
-<pre><code class="python">from geog0111.modis import test_login
+<pre><code class="language-python">from geog0111.modis import test_login
 do_test=True
 assert test_login(do_test)
 </code></pre>
-
 <pre><code>--&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MOLA in https://e4ftl01.cr.usgs.gov/
@@ -1539,10 +1537,9 @@ assert test_login(do_test)
 </code></pre>
 <h2 id="reset-password">Reset password</h2>
 <p>If you are interested, you can see the help page for <code>Cylog</code>. It shows, for instance, how to over-ride the current entry (e.g. if you have changed your password), by using <code>force=True</code>).</p>
-<pre><code class="python">from geog0111.cylog import Cylog
+<pre><code class="language-python">from geog0111.cylog import Cylog
 help(Cylog.login)
 </code></pre>
-
 <pre><code>Help on function login in module geog0111.cylog:
 
 login(self, site=None, force=False)

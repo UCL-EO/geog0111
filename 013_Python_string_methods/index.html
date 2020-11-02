@@ -1755,9 +1755,8 @@
 <h2 id="strings">Strings</h2>
 <h3 id="helpstr"><code>help(str)</code></h3>
 <p>We can get a list of the string methods and associated information on how to use them from <code>help(str)</code>. We will go through some of these in this notebook, but you should be aware of the wider set of methods available. You don't need to go through all of these now, but notice how to get this information.</p>
-<pre><code class="python">help(str)
+<pre><code class="language-python">help(str)
 </code></pre>
-
 <pre><code>Help on class str in module builtins:
 
 class str(object)
@@ -2158,7 +2157,7 @@ class str(object)
 <h3 id="concatenate-strings-and-len">Concatenate strings: <code>+</code> and <code>len()</code></h3>
 <p>We can do a number of things with strings which are very useful. These methods are defined on generic objects by Python, but we can use them with strings as an example.</p>
 <p>For one, we can concatenate strings using the <code>+</code> symbol:</p>
-<pre><code class="python">string1 = 'hello'
+<pre><code class="language-python">string1 = 'hello'
 string2 = 'world'
 spacer = ' '
 
@@ -2166,20 +2165,18 @@ spacer = ' '
 result = string1 + spacer + string2
 print(result)
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>Another method we will find useful with strings is the <code>len()</code> function.</p>
-<pre><code class="python">help(len)
+<pre><code class="language-python">help(len)
 </code></pre>
-
 <pre><code>Help on built-in function len in module builtins:
 
 len(obj, /)
     Return the number of items in a container.
 </code></pre>
 <p>When the object is a string, the 'number of items' refers to the number of characters, so <code>len(str)</code> returns the length of the string.</p>
-<pre><code class="python"># generate a string called t
+<pre><code class="language-python"># generate a string called t
 # and see how long it is
 # use f-strings for covenience
 t = 'hello'
@@ -2190,7 +2187,6 @@ print (f'the length of {t} is {len(t)}')
 s = &quot;Hello&quot; + &quot;there&quot; + &quot;everyone&quot;
 print (f'the length of {s} is {len(s)}')
 </code></pre>
-
 <pre><code>the length of hello is 5
 the length of Hellothereeveryone is 18
 </code></pre>
@@ -2203,9 +2199,8 @@ the length of Hellothereeveryone is 18
 </ul>
 <h2 id="string-methods">String methods</h2>
 <h3 id="replace-and-strip"><code>replace()</code> and <code>strip()</code></h3>
-<pre><code class="python">help(str.replace)
+<pre><code class="language-python">help(str.replace)
 </code></pre>
-
 <pre><code>Help on method_descriptor:
 
 replace(self, old, new, count=-1, /)
@@ -2220,19 +2215,17 @@ replace(self, old, new, count=-1, /)
 </code></pre>
 <p>The string method <code>replace()</code> replaces substrings defined in <code>old</code> with those defined in <code>new</code>. </p>
 <p>In the example below, we replace the sub-string <code>"happy"</code> with a new string containing the emoji "😃": </p>
-<pre><code class="python">original_string = &quot;I'm a very happy string&quot;
+<pre><code class="language-python">original_string = &quot;I'm a very happy string&quot;
 print('original:\t',original_string)
 
 new_string = original_string.replace(&quot;happy&quot;, &quot;😀&quot;)
 print ('new:\t\t',new_string)
 </code></pre>
-
 <pre><code>original:    I'm a very happy string
 new:         I'm a very 😀 string
 </code></pre>
-<pre><code class="python">help(str.strip)
+<pre><code class="language-python">help(str.strip)
 </code></pre>
-
 <pre><code>Help on method_descriptor:
 
 strip(self, chars=None, /)
@@ -2248,13 +2241,12 @@ strip(self, chars=None, /)
 <pre><code>"😀:😀:😀"
 </code></pre>
 <p>i.e. we want to strip the <code>:</code> characters from the right and left ends of the string. We can't easily use <code>replace()</code> without affecting the <code>:</code> characters we want to keep. We can achieve this with the <code>strip()</code> method though.</p>
-<pre><code class="python">old_string = &quot;:::😀:😀:😀::::::&quot;
+<pre><code class="language-python">old_string = &quot;:::😀:😀:😀::::::&quot;
 print(old_string)
 
 new_string = old_string.strip(':')
 print(new_string)
 </code></pre>
-
 <pre><code>:::😀:😀:😀::::::
 😀:😀:😀
 </code></pre>
@@ -2272,9 +2264,8 @@ satellite or aircraft).----
 '''</code></p>
 <p>and use it to generate a single line string, without the <code>-</code> characters at either end.</p>
 <h3 id="split-and-join"><code>split()</code> and <code>join()</code></h3>
-<pre><code class="python">help(str.split)
+<pre><code class="language-python">help(str.split)
 </code></pre>
-
 <pre><code>Help on method_descriptor:
 
 split(self, /, sep=None, maxsplit=-1)
@@ -2289,7 +2280,7 @@ split(self, /, sep=None, maxsplit=-1)
       -1 (the default value) means no limit.
 </code></pre>
 <p><code>split()</code> and <code>join()</code> are a pair of really useful string methods. The former is used to split a string into a list of sub-strings. For example:</p>
-<pre><code class="python">string = \
+<pre><code class="language-python">string = \
 &quot;   Remote sensing is the process of detecting and \
 monitoring the physical characteristics of an \
 area by measuring its reflected and emitted \
@@ -2300,15 +2291,13 @@ string_list = string.split()
 
 print(string_list)
 </code></pre>
-
 <pre><code>['Remote', 'sensing', 'is', 'the', 'process', 'of', 'detecting', 'and', 'monitoring', 'the', 'physical', 'characteristics', 'of', 'an', 'area', 'by', 'measuring', 'its', 'reflected', 'and', 'emitted', 'radiation', 'at', 'a', 'distance', '(typically', 'from', 'satellite', 'or', 'aircraft).']
 </code></pre>
 <p>We see that the string is 'parsed' into a list of separate sub-strings, which in this case represent words in the sentence. The default delimiter used to split the string is <code>' '</code>, whitespace (space or tab), though we could specify others if we needed.</p>
 <p>Any whitespece to the left or right of the string has no impact here, so we do not need to explicitly <code>strip()</code> the string.</p>
 <p>If we want to generate a string from a set of sub-strings, we use the <code>join()</code> method.</p>
-<pre><code class="python">help(str.join)
+<pre><code class="language-python">help(str.join)
 </code></pre>
-
 <pre><code>Help on method_descriptor:
 
 join(self, iterable, /)
@@ -2320,7 +2309,7 @@ join(self, iterable, /)
     Example: '.'.join(['ab', 'pq', 'rs']) -&gt; 'ab.pq.rs'
 </code></pre>
 <p>For this, we declare the string delimiter we wish to use. For example, to reconstruct the sentence from the string list with whitespace delimitation:</p>
-<pre><code class="python">string_list = ['Remote', 'sensing', 'is', 'the', 'process', 
+<pre><code class="language-python">string_list = ['Remote', 'sensing', 'is', 'the', 'process', 
                'of', 'detecting', 'and', 'monitoring', 'the', 
                'physical', 'characteristics', 'of', 'an', 'area', 
                'by', 'measuring', 'its', 'reflected', 'and', 'emitted', 
@@ -2330,7 +2319,6 @@ join(self, iterable, /)
 string = ' '.join(string_list)
 print(string)
 </code></pre>
-
 <pre><code>Remote sensing is the process of detecting and monitoring the physical characteristics of an area by measuring its reflected and emitted radiation at a distance (typically from satellite or aircraft).
 </code></pre>
 <h4 id="exercise-3">Exercise 3</h4>
@@ -2352,7 +2340,7 @@ print(string)
 <p>So, for example the string <code>hello</code> can be thought of as a construct containing <code>h</code> then <code>e</code>, <code>l</code>, <code>l</code>, and <code>o</code>. </p>
 <p>We can index a string, so that e.g. <code>'hello'[0]</code> is <code>h</code>, <code>'hello'[1]</code> is <code>e</code> etc. Notice that index <code>0</code> is used for the first item.</p>
 <p>We have seen above the idea of the 'length' of a string. In this example, the length of the string <code>hello</code> is 5. The final item in this case would be <code>'hello'[4]</code>, because we count indices from 0.</p>
-<pre><code class="python">string = 'hello'
+<pre><code class="language-python">string = 'hello'
 
 # length
 slen = len(string)
@@ -2369,7 +2357,6 @@ i = 4
 print('character',i,'of',string,'is',string[i])
 
 </code></pre>
-
 <pre><code>length of hello is 5
 character 0 of hello is h
 character 3 of hello is l
@@ -2402,7 +2389,7 @@ character 4 of hello is o
 <p>We can do the same by using <code>None</code> to indicate the default:</p>
 <p><code>array[None:None:2]</code></p>
 <p>This idea is fundamental to array processing in Python. We will see later that the same mechanism applies to all ordered groups.</p>
-<pre><code class="python">s = &quot;Hello World&quot;
+<pre><code class="language-python">s = &quot;Hello World&quot;
 print (s,len(s))
 
 start = None
@@ -2417,7 +2404,6 @@ stop  = None
 skip  = 1
 print (s[start:stop:skip])
 </code></pre>
-
 <h4 id="exercise-5">Exercise 5</h4>
 <p>The example above allows us to access an individual character(s) of the array.</p>
 <ul>

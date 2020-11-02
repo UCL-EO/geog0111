@@ -1634,7 +1634,7 @@
 <p>We have seen in <a href="../022_Read_write_files/#read-and-write-binary-data">022 Read write files</a> how we can access a MODIS dataset. In an <a href="../022_Read_write_files/#Exercise-3">exercise</a> we wrote a function <code>get_data</code> that returned a dictionary of spatial datasets, given a MODIS HDF filename. Here, we will use the similar function <code>modis.get_data</code> that returns the same form of data dictionary, but driven by the year and day of year (<code>doy</code>). The product and other parameters are specified in the keyword arguments. We will look into MODIS products in more detail in a subsequent session. In this session, we will use <code>MCD15A3H</code> and </p>
 <p>For example, to get the LAI product <code>MCD15A3H</code> and the land cover product <code>MCD12Q1</code>, layer <code>LC_Type1</code> to visualise. Many of these datasets are pre-cached for you, so you should get a fast response. If the plotting seems to be taking too long, set <code>verbose=True</code> in the <code>kwargs</code> to get details of the underlying processing.</p>
 <p>First then, we access the product <code>MCD15A3H</code>. This is produced every 4 days in a year, so in specifying <code>doy</code>, we use <code>doy=4*n + 1</code> for the <code>nth</code> dataset of the year.</p>
-<pre><code class="python">from  geog0111.modis import Modis
+<pre><code class="language-python">from  geog0111.modis import Modis
 
 kwargs = {
     'product'    : 'MCD15A3H',
@@ -1651,7 +1651,6 @@ for k,v in data_MCD15A3H.items():
         # do some neat formatting on k
         print(f'{k:&lt;20s}: {v.shape}')
 </code></pre>
-
 <pre><code>FparExtra_QC        : (2400, 2400)
 FparLai_QC          : (2400, 2400)
 FparStdDev_500m     : (2400, 2400)
@@ -1663,7 +1662,7 @@ Lai_500m            : (2400, 2400)
 <p>We follow much the same recipe as for <a href="../023_Plotting/">plotting line graphs</a>, but instead of using <code>axs.plot()</code> we use <code>axs.imshow()</code>. Further, we can set the subplot title with <code>axs.set_title(k)</code> as before. We can usefully include a colour wedge with the plot with <code>fig.colorbar(im, ax=axs)</code>.</p>
 <p>When we plot with <code>axs.imshow()</code>, we can optionally use the keywords <code>vmin=</code> and <code>vmax=</code> to set upper and lower thresholds for the data plotted.</p>
 <p>You should generally use <code>interpolation='nearest'</code> when plotting an image dataset as a measurement (e.g. a remote sensing dataset), otherwise it may be interpolated.</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 k = 'Lai_500m'
 name = f'{kwargs[&quot;product&quot;]}'
@@ -1688,7 +1687,6 @@ im = axs[0].imshow(data_MCD15A3H[k],\
 axs[0].set_title(k)
 fig.colorbar(im, ax=axs[0])
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f390b53de90&gt;
 </code></pre>
 <p><img alt="png" src="../024_Image_display_files/024_Image_display_5_1.png" /></p>
@@ -1710,7 +1708,7 @@ im.set_cmap(c)
 <p>where <code>c</code> here is some colourmap.</p>
 <p>For further discussions on colourmaps and options see the <a href="https://matplotlib.org/3.1.1/tutorials/colors/colormaps.html">relevant tutorial</a> and the <a href="https://matplotlib.org/3.1.1/gallery/color/colormap_reference.html">colour map reference</a>.</p>
 <p>In this set of sub-plots, we switch off the image ticks for a clearer plot.</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 k = 'Lai_500m'
 name = f'{kwargs[&quot;product&quot;]}'
@@ -1743,7 +1741,6 @@ for i,c in enumerate(cmaps):
     axs[i].set_title(c)
     fig.colorbar(im, ax=axs[i])
 </code></pre>
-
 <p><img alt="png" src="../024_Image_display_files/024_Image_display_8_0.png" /></p>
 <h4 id="exercise-2">Exercise 2</h4>
 <ul>
@@ -1771,12 +1768,11 @@ for i,c in enumerate(cmaps):
 <h2 id="quantised-data-land-cover">Quantised data: Land Cover</h2>
 <p>Sometimes we want quantised colourmaps, for example for a land cover classification map. You can do these perfectly well in <code>matplotlib</code>, but the process is a little more involved.</p>
 <p>We will take as an example the MODIS product <code>MCD12Q1</code> over the UK. The land cover layer we are interested in is called <code>LC_Type1</code>. The <a href="https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf">land cover names</a> associated with this are given in the file <a href="../data/LC_Type1_colour.csv">data/LC_Type1_colour.csv</a>, along with example colour mappings.</p>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 
 lc_Type1 = pd.read_csv('data/LC_Type1_colour.csv')
 lc_Type1
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1921,7 +1917,7 @@ lc_Type1
 </code></pre>
 <p>We can choose colour names from the <a href="https://matplotlib.org/3.1.0/gallery/color/named_colors.html"><code>matplotlib</code> gallery</a> if we don't like the defaults set up.</p>
 <p>It is an annual dataset, with only valid files for January 1st of the year.</p>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 
 # UK
 kwargs = {
@@ -1936,8 +1932,7 @@ modis = Modis(**kwargs)
 # specify day of year (DOY) and year
 data_MCD12Q1 = modis.get_data(year,1)
 </code></pre>
-
-<pre><code class="python"># generate matplotlib cmap and norm objects from these
+<pre><code class="language-python"># generate matplotlib cmap and norm objects from these
 import matplotlib
 
 cmap = matplotlib.colors.\
@@ -1945,15 +1940,13 @@ cmap = matplotlib.colors.\
 norm = matplotlib.colors.\
         BoundaryNorm(list(lc_Type1['code']), len(lc_Type1['code']))
 </code></pre>
-
-<pre><code class="python">import matplotlib.patches
+<pre><code class="language-python">import matplotlib.patches
 # set up the legend
 legend_labels = dict(zip(list(lc_Type1['colour']),list(lc_Type1['class'])))
 patches = [matplotlib.patches.Patch(color=c, label=l)
            for c,l in legend_labels.items()]
 </code></pre>
-
-<pre><code class="python"># plot
+<pre><code class="language-python"># plot
 import matplotlib.pyplot as plt
 x_size,y_size = 12,12
 fig, axs = plt.subplots(1,figsize=(x_size,y_size))
@@ -1962,7 +1955,6 @@ plt.legend(handles=patches,
           bbox_to_anchor=(1.4, 1),
           facecolor=&quot;white&quot;)
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7f3915363190&gt;
 </code></pre>
 <p><img alt="png" src="../024_Image_display_files/024_Image_display_17_1.png" /></p>

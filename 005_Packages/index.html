@@ -1503,11 +1503,10 @@
 <pre><code>import yaml
 </code></pre>
 <p>to import a library called <code>yaml</code>. We can then access some function <code>XX</code> functions in the package as <code>yaml.XX</code>. </p>
-<pre><code class="python">import yaml
+<pre><code class="language-python">import yaml
 
 help(yaml.safe_load)
 </code></pre>
-
 <pre><code>Help on function safe_load in module yaml:
 
 safe_load(stream)
@@ -1519,9 +1518,8 @@ safe_load(stream)
 </code></pre>
 <p>Recall from <a href="../010_Python_Introduction/">Python Introduction</a> that classes start with a capital letter. So, if we see a variable in <code>Python such as</code>path`, we recognise that as a class.</p>
 <p>Sometimes we wish to only import certain functions or sub-packages. This is done with the <code>from</code> directive. For example to import the class <code>Path</code> from the package <code>pathlib</code></p>
-<pre><code class="python">from pathlib import Path
+<pre><code class="language-python">from pathlib import Path
 </code></pre>
-
 <p>The class <code>Path</code> is now available directly as <code>Path</code>, whereas if we had imported it as:</p>
 <pre><code>import pathlib
 </code></pre>

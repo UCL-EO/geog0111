@@ -1459,7 +1459,7 @@ std  : MODIS LAI uncertainty dataset
 </ul>
 <p>and returns an array the same shape as lai/std of per-pixel pixel weights
 * Read a MODIS LAI dataset, calculate the weights, and print some statistics of the weights</p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 '''
 a function `get_weight` that takes as argument:
 
@@ -1475,8 +1475,7 @@ def get_weight(lai,std):
 
     return weight
 </code></pre>
-
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 from geog0111.get_lai_data import get_lai_data
 # load some data
@@ -1492,7 +1491,6 @@ print(f'weight mean:   {weight.mean()}')
 print(f'weight median: {np.median(weight)}')
 print(f'weight sum:    {weight.sum()}')
 </code></pre>
-
 <pre><code>weight min:    0.0
 weight max:    1.0
 weight mean:   0.3184627847952631
@@ -1511,7 +1509,7 @@ sigma   : Gaussian filter width
 * Read a MODIS LAI dataset and regularise it
 * Plot original LAI, and regularised LAI for varying values of sigma, for one pixel</p>
 <p>Hint: You will find such a function useful when completing Part B of the assessed practical, so it is well worth your while doing this exercise.</p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 import numpy as np
 import scipy
 import scipy.ndimage.filters
@@ -1544,8 +1542,7 @@ def regularise(lai,weight,sigma):
     return interpolated_lai
 
 </code></pre>
-
-<pre><code class="python"># Read a MODIS LAI dataset and regularise it
+<pre><code class="language-python"># Read a MODIS LAI dataset and regularise it
 import numpy as np
 from geog0111.get_lai_data import get_lai_data
 from geog0111.get_weight import get_weight
@@ -1565,8 +1562,7 @@ interpolated_lai = {}
 for sigma in [2,5,10,20,30]:
     interpolated_lai[sigma] = regularise(lai,weight,sigma)
 </code></pre>
-
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 p0,p1 = 105,72
 x_size,y_size=(10,5)
@@ -1588,7 +1584,6 @@ for sigma in [2,5,10,20,30]:
 
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fba607c5690&gt;
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_answers_files/043_Weighted_interpolation_answers_7_1.png" /></p>
@@ -1604,7 +1599,7 @@ fips    : country FIPS code, str
 * In your function, print out the unique values in the landcover dataset to give some feedback to the user
 * Write a function <code>plot_LC_Type3</code> that will plot LC_Type3 data with an appropriate colourmap.
 * Produce a plot of the land cover of Belgium for 2018</p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 from geog0111.modis import Modis
 import gdal
 import numpy as np
@@ -1645,8 +1640,7 @@ def get_lc(year,tile,fips):
     print(f&quot;class codes: {np.unique(lc)}&quot;)
     return lc
 </code></pre>
-
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.patches
@@ -1673,8 +1667,7 @@ def plot_LC_Type3(land_cover):
               bbox_to_anchor=(1.4, 1),
               facecolor=&quot;white&quot;)
 </code></pre>
-
-<pre><code class="python"># Produce a plot of the land cover of Belgium for 2018
+<pre><code class="language-python"># Produce a plot of the land cover of Belgium for 2018
 # ANSWER
 year = 2018
 fips = &quot;BE&quot;
@@ -1682,7 +1675,6 @@ tile = ['h17v03', 'h18v03','h17v04', 'h18v04']
 lc = get_lc(year,tile,fips)
 plot_LC_Type3(lc)
 </code></pre>
-
 <pre><code>class codes: [  0   1   3   4   5   6   7   9  10 255]
 </code></pre>
 <p><img alt="png" src="../043_Weighted_interpolation_answers_files/043_Weighted_interpolation_answers_11_1.png" /></p>

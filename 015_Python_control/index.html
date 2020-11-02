@@ -1612,7 +1612,7 @@
 <h3 id="comparison-operators">Comparison Operators</h3>
 <p>A comparison operator 'compares' two terms (e.g. the contents of variables) and returns a boolean data type (<code>True</code> or <code>False</code>).</p>
 <p>For example, to see if the value of some variable <code>a</code> has 'the same value as' ('equivalent to') the value of some variable <code>b</code>, we use the equivalence operator (<code>==</code>). To test for non equivalence, we use the not equivalent operator <code>!=</code> (read the <code>!</code> as 'not'):</p>
-<pre><code class="python">a = 100
+<pre><code class="language-python">a = 100
 b = 10
 #
 # These are *not* the same, so we expect 
@@ -1623,7 +1623,6 @@ b = 10
 print (f'a is {a} and b is {b}')
 print (f'a is equivalent to b? {a == b}')
 </code></pre>
-
 <pre><code>a is 100 and b is 10
 a is equivalent to b? False
 </code></pre>
@@ -1670,7 +1669,7 @@ a is equivalent to b? False
 </tbody>
 </table>
 <p>so that, for example:</p>
-<pre><code class="python"># Comparison examples
+<pre><code class="language-python"># Comparison examples
 
 # is one plus one list equal to two list?
 print (f'1 + 1 == 2    : {1 + 1 == 2}')
@@ -1685,7 +1684,6 @@ print (f'1 + 1 != 2    : {1 + 1 != 2}')
 print (f'100 &lt; 2       : {100 &lt; 2}')
 
 </code></pre>
-
 <pre><code>1 + 1 == 2    : True
 1 &lt;= 0.999    : False
 1 + 1 != 2    : False
@@ -1723,7 +1721,7 @@ else:
 <p>In Python, the statement(s) we run on condition are <em>indented</em>. </p>
 <p>The indent can be one or more spaces or a <code>&lt;tab&gt;</code> character, the choice is up to the programmer. However, it <strong>must be consistent</strong>. It is generally best to use spaces rather than tab characters, it is all too easy to mistake one for the other.</p>
 <p><span class="burk">Pay attention to indentation in conditional statements. Getting it wrong is one of the more common errors new Python coders make.</span> </p>
-<pre><code class="python">test = 3
+<pre><code class="language-python">test = 3
 print('test result is',test)
 
 # initialise retval
@@ -1745,7 +1743,6 @@ else:
 
 print('retval is',retval)
 </code></pre>
-
 <pre><code>test result is 3
 passed test 1: "if test &gt;= 1"
 retval is True

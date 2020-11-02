@@ -1485,7 +1485,7 @@
 <li>the <code>Hello there everyone</code> example above has no spaces between the words. Copy the code and modify it to have spaces.</li>
 <li>confirm that you get the expected increase in length.</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # insert a new cell below here
 # what might a zero-length string look like? Try to generate one, and check its length.
@@ -1506,7 +1506,6 @@ now, with two spaces, this has length 20 as expected
 '''
 print(msg)
 </code></pre>
-
 <pre><code>the length of  is 0
 the length of Hello there everyone is 20
 
@@ -1526,7 +1525,7 @@ radiation at a distance (typically from
 satellite or aircraft).----
 '''</code></p>
 <p>and use it to generate a single line string, without the <code>-</code> characters at either end.</p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 old_string = '''
 ----Remote sensing is the process of detecting and 
@@ -1542,7 +1541,6 @@ print(old_string)
 new_string = old_string.replace('\n','').strip('-')
 print(new_string)
 </code></pre>
-
 <pre><code>----Remote sensing is the process of detecting and 
 monitoring the physical characteristics of an 
 area by measuring its reflected and emitted 
@@ -1565,7 +1563,7 @@ Remote sensing is the process of detecting and monitoring the physical character
 <p>and split it into a list of sub-strings.
 * Then re-construct the string, separating each word by a colon character <code>':'</code>
 * Print out the list of sub-strings and the re-constructed string</p>
-<pre><code class="python"># Answer
+<pre><code class="language-python"># Answer
 
 # Take the string
 string = '''
@@ -1585,11 +1583,10 @@ recon_string = ':'.join(list_string)
 # print this out
 print(recon_string)
 </code></pre>
-
 <pre><code>['The', 'Owl', 'and', 'the', 'Pussy-cat', 'went', 'to', 'sea', 'In', 'a', 'beautiful', 'pea-green', 'boat,', 'They', 'took', 'some', 'honey,', 'and', 'plenty', 'of', 'money,', 'Wrapped', 'up', 'in', 'a', 'five-pound', 'note.']
 The:Owl:and:the:Pussy-cat:went:to:sea:In:a:beautiful:pea-green:boat,:They:took:some:honey,:and:plenty:of:money,:Wrapped:up:in:a:five-pound:note.
 </code></pre>
-<pre><code class="python"># Answer
+<pre><code class="language-python"># Answer
 # the Hello there everyone example above has no spaces between the words. 
 # copy the code and modify it to have spaces.
 
@@ -1606,7 +1603,6 @@ print ('the length of',quote+s+quote,'is',len(s))
 # confirm that you get the expected increase in length.
 # It is now 20 rather than 18 above
 </code></pre>
-
 <pre><code>the length of "Hello there everyone" is 20
 </code></pre>
 <h4 id="exercise-4">Exercise 4</h4>
@@ -1615,7 +1611,7 @@ print ('the length of',quote+s+quote,'is',len(s))
 <li>copy the code above, and see what happens if you set <code>i</code> to be the value of length of the string. </li>
 <li>why does it respond in this way?</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # copy the code
 string = 'hello'
@@ -1628,7 +1624,6 @@ print('length of', string, 'is', slen)
 i = slen
 print('character', i, 'of', string, 'is', string[i])
 </code></pre>
-
 <pre><code>length of hello is 5
 
 
@@ -1645,7 +1640,7 @@ IndexError                                Traceback (most recent call last)
 
 IndexError: string index out of range
 </code></pre>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # Why does it respond in this way?
 msg = '''
@@ -1660,7 +1655,6 @@ msg = '''
 print(msg)
 
 </code></pre>
-
 <h4 id="exercise-5">Exercise 5</h4>
 <p>The example above allows us to access an individual character(s) of the array.</p>
 <ul>
@@ -1668,7 +1662,7 @@ print(msg)
 <li>based on the example above, print the string starting from the default start value, up to the default stop value, in steps of <code>2</code>. This should be <code>HloWrd</code>.</li>
 <li>write code to print out the 4<span class="arithmatex">\(^{th}\)</span> letter (character) of the string <code>s</code>. This should be <code>l</code>.</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 s = &quot;Hello World&quot;
 print (s,len(s))
@@ -1683,8 +1677,7 @@ stop  = None
 skip  = 2
 print (s[start:stop:skip])
 </code></pre>
-
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 s = &quot;Hello World&quot;
 # write code to print out the 4 𝑡ℎ  letter (character) of the string s.

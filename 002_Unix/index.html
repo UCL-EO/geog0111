@@ -1731,20 +1731,18 @@
 <h2 id="running-unix-commands">Running unix commands</h2>
 <h3 id="unix-in-code-cells">Unix in code cells</h3>
 <p>The code cells in this notebook take Python commands by default, but we can run <code>unix</code> commands either by pre-pending a single command with <code>!</code>:</p>
-<pre><code class="python">!pwd
+<pre><code class="language-python">!pwd
 
 
 </code></pre>
-
 <pre><code>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
 </code></pre>
 <p>or by using the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">cell magic</a> <code>%%bash</code>:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 
 # comment is after #
 pwd
 </code></pre>
-
 <pre><code>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
 </code></pre>
 <p>If you are using these notes through the <a href="https://jupyterlab.readthedocs.io/en/stable/"><code>JupyterLab</code></a> interface you have access to a <a href="https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash">terminal</a> to run unix commands.</p>
@@ -1761,21 +1759,19 @@ pwd
 <h3 id="cd-pwd"><code>cd</code>, <code>pwd</code></h3>
 <p>The command <code>cd filepath</code> is used in the shell to change from one directory to another. Typically, when you start a shell, you will be in your home directory. We can explicitly 'go to' (i.e. <code>cd</code> to) your home with <code>cd ~</code>. We use the command <code>pwd</code> to print the current working directory.</p>
 <p>So the following sequence:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 cd ~
 pwd
 </code></pre>
-
 <pre><code>/home/ucfalew
 </code></pre>
 <p>changes directory to our home, and prints the directory name.</p>
 <p>In the following command, we use <code>cd ..</code> to go up one directory. Notice that each time we start a new shell here, the location is re-set to the location of these notebooks (e.g. <code>geog0111/notebooks</code> or <code>geog0111/notebooks_lab</code> depending on where you run the notebook from).</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 pwd
 cd ..
 pwd
 </code></pre>
-
 <pre><code>/nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
 /nfs/cfs/home3/Uucfa6/ucfalew/geog0111
 </code></pre>
@@ -1786,21 +1782,19 @@ pwd
 </ul>
 <h3 id="ls-ls-lh"><code>ls</code> <code>ls -lh</code> <code>*</code></h3>
 <p>The command <code>ls</code> lists the files specified. For example:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 cd ~/geog0111
 ls R*
 </code></pre>
-
 <pre><code>README.add.md
 README.md
 </code></pre>
 <p>Here, <code>R*</code> uses the wildcard <code>*</code>, so <code>R*</code> means <code>R</code> followed by zero or more characters.</p>
 <p>If we specify the option <code>-lh</code> then it provides a long listing (<code>-l</code>) with file size in 'human-readable' format (<code>-h</code>):</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 cd ~/geog0111
 ls -lh README.md
 </code></pre>
-
 <pre><code>-rw-r--r-- 1 ucfalew ucfa 3.3K Oct  5 09:38 README.md
 </code></pre>
 <p>Here, the file size if <code>3.3K</code> (3.3 KBytes), and the file is owned by the user <code>plewis</code>. The field <code>-rw-r--r--</code> provides information on file permissions. Ignoring the first <code>-</code>, it is in 3 sets of 3 bits:</p>
@@ -1829,13 +1823,12 @@ rwx -&gt; 7
 </ul>
 <h3 id="chmod"><code>chmod</code></h3>
 <p>We can change file permissions with the command <code>chmod</code>. For example:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 ls -lh ../README.md
 chmod 755 ../README.md
 ls -lh ../README.md
 chmod 644 ../README.md
 </code></pre>
-
 <pre><code>-rw-r--r-- 1 ucfalew ucfa 3.7K Oct  2 18:42 ../README.md
 -rwxr-xr-x 1 ucfalew ucfa 3.7K Oct  2 18:42 ../README.md
 </code></pre>
@@ -1844,21 +1837,19 @@ chmod 644 ../README.md
 </code></pre>
 <h3 id="absolute-and-relative-pathnames">absolute and relative pathnames</h3>
 <p>A posix directory name that <strong>starts with</strong> the file separator '/' is called an <strong>absolute</strong> pathname: it is addressed from the root of the file system (<code>/</code>). An example of an absolute filename is <code>/home/jovyan/geog0111/README.md</code>. If the filename starts with <code>~</code>, it is in effect an absolute pathname. For example:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 ls -l ~/geog0111/README.md
 </code></pre>
-
 <pre><code>-rw-r--r-- 1 ucfalew ucfa 3749 Oct  2 18:42 /home/ucfalew/geog0111/README.md
 </code></pre>
 <p>A <em>relative pathname</em> is one that does not start with <code>/</code>  or <code>~</code>. It is specified relative to where we are in the filesystem in the current shell. For example:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 ls -l ../README.md
 </code></pre>
-
 <pre><code>-rw-r--r-- 1 ucfalew ucfa 3749 Oct  2 18:42 ../README.md
 </code></pre>
 <p>Recall that we use <code>..</code> to specify 'up one level'. Then:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # cd to absolute path ~/geog0111/images
 cd ~/geog0111/images
 pwd
@@ -1871,14 +1862,13 @@ pwd
 cd ..
 pwd
 </code></pre>
-
 <pre><code>/home/ucfalew/geog0111/images
 /home/ucfalew/geog0111/bin
 /home/ucfalew/geog0111
 </code></pre>
 <h3 id="create-and-delete-a-file-cat-rm">Create and delete a file, <code>cat</code>, <code>rm</code></h3>
 <p>We can use the command <code>cat</code> to create a text files from a shell, for example:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 
 # code between the next line and the 
 # End Of File (EOF) marker will be saved in 
@@ -1895,22 +1885,19 @@ EOF
 # ls -l to see what we have: 73 Bytes here
 ls -lh work/n*
 </code></pre>
-
 <pre><code>-rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newererfile.dat
 </code></pre>
 <p>We can also use <code>cat</code> to see what is in a file:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 cat work/newererfile.dat
 </code></pre>
-
 <pre><code># this will go into the file
 hello world - this is some text in a file
 </code></pre>
 <p>We can use the command <code>rm</code> to delete a file:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 rm work/newererfile.dat
 </code></pre>
-
 <h3 id="creating-from-jupyterlab">Creating from JupyterLab</h3>
 <p>If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:</p>
 <p><img alt="JupyterLab tools" src="../images/jl.png" /></p>

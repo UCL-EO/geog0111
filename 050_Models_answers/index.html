@@ -1490,31 +1490,29 @@ measure_weight = (2 + np.random.random(tmdriver.shape))/4
 <li>Set different parameters in <code>gen_meas</code> to generate a different pseudo-measurement and repeat the process.</li>
 <li>Comment on the results</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # run your own script 
 !geog0111/lut_RMSE.py
 </code></pre>
-
 <pre><code>original parameters: [0.4, 0.0002]
 min rmse
 2.4414406001331534
 index: 1447: 0.35000000000000003,0.0002
 parameters: 0.35000000000000003 0.0002
 </code></pre>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 import numpy as np
 # Run runner() in a notebook
 from geog0111.lut_RMSE import runner, model, gen_lut
 RMSE,param,(measure,measure_weight,tmdriver) = runner()
 </code></pre>
-
 <pre><code>original parameters: [0.4, 0.0002]
 min rmse
 2.450846276410498
 index: 1848: 0.45,0.00019500000000000002
 parameters: 0.45 0.00019500000000000002
 </code></pre>
-<pre><code class="python"># confirm: same as in runner?
+<pre><code class="language-python"># confirm: same as in runner?
 # use argmin to find min, but need to flatten/reshape arrays first
 p0,p1 = param
 p0_ = np.ravel(p0)
@@ -1531,11 +1529,10 @@ p1min = p1[ip0min,ip1min]
 p = np.array([p0min,p1min])
 print(f'parameters: {p[0]} {p[1]}')
 </code></pre>
-
 <pre><code>index: 1848: 0.45,0.00019500000000000002
 parameters: 0.45 0.00019500000000000002
 </code></pre>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # Plot the reshaped RMSE values returned from this as an image
 
 # plot it
@@ -1548,11 +1545,10 @@ axs.set_ylabel('p1')
 plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7ff931478110&gt;
 </code></pre>
 <p><img alt="png" src="../050_Models_answers_files/050_Models_answers_5_1.png" /></p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 from geog0111.lut_RMSE import gen_meas,model,lut_RMSE
 
 # change the original parameters 
@@ -1595,7 +1591,6 @@ axs.set_ylabel('p1')
 plt.plot([ip1min],[ip0min],'r+',label=&quot;minimum RMSE&quot;)
 axs.legend(loc='best')
 </code></pre>
-
 <pre><code>original parameters: [0.7, 0.0005]
 min rmse
 2.3962827740874
@@ -1609,7 +1604,7 @@ parameters: 0.45 0.000505
 &lt;matplotlib.legend.Legend at 0x7ff931449d10&gt;
 </code></pre>
 <p><img alt="png" src="../050_Models_answers_files/050_Models_answers_6_2.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # error bars
 std = 1./np.sqrt(measure_weight) * 1.96
@@ -1634,20 +1629,18 @@ axs.set_xlabel(f'time / days')
 print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 </code></pre>
-
 <pre><code>[0.45     0.000505]
 measurements: tmdriver shape (92,)
 model output: tdriver shape  (365,)
 </code></pre>
 <p><img alt="png" src="../050_Models_answers_files/050_Models_answers_7_1.png" /></p>
-<pre><code class="python"># Comment on the results
+<pre><code class="language-python"># Comment on the results
 
 msg = '''
 We confirm the findings above, but are now able to see the form of the error surface in much greater detail. 
 '''
 print(msg)
 </code></pre>
-
 <pre><code>We confirm the findings above, but are now able to see the form of the error surface in much greater detail.
 </code></pre>
                 

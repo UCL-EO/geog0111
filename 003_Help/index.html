@@ -1647,10 +1647,9 @@
 <h2 id="help-method">Help Method</h2>
 <h3 id="help">help()</h3>
 <p>You can get help on an object using the <code>help()</code> method. This will return a full manual page of the class documentation. You need to gain some experience in reading these and understanding some of the terminology. </p>
-<pre><code class="python">#the method help()
+<pre><code class="language-python">#the method help()
 help(list.append)
 </code></pre>
-
 <h4 id="exercise-1">Exercise 1</h4>
 <ul>
 <li>In a new code cell, type <code>help(list)</code> and look through the information provided.</li>
@@ -1662,12 +1661,11 @@ help(list.append)
 <li>It has some methods such as <code>append(self, object, /)</code> and <code>clear(self, /)</code>.</li>
 </ul>
 <p>We now create two object instances of a list class:</p>
-<pre><code class="python">alist = [1, 2, 3]
+<pre><code class="language-python">alist = [1, 2, 3]
 blist = [4, 5, 6]
 </code></pre>
-
 <p>and apply methods we see in the Help documentation, here: <code>append()</code> and <code>clear()</code>:</p>
-<pre><code class="python">alist = [1, 2, 3]
+<pre><code class="language-python">alist = [1, 2, 3]
 blist = [4, 5, 6]
 
 # append blist as the last element of alist
@@ -1678,7 +1676,6 @@ print('alist =', alist)
 blist.clear()
 print('blist =', blist)
 </code></pre>
-
 <pre><code>alist = [1, 2, 3, [4, 5, 6]]
 blist = []
 </code></pre>
@@ -1713,9 +1710,8 @@ blist = ['four','six','zero']
 <h2 id="help_1">help?</h2>
 <p>You can get a shorter set of basic help by putting <code>?</code> after the object. </p>
 <p>In a notebook, this will show in a new window at the bottom of the book. You can get rid of this by clicking the <code>x</code>.</p>
-<pre><code class="python">list?
+<pre><code class="language-python">list?
 </code></pre>
-
 <h3 id="learning-new-things">Learning new things</h3>
 <p>Let's use that knowledge to learn something new:</p>
 <ul>

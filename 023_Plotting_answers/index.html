@@ -1458,7 +1458,7 @@
 <li>Copy the code to read the HadSEEP monthly datasets above</li>
 <li>Write and run code that plots the precipitation data for all months separate subplots.</li>
 </ul>
-<pre><code class="python"># ANSWER 
+<pre><code class="language-python"># ANSWER 
 # Copy the code to read the HadSEEP monthly datasets above
 import pandas as pd
 from geog0111.gurlpath import URL
@@ -1482,7 +1482,6 @@ df=pd.read_table(url.open('r'),**panda_format)
 # df.head: first n lines
 df.head()
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1607,7 +1606,7 @@ df.head()
 </table>
 </div>
 
-<pre><code class="python"># ANSWER 2
+<pre><code class="language-python"># ANSWER 2
 # Write and run code that plots the 
 # precipitation data for all months separate subplots.
 import matplotlib.pyplot as plt
@@ -1631,7 +1630,6 @@ for i,m in enumerate(months):
 # x-label
 axs[-1].set_xlabel(f'year')
 </code></pre>
-
 <pre><code>Text(0.5, 0, 'year')
 </code></pre>
 <p><img alt="png" src="../023_Plotting_answers_files/023_Plotting_answers_3_1.png" /></p>
@@ -1644,14 +1642,14 @@ axs[-1].set_xlabel(f'year')
 <li>Find how many days between start_date and end_date</li>
 <li>Use a loop structure to convert the all elements in <code>dates</code> to be the n umber of days after the start date</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Read the `2276931.csv` dataset into a 
 # pandas dataframe called `df`
 import pandas as pd
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
-site_dir = '/UCL-EO/geog0111/master/notebooks/data'
+site_dir = '/UCL-EO/geog0111/master/data'
 site_file = '2276931.csv'
 
 # form the URL
@@ -1663,7 +1661,6 @@ df=pd.read_csv(url.open('r'))
 # print the first 5 lines of data
 df.head(5)
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1734,7 +1731,7 @@ df.head(5)
 </table>
 </div>
 
-<pre><code class="python">from datetime import datetime
+<pre><code class="language-python">from datetime import datetime
 # ANSWER
 # Convert the field `df[&quot;DATE&quot;]` to 
 # a list called `dates`
@@ -1761,7 +1758,6 @@ print(f'ndays: {start_date} to {end_date}: {ndays}')
 ndays = [(datetime.strptime(d,&quot;%Y-%m-%d&quot;)-start_date).days for d in dates]
 print(ndays)
 </code></pre>
-
 <pre><code>2020-01-01 -&gt; 2020-01-01 00:00:00
 2020-09-02 -&gt; 2020-09-02 00:00:00
 ndays: 2020-01-01 00:00:00 to 2020-09-02 00:00:00: 245
@@ -1784,7 +1780,7 @@ ndays: 2020-01-01 00:00:00 to 2020-09-02 00:00:00: 245
 <p>and </p>
 <p><a href="https://www.amazon.co.uk/Pleasures-VINYL-Joy-Division/dp/B00XILAIWI"><img alt="Joy Division" src="https://images-na.ssl-images-amazon.com/images/I/812FS2R2v6L._AC_SL1500_.jpg" /></a></p>
 <p>If you want to go further towards re-creating this, you consult <a href="https://matplotlib.org/3.1.0/gallery/animation/unchained.html">the matplotlib gallery</a> for ideas.</p>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
@@ -1797,7 +1793,6 @@ url = URL(site,site_dir,site_file)
 df=pd.read_csv(url,header=None).transpose()
 df
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2109,7 +2104,7 @@ df
 <p>300 rows × 80 columns</p>
 </div>
 
-<pre><code class="python"># ANSWER 3
+<pre><code class="language-python"># ANSWER 3
 # Plot the pulsar samples in a series of 80 sub-plots.
 import matplotlib.pyplot as plt
 
@@ -2125,7 +2120,6 @@ for i,m in enumerate(samples):
     axs[i].plot(df[m],'k')
     axs[i].axis('off')
 </code></pre>
-
 <p><img alt="png" src="../023_Plotting_answers_files/023_Plotting_answers_9_0.png" /></p>
                 
                   

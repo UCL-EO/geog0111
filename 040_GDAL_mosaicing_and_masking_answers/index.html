@@ -1496,7 +1496,7 @@ year = 2019
 <li>find at least one pixel (row, column) which has that maximum value.</li>
 </ul>
 <p>You will need to recall how to filter and <a href="../032_More_numpy/#argmin,-argmax-and-masking">mask <code>numpy</code> arrays</a> and use <a href="../032_More_numpy/#where"><code>np.where</code></a>.</p>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # dont forget to import the packages you need
 from geog0111.modis import Modis
 import gdal
@@ -1517,10 +1517,9 @@ lai = g.ReadAsArray()
 # print the shape of the array `lai`
 print(f'shape of lai: {lai.shape}')
 </code></pre>
-
 <pre><code>shape of lai: (2400, 2400)
 </code></pre>
-<pre><code class="python"># Find the maximum valid LAI value in the dataset
+<pre><code class="language-python"># Find the maximum valid LAI value in the dataset
 # first filter for valid
 valid_mask = (lai &lt;= 100)
 # now apply, and scale
@@ -1535,7 +1534,6 @@ where_max_mask = (lai == max_lai)
 row,col = np.where(where_max_mask)
 print(row[0],col[0])
 </code></pre>
-
 <pre><code>max LAI is 7.0
 111 2199
 </code></pre>
@@ -1555,7 +1553,7 @@ print(row[0],col[0])
 * product='MCD15A3H'
 </code></pre>
 <p>that then generates a stitched VRT file with the appropriate data, and returns the VRT filename. Make sure to use the <code>year</code> and <code>doy</code> in the VRT filename.</p>
-<pre><code class="python">
+<pre><code class="language-python">
 def stitch_me(year,doy,sds='Lai_500m',\
               tile=['h17v03','h18v03'],\
               product='MCD15A3H'):
@@ -1593,8 +1591,7 @@ def stitch_me(year,doy,sds='Lai_500m',\
     stitch_vrt = gdal.BuildVRT(ofile, sds[0])
     return ofile
 </code></pre>
-
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # test
 sfile = stitch_me(2019,41)
@@ -1610,7 +1607,6 @@ if g:
 else:
     print('test failed')
 </code></pre>
-
 <pre><code>work/stitch_2019_041.vrt
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_6_1.png" /></p>
@@ -1618,7 +1614,7 @@ else:
 <ul>
 <li>For doy 41 2019, extract and plot LAI of the sub-region around London by defining the approximate pixel coordinates of the area</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 msg = '''
 For doy 41 2019, extract and plot 
 LAI of the sub-region around the 
@@ -1649,7 +1645,6 @@ im = axs.imshow(london,vmax=7,\
 fig.colorbar(im, ax=axs)
 print(msg)
 </code></pre>
-
 <pre><code>For doy 41 2019, extract and plot 
 LAI of the sub-region around the 
 London by defining the 
@@ -1668,7 +1663,7 @@ c0,c1 = 2250,2500
 <li>Plot the LAI for Luxemburg (<code>"FIPS='LU'"</code>) for doy 46, 2019</li>
 <li>find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 import gdal
 from geog0111.modis import Modis
@@ -1714,7 +1709,6 @@ fig.colorbar(im, ax=axs)
 print(msg)
 
 </code></pre>
-
 <pre><code>Plot the LAI for Luxemburg ("FIPS='LU'") for doy 46, 2019
 
 This is essentially a straight copy from the notes aboive, changing UK for LU
@@ -1722,7 +1716,7 @@ But if we do that, we will not have the correct tiles to cover Luxemburg
 We need to make sure we use ['h18v04','h18v03'] to get the whole country
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_10_1.png" /></p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 msg = '''
 Find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.
 
@@ -1742,7 +1736,6 @@ mean_lai = np.mean(lai[mask])
 # mean
 print(f'Mean LAI for LU for doy {doy} {year} is {mean_lai :.2f}')
 </code></pre>
-
 <pre><code>Find the mean LAI for Luxemburg for doy 46, 2019 to 2 d.p.
 
 For this part, we need to build a mask of valid data points
@@ -1755,7 +1748,7 @@ Mean LAI for LU for doy 41 2019 is 0.35
 <li>Use <code>Modis.get_modis</code> to plot the LAI for France for doy 49, 2019</li>
 <li>find the median LAI for France for doy 49, 2019 to 2 d.p.</li>
 </ul>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from geog0111.modis import Modis
 import matplotlib.pyplot as plt
 
@@ -1804,7 +1797,6 @@ fig.colorbar(im, ax=axs)
 
 print(msg)
 </code></pre>
-
 <pre><code>Use Modis.get_modis to plot the LAI for France for doy 49, 2019
 
 This is mostly a copy from the code in the notes. But again we need
@@ -1818,7 +1810,7 @@ is not given. This can be found to be "FIPS='FR'" from a quick
 search.
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_13_1.png" /></p>
-<pre><code class="python">
+<pre><code class="language-python">
 msg = '''
 find the median LAI for France for doy 49, 2019 to 2 d.p.
 
@@ -1841,7 +1833,6 @@ mean_lai = np.median(lai[mask])
 # mean
 print(f'Mean LAI for LU for doy {doy} {year} is {mean_lai :.2f}')
 </code></pre>
-
 <pre><code>find the median LAI for France for doy 49, 2019 to 2 d.p.
 
 Same as exercise 3, but motice median is asked for

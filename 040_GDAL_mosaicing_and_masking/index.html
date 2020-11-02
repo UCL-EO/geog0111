@@ -1695,7 +1695,7 @@
 <p>If we want to access only the local filename and/or SDS information for a particular, we can use the function:</p>
 <pre><code> files,sds = modis.get_files(year,doy)
 </code></pre>
-<pre><code class="python">from geog0111.modis import Modis
+<pre><code class="language-python">from geog0111.modis import Modis
 
 kwargs = {
     'verbose' : True,
@@ -1714,7 +1714,6 @@ files,sds = modis.get_files(year,doy)
 print(files[0])
 print(sds[0])
 </code></pre>
-
 <pre><code>--&gt; initial SDS ['Lai_500m']
 --&gt; retrieving SDS MCD15A3H from database
 --&gt; found SDS names in database
@@ -1728,9 +1727,6 @@ print(sds[0])
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
 --&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
---&gt; parsing URLs from html file 1 items
---&gt; discovered 1 files with pattern 2019.02.10 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
---&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
 
 
 /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
@@ -1738,26 +1734,28 @@ print(sds[0])
 
 
 --&gt; parsing URLs from html file 1 items
+--&gt; discovered 1 files with pattern 2019.02.10 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
+--&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H*.h17v03*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10
 --&gt; keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
 </code></pre>
 <p>The SDS description (in <code>sds[0][0]</code> here) is rather long-winded, but contains the full pathname of the dataset, along with the specification for the <code>Lai_500m</code> sub-dataset.</p>
 <p>Armed with the SDS description, we can read a dataset from the MODIS file using <code>g.ReadAsArray()</code> after we have opened it. It returns a numpy array. We introduce <code>np.unique</code> that returns the unique values in a numpy array:</p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 import numpy as np
 
 this_sds = sds[0][0]
 # open the SDS of dataset 0
 g = gdal.Open(sds[0][0])
 data = g.ReadAsArray()
-del g
+
 print(type(data))
 print('max:',data.max())
 print('max:',data.min())
 # get unique values, for interst
 print('unique values:',np.unique(data))
 </code></pre>
-
 <pre><code>&lt;class 'numpy.ndarray'&gt;
 max: 255
 max: 0
@@ -1793,7 +1791,7 @@ year = 2019
 <p>Instead then, we can use <code>gdal</code> to stitch together geospatial data. A convenient way of doing this is to form a new <code>gdal</code> <a href="https://www.gdal.org/gdal_vrttut.html">virtual file</a>, using gdal.BuildVRT (check the documentation). </p>
 <p>This function takes two inputs: the output filename (in the variable <code>ofile</code>) and a set of GDAL format filenames. </p>
 <p>We will use <code>modis.stitch_date</code> as above to provide the SDS of four MODIS tiles <code>['h17v03','h18v03','h17v04','h18v04']</code></p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from geog0111.modis import Modis
 
 kwargs = {
@@ -1806,22 +1804,20 @@ year = 2019
 
 modis = Modis(**kwargs)
 files,sds = modis.get_files(year,doy)
-#print(files)
+
 # build a VRT 
 ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 print(f'saving to {ofile}')
 stitch_vrt = gdal.BuildVRT(ofile, sds[0])
 del stitch_vrt
 </code></pre>
-
 <pre><code>saving to work/stitch_full_2019_041.vrt
 </code></pre>
 <p>We can check what it looks like with e.g. <code>gdal.Info</code>.</p>
-<pre><code class="python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
+<pre><code class="language-python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
 print(gdal.Info(stitch_vrt))
 </code></pre>
-
 <pre><code>Driver: VRT/Virtual Raster
 Files: work/stitch_full_2019_041.vrt
 Size is 4800, 4800
@@ -1867,7 +1863,7 @@ Band 1 Block=128x128 Type=Byte, ColorInterp=Gray
   Offset: 0,   Scale:0.1
 </code></pre>
 <p>So we see that we now have 4800 columns by 4800 rows dataset, centered around 0 degrees North, 0 degrees W. Let's plot the data.</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
@@ -1878,8 +1874,7 @@ im = axs.imshow(stitch_vrt.ReadAsArray()*0.1,vmax=7,\
 fig.colorbar(im, ax=axs)
 
 </code></pre>
-
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fae4d1db210&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f8a1d593a50&gt;
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_14_1.png" /></p>
 <h4 id="exercise-2">Exercise 2</h4>
@@ -1906,7 +1901,7 @@ fig.colorbar(im, ax=axs)
 <pre><code>array[3900:4400,2000:3000]
 </code></pre>
 <p>We can use standard <a href="../032_More_numpy/#slicing"><code>numpy</code> slicing</a> to sub-set then:</p>
-<pre><code class="python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
+<pre><code class="language-python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
 # get the lai data
 lai = stitch_vrt.ReadAsArray()*0.1
@@ -1923,7 +1918,6 @@ fig.colorbar(im, ax=axs)
 print(f'shape was {lai.shape}')
 print(f'shape now {pyrenees.shape}')
 </code></pre>
-
 <pre><code>shape was (4800, 4800)
 shape now (500, 1000)
 </code></pre>
@@ -1931,7 +1925,7 @@ shape now (500, 1000)
 <p>That is rather inefficient though, and it is preferable to do the slicing when we call <code>ReadAsArray()</code>. This has a similar form of syntax for sub-setting:</p>
 <pre><code>gdal.ReadAsArray(col_offset, row_offset, col_size, row_size)
 </code></pre>
-<pre><code class="python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
+<pre><code class="language-python">ofile = f&quot;work/stitch_full_{year}_{doy:03d}.vrt&quot;
 stitch_vrt = gdal.Open(ofile)
 
 # get the lai data as sub-set directly
@@ -1947,7 +1941,6 @@ fig.colorbar(im, ax=axs)
 
 print(f'shape now {pyrenees.shape}')
 </code></pre>
-
 <pre><code>shape now (500, 1000)
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_19_1.png" /></p>
@@ -1975,7 +1968,7 @@ print(f'shape now {pyrenees.shape}')
 * <code>cutlineDSName = 'data/TM_WORLD_BORDERS-0.3.shp'</code> specifies the vector boundary dataset
 * <code>cutlineWhere = "FIPS='UK'"</code> provides the condition for sub-setting</p>
 <p>We choose a value of 255 for <code>dstNodata</code> because we have seen that only values between 0 and 100 are valid for this dataset.</p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from geog0111.modis import Modis
 import matplotlib.pyplot as plt
 
@@ -1995,7 +1988,7 @@ files,sds = modis.get_files(year,doy)
 warp_args = {
     'dstNodata'     : 255,
     'format'        : 'MEM',
-    'cropToCutline' : False,
+    'cropToCutline' : True,
     'cutlineWhere'  : &quot;FIPS='UK'&quot;,
     'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
 }
@@ -2010,8 +2003,7 @@ im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
 fig.colorbar(im, ax=axs)
 
 </code></pre>
-
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fae40e2ff10&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f8a0eea8550&gt;
 </code></pre>
 <p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_22_1.png" /></p>
 <p>If you want to save the resultant file, e.g. to geoTiff or VRT file, then you would use e.g.:</p>
@@ -2035,7 +2027,7 @@ g.FlushCache()
 </ul>
 <h3 id="modisget_modis"><code>Modis.get_modis</code></h3>
 <p>For convenience, we can use the function <code>Modis.get_modis</code> to combine these:</p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from geog0111.modis import Modis
 import matplotlib.pyplot as plt
 
@@ -2060,25 +2052,18 @@ warp_args = {
 mfiles = modis.get_modis(year,doy,warp_args=warp_args)
 print(mfiles.keys())
 </code></pre>
-
-<pre><code>dict_keys(['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m', 'bandnames'])
+<pre><code>dict_keys(['Lai_500m', 'bandnames'])
 </code></pre>
-<pre><code class="python">mfiles['bandnames']
-</code></pre>
-
-<pre><code>['2019-041']
-</code></pre>
-<pre><code class="python">g = gdal.Open(mfiles['Lai_500m'])
+<pre><code class="language-python">g = gdal.Open(mfiles['Lai_500m'])
 fig, axs = plt.subplots(1,1,figsize=(12,6))
 im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
                 cmap=plt.cm.inferno_r,interpolation='nearest')
 axs.set_title(mfiles['bandnames'][0])
 fig.colorbar(im, ax=axs)
 </code></pre>
-
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fae4bc10b90&gt;
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f8a1faab110&gt;
 </code></pre>
-<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_28_1.png" /></p>
+<p><img alt="png" src="../040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_27_1.png" /></p>
 <h4 id="exercise-5">Exercise 5</h4>
 <ul>
 <li>Use <code>Modis.get_modis</code> to plot the LAI for France for doy 49, 2019</li>
@@ -2226,7 +2211,7 @@ fig.colorbar(im, ax=axs)
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2020</span>
     
   </small>
 </div>

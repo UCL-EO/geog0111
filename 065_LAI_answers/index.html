@@ -1485,7 +1485,7 @@ fips : 'BE' (Belgium)
 </code></pre>
 <p>You can then concentrate on writing and testing the various sub-codes <code>get_lc</code>, <code>get_lai</code> etc. We suggest that you start with defining <code>get_lc(year,tile,fips)</code> as above, and work your way through the sub-functions. You will find code to achieve most of these items in the notes.</p>
 <p>Don't forget to make the file executable. Don't forget to import all of the packages you will use.</p>
-<pre><code class="python">#!/usr/bin/env python
+<pre><code class="language-python">#!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
 # import required package(s)
@@ -1719,7 +1719,6 @@ if __name__ == &quot;__main__&quot;:
     main()
 
 </code></pre>
-
 <pre><code>work/mydata.BE.2018.h17v03_h18v03_h17v04_h18v04.Grasslands.csv
 class codes: [  0   1   3   4   5   6   7   9  10 255]
 we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2018
@@ -1739,7 +1738,7 @@ Class Grasslands code 1 has 19330 samples
 
 [92 rows x 2 columns]
 </code></pre>
-<pre><code class="python">from pathlib import Path
+<pre><code class="language-python">from pathlib import Path
 import matplotlib.pyplot as plt
 
 tile = ['h17v03','h18v03','h17v04','h18v04']
@@ -1768,11 +1767,10 @@ for c in ['Deciduous Broadleaf Forests','Grasslands']:
 
 axs.legend(loc='upper right')
 </code></pre>
-
 <pre><code>&lt;matplotlib.legend.Legend at 0x7fa9d7372fd0&gt;
 </code></pre>
 <p><img alt="png" src="../065_LAI_answers_files/065_LAI_answers_3_1.png" /></p>
-<pre><code class="python"># check things work as expected is quite useful
+<pre><code class="language-python"># check things work as expected is quite useful
 tile = ['h17v03','h18v03','h17v04','h18v04']
 year = '2018'
 fips = 'BE' 
@@ -1783,21 +1781,19 @@ weight           = get_weight(lai,std)
 interpolated_lai = regularise(lai,weight,sigma)
 mask             = make_mask(interpolated_lai)
 </code></pre>
-
 <pre><code>class codes: [  0   1   3   4   5   6   7   9  10 255]
 we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2018
 </code></pre>
-<pre><code class="python">x_size,y_size=(10,10)
+<pre><code class="language-python">x_size,y_size=(10,10)
 fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
 x = doy
 axs.imshow(mask,interpolation='nearest')
 axs.set_title('data mask')
 </code></pre>
-
 <pre><code>Text(0.5, 1.0, 'data mask')
 </code></pre>
 <p><img alt="png" src="../065_LAI_answers_files/065_LAI_answers_5_1.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 shape=(8,12)
 x_size,y_size=(30,20)
@@ -1812,9 +1808,8 @@ for i in range(lai.shape[0]):
     axs[i].set_title(str(doy[i]))
     fig.colorbar(im, ax=axs[i])
 </code></pre>
-
 <p><img alt="png" src="../065_LAI_answers_files/065_LAI_answers_6_0.png" /></p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 shape=(8,12)
 x_size,y_size=(30,20)
@@ -1829,7 +1824,6 @@ for i in range(interpolated_lai.shape[0]):
     axs[i].set_title(str(doy[i]))
     fig.colorbar(im, ax=axs[i])
 </code></pre>
-
 <p><img alt="png" src="../065_LAI_answers_files/065_LAI_answers_7_0.png" /></p>
                 
                   

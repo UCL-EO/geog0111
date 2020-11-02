@@ -1499,7 +1499,7 @@
 <li>within the loop, print each value of item in turn</li>
 <li>at the end of the loop, print <code>I'm done</code></li>
 </ul>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 # ANSWER 
 
 for loop
@@ -1519,7 +1519,6 @@ for item in group:
 # note the quote types
 print(&quot;I'm done&quot;)
 </code></pre>
-
 <pre><code>keys
 hat
 💄
@@ -1532,7 +1531,7 @@ I'm done
 <li>check to see if the value of <code>count</code> at the end of the loop is the same as the length of the list. </li>
 <li>Why should this be so?</li>
 </ul>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 # ANSWER
 
 for loop with enumeration
@@ -1569,7 +1568,6 @@ msg = '''
 '''
 print(msg)
 </code></pre>
-
 <pre><code>count: 0 : cat
 count: 1 : fish
 count: 2 : 🦄
@@ -1593,7 +1591,7 @@ the length of the list group is 4
 <li>use <code>range()</code> to print numbers counting down from 10 to 1 (<strong>inclusive</strong>)</li>
 <li>include comments to explain your answer</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # use range() to print numbers counting down from 10 to 1 (inclusive)
 for i in range(10,0,-1):
     print(i)
@@ -1607,7 +1605,6 @@ To count down, we use a step of -1
 '''
 print(msg)
 </code></pre>
-
 <pre><code>10
 9
 8
@@ -1631,7 +1628,7 @@ To count down, we use a step of -1
 <li>as in the previous exercise, check to see if the value of <code>count</code> at the end of the loop is the same as the length of the list. </li>
 <li>Explain why you get the result you do</li>
 </ul>
-<pre><code class="python">'''
+<pre><code class="language-python">'''
 # ANSWER
 
 for loop with enumerate()
@@ -1666,7 +1663,6 @@ msg = '''
 '''
 print(msg)
 </code></pre>
-
 <pre><code>item 0 is hat
 item 1 is dog
 item 2 is keys
@@ -1694,7 +1690,7 @@ the length of the list group is 3
 <li>use <code>.items()</code> as above to loop over each year, and print the year name and the zodiac name with an f-string of the form: <code>f'{y} is the year of the {z}'</code>, assuming <code>y</code> is the key and <code>z</code> the item.</li>
 <li>Describe what you are doing at each step</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 # Set up list of numbers (years) from 2008 to 2019 inclusive,
 years = [2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019]
@@ -1723,7 +1719,6 @@ for y,z in zodiacYear.items():
 
 # it prints the results fine
 </code></pre>
-
 <pre><code>2008 is the year of the rat
 2009 is the year of the ox
 2010 is the year of the tiger
@@ -1741,11 +1736,10 @@ for y,z in zodiacYear.items():
 <ul>
 <li>Use a list comprehension to generate a list of squared numbers from <span class="arithmatex">\(0^2\)</span> to <span class="arithmatex">\(10^2\)</span></li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Use a list comprehension to generate a list of squared numbers from 0^2 to 10^2
 [i*i for i in range(11)]
 </code></pre>
-
 <pre><code>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 </code></pre>
                 

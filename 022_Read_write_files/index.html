@@ -1666,7 +1666,7 @@
 </ul>
 <p>You will need to recall details from <a href="../020_Python_files/">020_Python_files</a> on using the two packages.</p>
 <h3 id="test">Test</h3>
-<p>You should run a <a href="../004_Accounts/">NASA account test</a> if you have not already done so.</p>
+<p>You should run a NASA account test](004_Accounts.md) if you have not already done so.</p>
 <h2 id="reading-and-writing">Reading and writing</h2>
 <p>As before, we note that we can conveniently use <code>pathlib</code> to deal with file input and output. The main methods we have seen are:</p>
 <table>
@@ -1734,7 +1734,7 @@
 <p>Note that <code>URL</code> is tolerant of calling with a <code>Path</code>: if we call <code>URL</code> with a local file, most operations will continue and apply the appropriate <code>Path</code> function.</p>
 <h2 id="read-and-write-text">read and write text</h2>
 <p>We can read text from a file with <code>Path.read_text()</code> or from a URL with <code>URL.read_text()</code>, then either <code>Path.write_text()</code> or  <code>URL.write_text()</code> to write text to a file:</p>
-<pre><code class="python">from pathlib import Path
+<pre><code class="language-python">from pathlib import Path
 # from https://www.json.org
 some_text = '''
 It is easy for humans to read and write.
@@ -1748,7 +1748,6 @@ nbytes = outfile.write_text(some_text)
 # print what we did
 print(f'wrote {nbytes} bytes to {outfile}')
 </code></pre>
-
 <pre><code>wrote 90 bytes to work/easy.txt
 </code></pre>
 <h4 id="exercise-1">Exercise 1</h4>
@@ -1758,7 +1757,7 @@ print(f'wrote {nbytes} bytes to {outfile}')
 </ul>
 <p>You learned how to split strings in <a href="../013_Python_string_methods/#split()-and-join()">013_Python_string_methods</a></p>
 <p>We can show that we get the same result reading the same file locally from <a href="../data/json-en.html"><code>data/json-en.html</code></a> or from the web from <a href="https://www.json.org/json-en.html"><code>https://www.json.org/json-en.html</code></a>:</p>
-<pre><code class="python">from geog0111.gurlpath import URL
+<pre><code class="language-python">from geog0111.gurlpath import URL
 from pathlib import Path
 
 # first read the data from URL with no cache
@@ -1766,20 +1765,14 @@ from pathlib import Path
 u = 'https://www.json.org/json-en.html'
 url = URL(u,local_dir='work',verbose=True,noclobber=False)
 data_url = url.read_text()
+
 # then from file in directory data
 data_file = Path('data/json-en.html').read_text()
 
-try:
-    assert data_url == data_file
-    print('files are the same')
-except:
-    print('files are not the same')
-    print(data_file)
-
+assert data_url == data_file
+print('files are the same')
 </code></pre>
-
-<pre><code>--&gt; WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
---&gt; trying https://www.json.org/json-en.html
+<pre><code>--&gt; trying https://www.json.org/json-en.html
 
 
 files are the same
@@ -1789,7 +1782,7 @@ files are the same
 <h3 id="modis">MODIS</h3>
 <p>One of the deepest sources of geospatial information over the last two decades is that obtained from the NASA <a href="https://modis.gsfc.nasa.gov/data/dataprod/">MODIS</a> products. We wiull make use of various MODIS datasets in this course.</p>
 <p>As a start on this, let's first access a MODIS file from the web, as we did in <a href="../020_Python_files/">020_Python_files</a>. Here, the <code>kwargs</code> are passed on to <code>URL</code>:</p>
-<pre><code class="python">from  geog0111.modis import Modis
+<pre><code class="language-python">from  geog0111.modis import Modis
 
 kwargs = {
     'verbose'    : True,
@@ -1801,42 +1794,34 @@ kwargs = {
 modis = Modis(**kwargs)
 url = modis.get_url(year=&quot;2020&quot;,month=&quot;01&quot;,day=&quot;01&quot;)[0]
 </code></pre>
-
-<pre><code>--&gt; WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
---&gt; product MCD15A3H -&gt; code MOTA
---&gt; WARNING: error reading data from /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
---&gt; trying https://e4ftl01.cr.usgs.gov/
+<pre><code>--&gt; product MCD15A3H -&gt; code MOTA
+--&gt; getting database from command line
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern 2020.01.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
---&gt; trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H*.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
 </code></pre>
 <p>We can access the binary data with <code>url.read_bytes()</code>, although we would normally want to use some package such as <a href="https://gdal.org/"><code>gdal</code></a> to interpret the data. </p>
 <p>Cached data will be used where available unless we set <code>noclobber=False</code>.</p>
-<pre><code class="python">b  = url.read_bytes()
+<pre><code class="language-python">b  = url.read_bytes()
 print(f'data for {url} cached in {url.local()}')
 print(f'dataset is {len(b)} bytes')
 </code></pre>
-
-<pre><code>--&gt; getting login
---&gt; logging in to https://e4ftl01.cr.usgs.gov/
---&gt; data read from https://e4ftl01.cr.usgs.gov/
---&gt; code 200
-
-
-data for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf cached in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store
+<pre><code>data for https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf cached in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store
 dataset is 9067184 bytes
 
 
---&gt; updated cache database in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
 --&gt; retrieving data https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf from database
+--&gt; local file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
+--&gt; updated cache database in /Users/plewis/Documents/GitHub/geog0111/notebooks/work/database.db
 --&gt; local file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store exists
 </code></pre>
 <p>We could explicitly write the data to a file, but since we are using a cache, there is no real point. This means that we can just use the URL to access the dataset. If we do need to specify the filename explicitly for any other codes, we can use <code>url.local()</code>.</p>
@@ -1872,7 +1857,7 @@ hdf_urls = modis.get_url(year="2020",month="01",day="01")
 data = gsub.ReadAsArray()
 </code></pre>
 <p>In the illustration below, we will examine only the first sub-dataset <code>g.GetSubDatasets()[0]</code>.</p>
-<pre><code class="python">import gdal
+<pre><code class="language-python">import gdal
 from  geog0111.modis import Modis
 
 # as before
@@ -1898,10 +1883,6 @@ if g:
     if gsub:
         data = gsub.ReadAsArray()
         print(f'dataset read is shape {data.shape} and type {type(data)}')
-</code></pre>
-
-<pre><code>dataset info is: [2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)
-dataset read is shape (2400, 2400) and type &lt;class 'numpy.ndarray'&gt;
 </code></pre>
 <h4 id="exercise-3">Exercise 3</h4>
 <pre><code>name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
@@ -1966,7 +1947,7 @@ dataset read is shape (2400, 2400) and type &lt;class 'numpy.ndarray'&gt;
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2020</span>
     
   </small>
 </div>

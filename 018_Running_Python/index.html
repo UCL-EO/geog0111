@@ -1701,49 +1701,44 @@
 <h3 id="running-a-python-script">Running a Python script</h3>
 <p>Python codes are written in files with the suffix <code>.py</code>, e.g. <a href="../geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a>.</p>
 <p>If the file is defined as a Python script, then we can run. it from a shell in the same way we would run any other <code>unix</code> command:</p>
-<pre><code class="python">!geog0111/helloWorld.py
+<pre><code class="language-python">!geog0111/helloWorld.py
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>A Python script is a Python code file that contains:</p>
 <pre><code>#!/usr/bin/env python
 </code></pre>
 <p>as the first line in the file, and is executable. We can see if a file is executable by getting a 'long' listing using the <code>unix</code> command <code>ls -l</code>:</p>
-<pre><code class="python">!ls -l geog0111/helloWorld.py
+<pre><code class="language-python">!ls -l geog0111/helloWorld.py
 </code></pre>
-
 <pre><code>-rwxr-xr-x  1 plewis  staff  514  8 Oct 19:46 [31mgeog0111/helloWorld.py[m[m
 </code></pre>
 <p>The first field gives us the file permissions:</p>
 <pre><code>-rwxr-xr-x
 </code></pre>
 <p>with the <code>x</code> bit telling us that it is executable. The permissions for this file are set to <code>755</code> (<code>111</code> <code>101</code> <code>101</code> in octal) which we can set with the <code>unix</code>  command:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 </code></pre>
-
 <pre><code>-rwxr-xr-x  1 plewis  staff  514  8 Oct 19:46 geog0111/helloWorld.py
 </code></pre>
 <h3 id="running-python-code-from-python">Running Python code from Python</h3>
 <p>We can also run the Python code contained in <a href="../geog0111/helloWorld.py"><code>geog0111/helloWorld.py</code></a> from a <code>notebook</code> cell using <code>%run</code> (or from an <code>ipython</code> prompt using just <code>run</code>):</p>
-<pre><code class="python">%run geog0111/helloWorld.py
+<pre><code class="language-python">%run geog0111/helloWorld.py
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>Another thing we can do is to <code>import</code> the code from the Python file into Python:</p>
-<pre><code class="python">from geog0111.helloWorld import helloWorld
+<pre><code class="language-python">from geog0111.helloWorld import helloWorld
 helloWorld()
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>This import statement imports the module <code>helloWorld</code> from the library <code>geog0111</code> (w</p>
 <h3 id="form-of-a-python-script">Form of a Python script</h3>
 <p>We will go into more details on this in later classes, but the main format of a Python file should be along the lines of the following example:</p>
-<pre><code class="python">#!/usr/bin/env python
+<pre><code class="language-python">#!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
 '''
@@ -1777,7 +1772,6 @@ if __name__ == &quot;__main__&quot;:
     main()
 
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>This same code is contained in the file <a href="../geog0111/helloWorld.py">geog0111/helloWorld.py</a>. Although the amount of comments and code in there might seem a little overkill just to print out <code>hello world</code>, it is good for you to get into the habit of writing your Python codes in this way. </p>
@@ -1811,9 +1805,8 @@ __email__     = "p.lewis@ucl.ac.uk"
 </code></pre>
 <p>as in the examples above. The syntax <code>def helloWorld():</code> defines a function called <code>helloWorld</code> with no arguments (there is nothing defined here in the brackets). The code for the function is indented (4 spaces). </p>
 <p>After defining the function, we give a document string to associate with it and give users help information:</p>
-<pre><code class="python">help(helloWorld)
+<pre><code class="language-python">help(helloWorld)
 </code></pre>
-
 <pre><code>Help on function helloWorld in module __main__:
 
 helloWorld()
@@ -1833,27 +1826,23 @@ def main():
 </code></pre>
 <p>This is pretty standard syntax, so we will not go into details now, other than to note that this is the mechanism by which running this file as a script makes the call to <code>main()</code>, which then calls our example code running <code>helloWorld()</code>.</p>
 <p>The final thing we need to do is to make our script executable. This involves setting some permissions on the file with the function <code>Path().chmod()</code>. The code to do this, for the file  <a href="../geog0111/helloWorld.py">geog0111/helloWorld.py</a> from Python is:</p>
-<pre><code class="python">from pathlib import Path
+<pre><code class="language-python">from pathlib import Path
 Path('geog0111/helloWorld.py').chmod(int('755', base=8))
 </code></pre>
-
 <p>Sometimes, we might use the <code>unix</code> (<code>bash</code>) shell equivalent command to do this:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 chmod 755 geog0111/helloWorld.py
 </code></pre>
-
 <p>Now we can run the Python code from a code cell:</p>
-<pre><code class="python">%run geog0111/helloWorld.py
+<pre><code class="language-python">%run geog0111/helloWorld.py
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>Note that using <code>%run</code> in the code cell (or just <code>run</code> in other Python codes) allows us to run a python command from a Python file in the cell, rather than the usual Python codes.</p>
 <p>An alternative is to make the whole cell into one to run bash commands with <code>%%bash</code>:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 geog0111/helloWorld.py
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <h3 id="follow-up-on-doc-strings">Follow-up on doc-strings</h3>
@@ -1886,7 +1875,7 @@ geog0111/helloWorld.py
 <p>To do the task below, you will need to invoke a text editor of some sort to create the Python file. </p>
 <h3 id="create-in-bash">Create in bash</h3>
 <p>We can simply create a file in a bash script by following the example below:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 
 # code between the next line and the 
 # End Of File (EOF) marker will be saved in 
@@ -1927,13 +1916,11 @@ EOF
 # Chmod 755 to make the file executable
 chmod 755 work/myHelloWorld.py
 </code></pre>
-
 <p>This should have created a file called <code>work/myHelloWorld.py</code> and made it executable (using bash to call chmod, rather than doing it in Python as above). </p>
 <p><strong>Be aware that backquotes <code>` have a special meaning in</code>bash<code>, so make sure you do not copy any backquotes from the text in these documents when you use them in</code>bash`.</strong></p>
 <p>Now run it as above:</p>
-<pre><code class="python">%run work/myHelloWorld.py
+<pre><code class="language-python">%run work/myHelloWorld.py
 </code></pre>
-
 <pre><code>hello world
 </code></pre>
 <p>You should now be able to load this Python file directly in Jupyter, using <code>File -&gt; Open</code> then click through to the Python file you generated. </p>
@@ -1971,7 +1958,7 @@ chmod 755 work/myHelloWorld.py
     print(f'hello from {name}')
 </code></pre>
 <p>Let's test that before going further:</p>
-<pre><code class="python">def hello(name):
+<pre><code class="language-python">def hello(name):
     '''
     function to print 'hello from {name}'
     '''
@@ -1981,7 +1968,6 @@ chmod 755 work/myHelloWorld.py
 hello('Fred')
 hello('Hermione')
 </code></pre>
-
 <pre><code>hello from Fred
 hello from Hermione
 </code></pre>
@@ -1999,7 +1985,7 @@ hello from Hermione
 <pre><code>TypeError: hello() missing 1 required positional argument: 'name'
 </code></pre>
 <p>Again, this is an incremental change, so let's test the new code before going any further:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 
 # code between the next line and the 
 # End Of File (EOF) marker will be saved in 
@@ -2039,11 +2025,9 @@ EOF
 # Chmod 755 to make the file executable
 chmod 755 work/hello.py
 </code></pre>
-
-<pre><code class="python"># run code
+<pre><code class="language-python"># run code
 %run work/hello.py
 </code></pre>
-
 <pre><code>hello from Fred
 </code></pre>
 <p>We now have a more flexible function <code>hello(name)</code>, but when we run the script <code>work/hello.py</code> we will always be running the same code in <code>main()</code>, so we can only ever get a hello from Fred.</p>
@@ -2057,11 +2041,10 @@ chmod 755 work/hello.py
 <pre><code>sys.argv
 </code></pre>
 <p>Let's just see how that works:</p>
-<pre><code class="python">import sys
+<pre><code class="language-python">import sys
 
 print(sys.argv)
 </code></pre>
-
 <pre><code>['/Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/Users/plewis/Library/Jupyter/runtime/kernel-68697deb-b842-43cd-a11f-4edaa8a97834.json']
 </code></pre>
 <p>Running from the notebook, we get to see the full command that is run when we launch this notebook. Since <code>sys</code> is a package, we first import it:</p>
@@ -2069,7 +2052,7 @@ print(sys.argv)
 </code></pre>
 <p>Then we can access the list of arguments <code>sys.argv</code>. The first item in the list, <code>sys.argv[0]</code>  is the name of the program being run (<code>ipykernel_launcher.py</code>). The other items in the list are the command line arguments for running the notebook.</p>
 <p>Lets see how this applies to running our own code. We generate a short test script:</p>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 
 cat &lt;&lt; EOF &gt; work/test.py
 #!/usr/bin/env python
@@ -2109,10 +2092,8 @@ EOF
 # Chmod 755 to make the file executable
 chmod 755 work/test.py
 </code></pre>
-
-<pre><code class="python">%run work/test.py Hermione
+<pre><code class="language-python">%run work/test.py Hermione
 </code></pre>
-
 <pre><code>hello from Hermione
 </code></pre>
 <p>We see that running the script:</p>
@@ -2247,7 +2228,7 @@ EOF
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 9, 2020</span>
     
   </small>
 </div>

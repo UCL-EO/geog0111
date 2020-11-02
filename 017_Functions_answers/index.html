@@ -1483,7 +1483,7 @@
 <li>show the doc string using <code>help()</code> </li>
 </ul>
 <p><strong>Advice</strong>: make sure it has an appropriate document string, based on the example in the notes, and also check that you have the indentation correct for the code in the function. Notice the semicolon <code>:</code> at the end of the <code>def</code> statement.</p>
-<pre><code class="python"># ANSWER 1
+<pre><code class="language-python"># ANSWER 1
 
 # in a new code cell below, write a function called my_name that prints your name
 def my_name():
@@ -1493,19 +1493,16 @@ def my_name():
     '''
     print('Lewis')
 </code></pre>
-
-<pre><code class="python"># ANSWER 2
+<pre><code class="language-python"># ANSWER 2
 # demonstrate that your code works (i.e. run it in a code cell)
 my_name()
 </code></pre>
-
 <pre><code>Lewis
 </code></pre>
-<pre><code class="python"># ANSWER 3
+<pre><code class="language-python"># ANSWER 3
 # show the doc string using help()
 help(my_name)
 </code></pre>
-
 <pre><code>Help on function my_name in module __main__:
 
 my_name()
@@ -1542,7 +1539,7 @@ my_name()
 <li>design a function to convert two lists of the same length into a dictionary</li>
 <li>the design must include relevant comments, document strings and tests</li>
 </ul>
-<pre><code class="python"># Answer 1
+<pre><code class="language-python"># Answer 1
 
 # design a function to convert two lists of 
 # the same length into a dictionary
@@ -1575,7 +1572,6 @@ month_days  = [31,29]
 '''
 print(msg)
 </code></pre>
-
 <pre><code>The output is a dictionary, with keys and values
 
 example output from a previous exercise, with 
@@ -1595,7 +1591,7 @@ something like:
 month_names = ['January','February']
 month_days  = [31,29]
 </code></pre>
-<pre><code class="python"># Answer 2
+<pre><code class="language-python"># Answer 2
 
 # design a function to convert two lists of 
 # the same length into a dictionary
@@ -1622,11 +1618,10 @@ print(retval)
 assert retval == {'January': 31, 'February': 29}
 print('test passed')
 </code></pre>
-
 <pre><code>{'January': 31, 'February': 29}
 test passed
 </code></pre>
-<pre><code class="python"># Answer 3
+<pre><code class="language-python"># Answer 3
 # Develop skeleton
 # - Write a skeleton function defining the purpose, inputs and outputs. 
 # In the skeleton code, you can just pass the inputs straight to the outputs.
@@ -1671,7 +1666,6 @@ help(list2dict)
 assert list2dict(['January','February'],[31,29]) == (['January', 'February'], [31, 29])
 print('test passed')
 </code></pre>
-
 <pre><code>function returns: (['January', 'February'], [31, 29])
 Help on function list2dict in module __main__:
 
@@ -1692,7 +1686,7 @@ list2dict(keys, values)
 
 test passed
 </code></pre>
-<pre><code class="python"># Answer 4
+<pre><code class="language-python"># Answer 4
 # Implement the core code in the function
 
 # we call our function list2dict
@@ -1736,7 +1730,6 @@ help(list2dict)
 assert list2dict(['January','February'],[31,29]) == {'January': 31, 'February': 29}
 print('test passed')
 </code></pre>
-
 <pre><code>function returns: {'January': 31, 'February': 29}
 Help on function list2dict in module __main__:
 
@@ -1757,7 +1750,7 @@ list2dict(keys, values)
 
 test passed
 </code></pre>
-<pre><code class="python"># Answer 5
+<pre><code class="language-python"># Answer 5
 # Consider any flaws in your code and how you might improve it
 
 msg = '''
@@ -1829,7 +1822,6 @@ help(list2dict)
 assert list2dict(['January','February'],[31,29]) == {'January': 31, 'February': 29}
 print('test passed')
 </code></pre>
-
 <pre><code># Consider any flaws in your code and how you might improve it
 
 Since we require the inputs to be lists, we could ensure this
@@ -1877,7 +1869,7 @@ test passed
 </li>
 <li>Make sure you perform tests as above, and that you update document strings</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Starting from the function list2dict(keys,values) 
 # that you developed above, add keyword arguments 
 # to the code to achieve the following:
@@ -1943,15 +1935,13 @@ month_days  = [31,29]
 print(f'function returns: {list2dict(month_names,month_days)}')
 
 </code></pre>
-
 <pre><code>function returns: {'January': 31, 'February': 29}
 </code></pre>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # - Confirm that your document string is useful.
 help(list2dict)
 
 </code></pre>
-
 <pre><code>Help on function list2dict in module __main__:
 
 list2dict(keys, values, check=False, verbose=False)
@@ -1973,7 +1963,7 @@ list2dict(keys, values, check=False, verbose=False)
         verbose : print detailed information, default False
         check   : perform internal tests
 </code></pre>
-<pre><code class="python">#answer
+<pre><code class="language-python">#answer
 # tests for the KWARGS
 
 dash='='*5
@@ -1999,7 +1989,6 @@ assert list2dict(['January','February'],[31,29],\
               == {'January': 31, 'February': 29}
 print('tests passed')
 </code></pre>
-
 <pre><code>===== no kwargs =====
 test passed
 ===== verbose=True =====
@@ -2038,7 +2027,7 @@ tests passed
 <li>Test this function, inputting a list of integers from 0 to 4 inclusive</li>
 <li>Write a more Pythonic version of this, making use of list comprehensions and <code>lambda</code> functions</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 
 msg = '''
 Consider the function:
@@ -2098,7 +2087,6 @@ ilist = [0,1,2,3,4]
 olist = power_of_2(ilist)
 print(f'inputs:    {ilist}\noutputs: -&gt;{olist}')
 </code></pre>
-
 <pre><code>Consider the function:
 
         def power_of_2(ilist):
@@ -2130,7 +2118,7 @@ print(f'inputs:    {ilist}\noutputs: -&gt;{olist}')
 inputs:    [0, 1, 2, 3, 4]
 outputs: -&gt;[1, 2, 4, 8, 16]
 </code></pre>
-<pre><code class="python">msg='''
+<pre><code class="language-python">msg='''
 * Write a more Pythonic version of this, 
   making use of list comprehensions and lambda functions
 '''
@@ -2144,7 +2132,6 @@ ilist = [0,1,2,3,4]
 olist = [twop(i) for i in ilist]
 print(f'inputs:    {ilist}\noutputs: -&gt;{olist}')
 </code></pre>
-
 <pre><code>* Write a more Pythonic version of this, 
   making use of list comprehensions and lambda functions
 

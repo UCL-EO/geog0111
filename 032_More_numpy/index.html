@@ -1734,7 +1734,7 @@
 <p>Data from this is stored in the datafile <a href="../data/satellites-1957-2021.gz">data/satellites-1957-2021.gz</a>. This is a compressed text file.</p>
 <p>We can use <code>np.loadtxt</code> to read files of this nature into numpy arrays in a similar way to how we <a href="../021_Streams/#Reading-data-into-pandas">read into panadas</a>. If the dataset is not <code>CSV</code> but simply a whitespaced text file, it is often easier to use <code>np.loadtxt</code> than <code>pandas</code>.</p>
 <p>In the case of this dataset, we wish to interpret the launch counts as integers, so we convert the data we read to integers.</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 filename = 'data/satellites-1957-2021.gz'
 data=np.loadtxt(filename).astype(np.int)
@@ -1742,7 +1742,6 @@ data=np.loadtxt(filename).astype(np.int)
 # shape of data
 print(data.shape)
 </code></pre>
-
 <pre><code>(12, 64)
 </code></pre>
 <p>The dataset dimensions are to <code>(month,year)</code>. Indices into the array are zero-based, so we can relate month number (1 being January) and year number to index <code>(i,j)</code> through:</p>
@@ -1750,13 +1749,12 @@ print(data.shape)
 j = year - 1957
 </code></pre>
 <p>We can print some summary statistics:</p>
-<pre><code class="python">print(f'data shape {data.shape}')
+<pre><code class="language-python">print(f'data shape {data.shape}')
 
 print(f'some summary statistics over the period 1957 to 2021:')
 print(f'The total number of launches is {data.sum()}')
 print(f'The mean number of launches is {data.mean() : .2f} per month')
 </code></pre>
-
 <pre><code>data shape (12, 64)
 some summary statistics over the period 1957 to 2021:
 The total number of launches is 45689
@@ -1773,7 +1771,7 @@ The mean number of launches is  59.49 per month
 </code></pre>
 <p>is the data for month index 0 (January) <strong>and</strong> 1 (February)  etc. </p>
 <p>We can get more specific statistics then such as:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 filename = 'data/satellites-1957-2021.gz'
 data=np.loadtxt(filename).astype(np.int)
@@ -1783,7 +1781,6 @@ print(data[0].shape)
 print(f'mean launches in month 0: {data[0].mean() :.2f}')
 print(f'max  launches in month 0: {data[0].max()}')
 </code></pre>
-
 <pre><code>(64,)
 mean launches in month 0: 33.95
 max  launches in month 0: 237
@@ -1792,12 +1789,11 @@ max  launches in month 0: 237
 <pre><code>data[:,0]
 </code></pre>
 <p>refers to all elements in dimension 0 (i.e. all months here) by only year 0 (1957).</p>
-<pre><code class="python">print(data[:,0].shape)
+<pre><code class="language-python">print(data[:,0].shape)
 
 print(f'mean launches in year 1957: {data[:,0].sum()}')
 print(f'max  launches in year 1957: {data[:,0].max()}')
 </code></pre>
-
 <pre><code>(12,)
 mean launches in year 1957: 3
 max  launches in year 1957: 2
@@ -1809,28 +1805,25 @@ max  launches in year 1957: 2
 </ul>
 <p>The <code>numpy</code> formatting for slice in an array is <code>start:stop:step</code> as we have seen. Sometimes it is convenient to use the function <code>slice(start:stop:step)</code> to specify this.</p>
 <p>Recall that the array <code>data</code> is two-dimensional of shape <code>(12, 64)</code> where the first axis is month and the second year after 1957. To describe the months of May to July inclusive (axis 0: index <code>4:7</code>) and years <code>1990-2000</code> inclusive (axis 1: index <code>1990-1957:2000-1957+1</code> = <code>33:44</code>) we can write:</p>
-<pre><code class="python">subset = data[4:7,33:44]
+<pre><code class="language-python">subset = data[4:7,33:44]
 print(f'shape of subset is {subset.shape}')
 </code></pre>
-
 <pre><code>shape of subset is (3, 11)
 </code></pre>
 <p>Equivalently, using <code>slice</code>:</p>
-<pre><code class="python">axis0 = slice(4,7)
+<pre><code class="language-python">axis0 = slice(4,7)
 axis1 = slice(33,44)
 
 subset = data[axis0,axis1]
 print(f'shape of subset is {subset.shape}')
 print(f'slices: {axis0},{axis1}')
 </code></pre>
-
 <pre><code>shape of subset is (3, 11)
 slices: slice(4, 7, None),slice(33, 44, None)
 </code></pre>
 <p>One advantage of using <code>slice</code> is that we can store the axis slice information in a variable. We access the individual elements as:</p>
-<pre><code class="python">axis0.start,axis0.stop,axis0.step
+<pre><code class="language-python">axis0.start,axis0.stop,axis0.step
 </code></pre>
-
 <pre><code>(4, 7, None)
 </code></pre>
 <h4 id="exercise-2">Exercise 2</h4>
@@ -1845,7 +1838,7 @@ slices: slice(4, 7, None),slice(33, 44, None)
 <p>Whilst it is perfectly possibly to loop over one dimension of an array and calculate statistics over the other dimension, it is not very <a href="https://docs.python-guide.org/writing/style/">Pythonic</a> to do it that way. </p>
 <p>Instead. we can specify the array axes over which we want the operation to occur.</p>
 <p>For example, in our satellite launch dataset, the dimension 0 is month index and the dimension 1 is year index. To calculate the mean over all years then, we apply the <code>mean</code> function to axis 1:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 filename = 'data/satellites-1957-2021.gz'
 data=np.loadtxt(filename).astype(np.int)
@@ -1853,7 +1846,6 @@ data=np.loadtxt(filename).astype(np.int)
 # mean over all years
 data.mean(axis=1)
 </code></pre>
-
 <pre><code>array([ 33.953125,  58.515625,  45.234375,  49.734375, 103.21875 ,
         90.1875  ,  51.234375,  38.765625,  68.78125 ,  63.046875,
         51.140625,  60.078125])
@@ -1880,7 +1872,7 @@ data.mean(axis=1)
 <li>masking out array elements that meet some condition</li>
 </ul>
 <p>The first set of these, <code>argmin()</code> and <code>argmax()</code> are straightforward to visualise and use:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 # read data as before
 filename = 'data/satellites-1957-2021.gz'
@@ -1904,7 +1896,6 @@ print(f'the year with most   launches was',\
 print(f'the year with fewest launches was',\
       f'{year_array[imin]} with {sum_per_year[imin]}')
 </code></pre>
-
 <pre><code>0 42
 the year with most   launches was 1999 with 4195
 the year with fewest launches was 1957 with 3
@@ -1918,7 +1909,7 @@ the year with fewest launches was 1957 with 3
 <p>Boolean arrays in <code>numpy</code> are important in the efficient use of arrays, as they can act as a mask on an array. </p>
 <p>For example:</p>
 <p>The form of filtering above (<code>high = sum_per_year &gt;= 1000</code>) produces a numpy array of the same shape as that operated on (<code>sum_per_year</code> here) of <code>bool</code> data type.  It has entries of <code>True</code> where the condition is met, and <code>False</code> where it is not met.</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 # read data as before
 filename = 'data/satellites-1957-2021.gz'
@@ -1929,7 +1920,6 @@ sum_per_year = data.sum(axis=0)
 high = sum_per_year &gt;= 1000
 print(high)
 </code></pre>
-
 <pre><code>[False False False False False False False False  True False False False
  False False False False False False  True  True False False False False
   True False False False False  True  True False False False False False
@@ -1938,21 +1928,19 @@ print(high)
  False False False False]
 </code></pre>
 <p>We can think of this logical array as a 'data mask' that we use to select (filter) entries:</p>
-<pre><code class="python"># form the data mask
+<pre><code class="language-python"># form the data mask
 high = (sum_per_year &gt;= 1000)
 # form an attau of years
 years = 1957 + np.arange(data.shape[1])
 # select only elements where mask is True
 print(f'years with 1000 or more launches {years[high]}')
 </code></pre>
-
 <pre><code>years with 1000 or more launches [1965 1975 1976 1981 1986 1987 1993 1994 1999 2006]
 </code></pre>
 <p>We can apply logical operators to boolean arrays:</p>
-<pre><code class="python">low = np.logical_not(high)
+<pre><code class="language-python">low = np.logical_not(high)
 print(low)
 </code></pre>
-
 <pre><code>[ True  True  True  True  True  True  True  True False  True  True  True
   True  True  True  True  True  True False False  True  True  True  True
  False  True  True  True  True False False  True  True  True  True  True
@@ -1966,12 +1954,11 @@ print(low)
 sum_per_year &gt;= 1000
 </code></pre>
 <p>Since these arrays are of the same shape, we can combine them element-wise:</p>
-<pre><code class="python">c1 = (years &gt; 2000)
+<pre><code class="language-python">c1 = (years &gt; 2000)
 c2 = (sum_per_year &gt;= 1000)
 combined = np.logical_and(c1,c2)
 print(years[combined])
 </code></pre>
-
 <pre><code>[2006]
 </code></pre>
 <h3 id="where"><code>where</code></h3>
@@ -1979,7 +1966,7 @@ print(years[combined])
 <p>To do this, we can use the <code>np.where()</code> method. This takes a <code>bool</code> array as its argument (such as our data masks or other conditions) and returns a tuple of the indices where this is set <code>True</code>. </p>
 <p>As an example, lets find month, year pairs where the number of launches is greater than 500. </p>
 <p>For a final flourish, we load the dataset into <code>pandas</code> to print it in a table:</p>
-<pre><code class="python"># find month, year where launches &gt; 500
+<pre><code class="language-python"># find month, year where launches &gt; 500
 import numpy as np
 import pandas as pd
 
@@ -1999,7 +1986,6 @@ high_launches = np.array([month_index+1,year_index+1957]).T
 df = pd.DataFrame(high_launches,columns=['month','year'])
 df
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2071,7 +2057,7 @@ df
 <p>We have seen that we can build multi-dimensional arrays in <code>numpy</code>. Sometimes, for processing though, we need to modify the number of dimensions of an array. There are several ways to do this.</p>
 <p>First, if we want simply to collapse a multi-dimensional array into a 1D array, we can use <code>ravel</code> or <code>flatten</code>. A useful case to consider for this is when we process on a grid.</p>
 <p>We generate a grid of <code>locations</code> similar to <a href="../031_Numpy/#np.linspace,-np.arange,-np.mgrid">previously</a>:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 
 p0min,p0max,p0step = -1.0,1.0,0.1
 p1min,p1max,p1step = -1.0,1.0,0.1
@@ -2082,7 +2068,6 @@ p0,p1 = np.mgrid[p0min:p0max+p0step:p0step,\
 print(f'shape of p0 : {p0.shape}')
 print(f'shape of p1 : {p1.shape}')
 </code></pre>
-
 <pre><code>shape of p0 : (21, 21)
 shape of p1 : (21, 21)
 </code></pre>
@@ -2090,7 +2075,7 @@ shape of p1 : (21, 21)
 <pre><code>   y = 1 + 2 * (p0 - 0.5)**2 + 3 * (p1 - 0.4)**2
 </code></pre>
 <p>as an example, or the range <code>[-1,1]</code> for both parameters. It should be clear that the minimum of this function lies at <code>(0.5,0.4)</code>, but we want to show this numerically.</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 
 # our function
 y = 1 + 2 * (p0 - 0.5)**2 + 3 * (p1 - 0.4)**2 
@@ -2100,29 +2085,26 @@ fig, axs = plt.subplots(1,1,figsize=(6,5))
 im = axs.imshow(y,interpolation='nearest',vmax=2)
 fig.colorbar(im, ax=axs)
 </code></pre>
-
 <pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7f2513d8bf50&gt;
 </code></pre>
 <p><img alt="png" src="../032_More_numpy_files/032_More_numpy_41_1.png" /></p>
 <p>We could  use <code>np.where</code> to find the index of the minimum point by seeking where it equals the minimum value. That is not always a good idea, as there might be rounding errors involved.</p>
 <p>A more robust approach is to use <code>np.argmin</code> to find the index at which the argument has its minimum.</p>
-<pre><code class="python">imin = np.argmin(y)
+<pre><code class="language-python">imin = np.argmin(y)
 print(f'index of minimum point: {imin}')
 </code></pre>
-
 <pre><code>index of minimum point: 329
 </code></pre>
 <p>The index of <code>329</code> is returned which might at first seem odd: the array <code>y</code> is two dimensional of shape <code>(21,21)</code> so how can we have a 1D index of <code>329</code>?</p>
 <p>The answer is that <code>np.argmin</code> operates on a 'flattened' version of the array. When we used it <a href="./#argmin,-argmax">above</a> this issue was not apparent because the input array was 1D.</p>
 <p>If we want to apply the flattened array index, we must first then flatten the array. There are two functions for this: <code>flatten</code> and <code>ravel</code>. They both have a similar effect, but <code>flatten</code> operates of a <em>copy</em> of the array. This means it uses more memory. But also any changes we make are not reflected in the original array. Very often we use <code>ravel</code> instead then. This takes no more memory, but any changes we make to the ravelled array will also happen to the original array. You should think carefully about which you use in any particular circumstance, but unless you really need to operate on a copy, you might generally use <code>ravel</code>.</p>
-<pre><code class="python">yrav = y.ravel()
+<pre><code class="language-python">yrav = y.ravel()
 print(f'shape of y    : {y.shape}')
 print(f'shape of yrav : {yrav.shape}')
 
 p0min,p1min = p0.ravel()[imin],p1.ravel()[imin]
 print(f'parameter at minimum : {p0min : .3f},{p1min : .3f}')
 </code></pre>
-
 <pre><code>shape of y    : (21, 21)
 shape of yrav : (441,)
 parameter at minimum :  0.500, 0.400
@@ -2131,20 +2113,19 @@ parameter at minimum :  0.500, 0.400
 <p>These two functions are an integral part of efficient use of <code>numpy</code> for large-dimensional problems. We can recognise in the example above that it makes no difference to the processing whether we search for the <code>argmin</code> over a 1D or 2D array. It makes sense then to treat it as a 1D problem.</p>
 <p>The same sort of issues arise when we are dealing with image processing: although an image is defined over a 2D spatial extent, if the algorithm we are applying is operated independently per pixel, then this can be equally treated as a 1D problem. If we had a problem to solve over an image space and over a parameter space (as we come across see later) then we can simplify our data structure by collapsing unnecessary multi-dimensional arrays into 1D arrays. In that case, it might not always be possible to use <code>ravel</code> as we might need to 'flatten' different parts of the dataset in different fashions. For this, more refined control on array shape, we use <code>reshape</code>.</p>
 <p>To illustrate this, we generate a function y over the parameter space <code>p0</code>, <code>p1</code> that we suppose described our function at different time steps:</p>
-<pre><code class="python">y0 = 1 + 2 * (p0 - 0.5)**2 + 3 * (p1 - 0.4)**2 
+<pre><code class="language-python">y0 = 1 + 2 * (p0 - 0.5)**2 + 3 * (p1 - 0.4)**2 
 y1 = 1 + 4 * (p0 - 0.2)**2 + 3 * (p1 - 0.1)**2 
 y2 = 1 + 8 * (p0 - 0.7)**2 + 6 * (p1 - 0.3)**2 
 
 y = np.array([y0,y1,y2])
 print(f'shape of y : {y.shape}')
 </code></pre>
-
 <pre><code>shape of y : (3, 21, 21)
 </code></pre>
 <p><code>y</code> is a 3D array with the first axis representing time, and the second and third the parameter space. We can see that the minima should occur at <code>[0.5 0.2 0.7],[0.4 0.1 0.3]</code></p>
 <p>We wish to find parameters that give the minimum of the function <em>for each time step</em> (i.e. solve numerically for <code>[0.5 0.2 0.7],[0.4 0.1 0.3]</code>). The result we expect then is that each parameter should be an array of shape <code>(3,)</code>.</p>
 <p>We can use <code>np.argmin</code> again for this problem, as we can specify the axis over which to operate for <code>argmin</code>. However, it can only operate over a single axis, so we must first re-form the array to one of shape <code>(3,21 * 21)</code>. The shape of the first dimension will be simply <code>y.shape[:1]</code>. We can multiply the last two elements of the shape array together using <code>np.prod</code> as <code>np.prod(np.array(y.shape[1:]))</code>, then use the new shape with <code>np.reshape</code>:</p>
-<pre><code class="python"># get the new shape we want
+<pre><code class="language-python"># get the new shape we want
 firstpart  = y.shape[:1]
 print(firstpart)
 
@@ -2155,47 +2136,42 @@ print(secondpart)
 newshape = (*y.shape[:1],np.prod(np.array(y.shape[1:])))
 print(newshape)
 </code></pre>
-
 <pre><code>(3,)
 441
 (3, 441)
 </code></pre>
-<pre><code class="python"># reshape 
+<pre><code class="language-python"># reshape 
 y_ = y.reshape(newshape)
 
 print(f'shape of y  : {y.shape}')
 print(f'shape of y_ : {y_.shape}')
 </code></pre>
-
 <pre><code>shape of y  : (3, 21, 21)
 shape of y_ : (3, 441)
 </code></pre>
-<pre><code class="python"># argmin over axis 1 (the parameters)
+<pre><code class="language-python"># argmin over axis 1 (the parameters)
 imin = np.argmin(y_,axis=1)
 print(f'1D index of minimum point: {imin}')
 </code></pre>
-
 <pre><code>1D index of minimum point: [329 263 370]
 </code></pre>
 <p>We may want to know the 2D index in the parameter grid for some applications. This can be conveniently calculated with <code>np.unravel_index</code>:</p>
-<pre><code class="python">ip0min,ip1min = np.unravel_index(imin,p0.shape)
+<pre><code class="language-python">ip0min,ip1min = np.unravel_index(imin,p0.shape)
 
 print(f'2D index of minimum point: {ip0min}, {ip1min}')
 p0min = p0[ip0min,ip1min]
 p1min = p1[ip0min,ip1min]
 print(f'parameter at minimum : {p0min},{p1min}')
 </code></pre>
-
 <pre><code>2D index of minimum point: [15 12 17], [14 11 13]
 parameter at minimum : [0.5 0.2 0.7],[0.4 0.1 0.3]
 </code></pre>
 <p>which corresponds with what we expected.</p>
 <p>That's great: by appropriate use of <code>reshape</code> we have found the flattened-parameter index for each of the time samples where the function is minimum.</p>
 <p>We could then print the parameters at the minimum as above, using the index array <code>imin</code> as indices into the flattened parameter arrays:</p>
-<pre><code class="python">p0min,p1min = p0.ravel()[imin],p1.ravel()[imin]
+<pre><code class="language-python">p0min,p1min = p0.ravel()[imin],p1.ravel()[imin]
 print(f'parameter at minimum : {p0min},{p1min}')
 </code></pre>
-
 <pre><code>parameter at minimum : [0.5 0.2 0.7],[0.4 0.1 0.3]
 </code></pre>
 <h2 id="reconciling-arrays-npnewaxis">Reconciling arrays: <code>np.newaxis</code></h2>
@@ -2204,7 +2180,7 @@ print(f'parameter at minimum : {p0min},{p1min}')
 <pre><code>y = c + m*x
 </code></pre>
 <p>where <code>x</code> is some <code>numpy</code> array of values of <code>x</code> and the linear model parameters are <code>c</code> (intercept) and <code>m</code> (slope). This is efficient in <code>numpy</code> and straightforward to do if <code>c</code> and <code>m</code> are scalar values (i.e. just a float number):</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 import numpy as np
 
 def linear_func(c,m,x):
@@ -2227,13 +2203,12 @@ axs.set_ylabel('y')
 print(f'x-shape: {x.shape}')
 print(f'y-shape: {y.shape}')
 </code></pre>
-
 <pre><code>x-shape: (21,)
 y-shape: (21,)
 </code></pre>
 <p><img alt="png" src="../032_More_numpy_files/032_More_numpy_58_1.png" /></p>
 <p>Now let's try to calculate the model <code>y = c * m * x</code> for these same values of <code>x</code>, but for multiple sets of <code>c</code> and <code>m</code>. We will use <a href="../031_Numpy/#np.linspace,-np.arange,-np.mgrid"><code>np.mgrid</code></a> as above to generate a grid of pairs of <code>c</code> and <code>m</code>:</p>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 # define the min and max and step for the grid we want
 c_min,c_max,c_step = 0.0,1.,0.5
 m_min,m_max,m_step = 0.0,0.05,0.01
@@ -2252,7 +2227,6 @@ axs.set_ylabel('m')
 
 print(f'2d parameter grid: {grid_c.shape}')
 </code></pre>
-
 <pre><code>grid_c is [[0.  0.  0.  0.  0.  0. ]
  [0.5 0.5 0.5 0.5 0.5 0.5]
  [1.  1.  1.  1.  1.  1. ]]
@@ -2265,12 +2239,11 @@ grid_m is [[0.   0.01 0.02 0.03 0.04 0.05]
 <p>This grid is <code>(3,6)</code> and the <code>x</code> dataset is shape <code>(21,)</code>. </p>
 <p>We would expect the output dataset <code>y</code> that describes <code>c + m*x</code> for all <code>x</code>, for each value of <code>c</code> and <code>m</code> to have a shape <code>(3,6,21)</code>. Here, axis 0 and 1 refer to the parameter grid dimensions and axis 2 to the variation over <code>x</code>. The operation is a simple element-wise manipulation that <code>numpy</code> should be efficient at, even for large arrays. We will see that the key to doing this cleanly is to use <a href="https://numpy.org/doc/stable/reference/arrays.indexing.html"><code>np.newaxis</code></a>.</p>
 <p>An <strong>inefficient</strong> way of calculating <code>y</code> for each of the grid parameters would be to use a loop over each value of <code>x</code>:</p>
-<pre><code class="python">print(f'for a single value of x, we get an output of shape {linear_func(grid_c,grid_m,0.1).shape}')
+<pre><code class="language-python">print(f'for a single value of x, we get an output of shape {linear_func(grid_c,grid_m,0.1).shape}')
 </code></pre>
-
 <pre><code>for a single value of x, we get an output of shape (3, 6)
 </code></pre>
-<pre><code class="python"># generate an output array to pack into
+<pre><code class="language-python"># generate an output array to pack into
 newshape = grid_c.shape + x.shape
 y = np.zeros(newshape)
 print(f'y shape: {y.shape}')
@@ -2281,10 +2254,9 @@ for i,xi in enumerate(x):
     y[:,:,i] = linear_func(grid_c,grid_m,xi)
 
 </code></pre>
-
 <pre><code>y shape: (3, 6, 21)
 </code></pre>
-<pre><code class="python">import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 ymin,ymax = y.min(),y.max()
 xmin,xmax = x.min(),x.max()
 
@@ -2299,12 +2271,11 @@ for i in range(y.shape[0]):
         axs[i,j].set_xlim(xmin,xmax)
         axs[i,j].set_ylim(ymin,ymax)
 </code></pre>
-
 <p><img alt="png" src="../032_More_numpy_files/032_More_numpy_64_0.png" /></p>
 <p>So, we know the sort of result we are looking for from this, ideally we would do it in a single call to the function with <code>numpy</code>.</p>
 <p>In all of the simple cases above, we have performed operations of arrays of the same shape, so adding an array of shape <code>(10,2)</code> to another of the same shape results in an array of shape <code>(10,2)</code>. </p>
 <p>If we have an array of shape <code>(10,2,1)</code> and add it to an array of shape <code>(1,1,5)</code>, we will get a result of shape (10,2,5):</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 # generate some random numbers
 
 a = np.random.random((10,2,1))
@@ -2313,7 +2284,6 @@ b = np.random.random((1,1,5))
 c = a + b
 print(c.shape)
 </code></pre>
-
 <pre><code>(10, 2, 5)
 </code></pre>
 <p>The 'rule' for combining arrays in this way can be thought of as:</p>
@@ -2322,15 +2292,14 @@ print(c.shape)
 <li>the number of samples in any dimension must be <em>the same</em> or <code>1</code></li>
 </ul>
 <p>If we had started out with arrays of different shapes that we want to combine, e.g.:</p>
-<pre><code class="python">import numpy as np
+<pre><code class="language-python">import numpy as np
 # generate some random numbers
 
 a = np.random.random((10,2))
 b = np.random.random((5))
 </code></pre>
-
 <p>Then we need to add new axes to the arrays to reconcile their dimensions. One clear way to do this is to use <code>np.newaxis</code> to add the new dimensions:</p>
-<pre><code class="python">a = np.random.random((10,2))
+<pre><code class="language-python">a = np.random.random((10,2))
 b = np.random.random((5,))
 print(f'a shape: {a.shape}')
 print(f'b shape: {b.shape}')
@@ -2343,7 +2312,6 @@ print(f'b1 shape: {b1.shape}')
 c1 = a1 + b1 
 print(f'c1 shape: {c1.shape}')
 </code></pre>
-
 <pre><code>a shape: (10, 2)
 b shape: (5,)
 a1 shape: (10, 2, 1)
@@ -2468,7 +2436,7 @@ grid_c,grid_m = np.mgrid[c_min:c_max+c_step:c_step,\
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2020</span>
     
   </small>
 </div>

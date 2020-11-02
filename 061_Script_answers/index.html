@@ -1446,7 +1446,7 @@
 </code></pre>
 </li>
 </ul>
-<pre><code class="bash">%%bash
+<pre><code class="language-bash">%%bash
 # ANSWER 1
 #
 
@@ -1545,8 +1545,7 @@ EOF
 # Chmod 755 to make the file executable
 chmod 755 work/count.py
 </code></pre>
-
-<pre><code class="python">msg = '''
+<pre><code class="language-python">msg = '''
 As a test, when you run the script:
 
   %run work/count.py 4 5 
@@ -1560,7 +1559,6 @@ print(msg)
 print('work/count.py 4 5 -&gt;')
 %run work/count.py 4 5
 </code></pre>
-
 <pre><code>As a test, when you run the script:
 
   %run work/count.py 4 5 
@@ -1573,7 +1571,7 @@ work/count.py 4 5 -&gt;
 0 1 2 3 4
 0 1 2 3 4 5
 </code></pre>
-<pre><code class="python">istop = 10
+<pre><code class="language-python">istop = 10
 
 msg = '''
 some other ways to achieve the printing
@@ -1601,7 +1599,6 @@ print('3.',end=' ')
 for i in range(istop+1):
     print(i,end=' ') 
 </code></pre>
-
 <pre><code>some other ways to achieve the printing
 
 1. 0 1 2 3 4 5 6 7 8 9 10

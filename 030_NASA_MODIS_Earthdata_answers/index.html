@@ -1473,11 +1473,10 @@
 <p>For example, for the two tiles covering Madagascar, we would set:</p>
 <pre><code>tiles = ['h22v10','h22v11']
 </code></pre>
-<pre><code class="python"># tiles for the UK
+<pre><code class="language-python"># tiles for the UK
 
 tiles = ['h17v03', 'h17v04', 'h18v03', 'h18v04']
 </code></pre>
-
 <h4 id="exercise-2-mask-invalid-data">Exercise 2: mask invalid data</h4>
 <ul>
 <li>
@@ -1495,7 +1494,7 @@ tiles = ['h17v03', 'h17v04', 'h18v03', 'h18v04']
 <p>plot both <code>Lai_500m</code> and <code>LaiStdDev_500m</code> side-by-side. You should apply appropriate scaling factors and masking as above.</p>
 </li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 from geog0111.modis import Modis
 from geog0111.im_display import im_display
 import numpy as np
@@ -1526,8 +1525,7 @@ def data_mask(data,sds,scales,uthresh,lthresh):
         data[s] = ds
     return data
 </code></pre>
-
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # put the required SDS in the sds field of kwargs
 
 kwargs = {
@@ -1554,14 +1552,13 @@ data_MCD15A3H = data_mask(data_MCD15A3H,sds,scale,uthresh,lthresh)
 # plot with different vmax for the plots!
 im_display(data_MCD15A3H,kwargs['sds'],shape=(1,2),x_size=16,y_size=3,vmax=[5,1])
 </code></pre>
-
 <p><img alt="png" src="../030_NASA_MODIS_Earthdata_answers_files/030_NASA_MODIS_Earthdata_answers_5_0.png" /></p>
 <h4 id="exercise-3">Exercise 3</h4>
 <ul>
 <li>write a function called <code>get_doy</code> that is given the year, month and day integer and returns the day of year</li>
 <li>test it</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 from datetime import datetime
 
 def get_doy(year,month,day):
@@ -1577,18 +1574,16 @@ def get_doy(year,month,day):
     return doy
 
 </code></pre>
-
-<pre><code class="python"># TEST
+<pre><code class="language-python"># TEST
 
 assert get_doy(2019,1,1) == 1
 assert get_doy(2019,2,1) == 32
 </code></pre>
-
 <h4 id="exercise-5">Exercise 5</h4>
 <ul>
 <li>Explore the MODIS datasets in your own time, and get to know the datasets they contain, along with the scaling factors and other interpretation information. Note that if we have not already downloaded particular datasets into the cache, it  may take a short time for them to download and load.</li>
 </ul>
-<pre><code class="python"># ANSWER
+<pre><code class="language-python"># ANSWER
 # Explore!
 </code></pre>
                 
@@ -1599,7 +1594,7 @@ assert get_doy(2019,2,1) == 32
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2020</span>
     
   </small>
 </div>
