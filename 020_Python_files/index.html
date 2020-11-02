@@ -1964,8 +1964,8 @@ that gives:</p>
 print(f'I am in directory {Path.cwd()}')
 print(f'My home is {Path.home()}')
 </code></pre>
-<pre><code>I am in directory /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-My home is /home/ucfalew
+<pre><code>I am in directory /Users/plewis/Documents/GitHub/geog0111/notebooks
+My home is /Users/plewis
 </code></pre>
 <p>To keep the filenames generic, we can form a filename from a list using <code>Path()</code>, so <code>Path('bin','README')</code> would refer to the filename <code>bin/README</code> on a <code>posix</code> system, and <code>bin/README</code> on Windows. However, this is interpreted the same as just using <code>bin/README</code> which will often be clearer.</p>
 <pre><code class="language-python">assert Path('bin','README') == Path('bin/README')
@@ -2054,7 +2054,7 @@ print(f'      owner is {readme.owner()}')
 <pre><code>README file is bin/README
        size is 16 bytes
        mode is 0o100644
-      owner is ucfalew
+      owner is plewis
 </code></pre>
 <h3 id="glob-generators"><code>glob</code> generators</h3>
 <p>To use a wildcard (or any pattern) to refer to a list of files, we use <code>Path.glob()</code> (or <code>Path.rglob()</code> for a recursive list). This function returns a generator, which is a special type of list whereby the items in the list are produced on demand (as we use them).</p>
@@ -2066,30 +2066,29 @@ filenames = Path('bin').glob('*.sh')
 <pre><code class="language-python">for i,f in enumerate(filenames):
     print(f'file {i} is {f}')
 </code></pre>
-<pre><code>file 0 is bin/git-remove-all.sh
-file 1 is bin/link-set.sh
-file 2 is bin/notebook-mkdocs.sh
-file 3 is bin/notebook-run.sh
-file 4 is bin/setup.sh
-file 5 is bin/shellMe.sh
-file 6 is bin/set-course.sh
+<pre><code>file 0 is bin/notebook-mkdocs.sh
+file 1 is bin/setup.sh
+file 2 is bin/notebook-run.sh
+file 3 is bin/fixA.sh
+file 4 is bin/link-set.sh
+file 5 is bin/clean0111.sh
+file 6 is bin/tidy.sh
 file 7 is bin/init.sh
-file 8 is bin/howmany.sh
-file 9 is bin/sort-db.sh
-file 10 is bin/database.sh
-file 11 is bin/init0111.sh
-file 12 is bin/tidy.sh
-file 13 is bin/mv_vrt.sh
-file 14 is bin/clean0111.sh
-file 15 is bin/get_datasets.sh
-file 16 is bin/fixA.sh
+file 8 is bin/sort-db.sh
+file 9 is bin/get-datasets.sh
+file 10 is bin/init0111.sh
+file 11 is bin/set-course.sh
+file 12 is bin/howmany.sh
+file 13 is bin/shellMe.sh
+file 14 is bin/database.sh
+file 15 is bin/git-remove-all.sh
 </code></pre>
 <p>The advantage of a generator is that it will generally need less memory than fully calculating all items in a list. Once we move on to the next item in the generator, any memory used by current item is freed.</p>
 <p>But is the size of objects is small, you will not notice much impact if you convert the generator to a list. </p>
 <pre><code class="language-python">filenames = list(Path('bin').glob('*.sh'))
 print(filenames)
 </code></pre>
-<pre><code>[PosixPath('bin/git-remove-all.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/init.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/database.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/mv_vrt.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/get_datasets.sh'), PosixPath('bin/fixA.sh')]
+<pre><code>[PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/fixA.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/init.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/get-datasets.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/database.sh'), PosixPath('bin/git-remove-all.sh')]
 </code></pre>
 <p>Let's use <code>glob</code> now to get the file permissions of each file <code>n*</code> in the directory <code>bin</code>:</p>
 <pre><code class="language-python"># use glob to get a list of filenames in the directory bin 
@@ -2122,12 +2121,12 @@ print(f'absolute name:\n\t{readme}')
 readme = readme.relative_to(Path.cwd())
 print(f'name relative to {Path.cwd()}:\n\t{readme}')
 </code></pre>
-<pre><code>I am in /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+<pre><code>I am in /Users/plewis/Documents/GitHub/geog0111/notebooks
 original relative name:
     bin/README
 absolute name:
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/bin/README
-name relative to /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks:
+    /Users/plewis/Documents/GitHub/geog0111/notebooks/bin/README
+name relative to /Users/plewis/Documents/GitHub/geog0111/notebooks:
     bin/README
 </code></pre>
 <p>Quite often we need to split some filename up into its constituent parts. This is achieved with <code>paths</code> which gives a list of the file name tree:</p>
@@ -2180,7 +2179,7 @@ print(f'remote file {url}')
 print(f'size is {url.stat().st_size/1024 :.2f} KB')
 </code></pre>
 <pre><code>remote file https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-size is -0.00 KB
+size is 8854.67 KB
 </code></pre>
 <p>We have similar functionality in <code>URL</code> to <code>Path</code> for manipulating filenames, but more limited file information:</p>
 <pre><code class="language-python">print(f'URL    : {url}')
@@ -2315,19 +2314,21 @@ hdf_urls = url.glob(site_file)
 for u in hdf_urls:
     print(u)
 </code></pre>
-<pre><code>https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
-
-
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
+<pre><code>--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA.store
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
---&gt; keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
+--&gt; keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
+
+
+https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
+
+
 --&gt; parsing URLs from html file 1 items
 --&gt; discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
 </code></pre>
@@ -2519,7 +2520,7 @@ MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
     
   </small>
 </div>

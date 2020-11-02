@@ -1516,6 +1516,8 @@ hdf_urls = modis.get_url(year=&quot;2020&quot;,month=&quot;01&quot;,day=&quot;*&
 # test
 print(get_locals(hdf_urls))
 </code></pre>
+<pre><code>[PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.09/MCD15A3H.A2020009.h08v06.006.2020014204616.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.13/MCD15A3H.A2020013.h08v06.006.2020018030252.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.17/MCD15A3H.A2020017.h08v06.006.2020022034013.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.21/MCD15A3H.A2020021.h08v06.006.2020026032135.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.25/MCD15A3H.A2020025.h08v06.006.2020030025757.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.29/MCD15A3H.A2020029.h08v06.006.2020034165001.hdf.store')]
+</code></pre>
 <h4 id="exercise-3">Exercise 3</h4>
 <pre><code>name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
 </code></pre>
@@ -1534,6 +1536,8 @@ name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
 # use str.split() and take item 1 from the list
 sds_name = name.split()[1]
 print(sds_name)
+</code></pre>
+<pre><code>Fpar_500m
 </code></pre>
 <pre><code class="language-python"># Write a function called get_data that reads an HDF (MODIS) filename, 
 # and returns a dictionary of all of the data in the file,
@@ -1582,6 +1586,13 @@ for k,v in hdf_dict.items():
     # do some neat formatting on k
     print(f'{k:&lt;20s}: {v.shape}')
 </code></pre>
+<pre><code>Fpar_500m           : (2400, 2400)
+Lai_500m            : (2400, 2400)
+FparLai_QC          : (2400, 2400)
+FparExtra_QC        : (2400, 2400)
+FparStdDev_500m     : (2400, 2400)
+LaiStdDev_500m      : (2400, 2400)
+</code></pre>
                 
                   
                     
@@ -1590,7 +1601,7 @@ for k,v in hdf_dict.items():
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
     
   </small>
 </div>

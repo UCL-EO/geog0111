@@ -1801,7 +1801,7 @@ print(headings)
 fig, axs = plt.subplots(1,1,figsize=(10,10))
 axs.plot(df[&quot;YEAR&quot;],df['JAN'],label='JAN')
 </code></pre>
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x7f876bc11e50&gt;]
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x7fa25862dc50&gt;]
 </code></pre>
 <p><img alt="png" src="../023_Plotting_files/023_Plotting_10_1.png" /></p>
 <p>We can easily customise this by adding titles and labels:</p>
@@ -2020,11 +2020,11 @@ print(f'month {now.month}')
 print(f'year {now.year}')
 print(f&quot;{now.hour} O'clock&quot;)
 </code></pre>
-<pre><code>It is now 2020-10-04 08:07:59.698707
-day 4
+<pre><code>It is now 2020-10-30 17:06:46.213218
+day 30
 month 10
 year 2020
-8 O'clock
+17 O'clock
 </code></pre>
 <p>You can set up the <code>datetime</code> fields explicitly:</p>
 <pre><code class="language-python">from datetime import datetime
@@ -2057,7 +2057,7 @@ now = datetime.now()
 yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 </code></pre>
-<pre><code>yesterday was 2020-10-03 08:07:59.773833
+<pre><code>yesterday was 2020-10-29 17:06:46.235809
 </code></pre>
 <h3 id="strftime-and-strptime"><code>strftime</code> and <code>strptime</code></h3>
 <p>We use <code>strftime</code> to format a date string:</p>
@@ -2073,8 +2073,8 @@ date_now = now.strftime(&quot;%m/%d/%Y&quot;)
 # mm/dd/YY H:M:S format
 print(f&quot;data now: {date_now}&quot;)
 </code></pre>
-<pre><code>time now: 08:07:59
-data now: 10/04/2020
+<pre><code>time now: 17:06:46
+data now: 10/30/2020
 </code></pre>
 <p>and <code>strptime</code> to load a <code>datetime</code> object from a string. To do so, we need to specify the format of the string. For example:</p>
 <pre><code class="language-python">from datetime import datetime
@@ -2102,7 +2102,7 @@ print(f&quot;date: {date_object}&quot;)
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
-site_dir = '/UCL-EO/geog0111/master/data'
+site_dir = '/UCL-EO/geog0111/master/notebooks/data'
 site_file = '2276931.csv'
 
 # form the URL
@@ -2470,7 +2470,7 @@ axs.set_xlabel(f'date')
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
     
   </small>
 </div>
