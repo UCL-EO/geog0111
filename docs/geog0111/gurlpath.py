@@ -684,9 +684,9 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
         # 
         if r.status_code == 401:
           u.msg(f'code 401')
-          self.self.fourOhOne = True
-      
-        if self.self.fourOhOne:
+          self.fourOhOne = True
+
+        if self.fourOhOne:
           # unauthorised
           # more complex session login and auth
           # e.g. needed for NASA Earthdata login
@@ -928,7 +928,6 @@ class URL(urlpath.URL,urllib.parse._NetlocResultMixinStr, PurePath):
     if url[-1] == '/':
       url = urls[:-1]
     url = self.update(url,pattern)
-
     # check in database
     store_url  = url
     store_flag = 'query' 

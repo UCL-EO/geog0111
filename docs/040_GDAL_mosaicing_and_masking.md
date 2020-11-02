@@ -82,15 +82,15 @@ print(sds[0])
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
     --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
+    --> parsing URLs from html file 1 items
+    --> discovered 1 files with pattern 2019.02.10 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
+    --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
 
 
     /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
     ['HDF4_EOS:EOS_GRID:"/nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store":MOD_Grid_MCD15A3H:Lai_500m']
 
 
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern 2019.02.10 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10.store
     --> parsing URLs from html file 1 items
     --> discovered 1 files with pattern MCD15A3H*.h17v03*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10
     --> keeping existing file /nfsshare/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf.store
@@ -109,7 +109,7 @@ this_sds = sds[0][0]
 # open the SDS of dataset 0
 g = gdal.Open(sds[0][0])
 data = g.ReadAsArray()
-
+del g
 print(type(data))
 print('max:',data.max())
 print('max:',data.min())
@@ -180,7 +180,7 @@ year = 2019
 
 modis = Modis(**kwargs)
 files,sds = modis.get_files(year,doy)
-
+#print(files)
 # build a VRT 
 ofile = f"work/stitch_full_{year}_{doy:03d}.vrt"
 print(f'saving to {ofile}')
@@ -265,7 +265,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f8a1d593a50>
+    <matplotlib.colorbar.Colorbar at 0x7fae4d1db210>
 
 
 
@@ -418,7 +418,7 @@ files,sds = modis.get_files(year,doy)
 warp_args = {
     'dstNodata'     : 255,
     'format'        : 'MEM',
-    'cropToCutline' : True,
+    'cropToCutline' : False,
     'cutlineWhere'  : "FIPS='UK'",
     'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
 }
@@ -437,7 +437,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f8a0eea8550>
+    <matplotlib.colorbar.Colorbar at 0x7fae40e2ff10>
 
 
 
@@ -500,7 +500,19 @@ mfiles = modis.get_modis(year,doy,warp_args=warp_args)
 print(mfiles.keys())
 ```
 
-    dict_keys(['Lai_500m', 'bandnames'])
+    dict_keys(['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m', 'bandnames'])
+
+
+
+```python
+mfiles['bandnames']
+```
+
+
+
+
+    ['2019-041']
+
 
 
 
@@ -516,13 +528,13 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f8a1faab110>
+    <matplotlib.colorbar.Colorbar at 0x7fae4bc10b90>
 
 
 
 
     
-![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_27_1.png)
+![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_28_1.png)
     
 
 

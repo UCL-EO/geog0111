@@ -222,7 +222,7 @@ import pandas as pd
 from geog0111.gurlpath import URL
 
 site = 'https://raw.githubusercontent.com'
-site_dir = '/UCL-EO/geog0111/master/data'
+site_dir = '/UCL-EO/geog0111/master/notebooks/data'
 site_file = '2276931.csv'
 
 # form the URL

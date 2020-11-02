@@ -78,6 +78,9 @@ hdf_urls = modis.get_url(year="2020",month="01",day="*")
 print(get_locals(hdf_urls))
 ```
 
+    [PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.09/MCD15A3H.A2020009.h08v06.006.2020014204616.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.13/MCD15A3H.A2020013.h08v06.006.2020018030252.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.17/MCD15A3H.A2020017.h08v06.006.2020022034013.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.21/MCD15A3H.A2020021.h08v06.006.2020026032135.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.25/MCD15A3H.A2020025.h08v06.006.2020030025757.hdf.store'), PosixPath('/Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.29/MCD15A3H.A2020029.h08v06.006.2020034165001.hdf.store')]
+
+
 #### Exercise 3
 
     name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
@@ -100,6 +103,9 @@ name = '[2400x2400] Fpar_500m MOD_Grid_MCD15A3H (8-bit unsigned integer)'
 sds_name = name.split()[1]
 print(sds_name)
 ```
+
+    Fpar_500m
+
 
 
 ```python
@@ -153,3 +159,11 @@ for k,v in hdf_dict.items():
     # do some neat formatting on k
     print(f'{k:<20s}: {v.shape}')
 ```
+
+    Fpar_500m           : (2400, 2400)
+    Lai_500m            : (2400, 2400)
+    FparLai_QC          : (2400, 2400)
+    FparExtra_QC        : (2400, 2400)
+    FparStdDev_500m     : (2400, 2400)
+    LaiStdDev_500m      : (2400, 2400)
+
