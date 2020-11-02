@@ -38,7 +38,7 @@ fips    = "LU"
 
 lai,std,doy =  get_lai_data(year,tile,fips)
 
-# sort the weight as in the exercio
+# sort the weight as in the exercise
 std[std<1] = 1
 weight = np.zeros_like(std)
 mask = (std > 0)
@@ -66,7 +66,7 @@ import matplotlib.pyplot as plt
 # look at some stats
 print(weight.min(),weight.max(),doy.min(),doy.max())
 error = np.zeros_like(weight)
-error[weight>0] = np.sqrt(1./(weight[weight>0] )) * 1.97
+error[weight>0] = np.sqrt(1./(weight[weight>0] )) * 1.96
 
 p0,p1 = (107,72)
 x_size,y_size=(10,5)
@@ -124,7 +124,7 @@ plt.plot(x,gaussian)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fba6be4e7d0>]
+    [<matplotlib.lines.Line2D at 0x7fdf690783d0>]
 
 
 
@@ -172,7 +172,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7fba639eaf90>
+    <matplotlib.legend.Legend at 0x7fdf68e4f3d0>
 
 
 
@@ -504,7 +504,7 @@ print(lcfiles['LC_Type3'])
 ```
 
     [  1   3   4   5   6   7  10 255]
-    /shared/groups/jrole001/geog0111/work/MCD12Q1/data.LC_Type3._h17v03_h18v03_h17v04_h18v04_.2019.001.001_warp.vrt
+    /nfsshare/groups/jrole001/geog0111/work/MCD12Q1/data.LC_Type3._h17v03_h18v03_h17v04_h18v04_.2019.001.001_warp.vrt
 
 
 
@@ -522,7 +522,7 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7fba5d278a90>
+    <matplotlib.legend.Legend at 0x7fdf687e92d0>
 
 
 
@@ -553,6 +553,8 @@ We can now consider masking both for valid pixels and for a particular land cove
 from geog0111.get_lai_data import get_lai_data
 from geog0111.get_weight import get_weight
 from geog0111.regularise import regularise
+from geog0111.get_lc import get_lc
+import pandas as pd
 
 year = 2019
 tile = ['h17v03', 'h18v03','h17v04', 'h18v04']
@@ -582,8 +584,10 @@ print(f'code for {classy} is {code}')
 
 
 ```python
+import numpy as np
 # code 
-code_mask = (land_cover == code)
+
+code_mask = (lc == code)
 valid_mask = ~np.isnan(np.sum(interpolated_lai,axis=0))
 
 # combine
@@ -619,6 +623,8 @@ masked_lai.shape,doy.shape
 
 
 ```python
+import matplotlib.pyplot as plt
+
 # plot 
 x_size,y_size=(10,5)
 
@@ -640,7 +646,7 @@ axs.legend(loc='upper right')
 
 
 
-    <matplotlib.legend.Legend at 0x7fba5ce1cf90>
+    <matplotlib.legend.Legend at 0x7f7b50ef3690>
 
 
 
@@ -665,7 +671,7 @@ Remember:
 |function|comment|
 |---|---|
 |`scipy.ndimage.filters` | `scipy` filters |
-|`zscipy.ndimage.filters.convolve1d(data,filter)` | 1D convolution of `filter` with `data`. Keywords : `axis=0,mode='wrap'`|
+|`scipy.ndimage.filters.convolve1d(data,filter)` | 1D convolution of `filter` with `data`. Keywords : `axis=0,mode='wrap'`|
 
 
 ```python
