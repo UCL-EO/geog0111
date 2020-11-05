@@ -27,7 +27,7 @@ jupyter nbextension enable toggle_all_line_numbers/main
 jupyter nbextension enable exercise2/main
 jupyter nbextension disable toc2/main
 jupyter nbextension disable execute_time/ExecuteTime
-jupyter nbextension enable hinterland/hinterland
+jupyter nbextension disable hinterland/hinterland
 jupyter nbextension enable printview/main
 jupyter nbextension enable execution_dependencies/execution_dependencies
 jupyter nbextension enable python-markdown/main
