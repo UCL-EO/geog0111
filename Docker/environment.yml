@@ -22,7 +22,11 @@ dependencies:
   - netcdf4
   - scikit-learn
   - matplotlib-base
+  - matplotlib
   - pandas
+  - ipython
+  - numpydoc
+  - astropy
   - shapely
   - ipyleaflet
   - pytest
@@ -54,9 +58,11 @@ dependencies:
   - sphinx
   - fsspec
   - pip:
+    - nbsphinx
     - mkdocs-jupyter
     - urlpath
     - mknotebooks
     - mkdocs-material
     - mkdocs-exclude
     - mkdocs-git-revision-date-localized-plugin
+# python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
