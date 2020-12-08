@@ -58,6 +58,8 @@ def model(T0,f,T,p,xp=1.0):
     # necessary if using convolution routine
     Q_nrf = np.array([scipy.ndimage.filters.convolve1d(y[:,i], nrf[:,i]) \
                        for i in range(y.shape[1])]).T
+
+    Q_nrf -= Q_nrf.min(axis=0)[np.newaxis,:]
     return Q_nrf/Q_nrf.sum(axis=0)
 
 
