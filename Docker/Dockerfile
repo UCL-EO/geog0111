@@ -5,7 +5,7 @@ FROM jgomezdans/uclgeog
 
 LABEL maintainer="P Lewis"
 ENV CONDA_DEFAULT_ENV=geog0111
-ENV BASE_VERSION=1.0.1
+ENV BASE_VERSION=1.1.0
 
 USER root
 # dont waste space: we dont want uclgeog but its hard

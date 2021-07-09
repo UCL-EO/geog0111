@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# build  and upload the pypi package 
+python -m pip install --upgrade build
+python -m build
+python -m pip install --upgrade twine
+# use testpypi for testing
+python -m twine upload --repository pypi dist/*
+
+

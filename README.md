@@ -81,6 +81,9 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 
 [Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)  
 
+### Notes, code etc
+[geog0111 code pypi for v1.1.0](https://test.pypi.org/project/geog0111/1.1.0)
+
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 

@@ -18,14 +18,14 @@
 # -- Project information -----------------------------------------------------
 
 project = 'GEOG0111 Scientific Computing'
-copyright = '2020, P. Lewis and J. Gomez-Dans'
+copyright = '2020-2022, P. Lewis and J. Gomez-Dans'
 author = 'P. Lewis and J. Gomez-Dans'
 
 # The short X.Y version
-version = '1.0.2'
+version = '1.1.0'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.2'
+release = '1.1.0'
 
 
 # -- General configuration ---------------------------------------------------
