@@ -1,18 +1,19 @@
 #!/bin/bash  
 
-# GEOG0111 script tp initialise and update
+# GEOG0111 script to initialise and update
 # the student repository on the UCL system
 
 # are we on the UCL system?
 isUCL=$(uname -n | awk -Frstudio '{print $2}' | wc -w)
-if [ "$isUCL" == 0 ] ; then
+echo $isUCL
+if [ $isUCL == 0 ] ; then
   uname -a
   echo "You do not seem to be on the UCL rstudio/notebook servers"
   echo "FATAL: cannot proceed"
   exit 1
 fi
 echo "You are in the UCL rstudio/notebook servers"
-
+exit 0
 # check for geog0111 repo and clone if not there
 cd ~
 if [ -d "geog0111" ] ; then
@@ -87,6 +88,7 @@ fi
 cd ~/geog0111
 echo "--> conda setup"
 conda init bash
+touch .bashrc
 mv .bashrc .profile
 echo "--> done conda setup"
 
