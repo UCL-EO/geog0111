@@ -3,7 +3,7 @@
 
 
 here=$(pwd)
-base="$(cd $(dirname "$0") &&  cd .. &&  pwd -P && cd "$here")"
+base="$(cd $(dirname "$0") &&  cd ../.. &&  pwd -P && cd "$here")"
 repo=$(echo $base | awk -F/ '{print $NF}')
 
 cd $base
