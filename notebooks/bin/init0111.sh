@@ -13,7 +13,6 @@ if [ $isUCL == 0 ] ; then
   exit 1
 fi
 echo "You are in the UCL rstudio/notebook servers"
-exit 0
 # check for geog0111 repo and clone if not there
 cd ~
 if [ -d "geog0111" ] ; then
