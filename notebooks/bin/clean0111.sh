@@ -39,4 +39,6 @@ if [ -f ~/.zshrc ]; then
   echo "You should manually edit ~/.zshrc to remove conda settings for a full reset"
 fi
 
+cd ~
+rm -rf geog0111
 
