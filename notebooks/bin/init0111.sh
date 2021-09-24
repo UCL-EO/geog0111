@@ -5,7 +5,7 @@
 
 # are we on the UCL system?
 isUCL=$(uname -n | awk -Frstudio '{print $2}' | wc -w)
-echo $isUCL
+#echo $isUCL
 if [ $isUCL == 0 ] ; then
   uname -a
   echo "You do not seem to be on the UCL rstudio/notebook servers"
