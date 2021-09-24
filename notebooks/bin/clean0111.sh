@@ -21,8 +21,22 @@ if [ -f ~/.bash_profile ]; then
     grep -v < ~/.bash_profile 'source ~/.profile' > /tmp/tmp.$$ ; mv /tmp/tmp.$$  ~/.bash_profile
 
 fi
+
+# clean any changes to zsh_profile
+if [ -f ~/.zsh_profile ]; then
+    echo "~/.zsh_profile exists... editing out reference to ~/.profile"
+    grep -v < ~/.zsh_profile 'source ~/.profile' > /tmp/tmp.$$ ; mv /tmp/tmp.$$  ~/.zsh_profile
+
+fi
+
 rm -rf .url_db .cylog .jupyter .condarc .profile .ipython
 
-echo "You should manually edit ~/.bashrc to remove conda settings for a full reset"
+if [ -f ~/.bashrc ]; then
+  echo "You should manually edit ~/.bashrc to remove conda settings for a full reset"
+fi
+  
+if [ -f ~/.zshrc ]; then
+  echo "You should manually edit ~/.zshrc to remove conda settings for a full reset"
+fi
 
 
