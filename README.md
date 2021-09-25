@@ -60,7 +60,7 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 [class timetable for 2020/21](notebooks/TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1 in the UCL teaching cluster room 113 in 1-19 Torrington Place [Northwest wing](http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003), UCL. 
+The course takes place over 10 weeks in term 1 in the UCL teaching cluster room 113 in [1-19 Torrington Place](https://www.ucl.ac.uk/maps/1-19-torrington-place), UCL. 
 
 Due to covid restrictions, it is being run online in the 2020-21 session.
 
