@@ -27,7 +27,7 @@ __license__   = "GPLv3"
 def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,\
                  version='006',no_cache=False,cache=None,\
-                 verbose=False,force=False,altcache='/tmp/.modis_cache'):
+                 verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
 
     Example of use:
@@ -255,7 +255,7 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',\
                  version='006',timeout=None,\
                  no_cache=False,cache=None,\
-                 verbose=False,force=False,altcache='/tmp/.modis_cache'):
+                 verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     modisURL : return the URL for a MODIS product
                E.g.
@@ -378,7 +378,7 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 def modisFile(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,\
                  version='006',no_cache=False,cache=None,\
-                 verbose=False,force=False,altcache='/tmp/.modis_cache'):
+                 verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     Get the filename associated with a MODIS product file
     for a certain date and version. 
@@ -548,6 +548,12 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
         print('getting from altcache')
       return Path(altcache,cache_part)
 
+    # get from altcache.store
+    if (not no_cache) and (not force) and altcache and Path(altcache,cache_part,'.store').exists():
+      if verbose:
+        print('getting from altcache')
+      return Path(altcache,cache_part,'.store')
+
     # else pull the file
     # first try a get : we have to do this twice bacause of
     # auth redirect
@@ -600,7 +606,7 @@ def getDate(day=1, month=1,year=2020,doy=None):
 def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
                  product='MCD15A3H',timeout=None,sds='None',\
                  version='006',no_cache=False,cache=None,\
-                 verbose=False,force=False,altcache='/tmp/.modis_cache'):
+                 verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     return list of MODIS data filenames of given SDS for given MODIS tile
 
@@ -762,7 +768,7 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
 def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,sds='None',\
                  version='006',no_cache=False,cache=None,\
-                 verbose=False,force=False,altcache='/tmp/.modis_cache'):
+                 verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     return MODIS data dictionary of given SDS for given MODIS tile
 
