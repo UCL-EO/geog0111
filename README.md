@@ -69,8 +69,6 @@ Classes take place from the second week of term to the final week of term, other
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Thursdays.
 
 
-
-
 ### Assessment
 
 Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 

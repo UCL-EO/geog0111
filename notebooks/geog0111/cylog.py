@@ -36,7 +36,7 @@ class  Cylog():
     cylog().login() : returns plain text tuple
                       (username, password) 
     '''
-    def __init__(self,site,init=False,stderr=False,verbose=False,destination_folder='.cylog'):
+    def __init__(self,site,decode=True,init=False,stderr=False,verbose=False,destination_folder='.cylog'):
         '''
         Positional arguments:
         ----------
@@ -57,6 +57,10 @@ class  Cylog():
         verbose: Bool
             verbose True or False (False default)
 
+
+        decode:
+            decode as utf-8
+
         when prompted, please supply:
 
         username: str
@@ -73,6 +77,7 @@ class  Cylog():
         self.site = site
         self.stderr = stderr or sys.stderr
         self.verbose = verbose
+        self.decode = decode
 
         self.dest_path = Path.home().joinpath(destination_folder)
         p = self.dest_path.joinpath('.cylog.npz')
@@ -234,8 +239,12 @@ class  Cylog():
             self._setup(site=site)
             return self.login(site=site)
 
-        return (Fernet(data['key']).decrypt(np.atleast_1d(data[f'ciphered_user_{site[0]}'])[0]),\
+        retvals = (Fernet(data['key']).decrypt(np.atleast_1d(data[f'ciphered_user_{site[0]}'])[0]),\
                 Fernet(data['key']).decrypt(np.atleast_1d(data[f'ciphered_pass_{site[0]}'])[0]))
+        if self.decode:
+            return retvals[0].decode('utf-8'), retvals[1].decode('utf-8')
+        else:
+            return retvals
 
 def modlog():
     sites = ['https://n5eil01u.ecs.nsidc.org',\
