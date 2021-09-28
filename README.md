@@ -13,11 +13,11 @@
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2020-2021
+### Teaching Staff 2021-2022
 
-|   |  | 
-|---|---|
-|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| 
+|   |  
+|---|
+|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
 ### Contributing Staff
 
@@ -58,9 +58,9 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 ## Timetable
 
-[class timetable for 2020/21](notebooks/TIMETABLE.md)
+[class timetable for 2021/22](notebooks/TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1, usually in the Geography Department Unix Computing Lab (PB110) in the [Northwest wing](http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003), UCL. 
+The course takes place over 10 weeks in term 1 in the UCL teaching cluster room 113 in [1-19 Torrington Place](https://www.ucl.ac.uk/maps/1-19-torrington-place), UCL. 
 
 Due to covid restrictions, it is being run online in the 2020-21 session.
 
