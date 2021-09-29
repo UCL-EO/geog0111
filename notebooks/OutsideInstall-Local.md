@@ -17,7 +17,6 @@ These instructions assume that you will run these commands in a bash shell. You 
 2. Download/update required Python packages (will take minutes/tens of minutes):
 
         conda init 
-        bin/set-course.sh
 
 
 2. Set up environment:
@@ -42,29 +41,9 @@ These instructions assume that you will run these commands in a bash shell. You 
         
   to the end of your profile (e.g.` ~/.zsh_profile`). Don't go any further until you have sorted this out.
            
-3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). 
+3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
 
-4. Store the Earthdata password locally. Do this by running the following, and entering your Earthdata login and password when prompted:
-
-        ipython -c "from geog0111.cylog import earthdata; earthdata(True);"
-        
-   The `True` argument to `earthdata` performs a test of the login that will fail if the login fails. Be aware that if you run this test on a Wednesday, it may fail simply because the NASA servers go down for maintenance. If it fails for other reasons,  reset your password cache with:
-   
-        ipython -c "from geog0111.cylog import earthdata; earthdata(do_test=True,force=True);"
-
-5. Download the majority of the datasets you'll need (this will take an hour or so):
-
-        bin/get-datasets.sh
-
-6. Build database and set CACHE_FILE (this will take a few minutes to run) (assuming you are using bash -- if not change profile accordingly):
-
-        bin/sort-db.sh  > ~/.url_db/.db.yml
-        touch ~/.bash_profile 
-        grep -v CACHE_FILE < ~/.bash_profile  > /tmp/.profile.$$
-        echo "export CACHE_FILE=${HOME}/.url_db/.db.yml" >> /tmp/.bash_profile.$$
-        mv /tmp/.profile.$$ ~/.bash_profile
-
-7. Launch jupyter or jupyterlab server
+4. Launch jupyter or jupyterlab server
 
           jupyter notebook
     
