@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-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
 import sys
 import yaml
 import os
