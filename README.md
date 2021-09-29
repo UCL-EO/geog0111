@@ -25,6 +25,11 @@
 |---|---|---|
 |[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
 
+### Running notebooks for the classes
+
+If you know what you are doing, and have accessed the notes in this way before, then you can go straight to the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
+
+Otherwise, read the text below.
 
 ### Purpose of this course
 
