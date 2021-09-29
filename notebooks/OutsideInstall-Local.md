@@ -22,7 +22,6 @@ These instructions assume that you will run these commands in a bash shell. You 
 2. Set up environment:
 
         conda activate geog0111
-        bin/init0111.sh
         
    After running this, close the shell, and test that your conda environment is set to `geog0111`. You can do this e.g. with:
    
@@ -35,12 +34,6 @@ These instructions assume that you will run these commands in a bash shell. You 
         base                     /Users/plewis/opt/anaconda3
         geog0111              *  /Users/plewis/opt/anaconda3/envs/geog0111
 
-   If you do not see the `*` by `geog0111`, then you may not be using a `bash` shell, or you may need to open a new shell. Try opening a `bash` shell, or check the shell you are using (this could be e.g. `zsh` on OSX) then you may need to add:
-   
-        source ~/.profile
-        
-  to the end of your profile (e.g.` ~/.zsh_profile`). Don't go any further until you have sorted this out.
-           
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
 
 4. Launch jupyter or jupyterlab server
