@@ -1,6 +1,10 @@
 # Installation of these notes on UCL JupyterHub
 
-1. Make sure you have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running
+We expect you to run these notes and do this course using Jupyter notebooks, on the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
+
+If you know what you are doing, and have accessed the notes in this way before, then you can go straight to the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
+
+1. If you are not logged on inside the UCL domain, then you will need to make sure you have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running
 2. Log on the the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 3. In a shell, type:
 
