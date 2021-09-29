@@ -33,6 +33,10 @@ These instructions assume that you will run these commands in a bash shell. You 
         base                     /Users/plewis/opt/anaconda3
         geog0111              *  /Users/plewis/opt/anaconda3/envs/geog0111
 
+  You many need to set the notebook environment:
+
+  python -m ipykernel install --user --name=geog0111
+
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
 
 4. Launch jupyter or jupyterlab server
