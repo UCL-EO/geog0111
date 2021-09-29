@@ -3,8 +3,6 @@
 [Course Documentation](https://ucl-eo.github.io/geog0111/)
 
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/master)
- [![Travis-CI](https://travis-ci.com/UCL-EO/geog0111.svg?branch=master)](https://travis-ci.com/github/UCL-EO/geog0111)
- 
 
 
 ## Course information
@@ -13,11 +11,11 @@
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2020-2021
+### Teaching Staff 2021-2022
 
-|   |  | 
-|---|---|
-|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| 
+|   |  
+|---|
+|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
 ### Contributing Staff
 
