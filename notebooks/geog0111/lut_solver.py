@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from geog0111.get_lai_data import get_lai_data
-from geog0111.regularise import regularise
+from geog0111.modisUtils import getLai
+from geog0111.modisUtils import regularise
 import numpy as np
 
 '''
@@ -98,7 +98,8 @@ def get_lai():
     tile    = ['h17v03','h18v03','h17v04','h18v04']
     year    = 2019
     fips    = "LU"
-    lai,std,doy =  get_lai_data(year,tile,fips)
+
+    lai,std,doy =  getLai(year,tile,fips)
     std[std<1] = 1
     weight = np.zeros_like(std)
     mask = (std > 0)

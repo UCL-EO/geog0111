@@ -8,6 +8,9 @@ from urlpath import URL
 from pathlib import Path
 import gdal
 import datetime
+import scipy
+import scipy.ndimage
+
 
 try:
   from geog0111.cylog import Cylog
@@ -1106,23 +1109,55 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
 
     # output dict
     odict = {}
-    
+    if ('force' in kwargs.keys()) and kwargs['force'] == True:
+        redo = True
+        del kwargs['force']
+    else:
+        redo = False
+        
+    bnames = []  
     for s in sds_list:
-        ofile = f"{ofile_root}_{s}.vrt"
-        kwargs['sds'] = s 
-        datafiles,bnames = getModis(**kwargs) 
-        stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
-        del stitch_vrt
+        ofile = f"{ofile_root}_SDS_{s}.vrt"
+        bofile = Path(f'{ofile}_bands')
+        if not redo:
+            if (not Path(ofile).exists()) or (not bofile.exists()):
+                kwargs['sds'] = s 
+                datafiles,bnames = getModis(**kwargs) 
+                stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
+                # save the band names
+                bofile = Path(f'{ofile}_bands')
+                bofile.write_text(' '.join(bnames))
+                del stitch_vrt
+        else:
+            kwargs['sds'] = s 
+            datafiles,bnames = getModis(**kwargs) 
+            stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
+            del stitch_vrt
+            # save the band names
+            bofile = Path(f'{ofile}_bands')
+            bofile.write_text(' '.join(bnames))
         odict[s] = ofile
+        bofile = Path(f'{ofile}_bands')
+        bnames = bofile.read_text().split()
     return odict,bnames
 
 import numpy as np
-from geog0111.modisUtils import modisAnnual
+import gdal
 
-def getLai(year=2019,tile=['h18v03','h18v04'],country='LU'):
+
+def getLai(year=2019,tile=['h18v03','h18v04'],country='LU',\
+           force=False,\
+           ofile_root='work/modisLAI',verbose=False):
     '''
     Get LAI and std for year,tile,country
+    
+    Options:
+    You should fill these out!!
+    
     '''
+
+    # filename
+    s = f'{ofile_root}_{year}_{country}_Tiles_{"_".join(tile)}'
 
     warp_args = {
         'dstNodata'     : 255,
@@ -1137,19 +1172,40 @@ def getLai(year=2019,tile=['h18v03','h18v04'],country='LU'):
         'product'   :    'MCD15A3H',
         'sds'       :    ['Lai_500m','LaiStdDev_500m']
     ,
-        'doys'      : [i for i in range(1,60,4)],
+        'doys'      : [i for i in range(1,366,4)],
         'year'      : year,
-        'warp_args' : warp_args
+        'warp_args' : warp_args,
+        'verbose'   : False
     }
+    
 
     # run
+    if verbose:
+        print(f'gathering modis annual data for {kwargs}')
+        
+    
     odict,bnames = modisAnnual(**kwargs)
+    
+    # read the data
+    if verbose:
+        print(f'reading datasets')
+    ddict = {}
+    for k,v in odict.items():
+        if verbose:
+            print(f'...{k} -> {v}')
+        g = gdal.Open(v)
+        if g:
+            ddict[k] = g.ReadAsArray()
+    
     # scale it
-    lai = odict['Lai_500m'] * 0.1
-    std = odict['LaiStdDev_500m'] * 0.1
+    lai = ddict['Lai_500m'] * 0.1
+    std = ddict['LaiStdDev_500m'] * 0.1
     # doy from filenames
     doy = np.array([int(i.split('-')[1]) for i in bnames])
+    if verbose:
+        print(f'done')
     return lai,std,doy
+
 
 def get_weight(lai,std):
     std[std<1] = 1
