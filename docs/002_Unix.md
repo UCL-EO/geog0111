@@ -133,7 +133,7 @@ cd ~/geog0111
 ls -lh README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3.3K Oct  5 09:38 README.md
+    -rw-r--r-- 1 ucfalew ucfa 3.5K Sep 28 21:37 README.md
 
 
 Here, the file size if `3.3K` (3.3 KBytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
@@ -179,8 +179,8 @@ ls -lh ../README.md
 chmod 644 ../README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3.7K Oct  2 18:42 ../README.md
-    -rwxr-xr-x 1 ucfalew ucfa 3.7K Oct  2 18:42 ../README.md
+    -rw-r--r-- 1 ucfalew ucfa 3.5K Sep 28 21:37 ../README.md
+    -rwxr-xr-x 1 ucfalew ucfa 3.5K Sep 28 21:37 ../README.md
 
 
 First the permissions of the file are 644 as we saw above, then we use `chmod 755` to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:
@@ -198,7 +198,7 @@ A posix directory name that **starts with** the file separator '/' is called an 
 ls -l ~/geog0111/README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3749 Oct  2 18:42 /home/ucfalew/geog0111/README.md
+    -rw-r--r-- 1 ucfalew ucfa 3522 Sep 28 21:37 /home/ucfalew/geog0111/README.md
 
 
 
@@ -210,7 +210,7 @@ A *relative pathname* is one that does not start with `/`  or `~`. It is specifi
 ls -l ../README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3749 Oct  2 18:42 ../README.md
+    -rw-r--r-- 1 ucfalew ucfa 3522 Sep 28 21:37 ../README.md
 
 
 Recall that we use `..` to specify 'up one level'. Then:
@@ -260,7 +260,7 @@ EOF
 ls -lh work/n*
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newererfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Sep 29 08:11 work/newererfile.dat
 
 
 We can also use `cat` to see what is in a file:

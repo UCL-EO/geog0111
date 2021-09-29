@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
 import matplotlib
+import gdal
+import numpy as np
 
 def im_display(data,names,band=0,r=[None,None],c=[None,None],\
-               title=None,colourmap=None,vmin=[],vmax=[],\
+               title=None,colourmap=None,vmin=[],vmax=[],scale=None,\
                x_size=12,y_size=8,shape=None,sub=(None,None)):
     '''
     a function called im_display that takes as input:
@@ -19,6 +21,8 @@ def im_display(data,names,band=0,r=[None,None],c=[None,None],\
             y_size=12        : plot y size * shape[1]
             shape=None       : subplots shape : e.g. (2,2)
     '''
+ 
+    #import pdb;pdb.set_trace()
     # sort out options
     n = len(names)
     if shape == None:

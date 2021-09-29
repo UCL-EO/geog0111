@@ -34,7 +34,8 @@ tiles = ['h17v03', 'h17v04', 'h18v03', 'h18v04']
 
 ```python
 # ANSWER
-from geog0111.modis import Modis
+from geog0111.modisUtils import modisAnnual
+import gdal
 from geog0111.im_display import im_display
 import numpy as np
 
@@ -71,20 +72,20 @@ def data_mask(data,sds,scales,uthresh,lthresh):
 # put the required SDS in the sds field of kwargs
 
 kwargs = {
-    'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
-    'product'   :    'MCD15A3H',
-    'sds'       :    ['Lai_500m','LaiStdDev_500m']
-}
-
-kwargs = {
-    'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
     'product'   :    'MCD15A3H',
     'sds'       :    ['Lai_500m','LaiStdDev_500m'],
+    'doys'       : [41],
+    'year'      : 2019,
 }
-# get the data
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
+
+filename,bandname = modisAnnual(verbose=False,**kwargs)
+data_MCD15A3H = {}
+for f,v in filename.items():
+    g = gdal.Open(v)
+    if g:
+        data_MCD15A3H[f] = g.ReadAsArray()
+
 sds     = kwargs['sds']
 scale   = [0.1, 0.1]
 uthresh = [100,100]

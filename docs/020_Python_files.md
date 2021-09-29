@@ -1,4 +1,4 @@
-# 020 Files and other Resources
+# 020 Files, Streams and related issues
 
 
 ## Introduction
@@ -7,9 +7,7 @@
 
 ### Purpose
 
-In this session, we will learn about files and similar resources. We will introduce the standard Python library [`pathlib`](https://docs.python.org/3/library/pathlib.html) which is how we deal with file paths, as well as the local package [gurlpath](geog0111/gurlpath.py) that allows a similar object-oriented approach with files and other objects on the web. The treatment is intentionally high-level. If you need to go deeper into calls to URLs, you should look at the Python packages: [urllib.parse](https://docs.python.org/3.7/library/urllib.parse.html), [requests](https://requests.readthedocs.io/en/master/) and [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/).
-
-
+In this session, we will learn about files and streams. We will introduce the standard Python library [`pathlib`](https://docs.python.org/3/library/pathlib.html) which is how we deal with file paths. We will also cover opening and closing files, and some simple read- and write-operations.
 
 ### Prerequisites
 
@@ -26,15 +24,12 @@ You will need some understanding of the following:
 * [012 String formatting](012_Python_strings.md)
 * [013_Python_string_methods](013_Python_string_methods.md)
 
-### Test
-
-You should run a [NASA account test](004_Accounts.md) if you have not already done so.
 
 ## Data resources
 
 ### Resource location
 
-We store information on a computer in files, or file-like resources. We will use the term 'file' below to mean either of these concepts, other than specific issues relating to particular types of file/resource.
+We store information on a computer or 'on the web' in files, or file-like resources. We will use the term 'file' below to mean either of these concepts, other than specific issues relating to particular types of file/resource.
 
 To get information from files, we need to be able to specify some **address** for the file/resource location, along with some way of interacting with the file. These concepts are captured in the idea of a [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (Uniform Resource Indicator). You will most likely have come across the related idea of a [Uniform Resource Locator (URL)](https://en.wikipedia.org/wiki/URL), which is a URL such as [https://www.geog.ucl.ac.uk/people/academic-staff/philip-lewis](https://www.geog.ucl.ac.uk/people/academic-staff/philip-lewis)
 that gives:
@@ -48,6 +43,11 @@ When we visit this URL using an appropriate tool such as a browser, the tool can
 Similarly, we will be used to the idea of accessing `files` on the computer. These may be in the local file system, or on some network or cloud storage that might be accessible from the local file system. An example of such a file would be some Python code file such as 
 [`geog0111/helloWorld.py`](http://localhost:8888/edit/notebooks/geog0111/helloWorld.py).
 
+Whilst there are low-level tools we can use to access these various types of information, it is better from a programmer's point of view to be able to do this in a consistent and object-oriented manner: as a programmer, shouldn't really need distinguish greatly between a file accessed by a URL and one on the local file system. And if you do, you should be able to use much the same sort of methods to do much the same sort of tasks.
+
+It doesn't quite work like that yet in Python, but the [`pathlib`](https://docs.python.org/3/library/pathlib.html) package goes a long way towards that for local files. This doesn't yet exist for URLs in standard Python, but is implemented to a large extent by the package [`urlpath`](https://github.com/chrono-meter/urlpath). These are the tools we will be learning to use to access and manipulate files and similar objects.
+
+We will first introduce [`pathlib`](https://docs.python.org/3/library/pathlib.html) to learn how to deal with local files.
 
 ### binary and text data
 
@@ -63,9 +63,8 @@ Binary files will also have some defined format, but in this case, the user is g
 
 When you wish to access some file or dataset, you will generally know which format the file will be in, so can target an appropriate reader. Quite often though, we have to we might need to examine a dataset before deciding on some parameters for an interpreter, particularly with text datasets. 
 
-In these notes, we will learn how to access and use binary and text datasets in Python, but from the local file system, and online from URLs.
+In these notes, we will learn how to access and use binary and text datasets in Python, from the local file system and online from URLs over the next few sessions.  In a URI sense, there is much in common between online and local files
 
-We first need to learn some core tools for file and URL access. We will be using the object-oriented [`pathlib`](https://docs.python.org/3/library/pathlib.html) package for local files, and a local variant of [`urlpath`](https://github.com/chrono-meter/urlpath) called [`gurlpath`](geog0111/gurlpath.py).
 
 We will be also using `yaml`, `json` and [`pandas`](https://pandas.pydata.org/) packages for reading particular text file types, and introducing [`gdal`](https://gdal.org/python/) for binary image files.
 
@@ -96,15 +95,48 @@ We can start with a table of [commonly-used methods](https://stackabuse.com/intr
 |---|---|---|
 |`Path.cwd()`| `pwd` |Return path object representing the current working directory|
 |`Path.home()`| `~`| Return path object representing the home directory|
-|`Path.stat()`| `ls -l`* | return info about the path. File size is `Path.stat().st_size` |
+|`Path.stat()`| `ls -l`† | return info about the path. File size is `Path.stat().st_size` |
 |`Path.chmod()`| `chmod` | change file mode and permissions|
 |`Path.glob(pattern)`| `ls *` | Glob the pattern given in the directory that is represented by the path, yielding matching files of any kind|
 |`Path.mkdir()`| `mkdir` | to create a new directory at the given path|
 |`Path.rename()`| `mv` | Rename a file or directory to the given target|
 |`Path.rmdir()`| `rmdir` | Remove the empty directory|
-|`Path.unlink()`| `rm` | Remove the file or symbolic link|
+|`Path.unlink()`| `rm`‡ | Remove the file or symbolic link|
+|`Path.touch()` | `touch` | create (zero-sized) or update a file |
+|`Path.parent` | `..` ✟ | The parent object (one level up in directory tree) |
 
-`*` Really, `Path.stat()` equates to the `unix` command `stat`, but this contains the information we access using `ls -l`.
+
+Some other common utilities:
+
+|command|  purpose|
+|---|---|
+|`Path.as_posix()`| Return the object as a posix filename string |
+|`Path.exists()` | `True` if exists, `False` if not|
+|`Path.parent` |  the parent object (one level up in directory tree), or the directory a file is in |
+|`Path.name` | the file name |
+|`Path.is_file()` | `True` if object is a file |
+|`Path.is_dir()` | `True` if object is a directory |
+
+We will also deal with opening and closing files and moving information around, using these functions:
+
+
+|command|  purpose|
+|---|---|
+|`Path.open()`| open a file and return a file descriptor|
+|`Path.read_text()`|  read text|
+|`Path.write_text()`| write text|
+|`Path.read_bytes()`| read byte data|
+|`Path.write_bytes()`| write byte data|
+
+
+
+##### Notes to table
+
+† Really, `Path.stat()` equates to the `unix` command `stat`, but this contains the information we access using `ls -l`.
+
+‡ You can use `shutil.rmtree()` to do recursive delete, if you really need to.
+
+✟ `..` isn't exactly the same as `Path.parent`, but expresses a similar idea. So if you had a directory `foo/bar`, then `foo/bar/..` would be the parent i.e. `foo`.
 
 Since we are already familiar with most of these commands in `unix`, we can get straight into using them:
 
@@ -116,11 +148,30 @@ print(f'I am in directory {Path.cwd()}')
 print(f'My home is {Path.home()}')
 ```
 
-    I am in directory /Users/plewis/Documents/GitHub/geog0111/notebooks
-    My home is /Users/plewis
+    I am in directory /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    My home is /home/ucfalew
 
 
-To keep the filenames generic, we can form a filename from a list using `Path()`, so `Path('bin','README')` would refer to the filename `bin/README` on a `posix` system, and `bin/README` on Windows. However, this is interpreted the same as just using `bin/README` which will often be clearer.
+Really, the object `Path.home()` is a `Path` object. When we direct `print()` to print it, it converts it to a string. If you need to convert a `Path` object to a string in any other context (e.g. passing to some function that needs a filename as a string), then use `Path.as_posix()` to convert:
+
+
+```python
+# print posix path as string
+myhome=Path.home()
+print(f'My home is {myhome.as_posix()}')
+
+# Path object 
+print(type(myhome))
+# convert to string
+print(type(myhome.as_posix()))
+```
+
+    My home is /home/ucfalew
+    <class 'pathlib.PosixPath'>
+    <class 'str'>
+
+
+To keep the filenames generic between different operating systems, we can form a filename from a list using `Path()`, so `Path('bin','README')` would refer to the filename `bin/README` on a `posix` system, and `bin\README` on Windows. However, this is interpreted the same as just using `bin/README` which will often be clearer.
 
 
 ```python
@@ -174,6 +225,10 @@ There is a file called `environment.yml` in the directory `copy`.
 * create a variable `env_file` which adds add the file `environment.yml` to this 
 * check to see if the file exists
 
+### Creating and deleting files and directories
+
+#### Directories
+
 To create a directory, use:
 
     Path().mkdir()
@@ -188,7 +243,7 @@ To remove an empty directory, use:
 
     Path().rmdir()
     
-Note that there is no recursive delete in `pathlib`: you have to delete files and directories explicitly.
+If we need to test to see if the object we want to delete really is a directory, we can use `Path.is_dir`. If we want to first check it exists, then use `Path.exists()` to make the code more robust:
 
 
 ```python
@@ -196,25 +251,58 @@ Note that there is no recursive delete in `pathlib`: you have to delete files an
 tmp = Path('tmp')
 tmp.mkdir(parents=True,exist_ok=True)
 
-# look inside tmp
-print(f'files in {tmp}: {list(tmp.glob("*"))}')
-
-# generate directory inside
-inside = tmp / 'inside'
-# create this
-inside.mkdir(parents=True,exist_ok=True)
-# look inside tmp
-print(f'files in {tmp}: {list(tmp.glob("*"))}')
-
-# delete inside if it is a directory
-inside.is_dir and inside.rmdir()
-# then delete tmp
-tmp.is_dir and tmp.rmdir()
+# then delete tmp (if it exists and is a dir)
+tmp.exists() and tmp.is_dir() and tmp.rmdir()
 ```
 
-    files in tmp: []
-    files in tmp: [PosixPath('tmp/inside')]
+#### Files
 
+To create a blank (zero-sized) file, we can use `Path.touch()`, and then `Path.unlink()` to remove it. 
+
+We can use `Path.parent` to refer to the parent object, e.g. the directory a file is in, or for a directory, one level up (`..`). So, if we are creating a file for the first time, we might want to make sure that its parent directory exists before doing so (e.g. using `Path.parent.mkdir(parents=True,exist_ok=True)` as above).
+
+If we need to test to see if the object we want to delete really is a file (not a directory), we can use `Path.is_file`:
+
+
+```python
+tmp = Path('tmp','myfile')
+
+# make sure directory (parent) exists
+tmp.parent.mkdir(parents=True,exist_ok=True)
+# create zero size file
+tmp.touch()
+
+# call `Path.exists()`
+print("now you see it:",tmp.exists())
+```
+
+    now you see it: True
+
+
+
+```python
+# delete inside if it exists and is a file
+tmp.exists() and tmp.is_file() and tmp.unlink()
+
+# let's make a unix call here to check the file size etc
+print("now you don't:",tmp.exists())
+```
+
+    now you don't: False
+
+
+####  `rm -r` options
+
+Note that there is no recursive delete in `pathlib` like `rm -r` in linux: you have to delete files and directories explicitly in `pathlib`. Really, `rm -r` is a really dangerous command to have, as you might accidently delete all sorts of things you didn't mean to. So, don't even go there unless you need to.
+
+If you do, you can look on the web, you can find [various solutions to this to make it easier](https://stackoverflow.com/questions/50186904/pathlib-recursively-remove-directory). Maybe the easiest is to use `rmtree` from the package `shutil`, though this doesn't fit so well with our object-oriented principles.
+
+    import shutil
+    shutil.rmtree( '/tmp/mydir' )
+
+#### Exercise 2
+
+Create a zero-sized file called `hello.txt` in a directory `mystuff`, using `Path` and show that it exists and is a file. Then delete the file and directory.
 
 ### File information
 
@@ -232,13 +320,70 @@ print(f'README file is {readme}')
 print(f'       size is {readme.stat().st_size} bytes')
 print(f'       mode is {oct(readme.stat().st_mode)}')
 print(f'      owner is {readme.owner()}')
+
+# confirm with unix
+!ls -lh bin/README
 ```
 
     README file is bin/README
            size is 16 bytes
            mode is 0o100644
-          owner is plewis
+          owner is ucfalew
+    -rw-r--r-- 1 ucfalew ucfa 16 Sep 29 08:43 bin/README
 
+
+#### Exercise 3
+
+Create a zero-sized file in a new directory, and use `Path.stat()` to show it has size 0 bytes. Then tidy up by deleting the file and directory.
+
+### `datetime` 
+
+You have access to  a wide range of information from [`File.stat()`](https://docs.python.org/3/library/os.html#os.stat_result). Some of this relates to time (e.g. time last viewed, accessed etc). These times are given as Epoch times, in seconds since from 1/1/1970:
+
+For example, to get the last access time:
+
+    st_mtime : Time of most recent content modification expressed in seconds.
+    
+
+
+```python
+readme = Path('bin','README')
+
+modified = readme.stat().st_mtime
+print(f'Time of most recent modification for {readme} is {modified}')
+```
+
+    Time of most recent modification for bin/README is 1632901394.772314
+
+
+That is not always the most convenient form. So we can use the `datetime.datetime.fromtimestamp` from the `datetime` package to convert it into something more human-readable:
+
+
+```python
+from datetime import datetime
+
+modified = readme.stat().st_mtime
+h_modified = datetime.fromtimestamp(modified)
+
+print(f'Time of most recent modification for {readme} is {h_modified}')
+```
+
+    Time of most recent modification for bin/README is 2021-09-29 08:43:14.772314
+
+
+We can also use `datetime` to tell us the time now, with `datetime.now()`, for comparison:
+
+
+```python
+print(f'Time now is {datetime.now()}')
+```
+
+    Time now is 2021-09-29 08:43:26.872358
+
+
+#### Exercise 4
+
+Use `Path.touch()` to update the modification time for the file `bin/README` and demonstrate that you have done this and that is the same as the current time (now).
 
 ### `glob` generators 
 
@@ -259,22 +404,22 @@ for i,f in enumerate(filenames):
     print(f'file {i} is {f}')
 ```
 
-    file 0 is bin/notebook-mkdocs.sh
-    file 1 is bin/setup.sh
-    file 2 is bin/notebook-run.sh
-    file 3 is bin/fixA.sh
-    file 4 is bin/link-set.sh
-    file 5 is bin/clean0111.sh
-    file 6 is bin/tidy.sh
-    file 7 is bin/init.sh
-    file 8 is bin/sort-db.sh
-    file 9 is bin/get-datasets.sh
-    file 10 is bin/init0111.sh
+    file 0 is bin/clean0111.sh
+    file 1 is bin/database.sh
+    file 2 is bin/fixA.sh
+    file 3 is bin/get-datasets.sh
+    file 4 is bin/git-remove-all.sh
+    file 5 is bin/howmany.sh
+    file 6 is bin/init.sh
+    file 7 is bin/init0111.sh
+    file 8 is bin/link-set.sh
+    file 9 is bin/notebook-mkdocs.sh
+    file 10 is bin/notebook-run.sh
     file 11 is bin/set-course.sh
-    file 12 is bin/howmany.sh
+    file 12 is bin/setup.sh
     file 13 is bin/shellMe.sh
-    file 14 is bin/database.sh
-    file 15 is bin/git-remove-all.sh
+    file 14 is bin/sort-db.sh
+    file 15 is bin/tidy.sh
 
 
 The advantage of a generator is that it will generally need less memory than fully calculating all items in a list. Once we move on to the next item in the generator, any memory used by current item is freed.
@@ -287,7 +432,17 @@ filenames = list(Path('bin').glob('*.sh'))
 print(filenames)
 ```
 
-    [PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/fixA.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/clean0111.sh'), PosixPath('bin/tidy.sh'), PosixPath('bin/init.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/get-datasets.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/database.sh'), PosixPath('bin/git-remove-all.sh')]
+    [PosixPath('bin/clean0111.sh'), PosixPath('bin/database.sh'), PosixPath('bin/fixA.sh'), PosixPath('bin/get-datasets.sh'), PosixPath('bin/git-remove-all.sh'), PosixPath('bin/howmany.sh'), PosixPath('bin/init.sh'), PosixPath('bin/init0111.sh'), PosixPath('bin/link-set.sh'), PosixPath('bin/notebook-mkdocs.sh'), PosixPath('bin/notebook-run.sh'), PosixPath('bin/set-course.sh'), PosixPath('bin/setup.sh'), PosixPath('bin/shellMe.sh'), PosixPath('bin/sort-db.sh'), PosixPath('bin/tidy.sh')]
+
+
+Alternatively, you can use the [`*args`](https://www.geeksforgeeks.org/args-kwargs-python/) method to pass the results of the generator through to the print function as a set of arguments:
+
+
+```python
+print(*Path('bin').glob('*.sh'))
+```
+
+    bin/clean0111.sh bin/database.sh bin/fixA.sh bin/get-datasets.sh bin/git-remove-all.sh bin/howmany.sh bin/init.sh bin/init0111.sh bin/link-set.sh bin/notebook-mkdocs.sh bin/notebook-run.sh bin/set-course.sh bin/setup.sh bin/shellMe.sh bin/sort-db.sh bin/tidy.sh
 
 
 Let's use `glob` now to get the file permissions of each file `n*` in the directory `bin`:
@@ -305,362 +460,243 @@ for f in filenames:
     bin/notebook-run.sh      
 
 
-#### Exercise 2
-
-* Use `Path` to show the file permissions of all files that end `.sh` in the directory `bin`
-
-
-### `absolute`, `parts`, `name`, `parent`
-
-We can use `Path` to convert filenames between relative and absolute representations using `absolute()` and `relative_to()`:
-
-
-```python
-print(f'I am in {Path.cwd()}')
-
-# define a relative path name
-readme=Path('bin/README')
-print(f'original relative name:\n\t{readme}')
-
-# convert to absolute
-readme = readme.absolute()
-print(f'absolute name:\n\t{readme}')
-
-# now make a relative pathname, 
-# reletive to current working directory
-readme = readme.relative_to(Path.cwd())
-print(f'name relative to {Path.cwd()}:\n\t{readme}')
-```
-
-    I am in /Users/plewis/Documents/GitHub/geog0111/notebooks
-    original relative name:
-    	bin/README
-    absolute name:
-    	/Users/plewis/Documents/GitHub/geog0111/notebooks/bin/README
-    name relative to /Users/plewis/Documents/GitHub/geog0111/notebooks:
-    	bin/README
-
-
-Quite often we need to split some filename up into its constituent parts. This is achieved with `paths` which gives a list of the file name tree:
-
-
-```python
-readme=Path('bin/README')
-print(readme.parts)
-```
-
-    ('bin', 'README')
-
-
-We could use that to get at the filename `README` from the last item in the list, but a more object-oriented way is to use `name` (and `parent` to get the directory up to that point):
-
-
-```python
-readme=Path('bin','README')
-print(f'name   of {readme} is {readme.name}')
-print(f'parent of {readme} is {readme.parent}')
-```
-
-    name   of bin/README is README
-    parent of bin/README is bin
-
-
-#### Exercise 3
-
-* print out the absolute pathname of the directory that `images/ucl.png` is in
-* check that the file exists
-* if it does, print the size of the file in KB to two decimal places
-
-You will need to know how many Bytes in a Kilobyte, and how to [format a string to two decimal places](012_Python_strings.md#String-formating). You will also need to remember how to use [`if` statements](015_Python_control.md#Comparison-Operators-and-if).
-
-## Resources from a URL
-
-### `gurlpath`, `st_size`
-
-The library [`gurlpath`](geog0111/gurlpath.py) in [geog0111](geog0111) is designed to operate in a similar manner to `pathlib` for reading data from URLs. It is derived from [`urlpath`](https://github.com/chrono-meter/urlpath)  which in turn is based on [urllib.parse](https://docs.python.org/3/library/urllib.parse.html) and [requests](https://requests.readthedocs.io/en/master/). It uses [`BeautifulSoup`](https://www.crummy.com/software/BeautifulSoup/) for parsing `html` data. At some point you may wish to learn how to use these lower-level packages, but for learning on this course, you will find it convenient to use this higher-level package.
-
-The object in `gurlpath` corresponding to `Path` is `URL`.
-
-A text file example:
-
-
-```python
-from geog0111.gurlpath import URL
-site = 'https://www.metoffice.gov.uk/'
-site_dir = 'hadobs/hadukp/data/monthly'
-site_file = 'HadSEEP_monthly_qc.txt'
-
-url = URL(site,site_dir,site_file)
-print(f'remote file {url}')
-print(f'size is {url.stat().st_size/1024 :.2f} KB')
-```
-
-    remote file https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
-    size is 4.77 KB
-
-
-A binary file example:
-
-
-```python
-from geog0111.gurlpath import URL
-
-site = 'https://e4ftl01.cr.usgs.gov'
-site_dir = 'MOTA/MCD15A3H.006/2020.01.01'
-site_file = 'MCD15A3H.A2020001.h08v06.006.2020006032951.hdf'
-
-url = URL(site,site_dir,site_file)
-print(f'remote file {url}')
-print(f'size is {url.stat().st_size/1024 :.2f} KB')
-```
-
-    remote file https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-    size is 8854.67 KB
-
-
-We have similar functionality in `URL` to `Path` for manipulating filenames, but more limited file information:
-
-
-```python
-print(f'URL    : {url}')
-print(f'name   : {url.name}')
-print(f'parent : {url.parent}')
-```
-
-    URL    : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-    name   : MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-    parent : https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
-
-
-but also some other helpful ones on the URL:
-
-
-```python
-print(f'anchor   : {url.anchor}')
-print(f'hostname : {url.hostinfo}')
-print(f'scheme   : {url.scheme}')
-```
-
-    anchor   : https://e4ftl01.cr.usgs.gov
-    hostname : e4ftl01.cr.usgs.gov
-    scheme   : https
-
-
-#### Exercise 4
-
-* create a `URL` object for the file `table.html` in the directory `psd/enso/mei/` on the site `http://www.esrl.noaa.gov/`.
-* print out the url and check it is `table.html`
-
-For accessing URLs, will mostly make use of the following functions in `URL` that you will see are very similar to those for `Path`:
-
-
-|function| purpose|
-|---|---|
-|`URL.name`|  filename |
-|`URL.parent`|  parent |
-|`URL.parts`|  parts |
-|`URL.stat()`| return info about the file. N.B. Only `URL.stat().st_size` is used for remote files|
-|`URL.glob(pattern)`| Glob the pattern given in the URL directory, yielding matching files of any kind| 
-|`URL.exists()`|  test to see if a url is accessible |
-
-
-
-### login and password
-
-Some web resources require you to use a login and password. This can be specified for the `URL` class by with the functiuon `URL.with_userinfo`:
-
-
-```python
-help(URL.with_userinfo)
-```
-
-    Help on function with_userinfo in module urlpath:
-    
-    with_userinfo(self, username, password)
-        Return a new url with the userinfo changed.
-    
-
-
-This is the main way you can pass your username and password to the relevant functions. However, in any public information (like these notebooks) we do not want to expose sensitive information such as usernames and passwords.
-
-To that end `URL` can make use of stored passwords and usernames using the local [cylog](geog0111/cylog.py) package that was covered in [004_Accounts](004_Accounts.md). You should have already tested that your NASA Earthdata login works for files on the site `https://e4ftl01.cr.usgs.gov`.
-
-
-
-### `exists`
-
-We can use the function `URL.exists()` to test to see if some URL is accessible to us. The function first tries without a password, but if that fails, tries to find an appropriate password and username in the `cyclog` database.
-
-Several of the URL functions have `verbose` options (unlike those from `Path`). This is to allow the user to gain more insight into what is going on in accessing the URL. We will use `exists()` with `verbose=True` below:
-
-
-```python
-from geog0111.gurlpath import URL
-from pathlib import Path
-
-site = 'https://e4ftl01.cr.usgs.gov'
-site_dir = '/MOLA/MYD11_L2.006/2002.07.04'
-site_file = 'MYD11_L2.A2002185.0325.006.2015142192613.hdf'
-
-url = URL(site,site_dir,site_file,verbose=True)
-if url.exists():
-    print(f'I can access {url}')
-else:
-    print(f'I cannot access {url}')
-```
-
-    --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
-    --> trying get
-    --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
-    --> code 401
-    --> trying another
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-
-
-    I can access https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
-
-
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
-
-
-When we try to access a datafile on the site [`https://e4ftl01.cr.usgs.gov`](https://e4ftl01.cr.usgs.gov) we need to use our NASA Earthdata login and password. This is done automatically withing the call to `url.exists()` or for any function requiring passwords.
-
-### `glob` and NASA datasets
-
-The `glob` function is particularly useful for finding datasets on websites, as we might not always know the full file specification. Using `rglob()` (recursive glob) on a website is generally too slow to be worthwhile, so we will avoid using it.
-
-Suppose we want to access some NASA hdf files for the product `MCD15A3H` for the data tile `h08v06`. On the site `https://e4ftl01.cr.usgs.gov` the data will be in the folder `'MOTA/MCD15A3H.006`. Data for a particular date then are in a directory of the form `/{year}.{month}.{day}/` where `month` and `day` must be a 2-digit string, left zero-padded (e.g. `02` instead of `2`). Files in there will have the form `*.h08v06*.hdf`. This is a perfect case for the use of `glob`:
-
-If we specify a date (1-based for month, so `1` is January):
-
-    year, month, day = '2020', '06', '01'
-    
-then the directory will be given by:
-
-    site_dir = f'MOTA/MCD15A3H.006/{year:4d}.{month:02d}.{day:02d}'
-    
-and the file, with wildcard `*` by:
-
-    site_file = '*.h08v06*.hdf'
-
-we can use `glob` to discover the full URL specification:
-
-
-```python
-from geog0111.gurlpath import URL
-
-# settings
-product = 'MCD15A3H'
-year, month, day = '2020', '06', '01'
-tile = 'h08v06'
-
-# url with wildcards
-site = 'https://e4ftl01.cr.usgs.gov'
-site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
-site_file = f'*.{tile}*.hdf'
-
-# get the information
-url = URL(site,site_dir,verbose=True)\
-# convert generator to list to make it easier to understand
-hdf_urls = url.glob(site_file)
-for u in hdf_urls:
-    print(u)
-```
-
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
-
-
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
-
-
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-
-
-This is extremely useful for dataset discovery.
-
 #### Exercise 5
 
-based on the code from above:
+* Use `Path` to show the file permissions of all files that end `.md` in the directory `.` (current directory)
 
-    # settings
-    product = 'MCD15A3H'
-    year, month, day = '2020', '06', '01'
-    tile = 'h08v06'
+### Reading and writing information
 
-    # url with wildcards
-    site = 'https://e4ftl01.cr.usgs.gov'
-    site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
-    site_file = f'*.{tile}*.hdf'
+The functions for reading and writing information to and from files are:
 
-    # get the information
-    url = URL(site,site_dir,verbose=True)
-    hdf_urls = list(url.glob(site_file))[0]
-    
- * write a function called `modis_dataset` with arguments corresponding to the settings above
- * the function should return the URL objects of the NASA datasets specified by your arguments
- * your function should be fully documented and include some error checks
- * run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places
- * what happens if you use a wildcard for the date?
 
-The utility function `modis_dataset` we have developed here is available as `get_url` in the `Modis` class in  `geog0111.modis`:
+|command|  purpose|
+|---|---|
+|`Path.open()`| open a file and return a file descriptor|
+|`Path.read_text()`|  read text|
+|`Path.write_text()`| write text|
+|`Path.read_bytes()`| read byte data|
+|`Path.write_bytes()`| write byte data|
+
+
+### copy
+
+If we are only dealing with reading and writing information in `Path` objects (and those derived from `Path`), then we will normally use `Path.read_text()` and `Path.read_bytes()` for reading text and binary data respectively, and `Path.write_text()` and `Path.write_bytes()` for writing.
 
 
 ```python
-from  geog0111.modis import Modis
+from pathlib import Path
 
-help(Modis.get_url)
+# read a text (json) file
+json_file = Path('bin/copy/environment.json')
+content = json_file.read_text()
+
+print(f'type: {type(content)}')
+print(f'content: {content}')
 ```
 
-    Help on function get_url in module geog0111.modis:
-    
-    get_url(self, **kwargs)
-        Get URL object list for NASA MODIS products
-        for the specified product, tile, year, month, day
-        
-        Keyword Arguments:
-        
-        verbose:  bool
-        site    : str 
-        product : str e.g. 'MCD15A3H'
-        tile    : str e.g. 'h08v06'
-        year    : str valid 2000-present
-        month   : str 01-12
-        day     : str 01-(28,29,30,31)
-    
+    type: <class 'str'>
+    content: {"name": "geog0111", "channels": ["conda-forge", "defaults"], "dependencies": ["git", "python>=3.7", "nomkl", "libgdal", "geopandas", "rasterio", "scipy", "gdal", "beautifulsoup4", "fiona", "numpy", "statsmodels", "cartopy", "scikit-image", "netcdf4", "scikit-learn", "matplotlib-base", "pandas", "shapely", "ipyleaflet", "pytest", "seaborn", "hdf5", "flake8", "ipywidgets", "xarray", "black", "folium", "jupyter_console", "pandocfilters", "nbconvert", "jupyterlab", "pandoc", "pyephem", "libnetcdf", "ipykernel", "ipympl", "pip", "yapf", "autopep8", "geemap", "jupyter", "nbgitpuller", "mkdocs", "pycodestyle", "sphinx", "fsspec", {"pip": ["mkdocs-jupyter", "urlpath", "jupyter_contrib_nbextensions", "mknotebooks", "mkdocs-material", "mkdocs-exclude", "mkdocs-git-revision-date-localized-plugin"]}]}
+
+
+We see that the whole file contents are returned as a string. Sometimes this might be what we want. 
+
+For example, to make a copy of this file in a directory `mydata`, we can simply use:
+
+
+```python
+ifile = Path('bin/copy/environment.json')
+ofile = Path('mydata',ifile.name)
+
+# look at ifile size
+print(f'{ifile} size: {ifile.stat().st_size} bytes')
+
+# make sure parent directory exists
+ofile.parent.mkdir(parents=True,exist_ok=True)
+```
+
+    bin/copy/environment.json size: 801 bytes
+
+
+Note the use of `ifile.name` to refer to the file name and make sure the output filename is the same as the input here.
+
+Similarly for a binary file:
+
+
+```python
+ifile = Path('images/ucl.png')
+ofile = Path('mydata',ifile.name)
+
+# look at ifile size
+print(f'{ifile} size: {ifile.stat().st_size} bytes')
+
+# make sure parent directory exists
+ofile.parent.mkdir(parents=True,exist_ok=True)
+```
+
+    images/ucl.png size: 1956 bytes
 
 
 
 ```python
-from  geog0111.modis import Modis
-
-modis = Modis(product='MCD15A3H',verbose=False)
-hdf_urls = modis.get_url(year="2020",month="*",day="01")
-for u in hdf_urls:
-    print(f'{u.name} : {u.exists()}')
+# copy using read_bytes and write_bytes
+# copy data: write_bytes returns number of bytes written
+nbytes = ofile.write_bytes(ifile.read_bytes()) #for binary files
+print(f'{nbytes} bytes written for {ofile}')
 ```
 
-    MCD15A3H.A2020001.h08v06.006.2020006032951.hdf : True
-    MCD15A3H.A2020061.h08v06.006.2020066032716.hdf : True
-    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf : True
-    MCD15A3H.A2020245.h08v06.006.2020253152835.hdf : True
+    1956 bytes written for mydata/ucl.png
 
+
+
+```python
+# tidy up and remove the file
+ofile.unlink()
+ofile.parent.rmdir()
+```
+
+#### Exercise 6
+
+Copy the file [`geog0111/cylog.py`](geog0111/cylog.py) to a new directory `myfile` and confirm the size of the file copied. Tidy up by deleting the copied file.
+
+###  `with ... as ...`, open, yaml, json
+
+Sometimes we want to open a stream to a file and then to pass that open stream on to some other package. A [stream](https://en.wikipedia.org/wiki/Standard_streams) is a channel through which we may send and/or receive information. This is different to a file, which is where information may reside, but we may for instance open a stream to write to a file. In Python, we call the object that we get when opening a stream a *file object*.
+
+For instance, in the json example above, we read the text in as a string, but we didn't do anything to parse (i.e. interpret) the information in the file. 
+
+Quite often then, when we need to interface to some interpreter of information in a file, we will use `Path.open()` to provide a file descriptor to pass through. There are various other reasons we might use `Path.open()`, including when we need some more subtle control on the operations.
+
+The `pathlib` function for opening a stream is `Path.open`.
+
+The usual way of opening a file to get the file object is:
+
+    with Path(filename).open('r') as f:
+       # do some reading with f
+       pass
+       
+We use the form `with ... as ...` here, so that the file object `f` only exists within this construct and the file is automatically closed when we finish. Codes are spaced in inside the construct, as we have seen in `if ...` or `for ... in ...` constructs.
+
+To use `Path.open()`, we have to distinguish between [modes of opening a file](https://pathlib.readthedocs.io/en/0.5/#pathlib.Path.open). Mostly we will use `r` (read) and `w` (write) for opening a file for reading and writing respectively. Sometimes, we might also use `a` (write append).
+
+Here, we use a file descriptor method `write` to write data to a file, so we use the mode `w`:
+
+
+```python
+from pathlib import Path
+
+ofile = Path('hello/hello_world.txt')
+ofile.parent.mkdir(parents=True,exist_ok=True)
+
+mytext = "hello world"
+
+with ofile.open('w') as f:
+    f.write(mytext)
+
+# print it out
+print(f'{ofile} content\n{"-"*10}\n{ofile.read_text()}')
+
+# tidy
+# tidy up and remove the file
+ofile.unlink()
+ofile.parent.rmdir()
+```
+
+    hello/hello_world.txt content
+    ----------
+    hello world
+
+
+Two common text formats for certain types of data representation are [json](https://docs.python.org/3/library/json.html) and [`yaml`](http://zetcode.com/python/yaml/). The Python library functions for input and output of both of these use streams: `yaml.safe_load()`, `yaml.safe_dump()`, `json.load()` and `json.dump()` respectively.
+
+
+```python
+import yaml
+
+help(yaml.safe_load)
+help(yaml.safe_dump)
+```
+
+    Help on function safe_load in module yaml:
+    
+    safe_load(stream)
+        Parse the first YAML document in a stream
+        and produce the corresponding Python object.
+        
+        Resolve only basic YAML tags. This is known
+        to be safe for untrusted input.
+    
+    Help on function safe_dump in module yaml:
+    
+    safe_dump(data, stream=None, **kwds)
+        Serialize a Python object into a YAML stream.
+        Produce only basic YAML tags.
+        If stream is None, return the produced string instead.
+    
+
+
+Similar functions (`json.load()` and `json.dump()`) exist for json format.
+
+Here, we use the `yaml` package to interpret data in the file `bin/copy/environment.yml` in the variable `env`, which will be a dictionary:
+
+
+```python
+from pathlib import Path
+import yaml
+
+# form the file name
+yaml_file = Path('bin/copy/environment.yml')
+
+# open stream object 'read'
+with yaml_file.open('r') as f:
+    env = yaml.safe_load(f)
+
+print(f'env is type {type(env)}')
+print(f'env keys: {env.keys()}')
+```
+
+    env is type <class 'dict'>
+    env keys: dict_keys(['name', 'channels', 'dependencies'])
+
+
+Now, we dump that information to a json file, using `Path.open()` with `w` (write) mode:
+
+
+```python
+from pathlib import Path
+import json
+
+# form the file name
+json_file = Path('bin/copy/environment.json')
+
+with json_file.open('w') as f:
+    json.dump(env, f)
+```
+
+In the examples above, we have done more than just copy: we have interpreted the information from one file format (yaml), and translated it into a file for another format (json). The intermediate data in the Python script was help as a form of dictionary, rather than just the ASCII text string we had read earlier.
+
+#### Exercise 8
+
+* write code to read from the json-format file `bin/copy/environment.json` into a dictionary called `json_data`.
+* print out the dictionary keys.
+* print the file size of the json-format file in KB to two decimal places.
+
+### Summary test
+
+Let's try to put several of these things together:
+
+#### Exercise 9
+
+* check that the file `images/ucl.png` exists and print modification time and the file size in KB to two decimal places
+* make a directory `myfiles` and copy the file `images/ucl.png` to this directory
+* show the file size of `myfiles/ucl.png`, the modification time, and the time now
+* after that, tidy up by deleting the file `myfiles/ucl.png` and the directory `myfiles`. Confirm that you have done this.
+
+You will need to know how many Bytes in a Kilobyte, and how to [format a string to two decimal places](012_Python_strings.md#String-formating). You will also need to remember how to use [`if` statements](015_Python_control.md#Comparison-Operators-and-if).
 
 ## Summary
 
 
-In this section, we have considered URLs and filenames in some detail, and made use of functions from [`pathlib`](https://docs.python.org/3/library/pathlib.html) and [gurlpath](geog0111/gurlpath.py) to access them. These high-level routines will work for a large number of cases. If you need to go deeper into calls to URLs, you should look at the Python packages: [urllib.parse](https://docs.python.org/3.7/library/urllib.parse.html), [requests](https://requests.readthedocs.io/en/master/) and [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/).
+In this section, we have considered URLs and filenames in some detail, and made use of functions from [`pathlib`](https://docs.python.org/3/library/pathlib.html) to access them. 
 
 The first batch of `Path` commands we saw had much commonality with the core `unix` commands we had previously come across for moving around the file system and finding file information:
 
@@ -669,30 +705,39 @@ The first batch of `Path` commands we saw had much commonality with the core `un
 |---|---|---|
 |`Path.cwd()`| `pwd` |Return path object representing the current working directory|
 |`Path.home()`| `~`| Return path object representing the home directory|
-|`Path.stat()`| `ls -l`* | return info about the path. File size is `Path.stat().st_size` |
+|`Path.stat()`| `ls -l` | return info about the path. File size is `Path.stat().st_size` |
 |`Path.chmod()`| `chmod` | change file mode and permissions|
-|`Path.mkdir()`| `mkdir` | to create a new directory at the given path|
+|`Path.glob(pattern)`| `ls *` | Glob the pattern given in the directory that is represented by the path, yielding matching files of any kind|
+|`Path.mkdir()`| `mkdir` | to create a new directory at the given path. We have repeatedly used `ofile.parent.mkdir(parents=True,exist_ok=True)` to make sure the directory for an output file exists|
 |`Path.rename()`| `mv` | Rename a file or directory to the given target|
 |`Path.rmdir()`| `rmdir` | Remove the empty directory|
 |`Path.unlink()`| `rm` | Remove the file or symbolic link|
+|`Path.touch()` | `touch` | create (zero-sized) or update a file |
+|`Path.parent` | `..` | The parent object (one level up in directory tree) |
 
-The second set is common to both `Path` and `URL`, and involves queries on the `Path` (`URL`) name, testing for file existence, and using wildcards to access a list of files matching a pattern:
+Some other common utilities we came across were:
 
-|function| purpose|
+|command|  purpose|
 |---|---|
-|`Path.name`|  filename |
-|`Path.parent`|  parent |
-|`Path.parts`|  parts |
-|`Path.stat()`| return info about the path|
-|`Path.glob(pattern)`| Glob the pattern given in the URL directory, yielding matching files of any kind| 
-|`Path.exists()`|  test to see if a url is accessible |
+|`Path.as_posix()`| Return the object as a posix filename string |
+|`Path.exists()` | `True` if exists, `False` if not|
+|`Path.parent` |  the parent object (one level up in directory tree), or the directory a file is in |
+|`Path.name` | the file name |
+|`Path.is_file()` | `True` if object is a file |
+|`Path.is_dir()` | `True` if object is a directory |
 
-|function| purpose|
+
+We have also seen how to open files, and read and write information from files.
+
+|command|  purpose|
 |---|---|
-|`URL.name`|  filename |
-|`URL.parent`|  parent |
-|`URL.parts`|  parts |
-|`URL.stat()`| return info about the file. N.B. Only `URL.stat().st_size` is used for remote files|
-|`URL.glob(pattern)`| Glob the pattern given in the URL directory, yielding matching files of any kind| 
-|`URL.exists()`|  test to see if a url is accessible |
+|`Path.open()`| open a file and return a file descriptor|
+|`Path.read_text()`|  read text|
+|`Path.write_text()`| write text|
+|`Path.read_bytes()`| read byte data|
+|`Path.write_bytes()`| write byte data|
+
+
+
+We have learned how to use these with the object-oriented `Path` object to do some simple things like creating and deleting files and directories, getting listings of files and so on. These are such common tasks in coding that you need to spend some time making sure you know at least the basics here. A number of exercises are given to allow you to practice and test yourself, but you should also try to make up your own examples.
 

@@ -3,7 +3,7 @@
 
 ### Purpose
 
-We have seen from [021 Streams](021_Streams.md) and [022 Read write files](022_Read_write_files.md) how to access both text and binary datasets, either from the local file system or from a URL.
+We have seen from [020_Python_files](020_Python_files.md) [021_URLs](021_URLs.md) and [022_Pandas](022_Pandas.md) how to access both text and binary datasets, either from the local file system or from a URL to a local file.
 
 In this section, we will learn how to plot graphs from such data. 
 
@@ -24,26 +24,27 @@ You will need some understanding of the following:
 * [012 String formatting](012_Python_strings.md)
 * [013_Python_string_methods](013_Python_string_methods.md)
 * [020_Python_files](020_Python_files.md)
-* [021 Streams](021_Streams.md)
-* [022 Read write files](022_Read_write_files.md)
+* [021_URLs](021_URLs.md)
+* [022_Pandas](022_Pandas.md)
 
-You will need to know how to use [`pandas`](021_Streams.md#Reading-data-into-pandas) for reading a CSV dataset. Note that you can do plotting within `pandas`. But this is much the same as using [`matplotlib`](https://matplotlib.org) directly, so we will not be using `pandas` plotting. We will introduce the [`Modis`](geog0111/modis.py) class for simple downloading and reading of MODIS datasets.
+You will need to know how to use [`pandas`](022_Pandas.md) for reading a CSV dataset. Note that you can do plotting within `pandas`. But this is much the same as using [`matplotlib`](https://matplotlib.org) directly, so we will not be using `pandas` plotting. 
+
 
 ## Simple x-y plot
 
-We have [previously](021_Streams.md#Reading-data-into-pandas) seen a dataset of Monthly Southeast England precipitation (mm) in a tabular form on the [Met Office website](https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt) amnd how to load this into `pandas`:
+We have [previously](022_Pandas.md#pandas-format-and-read_table) seen a dataset of Monthly Southeast England precipitation (mm) in a tabular form on the [Met Office website](https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt) and how to load this into `pandas`:
 
 
 ```python
 import pandas as pd
-from geog0111.gurlpath import URL
+from urlpath import URL
+from pathlib import Path
 
 # Monthly Southeast England precipitation (mm) 
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
 site_file = 'HadSEEP_monthly_qc.txt'
 
-url = URL(site,site_dir,site_file)
 
 panda_format = {
     'skiprows'   :  3,
@@ -52,11 +53,29 @@ panda_format = {
     'engine'     :  'python'
 }
 
-df=pd.read_table(url.open('r'),**panda_format)
+url = URL(site,site_dir,site_file)
 
-# df.head: first n lines
+r = url.get()
+if r.status_code == 200:
+    # setup Path object for output file
+    filename = Path('work',url.name)
+    # write text data
+    filename.write_text(r.text)
+    # check size and report
+    print(f'file {filename} written: {filename.stat().st_size} bytes')
+    
+    df=pd.read_table(filename,**panda_format)
+    # df.head: first n lines
+    ok= True
+else:
+    print(f'failed to get {url}')
+
+    
 df.head()
 ```
+
+    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+
 
 
 
@@ -228,7 +247,7 @@ axs.plot(df["YEAR"],df['JAN'],label='JAN')
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fa25862dc50>]
+    [<matplotlib.lines.Line2D at 0x7fdfcba8ee90>]
 
 
 
@@ -365,19 +384,12 @@ axs[1].set_ylabel(f'FEB Precipitation (mm)')
 axs[1].set_xlim(year0,year1)
 
 # x-label
-axs[1].set_xlabel(f'year')
+_=axs[1].set_xlabel(f'year')
 ```
 
 
-
-
-    Text(0.5, 0, 'year')
-
-
-
-
     
-![png](023_Plotting_files/023_Plotting_17_1.png)
+![png](023_Plotting_files/023_Plotting_17_0.png)
     
 
 
@@ -411,14 +423,32 @@ We also show here how to save the plot to an image file, using `plt.savefig`:
 
 ```python
 import pandas as pd
-from geog0111.gurlpath import URL
+from urlpath import URL
+from pathlib import Path
 
 # Monthly Southeast England precipitation (mm) 
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
 site_file = 'HadSEEP_monthly_qc.txt'
 
+
 url = URL(site,site_dir,site_file)
+
+r = url.get()
+if r.status_code == 200:
+    # setup Path object for output file
+    filename = Path('work',url.name)
+    # write text data
+    filename.write_text(r.text)
+    # check size and report
+    print(f'file {filename} written: {filename.stat().st_size} bytes')
+    
+    df=pd.read_table(filename,**panda_format)
+    # df.head: first n lines
+    ok= True
+else:
+    print(f'failed to get {url}')
+
 
 panda_format = {
     'skiprows'   :  3,
@@ -427,9 +457,12 @@ panda_format = {
     'engine'     :  'python'
 }
 
-df=pd.read_table(url.open('r'),**panda_format)
+df=pd.read_table(filename,**panda_format)
 # get mean and std over all months
 ```
+
+    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+
 
 We will go into the details of `numpy` in a future session, but here we just need to calculate the mean and standard deviation of precipitation over all months.
 
@@ -547,11 +580,11 @@ print(f'year {now.year}')
 print(f"{now.hour} O'clock")
 ```
 
-    It is now 2020-10-30 17:06:46.213218
-    day 30
-    month 10
-    year 2020
-    17 O'clock
+    It is now 2021-09-29 08:46:07.397974
+    day 29
+    month 9
+    year 2021
+    8 O'clock
 
 
 You can set up the `datetime` fields explicitly:
@@ -599,7 +632,7 @@ yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 ```
 
-    yesterday was 2020-10-29 17:06:46.235809
+    yesterday was 2021-09-28 08:46:07.439696
 
 
 ### `strftime` and `strptime`
@@ -621,8 +654,8 @@ date_now = now.strftime("%m/%d/%Y")
 print(f"data now: {date_now}")
 ```
 
-    time now: 17:06:46
-    data now: 10/30/2020
+    time now: 08:46:07
+    data now: 09/29/2021
 
 
 and `strptime` to load a `datetime` object from a string. To do so, we need to specify the format of the string. For example:
@@ -663,7 +696,8 @@ We want to plot precipitation as a function of time. First, we read the data as 
 
 ```python
 import pandas as pd
-from geog0111.gurlpath import URL
+from urlpath import URL
+from pathlib import Path
 
 site = 'https://raw.githubusercontent.com'
 site_dir = '/UCL-EO/geog0111/master/notebooks/data'
@@ -672,12 +706,30 @@ site_file = '2276931.csv'
 # form the URL
 url = URL(site,site_dir,site_file)
 
+r = url.get()
+if r.status_code == 200:
+    # setup Path object for output file
+    filename = Path('work',url.name)
+    # write text data
+    filename.write_text(r.text)
+    # check size and report
+    print(f'file {filename} written: {filename.stat().st_size} bytes')
+    
+    df=pd.read_table(filename,**panda_format)
+    # df.head: first n lines
+    ok= True
+else:
+    print(f'failed to get {url}')
+
 # Read the file into pandas using url.open('r').
-df=pd.read_csv(url.open('r'))
+df=pd.read_csv(filename)
 
 # print the first 5 lines of data
 df.head(5)
 ```
+
+    file work/2276931.csv written: 15078 bytes
+
 
 
 
@@ -834,19 +886,12 @@ axs.plot(df['DATE'],df['PRCP'])
 
 # label
 axs.set_ylabel(f'PRCP / inches')
-axs.set_xlabel(f'date')
+_=axs.set_xlabel(f'date')
 ```
 
 
-
-
-    Text(0.5, 0, 'date')
-
-
-
-
     
-![png](023_Plotting_files/023_Plotting_50_1.png)
+![png](023_Plotting_files/023_Plotting_50_0.png)
     
 
 

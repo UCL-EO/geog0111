@@ -2,7 +2,7 @@
 
 ### Purpose
 
-In this section, we'll continue to look at the MODIS LAI, with a view to forming a time series dataset. AT the end of this session, you will be able to generate a 3D numpy array of some MODIS geophysical variable for a selcted area and time.
+In this section, we'll continue to look at the MODIS LAI, with a view to forming a time series dataset. At the end of this session, you will be able to generate a 3D numpy array of some MODIS geophysical variable for a selcted area and time.
 
 ### Prerequisites
 
@@ -17,84 +17,63 @@ You must make sure you can recall the details of the work covered in [040_GDAL_m
 
 You should run a [NASA account test](004_Accounts.md) if you have not already done so.
 
+## Introduction
+
+Recall that we can use `getModis` from [`geog0111.modisUtils`](geog0111/modisUtils.py) as a simple interface to download and stitch MODIS data.
+
+For example:
+
+
+
+```python
+from geog0111.modisUtils import getModis
+
+warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : "FIPS='UK'",
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+kwargs = {
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+    'doys'       : [1,5,41],
+    'year'      : 2019,
+    'warp_args' : warp_args
+}
+
+datafiles,bnames = getModis(verbose=False,timeout=10000,**kwargs)
+```
+
 ## Timeseries
 
 We can conveniently generate a timeseries dataset using the `gdal` VRT file approach we used in [040_GDAL_mosaicing_and_masking](040_GDAL_mosaicing_and_masking.md). 
 
-In this case, the main process would be:
+We can directly use the output from `getModis` for this.
 
-    - initialise band name list bnames
-    - initialise list sds_set
-    - loop over some set of doy values:
-        - retrieve an SDS for each doy
-        - make a band name for the doy/year
-        - stitch tiles together into one VRT
-        - append the new SDS to the list sds_set
-        - append the band name to the list bnames
+
+We use `gdal.BuildVRT()` as we have previously, specifying the output name `work/stitch_set.vrt` here, and the list of SDS that goes in to the time series,`datafiles` here. The one difference is that we set `separate=True` for a time series (or for multiple bands) so the data aren't merged spatially.
 
 
 ```python
 import gdal
-from geog0111.modis import Modis
+import numpy as np
 
-kwargs = {
-    'tile'      :    ['h17v03','h18v03'],
-    'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
-}
-year = 2019
-# list of doys we want
-# - every 4 days for MCD15A3H
-doys = [41,45,49]
-
-modis = Modis(**kwargs)
-
-# initialise list sds_set
-sds_set = []
-bnames = []
-
-# loop over some set of doy values:
-for doy in doys:
-    # retrieve an SDS for each doy
-    files,sds = modis.get_files(year,doy)
-    # choose only the first SDS for now
-    this_sds = sds[0]
-    
-    # make a band name for the doy/year
-    bandname = f'{year}-{doy:0>3d}'
-    
-    # stitch tiles together into one VRT
-    # called ofile
-    ofile = f"work/stitch_{modis.product}.{doy}.vrt"
-    stitch_vrt = gdal.BuildVRT(ofile,this_sds)
-    del stitch_vrt
-    # append the new SDS to the list sds_set
-    sds_set.append(ofile)
-    # append the band name to the list bnames
-    bnames.append(bandname)
-
-print(sds_set)
-print(bnames)
-```
-
-    ['work/stitch_MCD15A3H.41.vrt', 'work/stitch_MCD15A3H.45.vrt', 'work/stitch_MCD15A3H.49.vrt']
-    ['2019-041', '2019-045', '2019-049']
-
-
-Now we have a set of SDS we want to put them into a VRT file to represent the time series. We do this as we have previously, specifying the outoput name `work/stitch_set.vrt` here, and ythe listr of SDS that goes in to the time series,`sds_set` here:
-
-
-```python
 # build a VRT "work/stitch_set.vrt"
-stitch_vrt = gdal.BuildVRT("work/stitch_set.vrt", sds_set,separate=True)
+stitch_vrt = gdal.BuildVRT("work/stitch_set.vrt", datafiles,separate=True)
 del stitch_vrt
 # test it by reading and plotting
 g = gdal.Open("work/stitch_set.vrt")
-data = g.ReadAsArray()
-print(data.shape)
+
+# apply scaling and read
+data = g.ReadAsArray() * 0.1
+print(data.shape,data.dtype)
 ```
 
-    (3, 2400, 4800)
+    (3, 2623, 1394) float64
 
 
 The dataset is now 3D. The first dimensions represent the time samples, so:
@@ -110,10 +89,12 @@ for i in range(data.shape[0]):
     print(f'band {bnames[i]} -> mean {np.mean(data[i])}')
 ```
 
-    band 2019-041 -> mean 166.24298064236112
-    band 2019-045 -> mean 166.25176796875
-    band 2019-049 -> mean 165.74304947916667
+    band 2019-001 -> mean 18.3917659748686
+    band 2019-005 -> mean 18.39242177274097
+    band 2019-041 -> mean 18.313179488806387
 
+
+These are strange average LAI numbers. Why would that be?
 
 #### Exercise 1
 
@@ -125,97 +106,14 @@ We have seen in [040_GDAL_mosaicing_and_masking](040_GDAL_mosaicing_and_masking.
 * Convert the `gdal` file `work/stitch_set.vrt` to a more portable GeoTiff file called `work/stitch_set.tif`
 * Confirm that this has worked by reading and displaying data from the file
 
-Cut out the UK and visualise as before:
-
-
-```python
-# subset and display
-
-warp_args = {
-    'dstNodata'     : 255,
-    'format'        : 'MEM',
-    'cropToCutline' : True,
-    'cutlineWhere'  : "FIPS='UK'",
-    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
-}
-
-g = gdal.Warp("", "work/stitch_set.vrt",**warp_args)
-data = g.ReadAsArray()*0.1
-print(data.shape)
-```
-
-    (3, 2623, 1394)
-
-
-
-```python
-import matplotlib.pyplot as plt
-
-fig, axs = plt.subplots(1,3,figsize=(12,5))
-axs = axs.flatten()
-for i in range(data.shape[0]):
-    im = axs[i].imshow(data[i],vmax=7,\
-                cmap=plt.cm.inferno_r,interpolation='nearest')
-    fig.colorbar(im, ax=axs[i])
-    axs[i].set_title(bnames[i])
-```
-
-
-    
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_12_0.png)
-    
-
-
-### `Modis.get_modis`
-
-For convenience, we can again use the function `Modis.get_modis` to combine these, simply by passing a list of `doy` values, rather than a single `doy`.
-
-
-```python
-import gdal
-from geog0111.modis import Modis
-import matplotlib.pyplot as plt
-
-kwargs = {
-    'tile'      :    ['h17v03','h18v03'],
-    'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
-}
-year = 2019
-# list of doys we want
-doys = [41,45,49]
-
-modis = Modis(**kwargs)
-
-warp_args = {
-    'dstNodata'     : 255,
-    'format'        : 'MEM',
-    'cropToCutline' : True,
-    'cutlineWhere'  : "FIPS='UK'",
-    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
-}
-
-mfiles = modis.get_modis(year,doys,warp_args=warp_args)
-print(mfiles.keys())
-```
-
-    dict_keys(['Lai_500m', 'bandnames'])
-
+The reason for the 'funny' averages above was because the data is not masked: it includes invalid numbers (e.g. 255) where there are no data.
 
 Now let's mask out invalid data points (`> 10.0` when scaled by 0.1), and display the results:
 
 
 ```python
-import numpy as np
-
-g = gdal.Open(mfiles['Lai_500m'])
-
-# dataset and band nanes
-data = g.ReadAsArray()*0.1
-
 # valid mask
 data[data>10.0] = np.nan
-bnames = mfiles['bandnames']
 print(data.shape)
 ```
 
@@ -224,10 +122,12 @@ print(data.shape)
 
 
 ```python
+import gdal
 import matplotlib.pyplot as plt
 
-fig, axs = plt.subplots(1,3,figsize=(12,5))
+fig, axs = plt.subplots(1,3,figsize=(22,5))
 axs = axs.flatten()
+
 for i in range(data.shape[0]):
     im = axs[i].imshow(data[i],vmax=7,\
                 cmap=plt.cm.inferno_r,interpolation='nearest')
@@ -237,7 +137,7 @@ for i in range(data.shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_17_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_14_0.png)
     
 
 
@@ -251,50 +151,15 @@ If the data are already downloaded into the local cache, it should not take too 
 
 If you are attempting to get data not already in the cache, it will take some considerable time to download these datasets for whole years, for multiple tiles. 
 
-If you want to download a dataset that is not covered in these notebooks, you are of course welcome to do so, but plan your work ahead of time, and try to pre-download the data before attempting any processing. In such a case, you should take some code such as that below and paste it into a Python file and run that as a Python script from a command line. You should make sure you set:
+If you want to download a dataset that is not covered in these notebooks, you are of course welcome to do so, but plan your work ahead of time, and try to pre-download the data before attempting any processing. In such a case, you should take some code such as that below and paste it into a Python file and run that as a Python script from a command line. You might make sure you set:
 
     'verbose' : True
     
-in the `kwargs` dictionary. An example script you can modify is given in [geog0111/get_lai.py](geog0111/get_lai.py).
+in the `kwargs` dictionary if you want some feedback about any long-running processes. 
 
 
 ```python
-import gdal
-from geog0111.modis import Modis
-import matplotlib.pyplot as plt
-
-kwargs = {
-    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
-    'product'   :    'MCD15A3H',
-    'year'      :    2019,
-    'doy'       :    "*"
-}
-
-'''
-We will gather the data for the year, 
-tiles and product that we are interested in into a VRT file:
-'''
-modis = Modis(**kwargs)
-ifiles = modis.get_modis(kwargs['year'],kwargs['doy'],step=4)
-```
-
-
-```python
-ifiles.keys()
-```
-
-
-
-
-    dict_keys(['FparExtra_QC', 'FparLai_QC', 'FparStdDev_500m', 'Fpar_500m', 'LaiStdDev_500m', 'Lai_500m', 'bandnames'])
-
-
-
-We can apply `warp_args` to crop the dataset:
-
-
-```python
-import gdal
+from geog0111.modisUtils import getModis
 
 warp_args = {
     'dstNodata'     : 255,
@@ -304,16 +169,34 @@ warp_args = {
     'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
 }
 
-sds = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+kwargs = {
+    'tile'      :    ['h18v03','h18v04'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+    'doys'      : [i for i in range(1,366,4)],
+    'year'      : 2019,
+    'warp_args' : warp_args
+}
 
-# loop over SDS sets and read into dictionary
-mfiles = {'bandnames':ifiles['bandnames']}
-for s in sds:
-    g = gdal.Warp("",ifiles[s],**warp_args)
-    mfiles[s] = g.ReadAsArray()
-# scale
-mfiles['Lai_500m'] = mfiles['Lai_500m'] * 0.1
-mfiles['LaiStdDev_500m'] = mfiles['LaiStdDev_500m'] * 0.1
+datafiles,bnames = getModis(verbose=False,timeout=10000,**kwargs)
+```
+
+We can build a VRT dataset as before:
+
+
+```python
+stitch_vrt = gdal.BuildVRT("work/stitch_time.vrt", datafiles,separate=True)
+del stitch_vrt
+```
+
+And read the data into a numpy array:
+
+
+```python
+import gdal
+
+g = gdal.Open("work/stitch_time.vrt")
+data = g.ReadAsArray() * 0.1
 ```
 
 We can now plot the data on sub-plots:
@@ -329,16 +212,16 @@ fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
 axs = axs.flatten()
 plt.setp(axs, xticks=[], yticks=[])
 
-for i in range(mfiles['Lai_500m'].shape[0]):
-    im = axs[i].imshow(mfiles['Lai_500m'][i],vmax=7,cmap=plt.cm.inferno_r,\
+for i in range(data.shape[0]):
+    im = axs[i].imshow(data[i],vmax=7,cmap=plt.cm.inferno_r,\
                        interpolation='nearest')
-    axs[i].set_title(mfiles['bandnames'][i])
+    axs[i].set_title(bnames[i])
     fig.colorbar(im, ax=axs[i])
 ```
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_24_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_22_0.png)
     
 
 
@@ -346,11 +229,11 @@ for i in range(mfiles['Lai_500m'].shape[0]):
 
 We might now want to plot some time series.
 
-First, extract the `doy` from `mfiles['bandnames']`:
+First, extract the `doy` from `bnames`:
 
 
 ```python
-print(mfiles['bandnames'])
+print(bnames)
 ```
 
     ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
@@ -372,7 +255,7 @@ int(test.split('-')[1])
 
 
 ```python
-doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+doy = [int(i.split('-')[1]) for i in bnames]
 print(doy)
 ```
 
@@ -400,7 +283,7 @@ for i in range(shape[0]):
     p0 = pixel[0] + i
     for j in range(shape[1]):
         p1 = pixel[1] + j
-        im = axs[i,j].plot(x,mfiles['Lai_500m'][:,p0,p1])
+        im = axs[i,j].plot(x,data[:,p0,p1])
         axs[i,j].set_title(f'{p0} {p1}')
         # ensure the same scale for all
         axs[i,j].set_ylim(0,7)
@@ -408,28 +291,44 @@ for i in range(shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_30_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_28_0.png)
     
 
 
 #### Exercise 2
 
-* Write a function called `modis_annual_dataset`that takes `year`,`tile` and `product` and `step` and returns a dictionary of appropriate MODIS datasets. 
+* Produce a set of spatial plots of the quantity `Fpar_500m` over Luxembourg for 2019
 
-* Write another function `get_modis_annual` that takes the dictionary of appropriate MODIS datasets. and generates a dictionary of MODIS data values, filtered according to information of the form:
+#### Exercise 3
 
-        warp_args = {
-            'dstNodata'     : 255,
-            'format'        : 'MEM',
-            'cropToCutline' : True,
-            'cutlineWhere'  : "FIPS='LU'",
-            'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
-        }
+Write a function called `modisAnnual(**kwargs)` with arguments based on:
 
-        sds = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
+    warp_args = {
+        'dstNodata'     : 255,
+        'format'        : 'MEM',
+        'cropToCutline' : True,
+        'cutlineWhere'  : "FIPS='LU'",
+        'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+    }
 
-* Write a third function `modis_annual` that combines these two functions.
-* Test your code and plot some results
+    kwargs = {
+        'tile'      :    ['h18v03','h18v04'],
+        'product'   :    'MCD15A3H',
+        'sds'       :    ['Lai_500m', 'Fpar_500m'],
+        'doys'      : [i for i in range(1,366,4)],
+        'year'      : 2019,
+        'warp_args' : warp_args
+        'ofile_root': 'work/output_filename_ex3'
+    }
+
+ 
+where `sds` is a list of SDS
+
+That returns:
+
+    bnames  : names for the items in first (time) dimension
+    odict   : a dictionary with items in sds for keys and the names of associated VRT files as values
+    
 
 ## Uncertainty and weighting
 
@@ -448,44 +347,48 @@ We should always examine any uncertainty information available when trying to in
     
 where std is the uncertainty. Where this weighting is high, we can put more emphasis on the reliability of the data than when it is low.
 
-First then, read all SDS:
+We make `modisAnnual()` available from `geog0111.modisUtils` so we can load multiple SDS datasets into a data dictionary:
+
+
+```python
+from geog0111.modisUtils import modisAnnual
+
+warp_args = {
+    'dstNodata'     : 255,
+    'format'        : 'MEM',
+    'cropToCutline' : True,
+    'cutlineWhere'  : "FIPS='LU'",
+    'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+}
+
+kwargs = {
+    'tile'      :    ['h18v03','h18v04'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    ['Fpar_500m','Lai_500m','FparLai_QC','FparExtra_QC','FparStdDev_500m','LaiStdDev_500m']
+,
+    'doys'      : [i for i in range(1,366,4)],
+    'year'      : 2019,
+    'warp_args' : warp_args
+}
+
+# run
+odict,bnames = modisAnnual(**kwargs)
+
+# outputs
+print(odict,bnames)
+```
+
+    {'Fpar_500m': 'work/output_filename_SDS_Fpar_500m.vrt', 'Lai_500m': 'work/output_filename_SDS_Lai_500m.vrt', 'FparLai_QC': 'work/output_filename_SDS_FparLai_QC.vrt', 'FparExtra_QC': 'work/output_filename_SDS_FparExtra_QC.vrt', 'FparStdDev_500m': 'work/output_filename_SDS_FparStdDev_500m.vrt', 'LaiStdDev_500m': 'work/output_filename_SDS_LaiStdDev_500m.vrt'} ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
+
+
+We can read some of these data in now:
 
 
 ```python
 import gdal
-import matplotlib.pyplot as plt
-from geog0111.modis_annual import modis_annual
 
-warp_args = {
-  'dstNodata'     : 255,
-  'format'        : 'MEM',
-  'cropToCutline' : True,
-  'cutlineWhere'  : "FIPS='LU'",
-  'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
-}
-sds     = ['Lai_500m','LaiStdDev_500m','FparLai_QC']
-tile    = ['h17v03','h18v03','h17v04','h18v04']
-product = 'MCD15A3H'
-year    = 2019
-step    = 4
-    
-mfiles = modis_annual(year,tile,product,sds=sds,step=step,warp_args=warp_args)
-
-print(f'dataset keys : {mfiles.keys()}')
-print(f'dataset shape: {mfiles["Lai_500m"].shape}')
-print(f'dataset size : {mfiles["Lai_500m"].size/(1024**2): .2f} MB')
-```
-
-    dataset keys : dict_keys(['bandnames', 'Lai_500m', 'LaiStdDev_500m', 'FparLai_QC'])
-    dataset shape: (92, 175, 122)
-    dataset size :  1.87 MB
-
-
-
-```python
-# scale
-mfiles['Lai_500m'] = mfiles['Lai_500m'] * 0.1
-mfiles['LaiStdDev_500m'] = mfiles['LaiStdDev_500m'] * 0.1
+Lai_500m = gdal.Open(odict['Lai_500m']).ReadAsArray() * 0.1
+LaiStdDev_500m = gdal.Open(odict['LaiStdDev_500m']).ReadAsArray() * 0.1
 ```
 
 There is a feature in the `LaiStdDev_500m` dataset where some pixels have apparently zero uncertainty. Indeed, all LAI values with an uncertainty under 1.0 seem suspect as individual values. So we treat them hear, to set all values less than 1 to 1.
@@ -496,8 +399,8 @@ We know that LAI values over 10 (100 * 0.1) are invalid, so we should make sure 
 ```python
 import numpy as np
 
-weight = np.zeros_like(mfiles['LaiStdDev_500m'])
-std = mfiles['LaiStdDev_500m']
+weight = np.zeros_like(LaiStdDev_500m)
+std = LaiStdDev_500m
 
 # fix low values
 std[std<1.0] = 1.0
@@ -505,8 +408,8 @@ std[std<1.0] = 1.0
 mask = (std > 0)
 weight[mask] = 1./(std[mask]**2)
 
-weight[mfiles['Lai_500m'] > 10] = 0.
-weight[mfiles['LaiStdDev_500m']==0] = 0.
+weight[Lai_500m > 10] = 0.
+weight[LaiStdDev_500m==0] = 0.
 # look at some stats
 print(weight.min(),weight.max())
 ```
@@ -528,10 +431,10 @@ fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
 axs = axs.flatten()
 plt.setp(axs, xticks=[], yticks=[])
 fig.suptitle("LAI Luxembourg 2019")
-for i in range(mfiles['Lai_500m'].shape[0]):
-    im = axs[i].imshow(mfiles['Lai_500m'][i],vmax=7,cmap=plt.cm.gray,\
+for i in range(Lai_500m.shape[0]):
+    im = axs[i].imshow(Lai_500m[i],vmax=7,cmap=plt.cm.gray,\
                        interpolation='nearest')
-    axs[i].set_title(mfiles['bandnames'][i])
+    axs[i].set_title(bnames[i])
     fig.colorbar(im, ax=axs[i])
 ```
 
@@ -554,10 +457,10 @@ axs = axs.flatten()
 plt.setp(axs, xticks=[], yticks=[])
 fig.suptitle("LAI weight Luxembourg 2019")
 
-for i in range(mfiles['Lai_500m'].shape[0]):
+for i in range(Lai_500m.shape[0]):
     im = axs[i].imshow(weight[i],vmax=1,cmap=plt.cm.gray,\
                        interpolation='nearest')
-    axs[i].set_title(mfiles['bandnames'][i])
+    axs[i].set_title(bnames[i])
     fig.colorbar(im, ax=axs[i])
 ```
 
@@ -571,7 +474,8 @@ for i in range(mfiles['Lai_500m'].shape[0]):
 ```python
 # LAI time series
 import matplotlib.pyplot as plt
-doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+
+doy = [int(i.split('-')[1]) for i in bnames]
 
 x_size,y_size=(20,20)
 
@@ -586,7 +490,7 @@ for i in range(shape[0]):
     p0 = pixel[0] + i
     for j in range(shape[1]):
         p1 = pixel[1] + j
-        im = axs[i,j].plot(x,mfiles['Lai_500m'][:,p0,p1])
+        im = axs[i,j].plot(x,Lai_500m[:,p0,p1])
         axs[i,j].set_title(f'{p0} {p1}')
         # ensure the same scale for all
         axs[i,j].set_ylim(0,7)
@@ -602,7 +506,7 @@ for i in range(shape[0]):
 ```python
 # weight time series plots 
 import matplotlib.pyplot as plt
-doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+doy = [int(i.split('-')[1]) for i in bnames]
 
 x_size,y_size=(20,20)
 
@@ -648,7 +552,7 @@ import matplotlib.pyplot as plt
 error = np.zeros_like(weight)
 error[weight>0] = np.sqrt(1./(weight[weight>0] )) * 1.96
 
-doy = [int(i.split('-')[1]) for i in mfiles['bandnames']]
+doy = [int(i.split('-')[1]) for i in bnames]
 p0,p1 = (107,72)
 x_size,y_size=(10,5)
 
@@ -658,7 +562,7 @@ fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
 pixel = (100,70)
 x = doy
 
-axs.errorbar(x,mfiles['Lai_500m'][:,p0,p1],yerr=error[:,p0,p1]/10)
+axs.errorbar(x,Lai_500m[:,p0,p1],yerr=error[:,p0,p1])
 axs.set_title(f'{p0} {p1}')
 # ensure the same scale for all
 axs.set_ylim(0,7)
@@ -683,7 +587,7 @@ We might question the validity of some of the LAI uncertainty here: we expect LA
 
 #### Exercise 3
 
-* Write a function `get_lai_data` that takes as argument:
+* Write a function `getLai` that takes as argument:
     
         year : integer year
         tile : list of tiles to process
@@ -694,7 +598,7 @@ We might question the validity of some of the LAI uncertainty here: we expect LA
 * test your code for Belgium for 2018 for tiles `['h17v03','h18v03','h17v04','h18v04']`
 * show the shape of the arrays returned
 
-Hint: You may find it useful to use `geog0111.modis_annual`
+Hint: You may find it useful to use `modisAnnual`
 
 
 ## Summary
@@ -709,50 +613,38 @@ Remember:
 
 
 ```python
-from geog0111.modis_annual import modis_annual_dataset
-help(modis_annual_dataset)
+from geog0111.modisUtils import modisAnnual
+help(modisAnnual)
 ```
 
-    Help on function modis_annual_dataset in module geog0111.modis_annual:
+    Help on function modisAnnual in module geog0111.modisUtils:
     
-    modis_annual_dataset(year, tile, product, step=1, verbose=False)
-    
-
-
-
-```python
-from geog0111.modis_annual import get_modis_annual
-help(get_modis_annual)
-```
-
-    Help on function get_modis_annual in module geog0111.modis_annual:
-    
-    get_modis_annual(ifiles, sds=None, warp_args={})
-    
-
-
-
-```python
-from geog0111.modis_annual import modis_annual
-help(modis_annual)
-```
-
-    Help on function modis_annual in module geog0111.modis_annual:
-    
-    modis_annual(year, tile, product, step=1, sds=None, warp_args={}, verbose=False)
-    
-
-
-
-```python
-from geog0111.get_lai_data import get_lai_data
-help(get_lai_data)
-```
-
-    Help on function get_lai_data in module geog0111.get_lai_data:
-    
-    get_lai_data(year, tile, fips)
-        Get the annual LAI dataset for fips, tile and year
-        and return lai,std,doy
+    modisAnnual(ofile_root='work/output_filename', **kwargs)
+         generate dictionary of SDS datasets as VRT files
+        
+        arguments based on:
+        
+         warp_args = {
+             'dstNodata'     : 255,
+             'format'        : 'MEM',
+             'cropToCutline' : True,
+             'cutlineWhere'  : "FIPS='LU'",
+             'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+         }
+        
+         kwargs = {
+             'tile'      :    ['h18v03','h18v04'],
+             'product'   :    'MCD15A3H',
+             'sds'       :    ['Lai_500m', 'Fpar_500m'],
+             'doys'      : [i for i in range(1,60,4)],
+             'year'      : 2019,
+             'warp_args' : warp_args
+         }
+         
+         Return odict,bnames
+         
+         where odict keys are SDS values and the values VRT filenames
     
 
+
+We have also seen how we can incrementally develop codes to do more complex tasks and wrap up a utility such as `getLai` in the exercise above to retrieve a ready-to-use dataset.

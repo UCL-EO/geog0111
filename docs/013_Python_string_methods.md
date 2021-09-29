@@ -777,6 +777,11 @@ skip  = 1
 print (s[start:stop:skip])
 ```
 
+    Hello World 11
+    HloWrd
+    rld
+
+
 #### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.

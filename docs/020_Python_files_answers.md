@@ -1,4 +1,4 @@
-# 020 Files and other Resources : Answers to exercises
+# 020 Files, Streams and related issues : Answers to exercises
 
 #### Exercise 1
 
@@ -33,334 +33,293 @@ print(f'does {env_file} exist? {env_file.exists()}')
 
 #### Exercise 2
 
-* Use `Path` to show the file permissions of all files that end `.sh` in the directory `bin`
+Create a zero-sized file called `hello.txt` in a directory `mystuff`, using `Path` and show that it exists and is a file. Then delete the file and directory.
 
 
 ```python
+from pathlib import Path
 # ANSWER
-# use glob to get a list of filenames in the directory bin 
-# that end with .sh -> pattern n* using a wildcard
-filenames = Path('bin').glob('n*')
+# import package
 
-# loop over the filenames and print the permissions
-# as octal. Note how we use :25s to line items up
-for f in filenames:
-    print(f'{str(f):25s} : {oct(f.stat().st_mode)}')
+# Form the Path object for the file
+myfile = Path('mystuff','hello.txt')
+
+# Make sure the parent directory exists
+myfile.parent.mkdir(parents=True,exist_ok=True)
+
+# Create the zero-sized file
+myfile.touch()
+
+# Check it exists and is a file
+print('=== now you see it ===')
+print(f'Does {myfile.as_posix()} exist? {myfile.exists()}')
+print(f'Is {myfile.as_posix()} a file? {myfile.is_file()}')
+
+# delete the file 
+myfile.exists() and myfile.is_file() and myfile.unlink()
+# Check it exists and is a file
+print("=== now you don't ===")
+print(f'Does {myfile.as_posix()} exist? {myfile.exists()}')
+print(f'Is {myfile.as_posix()} a file? {myfile.is_file()}')
+
+# delete the directory -- the parent
+mydir = myfile.parent
+mydir.exists() and mydir.is_dir() and mydir.rmdir()
+# Check it exists and is a dir
+print("=== now you don't ===")
+print(f'Does {mydir.as_posix()} exist? {mydir.exists()}')
+print(f'Is {mydir.as_posix()} a file? {mydir.is_dir()}')
 ```
 
-    bin/notebook-mkdocs.sh    : 0o100755
-    bin/notebook-run.sh       : 0o100755
-
-
-
-```python
-# ANSWER
-# Use Path to show the file permissions of
-# all files that end .sh in the directory bin
-
-# use glob to get a list of filenames in the directory bin 
-# that end with .sh -> pattern *.sh using a wildcard
-filenames = Path('bin').glob('*.sh')
-# loop over the filenames
-for f in filenames:
-    print(f)
-```
-
-    bin/notebook-mkdocs.sh
-    bin/setup.sh
-    bin/notebook-run.sh
-    bin/fixA.sh
-    bin/link-set.sh
-    bin/clean0111.sh
-    bin/tidy.sh
-    bin/init.sh
-    bin/sort-db.sh
-    bin/get-datasets.sh
-    bin/init0111.sh
-    bin/set-course.sh
-    bin/howmany.sh
-    bin/shellMe.sh
-    bin/database.sh
-    bin/git-remove-all.sh
+    === now you see it ===
+    Does mystuff/hello.txt exist? True
+    Is mystuff/hello.txt a file? True
+    === now you don't ===
+    Does mystuff/hello.txt exist? False
+    Is mystuff/hello.txt a file? False
+    === now you don't ===
+    Does mystuff exist? False
+    Is mystuff a file? False
 
 
 #### Exercise 3
 
-* print out the absolute pathname of the directory that `images/ucl.png` is in
-* check that the file exists
-* if it does, print the size of the file in KB to two decimal places
+Create a zero-sized file in a new directory, and use `Path.stat()` to show it has size 0 bytes. Then tidy up by deleting the file and directory.
+
+
+```python
+from pathlib import Path
+# ANSWER
+# import package
+# very similar to exercise 2 but now we need to check the size
+
+# Form the Path object for the file
+myfile = Path('mystuff','hello.txt')
+
+# Make sure the parent directory exists
+myfile.parent.mkdir(parents=True,exist_ok=True)
+
+# Create the zero-sized file
+myfile.touch()
+
+# print the file size
+print(f'The file size of {myfile.as_posix()} is {myfile.stat().st_size} bytes')
+
+# delete the file 
+myfile.exists() and myfile.is_file() and myfile.unlink()
+# delete the directory -- the parent
+mydir = myfile.parent
+mydir.exists() and mydir.is_dir() and mydir.rmdir()
+```
+
+    The file size of mystuff/hello.txt is 0 bytes
+
+
+#### Exercise 4
+
+Use `Path.touch()` to update the modification time for the file `bin/README` and demonstrate that you have done this and that is the same as the current time (now).
+
+
+```python
+from pathlib import Path
+from datetime import datetime
+# ANSWER
+# import packages
+
+readme = Path('bin','README')
+
+modified = readme.stat().st_mtime
+h_modified = datetime.fromtimestamp(modified)
+
+print(f'Before touch: time of most recent modification for {readme} is {h_modified}')
+
+# touch the file
+readme.touch()
+modified = readme.stat().st_mtime
+h_modified = datetime.fromtimestamp(modified)
+
+print(f'After touch: time of most recent modification for {readme} is {h_modified}')
+print(f'Now it is {datetime.now()}')
+```
+
+    Before touch: time of most recent modification for bin/README is 2021-09-29 08:43:14.772314
+    After touch: time of most recent modification for bin/README is 2021-09-29 08:43:26.888338
+    Now it is 2021-09-29 08:43:26.888626
+
+
+#### Exercise 5
+
+* Use `Path` to show the file permissions of all files that end `.md` in the directory `.` (current directory)
+
+
+```python
+from pathlib import Path
+# ANSWER
+# import packages
+
+# Use Path to show the file 
+# permissions of all files that end .md 
+# in the directory . (current directory)
+
+# Path().cwd() gives the current directory (.)
+here = Path().cwd()
+
+# clearly, this needs glob the pattern will be *.md
+# use * to put output as list of arguments
+print(*here.glob('*.md'))
+```
+
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/Install.md /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/OutsideInstall-Local.md /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/README.md /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/TIMETABLE.md
+
+
+#### Exercise 6
+
+Copy the file [`geog0111/cylog.py`](geog0111/cylog.py) to a new directory `myfile` and confirm the size of the file copied. Tidy up by deleting the copied file.
+
+
+```python
+from pathlib import Path
+# ANSWER
+# import packages
+
+# Copy the file geog0111/cylog.py to a new directory 
+# myfile and confirm the size of the file copied. 
+# Tidy up by deleting the copied file.
+
+# setup Path object for ifile 
+ifile = Path('geog0111','cylog.py')
+
+# setup Path object for ofile 
+ofile = Path('myfile',ifile.name)
+# create directory 
+ofile.parent.mkdir(parents=True,exist_ok=True)
+
+# read ifile, write to ofile (text)
+nbytes = ofile.write_text(ifile.read_text()) #for binary files
+print(f'{nbytes} bytes written for {ofile}')
+
+# tidy up and remove the file
+ofile.unlink()
+ofile.parent.rmdir()
+```
+
+    9249 bytes written for myfile/cylog.py
+
+
+#### Exercise 8
+
+* write code to read from the json-format file `bin/copy/environment.json` into a dictionary called `json_data`.
+* print out the dictionary keys.
+* print the file size of the json-format file in KB to two decimal places.
+
+
+```python
+# ANSWER
+# write code to read from the json-format file 
+# bin/copy/environment.json 
+# into a dictionary called json_data.
+json_file = Path('bin/copy/environment.json')
+
+# use with ... as ... as we have been shown
+with json_file.open('r') as f:
+    json_data = json.load(f)
+    
+# print out the dictionary keys.
+print(json_data.keys())
+
+# print the file size of the 
+# json-format file in KB to two decimal places.
+print(f'file {json_file} size {json_file.stat().st_size / 1024 : .2f} KB')
+```
+
+    dict_keys(['name', 'channels', 'dependencies'])
+    file bin/copy/environment.json size  0.78 KB
+
+
+#### Exercise 9
+
+* check that the file `images/ucl.png` exists and print modification time and the file size in KB to two decimal places
+* make a directory `myfiles` and copy the file `images/ucl.png` to this directory
+* show the file size of `myfiles/ucl.png`, the modification time, and the time now
+* after that, tidy up by deleting the file `myfiles/ucl.png` and the directory `myfiles`. Confirm that you have done this.
 
 You will need to know how many Bytes in a Kilobyte, and how to [format a string to two decimal places](012_Python_strings.md#String-formating). You will also need to remember how to use [`if` statements](015_Python_control.md#Comparison-Operators-and-if).
 
 
 ```python
+from pathlib import Path
+from datetime import datetime
 # ANSWER
+# import packages
 
-# print out the absolute pathname of the 
-# directory that images/ucl.png is in
-ucl = Path('images','ucl.png')
+# check that the file images/ucl.png exists and 
+# print modification time and the file size in KB to two decimal places
 
-# use absolute and parent
-# Use name to show how that is helpful
-print(f'The directory {ucl.name} is in is: {ucl.absolute().parent}')
+# make a directory myfiles and copy the file images/ucl.png 
+# to this directory
+# show the file size of myfiles/ucl.png, the 
+# modification time, and the time now
+# after that, tidy up by deleting the file 
+# myfiles/ucl.png and the directory myfiles. 
+# Confirm that you have done this.
 
-# check that the file exists
-# if it does ...
-if ucl.exists():
-    # print the size of the file in KB to two decimal places
+# check that the file images/ucl.png exists and 
+# print modification time and the file size in KB to two decimal places
 
-    # from above, use stat().st_size
-    size_in_bytes = ucl.stat().st_size
-    # 1024 Bytes -> 1 KB
-    size_in_KB = size_in_bytes/1024
-    # 2 dp -> : .2f
-    print(f'file size {size_in_bytes} Bytes -> {size_in_KB : .2f} KB')
-else:
-    print(f'file does not exist')
+ifile = Path('images','ucl.png')
+# check that the file images/ucl.png exists and 
+print(f'The file {ifile} exists?: {ifile.exists()}')
+# print the file in KB to two decimal places
+# 1 KB = 1024 bytes
+ifile_bytes = ifile.stat().st_size
+print(f'The file {ifile} size: {ifile_bytes} B')
+# in KB using .2f format for 2 dp
+ifile_size_kb = ifile.stat().st_size / 1024
+print(f'The file {ifile} size: {ifile_size_kb : .2f} KB')
+
+# show the file size of myfiles/ucl.png, the 
+# modification time, and the time now
+
+modified = ifile.stat().st_mtime
+h_modified = datetime.fromtimestamp(modified)
+print(f'The file {ifile} modification time: {h_modified}')
+
+print("\nconfirm with ls -lh")
+!ls -lh {ifile}
+
+# make a directory myfiles and copy the file images/ucl.png to this directory
+ofile = Path('myfiles',ifile.name)
+# mkdir the parent
+ofile.parent.mkdir(parents=True,exist_ok=True)
+# copy text file with read_text() and write_text()
+ofile.write_bytes(ifile.read_bytes()) #for binary files
+
+print('\n==== After copying')
+# confirm size
+print(f'The file {ofile} size: {ofile.stat().st_size / 1024 : .2f} KB')
+
+# mod time
+modified = ofile.stat().st_mtime
+h_modified = datetime.fromtimestamp(modified)
+print(f'The file {ofile} modification time: {h_modified}')
+# now time
+print(f'Time now is {datetime.now()}')
+
+# tidy up
+ofile.unlink()
+ofile.parent.rmdir()
 ```
 
-    The directory ucl.png is in is: /Users/plewis/Documents/GitHub/geog0111/notebooks/images
-    file size 1956 Bytes ->  1.91 KB
-
-
-#### Exercise 4
-
-* create a `URL` object for the file `table.html` in the directory `psd/enso/mei/` on the site `http://www.esrl.noaa.gov/`.
-* print out the url and check it is `table.html`
-
-
-```python
-# ANSWER
-
-# create a URL object for the file table.html 
-# in the directory psd/enso/mei/ on the site 
-# http://www.esrl.noaa.gov/.
-
-site = 'http://www.esrl.noaa.gov/'
-site_dir = 'psd/enso/mei'
-site_file = 'table.html'
-url = URL(site,site_dir,site_file)
-
-# print out the url and check it is table.html
-print(url)
-assert url.name == site_file
-print('passed')
-```
-
-    http://www.esrl.noaa.gov/psd/enso/mei/table.html
-    passed
-
-
-#### Exercise 5
-
-based on the code from above:
-
-    # settings
-    product = 'MCD15A3H'
-    year, month, day = '2020', '06', '01'
-    tile = 'h08v06'
-
-    # url with wildcards
-    site = 'https://e4ftl01.cr.usgs.gov'
-    site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
-    site_file = f'*.{tile}*.hdf'
-
-    # get the information
-    url = URL(site,site_dir,verbose=True)
-    hdf_urls = list(url.glob(site_file))[0]
+    The file images/ucl.png exists?: True
+    The file images/ucl.png size: 1956 B
+    The file images/ucl.png size:  1.91 KB
+    The file images/ucl.png modification time: 2021-09-28 21:37:24.043117
     
- * write a function called `modis_dataset` with arguments corresponding to the settings above
- * the function should return the URL objects of the NASA datasets specified by your arguments
- * your function should be fully documented and include some error checks
- * run a test of your function, and print the file size in MB for the file pointed to in the URL to 2 decimal places
- * what happens if you use a wildcard for the date?
-
-
-```python
-from geog0111.gurlpath import URL
-
-# ANSWER 1
-
-# write a function called `modis_dataset` 
-# with arguments corresponding to the settings above
-#
-# the function should return the URL objects of 
-# the NASA datasets specified by your arguments
-#
-def modis_dataset(product, tile, year, month, day,
-                  verbose=False,
-                  site='https://e4ftl01.cr.usgs.gov'):
-    '''
-    Get URL object list for NASA MODIS products
-    for the specified product, tile, year, month, day
+    confirm with ls -lh
+    -rw-r--r-- 1 ucfalew ucfa 2.0K Sep 28 21:37 images/ucl.png
     
-    Positional Arguments:
-     
-    product : str e.g. 'MCD15A3H'
-    tile    : str e.g. 'h08v06'
-    year    : str valid 2000-present
-    month   : str 01-12
-    day     : str 01-(28,29,30,31)
-    
-    Keyword Arguments:
-    
-    site     =  'https://e4ftl01.cr.usgs.gov'
-    verbose  =  False
-    '''
-    # you should put some tests in
-    site_dir = f'MOTA/{product}.006/{year}.{month}.{day}'
-
-    site_file = f'*.{tile}*.hdf'
-
-    url = URL(site,site_dir,verbose=verbose)
-    hdf_urls = url.glob(site_file)
-    return hdf_urls 
-```
-
-
-```python
-# ANSWER 2
-# run a test of your function, 
-# and print the file size in MB 
-# for the file pointed to in the URL
-# to 2 decimal places
-
-msg = '''
-Note: 1 MB = 1024 * 1024 Bytes
-'''
-print(msg)
-
-args = ['MCD15A3H','h08v06','2020','06', '01']
-hdf_urls = modis_dataset(*args,verbose=True)
-# test if exist
-for u in hdf_urls:
-    print(u)
-    print(f'{u.name} : {u.stat().st_size/(1024*1024): .2f} MB')
-```
-
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
-
-
-    
-    Note: 1 MB = 1024 * 1024 Bytes
-    
-
-
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern 2020.06.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
-
-
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
-
-
-    --> code 401
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-
-
-    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf :  9.66 MB
-
-
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
-
-
-
-```python
-# ANSWER 3
-# what happens if you use a wildcard for the date?
-msg = '''
-Note: 1 MB = 1024 * 1024 Bytes
-'''
-print(msg)
-
-args = ['MCD15A3H','h08v06','2020','*', '01']
-hdf_urls = modis_dataset(*args,verbose=True)
-# test if exist
-for u in hdf_urls:
-    print(f'{u.name} : {u.stat().st_size/(1024*1024): .2f} MB')
-```
-
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MOTA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MCD15A3H.006 in https://e4ftl01.cr.usgs.gov/MOTA
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006.store
-
-
-    
-    Note: 1 MB = 1024 * 1024 Bytes
-    
-
-
-    --> parsing URLs from html file 4 items
-    --> discovered 4 files with pattern 2020.*.01 in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01
-    --> keeping existing file /Users/plewis/Documents/GitHub/geog0111/notebooks/work/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern *.h08v06*.hdf in https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.01/MCD15A3H.A2020001.h08v06.006.2020006032951.hdf
-    --> code 401
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.03.01/MCD15A3H.A2020061.h08v06.006.2020066032716.hdf
-
-
-    MCD15A3H.A2020001.h08v06.006.2020006032951.hdf :  8.65 MB
-
-
-    --> code 401
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.06.01/MCD15A3H.A2020153.h08v06.006.2020160231732.hdf
-
-
-    MCD15A3H.A2020061.h08v06.006.2020066032716.hdf :  8.63 MB
-
-
-    --> code 401
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
-    --> trying https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.09.01/MCD15A3H.A2020245.h08v06.006.2020253152835.hdf
-
-
-    MCD15A3H.A2020153.h08v06.006.2020160231732.hdf :  9.66 MB
-
-
-    --> code 401
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-
-
-    MCD15A3H.A2020245.h08v06.006.2020253152835.hdf :  10.46 MB
-
-
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
+    ==== After copying
+    The file myfiles/ucl.png size:  1.91 KB
+    The file myfiles/ucl.png modification time: 2021-09-29 08:43:27.356321
+    Time now is 2021-09-29 08:43:27.358819
 

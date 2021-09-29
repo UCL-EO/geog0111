@@ -131,7 +131,9 @@ Notice that the LAI data have a valid range 0 to 100, and that a scale factor of
 
 
 ```python
-from geog0111.modis import Modis
+from geog0111.modisUtils import modisAnnual
+import gdal
+
 #######################
 # specify what we want
 # in a dictionary
@@ -139,13 +141,19 @@ from geog0111.modis import Modis
 # UK tiles
 
 kwargs = {
-    'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
     'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
+    'sds'       :    ['Lai_500m'],
+    'doys'       : [41],
+    'year'      : 2019,
 }
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
+
+filename,bandname = modisAnnual(verbose=False,**kwargs)
+data_MCD15A3H = {}
+for f,v in filename.items():
+    g = gdal.Open(v)
+    if g:
+        data_MCD15A3H[f] = g.ReadAsArray()
 ```
 
 
@@ -170,17 +178,29 @@ We will learn more of this later, but for now, note that we can use code such as
 
 
 ```python
-from geog0111.modis import Modis
+from geog0111.modisUtils import modisAnnual
+import gdal
+
+#######################
+# specify what we want
+# in a dictionary
+#######################
+# UK tiles
 
 kwargs = {
-    'tile'      :    ['h17v03', 'h17v04', 'h18v03', 'h18v04'],
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
     'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
+    'sds'       :    ['Lai_500m'],
+    'doys'       : [41],
+    'year'      : 2019,
 }
-modis = Modis(**kwargs)
 
-# repull dataset
-data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
+filename,bandname = modisAnnual(verbose=False,**kwargs)
+data_MCD15A3H = {}
+for f,v in filename.items():
+    g = gdal.Open(v)
+    if g:
+        data_MCD15A3H[f] = g.ReadAsArray()
 ```
 
 
@@ -261,32 +281,46 @@ We now simply need to encode any scale factors or invalidity thresholds, and we 
 
 
 ```python
-from geog0111.modis import Modis
+from geog0111.modisUtils import getModisTiledata
+xx = getModisTiledata(doy=None,year=2019, month=6, day=1,tile='h22v10', product='MCD64A1')
+xx.keys()
+```
+
+
+
+
+    dict_keys(['Burn Date', 'Burn Date Uncertainty', 'QA MOD_Grid_Monthly_500m_DB_BA', 'First Day', 'Last Day'])
+
+
+
+
+```python
+from geog0111.modisUtils import modisAnnual
+import gdal
 from geog0111.im_display import im_display
 from geog0111.data_mask import data_mask
 from geog0111.get_doy import get_doy
+
+year  = 2019
+month = 6
+doy = get_doy(year,month,1)
 
 # h22v10 is Madagascar
 kwargs = {
     'tile'      :    ['h22v10'],
     'product'   :    'MCD64A1',
+    'doys'       : [doy],
     'sds'       :    ['Burn Date'],
+    'year'      : year,
 }
 
-year  = 2019
-month = 6
-
-doy = get_doy(year,month,1)
-print(doy)
-# get the data
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MCD64A1 = modis.get_data(2019,doy=doy)
-
+filename,bandname = modisAnnual(verbose=False,**kwargs)
+data_MCD64A1 = {}
+for f,v in filename.items():
+    g = gdal.Open(v)
+    if g:
+        data_MCD64A1[f] = g.ReadAsArray()
 ```
-
-    152
-
 
 
 ```python
@@ -305,7 +339,7 @@ im_display(data_MCD64A1,kwargs['sds'],\
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_20_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_21_0.png)
     
 
 
@@ -316,37 +350,48 @@ There are two MODIS daily snow cover datasets: [`MOD10A1` and `MYD10A1`](https:/
 
 
 ```python
-from geog0111.modis import Modis
+# needed to access data for snow
+from geog0111.modisUtils import preamble
+preamble()
+```
+
+
+```python
+from geog0111.modisUtils import modisAnnual
+import gdal
 from geog0111.im_display import im_display
 from geog0111.data_mask import data_mask
 from geog0111.get_doy import get_doy
 
+year  = 2019
+month = 12
+doy = get_doy(year,month,1)
+
 kwargs = {
     'tile'      :    ['h19v03'],
     'product'   :    'MOD10A1',
-    'sds'       :     ['NDSI_Snow_Cover']
+    'sds'       :     ['NDSI_Snow_Cover'],
+    'year'      : year,
+    'doys'        : [doy]
 }
-
-# look in the winter
-year  = 2019
-month = 12
-day = 1
 
 scale   = [1]
 uthresh = [101]
 lthresh = [-1]
 sds     = kwargs['sds']
 
-doy = get_doy(year,month,day)
-print(doy)
-# get the data
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MOD10A1 = modis.get_data(2019,doy=doy)
+filename,bandname = modisAnnual(verbose=False,**kwargs)
+data_MOD10A1 = {}
+for f,v in filename.items():
+    g = gdal.Open(v)
+    if g:
+        data_MOD10A1[f] = g.ReadAsArray()
+
 data_MOD10A1 = data_mask(data_MOD10A1,sds,scale,uthresh,lthresh)
 ```
 
-    335
+    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/geog0111/data_mask.py:27: RuntimeWarning: invalid value encountered in less_equal
+      ds[ds<=lthresh[i] * scale] = np.nan
 
 
 
@@ -359,7 +404,7 @@ im_display(data_MOD10A1,kwargs['sds'],\
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_23_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_25_0.png)
     
 
 
@@ -372,27 +417,35 @@ We previously developed a code [`get_lc`](geog0111/plot_lc.py) to set up the col
 
 ```python
 from geog0111.plot_lc import plot_lc
-from geog0111.modis import Modis
+from geog0111.modisUtils import modisAnnual
+import gdal
+
 # Madagascar
-year,tiles = 2018,['h22v10']
 
 # ensure tiles is a list
 kwargs = {
-    'tile'      :    list(tiles),
     'product'   :    'MCD12Q1',
-    'sds'       :    ['LC_Type1']
+    'sds'       :    ['LC_Type1'],
+    'year'      :    2019,
+    'doys'      : [1],
+    'tile'      : ['h22v10']
 }
-# get the data
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MCD12Q1 = modis.get_data(year,doy=1)
+
+filename,bandname = modisAnnual(verbose=False,**kwargs)
+
+data_MCD12Q1 = {}
+for f,v in filename.items():
+    g = gdal.Open(v)
+    if g:
+        data_MCD12Q1[f] = g.ReadAsArray()
+        
 # the data we want here
 plot_lc(data_MCD12Q1['LC_Type1'])
 ```
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_25_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_27_0.png)
     
 
 

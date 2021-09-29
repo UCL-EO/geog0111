@@ -620,8 +620,16 @@ class Modis():
       for f in hdf_urls:
         d = f.read_bytes()
       hdf_files = [str(f.local()) for f in hdf_urls]
+    
     if get_files:
       sds = self.get_sds(hdf_files,do_all=False)
+      if sds == []:
+        for f in hdf_urls:
+          d = f.read_bytes()
+        hdf_files = [str(f.local()) for f in hdf_urls]
+        sds = self.get_sds(hdf_files,do_all=False)
+      if sds == []:
+        print("ERROR: problem getting SDS ...") 
       return hdf_files,sds
 
     sds = self.get_sds(hdf_files,do_all=True)

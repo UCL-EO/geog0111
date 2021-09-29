@@ -30,6 +30,13 @@ You can get help on an object using the `help()` method. This will return a full
 help(list.append)
 ```
 
+    Help on method_descriptor:
+    
+    append(self, object, /)
+        Append object to the end of the list.
+    
+
+
 #### Exercise 1
 
 * In a new code cell, type `help(list)` and look through the information provided.

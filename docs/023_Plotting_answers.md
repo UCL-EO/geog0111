@@ -14,7 +14,8 @@ We have seen how to access the dataset labels using:
 # ANSWER 
 # Copy the code to read the HadSEEP monthly datasets above
 import pandas as pd
-from geog0111.gurlpath import URL
+from urlpath import URL
+from pathlib import Path
 
 # Monthly Southeast England precipitation (mm) 
 site = 'https://www.metoffice.gov.uk/'
@@ -23,6 +24,21 @@ site_file = 'HadSEEP_monthly_qc.txt'
 
 url = URL(site,site_dir,site_file)
 
+r = url.get()
+if r.status_code == 200:
+    # setup Path object for output file
+    filename = Path('work',url.name)
+    # write text data
+    filename.write_text(r.text)
+    # check size and report
+    print(f'file {filename} written: {filename.stat().st_size} bytes')
+    
+    df=pd.read_table(filename,**panda_format)
+    # df.head: first n lines
+    ok= True
+else:
+    print(f'failed to get {url}')
+
 panda_format = {
     'skiprows'   :  3,
     'na_values'  :  [-99.9],
@@ -30,11 +46,14 @@ panda_format = {
     'engine'     :  'python'
 }
 
-df=pd.read_table(url.open('r'),**panda_format)
+df=pd.read_table(filename,**panda_format)
 
 # df.head: first n lines
 df.head()
 ```
+
+    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+
 
 
 
@@ -189,19 +208,12 @@ for i,m in enumerate(months):
     axs[i].set_xlim(year0,year1)
 
 # x-label
-axs[-1].set_xlabel(f'year')
+_=axs[-1].set_xlabel(f'year')
 ```
 
 
-
-
-    Text(0.5, 0, 'year')
-
-
-
-
     
-![png](023_Plotting_answers_files/023_Plotting_answers_3_1.png)
+![png](023_Plotting_answers_files/023_Plotting_answers_3_0.png)
     
 
 
@@ -219,7 +231,8 @@ axs[-1].set_xlabel(f'year')
 # Read the `2276931.csv` dataset into a 
 # pandas dataframe called `df`
 import pandas as pd
-from geog0111.gurlpath import URL
+from urlpath import URL
+from pathlib import Path
 
 site = 'https://raw.githubusercontent.com'
 site_dir = '/UCL-EO/geog0111/master/notebooks/data'
@@ -228,12 +241,30 @@ site_file = '2276931.csv'
 # form the URL
 url = URL(site,site_dir,site_file)
 
+r = url.get()
+if r.status_code == 200:
+    # setup Path object for output file
+    filename = Path('work',url.name)
+    # write text data
+    filename.write_text(r.text)
+    # check size and report
+    print(f'file {filename} written: {filename.stat().st_size} bytes')
+    
+    df=pd.read_table(filename,**panda_format)
+    # df.head: first n lines
+    ok= True
+else:
+    print(f'failed to get {url}')
+
 # Read the file into pandas using url.open('r').
-df=pd.read_csv(url.open('r'))
+df=pd.read_csv(filename)
 
 # print the first 5 lines of data
 df.head(5)
 ```
+
+    file work/2276931.csv written: 15078 bytes
+
 
 
 
@@ -376,8 +407,11 @@ If you want to go further towards re-creating this, you consult [the matplotlib 
 
 
 ```python
+# ANSWER 1
+
 import pandas as pd
-from geog0111.gurlpath import URL
+from urlpath import URL
+from pathlib import Path
 
 site = 'https://raw.githubusercontent.com'
 site_dir = 'igorol/unknown_pleasures_plot/master'
@@ -385,10 +419,28 @@ site_file = 'pulsar.csv'
 
 url = URL(site,site_dir,site_file)
 
+r = url.get()
+if r.status_code == 200:
+    # setup Path object for output file
+    filename = Path('work',url.name)
+    # write text data
+    filename.write_text(r.text)
+    # check size and report
+    print(f'file {filename} written: {filename.stat().st_size} bytes')
+    
+    df=pd.read_table(filename,**panda_format)
+    # df.head: first n lines
+    ok= True
+else:
+    print(f'failed to get {url}')
+
 # transposed version
-df=pd.read_csv(url,header=None).transpose()
+df=pd.read_csv(filename,header=None).transpose()
 df
 ```
+
+    file work/pulsar.csv written: 130465 bytes
+
 
 
 
@@ -708,7 +760,7 @@ df
 
 
 ```python
-# ANSWER 3
+# ANSWER 2
 # Plot the pulsar samples in a series of 80 sub-plots.
 import matplotlib.pyplot as plt
 

@@ -28,15 +28,18 @@ We will now load up a dataset (LAI for LU for 2019) to explore smoothing. We wil
 
 
 ```python
-from geog0111.get_lai_data import get_lai_data
+from geog0111.modisUtils import getLai
+
 import numpy as np
 
 # load some data
-tile    = ['h17v03','h18v03','h17v04','h18v04']
+#tile    = ['h17v03','h18v03','h17v04','h18v04']
+
+tile    = ['h18v03','h18v04']
 year    = 2019
 fips    = "LU"
 
-lai,std,doy =  get_lai_data(year,tile,fips)
+lai,std,doy =  getLai(year,tile,fips)
 
 # sort the weight as in the exercise
 std[std<1] = 1
@@ -124,7 +127,7 @@ plt.plot(x,gaussian)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fdf690783d0>]
+    [<matplotlib.lines.Line2D at 0x7f8cb6b24d50>]
 
 
 
@@ -172,7 +175,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7fdf68e4f3d0>
+    <matplotlib.legend.Legend at 0x7f8cb6b05310>
 
 
 
@@ -268,11 +271,11 @@ This will build a 2D dataset that is `np.nan` if invalid. We can then use `~np.i
 
 ```python
 # reload the dataset
-from geog0111.get_lai_data import get_lai_data
-from geog0111.get_weight import get_weight
-from geog0111.regularise import regularise
+from geog0111.modisUtils import getLai
+from geog0111.modisUtils import get_weight
+from geog0111.modisUtils import regularise
 
-lai,std,doy =  get_lai_data(year,tile,fips)
+lai,std,doy =  getLai(year,tile,fips)
 weight = get_weight(lai,std)
 interpolated_lai = regularise(lai,weight,5.0)
 ```
@@ -310,18 +313,12 @@ We will use `LC_Type3` as this is the classification associated with the LAI pro
 
 
 ```python
-from geog0111.modis import Modis
+from geog0111.modisUtils import modisAnnual
 
-# LU
-kwargs = {
-    'tile'      :    ['h17v03', 'h18v03','h17v04', 'h18v04'],
-    'product'   :    'MCD12Q1',
-}
-
-year  = 2019
-doy = 1
-# get the data
-modis = Modis(**kwargs)
+# SDS for land cover data
+LC_SDS = ['LC_Prop1', 'LC_Prop1_Assessment', 'LC_Prop2', \
+          'LC_Prop2_Assessment', 'LC_Prop3', 'LC_Prop3_Assessment', \
+          'LC_Type1', 'LC_Type2', 'LC_Type3', 'LC_Type4', 'LC_Type5', 'LW', 'QC']
 
 warp_args = {
     'dstNodata'     : 255,
@@ -330,16 +327,27 @@ warp_args = {
     'cutlineWhere'  : "FIPS='LU'",
     'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
 }
+# LU
 
-# specify day of year (DOY) and year
-lcfiles = modis.get_modis(year,doy,warp_args=warp_args)
+kwargs = {
+    'tile'      :    ['h17v03', 'h18v03','h17v04', 'h18v04'],
+    'product'   :    'MCD12Q1',
+    'year'      :    2019,
+    'sds'       : LC_SDS,
+    'doys'      :    [1],
+    'warp_args' : warp_args
+}
+
+# get the data
+lcfiles,bnames = modisAnnual(**kwargs)
+
 lcfiles.keys()
 ```
 
 
 
 
-    dict_keys(['LC_Prop1', 'LC_Prop1_Assessment', 'LC_Prop2', 'LC_Prop2_Assessment', 'LC_Prop3', 'LC_Prop3_Assessment', 'LC_Type1', 'LC_Type2', 'LC_Type3', 'LC_Type4', 'LC_Type5', 'LW', 'QC', 'bandnames'])
+    dict_keys(['LC_Prop1', 'LC_Prop1_Assessment', 'LC_Prop2', 'LC_Prop2_Assessment', 'LC_Prop3', 'LC_Prop3_Assessment', 'LC_Type1', 'LC_Type2', 'LC_Type3', 'LC_Type4', 'LC_Type5', 'LW', 'QC'])
 
 
 
@@ -504,7 +512,7 @@ print(lcfiles['LC_Type3'])
 ```
 
     [  1   3   4   5   6   7  10 255]
-    /nfsshare/groups/jrole001/geog0111/work/MCD12Q1/data.LC_Type3._h17v03_h18v03_h17v04_h18v04_.2019.001.001_warp.vrt
+    work/output_filename_SDS_LC_Type3.vrt
 
 
 
@@ -522,7 +530,7 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7fdf687e92d0>
+    <matplotlib.legend.Legend at 0x7f8caa6a3790>
 
 
 
@@ -550,10 +558,11 @@ We can now consider masking both for valid pixels and for a particular land cove
 
 ```python
 # reload the dataset
-from geog0111.get_lai_data import get_lai_data
-from geog0111.get_weight import get_weight
-from geog0111.regularise import regularise
-from geog0111.get_lc import get_lc
+# reload the dataset
+from geog0111.modisUtils import getLai
+from geog0111.modisUtils import get_weight
+from geog0111.modisUtils import regularise
+from geog0111.modisUtils import get_lc
 import pandas as pd
 
 year = 2019
@@ -561,7 +570,8 @@ tile = ['h17v03', 'h18v03','h17v04', 'h18v04']
 fips = "LU"
 lc = get_lc(year,tile,fips)
 lc_Type3 = pd.read_csv('data/LC_Type3_colour.csv')
-lai,std,doy =  get_lai_data(year,tile,fips)
+
+lai,std,doy =  getLai(year,tile,fips)
 weight = get_weight(lai,std)
 interpolated_lai = regularise(lai,weight,5.0)
 ```
@@ -646,7 +656,7 @@ axs.legend(loc='upper right')
 
 
 
-    <matplotlib.legend.Legend at 0x7f7b50ef3690>
+    <matplotlib.legend.Legend at 0x7f8caa4919d0>
 
 
 
@@ -675,29 +685,21 @@ Remember:
 
 
 ```python
-from geog0111 import regularise
+from geog0111.modisUtils import regularise
 help(regularise)
 ```
 
-    Help on module geog0111.regularise in geog0111:
+    Help on function regularise in module geog0111.modisUtils:
     
-    NAME
-        geog0111.regularise
-    
-    FUNCTIONS
-        regularise(lai, weight, sigma)
-            takes as argument:
+    regularise(lai, weight, sigma)
+        takes as argument:
+        
+            lai     : MODIS LAI dataset:     shape (Nt,Nx,Ny)
+            weight  : MODIS LAI weight:      shape (Nt,Nx,Ny)
+            sigma   : Gaussian filter width: float
             
-                lai     : MODIS LAI dataset:     shape (Nt,Nx,Ny)
-                weight  : MODIS LAI weight:      shape (Nt,Nx,Ny)
-                sigma   : Gaussian filter width: float
-                
-            returns an array the same shape as 
-            lai of regularised LAI. Regularisation takes place along
-            axis 0 (the time axis)
-    
-    FILE
-        /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/geog0111/regularise.py
-    
+        returns an array the same shape as 
+        lai of regularised LAI. Regularisation takes place along
+        axis 0 (the time axis)
     
 

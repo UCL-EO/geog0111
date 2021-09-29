@@ -7,7 +7,7 @@ UCL Geography MSc notes.
 
 |   |   |   |   |   |
 |---|---|---|---|---|
-|Author: [Prof. P. Lewis](mailto:p.lewis@ucl.ac.uk)|version 1.0.1||||
+|Author: [P. Lewis and J. Gomez-Dans](mailto:p.lewis@ucl.ac.uk)|version 1.1.0||||
 
 # GEOG0111 Scientific Computing
 
@@ -24,11 +24,11 @@ UCL Geography MSc notes.
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2020-2021
+### Teaching Staff 2021-2022
 
-|   |  | 
-|---|---|
-|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| 
+|   |  
+|---|
+|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
 ### Contributing Staff
 
@@ -69,17 +69,15 @@ Follow the instructions on [UCL installation and running](Install.md)
 
 ## Timetable
 
-[class timetable for 2020/21](TIMETABLE.md)
+[class timetable for 2021/22](TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1, usually in the Geography Department Unix Computing Lab (PB110) in the [Northwest wing](http://www.ucl.ac.uk/estates/roombooking/building-location/?id=003), UCL. 
+The course takes place over 10 weeks in term 1 in the UCL teaching cluster room 113 in [1-19 Torrington Place](https://www.ucl.ac.uk/maps/1-19-torrington-place), UCL. 
 
 Due to covid restrictions, it is being run online in the 2020-21 session.
 
 Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](http://www.ucl.ac.uk/staff/term-dates) for further information.
 
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Thursdays.
-
-
 
 
 ### Assessment
@@ -91,6 +89,9 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 ### Useful links
 
 [Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)  
+
+### Notes, code etc
+[geog0111 code pypi for v1.1.0](https://test.pypi.org/project/geog0111/1.1.0)
 
 ### Using the course notes
 

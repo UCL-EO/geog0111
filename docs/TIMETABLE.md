@@ -1,4 +1,4 @@
-GEOG0111 Timetable 2020-21
+GEOG0111 Timetable 2021-22
 
 
 
@@ -22,6 +22,7 @@ GEOG0111 Timetable 2020-21
 |  8	| **Regularisation** 	|  [Smoothing theory](042_Weighted_smoothing_and_interpolation.md)	| [Smoothing and interpolation](043_Weighted_interpolation.md) 	|  	| |  |[LAI](065_LAI.md)|
 |	| |[![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/143428cb-d1f2-48bd-b064-d15c224025a4) | [![Smoothing and interpolation](images/icon.png)](https://web.microsoftstream.com/video/fe8e867a-7e36-4681-9ee3-e81fd2fab91e)
 |  9	|  **Parameter estimation**	| [Models and inversion](050_Models.md) 	|   [Phenology model](051_Phenology_model.md) 	|  	|
+|	| |[![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/900f34b6-195c-4c53-b917-aa3aeec47c0d) | [![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/833807e2-9353-463d-9c11-218b69a45548)
 |  10	|  **Recap**	|  [Summary](070_Summary.md)|  	|  	|| | [Part 2](066_Part2.md)|
 
 

@@ -97,31 +97,33 @@ EOF
 ```
 
     /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-    -rwxr-xr-x 1 ucfalew ucfa  124 Oct  3 17:48 bin/clean0111.sh
-    lrwxrwxrwx 1 ucfalew ucfa    7 Oct  2 18:58 bin/copy -> ../copy
-    -rwxr-xr-x 1 ucfalew ucfa   43 Sep 26 19:19 bin/database.sh
-    -rwxr-xr-x 1 ucfalew ucfa  217 Sep 21 13:29 bin/docker-build
-    -rwxr-xr-x 1 ucfalew ucfa  428 Sep 21 13:29 bin/docker-killall
-    -rwxr-xr-x 1 ucfalew ucfa 1022 Sep 21 13:29 bin/docker-run
-    -rwxr-xr-x 1 ucfalew ucfa  534 Oct  2 18:42 bin/fixA.sh
-    -rwxr-xr-x 1 ucfalew ucfa  117 Oct  2 16:47 bin/get_datasets.sh
-    -rwxr-xr-x 1 ucfalew ucfa  569 Sep 21 13:29 bin/git-remove-all.sh
-    -rw-rw-r-- 1 ucfalew ucfa  257 Sep 25 17:56 bin/howmany.sh
-    -rwxr-xr-x 1 ucfalew ucfa 2.7K Oct  3 17:48 bin/init0111.sh
-    -rwxr-xr-x 1 ucfalew ucfa 1.8K Sep 27 22:28 bin/init.sh
-    -rwxr-xr-x 1 ucfalew ucfa 3.1K Oct  2 17:57 bin/link-set.sh
-    -rwxr-xr-x 1 ucfalew ucfa  855 Sep 27 00:38 bin/mv_vrt.sh
-    -rwxr-xr-x 1 ucfalew ucfa 4.1K Oct  2 18:13 bin/notebook-mkdocs.sh
-    -rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 21 13:29 bin/notebook-run.sh
-    -rwxr-xr-x 1 ucfalew ucfa 1.5K Oct  3 17:34 bin/postBuild
-    -rwxr-xr-x 1 ucfalew ucfa   44 Sep 28 10:06 bin/pullYou
-    -rwxr-xr-x 1 ucfalew ucfa  100 Sep 23 21:54 bin/pushMe
-    -rw-r--r-- 1 ucfalew ucfa   16 Sep 21 13:29 bin/README
-    -rw-r--r-- 1 ucfalew ucfa  271 Sep 23 21:54 bin/set-course.sh
-    -rwxr-xr-x 1 ucfalew ucfa 3.4K Sep 21 13:29 bin/setup.sh
-    -rwxr-xr-x 1 ucfalew ucfa  754 Sep 24 09:13 bin/shellMe.sh
-    -rwxr-xr-x 1 ucfalew ucfa 1.8K Sep 26 22:34 bin/sort-db.sh
-    -rwxr-xr-x 1 ucfalew ucfa  742 Sep 26 20:47 bin/tidy.sh
+    -rwxr-xr-x 1 ucfalew ucfa 1.2K Sep 28 21:37 bin/build-conda-package
+    -rwxr-xr-x 1 ucfalew ucfa  220 Sep 28 21:37 bin/build-pypi-package
+    -rwxr-xr-x 1 ucfalew ucfa 1.4K Sep 28 21:37 bin/clean0111.sh
+    lrwxrwxrwx 1 ucfalew ucfa    7 Sep 28 22:17 bin/copy -> ../copy
+    -rwxr-xr-x 1 ucfalew ucfa   43 Sep 28 21:37 bin/database.sh
+    -rwxr-xr-x 1 ucfalew ucfa  217 Sep 28 21:37 bin/docker-build
+    -rwxr-xr-x 1 ucfalew ucfa  428 Sep 28 21:37 bin/docker-killall
+    -rwxr-xr-x 1 ucfalew ucfa 1022 Sep 28 21:37 bin/docker-run
+    -rwxr-xr-x 1 ucfalew ucfa  534 Sep 28 21:37 bin/fixA.sh
+    -rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 28 22:16 bin/get-datasets.sh
+    -rwxr-xr-x 1 ucfalew ucfa  569 Sep 28 21:37 bin/git-remove-all.sh
+    -rw-r--r-- 1 ucfalew ucfa  257 Sep 28 21:37 bin/howmany.sh
+    -rwxr-xr-x 1 ucfalew ucfa 2.8K Sep 28 21:37 bin/init0111.sh
+    -rwxr-xr-x 1 ucfalew ucfa 2.2K Sep 28 21:37 bin/init.sh
+    -rwxr-xr-x 1 ucfalew ucfa 3.3K Sep 28 21:37 bin/link-set.sh
+    -rw-r--r-- 1 ucfalew ucfa  245 Sep 28 21:37 bin/NASAaccount0111.py
+    -rwxr-xr-x 1 ucfalew ucfa 8.0K Sep 28 21:37 bin/notebook-mkdocs.sh
+    -rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 28 21:37 bin/notebook-run.sh
+    -rwxr-xr-x 1 ucfalew ucfa 1.5K Sep 28 21:37 bin/postBuild
+    -rwxr-xr-x 1 ucfalew ucfa   44 Sep 28 21:37 bin/pullYou
+    -rwxr-xr-x 1 ucfalew ucfa  100 Sep 28 21:37 bin/pushMe
+    -rw-r--r-- 1 ucfalew ucfa   16 Sep 28 21:37 bin/README
+    -rwxr-xr-x 1 ucfalew ucfa  526 Sep 28 21:37 bin/set-course.sh
+    -rwxr-xr-x 1 ucfalew ucfa 3.4K Sep 28 21:37 bin/setup.sh
+    -rwxr-xr-x 1 ucfalew ucfa  754 Sep 28 21:37 bin/shellMe.sh
+    -rwxr-xr-x 1 ucfalew ucfa 2.7K Sep 28 21:37 bin/sort-db.sh
+    -rwxr-xr-x 1 ucfalew ucfa  742 Sep 28 21:37 bin/tidy.sh
     ===============================
     * what do you notice about these?
     ===============================
@@ -159,7 +161,7 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Sep 29 08:11 work/newfile.dat
 
 
 
@@ -175,7 +177,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Oct  3 17:49 work/newfile.dat
+    -rw-r--r-- 1 ucfalew ucfa 73 Sep 29 08:11 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
@@ -213,9 +215,10 @@ ls -lh geog0111/f*
 # and only read for others
 ```
 
-    -rw------- 1 ucfalew ucfa  362 Oct  1 13:10 geog0111/fdict.py
-    -rw-r--r-- 1 ucfalew ucfa 2.2K Oct  1 13:10 geog0111/fire_practical_model.py
-    -rw-r--r-- 1 ucfalew ucfa 4.3K Oct  1 13:10 geog0111/fire_practical_satellite.py
-    -rw-r--r-- 1 ucfalew ucfa 1.9K Oct  1 13:10 geog0111/fire_practical_telecon.py
-    -rw-r--r-- 1 ucfalew ucfa   66 Oct  1 13:10 geog0111/flatten.py
+    -rw-r--r-- 1 ucfalew ucfa  362 Sep 28 21:37 geog0111/fdict.py
+    -rwxr-xr-x 1 ucfalew ucfa 1.8K Sep 28 21:37 geog0111/filter_movies.py
+    -rw-r--r-- 1 ucfalew ucfa 2.2K Sep 28 21:37 geog0111/fire_practical_model.py
+    -rw-r--r-- 1 ucfalew ucfa 4.3K Sep 28 21:37 geog0111/fire_practical_satellite.py
+    -rw-r--r-- 1 ucfalew ucfa 1.9K Sep 28 21:37 geog0111/fire_practical_telecon.py
+    -rw-r--r-- 1 ucfalew ucfa   66 Sep 28 21:37 geog0111/flatten.py
 

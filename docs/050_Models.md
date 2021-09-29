@@ -150,7 +150,7 @@ rmse = np.sqrt(np.mean(error2))
 print(f'RMSE: {rmse} for parameters {p}')
 ```
 
-    RMSE: 4.118554746101607 for parameters [3.e-01 1.e-04]
+    RMSE: 3.803998198544574 for parameters [3.e-01 1.e-04]
 
 
 
@@ -204,7 +204,7 @@ axs.plot([0,maxvalue],[0,maxvalue],'k')
 
 
 
-    [<matplotlib.lines.Line2D at 0x7ff6b6709f90>]
+    [<matplotlib.lines.Line2D at 0x7fbd7caf2b50>]
 
 
 
@@ -382,7 +382,7 @@ print(f'min rmse\n{min_rmse}')
 
     rmse shape (132,)
     min rmse
-    0.9064999558594992
+    0.8731447316065408
 
 
 Following the material in [032](032_More_numpy.md#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index) we use `argmin` to find the parameter index of minimum RMSE:
@@ -484,7 +484,7 @@ axs.legend(loc='lower right')
 
 
 
-    <matplotlib.legend.Legend at 0x7ff6b6593dd0>
+    <matplotlib.legend.Legend at 0x7fbd7c97abd0>
 
 
 

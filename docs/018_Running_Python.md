@@ -55,7 +55,7 @@ as the first line in the file, and is executable. We can see if a file is execut
 !ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x  1 plewis  staff  514  8 Oct 19:46 [31mgeog0111/helloWorld.py[m[m
+    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 28 21:37 geog0111/helloWorld.py
 
 
 The first field gives us the file permissions:
@@ -71,7 +71,7 @@ chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x  1 plewis  staff  514  8 Oct 19:46 geog0111/helloWorld.py
+    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 28 21:37 geog0111/helloWorld.py
 
 
 ### Running Python code from Python
@@ -522,7 +522,7 @@ import sys
 print(sys.argv)
 ```
 
-    ['/Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/Users/plewis/Library/Jupyter/runtime/kernel-68697deb-b842-43cd-a11f-4edaa8a97834.json']
+    ['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-80f12cb9-2877-4281-996c-a1e4054b040b.json']
 
 
 Running from the notebook, we get to see the full command that is run when we launch this notebook. Since `sys` is a package, we first import it:

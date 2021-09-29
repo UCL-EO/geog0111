@@ -205,6 +205,17 @@ print(msg)
 
 ```
 
+    
+     This fails with:
+     
+         IndexError: string index out of range
+    
+     because string[5] does not exist
+     as the length of string is 5: we can
+     only idex from 0 to 4
+    
+
+
 #### Exercise 5
 
 The example above allows us to access an individual character(s) of the array.

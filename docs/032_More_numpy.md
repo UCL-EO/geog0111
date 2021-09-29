@@ -310,6 +310,7 @@ We can think of this logical array as a 'data mask' that we use to select (filte
 high = (sum_per_year >= 1000)
 # form an attau of years
 years = 1957 + np.arange(data.shape[1])
+
 # select only elements where mask is True
 print(f'years with 1000 or more launches {years[high]}')
 ```
@@ -506,7 +507,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f2513d8bf50>
+    <matplotlib.colorbar.Colorbar at 0x7ff30a39ae10>
 
 
 
@@ -514,6 +515,18 @@ fig.colorbar(im, ax=axs)
     
 ![png](032_More_numpy_files/032_More_numpy_41_1.png)
     
+
+
+
+```python
+np.argmin(y)
+```
+
+
+
+
+    329
+
 
 
 We could  use `np.where` to find the index of the minimum point by seeking where it equals the minimum value. That is not always a good idea, as there might be rounding errors involved.
@@ -692,11 +705,11 @@ print(f'y-shape: {y.shape}')
 
 
     
-![png](032_More_numpy_files/032_More_numpy_58_1.png)
+![png](032_More_numpy_files/032_More_numpy_59_1.png)
     
 
 
-Now let's try to calculate the model `y = c * m * x` for these same values of `x`, but for multiple sets of `c` and `m`. We will use [`np.mgrid`](031_Numpy.md#np.linspace,-np.arange,-np.mgrid) as above to generate a grid of pairs of `c` and `m`:
+Now let's try to calculate the model `y = c + m * x` for these same values of `x`, but for multiple sets of `c` and `m`. We will use [`np.mgrid`](031_Numpy.md#np.linspace,-np.arange,-np.mgrid) as above to generate a grid of pairs of `c` and `m`:
 
 
 ```python
@@ -731,7 +744,7 @@ print(f'2d parameter grid: {grid_c.shape}')
 
 
     
-![png](032_More_numpy_files/032_More_numpy_60_1.png)
+![png](032_More_numpy_files/032_More_numpy_61_1.png)
     
 
 
@@ -786,7 +799,7 @@ for i in range(y.shape[0]):
 
 
     
-![png](032_More_numpy_files/032_More_numpy_64_0.png)
+![png](032_More_numpy_files/032_More_numpy_65_0.png)
     
 
 
@@ -825,6 +838,7 @@ import numpy as np
 
 a = np.random.random((10,2))
 b = np.random.random((5))
+
 ```
 
 Then we need to add new axes to the arrays to reconcile their dimensions. One clear way to do this is to use `np.newaxis` to add the new dimensions:

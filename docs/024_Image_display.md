@@ -3,7 +3,7 @@
 
 ### Purpose
 
-We have seen from [021 Streams](021_Streams.md) and [022 Read write files](022_Read_write_files.md) how to access both text and binary datasets, either from the local file system or from a URL and in [023 Plotting](023_Plotting.md) how to use [`matplotlib`](https://matplotlib.org) for plotting graphs. 
+We have seen from [020_Python_files](020_Python_files.md) and [021_URLs](021_URLs.md)  how to access both text and binary datasets, either from the local file system or from a URL and in [023 Plotting](023_Plotting.md) how to use [`matplotlib`](https://matplotlib.org) for plotting graphs. 
 
 In this section, we will learn how to view images using [`matplotlib`](https://matplotlib.org/3.3.1/tutorials/introductory/images.html).
 
@@ -22,8 +22,8 @@ You will need some understanding of the following:
 * [012 String formatting](012_Python_strings.md)
 * [013_Python_string_methods](013_Python_string_methods.md)
 * [020_Python_files](020_Python_files.md)
-* [021 Streams](021_Streams.md)
-* [022 Read write files](022_Read_write_files.md)
+* [021_URLs](021_URLs.md)
+* [022_Pandas](022_Pandas.md)
 * [023 Plotting](023_Plotting.md)
 
 ### Test
@@ -35,7 +35,7 @@ You should run a [NASA account test](004_Accounts.md) if you have not already do
 
 ### MODIS
 
-We have seen in [022 Read write files](022_Read_write_files.md#read-and-write-binary-data) how we can access a MODIS dataset. In an [exercise](022_Read_write_files.md#Exercise-3) we wrote a function `get_data` that returned a dictionary of spatial datasets, given a MODIS HDF filename. Here, we will use the similar function ` modis.get_data` that returns the same form of data dictionary, but driven by the year and day of year (`doy`). The product and other parameters are specified in the keyword arguments. We will look into MODIS products in more detail in a subsequent session. In this session, we will use `MCD15A3H` and 
+We have seen in [021_URLs](021_URLs.md) how we can access a MODIS dataset. In an [exercise](021_URLs.md#Exercise-4) we wrote a function `getModisTiledata` that returned a dictionary of spatial datasets, given a MODIS HDF filename. Here, we will use the similar function ` modis.get_data` that returns the same form of data dictionary, but driven by the year and day of year (`doy`). The product and other parameters are specified in the keyword arguments. We will look into MODIS products in more detail in a subsequent session. In this session, we will use `MCD15A3H` and 
 
 For example, to get the LAI product `MCD15A3H` and the land cover product `MCD12Q1`, layer `LC_Type1` to visualise. Many of these datasets are pre-cached for you, so you should get a fast response. If the plotting seems to be taking too long, set `verbose=True` in the `kwargs` to get details of the underlying processing.
 
@@ -43,30 +43,36 @@ First then, we access the product `MCD15A3H`. This is produced every 4 days in a
 
 
 ```python
-from  geog0111.modis import Modis
+from  geog0111.modisUtils import getModisTiledata
 
 kwargs = {
     'product'    : 'MCD15A3H',
-    'tile'       : ['h17v03'],
+    'tile'       : 'h17v03',
+    'year'       : 2019,
+    'doy'        : 41
 }
-
-modis = Modis(**kwargs)
+data_MCD15A3H = getModisTiledata(verbose=False,timeout=300,**kwargs)
 # specify day of year (DOY) and year
-
-data_MCD15A3H = modis.get_data(2019,41)
-# loop over dictionary items
-for k,v in data_MCD15A3H.items():
-    if k in modis.sds:
-        # do some neat formatting on k
-        print(f'{k:<20s}: {v.shape}')
+print(*data_MCD15A3H.keys())
 ```
 
-    FparExtra_QC        : (2400, 2400)
-    FparLai_QC          : (2400, 2400)
-    FparStdDev_500m     : (2400, 2400)
+    Fpar_500m Lai_500m FparLai_QC FparExtra_QC FparStdDev_500m LaiStdDev_500m
+
+
+
+```python
+# loop over dictionary items
+for k,v in data_MCD15A3H.items():
+    # do some neat formatting on k
+    print(f'{k:<20s}: {v.shape}')
+```
+
     Fpar_500m           : (2400, 2400)
-    LaiStdDev_500m      : (2400, 2400)
     Lai_500m            : (2400, 2400)
+    FparLai_QC          : (2400, 2400)
+    FparExtra_QC        : (2400, 2400)
+    FparStdDev_500m     : (2400, 2400)
+    LaiStdDev_500m      : (2400, 2400)
 
 
 So any of these datasets, `data[Fpar_500m]`, `data[Lai_500m]` are two dimensional datasets (`(2400, 2400)`) that we might display as images. For example `data[Lai_500m]`.
@@ -108,13 +114,13 @@ fig.colorbar(im, ax=axs[0])
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f390b53de90>
+    <matplotlib.colorbar.Colorbar at 0x7fb5a78d6e90>
 
 
 
 
     
-![png](024_Image_display_files/024_Image_display_5_1.png)
+![png](024_Image_display_files/024_Image_display_6_1.png)
     
 
 
@@ -184,7 +190,7 @@ for i,c in enumerate(cmaps):
 
 
     
-![png](024_Image_display_files/024_Image_display_8_0.png)
+![png](024_Image_display_files/024_Image_display_9_0.png)
     
 
 
@@ -379,20 +385,16 @@ It is an annual dataset, with only valid files for January 1st of the year.
 
 
 ```python
-from geog0111.modis import Modis
+from  geog0111.modisUtils import getModisTiledata
 
-# UK
 kwargs = {
-    'tile'      :    ['h17v03', 'h18v03'],
-    'product'   :    'MCD12Q1',
+    'product'    : 'MCD12Q1',
+    'tile'       : 'h17v03',
+    'year'       : 2019,
+    'doy'        : 1
 }
 
-year  = 2019
-
-# get the data
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MCD12Q1 = modis.get_data(year,1)
+data_MCD12Q1 = getModisTiledata(verbose=False,timeout=300,**kwargs)
 ```
 
 
@@ -430,13 +432,13 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7f3915363190>
+    <matplotlib.legend.Legend at 0x7fb5a9470710>
 
 
 
 
     
-![png](024_Image_display_files/024_Image_display_17_1.png)
+![png](024_Image_display_files/024_Image_display_18_1.png)
     
 
 
@@ -444,6 +446,7 @@ plt.legend(handles=patches,
 
 * Write a function called `plot_lc` that takes as input modis land cover dataset and plots the associated land cover map
 * You might use `x_size,y_size` as optional inputs to improve scaling
+* Show the function operating
 
 ## Summary
 
@@ -472,41 +475,124 @@ Remember:
 | `plt.legend(handles=patches)` | set figure legend using `patches` |`bbox_to_anchor=(1.4, 1)` : shift of legend|
 | | | `facecolor="white"` : facecolourt of legend (white here) |
         
-
-Modis library: 
-
-            from  geog0111.modis import Modis
-            modis = Modis(**kwargs)
-            
+          
+ We have also used `getModisTiledata` from [geog0111.modisUtils](geog0111/modisUtils.py):        
 
 
-            get_data(year, doy=None, idict=None, month=None, day=None, step=1, fatal=False) 
-            method of geog0111.modis.Modis instance
-            
-                Return data dictionary of MODIS dataset for specified time period
+```python
+help(getModisTiledata)
+```
 
-                args:
-                  year  : year (2000 to present for MOD, or 2002 to present if using MYD)
-                          NB this is ignoired if idict is given
+    Help on function getModisTiledata in module geog0111.modisUtils:
+    
+    getModisTiledata(doy=None, year=2020, month=1, day=1, tile='h08v06', product='MCD15A3H', timeout=None, sds='None', version='006', no_cache=False, cache=None, verbose=False, force=False, altcache='/shared/groups/jrole001/geog0111')
+        return MODIS data dictionary of given SDS for given MODIS tile
+        
+        N.B. You need to have a username and password to access the data.
+        These are available at https://urs.earthdata.nasa.gov
+        
+        Example of use:
+        
+          from geog0111.modisUtils import getModisdata
+        
+          modinfo = {
+            'product'  : 'MCD15A3H',
+            'year'     : 2020,
+            'month'    : 1,
+            'day'      : 5,
+            'tile'     : 'h08v06'
+          }
+        
+          data = getModisdata(**modinfo,verbose=False)
+          print(f'-> {*data.keys()}')
+        
+          -> Fpar_500m Lai_500m FparLai_QC FparExtra_QC FparStdDev_500m LaiStdDev_500m
+        
+        
+        Returns data read from MODIS data product file
+                  e.g. what you would find on 
+        
+               https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
+        
+                  Downloaded to some cache location e.g.
+        
+                  /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
+        
+        Control options:
+          year : int of year (2000+ for Terra, 2002+ for Aqua products)
+                 (year=2020)
+                 
+          doy  : day of year (doy=None)
+          OR
+          month: int of month (1-12) (month=1)
+          day  : int of day (1-31, as appropriate) (day=1)
+          
+          tile    : string of tile (tile='h08v06')  
+          product : string of MODIS product name (product='MCD15A3H')
+          version : int or string of version (version='006')
+          sds     : only load these SDS (string or list)
+               
+          timeout : timeout in seconds
+          verbose : verbosity (verbose=False)
+          
+          
+        Cache options:
+          no_cache : Set True if you don't want to use the cache 
+                     (no_cache=False)
+        
+                     This is common for most functions, but 
+                     modisFile() will use a cache in any case, 
+                     as it has to store the file somewhere. 
+                     If you don;'t want to keep that, then 
+                     you can delete after use.
+          cache    : Use cache='/home/somewhere/else' to specify 
+                     a personal cache location with write permission 
+                     (ie somewhere in your filespace)
+                     Specify personal cache root. By default, 
+                     this will be ~, and the cache will go into 
+                     ~/.modis_cache. You can change that to 
+                     somewhere else
+                     here. It will still use the sub-directory 
+                     .modis_cache.
+                     Use cache='/home/somewhere/else' to specify a 
+                     personal cache location with write permission 
+                     (ie somewhere in your filespace)
+          altcache : Specify system cache root. 
+                     Use altcache='/home/notme/somewhere' to specify a 
+                     system cache location with read permission 
+                     (ie somewhere not necessarily in your filespace)
+          force    : Bool : Use force=True to override information in the cache
+          
+        Get the URL associated with a MODIS product
+        for a certain date and version. Since this can
+        involve  an expensive call to get the html to access the file URL
+        The html data used can be cached unless no_cache = True
+        (See modisHTML())
+        
+        This function returns the URL for the product/date page listing
+        
+        The caching is done to avoid repeated calls to expensive URL downloads.
+        The idea is that there will be a system cache, where shared files will
+        be set up (where you have read permission), and a personal cache
+        where you can read and write your own files. Unless you
+        use force=True or disble cache with no_cache=True, then the code
+        will look in (i) personal; (ii) system cache before attempting
+        to download any file from a URL. 
+        
+        The cached files are stored in the same structure as the URL, i.e
+        
+        https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
+        
+        will be stored (personal cache) as:
+        
+        ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
+        
+        The html cache is what is returned from e.g.
+        
+        https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
+        
+        and is stored as eg
+        
+        ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
+    
 
-                options:
-                  doy   : day in year, or day in month if month specified, or None
-                          when specified as day in year, or day in month, can be a list
-                          1-365/366 or 1-28-31 as appropriate
-                  day   : day in month or None. Can be list.
-                  month : month index 1-12 or None. Can be list.
-                  step  : dataset step. Default 1, but set to 4 for 4-day product, i
-                          8 for 8-day, 365/366 for year etc.
-                  fatal : default False. If True, exit if dataset not found.
-                  idict : data file dictionary provided by eg call to
-                          self.get_modis(year,doy=None,month=None,step=1,fatal=False)
-                          see get_modis for more details
-
-                returns:
-                  data dictionary with keys specified by:
-                        - self.sds list 
-                        - or all SDS if self.sds is None (default)
-                  data dictionary key 'bandnames' of DOY 
-
-                  Each data item a 2- or 3-dimensional numpy array            
-         

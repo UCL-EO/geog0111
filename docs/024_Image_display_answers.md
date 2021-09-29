@@ -17,15 +17,16 @@ then you can refer to the subplot axes as `ax[0]`, `ax[1]`, `ax[2]` and `ax[3]` 
 # Plot the first datasets in `data_MCD15A3H` as subplots in a 2 x 2 shape.
 
 import matplotlib.pyplot as plt
-from  geog0111.modis import Modis
+from  geog0111.modisUtils import getModisTiledata
 
 kwargs = {
     'product'    : 'MCD15A3H',
     'tile'       : 'h17v03',
+    'year'       : 2019,
+    'doy'        : 41
 }
 
-modis = Modis(**kwargs)
-data_MCD15A3H = modis.get_data(2020,1+20*4) 
+data_MCD15A3H = getModisTiledata(verbose=False,timeout=300,**kwargs)
 
 # this is most neatly done with a 
 # loop over the keys we want
@@ -99,19 +100,17 @@ Note that you will have to experiment a bit with the `x_size,y_size` values to g
 #   a data dictionary
 #   a list of keywords of datasets to plot
 
-
 import matplotlib.pyplot as plt
-from  geog0111.modis import Modis
-
-# first,load the dataset
+from  geog0111.modisUtils import getModisTiledata
 
 kwargs = {
     'product'    : 'MCD15A3H',
     'tile'       : 'h17v03',
+    'year'       : 2019,
+    'doy'        : 41
 }
 
-modis = Modis(**kwargs)
-data_MCD15A3H = modis.get_data(2020,1+20*4) 
+data_MCD15A3H = getModisTiledata(verbose=False,timeout=300,**kwargs)# first,load the dataset
 
 # optionally:
 #   a title
@@ -201,15 +200,17 @@ def im_display(data,names,\
 ```python
 # test
 import matplotlib.pyplot as plt
-from  geog0111.modis import Modis
+from  geog0111.modisUtils import getModisTiledata
 
 kwargs = {
     'product'    : 'MCD15A3H',
     'tile'       : 'h17v03',
+    'year'       : 2019,
+    'doy'        : 41
 }
 
-modis = Modis(**kwargs)
-data_MCD15A3H = modis.get_data(2020,1+20*4) 
+data_MCD15A3H = getModisTiledata(verbose=False,timeout=300,**kwargs)
+# first,load the dataset
 
 # this is mnost neatly done with a 
 # loop over the keys we want
@@ -245,6 +246,7 @@ im_display(data_MCD15A3H,keys,\
 
 * Write a function called `plot_lc` that takes as input modis land cover dataset and plots the associated land cover map
 * You might use `x_size,y_size` as optional inputs to improve scaling
+* Show the function operating
 
 
 ```python
@@ -253,7 +255,6 @@ im_display(data_MCD15A3H,keys,\
 import matplotlib
 import matplotlib.patches
 import matplotlib.pyplot as plt
-from geog0111.modis import Modis
 import pandas as pd
 
 def plot_lc(data,x_size=12,y_size=12):
@@ -288,20 +289,19 @@ def plot_lc(data,x_size=12,y_size=12):
 
 
 ```python
-from geog0111.modis import Modis
-from geog0111.plot_lc import plot_lc
-year,tiles = 2018,['h31v10']
+from  geog0111.modisUtils import getModisTiledata
+# ANSWER
 
-# ensure tiles is a list
+
 kwargs = {
-    'tile'      :    list(tiles),
-    'product'   :    'MCD12Q1',
-    'sds'       :    ['LC_Type1']
+    'product'    : 'MCD12Q1',
+    'tile'       : 'h17v03',
+    'year'       : 2019,
+    'doy'        : 1
 }
-# get the data
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MCD12Q1 = modis.get_data(year,doy=1)
+
+data_MCD12Q1 = getModisTiledata(verbose=False,timeout=300,**kwargs)
+
 # the data we want here
 plot_lc(data_MCD12Q1['LC_Type1'])
 ```

@@ -4,16 +4,15 @@
 
 Recall that the MODIS LAI data need a scaling factor of 0.1 applied, and that values of greater than 100 are invalid.
 
-
 For the dataset described by:
 
     kwargs = {
-        'tile'      :    ['h17v03'],
-        'product'   :    'MCD15A3H',
-        'sds'       :    'Lai_500m',
+        'product'    : 'MCD15A3H',
+        'tile'       : ['h17v03','h18v03'],
+        'year'       : 2019,
+        'doys'       : [41],
+        'sds'        : ['Lai_500m']
     }
-    doy = 41
-    year = 2019
 
 * Use `gdal` to read the data into a `numpy` array called lai
 * print the shape of the array `lai`
@@ -26,21 +25,23 @@ You will need to recall how to filter and [mask `numpy` arrays](032_More_numpy.m
 ```python
 # ANSWER
 # dont forget to import the packages you need
-from geog0111.modis import Modis
 import gdal
 import numpy as np
+import gdal
+import numpy as np
+from  geog0111.modisUtils import getModisFiles
+
+kwargs = {
+    'product'    : 'MCD15A3H',
+    'tile'       : ['h17v03','h18v03'],
+    'year'       : 2019,
+    'doys'       : [41],
+    'sds'        : ['Lai_500m']
+}
+this_sds = data_MCD15A3H['Lai_500m'][41]['h17v03']
 
 # Use gdal to read the data into a numpy array called lai
-kwargs = {
-    'tile'      :    ['h17v03'],
-    'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
-}
-doy = 41
-year = 2019
-modis = Modis(**kwargs)
-files,sds = modis.get_files(year,doy)
-g = gdal.Open(sds[0][0])
+g = gdal.Open(this_sds)
 lai = g.ReadAsArray()
 # print the shape of the array `lai`
 print(f'shape of lai: {lai.shape}')
@@ -73,7 +74,7 @@ print(row[0],col[0])
 
 #### Exercise 2
 
-* write a function called `stitch_me` that you give the arguments:
+* write a function called `stitchModisDate` that you give the arguments:
 
     * year
     * doy
@@ -84,16 +85,18 @@ and keywords/defaults:
     * tile=['h17v03','h18v03']
     * product='MCD15A3H'
     
-that then generates a stitched VRT file with the appropriate data, and returns the VRT filename. Make sure to use the `year` and `doy` in the VRT filename.
+that then generates a stitched VRT file with the appropriate data, and returns the VRT filename. Make sure to use the `year` and `doy` in the VRT filename, along with the tiles, as in the examples above.
+
+Try to design the code so that you could specify multiple doys.
 
 
 ```python
     
-def stitch_me(year,doy,sds='Lai_500m',\
+def stitchModisDate(year,doy,sds='Lai_500m',\
               tile=['h17v03','h18v03'],\
               product='MCD15A3H'):
     '''
-    function called stitch_me with arguments:
+    function called stitchModisDate with arguments:
     
     year
     doy
@@ -101,30 +104,40 @@ def stitch_me(year,doy,sds='Lai_500m',\
     keywords/defaults:
 
         sds      : 'Lai_500m'
-        tile     : ['h17v03','h18v03','h17v04','h18v04']
+        tile     : ['h17v03','h18v03']
         product  : 'MCD15A3H'
 
     generates a stitched VRT file with the appropriate data,
 
     returns VRT filename for this dataset.
     '''
-    # set up kwargs for MODIS
+    
     kwargs = {
-        'tile'      :    tile,
-        'product'   :    product,
-        'sds'       :    sds,
+        'product'    : product,
+        'tile'       : tile,
+        'year'       : year,
+        'doys'       : [doy],
+        'sds'        : [sds]
     }
-    # set up MODIS object
-    modis = Modis(**kwargs)
-    # get filenames and SDS for this year/doy
-    files,sds = modis.get_files(year,doy)
 
-    # Make sure to use the year and doy in the VRT filename.
-    ofile = f"work/stitch_{year}_{doy:03d}.vrt"
+    data = getModisFiles(verbose=False,timeout=1000,**kwargs)
 
-    # build a VRT     
-    stitch_vrt = gdal.BuildVRT(ofile, sds[0])
-    return ofile
+    ofiles = []
+    
+    for sds,sds_v in data.items():
+        print('sds',sds)
+        for doy,doy_v in sds_v.items():
+            print('doy',doy)
+            # build a VRT 
+            tiles = doy_v.keys()
+
+            ofile = f"work/stitch_{sds}_{kwargs['year']}_{doy:03d}_{'Tiles_'+'_'.join(tiles)}.vrt"
+            print(f'saving to {ofile}')    
+            stitch_vrt = gdal.BuildVRT(ofile, list(doy_v.values()))
+            del stitch_vrt
+            ofiles.append(ofile)
+
+    return ofiles[0]
 ```
 
 
@@ -132,21 +145,22 @@ def stitch_me(year,doy,sds='Lai_500m',\
 import matplotlib.pyplot as plt
 
 # test
-sfile = stitch_me(2019,41)
-print(sfile)
+vrtFiles = stitchModisDate(2019,41,sds='Lai_500m')
 
-g = gdal.Open(sfile)
+g = gdal.Open(vrtFiles)
 # see if opens
 if g:
     fig, axs = plt.subplots(1,1,figsize=(12,6))
-    im = axs.imshow(stitch_vrt.ReadAsArray()*0.1,vmax=7,\
+    im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
                     cmap=plt.cm.inferno_r,interpolation='nearest')
     fig.colorbar(im, ax=axs)
 else:
     print('test failed')
 ```
 
-    work/stitch_2019_041.vrt
+    sds Lai_500m
+    doy 41
+    saving to work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03.vrt
 
 
 
@@ -177,7 +191,7 @@ c0,c1 = 2250,2500
 
 '''
 
-ofile = f"work/stitch_full_{year}_{doy:03d}.vrt"
+ofile = 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04.vrt'
 stitch_vrt = gdal.Open(ofile)
 
 # get the lai data as sub-set directly
@@ -225,7 +239,7 @@ print(msg)
 # ANSWER
 
 import gdal
-from geog0111.modis import Modis
+from geog0111.modisUtils import getModisFiles,stitchModisDate
 import matplotlib.pyplot as plt
 
 msg = '''
@@ -241,13 +255,10 @@ We need to make sure we use ['h18v04','h18v03'] to get the whole country
 kwargs = {
     'tile'      :    ['h18v04','h18v03'],
     'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
+    'sds'       :    'Lai_500m',  
+    'doy'       :     41,
+    'year'      :     2019
 }
-doy = 41
-year = 2019
-
-modis = Modis(**kwargs)
-files,sds = modis.get_files(year,doy)
 
 warp_args = {
     'dstNodata'     : 255,
@@ -256,10 +267,14 @@ warp_args = {
     'cutlineWhere'  : "FIPS='LU'",
     'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
 }
+
+vrtFile = stitchModisDate(**kwargs)
+
 # build a VRT 
-stitch_vrt = gdal.BuildVRT("work/stitch_lu.vrt", sds[0])
+stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
 del stitch_vrt
-g = gdal.Warp("", "work/stitch_lu.vrt",**warp_args)
+# now warp it
+g = gdal.Warp("", vrtFile,**warp_args)
 
 fig, axs = plt.subplots(1,1,figsize=(12,6))
 im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
@@ -304,7 +319,7 @@ mask = (lai <= 10.0)
 mean_lai = np.mean(lai[mask])
 
 # mean
-print(f'Mean LAI for LU for doy {doy} {year} is {mean_lai :.2f}')
+print(f"Mean LAI for LU for doy {kwargs['doy']} {kwargs['year']} is {mean_lai :.2f}")
 ```
 
     
@@ -318,38 +333,30 @@ print(f'Mean LAI for LU for doy {doy} {year} is {mean_lai :.2f}')
 
 #### Exercise 5
 
-* Use `Modis.get_modis` to plot the LAI for France for doy 49, 2019
-* find the median LAI for France for doy 49, 2019 to 2 d.p.
+* Use `getModis` to plot the LAI for France for doy 9, 41 and 49, 2019
+* find the median LAI for France for doy 9, 41 and 49, 2019 to 2 d.p.
 
 
 ```python
+from geog0111.modisUtils import getModis
 import gdal
-from geog0111.modis import Modis
 import matplotlib.pyplot as plt
+#ANSWER
 
 msg = '''
-Use Modis.get_modis to plot the LAI for France for doy 49, 2019
+Use Modis.get_modis to plot the LAI for France for doy 9, 41 and 49, 2019
 
 This is mostly a copy from the code in the notes. But again we need
 to check the tiles to use. We can find that this should be 
 ['h17v03','h17v04','h18v03','h18v04']
 
-We also need to change the doy from 41 to 49 !!!
+We also need to change the doy to 9, 41 and 49 !!!
 
 We also need to look up the FIPS code for France, since this 
 is not given. This can be found to be "FIPS='FR'" from a quick 
 search.
 '''
-
-kwargs = {
-    'tile'      :    ['h17v03','h17v04','h18v03','h18v04'],
-    'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
-}
-doy = 49
-year = 2019
-
-modis = Modis(**kwargs)
+from geog0111.modisUtils import getModis
 
 warp_args = {
     'dstNodata'     : 255,
@@ -359,28 +366,39 @@ warp_args = {
     'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
 }
 
-# getting the dataset is this simple
-mfiles = modis.get_modis(year,doy,warp_args=warp_args)
+kwargs = {
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+    'doys'       : [9,41,49],
+    'year'      : 2019,
+    'warp_args' : warp_args
+}
 
-# This is just plotting 
-g = gdal.Open(mfiles['Lai_500m'])
-fig, axs = plt.subplots(1,1,figsize=(12,6))
-im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
-                cmap=plt.cm.inferno_r,interpolation='nearest')
-axs.set_title(mfiles['bandnames'][0])
-fig.colorbar(im, ax=axs)
+datafiles,bnames = getModis(verbose=False,timeout=1000,**kwargs)
+
+print(datafiles,bnames)
+
+for datafile,bname in zip(datafiles,bnames):
+    g = gdal.Open(datafile)
+    fig, axs = plt.subplots(1,1,figsize=(12,6))
+    im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
+                    cmap=plt.cm.inferno_r,interpolation='nearest')
+    axs.set_title(bname)
+    _=fig.colorbar(im, ax=axs)
 
 print(msg)
 ```
 
+    ['work/stitch_Lai_500m_2019_009_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt', 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt', 'work/stitch_Lai_500m_2019_049_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt'] ['2019-09', '2019-41', '2019-49']
     
-    Use Modis.get_modis to plot the LAI for France for doy 49, 2019
+    Use Modis.get_modis to plot the LAI for France for doy 9, 41 and 49, 2019
     
     This is mostly a copy from the code in the notes. But again we need
     to check the tiles to use. We can find that this should be 
     ['h17v03','h17v04','h18v03','h18v04']
     
-    We also need to change the doy from 41 to 49 !!!
+    We also need to change the doy to 9, 41 and 49 !!!
     
     We also need to look up the FIPS code for France, since this 
     is not given. This can be found to be "FIPS='FR'" from a quick 
@@ -395,38 +413,56 @@ print(msg)
 
 
 
+    
+![png](040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_13_2.png)
+    
+
+
+
+    
+![png](040_GDAL_mosaicing_and_masking_answers_files/040_GDAL_mosaicing_and_masking_answers_13_3.png)
+    
+
+
+
 ```python
+import numpy as np
+#ANSWER
 
 msg = '''
-find the median LAI for France for doy 49, 2019 to 2 d.p.
+find the median LAI for France for doy 9, 41 and 49, 2019 to 2 d.p.
 
-Same as exercise 3, but motice median is asked for
+Same as above, but notice median is asked for
 
 For this part, we need to build a mask of valid data points
 Then find the mean LAI over that set.
 '''
 print(msg)
 
-# dataset scaled
-lai = g.ReadAsArray()*0.1
+for datafile,bname in zip(datafiles,bnames):
+    g = gdal.Open(datafile)
+    # dataset scaled
+    lai = g.ReadAsArray()*0.1
 
-# mask for valid
-mask = (lai <= 10.0)
+    # mask for valid
+    mask = (lai <= 10.0)
 
-# np.median
-mean_lai = np.median(lai[mask])
+    # np.median
+    median_lai = np.median(lai[mask])
 
-# mean
-print(f'Mean LAI for LU for doy {doy} {year} is {mean_lai :.2f}')
+    # mean
+    print(f'Mean LAI for FR for {bname} is {median_lai :.2f}')
 ```
 
     
-    find the median LAI for France for doy 49, 2019 to 2 d.p.
+    find the median LAI for France for doy 9, 41 and 49, 2019 to 2 d.p.
     
-    Same as exercise 3, but motice median is asked for
+    Same as above, but notice median is asked for
     
     For this part, we need to build a mask of valid data points
     Then find the mean LAI over that set.
     
-    Mean LAI for LU for doy 49 2019 is 0.80
+    Mean LAI for FR for 2019-09 is 0.40
+    Mean LAI for FR for 2019-41 is 0.70
+    Mean LAI for FR for 2019-49 is 0.80
 

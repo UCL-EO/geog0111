@@ -34,12 +34,12 @@ def get_weight(lai,std):
 ```python
 # ANSWER
 
-from geog0111.get_lai_data import get_lai_data
+from geog0111.modisUtils import getLai
 # load some data
 tile    = ['h17v03','h18v03','h17v04','h18v04']
 year    = 2019
 fips    = "LU"
-lai,std,doy =  get_lai_data(year,tile,fips)
+lai,std,doy =  getLai(year,tile,fips)
 
 weight = get_weight(lai,std)
 print(f'weight min:    {weight.min()}')
@@ -51,9 +51,9 @@ print(f'weight sum:    {weight.sum()}')
 
     weight min:    0.0
     weight max:    1.0
-    weight mean:   0.3184627847952631
+    weight mean:   0.3190312602956545
     weight median: 0.0016259105098855356
-    weight sum:    625524.6018948557
+    weight sum:    626641.2014727246
 
 
 #### Exercise 2
@@ -109,9 +109,12 @@ def regularise(lai,weight,sigma):
 
 ```python
 # Read a MODIS LAI dataset and regularise it
+# ANSWER
+
+
 import numpy as np
-from geog0111.get_lai_data import get_lai_data
-from geog0111.get_weight import get_weight
+from geog0111.modisUtils import getLai
+from geog0111.modisUtils import get_weight
 
 # load some data
 tile    = ['h17v03','h18v03','h17v04','h18v04']
@@ -119,7 +122,7 @@ year    = 2019
 fips    = "LU"
 sigma   = 5
 
-lai,std,doy =  get_lai_data(year,tile,fips)
+lai,std,doy =  getLai(year,tile,fips)
 
 weight = get_weight(lai,std)
 
@@ -132,6 +135,7 @@ for sigma in [2,5,10,20,30]:
 
 ```python
 import matplotlib.pyplot as plt
+# ANSWER
 
 p0,p1 = 105,72
 x_size,y_size=(10,5)
@@ -157,7 +161,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7fba607c5690>
+    <matplotlib.legend.Legend at 0x7f8cb03e05d0>
 
 
 
@@ -183,7 +187,8 @@ axs.legend(loc='best')
 
 ```python
 # ANSWER
-from geog0111.modis import Modis
+from geog0111.modisUtils import modisAnnual
+
 import gdal
 import numpy as np
 
@@ -191,24 +196,32 @@ def get_lc(year,tile,fips):
     '''
     Return LC mask for year,tile,fips
     '''
+    # SDS for land cover data
+    LC_SDS = ['LC_Prop1', 'LC_Prop1_Assessment', 'LC_Prop2', \
+              'LC_Prop2_Assessment', 'LC_Prop3', 'LC_Prop3_Assessment', \
+              'LC_Type1', 'LC_Type2', 'LC_Type3', 'LC_Type4', 'LC_Type5', 'LW', 'QC']
+
+    warp_args = {
+        'dstNodata'     : 255,
+        'format'        : 'MEM',
+        'cropToCutline' : True,
+        'cutlineWhere'  : f"FIPS='{fips}'",
+        'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+    }
+    # LU
+
     kwargs = {
         'tile'      :    tile,
         'product'   :    'MCD12Q1',
-    }
-    doy = 1
-    # get the LC data
-    modis = Modis(**kwargs)
-
-    warp_args = {
-      'dstNodata'     : 255,
-      'format'        : 'MEM',
-      'cropToCutline' : True,
-      'cutlineWhere'  : f"FIPS='{fips}'",
-      'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+        'year'      :    year,
+        'sds'       : LC_SDS,
+        'doys'      :    [1],
+        'warp_args' : warp_args
     }
 
-    # specify day of year (DOY) and year
-    lcfiles = modis.get_modis(year,doy,warp_args=warp_args)
+    # get the data
+    lcfiles,bnames = modisAnnual(**kwargs)
+    
     # get the item we want
     g = gdal.Open(lcfiles['LC_Type3'])
     # error checking
@@ -265,7 +278,7 @@ lc = get_lc(year,tile,fips)
 plot_LC_Type3(lc)
 ```
 
-    class codes: [  0   1   3   4   5   6   7   9  10 255]
+    class codes: [  1   3   4   5   6   7  10 255]
 
 
 

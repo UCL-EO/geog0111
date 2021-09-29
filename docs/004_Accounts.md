@@ -34,37 +34,36 @@ test = l.login()
 
 ### Test
 
-You can run a test on your login to NASA Earthdata using the information you have stored this using `cylog` for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code if you set do_test to True:
+You can run a test on your login to NASA Earthdata using the information you have stored this using `cylog` for the site `https://e4ftl01.cr.usgs.gov`. We can test this with the following code if you set do_test to True (N.B. Don't run this test on Wednesday afternoon (UK time) when the server is down):
 
 
 ```python
-from geog0111.modis import test_login
-do_test=True
-assert test_login(do_test)
+import gdal
+from geog0111.modisUtils import modisFile
+# settings
+
+modinfo = {  
+    'product'  : 'MCD15A3H',
+    'year'     : 2019,
+    'month'    : 2,
+    'day'      : 10,
+    'tile'     : 'h08v06'
+}
+
+do_test = True
+
+# run the test
+if do_test:
+    filename = modisFile(force=True,**modinfo,verbose=False)
+if filename != None:
+    print('test passed: login to NASA server achieved and data pulled')
+    print(f'{filename}')
+else:
+    print('test FAILED: check that your login works on https://urs.earthdata.nasa.gov')
+    l = Cylog(sites)
+    test = l.login()
+    print(test)
 ```
-
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MOLA in https://e4ftl01.cr.usgs.gov/
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOLA.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MYD11_L2.006 in https://e4ftl01.cr.usgs.gov/MOLA
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern 2002.07.04 in https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006
-    --> keeping existing file /shared/groups/jrole001/geog0111/work/e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04.store
-    --> parsing URLs from html file 1 items
-    --> discovered 1 files with pattern MYD11_L2*0325*.hdf in https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04
-    --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
-    --> trying get
-    --> trying https://e4ftl01.cr.usgs.gov/MOLA/MYD11_L2.006/2002.07.04/MYD11_L2.A2002185.0325.006.2015142192613.hdf
-    --> code 401
-    --> trying another
-    --> getting login
-    --> logging in to https://e4ftl01.cr.usgs.gov/
-    --> data read from https://e4ftl01.cr.usgs.gov/
-    --> code 200
-
 
 ## Reset password
 
@@ -75,25 +74,6 @@ If you are interested, you can see the help page for `Cylog`. It shows, for inst
 from geog0111.cylog import Cylog
 help(Cylog.login)
 ```
-
-    Help on function login in module geog0111.cylog:
-    
-    login(self, site=None, force=False)
-        Reads encrypted information from ~/{dest_path}/.cylog.npz
-        
-        Keyword arguments
-        ----------
-        site = False (so self.site is default)
-               string of anchor URL for site to associate with username and
-               password
-        force = False
-               force password re-entry for site
-        
-        Returns
-        --------
-        A tuple containing plain text (username,password) for (site or self.site)
-    
-
 
 You should be aware that the NASA servers this connects you to go down for maintenance on Wednesdays. You can ping the servers with the follwoing code:
 

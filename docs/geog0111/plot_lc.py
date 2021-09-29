@@ -3,7 +3,6 @@
 import matplotlib
 import matplotlib.patches
 import matplotlib.pyplot as plt
-from geog0111.modis import Modis
 import pandas as pd
 
 def plot_lc(data,x_size=12,y_size=12):
