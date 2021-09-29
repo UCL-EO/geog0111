@@ -1,4 +1,3 @@
-from geog0111.modis import Modis
 from geog0111.im_display import im_display
 import numpy as np
 

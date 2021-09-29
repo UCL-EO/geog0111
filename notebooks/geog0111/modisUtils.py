@@ -137,7 +137,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
       print(f'cache : {cache}')
 
     if not no_cache:
-      if cache is None:
+      if cache == None:
         cache = Path.home()
 
       cache = cache / ".modis_cache"
@@ -146,6 +146,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
         print(f'cache {cache}')
 
     server = modisServer(product,version=version) / f'{year}.{month:02d}.{day:02d}' 
+    #server = server.with_userinfo(*Cylog(server.anchor).login())
     if verbose:
       print(f'server {server}')
 
@@ -171,29 +172,35 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
     html = None
 
     if no_cache or ((not cache_file.exists()) \
-       and (altcache is not None and not altcache_file.exists())) or force:
+       and (altcache !=  None and not altcache_file.exists())) or force:
         # we have to pull the file
         if verbose:
           print(f'getting data from server ...')
+        #import pdb;pdb.set_trace()
         r = server.get(timeout=timeout)
         if verbose:
           print(f'status code: {r.status_code}')
 
         if r.status_code == 200:
           html = r.text
-          if not no_cache and (altcache is not None and not altcache_file.exists()):
+          if not no_cache and (altcache != None and not altcache_file.exists()):
             # write to cache
             cache_file.write_text(html)
+        else:
+            if verbose:
+                print(f'some issue without password for html {server.anchor}') 
+                #import pdb;pdb.set_trace()
+                getIndex((server/'index.html').as_posix(),cache_dir.as_posix())
+                # https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/
     else:
         if cache_file.exists():
           if verbose:
             print(f'reading from cache_file')
           html = cache_file.read_text() 
-        elif altcache is not None and altcache_file.exists():
+        elif altcache != None and altcache_file.exists():
           if verbose:
             print(f'reading from altcache_file') 
           html = altcache_file.read_text()
-
     return html  
 
 def modisServer(product='MCD15A3H',version='006',**kwargs):
@@ -232,22 +239,34 @@ def modisServer(product='MCD15A3H',version='006',**kwargs):
     '''
 
     if product[:5] == "MOD10" or product[:5] == "MYD10":
-      # NSIDC
-      site = "https://n5eil01u.ecs.nsidc.org"
+        # NSIDC
+        site = "https://n5eil01u.ecs.nsidc.org"    
+        # Terra and Aqua
+        if product[:3] == 'MCD':
+          sub = 'MOTA'
+          # Terra
+        elif product[:3] == 'MOD':
+          sub = 'MOST'
+          # Aqua
+        elif product[:3] == 'MYD':
+          sub = 'MOSA' 
+        else:
+          sub = 'UKNOWN'
+    
     else:
-      site = "https://e4ftl01.cr.usgs.gov"
+        site = "https://e4ftl01.cr.usgs.gov"
 
-    # Terra and Aqua
-    if product[:3] == 'MCD':
-      sub = 'MOTA'
-      # Terra
-    elif product[:3] == 'MOD':
-      sub = 'MOLT'
-      # Aqua
-    elif product[:3] == 'MYD':
-      sub = 'MOLA' 
-    else:
-      sub = 'UKNOWN'
+        # Terra and Aqua
+        if product[:3] == 'MCD':
+          sub = 'MOTA'
+          # Terra
+        elif product[:3] == 'MOD':
+          sub = 'MOLT'
+          # Aqua
+        elif product[:3] == 'MYD':
+          sub = 'MOLA' 
+        else:
+          sub = 'UKNOWN'
 
     return URL(site,sub,product+'.'+version)    
 
@@ -513,7 +532,7 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
                    no_cache=no_cache,cache=cache,altcache=altcache,\
                    force=force,verbose=verbose)
 
-    if url is None:
+    if url == None:
         print(f'No dataset URL found for conditions requested.')
         print(f'Check the date and tile for the dataset URL that you have requested: {modisServer(product=product,version=version)}')
         print('modisFile')
@@ -525,14 +544,14 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
         print(f'If you still have problems, perhaps use: force=True')
         print(f'and try setting timout, e.g. timout=200 (it is in seconds)')
         return None
-    if cache is None:
+    if cache == None:
       cache = Path.home()
     cache = cache / ".modis_cache"
     cache.mkdir(parents=True,exist_ok=True)
     if not no_cache:
       if verbose:
         print(f'cache {cache}')
-
+    #import pdb;pdb.set_trace()
     # generate the Path where the local cache would go
     cache_part = Path(url.hostinfo,'/'.join(url.parts[1:]))
 
@@ -549,10 +568,10 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
       return Path(altcache,cache_part)
 
     # get from altcache.store
-    if (not no_cache) and (not force) and altcache and Path(altcache,cache_part,'.store').exists():
+    if (not no_cache) and (not force) and altcache and Path(altcache,cache_part.as_posix() + '.store').exists():
       if verbose:
         print('getting from altcache')
-      return Path(altcache,cache_part,'.store')
+      return Path(altcache,cache_part.as_posix() + '.store')
 
     # else pull the file
     # first try a get : we have to do this twice bacause of
@@ -595,13 +614,20 @@ def getDate(day=1, month=1,year=2020,doy=None):
     '''
     return day, month, year from doy or day, month, year
     '''
-    if doy is not None:
+    if doy != None:
         # use doy to month and day
         dt = datetime.datetime(year, 1, 1) + datetime.timedelta(doy - 1)
         day, month = dt.day,dt.month
     return day, month, year
 
-
+def get_sds_name(name,product):
+    if product[:5] != "MCD64":
+        sds_name = name.split()[1]
+    else:
+        sds_name = ' '.join(name.split()[1:3])
+        if name.split()[3] == "Uncertainty":
+            sds_name = f'{sds_name} Uncertainty'
+    return sds_name
 
 def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
                  product='MCD15A3H',timeout=None,sds='None',\
@@ -717,10 +743,10 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
     ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
-    if type(sds) is str:
+    if type(sds) == str:
         sds = [sds]
         
-    if type(tile) is str:
+    if type(tile) == str:
         tile = [tile]
         
     if type(doys) == int:
@@ -749,12 +775,13 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
                 g = gdal.Open(filename.as_posix())
                 if g:
                     for filename,name in g.GetSubDatasets():
-                        sds_name = name.split()[1]
-                        if (sds is None) or (sds_name in sds):
+                        sds_name = get_sds_name(name,product)
+                        if (sds == None) or (sds == ['None']) or (sds_name in sds):
                             # get the SDS
+                            sds_name = get_sds_name(name,product)
                             if verbose:
                                 print(f'dataset info is: {name}')
-                            sds_name = name.split()[1]
+                            
                             if sds_name not in odata.keys():
                                 odata[sds_name] = {}
                             if doy not in odata[sds_name]:
@@ -880,12 +907,13 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
     ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
-    if type(sds) is str:
+    if type(sds) == str:
         sds = [sds]
            
     # set up blank dictionary for output
     odata = {}
     day, month, year = getDate(day=day, month=month, year=year, doy=doy)
+    #import pdb;pdb.set_trace()
     filename = modisFile(year=year, month=month, day=day,tile=tile,\
                  product=product,timeout=timeout,\
                  version=version,no_cache=no_cache,cache=cache,\
@@ -894,13 +922,14 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
     # error checking
     if verbose:
         print(f'reading dataset from {filename}')
+    #import pdb;pdb.set_trace()
     if not filename:
         return odata
     g = gdal.Open(filename.as_posix())
     if g:
         for filename,name in g.GetSubDatasets():
-            sds_name = name.split()[1]
-            if (sds is None) or (sds_name in sds):
+            sds_name = get_sds_name(name,product)
+            if (sds == None) or (sds == ['None']) or (sds_name in sds):
                 # get the SDS
                 if verbose:
                     print(f'dataset info is: {name}')
@@ -908,7 +937,7 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
                 gsub = gdal.Open(filename)
                 if gsub:
                     data = gsub.ReadAsArray()
-                    sds_name = name.split()[1]
+                    sds_name = get_sds_name(name,product)
                     # load into dictionary
                     odata[sds_name] = data
     return odata
@@ -967,8 +996,12 @@ def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
             stitch_vrt = gdal.BuildVRT(ofile, list(doy_v.values()))
             del stitch_vrt
             ofiles.append(ofile)
-
-    return ofiles[0]
+        
+    if len(ofiles):
+        return ofiles[0]
+    else:
+        print(f'error in stitchModisDate: {data}\n{kwargs}')
+        return None
 
 def getModis(year=2019,doys=[1],sds='Lai_500m',\
               tile=['h17v03','h18v03'],\
@@ -1018,6 +1051,9 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
         vrtFile = stitchModisDate(verbose=verbose,timeout=timeout,**kwargs)
 
         warp_args['format']   = format
+        if vrtFile == None or len(vrtFile) == 0:
+            return None,None
+        
         ofile = vrtFile[:-4]
 
         if format == 'GTiff':
@@ -1067,6 +1103,7 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         where odict keys are SDS values and the values VRT filenames
     '''
     sds_list =  kwargs['sds']
+
     # output dict
     odict = {}
     
@@ -1194,3 +1231,13 @@ def get_lc(year,tile,fips):
     # landcover dataset to give some feedback to the user
     print(f"class codes: {np.unique(lc)}")
     return lc
+
+import subprocess
+def preamble():
+    uid,password = Cylog('https://n5eil01u.ecs.nsidc.org').login()
+    cmd = "echo 'machine urs.earthdata.nasa.gov login {uid} password {password}' >> ~/.netrc && chmod 0600 ~/.netrc"
+    subprocess.run(cmd.split())
+    
+def getIndex(url,location):
+    cmd = f'cd {location} && wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --keep-session-cookies --no-check-certificate  --auth-no-challenge=on -np -e robots=off {url}'
+    subprocess.run(cmd.split())
