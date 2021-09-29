@@ -13,11 +13,11 @@
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2020-2021
+### Teaching Staff 2021-2022
 
-|   |  | 
-|---|---|
-|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| 
+|   |  
+|---|
+|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
 ### Contributing Staff
 
