@@ -8,8 +8,9 @@ If you know what you are doing, and have accessed the notes in this way before, 
 2. Log on the the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 3. In a shell, type:
 
-    cd ~ && git clone https://github.com/UCL-EO/geog0111
-    conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
+        cd ~ && git clone https://github.com/UCL-EO/geog0111
+        conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
+    
    
    This will clone this repository and set up the Python
 
