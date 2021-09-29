@@ -16,8 +16,7 @@ These instructions assume that you will run these commands in a bash shell. You 
 
 2. Download/update required Python packages (will take minutes/tens of minutes):
 
-        conda init 
-        conda env create -f environment.yml
+        conda env create -n geog0111 -f environment.yml
 
 2. Set up environment:
 
