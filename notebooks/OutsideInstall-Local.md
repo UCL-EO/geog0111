@@ -124,10 +124,11 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
 After this initial setup, just do:
 
+
           cd geog0111/notebooks
           jupyter notebook
     
-    or
+or
     
           cd geog0111/
           jupyter-lab
