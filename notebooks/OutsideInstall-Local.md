@@ -1,24 +1,31 @@
 
 # Instructions for local install of these notes
 
+## Requirements
+
 First, you will need to make sure you have Python (3.6+) installed on your computer. 
 
 We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. If you choose another version of Python, you will need to convert the environment files and modify the instructions below. 
 
 You will also need to install the tool [git](https://git-scm.com) if you don't already have it.
 
+## Local install in `~`
+
 These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.
+
+We assume you will setup the repository in your home directory (`~`). If not, then replace `~` below by where you want to setup.
 
 1. Clone this repository and cd to the local directory
 
-        git clone https://github.com/UCL-EO/geog0111.git
-        cd geog0111
+        cd ~ && git clone https://github.com/UCL-EO/geog0111.git
+        cd ~/geog0111
+        cd notebooks && tar xvzf data/cacheData.tar.Z
 
 2. Download/update required Python packages (will take minutes/tens of minutes):
 
         conda env create -n geog0111 -f environment.yml
 
-2. Set up environment:
+3. Set up environment:
 
         conda activate geog0111
         
