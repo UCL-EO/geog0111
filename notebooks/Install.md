@@ -18,7 +18,7 @@ If you know what you are doing, and have accessed the notes in this way before, 
 
         conda init
         conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
-        cd ~ && echo "conda activate geog0111" >> ~/.bashrc
+        echo "conda activate geog0111" >> ~/.bashrc
         
     Then, open a new shell (or type `bash`) and type:
     
