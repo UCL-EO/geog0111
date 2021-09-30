@@ -5,7 +5,6 @@
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/master)
 
 
-
 ## Course information
 
 ### Course Convenor 
@@ -16,7 +15,7 @@
 
 |   |  
 |---|
-|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
+|[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
 ### Contributing Staff
 
@@ -83,4 +82,4 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
-follow the instructions on [UCL installation and running](notebooks/Install.md). If you are running from outside UCL [see these notes](notebooks/OutsideInstall-Local.md).
+follow the instructions on [UCL installation and running](Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md).
