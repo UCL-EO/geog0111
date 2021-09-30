@@ -14,7 +14,6 @@ GEOG0111 Timetable 2021-22
 |  5	| **Graphics** 	|  [Plotting](023_Plotting.md)	|  [Image display](024_Image_display.md)	|  	| | |[Part 1](062_Part1.md) [Code advice](063_Part1_code.md)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [NASA MODIS](030_NASA_MODIS_Earthdata.md)	|  [numpy](031_Numpy.md)	|  [more numpy](032_More_numpy.md)	| || [Numpy exercise](064_Numpy.md)|
-|	| |[![NASA MODIS](images/icon.png)](https://web.microsoftstream.com/video/4ccb5435-7d58-4a4f-a7dc-c766d5d189c4) | [![numpy](images/icon.png)](https://web.microsoftstream.com/video/63e742a0-3d7a-4b30-8608-e3d3d0bb6e61) | [![More numpy](images/icon.png)](https://web.microsoftstream.com/video/bcb063e5-a23c-47ad-9f61-78400c83efc0)
 |  7	|  **Space and time**	| [Mosaicing](040_GDAL_mosaicing_and_masking.md) 	|  [Timeseries](041_GDAL_timeseries.md)	|  	|
 |  8	| **Regularisation** 	|  [Smoothing theory](042_Weighted_smoothing_and_interpolation.md)	| [Smoothing and interpolation](043_Weighted_interpolation.md) 	|  	| |  |[LAI](065_LAI.md)|
 |	| |[![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/143428cb-d1f2-48bd-b064-d15c224025a4) | 
