@@ -7,7 +7,7 @@ UCL Geography MSc notes.
 
 |   |   |   |   |   |
 |---|---|---|---|---|
-|Author: [P. Lewis and J. Gomez-Dans](mailto:p.lewis@ucl.ac.uk)|version 1.1.0||||
+|Author: [P. Lewis](mailto:p.lewis@ucl.ac.uk)|version 1.2.0||||
 
 # GEOG0111 Scientific Computing
 
