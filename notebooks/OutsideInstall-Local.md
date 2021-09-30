@@ -3,9 +3,55 @@
 
 ## Requirements
 
-First, you will need to make sure you have Python (3.6+) installed on your computer. 
+### Anaconda
 
-We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. If you choose another version of Python, you will need to convert the environment files and modify the instructions below. 
+First, you will need to make sure you have Python (3.6+) installed on your computer. We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. We suggest you get the most up to date version of Python available. We won't be using the additional tools such as PyCharm, so you don't need to install those for this course (you can if you want to). 
+
+The Anaconda package manager is called `conda`. You should make use of that for managing packages.
+
+If you think you may have Anaconda installed, look at the material on https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-conda.html to see if you need to update.
+        
+
+### Installing Anaconda
+
+If you choose another version of Python, you will need to convert the environment files and modify the instructions below. 
+
+Follow the instructions on https://docs.anaconda.com/anaconda/install to install Anaconda on your local computer. 
+
+When prompted:
+
+        Do you wish the installer to initialize Anaconda3
+        by running conda init? [yes|no]
+        [yes] >>> yes
+
+respond `yes`
+
+You must check you have these installed. **There is little point trying to go further unless you have this sorted!**
+
+Open a new shell (Terminal) and type:
+
+        conda env list
+        
+        # conda environments:
+        #
+                                 /Users/plewis/anaconda3
+        base                  *  /Users/plewis/opt/anaconda3
+
+The `*` indicates that you have the base environment set.
+
+If you want to use Anaconda Python as your default, look at information on https://docs.anaconda.com/anaconda/user-guide/faq/. 
+
+In a shell, type`:
+
+        conda activate
+
+Then you may need to type:
+
+        conda init
+        
+though that was probably done in the setup.
+        
+### `git`
 
 You will also need to install the tool [git](https://git-scm.com) if you don't already have it.
 
@@ -23,7 +69,7 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
 2. Download/update required Python packages (will take minutes/tens of minutes):
 
-        conda env create -n geog0111 -f environment.yml
+        conda env create --force -n geog0111 -f environment.yml
 
 3. Set up environment:
 
