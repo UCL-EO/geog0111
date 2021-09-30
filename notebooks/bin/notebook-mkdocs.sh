@@ -72,17 +72,15 @@ cp images/parameters4.png "$base/docs/images"
 cp images/icon.png "$base/docs/images"
 cp images/ucl.png "$base/docs/images"
 
-cp geog0111/modis_annual.py "$base/docs/geog0111"
 cp geog0111/model.py "$base/docs/geog0111"
-cp geog0111/get_lai_data.py "$base/docs/geog0111"
-cp geog0111/get_lai.py "$base/docs/geog0111"
 cp geog0111/plot_lc.py "$base/docs/geog0111"
 cp geog0111/im_display.py "$base/docs/geog0111"
-cp geog0111/modis.py "$base/docs/geog0111"
-cp geog0111/gurlpath.py "$base/docs/geog0111"
 cp geog0111/helloWorld.py "$base/docs/geog0111"
 cp geog0111/cylog.py "$base/docs/geog0111"
-
+cp geog0111/modisUtils.py "$base/docs/geog0111"
+cp geog0111/lut_solver.py "$base/docs/geog0111"
+cp geog0111/info.py "$base/docs/geog0111"
+cp geog0111/data_mask.py "$base/docs/geog0111"
 
 cd $base
 echo "--> re-making notebooks_lab"
