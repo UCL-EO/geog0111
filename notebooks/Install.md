@@ -6,13 +6,14 @@ If you know what you are doing, and have accessed the notes in this way before, 
 
 1. If you are not logged on inside the UCL domain, then you will need to make sure you have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running
 2. Log on the the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
-3. In a shell, type:
+3. Open a Terminal, from `New->Terminal` on the `Control Panel`
+4. In the Terminal (shell), type:
 
         cd ~ && git clone https://github.com/UCL-EO/geog0111
         conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
+        cd ~/geog0111/notebooks && tar xvzf data/cacheData.tar.Z
     
-   
-   This will clone this repository and set up the Python
+   This will clone this repository and set up the Python. It also sets up a partial data cache (in `.modis_cache`).
 
 # Running on UCL JupyterHub
 
