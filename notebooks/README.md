@@ -61,7 +61,7 @@ Follow the instructions on [UCL installation and running](Install.md)
 
 ## Timetable
 
-[class timetable for 2020/21](TIMETABLE.md)
+[class timetable for 2021/22](TIMETABLE.md)
 
 The course takes place over 10 weeks in term 1, on Monday in the UCL Computing Lab (113) in [Torrington (1-19)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=086), UCL. 
 
