@@ -10,7 +10,6 @@ If you know what you are doing, and have accessed the notes in this way before, 
 4. In the Terminal (shell), type:
 
         cd ~ && git clone https://github.com/UCL-EO/geog0111
-        cd ~/geog0111/notebooks && tar xvzf data/cacheData.tar.Z
     
    This will clone this repository and set up the Python. It also sets up a partial data cache (in `.modis_cache`).
    
@@ -32,6 +31,10 @@ If you know what you are doing, and have accessed the notes in this way before, 
         jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
         geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 
+6. Finally, set up notebook extensions by running the foillowing in shell (Terminal):
+
+        ~/geog0111/notebooks/bin/postBuild
+        
 
 # Running on UCL JupyterHub
 
