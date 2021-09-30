@@ -11,7 +11,6 @@ If you know what you are doing, and have accessed the notes in this way before, 
 
         cd ~ && git clone https://github.com/UCL-EO/geog0111
         conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
-        cd ~/geog0111/notebooks && tar xvzf data/cacheData.tar.Z
     
    This will clone this repository and set up the Python. It also sets up a partial data cache (in `.modis_cache`).
 
