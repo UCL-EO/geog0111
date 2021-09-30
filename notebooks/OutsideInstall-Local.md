@@ -50,10 +50,28 @@ Then you may need to type:
         conda init
         
 though that was probably done in the setup.
+
+You can check where you are getting your Python command from with:
+
+        which python
         
+This should give something with `anaconda3` in the name:
+
+        /Users/plewis/opt/anaconda3/bin/python
+
 ### `git`
 
-You will also need to install the tool [git](https://git-scm.com) if you don't already have it.
+You will also need to install the tool [git](https://git-scm.com) if you don't already have it. You can check to see if you have it with:
+
+        which git
+        
+This will give something like:
+
+        /usr/local/bin/git
+        
+If you don't get that, look at the installation instruction again. **There is little point trying to go further unless you have this sorted!**
+
+You may want to check if you need to update `git`: https://phoenixnap.com/kb/how-to-update-git
 
 ## Local install in `~`
 
@@ -109,3 +127,12 @@ After this initial setup, just do:
     or
           cd geog0111/
           jupyter-lab
+
+
+## Update of the repository
+
+To update your `geog0111` repository, first make sure you take copies of any files (e.g. notebooks) that you may have changed. **If you don't they will be over-written when you pull new versions.**
+
+Then type:
+
+        cd ~/geog0111 && 
