@@ -128,8 +128,25 @@ After this initial setup, just do:
           jupyter notebook
     
     or
+    
           cd geog0111/
           jupyter-lab
+          
+7. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
+
+   * click on the `Control Panel` button at the top right of the notebook page. 
+   * then click the big red button to stop the server
+   * next, click `start my server` to restart (you may have to also then click `launch my server`)
+   * if you are asked to choose an interface, choose `classic`, then click `start`
+  
+8. Now, test things:
+ 
+   * navigate to the coursenotes `geog0111` then `notebooks`
+   * select the fist notebook `001_Notebook_use.ipynb`
+   * go through the notes and run the code in the cells
+   * if that doesn't launch for any reason, try re-stopping and starting the server
+   * failing that, ask for help in the Monday class, or come along to office hours or the Thursday help sessions
+
 
 
 ## Update of the repository
