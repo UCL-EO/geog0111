@@ -7,15 +7,13 @@ UCL Geography MSc notes.
 
 |   |   |   |   |   |
 |---|---|---|---|---|
-|Author: [P. Lewis and J. Gomez-Dans](mailto:p.lewis@ucl.ac.uk)|version 1.1.0||||
+|Author: [P. Lewis](mailto:p.lewis@ucl.ac.uk)|version 1.2.0||||
 
 # GEOG0111 Scientific Computing
 
 [Course Documentation](https://ucl-eo.github.io/geog0111/)
 
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/master)
- [![Travis-CI](https://travis-ci.com/UCL-EO/geog0111.svg?branch=master)](https://travis-ci.com/github/UCL-EO/geog0111)
- 
 
 
 ## Course information
@@ -26,15 +24,22 @@ UCL Geography MSc notes.
 
 ### Teaching Staff 2021-2022
 
-|   |  
+|   | 
 |---|
 |[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
+
+### Support Staff 2021-2022
+
+|   | 
+|---|
+|[Wanxin Yang](https://www.geog.ucl.ac.uk/people/research-students/wanxin-yang)|
 
 ### Contributing Staff
 
 |   |   |   |
 |---|---|---|
 |[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
+
 
 
 ### Purpose of this course
@@ -62,7 +67,6 @@ At the end of the module, students should:
 * have an understanding of algorithm development and be able to use widely used scientific computing software to manipulate datasets and accomplish analytical tasks
 * have an understanding of the technical issues specific to image-based analysis, model implementation and scientific visualisation
 
-
 ### Running on UCL JupyterHub
 
 Follow the instructions on [UCL installation and running](Install.md)
@@ -71,14 +75,13 @@ Follow the instructions on [UCL installation and running](Install.md)
 
 [class timetable for 2021/22](TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1 in the UCL teaching cluster room 113 in [1-19 Torrington Place](https://www.ucl.ac.uk/maps/1-19-torrington-place), UCL. 
+The course takes place over 10 weeks in term 1, on Monday in the UCL Computing Lab (113) in [Torrington (1-19)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=086), UCL. 
 
-Due to covid restrictions, it is being run online in the 2020-21 session.
+Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/estates/sites/estates/files/cal_term_times_2021_2022.pdf) for further information.
 
-Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](http://www.ucl.ac.uk/staff/term-dates) for further information.
+The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday with help sessions on Thursdays.
 
-The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday and Thursdays.
-
+The Thursday help sessions will be held in room 110 in the [Northwest Wing (Geography Department, first floor)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=003)
 
 ### Assessment
 
@@ -90,12 +93,7 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 
 [Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)  
 
-### Notes, code etc
-[geog0111 code pypi for v1.1.0](https://test.pypi.org/project/geog0111/1.1.0)
-
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
 follow the instructions on [UCL installation and running](Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md).
-
-
