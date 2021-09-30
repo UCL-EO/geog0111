@@ -79,7 +79,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
                  (ie somewhere in your filespace)
                  Specify personal cache root. By default, 
                  this will be ~, and the cache will go into 
-                 ~/.modis_cache. You can change that to 
+                 ./.modis_cache. You can change that to 
                  somewhere else
                  here. It will still use the sub-directory 
                  .modis_cache.
@@ -116,7 +116,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
     
     will be stored (personal cache) as:
  
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
+    ./.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     The html cache is what is returned from e.g.
 
@@ -124,7 +124,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
 
     and is stored as eg
 
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
+    ./.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
     year  = int(year)
@@ -141,7 +141,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
 
     if not no_cache:
       if cache == None:
-        cache = Path.home()
+        cache = Path().cwd() # You can change the default here Path.home()
 
       cache = cache / ".modis_cache"
       cache.mkdir(parents=True,exist_ok=True)
