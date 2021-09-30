@@ -564,6 +564,12 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
         print('getting from cache')
       return Path(cache,cache_part)
 
+    # get from cache.store for backwards compatibility
+    if (not no_cache) and (not force) and cache and Path(cache,cache_part.as_posix() + '.store').exists():
+      if verbose:
+        print('getting from cache in backward compatibility mode')
+      return Path(cache,cache_part.as_posix() + '.store')
+
     # get from altcache
     if (not no_cache) and (not force) and altcache and Path(altcache,cache_part).exists():
       if verbose:
@@ -573,7 +579,7 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
     # get from altcache.store
     if (not no_cache) and (not force) and altcache and Path(altcache,cache_part.as_posix() + '.store').exists():
       if verbose:
-        print('getting from altcache')
+        print('getting from altcache in backward compatibility mode')
       return Path(altcache,cache_part.as_posix() + '.store')
 
     # else pull the file
