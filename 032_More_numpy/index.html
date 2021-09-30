@@ -1473,6 +1473,43 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+    <label class="md-nav__link" for="nav-9">
+      Summary
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Summary" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon"></span>
+        Summary
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../070_Summary/" class="md-nav__link">
+      Summary
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -1685,7 +1722,7 @@
 <p><a href="https://media.giphy.com/media/26DNbCqVfLJbYrXIA/giphy.gif"><img alt="SpaceX landing" src="../images/giphy.gif" /></a></p>
 <p>The library code <code>geog0111.nsat</code> accesses a database at <a href="https://www.n2yo.com">https://www.n2yo.com</a> and gets a table satellite launch data.</p>
 <p>Data from this is stored in the datafile <a href="../data/satellites-1957-2021.gz">data/satellites-1957-2021.gz</a>. This is a compressed text file.</p>
-<p>We can use <code>np.loadtxt</code> to read files of this nature into numpy arrays in a similar way to how we <a href="021_Streams.md#Reading-data-into-pandas">read into panadas</a>. If the dataset is not <code>CSV</code> but simply a whitespaced text file, it is often easier to use <code>np.loadtxt</code> than <code>pandas</code>.</p>
+<p>We can use <code>np.loadtxt</code> to read files of this nature into numpy arrays in a similar way to how we <a href="../022_Pandas/#Reading-data-into-pandas">read into panadas</a>. If the dataset is not <code>CSV</code> but simply a whitespaced text file, it is often easier to use <code>np.loadtxt</code> than <code>pandas</code>.</p>
 <p>In the case of this dataset, we wish to interpret the launch counts as integers, so we convert the data we read to integers.</p>
 <pre><code class="language-python">import numpy as np
 
