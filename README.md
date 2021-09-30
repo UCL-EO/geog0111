@@ -61,7 +61,7 @@ Follow the instructions on [UCL installation and running](Install.md)
 
 ## Timetable
 
-[class timetable for 2020/21](TIMETABLE.md)
+[class timetable for 2021/22](notebooks/TIMETABLE.md)
 
 The course takes place over 10 weeks in term 1, on Monday in the UCL Computing Lab (113) in [Torrington (1-19)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=086), UCL. 
 
@@ -84,4 +84,4 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
-follow the instructions on [UCL installation and running](Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md).
+follow the instructions on [UCL installation and running](notebooks/Install.md). If you are running from outside UCL [see these notes](notebooks/OutsideInstall-Local.md).
