@@ -89,28 +89,31 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
         conda env create --force -n geog0111 -f environment.yml
 
-3. Set up environment:
+3. Set up anaconda. In the Terminal (shell), type:
 
-        conda activate geog0111
+        conda init
+        echo "conda activate geog0111" >> ~/.bashrc
         
-   After running this, close the shell, and test that your conda environment is set to `geog0111`. You can do this e.g. with:
-   
+    Then, open a new shell (or type `bash`) and type:
+    
         conda env list
-  
-  which should show something like:
-  
+        
+    This should now show:
+    
         # conda environments:
         #
-        base                     /Users/plewis/opt/anaconda3
-        geog0111              *  /Users/plewis/opt/anaconda3/envs/geog0111
+        base                     /opt/miniconda-jhub/4.8.3
+        jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
+        geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 
-  You many need to set the notebook environment:
+4. Finally, set up notebook extensions by running the foillowing in shell (Terminal):
 
         python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
+        ~/geog0111/notebooks/bin/postBuild
 
-3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
+5. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
 
-4. Launch jupyter or jupyterlab server
+6. Launch jupyter or jupyterlab server
 
           jupyter notebook
     
