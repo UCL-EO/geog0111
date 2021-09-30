@@ -71,6 +71,7 @@ cp images/parameters3.png "$base/docs/images"
 cp images/parameters4.png "$base/docs/images"
 cp images/icon.png "$base/docs/images"
 cp images/ucl.png "$base/docs/images"
+cp images/snowmodel.png "$base/docs/images"
 
 cp geog0111/model.py "$base/docs/geog0111"
 cp geog0111/plot_lc.py "$base/docs/geog0111"
@@ -197,6 +198,8 @@ cp $base/notebooks/data/json-en.html data
 cp $base/notebooks/data/precip.png data
 cp $base/notebooks/data/satellites-1957-2021.gz data
 cp $base/notebooks/data/LC_Type3_colour.csv data
+cp $base/notebooks/data/doublesig.png data
+cp $base/notebooks/data/doublesig2.png data
 
 #cp $base/notebooks/data/
 #ln -s $base/notebooks notebooks
