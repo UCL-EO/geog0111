@@ -26,6 +26,13 @@ If you know what you are doing, and have accessed the notes in this way before, 
         
     This should now show:
     
+        # conda environments:
+        #
+        base                     /opt/miniconda-jhub/4.8.3
+        jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
+        geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
+
+
 # Running on UCL JupyterHub
 
 1. Make sure you in the UCL domain OR have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running OR that you are running from [Desktop@UCL](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere)
