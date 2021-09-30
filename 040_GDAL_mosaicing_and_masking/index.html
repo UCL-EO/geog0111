@@ -617,8 +617,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Streams.md" class="md-nav__link">
-      Streams
+    <a href="../021_URLs/" class="md-nav__link">
+      Urls
     </a>
   </li>
 
@@ -629,8 +629,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_Read_write_files.md" class="md-nav__link">
-      Read Write Files
+    <a href="../022_Pandas/" class="md-nav__link">
+      Pandas
     </a>
   </li>
 
@@ -697,8 +697,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Streams_answers.md" class="md-nav__link">
-      Streams
+    <a href="../021_URLs_answers/" class="md-nav__link">
+      Urls
     </a>
   </li>
 
@@ -709,8 +709,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_Read_write_files_answers.md" class="md-nav__link">
-      Read Write Files
+    <a href="../022_Pandas_answers/" class="md-nav__link">
+      Pandas
     </a>
   </li>
 
@@ -1680,7 +1680,7 @@
 <h3 id="test">Test</h3>
 <p>You should run a <a href="../004_Accounts/">NASA account test</a> if you have not already done so.</p>
 <h2 id="modis-dataset-access">MODIS dataset access</h2>
-<p>You should by now be able to access MODIS data, through the various routines in <a href="geog0111/modisUtils.py"><code>modisUtils.py</code></a> we have used in <a href="../024_Image_display/#MODIS">024 Image display</a>
+<p>You should by now be able to access MODIS data, through the various routines in <a href="../geog0111/modisUtils.py"><code>modisUtils.py</code></a> we have used in <a href="../024_Image_display/#MODIS">024 Image display</a>
  and <a href="../030_NASA_MODIS_Earthdata/">030 NASA MODIS Earthdata</a>.</p>
 <p>If we want more complex access, we can use <code>getModisFiles</code> to return a dictionary of multiple days, tiles, and SDS. We can use this information as the basis for creating tiles datasets in <code>gdal</code>.</p>
 <pre><code class="language-python">from geog0111.modisUtils import getModisFiles
@@ -2096,7 +2096,7 @@ for datafile,bname in zip(datafiles,bnames):
 </ul>
 <h2 id="summary">Summary</h2>
 <p>We have started to do some fuller geospatial processing now. We have seen how to use <code>gdal</code> for reading datasets, as well as mosaicing them and filtering by some vector dataset. We can take a subset of an image when we use <code>gdal.ReadAsArray()</code>. We have learned how to do these things using the MODIS HDF files and SDS descriptors.</p>
-<p>We have also seen some utility functions to aid our use of these data. In particular, we can use <code>getModis</code> from <a href="geog0111/modisUtils.py"><code>geog0111.modisUtils</code></a> as a simple interface to download and stitch MODIS data. It makes use of a cache to avoid having to re-download the datasets each time we want to use them.</p>
+<p>We have also seen some utility functions to aid our use of these data. In particular, we can use <code>getModis</code> from <a href="../geog0111/modisUtils.py"><code>geog0111.modisUtils</code></a> as a simple interface to download and stitch MODIS data. It makes use of a cache to avoid having to re-download the datasets each time we want to use them.</p>
 <table>
 <thead>
 <tr>
@@ -2230,7 +2230,7 @@ getModis(year=2019, doys=[1], sds='Lai_500m', tile=['h17v03', 'h18v03'], format=
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 29, 2021</span>
     
   </small>
 </div>

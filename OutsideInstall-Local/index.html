@@ -617,8 +617,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Streams.md" class="md-nav__link">
-      Streams
+    <a href="../021_URLs/" class="md-nav__link">
+      Urls
     </a>
   </li>
 
@@ -629,8 +629,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_Read_write_files.md" class="md-nav__link">
-      Read Write Files
+    <a href="../022_Pandas/" class="md-nav__link">
+      Pandas
     </a>
   </li>
 
@@ -697,8 +697,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../021_Streams_answers.md" class="md-nav__link">
-      Streams
+    <a href="../021_URLs_answers/" class="md-nav__link">
+      Urls
     </a>
   </li>
 
@@ -709,8 +709,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../022_Read_write_files_answers.md" class="md-nav__link">
-      Read Write Files
+    <a href="../022_Pandas_answers/" class="md-nav__link">
+      Pandas
     </a>
   </li>
 
@@ -1339,6 +1339,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anaconda" class="md-nav__link">
+    Anaconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-anaconda" class="md-nav__link">
+    Installing Anaconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    git
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-install-in" class="md-nav__link">
+    Local install in ~
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-of-the-repository" class="md-nav__link">
+    Update of the repository
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1355,70 +1411,93 @@
                 
                 
                 <h1 id="instructions-for-local-install-of-these-notes">Instructions for local install of these notes</h1>
-<p>First, you will need to make sure you have Python (3.6+) installed on your computer. </p>
-<p>We suggest using <a href="https://docs.anaconda.com/anaconda/install">Anaconda</a>, as the package list is set up to work with this. If you choose another version of Python, you will need to convert the environment files and modify the instructions below. </p>
-<p>You will also need to install the tool <a href="https://git-scm.com">git</a> if you don't already have it.</p>
+<h2 id="requirements">Requirements</h2>
+<h3 id="anaconda">Anaconda</h3>
+<p>First, you will need to make sure you have Python (3.6+) installed on your computer. We suggest using <a href="https://docs.anaconda.com/anaconda/install">Anaconda</a>, as the package list is set up to work with this. We suggest you get the most up to date version of Python available. We won't be using the additional tools such as PyCharm, so you don't need to install those for this course (you can if you want to). </p>
+<p>The Anaconda package manager is called <code>conda</code>. You should make use of that for managing packages.</p>
+<p>If you think you may have Anaconda installed, look at the material on https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-conda.html to see if you need to update.</p>
+<h3 id="installing-anaconda">Installing Anaconda</h3>
+<p>If you choose another version of Python, you will need to convert the environment files and modify the instructions below. </p>
+<p>Follow the instructions on https://docs.anaconda.com/anaconda/install to install Anaconda on your local computer. </p>
+<p>When prompted:</p>
+<pre><code>    Do you wish the installer to initialize Anaconda3
+    by running conda init? [yes|no]
+    [yes] &gt;&gt;&gt; yes
+</code></pre>
+<p>respond <code>yes</code></p>
+<p>You must check you have these installed. <strong>There is little point trying to go further unless you have this sorted!</strong></p>
+<p>Open a new shell (Terminal) and type:</p>
+<pre><code>    conda env list
+
+    # conda environments:
+    #
+                             /Users/plewis/anaconda3
+    base                  *  /Users/plewis/opt/anaconda3
+</code></pre>
+<p>The <code>*</code> indicates that you have the base environment set.</p>
+<p>If you want to use Anaconda Python as your default, look at information on https://docs.anaconda.com/anaconda/user-guide/faq/. </p>
+<p>In a shell, type`:</p>
+<pre><code>    conda activate
+</code></pre>
+<p>Then you may need to type:</p>
+<pre><code>    conda init
+</code></pre>
+<p>though that was probably done in the setup.</p>
+<p>You can check where you are getting your Python command from with:</p>
+<pre><code>    which python
+</code></pre>
+<p>This should give something with <code>anaconda3</code> in the name:</p>
+<pre><code>    /Users/plewis/opt/anaconda3/bin/python
+</code></pre>
+<h3 id="git"><code>git</code></h3>
+<p>You will also need to install the tool <a href="https://git-scm.com">git</a> if you don't already have it. You can check to see if you have it with:</p>
+<pre><code>    which git
+</code></pre>
+<p>This will give something like:</p>
+<pre><code>    /usr/local/bin/git
+</code></pre>
+<p>If you don't get that, look at the installation instruction again. <strong>There is little point trying to go further unless you have this sorted!</strong></p>
+<p>You may want to check if you need to update <code>git</code>: https://phoenixnap.com/kb/how-to-update-git</p>
+<h2 id="local-install-in">Local install in <code>~</code></h2>
 <p>These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.</p>
+<p>We assume you will setup the repository in your home directory (<code>~</code>). If not, then replace <code>~</code> below by where you want to setup.</p>
 <ol>
 <li>
 <p>Clone this repository and cd to the local directory</p>
-<pre><code>git clone https://github.com/UCL-EO/geog0111.git
-cd geog0111
+<pre><code>cd ~ &amp;&amp; git clone https://github.com/UCL-EO/geog0111.git
+cd ~/geog0111
+cd notebooks &amp;&amp; tar xvzf data/cacheData.tar.Z
 </code></pre>
 </li>
 <li>
 <p>Download/update required Python packages (will take minutes/tens of minutes):</p>
-<pre><code>conda init 
-bin/set-course.sh
+<pre><code>conda env create --force -n geog0111 -f environment.yml
 </code></pre>
 </li>
 <li>
-<p>Set up environment:</p>
-<pre><code>conda activate geog0111
-bin/init0111.sh
+<p>Set up anaconda. In the Terminal (shell), type:</p>
+<pre><code>conda init
+echo "conda activate geog0111" &gt;&gt; ~/.bashrc
 </code></pre>
-</li>
-</ol>
-<p>After running this, close the shell, and test that your conda environment is set to <code>geog0111</code>. You can do this e.g. with:</p>
-<pre><code>    conda env list
+<p>Then, open a new shell (or type <code>bash</code>) and type:</p>
+<pre><code>conda env list
 </code></pre>
-<p>which should show something like:</p>
-<pre><code>    # conda environments:
-    #
-    base                     /Users/plewis/opt/anaconda3
-    geog0111              *  /Users/plewis/opt/anaconda3/envs/geog0111
-</code></pre>
-<p>If you do not see the <code>*</code> by <code>geog0111</code>, then you may not be using a <code>bash</code> shell, or you may need to open a new shell. Try opening a <code>bash</code> shell, or check the shell you are using (this could be e.g. <code>zsh</code> on OSX) then you may need to add:</p>
-<pre><code>    source ~/.profile
-</code></pre>
-<p>to the end of your profile (e.g.<code>~/.zsh_profile</code>). Don't go any further until you have sorted this out.</p>
-<ol>
-<li>
-<p>Set up your NASA Earthdata login on the site <a href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>. </p>
-</li>
-<li>
-<p>Store the Earthdata password locally. Do this by running the following, and entering your Earthdata login and password when prompted:</p>
-<pre><code>ipython -c "from geog0111.cylog import earthdata; earthdata(True);"
-</code></pre>
-</li>
-</ol>
-<p>The <code>True</code> argument to <code>earthdata</code> performs a test of the login that will fail if the login fails. Be aware that if you run this test on a Wednesday, it may fail simply because the NASA servers go down for maintenance. If it fails for other reasons,  reset your password cache with:</p>
-<pre><code>    ipython -c "from geog0111.cylog import earthdata; earthdata(do_test=True,force=True);"
-</code></pre>
-<ol>
-<li>
-<p>Download the majority of the datasets you'll need (this will take an hour or so):</p>
-<pre><code>bin/get-datasets.sh
+<p>This should now show:</p>
+<pre><code># conda environments:
+#
+base                     /opt/miniconda-jhub/4.8.3
+jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
+geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 </code></pre>
 </li>
 <li>
-<p>Build database and set CACHE_FILE (this will take a few minutes to run) (assuming you are using bash -- if not change profile accordingly):</p>
-<pre><code>bin/sort-db.sh  &gt; ~/.url_db/.db.yml
-touch ~/.bash_profile 
-grep -v CACHE_FILE &lt; ~/.bash_profile  &gt; /tmp/.profile.$$
-echo "export CACHE_FILE=${HOME}/.url_db/.db.yml" &gt;&gt; /tmp/.bash_profile.$$
-mv /tmp/.profile.$$ ~/.bash_profile
+<p>Finally, set up notebook extensions by running the foillowing in shell (Terminal):</p>
+<pre><code>python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
+~/geog0111/notebooks/bin/postBuild
 </code></pre>
+</li>
+<li>
+<p>Set up your NASA Earthdata login on the site <a href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>. Store the Earthdata password locally when you come across it in the notes.</p>
 </li>
 <li>
 <p>Launch jupyter or jupyterlab server</p>
@@ -1432,10 +1511,38 @@ mv /tmp/.profile.$$ ~/.bash_profile
 <p>After this initial setup, just do:</p>
 <pre><code>      cd geog0111/notebooks
       jupyter notebook
-
-or
-      cd geog0111/
+</code></pre>
+<p>or</p>
+<pre><code>      cd geog0111/
       jupyter-lab
+</code></pre>
+<ol>
+<li>
+<p>This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:</p>
+</li>
+<li>
+<p>click on the <code>Control Panel</code> button at the top right of the notebook page. </p>
+</li>
+<li>then click the big red button to stop the server</li>
+<li>next, click <code>start my server</code> to restart (you may have to also then click <code>launch my server</code>)</li>
+<li>
+<p>if you are asked to choose an interface, choose <code>classic</code>, then click <code>start</code></p>
+</li>
+<li>
+<p>Now, test things:</p>
+</li>
+<li>
+<p>navigate to the coursenotes <code>geog0111</code> then <code>notebooks</code></p>
+</li>
+<li>select the fist notebook <code>001_Notebook_use.md</code></li>
+<li>go through the notes and run the code in the cells</li>
+<li>if that doesn't launch for any reason, try re-stopping and starting the server</li>
+<li>failing that, ask for help in the Monday class, or come along to office hours or the Thursday help sessions</li>
+</ol>
+<h2 id="update-of-the-repository">Update of the repository</h2>
+<p>To update your <code>geog0111</code> repository, first make sure you take copies of any files (e.g. notebooks) that you may have changed. <strong>If you don't they will be over-written when you pull new versions.</strong></p>
+<p>Then type:</p>
+<pre><code>    cd ~/geog0111 &amp;&amp; git pull
 </code></pre>
                 
                   
