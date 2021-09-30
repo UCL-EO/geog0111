@@ -106,7 +106,7 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
   You many need to set the notebook environment:
 
-  python -m ipykernel install --user --name=geog0111
+  python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
 
 3. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
 
