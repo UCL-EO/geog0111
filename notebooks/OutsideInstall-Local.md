@@ -135,4 +135,4 @@ To update your `geog0111` repository, first make sure you take copies of any fil
 
 Then type:
 
-        cd ~/geog0111 && 
+        cd ~/geog0111 && git pull
