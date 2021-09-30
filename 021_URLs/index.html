@@ -1474,43 +1474,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
-    <label class="md-nav__link" for="nav-9">
-      Summary
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Summary" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
-        <span class="md-nav__icon md-icon"></span>
-        Summary
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../070_Summary/" class="md-nav__link">
-      Summary
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -1953,27 +1916,10 @@ modinfo = {
     'tile'     : 'h08v06'
 }
 
-url = modisURL(**modinfo,verbose=True)
+url = modisURL(**modinfo,verbose=False)
 print(f'-&gt; {url}')
 </code></pre>
-<pre><code>modisHTML
-year : 2020
-month : 1
-day : 5
-tile : h08v06
-product : MCD15A3H
-version : 006
-force : False
-altcache : /shared/groups/jrole001/geog0111
-cache : None
-cache /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/.modis_cache
-server https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
-cache_dir : /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
-cache_file : /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
-altcache_file : /shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
-reading from altcache_file
-filename: MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
--&gt; https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
+<pre><code>-&gt; https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 </code></pre>
 <h4 id="pulling-modis-data-with-password">Pulling MODIS data with password</h4>
 <p>We add the username and password with <code>URL.with_userinfo(USERNAME,PASSWORD)</code>.</p>

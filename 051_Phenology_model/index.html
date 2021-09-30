@@ -1345,43 +1345,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
-    <label class="md-nav__link" for="nav-9">
-      Summary
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Summary" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
-        <span class="md-nav__icon md-icon"></span>
-        Summary
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../070_Summary/" class="md-nav__link">
-      Summary
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -1458,7 +1421,7 @@
 y = p_0 - p_1\cdot\left[\frac{1}{1+\exp\left(p_2\cdot(t-p_3)\right)} + \frac{1}{1+\exp\left(-p_4\cdot(t-p_5)\right)} - 1\right].
 \]</div>
 <p>If we inspect this form, we can see that <span class="arithmatex">\(p_0\)</span> and <span class="arithmatex">\(p_1\)</span> scale the vertical span of the function, whereas <span class="arithmatex">\(p_3\)</span> and <span class="arithmatex">\(p_5\)</span> are some sort of temporal shift, and the remaining parameters <span class="arithmatex">\(p_2\)</span> and <span class="arithmatex">\(p_4\)</span> control the slope of the two flanks. </p>
-<p><img alt="double sigmoid" src="data/doublesig.png" /></p>
+<p><img alt="double sigmoid" src="../data/doublesig.png" /></p>
 <p>Let's access some LAI data that we have used before, and also look at the regularised data:</p>
 <pre><code class="language-python">from geog0111.modisUtils import getLai
 from geog0111.modisUtils import regularise
@@ -1550,7 +1513,7 @@ print('Luxembourg')
        p3 =  centre - width/2
 </code></pre>
 <p>We might bound the width at between 50 and 250 days, and the centre at by 100 to 300 days. We must take the definition of time as modulo 365 to allow the model to operate in the Southern Hemisphere.</p>
-<p><img alt="double sigmoid centre/width" src="data/doublesig2.png" /></p>
+<p><img alt="double sigmoid centre/width" src="../data/doublesig2.png" /></p>
 <p>A simplified model and dataset then is built assuming <span class="arithmatex">\(p_0\)</span> and <span class="arithmatex">\(p_1\)</span> are given:</p>
 <pre><code class="language-python">import matplotlib.pyplot as plt
 
