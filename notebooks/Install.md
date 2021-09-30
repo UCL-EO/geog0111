@@ -4,10 +4,21 @@ We expect you to run these notes and do this course using Jupyter notebooks, on 
 
 If you know what you are doing, and have accessed the notes in this way before, then you can go straight to the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 
+
+# The first time you are using Jupyterhub
+
+The first time you are using these notes, you should go through the items below. These are needed to set up the notes and various course settings.
+
 1. If you are not logged on inside the UCL domain, then you will need to make sure you have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running
 2. Log on the the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
-3. Open a Terminal, from `New->Terminal` on the `Control Panel`
-4. In the Terminal (shell), type:
+
+   You may have to start the server at this point.
+   
+   * click `start my server` to restart (you may have to also then click `launch my server`)
+   * if you are asked to choose an interface, choose `classic`, then click `start`
+
+4. Open a Terminal, from `New->Terminal` on the `Control Panel`
+5. In the Terminal (shell), type:
 
         cd ~ && git clone https://github.com/UCL-EO/geog0111
     
@@ -31,10 +42,18 @@ If you know what you are doing, and have accessed the notes in this way before, 
         jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
         geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 
-6. Finally, set up notebook extensions by running the foillowing in shell (Terminal):
+6. Now, set up notebook extensions by running the foillowing in shell (Terminal):
 
         ~/geog0111/notebooks/bin/postBuild
         
+        
+7. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
+
+   * click on the `Control Panel` button at the top right of the notebook page. 
+   * then click the big red button to stop the server
+   * next, click `start my server` to restart (you may have to also then click `launch my server`)
+   * if you are asked to choose an interface, choose `classic`, then click `start`
+ 
 
 # Running on UCL JupyterHub
 
