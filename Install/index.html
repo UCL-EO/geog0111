@@ -1357,6 +1357,7 @@
                 <h1 id="installation-of-these-notes-on-ucl-jupyterhub">Installation of these notes on UCL JupyterHub</h1>
 <p>We expect you to run these notes and do this course using Jupyter notebooks, on the <a href="https://jupyter.data-science.rc.ucl.ac.uk/">UCL JupyterHub</a>.</p>
 <p>If you know what you are doing, and have accessed the notes in this way before, then you can go straight to the <a href="https://jupyter.data-science.rc.ucl.ac.uk/">UCL JupyterHub</a>.</p>
+<!-- #region -->
 <h1 id="the-first-time-you-are-using-jupyterhub">The first time you are using Jupyterhub</h1>
 <p>The first time you are using these notes, you should go through the items below. These are needed to set up the notes and various course settings.</p>
 <ol>
@@ -1425,11 +1426,19 @@ geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 <h1 id="running-on-ucl-jupyterhub">Running on UCL JupyterHub</h1>
 <ol>
 <li>Make sure you in the UCL domain OR have the <a href="https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn">UCL VPN</a> installed and running OR that you are running from <a href="https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere">Desktop@UCL</a></li>
-<li>Log on the the <a href="https://jupyter.data-science.rc.ucl.ac.uk/">UCL JupyterHub</a>.</li>
+<li>Log in to the <a href="https://jupyter.data-science.rc.ucl.ac.uk/">UCL JupyterHub</a>.</li>
 <li>Navigate to the directory <code>geog0111/notebooks</code></li>
 <li>Access the notebooks you want directly, or via the <a href="../TIMETABLE/">index</a>.</li>
 <li>See further information on the course <a href="https://moodle.ucl.ac.uk/course/view.php?id=21495">Moodle page</a></li>
 </ol>
+<h1 id="use-of-the-notes-and-updates">Use of the notes and updates</h1>
+<p>Periodically, we may have to update the notes. </p>
+<p>Before you do this, be aware that any updated files on the server will over-write your local files. <strong>That means that any changes you may have made to the notebooks</strong>, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. </p>
+<p>You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'Install' here) and changing it (e.g. <code>myInstall</code>). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.</p>
+<p>To update the notes (and over-write your changes), in a shell (Terminal) type:</p>
+<pre><code>cd ~/geog0111 &amp;&amp; git reset --hard HEAD &amp;&amp; git pull
+</code></pre>
+<!-- #endregion -->
                 
                   
                     

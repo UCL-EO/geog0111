@@ -1046,7 +1046,9 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
     '''
     ofiles = []
     bnames = []
+    year = int(year)
     for doy in doys:
+        doy = int(doy)
         bnames.append(f'{year}-{doy:03d}')
         kwargs = {
             'product'    : product,
@@ -1064,6 +1066,13 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
             return None,None
         
         ofile = vrtFile[:-4]
+        
+        if 'cutlineWhere' in warp_args:
+            # put the selektor in the filename
+            ext = warp_args['cutlineWhere']
+            # but tidy it up for awkward characters
+            ext = ext.replace("'","").replace('"',"").replace('=','_')
+            ofile = f'{ofile}_Selektor_{ext}'
 
         if format == 'GTiff':
             warp_args['options']  = ['COMPRESS=LZW']
@@ -1077,8 +1086,17 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
         stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
         del stitch_vrt
         # now warp it
-        g = gdal.Warp(ofile, vrtFile,**warp_args)
-        g.FlushCache()
+        if len(warp_args.keys()) == 0:
+            if verbose:
+                print('No warp_args specified')
+            ofile = vrtFile
+        else:
+
+            if verbose:
+                print(f'selecting from {vrtFile} to {ofile}')
+            g = gdal.Warp(ofile, vrtFile,**warp_args)
+            g.FlushCache()
+            del g
         ofiles.append(ofile)
         
     return ofiles,bnames
@@ -1111,8 +1129,18 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         
         where odict keys are SDS values and the values VRT filenames
     '''
-    sds_list =  kwargs['sds']
-
+    if 'sds' in kwargs:
+        sds_list =  kwargs['sds']
+    else:
+        print("You need to specify 'sds' in calling modisAnnual")
+        print(kwargs)
+        return None,None
+    
+    if 'verbose' in kwargs:
+        verbose = kwargs['verbose']
+    else:
+        verbose = False
+ 
     # output dict
     odict = {}
     if ('force' in kwargs.keys()) and kwargs['force'] == True:
@@ -1121,7 +1149,19 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
     else:
         redo = False
         
+    if 'warp_args' in kwargs:
+        warp_args = kwargs['warp_args']
+        if 'cutlineWhere' in warp_args:
+            # put the selektor in the filename
+            ext = warp_args['cutlineWhere']
+            # but tidy it up for awkward characters
+            ext = ext.replace("'","").replace('"',"").replace('=','_')
+            ofile_root = f'{ofile_root}_Selektor_{ext}'
+            if verbose:
+                print(f'selektor: {ext}')
+        
     bnames = []  
+    
     for s in sds_list:
         ofile = f"{ofile_root}_SDS_{s}.vrt"
         bofile = Path(f'{ofile}_bands')

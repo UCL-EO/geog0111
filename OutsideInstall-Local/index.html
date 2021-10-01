@@ -1387,8 +1387,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-of-the-repository" class="md-nav__link">
-    Update of the repository
+  <a href="#use-of-the-notes-and-updates" class="md-nav__link">
+    Use of the notes and updates
   </a>
   
 </li>
@@ -1428,11 +1428,11 @@
 <p>You must check you have these installed. <strong>There is little point trying to go further unless you have this sorted!</strong></p>
 <p>Open a new shell (Terminal) and type:</p>
 <pre><code>    conda env list
-
-    # conda environments:
+</code></pre>
+<p>This should show:        </p>
+<pre><code>    # conda environments:
     #
-                             /Users/plewis/anaconda3
-    base                  *  /Users/plewis/opt/anaconda3
+    base                  *   /Users/plewis/anaconda3
 </code></pre>
 <p>The <code>*</code> indicates that you have the base environment set.</p>
 <p>If you want to use Anaconda Python as your default, look at information on https://docs.anaconda.com/anaconda/user-guide/faq/. </p>
@@ -1447,7 +1447,7 @@
 <pre><code>    which python
 </code></pre>
 <p>This should give something with <code>anaconda3</code> in the name:</p>
-<pre><code>    /Users/plewis/opt/anaconda3/bin/python
+<pre><code>    /Users/plewis/anaconda3/bin/python
 </code></pre>
 <h3 id="git"><code>git</code></h3>
 <p>You will also need to install the tool <a href="https://git-scm.com">git</a> if you don't already have it. You can check to see if you have it with:</p>
@@ -1485,13 +1485,12 @@ echo "conda activate geog0111" &gt;&gt; ~/.bashrc
 <p>This should now show:</p>
 <pre><code># conda environments:
 #
-base                     /opt/miniconda-jhub/4.8.3
-jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
-geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
+base                     /Users/plewis/anaconda3
+geog0111              *  /Users/plewis/anaconda3/envs/geog0111
 </code></pre>
 </li>
 <li>
-<p>Finally, set up notebook extensions by running the foillowing in shell (Terminal):</p>
+<p>Finally, set up notebook kernel and extensions by running the following in shell (Terminal):</p>
 <pre><code>python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
 ~/geog0111/notebooks/bin/postBuild
 </code></pre>
@@ -1503,31 +1502,38 @@ geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 <p>Launch jupyter or jupyterlab server</p>
 <pre><code>  jupyter notebook
 </code></pre>
-<p>or</p>
-<pre><code>  jupyter-lab
-</code></pre>
 </li>
 </ol>
+<p>This will respond with something like:</p>
+<pre><code>    [I 06:58:25.120 NotebookApp] Serving notebooks from local directory: /Users/plewis/Documents/GitHub/geog0111
+    [I 06:58:25.120 NotebookApp] Jupyter Notebook 6.4.4 is running at:
+    [I 06:58:25.120 NotebookApp] http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+    [I 06:58:25.120 NotebookApp]  or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+    [I 06:58:25.120 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+    [C 06:58:25.164 NotebookApp]
+
+        To access the notebook, open this file in a browser:
+            file:///Users/plewis/Library/Jupyter/runtime/nbserver-88431-open.html
+        Or copy and paste one of these URLs:
+            http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+         or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+</code></pre>
+<p>The main things for you that o see from this are:</p>
+<p>A. How to stop the jupyter server:</p>
+<pre><code>Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+</code></pre>
+<p>Use Control-C in the shell you started the server. You might try that now to familiarise yourself with it, and then restart <code>jupyter notebook</code></p>
+<p>B. The URL of the server (with the security token). In this case:</p>
+<pre><code>    http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+</code></pre>
+<p>Launch a browser that points to that (your one, not te example here!!). That should take you to the Jupyter server homepage.</p>
+<!-- #region -->
 <p>After this initial setup, just do:</p>
-<pre><code>      cd geog0111/notebooks
+<pre><code>      cd ~/geog0111/notebooks
       jupyter notebook
 </code></pre>
-<p>or</p>
-<pre><code>      cd geog0111/
-      jupyter-lab
-</code></pre>
+<p>to get to this point.</p>
 <ol>
-<li>
-<p>This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:</p>
-</li>
-<li>
-<p>click on the <code>Control Panel</code> button at the top right of the notebook page. </p>
-</li>
-<li>then click the big red button to stop the server</li>
-<li>next, click <code>start my server</code> to restart (you may have to also then click <code>launch my server</code>)</li>
-<li>
-<p>if you are asked to choose an interface, choose <code>classic</code>, then click <code>start</code></p>
-</li>
 <li>
 <p>Now, test things:</p>
 </li>
@@ -1535,15 +1541,31 @@ geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 <p>navigate to the coursenotes <code>geog0111</code> then <code>notebooks</code></p>
 </li>
 <li>select the fist notebook <code>001_Notebook_use.md</code></li>
-<li>go through the notes and run the code in the cells</li>
-<li>if that doesn't launch for any reason, try re-stopping and starting the server</li>
+<li>
+<p>go through the notes and run the code in the cells</p>
+</li>
+<li>
+<p>if that doesn't launch for any reason, try re-stopping and starting the server</p>
+</li>
 <li>failing that, ask for help in the Monday class, or come along to office hours or the Thursday help sessions</li>
 </ol>
-<h2 id="update-of-the-repository">Update of the repository</h2>
-<p>To update your <code>geog0111</code> repository, first make sure you take copies of any files (e.g. notebooks) that you may have changed. <strong>If you don't they will be over-written when you pull new versions.</strong></p>
-<p>Then type:</p>
-<pre><code>    cd ~/geog0111 &amp;&amp; git pull
+<p>One issue to look out for is if the notebook kernel doesn't start. That normally means that either you haven't set up the  <code>geog0111</code> environment properly, and/or you didn't setup the notebook kernel properly. Look back over sections 3. and 4. above.</p>
+<ol>
+<li>
+<p>You should test that your setup is robust. </p>
+</li>
+<li>
+<p>Try logging out and in again on your computer and launch jupyter again</p>
+</li>
+</ol>
+<h2 id="use-of-the-notes-and-updates">Use of the notes and updates</h2>
+<p>Periodically, we may have to update the notes. </p>
+<p>Before you do this, be aware that any updated files on the server will over-write your local files. <strong>That means that any changes you may have made to the notebooks</strong>, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. </p>
+<p>You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'OutsideInstall-Local' here) and changing it (e.g. <code>myOutsideInstall-Local</code>). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.</p>
+<p>To update the notes (and over-write your changes), in a shell (Terminal) type:</p>
+<pre><code>cd ~/geog0111 &amp;&amp; git reset --hard HEAD &amp;&amp; git pull
 </code></pre>
+<!-- #endregion -->
                 
                   
                     
