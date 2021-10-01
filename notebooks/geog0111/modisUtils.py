@@ -388,7 +388,13 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 
       # use BeautifulSoup and fnmatch to find match in the html
       links = [mylink.attrs['href'] for mylink in BeautifulSoup(html,'lxml').find_all('a')]
-      filename = [l for l in links if fnmatch.fnmatch(str(l), filename_start+'*'+'.hdf')][0]
+      filenames = [l for l in links if fnmatch.fnmatch(str(l), filename_start+'*'+'.hdf')]
+    
+      if len(filenames):
+            filename = filenames[0]
+      else:
+            return None
+        
       # result
       if verbose:
         print(f'filename: {filename}')
@@ -1181,28 +1187,33 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         print(f'root name of output file: {ofile_root}')
     
     for s in sds_list:
+        datafiles = None
         ofile = f"{ofile_root}_SDS_{s}.vrt"
         bofile = Path(f'{ofile}_bands')
         if not redo:
             if (not Path(ofile).exists()) or (not bofile.exists()):
                 kwargs['sds'] = s 
                 datafiles,bnames = getModis(**kwargs) 
-                stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
-                # save the band names
-                bofile = Path(f'{ofile}_bands')
-                bofile.write_text(' '.join(bnames))
-                del stitch_vrt
+                if datafiles != None:
+                    stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
+                    # save the band names
+                    bofile = Path(f'{ofile}_bands')
+                    bofile.write_text(' '.join(bnames))
+                    del stitch_vrt
+                 
         else:
             kwargs['sds'] = s 
             datafiles,bnames = getModis(**kwargs) 
-            stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
-            del stitch_vrt
-            # save the band names
+            if datafiles != None:
+                stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
+                del stitch_vrt
+                # save the band names
+                bofile = Path(f'{ofile}_bands')
+                bofile.write_text(' '.join(bnames))
+        if datafiles != None:
+            odict[s] = ofile
             bofile = Path(f'{ofile}_bands')
-            bofile.write_text(' '.join(bnames))
-        odict[s] = ofile
-        bofile = Path(f'{ofile}_bands')
-        bnames = bofile.read_text().split()
+            bnames = bofile.read_text().split()
     return odict,bnames
 
 import numpy as np
