@@ -32,10 +32,12 @@ Open a new shell (Terminal) and type:
 
         conda env list
         
+This should show:        
+        
         # conda environments:
         #
-                                 /Users/plewis/anaconda3
-        base                  *  /Users/plewis/opt/anaconda3
+        base                  *   /Users/plewis/anaconda3
+
 
 The `*` indicates that you have the base environment set.
 
@@ -57,7 +59,7 @@ You can check where you are getting your Python command from with:
         
 This should give something with `anaconda3` in the name:
 
-        /Users/plewis/opt/anaconda3/bin/python
+        /Users/plewis/anaconda3/bin/python
 
 ### `git`
 
@@ -102,11 +104,10 @@ We assume you will setup the repository in your home directory (`~`). If not, th
     
         # conda environments:
         #
-        base                     /opt/miniconda-jhub/4.8.3
-        jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
-        geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
+        base                     /Users/plewis/anaconda3
+        geog0111              *  /Users/plewis/anaconda3/envs/geog0111
 
-4. Finally, set up notebook extensions by running the foillowing in shell (Terminal):
+4. Finally, set up notebook kernel and extensions by running the following in shell (Terminal):
 
         python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
         ~/geog0111/notebooks/bin/postBuild
@@ -116,22 +117,48 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 6. Launch jupyter or jupyterlab server
 
           jupyter notebook
+
+
+This will respond with something like:
+
+
+        [I 06:58:25.120 NotebookApp] Serving notebooks from local directory: /Users/plewis/Documents/GitHub/geog0111
+        [I 06:58:25.120 NotebookApp] Jupyter Notebook 6.4.4 is running at:
+        [I 06:58:25.120 NotebookApp] http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+        [I 06:58:25.120 NotebookApp]  or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+        [I 06:58:25.120 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+        [C 06:58:25.164 NotebookApp] 
+
+            To access the notebook, open this file in a browser:
+                file:///Users/plewis/Library/Jupyter/runtime/nbserver-88431-open.html
+            Or copy and paste one of these URLs:
+                http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+             or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+
+
+The main things for you that o see from this are:
+
+A. How to stop the jupyter server:
     
-    or
-  
-          jupyter-lab
+    Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+    
+    
+Use Control-C in the shell you started the server. You might try that now to familiarise yourself with it, and then restart `jupyter notebook`
+
+B. The URL of the server (with the security token). In this case:
+
+        http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+        
+Launch a browser that points to that (your one, not te example here!!). That should take you to the Jupyter server homepage.
 
 
 After this initial setup, just do:
 
 
-          cd geog0111/notebooks
+          cd ~/geog0111/notebooks
           jupyter notebook
-    
-or
-    
-          cd geog0111/
-          jupyter-lab
+
+to get to this point.
           
 7. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
 
@@ -145,10 +172,15 @@ or
    * navigate to the coursenotes `geog0111` then `notebooks`
    * select the fist notebook `001_Notebook_use.ipynb`
    * go through the notes and run the code in the cells
+
    * if that doesn't launch for any reason, try re-stopping and starting the server
    * failing that, ask for help in the Monday class, or come along to office hours or the Thursday help sessions
 
+One issue to look out for is if the notebook kernel doesn't start. That normally means that either you haven't set up the  `geog0111` environment properly, and/or you didn't setup the notebook kernel properly. Look back over sections 3. and 4. above.
 
+9. You should test that your setup is robust. 
+
+   * Try logging out and in again on your computer and launch jupyter again
 
 ## Update of the repository
 
