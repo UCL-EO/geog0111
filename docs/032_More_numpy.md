@@ -10,8 +10,8 @@ We continue our exploration of `numpy` and move onto topics we need for efficien
 ### Prerequisites
 
 * [020_Python_files](020_Python_files.md)
-* [021 Streams](021_Streams.md)
-* [022 Read write files](022_Read_write_files.md)
+* [021 URLs](021_URLs.md)
+* [022 Pandas](022_Pandas.md)
 * [023 Plotting](023_Plotting.md)
 * [031_Numpy](031_Numpy.md)
 
@@ -27,7 +27,7 @@ The library code `geog0111.nsat` accesses a database at [https://www.n2yo.com](h
 
 Data from this is stored in the datafile [data/satellites-1957-2021.gz](data/satellites-1957-2021.gz). This is a compressed text file.
 
-We can use `np.loadtxt` to read files of this nature into numpy arrays in a similar way to how we [read into panadas](021_Streams.md#Reading-data-into-pandas). If the dataset is not `CSV` but simply a whitespaced text file, it is often easier to use `np.loadtxt` than `pandas`.
+We can use `np.loadtxt` to read files of this nature into numpy arrays in a similar way to how we [read into panadas](022_Pandas.md#Reading-data-into-pandas). If the dataset is not `CSV` but simply a whitespaced text file, it is often easier to use `np.loadtxt` than `pandas`.
 
 In the case of this dataset, we wish to interpret the launch counts as integers, so we convert the data we read to integers.
 

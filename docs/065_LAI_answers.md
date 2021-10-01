@@ -79,14 +79,14 @@ Don't forget to make the file executable. Don't forget to import all of the pack
 # -*- coding: utf-8 -*- 
 
 # import required package(s)
-from geog0111.modis_annual import modis_annual
+from geog0111.modisUtils import modisAnnual
 import pandas as pd
-from geog0111.modis import Modis
 import scipy
 import scipy.ndimage.filters
 import numpy as np
 import gdal
 from pathlib import Path
+
 '''
 lc_lai
 
@@ -118,14 +118,71 @@ Purpose:
 
 '''
 
-def get_lai_data(year,tile,fips):
+def get_lai_data(year,tile,fips,verbose=False):
     '''
     Get the LAI dataset for fips, tile and year
     and return lai,doy
+    
+    You should give more detail here!!!
     '''
-    # load some data
-    sds     = ['Lai_500m','LaiStdDev_500m']
-    product = 'MCD15A3H'
+    ofile_root='work/modisLAI'
+    force = False
+    
+    # filename
+    s = f'{ofile_root}_{year}_{fips}_Tiles_{"_".join(tile)}'
+
+    warp_args = {
+        'dstNodata'     : 255,
+        'format'        : 'MEM',
+        'cropToCutline' : True,
+        'cutlineWhere'  : f"FIPS='{fips}'",
+        'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+    }
+
+    kwargs = {
+        'tile'      :    tile,
+        'product'   :    'MCD15A3H',
+        'sds'       :    ['Lai_500m','LaiStdDev_500m'],
+        'doys'      : [i for i in range(1,366,4)],
+        'year'      : int(year),
+        'warp_args' : warp_args,
+        'verbose'   : verbose
+    }
+    
+    # run
+    if verbose:
+        print(f'gathering modis annual data for {kwargs}')
+        
+    odict,bnames = modisAnnual(**kwargs)
+    
+    # read the data
+    if verbose:
+        print(f'reading datasets')
+    ddict = {}
+    for k,v in odict.items():
+        if verbose:
+            print(f'...{k} -> {v}')
+        g = gdal.Open(v)
+        if g:
+            ddict[k] = g.ReadAsArray()
+    
+    # scale it
+    lai = ddict['Lai_500m'] * 0.1
+    std = ddict['LaiStdDev_500m'] * 0.1
+    # doy from filenames
+    doy = np.array([int(i.split('-')[1]) for i in bnames])
+    if verbose:
+        print(f'done')
+    return lai,std,doy
+
+
+def get_lc(year,tile,fips,verbose=False):
+    '''
+    Return LC mask for year,tile,fips
+    '''
+
+    sds = ['LC_Type3']
+    # get the LC data
 
     warp_args = {
       'dstNodata'     : 255,
@@ -135,43 +192,24 @@ def get_lai_data(year,tile,fips):
       'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
     }
     
-    mfiles = modis_annual(year,tile,product,\
-                          sds=sds,warp_args=warp_args)
-    # scale it
-    lai = mfiles['Lai_500m'] * 0.1
-    std = mfiles['LaiStdDev_500m'] * 0.1
-    # doy from filenames
-    doy = np.array([int(i.split('-')[1]) for i in mfiles['bandnames']])
-    return lai,std,doy
-
-
-def get_lc(year,tile,fips):
-    '''
-    Return LC mask for year,tile,fips
-    '''
     kwargs = {
         'tile'      :    tile,
         'product'   :    'MCD12Q1',
-    }
-    doy = 1
-    # get the LC data
-    modis = Modis(**kwargs)
-
-    warp_args = {
-      'dstNodata'     : 255,
-      'format'        : 'MEM',
-      'cropToCutline' : True,
-      'cutlineWhere'  : f"FIPS='{fips}'",
-      'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
+        'sds'       : sds,
+        'doys'      : [1],
+        'year'      : int(year),
+        'warp_args' : warp_args,
+        'verbose'   : verbose
     }
 
-    # specify day of year (DOY) and year
-    lcfiles = modis.get_modis(year,doy,warp_args=warp_args)
+    # run
+    lcfiles,bnames = modisAnnual(**kwargs)
+    
     # get the item we want
-    g = gdal.Open(lcfiles['LC_Type3'])
+    g = gdal.Open(lcfiles[sds[0]])
     # error checking
     if not g:
-        print(f"cannot open LC file {lcfiles['LC_Type3']}")
+        print(f"cannot open LC file {lcfiles[sds[0]]}")
         return None
     lc = g.ReadAsArray()
     del g
@@ -209,7 +247,7 @@ def make_mask(interpolated_lai):
     return ~np.isnan(np.sum(interpolated_lai,axis=0))
     
 # define a function lc_lai
-def lc_lai(tile,year,fips,sigma=5):
+def lc_lai(tile,year,fips,sigma=5,verbose=False):
     '''
     generate a combined LAI and land cover dataset, 
     for a given year, tile set, and country (defined by FIPS)
@@ -223,6 +261,7 @@ def lc_lai(tile,year,fips,sigma=5):
     Options:
     
     sigma=5 : std dev for Gaussian smoothing filter (default 5)
+    verbose=False : verbose output
     
     Output:
     
@@ -233,8 +272,10 @@ def lc_lai(tile,year,fips,sigma=5):
         'LC_Type3' : Land cover: numpy byte array of (Nx,Ny)
 
     '''
-    lc               = get_lc(year,tile,fips)
-    lai,std,doy      = get_lai_data(year,tile,fips)
+    lc               = get_lc(year,tile,fips,verbose=verbose)
+    lai,std,doy      = get_lai_data(year,tile,fips,verbose=verbose)
+    print(f'lc : {lc.shape}')
+    print(f'lai : {lai.shape}')
     weight           = get_weight(lai,std)
     interpolated_lai = regularise(lai,weight,sigma)
     mask             = make_mask(interpolated_lai)
@@ -291,18 +332,18 @@ def write_dataset(dataset,ofile,classy='Deciduous Broadleaf Forests'):
     
 # define a function main() to call when a script
 def main():
+    verbose = False
     tile = ['h17v03','h18v03','h17v04','h18v04']
     year = '2018'
     fips = 'BE' 
-    classy='Deciduous Broadleaf Forests'
-    #classy='Grasslands'
-    ofile = Path(f'work/mydata.{fips}.{year}.{"_".join(tile)}.{classy.replace(" ","_")}.csv')
-    print(ofile)
-    dataset = lc_lai(tile,year,fips,sigma=5)
-    write_dataset(dataset,ofile,classy=classy)
-    # read ofile
-    df1=pd.read_csv(ofile)
-    print(df1)
+    dataset = lc_lai(tile,year,fips,sigma=5,verbose=verbose)
+    for classy in ['Deciduous Broadleaf Forests','Grasslands']:
+        ofile = Path(f'work/mydata.{fips}.{year}.{"_".join(tile)}.{classy.replace(" ","_")}.csv')
+        print(ofile)    
+        write_dataset(dataset,ofile,classy=classy)
+        # read ofile
+        df1=pd.read_csv(ofile)
+        print(df1)
     
 # calls main() if the file is run as a Python script
 if __name__ == "__main__":
@@ -310,9 +351,26 @@ if __name__ == "__main__":
 
 ```
 
-    work/mydata.BE.2018.h17v03_h18v03_h17v04_h18v04.Grasslands.csv
     class codes: [  0   1   3   4   5   6   7   9  10 255]
-    we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2018
+    lc : (479, 596)
+    lai : (92, 479, 596)
+    work/mydata.BE.2018.h17v03_h18v03_h17v04_h18v04.Deciduous_Broadleaf_Forests.csv
+    Class Deciduous Broadleaf Forests code 6 has 14978 samples
+        doy  Lai_500m
+    0     1  0.748041
+    1     5  0.737089
+    2     9  0.736140
+    3    13  0.738603
+    4    17  0.744529
+    ..  ...       ...
+    87  349  0.960403
+    88  353  0.908682
+    89  357  0.853188
+    90  361  0.810157
+    91  365  0.775275
+    
+    [92 rows x 2 columns]
+    work/mydata.BE.2018.h17v03_h18v03_h17v04_h18v04.Grasslands.csv
     Class Grasslands code 1 has 19330 samples
         doy  Lai_500m
     0     1  0.876056
@@ -365,7 +423,7 @@ axs.legend(loc='upper right')
 
 
 
-    <matplotlib.legend.Legend at 0x7fa9d7372fd0>
+    <matplotlib.legend.Legend at 0x7faa7755c090>
 
 
 
@@ -390,7 +448,6 @@ mask             = make_mask(interpolated_lai)
 ```
 
     class codes: [  0   1   3   4   5   6   7   9  10 255]
-    we dont need to process MCD15A3H._h17v03_h18v03_h17v04_h18v04_.2018
 
 
 

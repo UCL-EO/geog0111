@@ -30,8 +30,6 @@ The code cells in this notebook take Python commands by default, but we can run 
 
 ```python
 !pwd
-
-
 ```
 
     /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks

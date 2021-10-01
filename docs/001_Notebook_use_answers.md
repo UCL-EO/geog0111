@@ -230,7 +230,7 @@ print(third_string)
 
     NameError                                 Traceback (most recent call last)
 
-    <ipython-input-5-178aa48b468c> in <module>
+    /var/folders/mp/9cxd5s793bjd4q3zng6dv_cw0000gn/T/ipykernel_89212/758698420.py in <module>
          18 
          19 # try to print a variable `third_string` that you haven't yet created
     ---> 20 print(third_string)
@@ -269,3 +269,16 @@ Remember what this type of error can mean.
 '''
 print(msg)
 ```
+
+    hello once more
+    
+    what does that tell you about information we create in one cell and 
+    try to use in another above?
+    
+    we can run cells in any order. Once we had created third_string, the 
+    previous exercise print(third_string) executed as we expected.
+    The *Danger* is that the next time we run this notebook in cell order
+    the cell above will fail again. Learn from the mistakes we make.
+    Remember what this type of error can mean.
+    
+

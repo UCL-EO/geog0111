@@ -1135,6 +1135,20 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         print("You need to specify 'sds' in calling modisAnnual")
         print(kwargs)
         return None,None
+
+    if 'year' in kwargs:
+        year =  kwargs['year']
+    else:
+        print("You need to specify 'year' in calling modisAnnual")
+        print(kwargs)
+        return None,None
+    
+    if 'doys' in kwargs:
+        doys =  np.array(kwargs['doys'])
+    else:
+        print("You need to specify 'doys' in calling modisAnnual")
+        print(kwargs)
+        return None,None
     
     if 'verbose' in kwargs:
         verbose = kwargs['verbose']
@@ -1161,6 +1175,10 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
                 print(f'selektor: {ext}')
         
     bnames = []  
+    
+    ofile_root = f'{ofile_root}_YEAR_{year}_DOYS_{doys.min()}_{doys.max()}'
+    if verbose:
+        print(f'root name of output file: {ofile_root}')
     
     for s in sds_list:
         ofile = f"{ofile_root}_SDS_{s}.vrt"

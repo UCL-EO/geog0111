@@ -409,60 +409,49 @@ Common `Path` methods:
 
 
             from geog0111.gurlpath import URL
-            
-Common `URL` methods:
 
+#### 021 URLs
+
+* [021 URLs](021_URLs.md)
+
+In this section, we have considered URLs in some detail in the same way as we did filenames, and made use of functions from [urlpath](https://github.com/chrono-meter/urlpath) to access them. 
 
 |function| purpose|
 |---|---|
 |`URL.name`|  filename |
 |`URL.parent`|  parent |
 |`URL.parts`|  parts |
-|`URL.stat()`| return info about the file. N.B. Only `URL.stat().st_size` is used for remote files|
-|`URL.glob(pattern)`| Glob the pattern given in the URL directory, yielding matching files of any kind| 
-|`URL.exists()`|  test to see if a url is accessible |
-            
+| `URL.as_posix()` | return URL as posix string |
+|`URL.with_userinfo()`|  add in username and password |
+|`URL.get()`|  URL get. Returns `requests.models.Response`|
+| `URL.netloc` | network location e.g. `www.google.com`|
+| `URL.path` | full pathname on server (including filename)|
 
-#### 021 Streams
-
-* [021 Streams](021_Streams.md)
-
-
-            from pathlib import Path
-
-Common `Path` methods:
+We have seen how to access and download both text and binary files from the web using `URL.get()`. We have seen how to add username and password information to this, and have used that to access MODIS binary datasets. We know how to save the files that we download.
 
 
-|command|  purpose|
+Functions in `modisUtils`:
+
+|function| purpose|
 |---|---|
-|`Path.open()`| open a file and return a file descriptor|
-|`Path.read_text()`|  read text|
-|`Path.write_text()`| write text|
-|`Path.read_bytes()`| read byte data|
-|`Path.write_bytes()`| write byte data|
+|`modisFile`| get a Path object for a file of the requested MODIS dataset, either from cache, or by downloading |
+|`modisURL`| get the URL of a MODIS dataset, possibly using a cache for the filename |
 
-            from geog0111.gurlpath import URL
 
-Common `URL` methods:
 
-|command|  purpose|
+`gdal`
+
+| Command | Comment |
 |---|---|
-|`URL.open()`| open a file descriptor with data from a URL|
-|`URL.read_text()`|  read text from URL|
-|`URL.write_text()`| write text to file|
-|`URL.read_bytes()`| read byte data from URL|
-|`URL.write_bytes()`| write byte data to file|
-
-Notice that the `write` functions (and `open` when used for write) write to local files, not to the URL. 
+|`g = gdal.Open(filename)` | Open geospatial file `filename` and return `gdal` object `g` (`None` if file not opened correctly)|
+|`g.GetSubDatasets()` | Get list of sub-datasets from `gdal` object `g`| 
+|`g.ReadAsArray()` | Read dataset from `gdal` object `g` into array |
 
 
-Other methods and syntax:
 
-| Command | Comment | 
-| --:|---|
-| `with Path(filename).open('r') as f:` | Open file `filename` for reading with file descriptor set to `f`|
+#### 022 Pandas
 
-
+* [022 Pandas](022_Pandas.md)
 `pandas`:
 
 | Command | Comment | 
@@ -484,38 +473,6 @@ Other methods and syntax:
 | `df[datetimes].dt.year` | year from `datetime` field fromn `datetime`-format column with name `datetimes`|
 | `df[datetimes].dt.day` | day from `datetime` field fromn `datetime`-format column with name `datetimes`|
 |`df.to_csv(filename,index=False)` |Write dataframe `df` to CSV format file, with no index column|
-
-#### 022 Read and write files
-
-* [022 Read write files](022_Read_write_files.md)
-
-Modis library
-
-            from  geog0111.modis import Modis
-            modis = Modis(**kwargs)
-            
-
-            get_url(**kwargs) method of geog0111.modis.Modis instance
-                Get URL object list for NASA MODIS products
-                for the specified product, tile, year, month, day
-
-                Keyword Arguments:
-
-                verbose:  bool
-                site    : str 
-                product : str e.g. 'MCD15A3H'
-                tile    : str e.g. 'h08v06'
-                year    : str valid 2000-present
-                month   : str 01-12
-                day     : str 01-(28,29,30,31)
-
-`gdal`
-
-| Command | Comment |
-|---|---|
-|`g = gdal.Open(filename)` | Open geospatial file `filename` and return `gdal` object `g` (`None` if file not opened correctly)|
-|`g.GetSubDatasets()` | Get list of sub-datasets from `gdal` object `g`| 
-|`g.ReadAsArray()` | Read dataset from `gdal` object `g` into array |
 
 
 #### 023  Plotting Graphs

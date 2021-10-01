@@ -111,7 +111,9 @@ def model(tempThresh=9.0,K=2000.0,p=0.96):
     return accum
 ```
 
-This example makes it clear that significant modifications have been made to the code structure (and probably to its efficiency) although the basic model and looping comes from an existing piece of code. It clearly highlights what the actual modifications have been. Note that this is not a working example! Note also that this is a poor example of a function, as there is no real document string and little comment on the code operation.
+This example makes it clear that significant modifications have been made to the code structure (and probably to its efficiency) although the basic model and looping comes from an existing piece of code. It clearly highlights what the actual modifications have been. Note that this is not a working example! 
+
+**Note also that this is a poor example of a function, as there is no real document string and little comment on the code operation.**
 
 We stress that this must be your own work. We do not want you to get anyone else to significantly helped you to develop the code (e.g. written the main part of it for you & you've just copied that with some minor modifications). This is not acceptable, but if for some reason it does happen, you must acknowledge it in your submission.
 

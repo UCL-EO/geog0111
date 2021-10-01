@@ -7,11 +7,11 @@ UCL Geography MSc notes.
 
 |   |   |   |   |   |
 |---|---|---|---|---|
-|Author: [P. Lewis](mailto:p.lewis@ucl.ac.uk)|version 1.2.0||||
+|Author: [P. Lewis and J. Gomez-Dans](mailto:p.lewis@ucl.ac.uk)|version 1.1.0||||
 
 # GEOG0111 Scientific Computing
 
-[Course Documentation](https://ucl-eo.github.io/geog0111/)
+[Course Documentation](https://UCL-EO.github.io/geog0111/)
 
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/master)
 
@@ -39,7 +39,6 @@ UCL Geography MSc notes.
 |   |   |   |
 |---|---|---|
 |[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
-
 
 
 ### Purpose of this course
@@ -97,3 +96,5 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
 follow the instructions on [UCL installation and running](Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md).
+
+

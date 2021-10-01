@@ -46,7 +46,14 @@ kwargs = {
 }
 
 datafiles,bnames = getModis(verbose=False,timeout=10000,**kwargs)
+
+print(datafiles)
+print(bnames)
 ```
+
+    ['work/stitch_Lai_500m_2019_001_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_UK_warp.vrt', 'work/stitch_Lai_500m_2019_005_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_UK_warp.vrt', 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_UK_warp.vrt']
+    ['2019-001', '2019-005', '2019-041']
+
 
 ## Timeseries
 
@@ -181,6 +188,18 @@ kwargs = {
 datafiles,bnames = getModis(verbose=False,timeout=10000,**kwargs)
 ```
 
+
+```python
+# check the files
+print(f'filenames of the form: {datafiles[0]}\n')
+print(bnames)
+```
+
+    filenames of the form: work/stitch_Lai_500m_2019_001_Tiles_h18v03_h18v04_Selektor_FIPS_LU_warp.vrt
+    
+    ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
+
+
 We can build a VRT dataset as before:
 
 
@@ -221,7 +240,7 @@ for i in range(data.shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_22_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_23_0.png)
     
 
 
@@ -291,7 +310,7 @@ for i in range(shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_28_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_29_0.png)
     
 
 
@@ -375,10 +394,10 @@ kwargs = {
 odict,bnames = modisAnnual(**kwargs)
 
 # outputs
-print(odict,bnames)
+print(odict,bnames) 
 ```
 
-    {'Fpar_500m': 'work/output_filename_SDS_Fpar_500m.vrt', 'Lai_500m': 'work/output_filename_SDS_Lai_500m.vrt', 'FparLai_QC': 'work/output_filename_SDS_FparLai_QC.vrt', 'FparExtra_QC': 'work/output_filename_SDS_FparExtra_QC.vrt', 'FparStdDev_500m': 'work/output_filename_SDS_FparStdDev_500m.vrt', 'LaiStdDev_500m': 'work/output_filename_SDS_LaiStdDev_500m.vrt'} ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
+    {'Fpar_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_Fpar_500m.vrt', 'Lai_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_Lai_500m.vrt', 'FparLai_QC': 'work/output_filename_Selektor_FIPS_LU_SDS_FparLai_QC.vrt', 'FparExtra_QC': 'work/output_filename_Selektor_FIPS_LU_SDS_FparExtra_QC.vrt', 'FparStdDev_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_FparStdDev_500m.vrt', 'LaiStdDev_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_LaiStdDev_500m.vrt'} ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
 
 
 We can read some of these data in now:
@@ -387,9 +406,20 @@ We can read some of these data in now:
 ```python
 import gdal
 
-Lai_500m = gdal.Open(odict['Lai_500m']).ReadAsArray() * 0.1
-LaiStdDev_500m = gdal.Open(odict['LaiStdDev_500m']).ReadAsArray() * 0.1
+g = gdal.Open(odict['Lai_500m'])
+if g:
+    Lai_500m = g.ReadAsArray() * 0.1
+    print(Lai_500m.shape)
+
+g = gdal.Open(odict['LaiStdDev_500m'])
+if g:
+    LaiStdDev_500m = g.ReadAsArray() * 0.1
+    print(LaiStdDev_500m.shape)
 ```
+
+    (92, 175, 122)
+    (92, 175, 122)
+
 
 There is a feature in the `LaiStdDev_500m` dataset where some pixels have apparently zero uncertainty. Indeed, all LAI values with an uncertainty under 1.0 seem suspect as individual values. So we treat them hear, to set all values less than 1 to 1.
 
@@ -440,7 +470,7 @@ for i in range(Lai_500m.shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_39_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_40_0.png)
     
 
 
@@ -466,7 +496,7 @@ for i in range(Lai_500m.shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_40_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_41_0.png)
     
 
 
@@ -498,7 +528,7 @@ for i in range(shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_41_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_42_0.png)
     
 
 
@@ -529,7 +559,7 @@ for i in range(shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_42_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_43_0.png)
     
 
 
@@ -579,7 +609,7 @@ axs.set_ylabel('LAI')
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_44_1.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_45_1.png)
     
 
 

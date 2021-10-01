@@ -48,14 +48,14 @@ nav:
     - Running Python: 018_Running_Python_answers.md
 - Data Basics:
   - Python Files: 020_Python_files.md
-  - Streams: 021_Streams.md
-  - Read Write Files: 022_Read_write_files.md
+  - Urls: 021_URLs.md
+  - Pandas: 022_Pandas.md
   - Plotting: 023_Plotting.md
   - Image Display: 024_Image_display.md
   - Answers:
     - Python Files: 020_Python_files_answers.md
-    - Streams: 021_Streams_answers.md
-    - Read Write Files: 022_Read_write_files_answers.md
+    - Urls: 021_URLs_answers.md
+    - Pandas: 022_Pandas_answers.md
     - Plotting: 023_Plotting_answers.md
     - Image Display: 024_Image_display_answers.md
 - Array Data:
