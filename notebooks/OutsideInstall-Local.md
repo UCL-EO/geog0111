@@ -10,7 +10,7 @@ First, you will need to make sure you have Python (3.6+) installed on your compu
 The Anaconda package manager is called `conda`. You should make use of that for managing packages.
 
 If you think you may have Anaconda installed, look at the material on https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-conda.html to see if you need to update.
-        
+
 
 ### Installing Anaconda
 
@@ -151,7 +151,7 @@ B. The URL of the server (with the security token). In this case:
         
 Launch a browser that points to that (your one, not te example here!!). That should take you to the Jupyter server homepage.
 
-
+<!-- #region -->
 After this initial setup, just do:
 
 
@@ -160,14 +160,8 @@ After this initial setup, just do:
 
 to get to this point.
           
-7. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
 
-   * click on the `Control Panel` button at the top right of the notebook page. 
-   * then click the big red button to stop the server
-   * next, click `start my server` to restart (you may have to also then click `launch my server`)
-   * if you are asked to choose an interface, choose `classic`, then click `start`
-  
-8. Now, test things:
+7. Now, test things:
  
    * navigate to the coursenotes `geog0111` then `notebooks`
    * select the fist notebook `001_Notebook_use.ipynb`
@@ -181,11 +175,18 @@ One issue to look out for is if the notebook kernel doesn't start. That normally
 9. You should test that your setup is robust. 
 
    * Try logging out and in again on your computer and launch jupyter again
+   
+## Use of the notes and updates
 
-## Update of the repository
+Periodically, we may have to update the notes. 
 
-To update your `geog0111` repository, first make sure you take copies of any files (e.g. notebooks) that you may have changed. **If you don't they will be over-written when you pull new versions.**
+Before you do this, be aware that any updated files on the server will over-write your local files. **That means that any changes you may have made to the notebooks**, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. 
 
-Then type:
+You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'Install' here) and changing it (e.g. `myInstall`). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.
 
-        cd ~/geog0111 && git pull
+
+To update the notes (and over-write your changes), in a shell (Terminal) type:
+
+    cd ~/geog0111 && git reset --hard HEAD && git pull
+    
+<!-- #endregion -->

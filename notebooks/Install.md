@@ -4,7 +4,7 @@ We expect you to run these notes and do this course using Jupyter notebooks, on 
 
 If you know what you are doing, and have accessed the notes in this way before, then you can go straight to the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 
-
+<!-- #region -->
 # The first time you are using Jupyterhub
 
 The first time you are using these notes, you should go through the items below. These are needed to set up the notes and various course settings.
@@ -69,3 +69,19 @@ The first time you are using these notes, you should go through the items below.
 3. Navigate to the directory `geog0111/notebooks`
 4. Access the notebooks you want directly, or via the [index](TIMETABLE.md).
 5. See further information on the course [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)
+
+# Use of the notes and updates
+
+Periodically, we may have to update the notes. 
+
+Before you do this, be aware that any updated files on the server will over-write your local files. **That means that any changes you may have made to the notebooks**, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. 
+
+You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'Install' here) and changing it (e.g. `myInstall`). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.
+
+
+To update the notes (and over-write your changes), in a shell (Terminal) type:
+
+    cd ~/geog0111 && git reset --hard HEAD && git pull
+    
+    
+<!-- #endregion -->
