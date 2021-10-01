@@ -182,7 +182,7 @@ Periodically, we may have to update the notes.
 
 Before you do this, be aware that any updated files on the server will over-write your local files. **That means that any changes you may have made to the notebooks**, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. 
 
-You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'Install' here) and changing it (e.g. `myInstall`). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.
+You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'OutsideInstall-Local' here) and changing it (e.g. `myOutsideInstall-Local`). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.
 
 
 To update the notes (and over-write your changes), in a shell (Terminal) type:
