@@ -45,7 +45,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
         'tile'     : 'h08v06'
       }
 
-      html = modisHTML(**modinfo,verbose=False)
+      html,html_file = modisHTML(**modinfo,verbose=False)
 
     Returns:
       html  : string of html from MODIS data product page
@@ -173,6 +173,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
           print(f'altcache_file : {altcache_file}')
 
     html = None
+    html_file = None
 
     if no_cache or ((not cache_file.exists()) \
        and (altcache !=  None and not altcache_file.exists())) or force:
@@ -189,6 +190,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
           if not no_cache and (altcache != None and not altcache_file.exists()):
             # write to cache
             cache_file.write_text(html)
+            html_file = cache_file
         else:
             if verbose:
                 print(f'some issue without password for html {server.anchor}') 
@@ -200,11 +202,13 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
           if verbose:
             print(f'reading from cache_file')
           html = cache_file.read_text() 
+          html_file = cache_file
         elif altcache != None and altcache_file.exists():
           if verbose:
             print(f'reading from altcache_file') 
           html = altcache_file.read_text()
-    return html  
+          html_file = altcache_file
+    return html,html_file 
 
 def modisServer(product='MCD15A3H',version='006',**kwargs):
     '''
@@ -377,7 +381,7 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 
     server = modisServer(product,version=version) / f'{year}.{month:02d}.{day:02d}'
 
-    html = modisHTML(year, month, day,tile,\
+    html,html_file = modisHTML(year, month, day,tile,\
                  product=product,\
                  version=version,no_cache=no_cache,cache=cache,\
                  verbose=verbose,force=force,altcache=altcache)
@@ -393,6 +397,8 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
       if len(filenames):
             filename = filenames[0]
       else:
+            print(f"Problem with request: Can't find pattern {filename_start}*.hdf in {html_file}")
+            #import pdb;pdb.set_trace()
             return None
         
       # result
@@ -1069,41 +1075,42 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
 
         warp_args['format']   = format
         if vrtFile == None or len(vrtFile) == 0:
-            return None,None
-        
-        ofile = vrtFile[:-4]
-        
-        if 'cutlineWhere' in warp_args:
-            # put the selektor in the filename
-            ext = warp_args['cutlineWhere']
-            # but tidy it up for awkward characters
-            ext = ext.replace("'","").replace('"',"").replace('=','_')
-            ofile = f'{ofile}_Selektor_{ext}'
-
-        if format == 'GTiff':
-            warp_args['options']  = ['COMPRESS=LZW']
-            ofile = f'{ofile}_warp.tif'
-        elif format == 'VRT':
-            ofile = f'{ofile}_warp.vrt'
+            print(f'Problem with doy {doy} ... continuing ...')
         else:
-            ofile = f'{ofile}_warp.dat'
+            # things are good
+            ofile = vrtFile[:-4]
 
-        # build a VRT 
-        stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
-        del stitch_vrt
-        # now warp it
-        if len(warp_args.keys()) == 0:
-            if verbose:
-                print('No warp_args specified')
-            ofile = vrtFile
-        else:
+            if 'cutlineWhere' in warp_args:
+                # put the selektor in the filename
+                ext = warp_args['cutlineWhere']
+                # but tidy it up for awkward characters
+                ext = ext.replace("'","").replace('"',"").replace('=','_')
+                ofile = f'{ofile}_Selektor_{ext}'
 
-            if verbose:
-                print(f'selecting from {vrtFile} to {ofile}')
-            g = gdal.Warp(ofile, vrtFile,**warp_args)
-            g.FlushCache()
-            del g
-        ofiles.append(ofile)
+            if format == 'GTiff':
+                warp_args['options']  = ['COMPRESS=LZW']
+                ofile = f'{ofile}_warp.tif'
+            elif format == 'VRT':
+                ofile = f'{ofile}_warp.vrt'
+            else:
+                ofile = f'{ofile}_warp.dat'
+
+            # build a VRT 
+            stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
+            del stitch_vrt
+            # now warp it
+            if len(warp_args.keys()) == 0:
+                if verbose:
+                    print('No warp_args specified')
+                ofile = vrtFile
+            else:
+
+                if verbose:
+                    print(f'selecting from {vrtFile} to {ofile}')
+                g = gdal.Warp(ofile, vrtFile,**warp_args)
+                g.FlushCache()
+                del g
+            ofiles.append(ofile)
         
     return ofiles,bnames
 
