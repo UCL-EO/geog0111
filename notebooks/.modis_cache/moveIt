@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+
+for x in $(ls /shared/groups/jrole001/geog0111/*/*/*.006/**.store  | head -1000); do
+  echo $x
+  a=`echo $x| awk -F.006 '{print $1".006"}'`
+  b=`echo $x| awk -F.006 '{print $2}'| awk -F.store '{print $1"/index.html"}'`
+  mv $x ${a}${b}
+done
+

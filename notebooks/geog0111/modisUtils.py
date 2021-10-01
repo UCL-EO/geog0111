@@ -560,7 +560,7 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
         print(f'and try setting timout, e.g. timout=200 (it is in seconds)')
         return None
     if cache == None:
-      cache = Path.home()
+      cache = Path().cwd()
     cache = cache / ".modis_cache"
     cache.mkdir(parents=True,exist_ok=True)
     if not no_cache:
@@ -1095,11 +1095,11 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
             else:
                 ofile = f'{ofile}_warp.dat'
 
-            # build a VRT 
+            # build a VRT for the first SDS
             stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
             del stitch_vrt
             # now warp it
-            if len(warp_args.keys()) == 0:
+            if (len(warp_args.keys()) == 0) and format == 'VRT':
                 if verbose:
                     print('No warp_args specified')
                 ofile = vrtFile
