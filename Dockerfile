@@ -11,9 +11,10 @@ USER root
 # dont waste space: we dont want uclgeog but its hard
 # to re-use so best to delete it
 RUN . /opt/conda/etc/profile.d/conda.sh &&\
-    conda deactivate &&\
-    conda remove -y -n uclgeog --all &&\
-    conda activate base
+    conda deactivate
+# &&\
+#    conda remove -y -n uclgeog --all &&\
+#    conda activate base
 RUN conda install mamba -n base -c conda-forge
 
 # gdal https://ljvmiranda921.github.io/notebook/2019/04/13/install-gdal/
