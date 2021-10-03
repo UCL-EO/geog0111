@@ -2,3 +2,14 @@ gdal-bin
 libgdal-dev
 python3-gdal
 python-gdal
+dvipng
+ghostscript
+texlive-fonts-recommended
+texlive-generic-recommended
+texlive-latex-base
+texlive-latex-extra
+texlive-latex-recommended
+texlive-publishers
+texlive-science
+texlive-xetex
+cm-super
