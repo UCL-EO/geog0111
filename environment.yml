@@ -110,7 +110,6 @@ dependencies:
   - libclang=9.0.1=default_hf57f61e_0
   - libcurl=7.69.1=hc0b9707_0
   - libcxx=10.0.0=h1af66ff_2
-  - libdap4=3.20.6=h8c15375_0
   - libedit=3.1.20191231=hed1e85f_0
   - libffi=3.2.1=h4a8c4bd_1007
   - libgdal=3.0.4=ha92c1e4_6
