@@ -75,6 +75,14 @@ If you don't get that, look at the installation instruction again. **There is li
 
 You may want to check if you need to update `git`: https://phoenixnap.com/kb/how-to-update-git
 
+## mamba
+
+Actually, `conda` is pretty slow and cumbersome. A much better package manager (cross platform) is `mamba`. We advise you to download this and use in place of `conda`. Everywhere you see `conda` mantioned below, use `mamba` (after you have installed it obviously).
+
+see [mamba](https://github.com/mamba-org/mamba) for install. e.g.
+
+        conda install mamba -n base -c conda-forge
+
 ## Local install in `~`
 
 These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.
