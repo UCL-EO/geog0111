@@ -31,7 +31,7 @@ jupyter nbextension disable hinterland/hinterland
 jupyter nbextension enable printview/main
 jupyter nbextension enable execution_dependencies/execution_dependencies
 jupyter nbextension enable python-markdown/main
-jupyter labextension install @jupyterlab/latex
+#jupyter labextension install @jupyterlab/latex
 echo "--> ensuring $HOME/.jupyter/nbconfig exists"
 mkdir -p $HOME/.jupyter/nbconfig
 echo "--> fixing $HOME/.jupyter/nbconfig/common.json"
