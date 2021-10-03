@@ -41,7 +41,7 @@ echo "conda activate geog0111" >> ~/.bashrc
 pwd
 whoami
 ls
-#conda activate geog0111
+mamba activate geog0111
 echo "activate geog0111"
 python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111' --user
 echo "done"
