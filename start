@@ -1,3 +1,4 @@
+# see https://ljvmiranda921.github.io/notebook/2019/04/13/install-gdal/
 sudo add-apt-repository ppa:ubuntugis/ppa && apt-get update
 sudo add-apt-repository ppa:nextgis/ppa && apt-get update 
 sudo apt-get install gdal-bin
