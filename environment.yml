@@ -1,4 +1,3 @@
-name: geog0111
 channels:
   - conda-forge
   - defaults
