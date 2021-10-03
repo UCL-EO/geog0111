@@ -43,5 +43,7 @@ whoami
 ls
 #mamba activate geog0111
 python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111' --user
+echo "test gdal"
+python3 -c ‘import gdal; print(gdal.VersionInfo())’
 echo "done"
 echo "----> done bin/postBuild"
