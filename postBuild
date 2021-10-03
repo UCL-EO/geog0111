@@ -43,9 +43,9 @@ whoami
 ls
 #mamba activate geog0111
 echo "get gdal"
-apt-get install gdal-bin
-apt-get install libgdal-dev
-apt-get install python3-gdal python-gdal 
+sudo apt-get install gdal-bin
+sudo apt-get install libgdal-dev
+sudo apt-get install python3-gdal python-gdal 
 echo "installed"
 python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111' --user
 echo "done"
