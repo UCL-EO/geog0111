@@ -1,7 +1,7 @@
-gdal-bin
-libgdal-dev
-python3-gdal
-python-gdal
+#gdal-bin
+#libgdal-dev
+#python3-gdal
+#python-gdal
 dvipng
 ghostscript
 texlive-fonts-recommended
