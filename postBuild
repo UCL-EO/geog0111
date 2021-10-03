@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# in case no home (windows?)
+if [ -z "$HOME" ] ; then
+  here="$(pwd)"
+  cd ~
+  HOME="$(pwd)"
+  cd "$here"
+fi
+
+echo "----> bin/postBuild"
+echo "--> enabling jupyter nbextensions"
+jupyter nbextension enable contrib_nbextensions_help_item/main
+jupyter nbextension enable autosavetime/main
+jupyter nbextension enable codefolding/main
+jupyter nbextension enable code_font_size/code_font_size
+jupyter nbextension enable code_prettify/code_prettify
+jupyter nbextension enable collapsible_headings/main
+jupyter nbextension enable comment-uncomment/main
+jupyter nbextension enable equation-numbering/main
+#jupyter nbextension enable execute_time/ExecuteTime
+jupyter nbextension enable gist_it/main
+jupyter nbextension enable hide_input/main
+jupyter nbextension enable spellchecker/main
+#jupyter nbextension enable toc2/main
+jupyter nbextension enable toggle_all_line_numbers/main
+jupyter nbextension enable exercise2/main
+jupyter nbextension disable toc2/main
+jupyter nbextension disable execute_time/ExecuteTime
+jupyter nbextension disable hinterland/hinterland
+jupyter nbextension enable printview/main
+jupyter nbextension enable execution_dependencies/execution_dependencies
+jupyter nbextension enable python-markdown/main
+jupyter labextension install @jupyterlab/latex
+echo "--> ensuring $HOME/.jupyter/nbconfig exists"
+mkdir -p $HOME/.jupyter/nbconfig
+echo "--> fixing $HOME/.jupyter/nbconfig/common.json"
+echo '{"nbext_hide_incompat": true}' > $HOME/.jupyter/nbconfig/common.json
+echo "----> done bin/postBuild"
