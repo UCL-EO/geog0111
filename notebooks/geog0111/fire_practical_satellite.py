@@ -6,7 +6,7 @@ from pathlib import Path
 
 import numpy as np
 
-import gdal
+from osgeo import gdal
 
 from scipy.stats import mode
 

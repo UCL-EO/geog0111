@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.ma as ma
 from osgeo import ogr,osr
-import gdal
+from osgeo import gdal
 try:
     from PIL import Image,ImageDraw
 except:

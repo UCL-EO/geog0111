@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib
-import gdal
+from osgeo import gdal
 import numpy as np
 
 def im_display(data,names,band=0,r=[None,None],c=[None,None],\

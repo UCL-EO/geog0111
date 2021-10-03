@@ -51,7 +51,7 @@ if not Path(shape_file).exists():
     shutil.unpack_archive(zip_file.as_posix(),
                          extract_dir=destination_folder)
 
-import gdal
+from osgeo import gdal
 import numpy as np
 from pathlib import Path
 from geog0111.create_blank_file import create_blank_file
@@ -119,7 +119,7 @@ lai[1] = (scale**0) * (lai[1] == 0).astype(float) + \
          (scale**3) * (lai[1] == 3).astype(float)
     
 
-import gdal
+from osgeo import gdal
 import numpy as np
 from pathlib import Path
 from geog0111.create_blank_file import create_blank_file
@@ -207,7 +207,7 @@ for d in params:
         del g
         print (f'{allopfile.as_posix()}.{d}.vrt')
 
-import gdal
+from osgeo import gdal
 import numpy as np
 
 destination_folder = Path('data')

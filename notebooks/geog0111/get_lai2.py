@@ -13,7 +13,7 @@ geog0111/get_lai.py
 at the command prompt.
 '''
 
-import gdal
+from osgeo import gdal
 try:
   from geog0111.modis import Modis
 except:

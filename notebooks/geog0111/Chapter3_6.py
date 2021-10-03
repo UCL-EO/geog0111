@@ -19,7 +19,7 @@ import numpy as np
 import sys
 import os
 from pathlib import Path
-import gdal
+from osgeo import gdal
 from datetime import datetime, timedelta
 
 shpfile = "data/TM_WORLD_BORDERS-0.3.shp"
@@ -38,7 +38,7 @@ try:
 except:
     print(f"{ofile} doesn't exist: sort the pre-requisites")
 
-from osgeo import gdal, gdalconst,osr
+from osgeo from osgeo import gdal, gdalconst,osr
 import numpy as np
 from geog0111.process_timeseries import mosaic_and_clip
 
@@ -89,7 +89,7 @@ Visualise
 # close the file -- we dont need it any more
 del match_ds
 
-from osgeo import gdal, gdalconst,osr
+from osgeo from osgeo import gdal, gdalconst,osr
 import numpy as np
 
 # set up conditions
@@ -195,12 +195,12 @@ timer = [(datetime(1900,1,1) + timedelta(days=float(i)/24.)) \
          for i in meta['NETCDF_DIM_time_VALUES'][1:-1].split(',')]
 
 print (timer[:20])
-from osgeo import gdal, gdalconst,osr
+from osgeo from osgeo import gdal, gdalconst,osr
 import numpy as np
 from geog0111.process_timeseries import mosaic_and_clip
 from datetime import datetime 
 
-from osgeo import gdal, gdalconst,osr
+from osgeo from osgeo import gdal, gdalconst,osr
 import numpy as np
 from geog0111.process_timeseries import mosaic_and_clip
 from datetime import datetime,timedelta

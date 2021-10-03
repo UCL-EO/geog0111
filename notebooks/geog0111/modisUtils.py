@@ -6,7 +6,7 @@ import datetime
 import fnmatch
 from urlpath import URL
 from pathlib import Path
-import gdal
+from osgeo import gdal
 import datetime
 import scipy
 import scipy.ndimage
@@ -1224,7 +1224,7 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
     return odict,bnames
 
 import numpy as np
-import gdal
+from osgeo import gdal
 
 
 def getLai(year=2019,tile=['h18v03','h18v04'],country='LU',\

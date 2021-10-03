@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-import gdal
-from osgeo import gdalnumeric
+from osgeo import gdal
+from osgeo from osgeo import gdalnumeric
 
 __author__ = "P Lewis"
 __copyright__ = "Copyright 2018 P Lewis"

@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import os
 from pathlib import Path
-import gdal
+from osgeo import gdal
 from datetime import datetime, timedelta
 
 
@@ -168,7 +168,7 @@ else: print(f'{ecmwf_file} exists')
 
 
 
-from osgeo import gdal
+from osgeo from osgeo import gdal
 import requests
 from pathlib import Path
 import numpy as np
@@ -207,7 +207,7 @@ wkt2 = open('data/grb.wkt','r').readline()
 
 print(wkt2)
 
-from osgeo import gdal
+from osgeo from osgeo import gdal
 import requests
 from pathlib import Path
 import numpy as np
@@ -239,7 +239,7 @@ wkt2 = open(ofile,'r').readline()
 
 print(f'Refreshing nc file {ecmwf_file}')
 
-import gdal
+from osgeo import gdal
 from datetime import datetime,timedelta
 import numpy as np
 

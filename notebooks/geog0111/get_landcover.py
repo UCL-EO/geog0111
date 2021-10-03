@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import os
 from pathlib import Path
-import gdal
+from osgeo import gdal
 from datetime import datetime, timedelta
 
 

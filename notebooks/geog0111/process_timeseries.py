@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import sys
 import os
 from pathlib import Path
-import gdal
+from osgeo import gdal
 from datetime import datetime, timedelta
 
 def get_sfc_qc(qa_data, mask57 = 0b11100000):

@@ -14,7 +14,7 @@ at the command prompt.
 '''
 import numpy as np
 
-import gdal
+from osgeo import gdal
 try:
   from geog0111.modis import Modis
 except:

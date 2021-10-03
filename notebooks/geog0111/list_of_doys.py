@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-import gdal
+from osgeo import gdal
 from pathlib import Path
 import datetime
 import numpy as np
