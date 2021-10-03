@@ -36,4 +36,11 @@ echo "--> ensuring $HOME/.jupyter/nbconfig exists"
 mkdir -p $HOME/.jupyter/nbconfig
 echo "--> fixing $HOME/.jupyter/nbconfig/common.json"
 echo '{"nbext_hide_incompat": true}' > $HOME/.jupyter/nbconfig/common.json
+echo "conda activate geog0111" >> ~/.bashrc
+#cd geog0111/notebooks && tar xvzf data/cacheData.tar.Z
+pwd
+whoami
+conda activate geog0111
+ python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
+
 echo "----> done bin/postBuild"
