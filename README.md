@@ -2,7 +2,7 @@
 
 [Course Documentation](https://UCL-EO.github.io/geog0111/)
 
- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree)
+ [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree/notebooks)
 
 ## Course information
 
