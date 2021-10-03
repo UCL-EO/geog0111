@@ -44,7 +44,7 @@ which should give e.g.
 
 	2.4.4
 
-If you hit problems, read what it says and respond accordingly. For OS X for example, you may need to install `xcode` command line tools if you don't already have that. You might also look at [this advice page](https://medium.com/@egiron/how-to-install-gdal-and-qgis-on-macos-catalina-ca690dca4f91)
+If you hit problems, read what it says and respond accordingly. For OS X for example, you may need to install `xcode` command line tools if you don't already have that. N.B. That might take some time. You might also look at [this advice page](https://medium.com/@egiron/how-to-install-gdal-and-qgis-on-macos-catalina-ca690dca4f91)
 
 ## Windows
 
