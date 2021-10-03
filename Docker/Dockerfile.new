@@ -15,11 +15,8 @@ RUN . /opt/conda/etc/profile.d/conda.sh &&\
 # &&\
 #    conda remove -y -n uclgeog --all &&\
 #    conda activate base
-RUN conda update -n base conda
 RUN conda install mamba -n base -c conda-forge
 
-# https://itsfoss.com/add-apt-repository-command-not-found/
-RUN apt-get install software-properties-common
 # gdal https://ljvmiranda921.github.io/notebook/2019/04/13/install-gdal/
 RUN add-apt-repository ppa:ubuntugis/ppa && apt-get update
 RUN add-apt-repository ppa:nextgis/ppa && apt-get update
@@ -44,8 +41,8 @@ RUN pwd && cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
 RUN chmod +x postBuild
 RUN ./postBuild
 
-RUN . mamba init bash
-RUN . mamba activate ${CONDA_DEFAULT_ENV}
+RUN . /opt/conda/etc/profile.d/conda.sh && conda init bash
+RUN . /opt/conda/etc/profile.d/conda.sh && conda activate ${CONDA_DEFAULT_ENV}
 
 RUN cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
     ls notebooks
