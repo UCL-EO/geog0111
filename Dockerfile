@@ -12,15 +12,33 @@ USER root
 # to re-use so best to delete it
 RUN . /opt/conda/etc/profile.d/conda.sh &&\
     conda deactivate &&\
-    conda remove -y -n uclgeog --all
+    conda remove -y -n uclgeog --all &&\
+    conda activate base
+RUN conda install mamba -n base -c conda-forge
+
+# gdal https://ljvmiranda921.github.io/notebook/2019/04/13/install-gdal/
+RUN add-apt-repository ppa:ubuntugis/ppa && apt-get update
+RUN add-apt-repository ppa:nextgis/ppa && apt-get update
+RUN apt-get install gdal-bin
+RUN apt-get install libgdal-deva
+RUN pip3 install --global-option=build_ext --global-option="-I/usr/include/gdal" GDAL==`gdal-config --version`
+
 
 USER $NB_USER
+
+RUN export CPLUS_INCLUDE_PATH=/usr/include/gdal
+RUN export C_INCLUDE_PATH=/usr/include/gdal
+
+RUN TIMEFORMAT='time: %3R' bash -c 'time mamba env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && time mamba clean --all -f -y && mamba list -p ${NB_PYTHON_PREFIX} '
 
 RUN pwd && cd "${HOME}" &&\
     git clone https://github.com/UCL-EO/${CONDA_DEFAULT_ENV}.git
 
 RUN pwd && cd "${HOME}/${CONDA_DEFAULT_ENV}" &&\
     bin/setup.sh
+
+RUN chmod +x postBuild
+RUN ./postBuild
 
 RUN . /opt/conda/etc/profile.d/conda.sh && conda init bash
 RUN . /opt/conda/etc/profile.d/conda.sh && conda activate ${CONDA_DEFAULT_ENV}
