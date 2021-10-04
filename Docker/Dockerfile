@@ -102,28 +102,26 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-py37_${MINICONDA
     echo "${MINICONDA_MD5} *Miniconda3-py37_${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
     /bin/bash Miniconda3-py37_${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
     rm Miniconda3-py37_${MINICONDA_VERSION}-Linux-x86_64.sh 
-    
-RUN conda install mamba -n base -c conda-forge
 
-RUN echo "mamba ${CONDA_VERSION}" >> $CONDA_DIR/conda-meta/pinned && \
-    mamba config --system --prepend channels conda-forge && \
-    mamba config --system --set auto_update_conda false && \
-    mamba config --system --set show_channel_urls true && \
-    mamba config --system --set channel_priority strict && \
-    if [ ! $PYTHON_VERSION = 'default' ]; then mamba install --yes python=$PYTHON_VERSION; fi && \
-    mamba list python | grep '^python ' | tr -s ' ' | cut -d '.' -f 1,2 | sed 's/$/.*/' >> $CONDA_DIR/conda-meta/pinned && \
-    mamba install --quiet --yes conda && \
-    mamba install --quiet --yes pip && \
-    mamba update --all --quiet --yes && \
-    mamba clean --all -f -y && \
+RUN echo "conda ${CONDA_VERSION}" >> $CONDA_DIR/conda-meta/pinned && \
+    conda config --system --prepend channels conda-forge && \
+    conda config --system --set auto_update_conda false && \
+    conda config --system --set show_channel_urls true && \
+    conda config --system --set channel_priority strict && \
+    if [ ! $PYTHON_VERSION = 'default' ]; then conda install --yes python=$PYTHON_VERSION; fi && \
+    conda list python | grep '^python ' | tr -s ' ' | cut -d '.' -f 1,2 | sed 's/$/.*/' >> $CONDA_DIR/conda-meta/pinned && \
+    conda install --quiet --yes conda && \
+    conda install --quiet --yes pip && \
+    conda update --all --quiet --yes && \
+    conda clean --all -f -y && \
     rm -rf $UHOME/.cache/yarn && \
     fix-permissions $CONDA_DIR && \
     fix-permissions $UHOME
 
 # Install Tini
-RUN mamba install --quiet --yes 'tini=0.18.0' && \
-    mamba list tini | grep tini | tr -s ' ' | cut -d ' ' -f 1,2 >> $CONDA_DIR/conda-meta/pinned && \
-    mamba clean --all -f -y && \
+RUN conda install --quiet --yes 'tini=0.18.0' && \
+    conda list tini | grep tini | tr -s ' ' | cut -d ' ' -f 1,2 >> $CONDA_DIR/conda-meta/pinned && \
+    conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions $UHOME
 
@@ -140,12 +138,12 @@ RUN mamba install --quiet --yes 'tini=0.18.0' && \
 # Correct permissions
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
-RUN mamba install --quiet --yes --freeze-installed \
+RUN conda install --quiet --yes --freeze-installed \
     nomkl \
     'notebook=6.0.3' \
     'jupyterhub=1.1.0' \
     'jupyterlab=2.2.0'  && \
-    mamba clean --all -f -y && \
+    conda clean --all -f -y && \
     npm cache clean --force --yes && \
     jupyter notebook --generate-config -y && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
