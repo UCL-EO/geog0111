@@ -40,7 +40,9 @@ RUN apt-get update \
 
 # gdal via brew
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
-     echo 'PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"' >> ~/.bashrc
+     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile && \
+     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 
 RUN brew install gcc --HEAD && \
     brew install gcc && \
