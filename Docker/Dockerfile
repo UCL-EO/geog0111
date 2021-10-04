@@ -40,7 +40,8 @@ RUN apt-get update \
 
 # gdal via brew
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
-    echo 'PATH="/usr/local/bin:${PATH}"' >> ~/.bash_profile
+    echo 'PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"' >> ~/.bash_profile
+
 RUN brew install gdal --HEAD && brew install gdal && gdal-config --version
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
