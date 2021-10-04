@@ -10,6 +10,9 @@ ARG NB_UID="1000"
 ARG NB_GID="100"
 ARG UHOME=/home/$NB_USER
 
+ENV CONDA_DEFAULT_ENV=geog0111
+ENV BASE_VERSION=1.1.0
+
 # Fix DL4006
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
