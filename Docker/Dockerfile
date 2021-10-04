@@ -39,10 +39,13 @@ RUN apt-get update \
  # texlive-xetex texlive-fonts-recommended texlive-generic-recommended
 
 # gdal via brew
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
+     echo 'PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"' >> ~/.bashrc
 
-RUN /home/linuxbrew/.linuxbrew/bin/brew install gcc && \
-    /home/linuxbrew/.linuxbrew/bin/brew install gdal --HEAD && /home/linuxbrew/.linuxbrew/bin/brew install gdal && gdal-config --version
+RUN brew install gcc --HEAD && \
+    brew install gcc && \
+    brew install gdal --HEAD && \
+    brew install gdal && gdal-config --version
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
