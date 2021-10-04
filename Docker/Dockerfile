@@ -26,6 +26,7 @@ RUN apt-get update \
     bzip2 \
     ca-certificates \
     sudo \
+    curl \
     locales \
     fonts-liberation \
     run-one \
