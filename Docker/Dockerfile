@@ -40,7 +40,9 @@ RUN apt-get update \
 
 # gdal via brew
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
-    echo 'PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"' >> ~/.bash_profile
+     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.profile && \
+     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 
 RUN brew install gdal --HEAD && brew install gdal && gdal-config --version
 
