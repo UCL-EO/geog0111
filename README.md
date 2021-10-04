@@ -57,7 +57,7 @@ At the end of the module, students should:
 
 ### Running on UCL JupyterHub
 
-Follow the instructions on [UCL installation and running](Install.md)
+Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 ## Timetable
 
