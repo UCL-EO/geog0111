@@ -41,6 +41,12 @@ The first time you are using these notes, you should go through the items below.
         base                     /opt/miniconda-jhub/4.8.3
         jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
         geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
+        
+If it doesn't, type:
+
+         bash
+         
+and try again.        
 
 6. Now, set up notebook extensions by running the foillowing in shell (Terminal):
 
