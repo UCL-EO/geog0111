@@ -56,7 +56,7 @@ Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](h
 
 Generate and run the Docker on the local installation using `jupyter-repo2docker`. Type the following command into a shell:
 
-          cd ~ && jupyter-repo2docker geog0111
+          cd ~ && jupyter-repo2docker -E geog0111
 
 This will take a little time the first time you run the command, but should be much faster on subsequent occasions.
 
