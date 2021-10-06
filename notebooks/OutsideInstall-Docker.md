@@ -23,10 +23,17 @@ If you don't get that, look at the installation instruction again. **There is li
 
 You may want to check if you need to update `git`: https://phoenixnap.com/kb/how-to-update-git
 
-<!-- #region -->
+
+### `jupyter-repo2docker`
+
+See the instructions on [https://repo2docker.readthedocs.io](https://repo2docker.readthedocs.io). 
+
+        pip install jupyter-repo2docker
+        
+
 ## Local install
 
-We will make a local copy of these notes on your computer (assumed in `~/geog0111`) then run the jupyter notebooks using docker.
+We will make a local copy of these notes on your computer (assumed in `~/geog0111`) then run the jupyter notebooks using repo2docker.
 
 
 ### Installing the notes in `~`
@@ -45,15 +52,15 @@ Clone this repository and cd to the local directory
 
 Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
 
+### Run `jupyter-repo2docker`
 
-### Launch jupyter from docker
+Generate and run the Docker on the local installation using `jupyter-repo2docker`. Type the following command into a shell:
 
-Type the following command into a shell:
+          cd ~ && jupyter-repo2docker geog0111
 
-          docker run --rm -i --volume=${HOME}/geog0111:/home/jovyan/geog0111  -t -p 8888:8888 ucleo/geog0111 /opt/conda/envs/geog0111/bin/jupyter notebook --ip='*' --port=8888 --no-browser
-        
-          
-This will respond with something like:
+This will take a little time the first time you run the command, but should be much faster on subsequent occasions.
+
+It will eventually respond with something like:
 
 
         [I 06:58:25.120 NotebookApp] Serving notebooks from local directory: /Users/plewis/Documents/GitHub/geog0111
