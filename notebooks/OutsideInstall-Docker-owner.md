@@ -56,9 +56,11 @@ Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](h
 
 Generate and run the Docker on the local installation using `jupyter-repo2docker`. Type the following command into a shell:
 
-          cd ~ && jupyter-repo2docker -E geog0111
+          docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" 
+          cd ~ && jupyter-repo2docker --push --image-name ucleo/geog0111:latest -E geog0111
+          cd ~ && jupyter-repo2docker --push --image-name ucleo/geog0111:1.1.1 -E geog0111
 
-This will take a little time the first time you run the command, but should be much faster on subsequent occasions.
+This will take a little time the first time you run the command or when there are major changes to the repository, but should be much faster on subsequent occasions.
 
 It will eventually respond with something like:
 
@@ -124,4 +126,3 @@ To update the notes (and over-write your changes), in a shell (Terminal) type:
 
     cd ~/geog0111 && git reset --hard HEAD && git pull
     
-<!-- #endregion -->
