@@ -1,5 +1,5 @@
 
-# Instructions for docker install of these notes as owner
+# Instructions for docker install of these notes
 
 ## Requirements
 
