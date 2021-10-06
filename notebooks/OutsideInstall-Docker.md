@@ -48,9 +48,20 @@ Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](h
 
 ### running `docker`
 
-Run the following command to pull the docker and run the Jupyter notebook server locally:
+Make sure the environment variables `HOME` and `USER` are set:
 
-        docker run --rm -i --volume=${HOME}/geog0111:/home/jovyan/geog0111  -t ucleo/geog0111:latest
+        env | grep HOME
+        env | grep USER
+
+If not (they should be, though may not be on Windows), then try:
+
+        export USER=$(whoami)
+        export HOME=$(cd ~ && pwd)
+        
+Then run the following command to pull the docker and run the Jupyter notebook server locally:
+
+        docker run --rm -i --volume=${HOME}/geog0111:/home/$USER/tmp/geog0111 -w /home/$USER/tmp/geog0111  -p 8888:8888   -t ucleo/geog0111:latest 
+
 
 It will eventually respond with something like:
 
