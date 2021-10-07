@@ -1170,11 +1170,14 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
  
     # output dict
     odict = {}
-    if ('force' in kwargs.keys()) and kwargs['force'] == True:
+    if ('force' in kwargs.keys()) and kwargs['force'] == False:
+        redo = False
+        del kwargs['force']
+    elif ('force' in kwargs.keys()) and kwargs['force'] == True:
         redo = True
         del kwargs['force']
     else:
-        redo = False
+        redo = True
         
     if 'warp_args' in kwargs:
         warp_args = kwargs['warp_args']
