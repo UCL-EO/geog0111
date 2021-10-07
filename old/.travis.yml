@@ -1,0 +1,25 @@
+services:
+- docker
+#env:
+#  global:
+#  - IMAGE_NAME=ucleo/geog0111
+before_script:
+- repo="$(grep CONDA_DEFAULT_ENV Docker/Dockerfile | awk -F= '{ print $2; exit }')"
+- version="$(grep BASE_VERSION Docker/Dockerfile | awk -F= '{ print $2; exit }')"
+- IMAGE_NAME=ucleo/$repo
+script:
+- docker build --file Docker/Dockerfile --tag "$IMAGE_NAME" .
+#- docker run -it "$IMAGE_NAME" bash -ic  'source ~/.dockenvrc && cd ~/geog0111 && bin/notebook-run-2.sh'
+#- docker run -it "$IMAGE_NAME" bash -ic  'source ~/.dockenvrc && cd ~/geog0111 && mkdocs gh-deploy --force'
+after_script:
+- docker images
+before_deploy:
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+- docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
+- docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${version}"
+deploy:
+  provider: script
+  script: 
+  - docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${version}"
+  on:
+    branch: master
