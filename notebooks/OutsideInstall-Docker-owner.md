@@ -56,7 +56,7 @@ Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](h
 
 Generate and run the Docker on the local installation using `jupyter-repo2docker`. Type the following command into a shell:
 
-          docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" 
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin 
           cd ~ && jupyter-repo2docker --push --image-name ucleo/geog0111:latest -E geog0111
           cd ~ && jupyter-repo2docker --push --image-name ucleo/geog0111:1.1.1 -E geog0111
 
