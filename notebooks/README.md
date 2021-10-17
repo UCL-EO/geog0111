@@ -5,7 +5,6 @@
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree)
  [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree)
 
-
 ## Course information
 
 ### Course Convenor 
@@ -85,4 +84,4 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
-follow the instructions on [UCL installation and running](Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md), or if you want to run the notebooks using [docker](https://www.docker.com) [these notes](OutsideInstall-Docker.md).
+follow the instructions on [UCL installation and running](notebooks/Install.md). If you are running from outside UCL [see these notes](OutsideInstall-Local.md), or if you want to run the notebooks using [docker](https://www.docker.com) look at [the course on docker hun](https://hub.docker.com/repository/docker/proflewis/geog0111) [these notes](OutsideInstall-Docker.md).
