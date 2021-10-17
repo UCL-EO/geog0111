@@ -2,5 +2,5 @@
 here=`pwd`
 
 git add --all *
-git commit -m "updated from $here:t"
+git commit -m "updated from $1"
 git push origin master
