@@ -1,6 +1,6 @@
 # GEOG0111 Scientific Computing
 
-[Course Documentation](https://UCL-EO.github.io/geog0111/)
+[Course Documentation](https://UCL-EO.github.io/geog0111/) 
 
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree)
  [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree)
