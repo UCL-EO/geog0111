@@ -111,5 +111,26 @@ Then create the stash with your label:
     
 Now, pull the new notes:
 
-    git pull 
+    git pull origin master
+    
+Suppose this pulled a new version of the file `001_Notebook_use.ipynb`,m but you had edits in that file that you wasnted to keep. Then the pull wouyld overwrite your edits, BUT they would still be available via the stash.
+
+You can see a `diff` (what changed from the last stash entry) by using:
+
+    git stash show -p stash@{0}
+    
+You have two main options then for using the stash:
+
+apply the changes to the new file:
+
+    git stash apply STASH-NAME
+    
+    
+Or move the old file back in place of the new file:
+
+
+    git stash pop STASH-NAME
+   
+   
+For anything more complex than that, look at this [explainer](https://www.freecodecamp.org/news/git-stash-explained/).
     
