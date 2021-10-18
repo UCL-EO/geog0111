@@ -93,3 +93,23 @@ If you are interested in running the course notes from outside UCL on your own c
 3. You could use [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree) or 
  [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree) to run the course. These use external resources (so, not UCL and not your own computer) to run the notebooks. The only problem for you is that the sessions are not persistent, so any changes or exercises you do in a notebook would be lost to you the next time you start a binder or colab session. There are ways around that that would work fine for the first half of the course. The simplest is for you to download any notebook that you change to your local computer, then relaod it the next time you run a session. Its a bit of a hassle, but the service is free, and you can run it simply from any browser (e.g. yopur phone or ipad).
 
+### Updating notes
+
+From time to time, we need to update the notes because of a bug or some other change. That's great, because we are using `git` which allows and controls all of that.
+
+At the same time, we don't want any update to mess up any work you may have already done, for example in a notebook.
+
+There is a mechanism in `git` that allows this sort of thing, called a [stash](https://www.freecodecamp.org/news/git-stash-explained/).
+
+The way to use it is, when you are told to update the notes, first create a stash with some meaningful name/label, e.g. `my edits on monday'. First, go to the directory your work in in (the working directory):
+
+    cd ~/geog0111/notebooks
+    
+Then create the stash with your label:
+
+    git stash save "my edits on monday"
+    
+Now, pull the new notes:
+
+    git pull 
+    
