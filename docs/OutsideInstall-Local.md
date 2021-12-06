@@ -3,6 +3,10 @@
 
 ## Requirements
 
+### `gdal`
+
+To do the geospatial processing in Python, you will need to install the `gdal` package on your computer. There are specific instructiuons for that [here](InstallGDAL.md). Note that if you are using a windows computer, we suggest using `WSL`, as explained in the link. Then you must also use `WSL` for all of the material below.
+
 ### Anaconda
 
 First, you will need to make sure you have Python (3.6+) installed on your computer. We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. We suggest you get the most up to date version of Python available. We won't be using the additional tools such as PyCharm, so you don't need to install those for this course (you can if you want to). 
@@ -75,6 +79,14 @@ If you don't get that, look at the installation instruction again. **There is li
 
 You may want to check if you need to update `git`: https://phoenixnap.com/kb/how-to-update-git
 
+## mamba
+
+Actually, `conda` is pretty slow and cumbersome. A much better package manager (cross platform) is `mamba`. We advise you to download this and use in place of `conda`. Everywhere you see `conda` mantioned below, use `mamba` (after you have installed it obviously).
+
+see [mamba](https://github.com/mamba-org/mamba) for install. e.g.
+
+        conda install mamba -n base -c conda-forge
+
 ## Local install in `~`
 
 These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.
@@ -109,7 +121,7 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
 4. Finally, set up notebook kernel and extensions by running the following in shell (Terminal):
 
-        python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111'
+        python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111' --user
         ~/geog0111/notebooks/bin/postBuild
 
 5. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.

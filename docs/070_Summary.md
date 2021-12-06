@@ -661,12 +661,13 @@ help(modisHTML)
             'tile'     : 'h08v06'
           }
         
-          html = modisHTML(**modinfo,verbose=False)
+          html,html_file = modisHTML(**modinfo,verbose=False)
         
         Returns:
           html  : string of html from MODIS data product page
                   e.g. what you would find on 
                   https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
+          html_file : local file dump
         
         Control options:
           year : int of year (2000+ for Terra, 2002+ for Aqua products)

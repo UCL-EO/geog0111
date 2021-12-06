@@ -127,7 +127,7 @@ plt.plot(x,gaussian)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7f8cb6b24d50>]
+    [<matplotlib.lines.Line2D at 0x7facca313590>]
 
 
 
@@ -175,7 +175,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7f8cb6b05310>
+    <matplotlib.legend.Legend at 0x7facca67afd0>
 
 
 
@@ -497,7 +497,7 @@ patches = [matplotlib.patches.Patch(color=c, label=l)
 
 
 ```python
-import gdal
+from osgeo import gdal
 import numpy as np
 
 # read the LC_Type3 dataset
@@ -512,7 +512,7 @@ print(lcfiles['LC_Type3'])
 ```
 
     [  1   3   4   5   6   7  10 255]
-    work/output_filename_SDS_LC_Type3.vrt
+    work/output_filename_Selektor_FIPS_LU_YEAR_2019_DOYS_1_1_SDS_LC_Type3.vrt
 
 
 
@@ -530,7 +530,7 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7f8caa6a3790>
+    <matplotlib.legend.Legend at 0x7facbbfbd190>
 
 
 
@@ -656,7 +656,7 @@ axs.legend(loc='upper right')
 
 
 
-    <matplotlib.legend.Legend at 0x7f8caa4919d0>
+    <matplotlib.legend.Legend at 0x7facc9fcf590>
 
 
 

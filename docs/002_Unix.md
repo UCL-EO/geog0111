@@ -80,7 +80,7 @@ cd ~
 pwd
 ```
 
-    /home/ucfalew
+    /Users/plewis
 
 
 changes directory to our home, and prints the directory name.
@@ -95,8 +95,8 @@ cd ..
 pwd
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111
+    /Users/plewis/geog0111/notebooks
+    /Users/plewis/geog0111
 
 
 #### Exercise 1
@@ -112,11 +112,10 @@ The command `ls` lists the files specified. For example:
 
 ```bash
 %%bash
-cd ~/geog0111
+cd ~/geog0111/notebooks
 ls R*
 ```
 
-    README.add.md
     README.md
 
 
@@ -127,11 +126,11 @@ If we specify the option `-lh` then it provides a long listing (`-l`) with file 
 
 ```bash
 %%bash
-cd ~/geog0111
+cd ~/geog0111/notebooks
 ls -lh README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3.5K Sep 28 21:37 README.md
+    -rw-r--r--  1 plewis  staff   3.7K  4 Oct 08:45 README.md
 
 
 Here, the file size if `3.3K` (3.3 KBytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
@@ -160,7 +159,7 @@ Following that, we interpret the field `rw-r--r--` from above as `644`. The most
 
 #### Exercise 2
 
-* examine the file permissions for files `bin/*` (in the directory `bin`)
+* examine the file permissions for files `~/geog0111/notebooks/bin/*` (in the directory `~/geog0111/notebooks/bin`)
 * what do you notice about these? 
 * why do you think this is so?
 
@@ -171,14 +170,16 @@ We can change file permissions with the command `chmod`. For example:
 
 ```bash
 %%bash
+cd ~/geog0111/notebooks
+
 ls -lh ../README.md
 chmod 755 ../README.md
 ls -lh ../README.md
 chmod 644 ../README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3.5K Sep 28 21:37 ../README.md
-    -rwxr-xr-x 1 ucfalew ucfa 3.5K Sep 28 21:37 ../README.md
+    -rw-r--r--  1 plewis  staff   3.7K  4 Oct 08:45 ../README.md
+    -rwxr-xr-x  1 plewis  staff   3.7K  4 Oct 08:45 ../README.md
 
 
 First the permissions of the file are 644 as we saw above, then we use `chmod 755` to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:
@@ -193,10 +194,10 @@ A posix directory name that **starts with** the file separator '/' is called an 
 
 ```bash
 %%bash
-ls -l ~/geog0111/README.md
+ls -l ~/geog0111/notebooks/README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3522 Sep 28 21:37 /home/ucfalew/geog0111/README.md
+    -rw-r--r--  1 plewis  staff  3740  4 Oct 08:45 /Users/plewis/geog0111/notebooks/README.md
 
 
 
@@ -205,10 +206,12 @@ A *relative pathname* is one that does not start with `/`  or `~`. It is specifi
 
 ```bash
 %%bash
+cd ~/geog0111/notebooks
+
 ls -l ../README.md
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 3522 Sep 28 21:37 ../README.md
+    -rw-r--r--  1 plewis  staff  3769  4 Oct 08:45 ../README.md
 
 
 Recall that we use `..` to specify 'up one level'. Then:
@@ -216,8 +219,8 @@ Recall that we use `..` to specify 'up one level'. Then:
 
 ```bash
 %%bash
-# cd to absolute path ~/geog0111/images
-cd ~/geog0111/images
+# cd to absolute path ~/geog0111/notebooks/images
+cd ~/geog0111/notebooks/images
 pwd
 
 # now relatuve cd up one and down to bin
@@ -229,9 +232,9 @@ cd ..
 pwd
 ```
 
-    /home/ucfalew/geog0111/images
-    /home/ucfalew/geog0111/bin
-    /home/ucfalew/geog0111
+    /Users/plewis/geog0111/notebooks/images
+    /Users/plewis/geog0111/notebooks/bin
+    /Users/plewis/geog0111/notebooks
 
 
 ### Create and delete a file, `cat`, `rm`
@@ -247,6 +250,8 @@ We can use the command `cat` to create a text files from a shell, for example:
 # to the file work/newfile.dat
 # the symbols << and > involve 
 # redirection 
+cd ~/geog0111/notebooks
+
 cat << EOF > work/newererfile.dat
 
 # this will go into the file
@@ -258,7 +263,7 @@ EOF
 ls -lh work/n*
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Sep 29 08:11 work/newererfile.dat
+    -rw-r--r--  1 plewis  staff    73B  4 Oct 08:57 work/newererfile.dat
 
 
 We can also use `cat` to see what is in a file:
@@ -266,6 +271,8 @@ We can also use `cat` to see what is in a file:
 
 ```bash
 %%bash
+cd ~/geog0111/notebooks
+
 cat work/newererfile.dat
 ```
 
@@ -280,18 +287,14 @@ We can use the command `rm` to delete a file:
 
 ```bash
 %%bash
+cd ~/geog0111/notebooks
+
 rm work/newererfile.dat
 ```
 
-### Creating from JupyterLab
+### Creating files
 
-If you are using this notebook in JupyterLab, go to the launcher tab and you should see various tools that you can launch:
-
-![JupyterLab tools](images/jl.png)
-
-Among these you will see 'text file'. Launch a text file, write your Python code into the file, and save it (`File -> Save As`) to the Python file name you want in your `work directory` (e.g. `work/test.py`).
-
-Alternatively, use the menu item `File -> New -> Text File` to open a new text file.
+You can create files using the the menu item `File -> New -> Text File` to open a new text file.
 
 #### Exercise 3
 

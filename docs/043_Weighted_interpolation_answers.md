@@ -161,7 +161,7 @@ axs.legend(loc='best')
 
 
 
-    <matplotlib.legend.Legend at 0x7f8cb03e05d0>
+    <matplotlib.legend.Legend at 0x7facbb8592d0>
 
 
 
@@ -189,7 +189,7 @@ axs.legend(loc='best')
 # ANSWER
 from geog0111.modisUtils import modisAnnual
 
-import gdal
+from osgeo import gdal
 import numpy as np
 
 def get_lc(year,tile,fips):
@@ -278,7 +278,7 @@ lc = get_lc(year,tile,fips)
 plot_LC_Type3(lc)
 ```
 
-    class codes: [  1   3   4   5   6   7  10 255]
+    class codes: [  0   1   3   4   5   6   7   9  10 255]
 
 
 

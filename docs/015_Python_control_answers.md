@@ -169,7 +169,7 @@ year = '2020'
 # variable month to the correct month for the value of doy
 if ( doy < 1 ) or (doy > 366):
     # good to catch errors
-    month = 'out of bounds error: doy='+doy
+    month = f'out of bounds error: doy={doy}'
 elif ( doy <= 31 ):
     month = 'January'
 elif ( doy <= 60 ):

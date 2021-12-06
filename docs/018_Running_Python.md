@@ -34,11 +34,14 @@ We will generally use these Jupyter notebooks for running you Python codes, but 
 
 Python codes are written in files with the suffix `.py`, e.g. [`geog0111/helloWorld.py`](geog0111/helloWorld.py).
 
-If the file is defined as a Python script, then we can run. it from a shell in the same way we would run any other `unix` command:
+If the file is defined as a Python script snd the file is executable (relevant x bit set), then we can run. it from a shell in the same way we would run any other `unix` command:
 
 
-```python
-!geog0111/helloWorld.py
+```bash
+%%bash
+chmod +x geog0111/helloWorld.py
+#run the script
+geog0111/helloWorld.py
 ```
 
     hello world

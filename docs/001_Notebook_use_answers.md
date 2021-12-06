@@ -230,7 +230,7 @@ print(third_string)
 
     NameError                                 Traceback (most recent call last)
 
-    /var/folders/mp/9cxd5s793bjd4q3zng6dv_cw0000gn/T/ipykernel_89212/758698420.py in <module>
+    /var/folders/mp/9cxd5s793bjd4q3zng6dv_cw0000gn/T/ipykernel_57367/758698420.py in <module>
          18 
          19 # try to print a variable `third_string` that you haven't yet created
     ---> 20 print(third_string)

@@ -18,8 +18,8 @@ UCL snowmelt model for GEOG0111
 
 def model(T0,f,T,p,xp=1.0):
     '''
-    snow melt model
-    
+    snow melt model by P. Lewis (C) UCL 2010-2022
+
     parameters:
         T0 - Temperature threshold (C): float or shape (Np)
              Typical range: 0.0 to 20.0 C

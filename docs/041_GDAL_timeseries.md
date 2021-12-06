@@ -66,7 +66,7 @@ We use `gdal.BuildVRT()` as we have previously, specifying the output name `work
 
 
 ```python
-import gdal
+from osgeo import gdal
 import numpy as np
 
 # build a VRT "work/stitch_set.vrt"
@@ -129,10 +129,10 @@ print(data.shape)
 
 
 ```python
-import gdal
+from osgeo import gdal
 import matplotlib.pyplot as plt
 
-fig, axs = plt.subplots(1,3,figsize=(22,5))
+fig, axs = plt.subplots(1,3,figsize=(13,5))
 axs = axs.flatten()
 
 for i in range(data.shape[0]):
@@ -150,9 +150,7 @@ for i in range(data.shape[0]):
 
 ## A year of data
 
-A convenient feature of `Modis.get_modis` is that we can use wildcards for specifying dates. 
-
-So, to get a year of LAI data for Luxembourg, we can specify `doys = "*"`. Note that we could have chosen any location, but we select a small country to make the running more feasible in a practical session.
+To get a year of LAI data for Luxembourg, we can specify `doys = [i for i in range(1,366,4)]`. Note that we could have chosen any location, but we select a small country to make the running more feasible in a practical session.
 
 If the data are already downloaded into the local cache, it should not take too long to form the time series. It will need to generate the VRT files for how every many files and tile you have requested, so that may take some tens of minutes, even if the HDF files are already generated.
 
@@ -212,7 +210,7 @@ And read the data into a numpy array:
 
 
 ```python
-import gdal
+from osgeo import gdal
 
 g = gdal.Open("work/stitch_time.vrt")
 data = g.ReadAsArray() * 0.1
@@ -246,7 +244,9 @@ for i in range(data.shape[0]):
 
 ### Plotting time series
 
-We might now want to plot some time series.
+We might now want to plot some time series. We will need to know the day of year associated with each spatial dataset in the time series. We could just attempt to specify `doys = [i for i in range(1,366,4)]` as above. But that might not be robust (e.g. if no data were available for some particular day).
+
+It is *better* to try to develop an internally consistent dataset. The `doy` information associated with each spatial dataset in the time series is encoded in the band name strings we examined above, such as `2019-001`.
 
 First, extract the `doy` from `bnames`:
 
@@ -257,6 +257,8 @@ print(bnames)
 
     ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
 
+
+we can try to extract the information from these strings then. Let's build up to that, by considering a single example string, and work out how to deal with that. Once we know that, we can build a loop around it (e.g. in a list comprehension like we had for `[i for i in range(1,366,4)]`.
 
 
 ```python
@@ -310,7 +312,7 @@ for i in range(shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_29_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_30_0.png)
     
 
 
@@ -397,14 +399,14 @@ odict,bnames = modisAnnual(**kwargs)
 print(odict,bnames) 
 ```
 
-    {'Fpar_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_Fpar_500m.vrt', 'Lai_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_Lai_500m.vrt', 'FparLai_QC': 'work/output_filename_Selektor_FIPS_LU_SDS_FparLai_QC.vrt', 'FparExtra_QC': 'work/output_filename_Selektor_FIPS_LU_SDS_FparExtra_QC.vrt', 'FparStdDev_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_FparStdDev_500m.vrt', 'LaiStdDev_500m': 'work/output_filename_Selektor_FIPS_LU_SDS_LaiStdDev_500m.vrt'} ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
+    {'Fpar_500m': 'work/output_filename_Selektor_FIPS_LU_YEAR_2019_DOYS_1_365_SDS_Fpar_500m.vrt', 'Lai_500m': 'work/output_filename_Selektor_FIPS_LU_YEAR_2019_DOYS_1_365_SDS_Lai_500m.vrt', 'FparLai_QC': 'work/output_filename_Selektor_FIPS_LU_YEAR_2019_DOYS_1_365_SDS_FparLai_QC.vrt', 'FparExtra_QC': 'work/output_filename_Selektor_FIPS_LU_YEAR_2019_DOYS_1_365_SDS_FparExtra_QC.vrt', 'FparStdDev_500m': 'work/output_filename_Selektor_FIPS_LU_YEAR_2019_DOYS_1_365_SDS_FparStdDev_500m.vrt', 'LaiStdDev_500m': 'work/output_filename_Selektor_FIPS_LU_YEAR_2019_DOYS_1_365_SDS_LaiStdDev_500m.vrt'} ['2019-001', '2019-005', '2019-009', '2019-013', '2019-017', '2019-021', '2019-025', '2019-029', '2019-033', '2019-037', '2019-041', '2019-045', '2019-049', '2019-053', '2019-057', '2019-061', '2019-065', '2019-069', '2019-073', '2019-077', '2019-081', '2019-085', '2019-089', '2019-093', '2019-097', '2019-101', '2019-105', '2019-109', '2019-113', '2019-117', '2019-121', '2019-125', '2019-129', '2019-133', '2019-137', '2019-141', '2019-145', '2019-149', '2019-153', '2019-157', '2019-161', '2019-165', '2019-169', '2019-173', '2019-177', '2019-181', '2019-185', '2019-189', '2019-193', '2019-197', '2019-201', '2019-205', '2019-209', '2019-213', '2019-217', '2019-221', '2019-225', '2019-229', '2019-233', '2019-237', '2019-241', '2019-245', '2019-249', '2019-253', '2019-257', '2019-261', '2019-265', '2019-269', '2019-273', '2019-277', '2019-281', '2019-285', '2019-289', '2019-293', '2019-297', '2019-301', '2019-305', '2019-309', '2019-313', '2019-317', '2019-321', '2019-325', '2019-329', '2019-333', '2019-337', '2019-341', '2019-345', '2019-349', '2019-353', '2019-357', '2019-361', '2019-365']
 
 
 We can read some of these data in now:
 
 
 ```python
-import gdal
+from osgeo import gdal
 
 g = gdal.Open(odict['Lai_500m'])
 if g:
@@ -470,7 +472,7 @@ for i in range(Lai_500m.shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_40_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_41_0.png)
     
 
 
@@ -496,7 +498,7 @@ for i in range(Lai_500m.shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_41_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_42_0.png)
     
 
 
@@ -528,7 +530,7 @@ for i in range(shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_42_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_43_0.png)
     
 
 
@@ -559,7 +561,7 @@ for i in range(shape[0]):
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_43_0.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_44_0.png)
     
 
 
@@ -609,7 +611,7 @@ axs.set_ylabel('LAI')
 
 
     
-![png](041_GDAL_timeseries_files/041_GDAL_timeseries_45_1.png)
+![png](041_GDAL_timeseries_files/041_GDAL_timeseries_46_1.png)
     
 
 

@@ -84,7 +84,7 @@ import pandas as pd
 import scipy
 import scipy.ndimage.filters
 import numpy as np
-import gdal
+from osgeo import gdal
 from pathlib import Path
 
 '''

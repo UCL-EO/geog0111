@@ -16,60 +16,85 @@ Recall from [previous sections](030_NASA_MODIS_Earthdata.md#MOTA) how to retriev
 ```python
 # ANSWER
 import numpy as np
-from geog0111.modis import Modis
+import matplotlib.pyplot as plt
+from geog0111.modisUtils import modisAnnual
+from osgeo import gdal
 
-# Load a MODIS LAI dataset SDS 
-# `Lai_500m` for tile `h17v03` day of year 41, 2019
 kwargs = {
     'tile'      :    ['h17v03'],
     'product'   :    'MCD15A3H',
-    'sds'       :    'Lai_500m',
+    'sds'       :    ['Lai_500m'],
+    'doys'       : [41],
+    'year'      : 2019,
 }
-modis = Modis(**kwargs)
-# specify day of year (DOY) and year
-data_MCD15A3H = modis.get_data(2019,doy=1+4*10)
 
-# Call the 2D array `data` and 
-# confirm that it has a shape (2400, 2400)
-data = data_MCD15A3H['Lai_500m']
-assert data.shape == (2400,2400)
-
-# build a mask called `mask` of invalid pixels
-mask = (data > 100)
-
-# count how many invalid pixels there are (`sum`)
-perc = 100 * mask.sum()/(mask.shape[0] * mask.shape[1])
-print(f'{perc : .2f}% invalid pixels')
-
-# scale the data array as appropriate to obtain LAI
-data = data * 0.1
-
-# set invalid data values to 'not a number' np.nan
-data[mask] = np.nan
+filename,bandname = modisAnnual(verbose=False,**kwargs)
+print(f'filename:\n{filename}')
+print(f'bandname:\n{bandname}')
 ```
 
-     77.22% invalid pixels
+    filename:
+    {'Lai_500m': 'work/output_filename_YEAR_2019_DOYS_41_41_SDS_Lai_500m.vrt'}
+    bandname:
+    ['2019-041']
 
 
 
 ```python
-import matplotlib.pyplot as plt
+# read VRT file using gdal
+data = {}
+for sds, fn in filename.items():
+    g = gdal.Open(fn)
+    if g:
+        data[sds] = g.ReadAsArray()
+    print(f"sub-dataset {sds} has the shape of {data[sds].shape}")
+```
 
-fig, axs = plt.subplots(1,1,figsize=(16,8))
+    sub-dataset Lai_500m has the shape of (2400, 2400)
+
+
+
+```python
+# get Lai data from the data dict
+lai_data = data['Lai_500m']
+
+# build a mask called 'mask' of invalid pixels
+mask = (lai_data > 100)
+
+# count the percentage of invalid pixels
+perc = mask.sum() / (mask.shape[0] * mask.shape[1]) * 100
+print(f'invalid pixels take up {perc:.2f}%')
+```
+
+    invalid pixels take up 77.22%
+
+
+
+```python
+# scale the data array as appropriate to obtain LAI
+lai_data = lai_data * 0.1
+
+# set invalid data values to 'not a number' np.nan
+lai_data[mask] = np.nan
+```
+
+
+```python
 # plot image data: use vmin and vmax to set limits
-im = axs.imshow(data,vmax=10,interpolation=None)
+fig, axs = plt.subplots(1,1,figsize=(16,8))
+im = axs.imshow(lai_data,vmax=10,interpolation=None)
 fig.colorbar(im, ax=axs)
 ```
 
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f1cca4e4850>
+    <matplotlib.colorbar.Colorbar at 0x7f3540bdb390>
 
 
 
 
     
-![png](064_Numpy_answers_files/064_Numpy_answers_3_1.png)
+![png](064_Numpy_answers_files/064_Numpy_answers_6_1.png)
     
 

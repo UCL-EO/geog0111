@@ -25,9 +25,9 @@ You will need to recall how to filter and [mask `numpy` arrays](032_More_numpy.m
 ```python
 # ANSWER
 # dont forget to import the packages you need
-import gdal
+from osgeo import gdal
 import numpy as np
-import gdal
+from osgeo import gdal
 import numpy as np
 from  geog0111.modisUtils import getModisFiles
 
@@ -238,7 +238,7 @@ print(msg)
 ```python
 # ANSWER
 
-import gdal
+from osgeo import gdal
 from geog0111.modisUtils import getModisFiles,stitchModisDate
 import matplotlib.pyplot as plt
 
@@ -339,7 +339,7 @@ print(f"Mean LAI for LU for doy {kwargs['doy']} {kwargs['year']} is {mean_lai :.
 
 ```python
 from geog0111.modisUtils import getModis
-import gdal
+from osgeo import gdal
 import matplotlib.pyplot as plt
 #ANSWER
 
@@ -390,7 +390,7 @@ for datafile,bname in zip(datafiles,bnames):
 print(msg)
 ```
 
-    ['work/stitch_Lai_500m_2019_009_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt', 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt', 'work/stitch_Lai_500m_2019_049_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt'] ['2019-09', '2019-41', '2019-49']
+    ['work/stitch_Lai_500m_2019_009_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_FR_warp.vrt', 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_FR_warp.vrt', 'work/stitch_Lai_500m_2019_049_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_FR_warp.vrt'] ['2019-009', '2019-041', '2019-049']
     
     Use Modis.get_modis to plot the LAI for France for doy 9, 41 and 49, 2019
     
@@ -462,7 +462,7 @@ for datafile,bname in zip(datafiles,bnames):
     For this part, we need to build a mask of valid data points
     Then find the mean LAI over that set.
     
-    Mean LAI for FR for 2019-09 is 0.40
-    Mean LAI for FR for 2019-41 is 0.70
-    Mean LAI for FR for 2019-49 is 0.80
+    Mean LAI for FR for 2019-009 is 0.40
+    Mean LAI for FR for 2019-041 is 0.70
+    Mean LAI for FR for 2019-049 is 0.80
 

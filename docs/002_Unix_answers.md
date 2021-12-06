@@ -29,10 +29,10 @@ cd ../..
 pwd
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111
-    /nfs/cfs/home3/Uucfa6/ucfalew
-    /nfs/cfs/home3
+    /Users/plewis/geog0111/notebooks
+    /Users/plewis/geog0111
+    /Users/plewis
+    /
 
 
 
@@ -53,14 +53,14 @@ cd geog0111/notebooks
 pwd
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-    /home/ucfalew
-    /home/ucfalew/geog0111/notebooks
+    /Users/plewis/geog0111/notebooks
+    /Users/plewis
+    /Users/plewis/geog0111/notebooks
 
 
 #### Exercise 2
 
-* examine the file permissions for files `bin/*` (in the directory `bin`)
+* examine the file permissions for files `~/geog0111/notebooks/bin/*` (in the directory `~/geog0111/notebooks/bin`)
 * what do you notice about these? 
 * why do you think this is so?
 
@@ -72,7 +72,7 @@ pwd
 pwd
 
 # * examine the file permissions in the directory bin
-ls -lh bin/*
+ls -lh ~/geog0111/notebooks/bin/*
 
 # * what do you notice about these?
 cat << EOF
@@ -96,34 +96,34 @@ The README file is not executable: its just a text file.
 EOF
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-    -rwxr-xr-x 1 ucfalew ucfa 1.2K Sep 28 21:37 bin/build-conda-package
-    -rwxr-xr-x 1 ucfalew ucfa  220 Sep 28 21:37 bin/build-pypi-package
-    -rwxr-xr-x 1 ucfalew ucfa 1.4K Sep 28 21:37 bin/clean0111.sh
-    lrwxrwxrwx 1 ucfalew ucfa    7 Sep 28 22:17 bin/copy -> ../copy
-    -rwxr-xr-x 1 ucfalew ucfa   43 Sep 28 21:37 bin/database.sh
-    -rwxr-xr-x 1 ucfalew ucfa  217 Sep 28 21:37 bin/docker-build
-    -rwxr-xr-x 1 ucfalew ucfa  428 Sep 28 21:37 bin/docker-killall
-    -rwxr-xr-x 1 ucfalew ucfa 1022 Sep 28 21:37 bin/docker-run
-    -rwxr-xr-x 1 ucfalew ucfa  534 Sep 28 21:37 bin/fixA.sh
-    -rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 28 22:16 bin/get-datasets.sh
-    -rwxr-xr-x 1 ucfalew ucfa  569 Sep 28 21:37 bin/git-remove-all.sh
-    -rw-r--r-- 1 ucfalew ucfa  257 Sep 28 21:37 bin/howmany.sh
-    -rwxr-xr-x 1 ucfalew ucfa 2.8K Sep 28 21:37 bin/init0111.sh
-    -rwxr-xr-x 1 ucfalew ucfa 2.2K Sep 28 21:37 bin/init.sh
-    -rwxr-xr-x 1 ucfalew ucfa 3.3K Sep 28 21:37 bin/link-set.sh
-    -rw-r--r-- 1 ucfalew ucfa  245 Sep 28 21:37 bin/NASAaccount0111.py
-    -rwxr-xr-x 1 ucfalew ucfa 8.0K Sep 28 21:37 bin/notebook-mkdocs.sh
-    -rwxr-xr-x 1 ucfalew ucfa 2.0K Sep 28 21:37 bin/notebook-run.sh
-    -rwxr-xr-x 1 ucfalew ucfa 1.5K Sep 28 21:37 bin/postBuild
-    -rwxr-xr-x 1 ucfalew ucfa   44 Sep 28 21:37 bin/pullYou
-    -rwxr-xr-x 1 ucfalew ucfa  100 Sep 28 21:37 bin/pushMe
-    -rw-r--r-- 1 ucfalew ucfa   16 Sep 28 21:37 bin/README
-    -rwxr-xr-x 1 ucfalew ucfa  526 Sep 28 21:37 bin/set-course.sh
-    -rwxr-xr-x 1 ucfalew ucfa 3.4K Sep 28 21:37 bin/setup.sh
-    -rwxr-xr-x 1 ucfalew ucfa  754 Sep 28 21:37 bin/shellMe.sh
-    -rwxr-xr-x 1 ucfalew ucfa 2.7K Sep 28 21:37 bin/sort-db.sh
-    -rwxr-xr-x 1 ucfalew ucfa  742 Sep 28 21:37 bin/tidy.sh
+    /Users/plewis/geog0111/notebooks
+    -rw-r--r--  1 plewis  staff   245B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/NASAaccount0111.py
+    -rw-r--r--  1 plewis  staff    16B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/README
+    -rwxr-xr-x  1 plewis  staff   1.1K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/build-conda-package
+    -rwxr-xr-x  1 plewis  staff   220B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/build-pypi-package
+    -rwxr-xr-x  1 plewis  staff   1.3K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/clean0111.sh
+    lrwxr-xr-x  1 plewis  staff     7B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/copy -> ../copy
+    -rwxr-xr-x  1 plewis  staff    43B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/database.sh
+    -rwxr-xr-x  1 plewis  staff   217B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/docker-build
+    -rwxr-xr-x  1 plewis  staff   428B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/docker-killall
+    -rwxr-xr-x  1 plewis  staff   1.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/docker-run
+    -rwxr-xr-x  1 plewis  staff   534B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/fixA.sh
+    -rwxr-xr-x  1 plewis  staff   2.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/get-datasets.sh
+    -rwxr-xr-x  1 plewis  staff   569B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/git-remove-all.sh
+    -rw-r--r--  1 plewis  staff   257B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/howmany.sh
+    -rwxr-xr-x  1 plewis  staff   2.2K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/init.sh
+    -rwxr-xr-x  1 plewis  staff   2.7K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/init0111.sh
+    -rwxr-xr-x  1 plewis  staff   3.2K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/link-set.sh
+    -rwxr-xr-x  1 plewis  staff   8.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/notebook-mkdocs.sh
+    -rwxr-xr-x  1 plewis  staff   2.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/notebook-run.sh
+    -rwxr-xr-x  1 plewis  staff   1.5K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/postBuild
+    -rwxr-xr-x  1 plewis  staff    44B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/pullYou
+    -rwxr-xr-x  1 plewis  staff   100B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/pushMe
+    -rwxr-xr-x  1 plewis  staff   526B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/set-course.sh
+    -rwxr-xr-x  1 plewis  staff   3.4K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/setup.sh
+    -rwxr-xr-x  1 plewis  staff   754B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/shellMe.sh
+    -rwxr-xr-x  1 plewis  staff   2.6K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/sort-db.sh
+    -rwxr-xr-x  1 plewis  staff   742B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/tidy.sh
     ===============================
     * what do you notice about these?
     ===============================
@@ -150,6 +150,8 @@ EOF
 
 ```bash
 %%bash
+cd ~/geog0111/notebooks
+
 # ANSWER
 # Create a file `work/newfile.dat` using cat and check the new file size.
 cat << EOF > work/newfile.dat
@@ -161,12 +163,14 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Sep 29 08:11 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73  4 Oct 08:57 work/newfile.dat
 
 
 
 ```bash
 %%bash
+cd ~/geog0111/notebooks
+
 # ANSWER
 # Use the menu item File -> Open to edit the 
 # file you have created and print the new file size
@@ -177,7 +181,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa 73 Sep 29 08:11 work/newfile.dat
+    -rw-r--r--  1 plewis  staff  73  4 Oct 08:57 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
@@ -207,6 +211,8 @@ Using the `unix` commands and ideas from above:
 # directory geog0111 that start with the letter f
 # so
 #     geog0111/f*
+cd ~/geog0111/notebooks
+
 ls -lh geog0111/f*
 
 # interpret the file permissions and sizes of the files in there
@@ -215,10 +221,10 @@ ls -lh geog0111/f*
 # and only read for others
 ```
 
-    -rw-r--r-- 1 ucfalew ucfa  362 Sep 28 21:37 geog0111/fdict.py
-    -rwxr-xr-x 1 ucfalew ucfa 1.8K Sep 28 21:37 geog0111/filter_movies.py
-    -rw-r--r-- 1 ucfalew ucfa 2.2K Sep 28 21:37 geog0111/fire_practical_model.py
-    -rw-r--r-- 1 ucfalew ucfa 4.3K Sep 28 21:37 geog0111/fire_practical_satellite.py
-    -rw-r--r-- 1 ucfalew ucfa 1.9K Sep 28 21:37 geog0111/fire_practical_telecon.py
-    -rw-r--r-- 1 ucfalew ucfa   66 Sep 28 21:37 geog0111/flatten.py
+    -rw-r--r--  1 plewis  wheel   362B  3 Oct 21:28 geog0111/fdict.py
+    -rw-r--r--  1 plewis  wheel   1.7K  3 Oct 21:28 geog0111/filter_movies.py
+    -rw-r--r--  1 plewis  wheel   2.2K  3 Oct 21:28 geog0111/fire_practical_model.py
+    -rw-r--r--  1 plewis  wheel   4.3K  3 Oct 21:28 geog0111/fire_practical_satellite.py
+    -rw-r--r--  1 plewis  wheel   1.9K  3 Oct 21:28 geog0111/fire_practical_telecon.py
+    -rw-r--r--  1 plewis  wheel    66B  3 Oct 21:28 geog0111/flatten.py
 

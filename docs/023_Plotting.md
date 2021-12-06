@@ -247,7 +247,7 @@ axs.plot(df["YEAR"],df['JAN'],label='JAN')
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fdfcba8ee90>]
+    [<matplotlib.lines.Line2D at 0x7fdbd1804190>]
 
 
 
@@ -580,11 +580,11 @@ print(f'year {now.year}')
 print(f"{now.hour} O'clock")
 ```
 
-    It is now 2021-09-29 08:46:07.397974
-    day 29
-    month 9
+    It is now 2021-10-07 14:38:01.754287
+    day 7
+    month 10
     year 2021
-    8 O'clock
+    14 O'clock
 
 
 You can set up the `datetime` fields explicitly:
@@ -632,7 +632,7 @@ yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 ```
 
-    yesterday was 2021-09-28 08:46:07.439696
+    yesterday was 2021-10-06 14:38:01.789308
 
 
 ### `strftime` and `strptime`
@@ -654,8 +654,8 @@ date_now = now.strftime("%m/%d/%Y")
 print(f"data now: {date_now}")
 ```
 
-    time now: 08:46:07
-    data now: 09/29/2021
+    time now: 14:38:01
+    data now: 10/07/2021
 
 
 and `strptime` to load a `datetime` object from a string. To do so, we need to specify the format of the string. For example:
@@ -689,7 +689,7 @@ print(f"date: {date_object}")
 
 ### NOAA precipitation
 
-The file [2276931.csv](https://raw.githubusercontent.com/UCL-EO/geog0111/master/data/2276931.csv) contains precipitation data for an [NOAA weather station](https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY) `HAVANA 4.2 SW, FL US` for the year 2020 to date. Precipitation data are in inches.
+The file [2276931.csv](https://raw.githubusercontent.com/UCL-EO/geog0111/master/notebooks/data/2276931.csv) contains precipitation data for an [NOAA weather station](https://www.ncdc.noaa.gov/cdo-web/datasets#GSOY) `HAVANA 4.2 SW, FL US` for the year 2020 to date. Precipitation data are in inches.
 
 We want to plot precipitation as a function of time. First, we read the data as previously:
 

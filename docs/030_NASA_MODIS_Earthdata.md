@@ -130,7 +130,7 @@ Notice that the LAI data have a valid range 0 to 100, and that a scale factor of
 
 ```python
 from geog0111.modisUtils import modisAnnual
-import gdal
+from osgeo import gdal
 
 #######################
 # specify what we want
@@ -177,7 +177,7 @@ We will learn more of this later, but for now, note that we can use code such as
 
 ```python
 from geog0111.modisUtils import modisAnnual
-import gdal
+from osgeo import gdal
 
 #######################
 # specify what we want
@@ -203,6 +203,16 @@ for f,v in filename.items():
 
 
 ```python
+filename
+!ls work/output_filename_YEAR_2019_DOYS_41_41*
+```
+
+    work/output_filename_YEAR_2019_DOYS_41_41_SDS_Lai_500m.vrt
+    work/output_filename_YEAR_2019_DOYS_41_41_SDS_Lai_500m.vrt_bands
+
+
+
+```python
 import numpy as np
 # multiply by scale
 scale = 0.1
@@ -219,7 +229,7 @@ im_display(data_MCD15A3H,['Lai_500m'],x_size=16,y_size=8)
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_12_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_13_0.png)
     
 
 
@@ -294,7 +304,7 @@ xx.keys()
 
 ```python
 from geog0111.modisUtils import modisAnnual
-import gdal
+from osgeo import gdal
 from geog0111.im_display import im_display
 from geog0111.data_mask import data_mask
 from geog0111.get_doy import get_doy
@@ -337,7 +347,7 @@ im_display(data_MCD64A1,kwargs['sds'],\
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_21_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_22_0.png)
     
 
 
@@ -348,15 +358,15 @@ There are two MODIS daily snow cover datasets: [`MOD10A1` and `MYD10A1`](https:/
 
 
 ```python
-# needed to access data for snow
-from geog0111.modisUtils import preamble
-preamble()
+# not now needed to access data for snow
+#from geog0111.modisUtils import preamble
+#preamble()
 ```
 
 
 ```python
 from geog0111.modisUtils import modisAnnual
-import gdal
+from osgeo import gdal
 from geog0111.im_display import im_display
 from geog0111.data_mask import data_mask
 from geog0111.get_doy import get_doy
@@ -402,7 +412,7 @@ im_display(data_MOD10A1,kwargs['sds'],\
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_25_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_26_0.png)
     
 
 
@@ -416,7 +426,7 @@ We previously developed a code [`get_lc`](geog0111/plot_lc.py) to set up the col
 ```python
 from geog0111.plot_lc import plot_lc
 from geog0111.modisUtils import modisAnnual
-import gdal
+from osgeo import gdal
 
 # Madagascar
 
@@ -443,7 +453,7 @@ plot_lc(data_MCD12Q1['LC_Type1'])
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_27_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_28_0.png)
     
 
 

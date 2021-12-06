@@ -20,9 +20,9 @@ The first time you are using these notes, you should go through the items below.
 4. Open a Terminal, from `New->Terminal` on the `Control Panel`
 5. In the Terminal (shell), type:
 
-        cd ~ && git clone https://github.com/UCL-EO/geog0111
+        cd ~ && git clone git://github.com/UCL-EO/geog0111
     
-   This will clone this repository and set up the Python. It also sets up a partial data cache (in `.modis_cache`).
+   This will clone this repository and set up the Python. 
    
 5. Set up anaconda. In the Terminal (shell), type:
 
@@ -41,6 +41,12 @@ The first time you are using these notes, you should go through the items below.
         base                     /opt/miniconda-jhub/4.8.3
         jhubcode                 /opt/miniconda-jhub/4.8.3/envs/jhubcode
         geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
+        
+If it doesn't, type:
+
+         bash
+         
+and try again.        
 
 6. Now, set up notebook extensions by running the foillowing in shell (Terminal):
 

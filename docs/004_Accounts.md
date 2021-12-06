@@ -38,7 +38,7 @@ You can run a test on your login to NASA Earthdata using the information you hav
 
 
 ```python
-import gdal
+from osgeo import gdal
 from geog0111.modisUtils import modisFile
 # settings
 

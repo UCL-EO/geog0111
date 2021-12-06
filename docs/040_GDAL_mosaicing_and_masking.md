@@ -62,8 +62,8 @@ data_MCD15A3H
 
 
 
-    {'Lai_500m': {41: {'h17v03': 'HDF4_EOS:EOS_GRID:"/home/ucfalew/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m',
-       'h18v03': 'HDF4_EOS:EOS_GRID:"/home/ucfalew/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v03.006.2019050221757.hdf":MOD_Grid_MCD15A3H:Lai_500m'}}}
+    {'Lai_500m': {41: {'h17v03': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m',
+       'h18v03': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v03.006.2019050221757.hdf":MOD_Grid_MCD15A3H:Lai_500m'}}}
 
 
 
@@ -74,14 +74,14 @@ An example of the full dataset name is:
 print(data_MCD15A3H['Lai_500m'][41]['h17v03'])
 ```
 
-    HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m
+    HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m
 
 
 Armed with the SDS description, we can read a dataset from the MODIS file using `g.ReadAsArray()` after we have opened it. It returns a numpy array. We introduce `np.unique` that returns the unique values in a numpy array:
 
 
 ```python
-import gdal
+from osgeo import gdal
 import numpy as np
 
 this_sds = data_MCD15A3H['Lai_500m'][41]['h17v03']
@@ -145,7 +145,7 @@ Let;'s first generate the dataset of filenames:
 
 
 ```python
-import gdal
+from osgeo import gdal
 from geog0111.modisUtils import getModisFiles
 
 kwargs = {
@@ -163,10 +163,10 @@ data_MCD15A3H
 
 
 
-    {'Lai_500m': {41: {'h17v03': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m',
-       'h18v03': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v03.006.2019050221757.hdf":MOD_Grid_MCD15A3H:Lai_500m',
-       'h17v04': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v04.006.2019050222228.hdf":MOD_Grid_MCD15A3H:Lai_500m',
-       'h18v04': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v04.006.2019050220136.hdf":MOD_Grid_MCD15A3H:Lai_500m'}}}
+    {'Lai_500m': {41: {'h17v03': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m',
+       'h18v03': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v03.006.2019050221757.hdf":MOD_Grid_MCD15A3H:Lai_500m',
+       'h17v04': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v04.006.2019050222228.hdf":MOD_Grid_MCD15A3H:Lai_500m',
+       'h18v04': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v04.006.2019050220136.hdf":MOD_Grid_MCD15A3H:Lai_500m'}}}
 
 
 
@@ -185,10 +185,10 @@ doy_v
 
 
 
-    {'h17v03': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m',
-     'h18v03': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v03.006.2019050221757.hdf":MOD_Grid_MCD15A3H:Lai_500m',
-     'h17v04': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v04.006.2019050222228.hdf":MOD_Grid_MCD15A3H:Lai_500m',
-     'h18v04': 'HDF4_EOS:EOS_GRID:"/Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v04.006.2019050220136.hdf":MOD_Grid_MCD15A3H:Lai_500m'}
+    {'h17v03': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v03.006.2019050221756.hdf":MOD_Grid_MCD15A3H:Lai_500m',
+     'h18v03': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v03.006.2019050221757.hdf":MOD_Grid_MCD15A3H:Lai_500m',
+     'h17v04': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h17v04.006.2019050222228.hdf":MOD_Grid_MCD15A3H:Lai_500m',
+     'h18v04': 'HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h18v04.006.2019050220136.hdf":MOD_Grid_MCD15A3H:Lai_500m'}
 
 
 
@@ -327,7 +327,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7fb903a6c210>
+    <matplotlib.colorbar.Colorbar at 0x7f0dc7e68610>
 
 
 
@@ -459,7 +459,56 @@ We can use the command line [`gdal`](https://gdal.org/index.html) tool [`ogrinfo
 !ogrinfo data/TM_WORLD_BORDERS-0.3.shp -al -where FIPS="'LU'"
 ```
 
-    zsh:1: command not found: ogrinfo
+    INFO: Open of `data/TM_WORLD_BORDERS-0.3.shp'
+          using driver `ESRI Shapefile' successful.
+    
+    Layer name: TM_WORLD_BORDERS-0.3
+    Metadata:
+      DBF_DATE_LAST_UPDATE=2008-07-30
+    Geometry: Polygon
+    Feature Count: 1
+    Extent: (-180.000000, -90.000000) - (180.000000, 83.623596)
+    Layer SRS WKT:
+    GEOGCRS["WGS 84",
+        DATUM["World Geodetic System 1984",
+            ELLIPSOID["WGS 84",6378137,298.257223563,
+                LENGTHUNIT["metre",1]]],
+        PRIMEM["Greenwich",0,
+            ANGLEUNIT["degree",0.0174532925199433]],
+        CS[ellipsoidal,2],
+            AXIS["latitude",north,
+                ORDER[1],
+                ANGLEUNIT["degree",0.0174532925199433]],
+            AXIS["longitude",east,
+                ORDER[2],
+                ANGLEUNIT["degree",0.0174532925199433]],
+        ID["EPSG",4326]]
+    Data axis to CRS axis mapping: 2,1
+    FIPS: String (2.0)
+    ISO2: String (2.0)
+    ISO3: String (3.0)
+    UN: Integer (3.0)
+    NAME: String (50.0)
+    AREA: Integer (7.0)
+    POP2005: Integer64 (10.0)
+    REGION: Integer (3.0)
+    SUBREGION: Integer (3.0)
+    LON: Real (8.3)
+    LAT: Real (7.3)
+    OGRFeature(TM_WORLD_BORDERS-0.3):135
+      FIPS (String) = LU
+      ISO2 (String) = LU
+      ISO3 (String) = LUX
+      UN (Integer) = 442
+      NAME (String) = Luxembourg
+      AREA (Integer) = 0
+      POP2005 (Integer64) = 456613
+      REGION (Integer) = 150
+      SUBREGION (Integer) = 155
+      LON (Real) = 6.088
+      LAT (Real) = 49.771
+      POLYGON ((6.026256 50.181252,6.02861 50.166107,6.031111 50.160828,6.033889 50.159164,6.12 50.131943,6.134414 50.127846,6.130278 50.121941,6.128055 50.116386,6.118333 50.090828,6.112778 50.058884,6.113333 50.055832,6.130555 50.013885,6.140555 49.993889,6.173055 49.952217,6.175278 49.949997,6.234166 49.897499,6.250278 49.884163,6.255278 49.880554,6.315938 49.855316,6.321111 49.848328,6.395555 49.817772,6.429722 49.808884,6.481944 49.811104,6.522222 49.811104,6.524444 49.808609,6.524722 49.80555,6.505835 49.706627,6.484722 49.696106,6.473055 49.693604,6.46611 49.691109,6.420833 49.665833,6.356486 49.525864,6.362778 49.489166,6.36217 49.459389,6.328333 49.469162,6.302777 49.476662,6.247318 49.505974,6.239721 49.507774,6.229722 49.508331,6.165277 49.504715,6.156111 49.503883,6.124166 49.489716,6.123055 49.487221,6.122499 49.480553,6.12 49.471664,6.118055 49.469719,6.094444 49.454163,6.090555 49.453049,5.981388 49.448326,5.977777 49.448608,5.855277 49.501106,5.838611 49.51416,5.811666 49.536385,5.809999 49.538887,5.80788 49.545044,5.834167 49.549164,5.837777 49.550278,5.863055 49.571663,5.900277 49.640549,5.899166 49.662773,5.87615 49.709885,5.869444 49.719719,5.790277 49.78083,5.764999 49.789993,5.750833 49.791107,5.748055 49.79277,5.746666 49.795273,5.734444 49.834999,5.747777 49.907494,5.770833 49.95166,5.774722 49.956108,5.777499 49.957771,5.791389 49.962494,5.834444 49.986938,5.883055 50.077217,5.883055 50.080551,5.886666 50.098885,5.889444 50.104164,5.891666 50.10611,5.969722 50.16861,5.976388 50.171387,6.013888 50.181389,6.021944 50.18222,6.026256 50.181252))
+    
 
 
 
@@ -486,7 +535,7 @@ We choose a value of 255 for `dstNodata` because we have seen that only values b
 
 
 ```python
-import gdal
+from osgeo import gdal
 import matplotlib.pyplot as plt
 from geog0111.modisUtils import getModisFiles,stitchModisDate
 
@@ -526,7 +575,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7fb8cd67b790>
+    <matplotlib.colorbar.Colorbar at 0x7f10c57ebf50>
 
 
 
@@ -589,12 +638,12 @@ datafiles,bnames = getModis(verbose=False,**kwargs)
 print(datafiles,bnames)
 ```
 
-    ['work/stitch_Lai_500m_2019_009_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt', 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04_warp.vrt'] ['2019-09', '2019-41']
+    ['work/stitch_Lai_500m_2019_009_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_UK_warp.vrt', 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04_Selektor_FIPS_UK_warp.vrt'] ['2019-009', '2019-041']
 
 
 
 ```python
-import gdal
+from osgeo import gdal
 import matplotlib.pyplot as plt
 
 for datafile,bname in zip(datafiles,bnames):
@@ -635,10 +684,7 @@ We have also seen some utility functions to aid our use of these data. In partic
 |`g = gdal.Open(filename)` | Open geospatial file `filename` and return `gdal` object `g` (`None` if file not opened correctly)|
 |`g.GetSubDatasets()` | Get list of sub-datasets from `gdal` object `g`| 
 |`g.ReadAsArray(c0,r0,nc,nr)` | Read dataset from `gdal` object `g` into array. Form `c0` for `nc` columns and `r0` for `nr` rows. Set as `None` for defaults or don't give.|
-|`gdal.BuildVRT(ofile, sds)` | create `gdal` VRT (wrapper) file called `ofile` for SDS/file `sds` | `files,sds = modis.get_files(year,doy)`|
-||| `separate=True` for separate bands |
-||| `ofile = f"work/stitch_full_{year}_{doy:03d}.vrt"`|
-|||`stitch_vrt = gdal.BuildVRT(ofile, sds[0])`|
+|`gdal.BuildVRT(ofile, sds)` | create `gdal` VRT (wrapper) file called `ofile` for SDS/file `sds` | see [below](#gdal.BuildVRT()-example) |
 |`gdal.Info(f)` | Print information about geospatial file `f` ||
 | `gdal.Warp(ofile,ifile)` | Warp `ifile` to `ofile` with keyword parameters | Keywords: 
 |||`format = 'MEM'` or `format = 'GTiff'` : output format|
@@ -649,6 +695,45 @@ We have also seen some utility functions to aid our use of these data. In partic
 ||| `cutlineWhere = "FIPS='UK'"` : identifier information for cutline 
 |`g.FlushCache()` | flush open `gdal` object `g` (force write to file) |
 
+
+### `gdal.BuildVRT() example`
+
+
+
+```python
+from geog0111.modisUtils import getModisFiles
+from osgeo import gdal
+import numpy as np
+
+kwargs = {
+    'tile'      :    ['h17v03','h18v03','h17v04','h18v04'],
+    'product'   :    'MCD15A3H',
+    'sds'       :    'Lai_500m',
+    'doys'       : [9],
+    'year'      : 2019,
+}
+data = getModisFiles(**kwargs)
+# data here is a hierarchical dict
+# with data organised as:
+#     data[sds][doy][tiles]
+# giving the sds strings
+for sds, sds_v in data.items():
+    for doy, doy_v in sds_v.items():
+        tiles = doy_v.keys()
+        print(f'sds: {sds} doy: {doy} tiles: {tiles}')
+        ofile = f"work/stitch_{sds}_{kwargs['year']}_{doy:03d}_{'Tiles_'+'_'.join(tiles)}.vrt"
+        print(f'    -> {ofile}')
+        [print(f'    {i}') for i in doy_v.values()]
+        stitch_vrt = gdal.BuildVRT(ofile, list(doy_v.values()))
+        del stitch_vrt
+```
+
+    sds: Lai_500m doy: 9 tiles: dict_keys(['h17v03', 'h18v03', 'h17v04', 'h18v04'])
+        -> work/stitch_Lai_500m_2019_009_Tiles_h17v03_h18v03_h17v04_h18v04.vrt
+        HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.01.09/MCD15A3H.A2019009.h17v03.006.2019016142318.hdf":MOD_Grid_MCD15A3H:Lai_500m
+        HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.01.09/MCD15A3H.A2019009.h18v03.006.2019016142319.hdf":MOD_Grid_MCD15A3H:Lai_500m
+        HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.01.09/MCD15A3H.A2019009.h17v04.006.2019016142314.hdf":MOD_Grid_MCD15A3H:Lai_500m
+        HDF4_EOS:EOS_GRID:"/shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.01.09/MCD15A3H.A2019009.h18v04.006.2019016142318.hdf":MOD_Grid_MCD15A3H:Lai_500m
 
 
 

@@ -35,7 +35,7 @@ tiles = ['h17v03', 'h17v04', 'h18v03', 'h18v04']
 ```python
 # ANSWER
 from geog0111.modisUtils import modisAnnual
-import gdal
+from osgeo import gdal
 from geog0111.im_display import im_display
 import numpy as np
 

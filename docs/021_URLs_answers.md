@@ -182,7 +182,7 @@ if filename:
     print(f'file {filename} is: {size_MB :.1f} MB')
 ```
 
-    file /home/ucfalew/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.13/MCD15A3H.A2020013.h08v06.006.2020018030252.hdf is: 8.4 MB
+    file /shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.13/MCD15A3H.A2020013.h08v06.006.2020018030252.hdf is: 8.4 MB
 
 
 #### Exercise 4
@@ -214,7 +214,7 @@ print(sds_name)
 
 ```python
 # ANSWER 
-import gdal
+from osgeo import gdal
 from geog0111.modisUtils import modisFile
 
 # set up control for which MODIS product/date/tile

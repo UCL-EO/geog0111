@@ -396,7 +396,7 @@ if filename:
     print(f'file {filename} is: {size_MB :.1f} MB')
 ```
 
-    file /home/ucfalew/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf is: 8.9 MB
+    file /shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf is: 8.9 MB
 
 
 #### Exercise 3
@@ -431,7 +431,7 @@ In the illustration below, we will examine only the first sub-dataset `g.GetSubD
 
 
 ```python
-import gdal
+from osgeo import gdal
 from geog0111.modisUtils import modisFile
 # settings
 

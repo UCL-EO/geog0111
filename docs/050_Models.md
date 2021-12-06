@@ -9,7 +9,7 @@ You will need to understand the material in this section to be able to complete 
 
 ## Prerequisites
 
-You will need a good understanding of previous topics involving [`np/mgrid`](031_Numpy.md#np.linspace,-np.arange,-np.mgrid) and [`np.newaxis`](032_More_numpy.md#Reconciling-arrays:-np.newaxis). You should by know be familiar with other more basic material. 
+You will need a good understanding of previous topics involving [`np.mgrid`](031_Numpy.md#np.linspace,-np.arange,-np.mgrid) and [`np.newaxis`](032_More_numpy.md#Reconciling-arrays:-np.newaxis). You should by now be familiar with other more basic material. 
 
 
 ## Models 
@@ -43,7 +43,7 @@ What we really want is a more objective way of estimating the parameters. This i
 
 Before moving on to more 'realistic' models, let's build a simple example model `model` we can learn from. 
 
-This has two parameters `p[0]` and `p[0]` and a driver that represents time:
+This has two parameters `p[0]` and `p[1]` and a driver that represents time:
 
 
 ```python
@@ -97,13 +97,16 @@ print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 ```
 
+    Unable to revert mtime: /Library/Fonts
+
+
     measurements: tmdriver shape (92,)
     model output: tdriver shape  (365,)
 
 
 
     
-![png](050_Models_files/050_Models_11_1.png)
+![png](050_Models_files/050_Models_11_2.png)
     
 
 
@@ -122,7 +125,7 @@ That is a reasonable approach, and one we will take in these notes. We should be
 
 Uncertainty manifests itself at all stages of modelling and optimisation: the model itself will be uncertain, because of its nature as an abstraction of some process; the drivers will often be uncertain in their ability to the conditions at the actual place and time we are doing the modelling; and the measurements will be uncertain. We have treated uncertainty in other sections of these notes by applying a weight to observations, and we can take the same approach here. When we calculate error, for instance as the root mean square error between model predictions (output) and measurement, we can weight this to give a weighted error.
 
-Before we can calculate the (weighted) error, we need to treat the outputs so that they match the time samples of the measurements. We can either match the observations to the measurements, or the measurements to the observations. The best approach with depend on circumstances but generally it is simplest to run the model for each observation driver. If your model involves some summation (integral) over time, then you need to think carefully about how to do this.
+Before we can calculate the (weighted) error, we need to treat the outputs so that they match the time samples of the measurements. We can either match the observations to the measurements, or the measurements to the observations. The best approach will depend on circumstances but generally it is simplest to run the model for each observation driver. If your model involves some summation (integral) over time, then you need to think carefully about how to do this.
 
 In this example though it is straightforward: we just run the model for the time locations that we have observations.
 
@@ -150,7 +153,7 @@ rmse = np.sqrt(np.mean(error2))
 print(f'RMSE: {rmse} for parameters {p}')
 ```
 
-    RMSE: 3.803998198544574 for parameters [3.e-01 1.e-04]
+    RMSE: 3.9623187745427155 for parameters [3.e-01 1.e-04]
 
 
 
@@ -204,7 +207,7 @@ axs.plot([0,maxvalue],[0,maxvalue],'k')
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fbd7caf2b50>]
+    [<matplotlib.lines.Line2D at 0x7fba984437d0>]
 
 
 
@@ -382,7 +385,7 @@ print(f'min rmse\n{min_rmse}')
 
     rmse shape (132,)
     min rmse
-    0.8731447316065408
+    0.931498404380905
 
 
 Following the material in [032](032_More_numpy.md#Simplifying-shape:-flatten,-ravel,-reshape-and-unravel_index) we use `argmin` to find the parameter index of minimum RMSE:
@@ -397,8 +400,8 @@ print(f'1D index of minimum  : {imin}')
 print(f'parameter at minimum : {p0min},{p1min}')
 ```
 
-    1D index of minimum  : 17
-    parameter at minimum : 1.0,0.0005
+    1D index of minimum  : 5
+    parameter at minimum : 0.0,0.0005
 
 
 
@@ -414,8 +417,8 @@ p1min = p1[ip0min,ip1min]
 print(f'parameter at minimum : {p0min},{p1min}')
 ```
 
-    2D index of minimum point: 1, 5
-    parameter at minimum : 1.0,0.0005
+    2D index of minimum point: 0, 5
+    parameter at minimum : 0.0,0.0005
 
 
 Of the 11 x 12  combinations of parameters we examined, the parameters `[1.0,0.0005]` provide the best fit to the data. We had generated the 'measurements' with:
@@ -484,7 +487,7 @@ axs.legend(loc='lower right')
 
 
 
-    <matplotlib.legend.Legend at 0x7fbd7c97abd0>
+    <matplotlib.legend.Legend at 0x7fba985c5e10>
 
 
 
@@ -529,7 +532,7 @@ print(f'measurements: tmdriver shape {tmdriver.shape}')
 print(f'model output: tdriver shape  {tdriver.shape}')
 ```
 
-    [1.e+00 5.e-04]
+    [0.     0.0005]
     measurements: tmdriver shape (92,)
     model output: tdriver shape  (365,)
 
