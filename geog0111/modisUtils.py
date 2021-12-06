@@ -6,7 +6,7 @@ import datetime
 import fnmatch
 from urlpath import URL
 from pathlib import Path
-import gdal
+from osgeo import gdal
 import datetime
 import scipy
 import scipy.ndimage
@@ -45,7 +45,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
         'tile'     : 'h08v06'
       }
 
-      html = modisHTML(**modinfo,verbose=False)
+      html,html_file = modisHTML(**modinfo,verbose=False)
 
     Returns:
       html  : string of html from MODIS data product page
@@ -173,6 +173,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
           print(f'altcache_file : {altcache_file}')
 
     html = None
+    html_file = None
 
     if no_cache or ((not cache_file.exists()) \
        and (altcache !=  None and not altcache_file.exists())) or force:
@@ -189,6 +190,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
           if not no_cache and (altcache != None and not altcache_file.exists()):
             # write to cache
             cache_file.write_text(html)
+            html_file = cache_file
         else:
             if verbose:
                 print(f'some issue without password for html {server.anchor}') 
@@ -200,11 +202,13 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
           if verbose:
             print(f'reading from cache_file')
           html = cache_file.read_text() 
+          html_file = cache_file
         elif altcache != None and altcache_file.exists():
           if verbose:
             print(f'reading from altcache_file') 
           html = altcache_file.read_text()
-    return html  
+          html_file = altcache_file
+    return html,html_file 
 
 def modisServer(product='MCD15A3H',version='006',**kwargs):
     '''
@@ -377,7 +381,7 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 
     server = modisServer(product,version=version) / f'{year}.{month:02d}.{day:02d}'
 
-    html = modisHTML(year, month, day,tile,\
+    html,html_file = modisHTML(year, month, day,tile,\
                  product=product,\
                  version=version,no_cache=no_cache,cache=cache,\
                  verbose=verbose,force=force,altcache=altcache)
@@ -388,7 +392,15 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 
       # use BeautifulSoup and fnmatch to find match in the html
       links = [mylink.attrs['href'] for mylink in BeautifulSoup(html,'lxml').find_all('a')]
-      filename = [l for l in links if fnmatch.fnmatch(str(l), filename_start+'*'+'.hdf')][0]
+      filenames = [l for l in links if fnmatch.fnmatch(str(l), filename_start+'*'+'.hdf')]
+    
+      if len(filenames):
+            filename = filenames[0]
+      else:
+            print(f"Problem with request: Can't find pattern {filename_start}*.hdf in {html_file}")
+            #import pdb;pdb.set_trace()
+            return None
+        
       # result
       if verbose:
         print(f'filename: {filename}')
@@ -548,7 +560,7 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
         print(f'and try setting timout, e.g. timout=200 (it is in seconds)')
         return None
     if cache == None:
-      cache = Path.home()
+      cache = Path().cwd()
     cache = cache / ".modis_cache"
     cache.mkdir(parents=True,exist_ok=True)
     if not no_cache:
@@ -1063,41 +1075,42 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
 
         warp_args['format']   = format
         if vrtFile == None or len(vrtFile) == 0:
-            return None,None
-        
-        ofile = vrtFile[:-4]
-        
-        if 'cutlineWhere' in warp_args:
-            # put the selektor in the filename
-            ext = warp_args['cutlineWhere']
-            # but tidy it up for awkward characters
-            ext = ext.replace("'","").replace('"',"").replace('=','_')
-            ofile = f'{ofile}_Selektor_{ext}'
-
-        if format == 'GTiff':
-            warp_args['options']  = ['COMPRESS=LZW']
-            ofile = f'{ofile}_warp.tif'
-        elif format == 'VRT':
-            ofile = f'{ofile}_warp.vrt'
+            print(f'Problem with doy {doy} ... continuing ...')
         else:
-            ofile = f'{ofile}_warp.dat'
+            # things are good
+            ofile = vrtFile[:-4]
 
-        # build a VRT 
-        stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
-        del stitch_vrt
-        # now warp it
-        if len(warp_args.keys()) == 0:
-            if verbose:
-                print('No warp_args specified')
-            ofile = vrtFile
-        else:
+            if 'cutlineWhere' in warp_args:
+                # put the selektor in the filename
+                ext = warp_args['cutlineWhere']
+                # but tidy it up for awkward characters
+                ext = ext.replace("'","").replace('"',"").replace('=','_')
+                ofile = f'{ofile}_Selektor_{ext}'
 
-            if verbose:
-                print(f'selecting from {vrtFile} to {ofile}')
-            g = gdal.Warp(ofile, vrtFile,**warp_args)
-            g.FlushCache()
-            del g
-        ofiles.append(ofile)
+            if format == 'GTiff':
+                warp_args['options']  = ['COMPRESS=LZW']
+                ofile = f'{ofile}_warp.tif'
+            elif format == 'VRT':
+                ofile = f'{ofile}_warp.vrt'
+            else:
+                ofile = f'{ofile}_warp.dat'
+
+            # build a VRT for the first SDS
+            stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
+            del stitch_vrt
+            # now warp it
+            if (len(warp_args.keys()) == 0) and format == 'VRT':
+                if verbose:
+                    print('No warp_args specified')
+                ofile = vrtFile
+            else:
+
+                if verbose:
+                    print(f'selecting from {vrtFile} to {ofile}')
+                g = gdal.Warp(ofile, vrtFile,**warp_args)
+                g.FlushCache()
+                del g
+            ofiles.append(ofile)
         
     return ofiles,bnames
 
@@ -1135,6 +1148,20 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         print("You need to specify 'sds' in calling modisAnnual")
         print(kwargs)
         return None,None
+
+    if 'year' in kwargs:
+        year =  kwargs['year']
+    else:
+        print("You need to specify 'year' in calling modisAnnual")
+        print(kwargs)
+        return None,None
+    
+    if 'doys' in kwargs:
+        doys =  np.array(kwargs['doys'])
+    else:
+        print("You need to specify 'doys' in calling modisAnnual")
+        print(kwargs)
+        return None,None
     
     if 'verbose' in kwargs:
         verbose = kwargs['verbose']
@@ -1143,11 +1170,14 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
  
     # output dict
     odict = {}
-    if ('force' in kwargs.keys()) and kwargs['force'] == True:
+    if ('force' in kwargs.keys()) and kwargs['force'] == False:
+        redo = False
+        del kwargs['force']
+    elif ('force' in kwargs.keys()) and kwargs['force'] == True:
         redo = True
         del kwargs['force']
     else:
-        redo = False
+        redo = True
         
     if 'warp_args' in kwargs:
         warp_args = kwargs['warp_args']
@@ -1162,33 +1192,42 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         
     bnames = []  
     
+    ofile_root = f'{ofile_root}_YEAR_{year}_DOYS_{doys.min()}_{doys.max()}'
+    if verbose:
+        print(f'root name of output file: {ofile_root}')
+    
     for s in sds_list:
+        datafiles = None
         ofile = f"{ofile_root}_SDS_{s}.vrt"
         bofile = Path(f'{ofile}_bands')
         if not redo:
             if (not Path(ofile).exists()) or (not bofile.exists()):
                 kwargs['sds'] = s 
                 datafiles,bnames = getModis(**kwargs) 
-                stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
-                # save the band names
-                bofile = Path(f'{ofile}_bands')
-                bofile.write_text(' '.join(bnames))
-                del stitch_vrt
+                if datafiles != None:
+                    stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
+                    # save the band names
+                    bofile = Path(f'{ofile}_bands')
+                    bofile.write_text(' '.join(bnames))
+                    del stitch_vrt
+                 
         else:
             kwargs['sds'] = s 
             datafiles,bnames = getModis(**kwargs) 
-            stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
-            del stitch_vrt
-            # save the band names
+            if datafiles != None:
+                stitch_vrt = gdal.BuildVRT(ofile, datafiles,separate=True)
+                del stitch_vrt
+                # save the band names
+                bofile = Path(f'{ofile}_bands')
+                bofile.write_text(' '.join(bnames))
+        if datafiles != None:
+            odict[s] = ofile
             bofile = Path(f'{ofile}_bands')
-            bofile.write_text(' '.join(bnames))
-        odict[s] = ofile
-        bofile = Path(f'{ofile}_bands')
-        bnames = bofile.read_text().split()
+            bnames = bofile.read_text().split()
     return odict,bnames
 
 import numpy as np
-import gdal
+from osgeo import gdal
 
 
 def getLai(year=2019,tile=['h18v03','h18v04'],country='LU',\
