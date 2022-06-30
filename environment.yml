@@ -34,6 +34,7 @@ dependencies:
   - flake8
   - ipywidgets
   - xarray
+  - mamba
   - black
   - folium
   - jupyter_console
@@ -56,6 +57,7 @@ dependencies:
   - pycodestyle
   - sphinx
   - fsspec
+  - retry
   - pip:
     - nbsphinx
     - mkdocs-jupyter
