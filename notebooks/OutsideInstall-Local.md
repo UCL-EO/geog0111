@@ -105,10 +105,15 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
         conda env create --force -n geog0111 -f environment.yml
 
-3. Set up anaconda. In the Terminal (shell), type:
+3. Set up anaconda. In the Terminal (shell), type either, if using windows WSL or linux:
 
         conda init
         echo "conda activate geog0111" >> ~/.bashrc
+        
+  Or if using OS X:
+  
+        conda init
+        echo "conda activate geog0111" >> ~/.zshrc
         
     Then, open a new shell (or type `bash`) and type:
     
