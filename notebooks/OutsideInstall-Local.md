@@ -23,7 +23,9 @@ We assume you will setup the repository in your home directory (`~`). If not, th
         cd ~/geog0111
         cd notebooks && tar xvzf data/cacheData.tar.Z
 
-## 2. Download/update required Python packages (will take minutes/tens of minutes), either (if you have `mamba installed):
+## 2. Download/update required Python packages 
+
+This may take minutes/tens of minutes, either (if you have `mamba installed):
 
         mamba env create --force -n geog0111 -f environment.yml
         
@@ -32,7 +34,9 @@ or (if no `mamba`. Warning: this is *much* slower)
 
         conda env create --force -n geog0111 -f environment.yml
 
-## 3. Set up anaconda. In the Terminal (shell), type either, if using windows WSL or linux:
+## 3. Set up anaconda. 
+
+In the Terminal (shell), type either, if using windows WSL or linux:
 
         conda init
         echo "conda activate geog0111" >> ~/.bashrc
@@ -54,14 +58,22 @@ or (if no `mamba`. Warning: this is *much* slower)
         base                     /Users/plewis/anaconda3
         geog0111              *  /Users/plewis/anaconda3/envs/geog0111
 
-## 4. Set up notebook kernel and extensions by running the following in shell (Terminal):
+## 4. Set up notebook kernel and extensions 
+
+Do this by running the following in shell (Terminal):
 
         python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111' --user
         ~/geog0111/notebooks/bin/postBuild
 
-## 5. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
+## 5. Set up your NASA Earthdata login 
 
-## 6. Launch jupyter or jupyterlab server
+Go to the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Make sure you know your Earthdata login and password for when you come across it in the notes.
+
+## 6. Set up Google Earth Engine
+
+Go to the site XXX
+
+## 7. Launch jupyter or jupyterlab server
 
           jupyter notebook
 
@@ -108,7 +120,9 @@ After this initial setup, just do:
 to get to this point.
           
 
-7. Now, test things:
+## 8. Test
+
+Now, test things:
  
    * navigate to the coursenotes `geog0111` then `notebooks`
    * select the fist notebook `001_Notebook_use.ipynb`
@@ -119,11 +133,11 @@ to get to this point.
 
 One issue to look out for is if the notebook kernel doesn't start. That normally means that either you haven't set up the  `geog0111` environment properly, and/or you didn't setup the notebook kernel properly. Look back over sections 3. and 4. above.
 
-9. You should test that your setup is robust. 
+You should test that your setup is robust. 
 
    * Try logging out and in again on your computer and launch jupyter again
    
-## Use of the notes and updates
+## 9. Use of the notes and updates
 
 Periodically, we may have to update the notes. 
 
