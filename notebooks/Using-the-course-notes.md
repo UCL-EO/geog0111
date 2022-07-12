@@ -1,22 +1,26 @@
-# Using the course notes
 
-We will use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
-follow the instructions on [UCL installation and running](notebooks/Install.md). 
-
-If you are interested in running the course notes from outside UCL on your own computer, there are several options:
-
-1. Do a local install of the required software to run the notebooks (basically, Anaconda Python and some packages, this is around 15 GB of space on my own setup, but you might get away with a smaller Pythjon install). Its quite easy to set up, particularly on linux or OS X. It is a little more involved on Windows, but quite achievable following [these notes](notebooks/OutsideInstall-Local.md)
-2. You can run a [Docker](https://www.docker.com) container on your local computer. That Docker image contains all of the software you need to do the course, so all you have to do is to set up [Docker](https://www.docker.com) on your computer. There are various ways to run it, but we adviuse that you make a copy of the notes on your local computer, then run the notebookjs using Docker. There are full instructions these [here](OutsideInstall-Docker.md), but the basics of what you need are given in the [docker hub](https://hub.docker.com/repository/docker/proflewis/geog0111).
-3. You could use [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree) or 
- [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree) to run the course. These use external resources (so, not UCL and not your own computer) to run the notebooks. The only problem for you is that the sessions are not persistent, so any changes or exercises you do in a notebook would be lost to you the next time you start a binder or colab session. There are ways around that that would work fine for the first half of the course. The simplest is for you to download any notebook that you change to your local computer, then relaod it the next time you run a session. Its a bit of a hassle, but the service is free, and you can run it simply from any browser (e.g. yopur phone or ipad).
 
 # Updating notes
 
-From time to time, we need to update the notes because of a bug or some other change. That's great, because we are using `git` which allows and controls all of that.
+Periodically, we may have to update the notes. 
 
-At the same time, we don't want any update to mess up any work you may have already done, for example in a notebook.
+Before you do this, be aware that any updated files on the server will over-write your local files. **That means that any changes you may have made to the notebooks**, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. 
 
-There is a mechanism in `git` that allows this sort of thing, called a [stash](https://www.freecodecamp.org/news/git-stash-explained/).
+You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says `OutsideInstall-Local` here) and changing it (e.g. `myOutsideInstall-Local`). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.
+
+
+The simplest way to update the notes (and over-write your changes), in a shell (Terminal) type:
+
+    cd ~/geog0111 && git reset --hard HEAD && git pull
+    
+    
+but be aware that that will write over any changes you make to notebooks, and make sure to rename the workbooks you modify.
+    
+# Safely Updating notes
+
+There is a way we can avoid this issue, by storing the changes you make before pulling any modifications to the notes. 
+
+This is called a [stash](https://www.freecodecamp.org/news/git-stash-explained/).
 
 The way to use it is, when you are told to update the notes, first create a stash with some meaningful name/label, e.g. `my edits on monday'. First, go to the directory your work in in (the working directory):
 
