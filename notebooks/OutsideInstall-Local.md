@@ -101,7 +101,12 @@ We assume you will setup the repository in your home directory (`~`). If not, th
         cd ~/geog0111
         cd notebooks && tar xvzf data/cacheData.tar.Z
 
-2. Download/update required Python packages (will take minutes/tens of minutes):
+2. Download/update required Python packages (will take minutes/tens of minutes), either (if you have `mamba installed):
+
+        mamba env create --force -n geog0111 -f environment.yml
+        
+
+or (if no `mamba`. Warning: this is *much* slower)
 
         conda env create --force -n geog0111 -f environment.yml
 
