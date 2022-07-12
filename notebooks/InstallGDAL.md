@@ -1,32 +1,84 @@
 To use `gdal` in Python, you need to install the `gdal` packages on your computer.
 
+# brew 
+
 Unfortunately, that is operating system dependent.
+
+First, we will install the package manager [`homebrew`](https://brew.sh).
 
 ## OS X (Mac) or linux
 
-Use `brew` to do this. First, install [`homebrew`](https://brew.sh):
+### What shell am I using?
 
-
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-If you get the warning:
-
-	Warning: /usr/local/bin is not in your PATH.
-
-We assume the shell you use is `bash`, but it may be something different like `zsh` (especially on OS X). You should be able to check your shell with:
+The shell you use is probably `bash`, but it may be something different like `zsh` (especially on OS X). You should be able to check your shell with:
 
 	echo $SHELL
 
+If is gives `/bin/bash`, then you are using `bash`, if it gives something else like `/bin/zsh` then you may need to change where the notes say `~/.bash_profile` below to `~/.zsh_profile`. If the notes don't work for that, use `~/.bashrc` below to `~/.zshrc` instead of `~/.bash_profile` or `~/.zsh_profile`.
 
-If is gives `/bin/bash`, then you are using `bash`, if it gives something else like `/bin/zsh` then you may need to change `~/.bash_profile` to `~/.zsh_profile`.
+Take note of which `profile` file you need to use for actions below and be aware of the options. 
 
-Then type the following:
+### install `brew` on linux without sudo
+
+If you are working on a linux system and don't have root access (you are a user on a multi-user system) you can install brew as a user:
+
+	mkdir -p ${HOME}/homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ${HOME}/homebrew
+	
+	
+Here, we have installed `brew` in `${HOME}/homebrew`, so you will need to add that directory to your `PATH` below.
+
+### install `brew` on OS X or linux with sudo
+
+ First, install [`homebrew`](https://brew.sh):
+
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+Note that on OS X `brew` needs the `Xcode` compiler `Command Line Tools` which can take a little time to download if yo dont have it installed. It is possible that the script can fail a first time, but if it does, just try re-running it.
+
+Read the information that happens when you install `brew`. It should say something like:
+
+	==> This script will install:
+	/opt/homebrew/bin/brew
+	
+
+which means you need to make sure `/opt/homebrew/bin` is in your `PATH`. It might say `/usr/local/bin` instead of `/opt/homebrew/bin`, so pay attentioopn to that.
+
+#### `PATH`
+
+You should know which profile file you need from above. It will probaby be `~/.bash_profile` or `~/.zsh_profile`, but you may need to use `~/.bashrc` or `~/.zshrc`.
+
+You should know the directory that `brew` was installed. This will probably be `/usr/local/bin` or `/opt/homebrew/bin` or `${HOME}/homebrew`. 
+	
+Then type one of the following as appropriate:
+
+	echo 'PATH="${HOME}/homebrew:${PATH}"' >> ~/.bash_profile
+
+or
+
+	echo 'PATH="/opt/homebrew/bin:${PATH}"' >> ~/.zshrc
+	
+or
 
 	echo 'PATH="/usr/local/bin:${PATH}"' >> ~/.bash_profile
 
-and open a new shell.
 
-Then get [gdal](https://medium.com/@egiron/how-to-install-gdal-and-qgis-on-macos-catalina-ca690dca4f91):
+or similar, as appropriate.
+
+
+Now, we can test this.  Open a new shell: either open a new terminal or type `bash` (or `zsh`) in the current terminal, as appropriate. 
+
+
+Test `brew`:
+
+	brew install hello
+	
+
+If that fails, check that you used the right file `~/.zsh_profile` or `~/.bash_profile` above for your shell and that you opened a new shell. Don't try to go further until you have this sorted. If you need help, contact the [course tutor)(mailto:p.lewis@ucl.ac.uk).
+
+
+## gdal install
+
+Then get `gdal`:
 
 Install the headers files first to avoid GDAL fail.
 
@@ -45,6 +97,8 @@ which should give e.g.
 	2.4.4
 
 If you hit problems, read what it says and respond accordingly. For OS X for example, you may need to install `xcode` command line tools if you don't already have that. N.B. That might take some time. You might also look at [this advice page](https://medium.com/@egiron/how-to-install-gdal-and-qgis-on-macos-catalina-ca690dca4f91)
+
+
 
 ## Windows
 
