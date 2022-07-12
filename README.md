@@ -27,7 +27,7 @@
 
 |   |   |   |
 |---|---|---|
-|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
+|[Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
 
 
 ### Purpose of this course
@@ -61,11 +61,11 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 ## Timetable
 
-[class timetable for 2021/22](notebooks/TIMETABLE.md)
+[class timetable for 2022/23](notebooks/TIMETABLE.md)
 
 The course takes place over 10 weeks in term 1, on Monday in the UCL Computing Lab (113) in [Torrington (1-19)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=086), UCL. 
 
-Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/estates/sites/estates/files/cal_term_times_2021_2022.pdf) for further information.
+Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures/term-dates-and-closures-2022-23) for further information.
 
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday with help sessions on Thursdays.
 
@@ -83,7 +83,7 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 
 ### Using the course notes
 
-We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
+We will use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
 follow the instructions on [UCL installation and running](notebooks/Install.md). 
 
 If you are interested in running the course notes from outside UCL on your own computer, there are several options:
