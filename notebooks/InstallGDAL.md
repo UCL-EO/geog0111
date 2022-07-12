@@ -8,7 +8,7 @@ First, we will install the package manager [`homebrew`](https://brew.sh).
 
 ## 1. OS X (Mac) or linux
 
-### What shell am I using?
+### 1.1 What shell am I using?
 
 The shell you use is probably `bash`, but it may be something different like `zsh` (especially on OS X). You should be able to check your shell with:
 
@@ -18,7 +18,7 @@ If is gives `/bin/bash`, then you are using `bash`, if it gives something else l
 
 Take note of which `profile` file you need to use for actions below and be aware of the options. 
 
-### install `brew` on linux without sudo
+### 1.2a install `brew` on linux without sudo
 
 If you are working on a linux system and don't have root access (you are a user on a multi-user system) you can install brew as a user:
 
@@ -27,7 +27,7 @@ If you are working on a linux system and don't have root access (you are a user 
 	
 Here, we have installed `brew` in `${HOME}/homebrew`, so you will need to add that directory to your `PATH` below.
 
-### install `brew` on OS X or linux with sudo
+### 1.2b install `brew` on OS X or linux with sudo
 
  First, install [`homebrew`](https://brew.sh):
 
@@ -43,7 +43,7 @@ Read the information that happens when you install `brew`. It should say somethi
 
 which means you need to make sure `/opt/homebrew/bin` is in your `PATH`. It might say `/usr/local/bin` instead of `/opt/homebrew/bin`, so pay attentioopn to that.
 
-#### `PATH`
+#### 1.3 `PATH`
 
 You should know which profile file you need from above. It will probaby be `~/.bash_profile` or `~/.zsh_profile`, but you may need to use `~/.bashrc` or `~/.zshrc`.
 
