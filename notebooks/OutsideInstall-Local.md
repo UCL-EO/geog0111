@@ -87,7 +87,7 @@ see [mamba](https://github.com/mamba-org/mamba) for install. e.g.
 
         conda install mamba -n base -c conda-forge
 
-## Local install in `~`
+## 5. Local install in `~`
 
 These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.
 
