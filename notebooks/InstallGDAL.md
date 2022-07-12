@@ -73,7 +73,7 @@ Test `brew`:
 	brew install hello
 	
 
-If that fails, check that you used the right file `~/.zsh_profile` or `~/.bash_profile` above for your shell and that you opened a new shell. Don't try to go further until you have this sorted. If you need help, contact the [course tutor)(mailto:p.lewis@ucl.ac.uk).
+If that fails, check that you used the right file `~/.zsh_profile` or `~/.bash_profile` above for your shell and that you opened a new shell. Don't try to go further until you have this sorted. If you need help, contact the [course tutor](mailto:p.lewis@ucl.ac.uk).
 
 
 ## gdal install
