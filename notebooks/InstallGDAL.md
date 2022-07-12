@@ -1,8 +1,8 @@
-To use `gdal` in Python, you need to install the `gdal` packages on your computer.
+# `gdal`
 
-# brew 
+To use `gdal` in Python, you need to install the `gdal` packages on your computer. One way to do this is to use the package manager [`homebrew`](https://brew.sh). We will follow that approach here. 
 
-Unfortunately, that is operating system dependent.
+# `brew`
 
 First, we will install the package manager [`homebrew`](https://brew.sh).
 
@@ -76,7 +76,7 @@ Test `brew`:
 If that fails, check that you used the right file `~/.zsh_profile` or `~/.bash_profile` above for your shell and that you opened a new shell. Don't try to go further until you have this sorted. If you need help, contact the [course tutor](mailto:p.lewis@ucl.ac.uk).
 
 
-## gdal install
+# `gdal` install
 
 Then get `gdal`:
 
@@ -100,7 +100,7 @@ If you hit problems, read what it says and respond accordingly. For OS X for exa
 
 
 
-## Windows
+## 2. Windows
 
 For Windows, if you use `WSL-Windows System for Linux`, then you should be able to install and use `brew` as above. There is a good [tutorial for that here](https://medium.com/@edwardbaeg9/using-homebrew-on-windows-10-with-windows-subsystem-for-linux-wsl-c7f1792f88b3). If you use this though, you need to also install all of the packages in `WSL` and run jupyter from there. There is a good [tutorial on that here](https://towardsdatascience.com/configuring-jupyter-notebook-in-windows-subsystem-linux-wsl2-c757893e9d69).
 
