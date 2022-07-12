@@ -4,6 +4,10 @@
 
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree)
  [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree)
+ 
+ For previous versions of the course:
+ 
+ * [Release 1.1.0 for course notes for session 2021/22](https://github.com/UCL-EO/geog0111/releases/tag/1.1.0)
 
 ## Course information
 
@@ -11,13 +15,13 @@
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2021-2022
+### Teaching Staff 2022-2023
 
 |   | 
 |---|
 |[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
-### Support Staff 2021-2022
+### Support Staff 2022-2023
 
 |   | 
 |---|
