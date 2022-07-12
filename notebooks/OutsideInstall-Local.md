@@ -3,11 +3,11 @@
 
 ## Requirements
 
-### `gdal`
+### 1. `gdal`
 
 To do the geospatial processing in Python, you will need to install the `gdal` package on your computer. There are specific instructiuons for that [`gdal`](https://github.com/UCL-EO/gdal-install) that youy should follow first. Note that if you are using a windows computer, we suggest using `WSL`, as explained in the link. Then you must also use `WSL` for all of the material below.
 
-### Anaconda
+### 2. Anaconda
 
 First, you will need to make sure you have Python (3.6+) installed on your computer. We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. We suggest you get the most up to date version of Python available. We won't be using the additional tools such as PyCharm, so you don't need to install those for this course (you can if you want to). 
 
@@ -65,7 +65,7 @@ This should give something with `anaconda3` in the name:
 
         /Users/plewis/anaconda3/bin/python
 
-### `git`
+### 3. `git`
 
 You will also need to install the tool [git](https://git-scm.com) if you don't already have it. You can check to see if you have it with:
 
@@ -79,7 +79,7 @@ If you don't get that, look at the installation instruction again. **There is li
 
 You may want to check if you need to update `git`: https://phoenixnap.com/kb/how-to-update-git
 
-## mamba
+## 4. `mamba`
 
 Actually, `conda` is pretty slow and cumbersome. A much better package manager (cross platform) is `mamba`. We advise you to download this and use in place of `conda`. Everywhere you see `conda` mantioned below, use `mamba` (after you have installed it obviously).
 
