@@ -6,7 +6,7 @@ Unfortunately, that is operating system dependent.
 
 First, we will install the package manager [`homebrew`](https://brew.sh).
 
-## OS X (Mac) or linux
+## 1. OS X (Mac) or linux
 
 ### What shell am I using?
 
