@@ -1,16 +1,21 @@
 
 # Instructions for local install of these notes
 
-To install these notes, first set up the reaquored software [[requirements](OutsideInstall-Requirements.md#1.-Requirements)] 
+To install these notes, first set up the reaquired software [[requirements](OutsideInstall-Requirements.md#1.-Requirements)]. Do not proceed unless you have set up all of these pieces of software.
+These are:
 
-Then set up and test the notes in a [[local install](OutsideInstall-Local.md#2-local-install-in-)].
+* [`gdal`](OutsideInstall-Requirements.md#11-gdal)
+* [`anaconda` `python`](OutsideInstall-Requirements.md#12-Anaconda)
+* [`git`](OutsideInstall-Requirements.md#13-git)
+* [`mamba`](OutsideInstall-Requirements.md#14-mamba)
 
+Then set up and test the notes in a [[local install](OutsideInstall-Local.md#2-local-install-in-)] following the intsructions below.
 
-# 2. Local install in `~`
-
-These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.
+These instructions assume that you will run these commands in a `bash` shell. You might need to modify in places for other shells such as `zsh` for OS X. Make sure you asre aware of [which shell you are using](https://github.com/UCL-EO/gdal-install/blob/main/InstallBREW.md#11-what-shell-am-i-using).
 
 We assume you will setup the repository in your home directory (`~`). If not, then replace `~` below by where you want to setup.
+
+# Local install of `GEOG0111` 
 
 1. Clone this repository and cd to the local directory
 
