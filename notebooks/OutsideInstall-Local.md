@@ -5,7 +5,7 @@
 
 ### `gdal`
 
-To do the geospatial processing in Python, you will need to install the `gdal` package on your computer. There are specific instructiuons for that [here](InstallGDAL.md). Note that if you are using a windows computer, we suggest using `WSL`, as explained in the link. Then you must also use `WSL` for all of the material below.
+To do the geospatial processing in Python, you will need to install the `gdal` package on your computer. There are specific instructiuons for that [`gdal`](https://github.com/UCL-EO/gdal-install) that youy should follow first. Note that if you are using a windows computer, we suggest using `WSL`, as explained in the link. Then you must also use `WSL` for all of the material below.
 
 ### Anaconda
 
