@@ -17,13 +17,13 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
 # Local install of `GEOG0111` 
 
-1. Clone this repository and cd to the local directory
+## 1. Clone this repository and cd to the local directory
 
         cd ~ && git clone https://github.com/UCL-EO/geog0111.git
         cd ~/geog0111
         cd notebooks && tar xvzf data/cacheData.tar.Z
 
-2. Download/update required Python packages (will take minutes/tens of minutes), either (if you have `mamba installed):
+## 2. Download/update required Python packages (will take minutes/tens of minutes), either (if you have `mamba installed):
 
         mamba env create --force -n geog0111 -f environment.yml
         
@@ -32,7 +32,7 @@ or (if no `mamba`. Warning: this is *much* slower)
 
         conda env create --force -n geog0111 -f environment.yml
 
-3. Set up anaconda. In the Terminal (shell), type either, if using windows WSL or linux:
+## 3. Set up anaconda. In the Terminal (shell), type either, if using windows WSL or linux:
 
         conda init
         echo "conda activate geog0111" >> ~/.bashrc
@@ -54,14 +54,14 @@ or (if no `mamba`. Warning: this is *much* slower)
         base                     /Users/plewis/anaconda3
         geog0111              *  /Users/plewis/anaconda3/envs/geog0111
 
-4. Finally, set up notebook kernel and extensions by running the following in shell (Terminal):
+## 4. Set up notebook kernel and extensions by running the following in shell (Terminal):
 
         python -m ipykernel install --name=conda-env-geog0111-geog0111-py --display-name 'conda env:geog0111-geog0111' --user
         ~/geog0111/notebooks/bin/postBuild
 
-5. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
+## 5. Set up your NASA Earthdata login on the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Store the Earthdata password locally when you come across it in the notes.
 
-6. Launch jupyter or jupyterlab server
+## 6. Launch jupyter or jupyterlab server
 
           jupyter notebook
 
