@@ -1,7 +1,7 @@
 
 # Instructions for local install of these notes
 
-[requirements](OutsideInstall-Local.md#1.-Requirements) [local install](OutsideInstall-Local.md#2-local-install-in-)
+[[requirements](OutsideInstall-Local.md#1.-Requirements)] [[local install](OutsideInstall-Local.md#2-local-install-in-)]
 
 ## 1. Requirements
 
