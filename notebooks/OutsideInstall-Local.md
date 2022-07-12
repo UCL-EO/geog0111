@@ -43,11 +43,11 @@ or (if no `mamba`. Warning: this is *much* slower)
         echo "conda activate geog0111" >> ~/.zshrc
  
  
-    Then, open a new shell (or type `bash`) and type:
+  Then, open a new shell (or type `bash`) and type:
     
         conda env list
         
-    This should now show:
+  This should now show:
     
         # conda environments:
         #
