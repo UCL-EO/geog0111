@@ -5,10 +5,10 @@ For a local install of these notes, you need to follow the instructions below to
 
 These are:
 
-* [`gdal`](OutsideInstall-Requirements.md#1.1-gdal)
-* [`anaconda` `python`](OutsideInstall-Requirements.md#1.2.-Anaconda)
-* [`git`](OutsideInstall-Requirements.md#1.3.-git)
-* [`mamba`](OutsideInstall-Requirements.md#1.4.-mamba)
+* [`gdal`](OutsideInstall-Requirements.md#11-gdal)
+* [`anaconda` `python`](OutsideInstall-Requirements.md#12-Anaconda)
+* [`git`](OutsideInstall-Requirements.md#13-git)
+* [`mamba`](OutsideInstall-Requirements.md#14-mamba)
 
 ## 1. Requirements
 
