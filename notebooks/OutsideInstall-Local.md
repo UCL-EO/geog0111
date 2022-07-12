@@ -114,7 +114,8 @@ We assume you will setup the repository in your home directory (`~`). If not, th
   
         conda init
         echo "conda activate geog0111" >> ~/.zshrc
-        
+ 
+ 
     Then, open a new shell (or type `bash`) and type:
     
         conda env list
