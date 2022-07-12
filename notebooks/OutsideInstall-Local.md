@@ -139,6 +139,6 @@ You should test that your setup is robust.
    
 ## 9. Use of the notes and updates
 
-There are some things to be aware of when using and updatin g the notes, so make sure to look over [these instructions](Using-the-course-notes.md)
+There are some things to be aware of when using and updating the notes, so make sure to look over [these instructions](Using-the-course-notes.md)
 
 
