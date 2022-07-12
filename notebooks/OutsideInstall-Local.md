@@ -1,13 +1,13 @@
 
 # Instructions for local install of these notes
 
-## Requirements
+## 1. Requirements
 
-### 1. `gdal`
+### 1.1 `gdal`
 
 To do the geospatial processing in Python, you will need to install the `gdal` package on your computer. There are specific instructiuons for that [`gdal`](https://github.com/UCL-EO/gdal-install) that youy should follow first. Note that if you are using a windows computer, we suggest using `WSL`, as explained in the link. Then you must also use `WSL` for all of the material below.
 
-### 2. Anaconda
+### 1.2. Anaconda
 
 First, you will need to make sure you have Python (3.6+) installed on your computer. We suggest using [Anaconda](https://docs.anaconda.com/anaconda/install), as the package list is set up to work with this. We suggest you get the most up to date version of Python available. We won't be using the additional tools such as PyCharm, so you don't need to install those for this course (you can if you want to). 
 
@@ -16,7 +16,7 @@ The Anaconda package manager is called `conda`. You should make use of that for 
 If you think you may have Anaconda installed, look at the material on https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-conda.html to see if you need to update.
 
 
-### Installing Anaconda
+### 1.2.1 Installing Anaconda
 
 If you choose another version of Python, you will need to convert the environment files and modify the instructions below. 
 
@@ -65,7 +65,7 @@ This should give something with `anaconda3` in the name:
 
         /Users/plewis/anaconda3/bin/python
 
-### 3. `git`
+### 1.3. `git`
 
 You will also need to install the tool [git](https://git-scm.com) if you don't already have it. You can check to see if you have it with:
 
@@ -79,7 +79,7 @@ If you don't get that, look at the installation instruction again. **There is li
 
 You may want to check if you need to update `git`: https://phoenixnap.com/kb/how-to-update-git
 
-## 4. `mamba`
+## 1.4. `mamba`
 
 Actually, `conda` is pretty slow and cumbersome. A much better package manager (cross platform) is `mamba`. We advise you to download this and use in place of `conda`. Everywhere you see `conda` mantioned below, use `mamba` (after you have installed it obviously).
 
@@ -87,7 +87,7 @@ see [mamba](https://github.com/mamba-org/mamba) for install. e.g.
 
         conda install mamba -n base -c conda-forge
 
-## 5. Local install in `~`
+# 2. Local install in `~`
 
 These instructions assume that you will run these commands in a bash shell. You might need to modify in places for other shells.
 
