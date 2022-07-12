@@ -101,4 +101,4 @@ If you are interested in running the course notes from outside UCL on your own c
  
 # Updating the course notes
 
-From time-to-time we will need to provide updates to the notes or software. You need to be aware of how to do that and also what the consequences oif opulling a new version are. Please go through [these notes](Using-the-course-notes.md) before you start using the notes.
+From time-to-time we will need to provide updates to the notes or software. You need to be aware of how to do that and also what the consequences oif opulling a new version are. Please go through [these notes](notebooks/Using-the-course-notes.md) before you start using the notes.
