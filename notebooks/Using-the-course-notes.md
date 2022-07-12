@@ -1,6 +1,6 @@
 
 
-# Updating notes
+# Simply Updating notes
 
 Periodically, we may have to update the notes. 
 
@@ -18,7 +18,7 @@ but be aware that that will write over any changes you make to notebooks, and ma
     
 # Safely Updating notes
 
-There is a way we can avoid this issue, by storing the changes you make before pulling any modifications to the notes. 
+There is a way we can avoid this issue, by storing the changes you make before pulling any modifications to the notes. But this is sligjhtly more complicated. You should decide whoich method you will use.
 
 This is called a [stash](https://www.freecodecamp.org/news/git-stash-explained/).
 
