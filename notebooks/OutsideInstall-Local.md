@@ -69,11 +69,9 @@ Do this by running the following in shell (Terminal):
 
 Go to the site [https://urs.earthdata.nasa.gov/](https://urs.earthdata.nasa.gov/). Make sure you know your Earthdata login and password for when you come across it in the notes.
 
-## 6. Set up Google Earth Engine
 
-Go to the site XXX
 
-## 7. Launch jupyter or jupyterlab server
+## 6. Launch jupyter or jupyterlab server
 
           jupyter notebook
 
