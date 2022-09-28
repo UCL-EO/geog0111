@@ -15,7 +15,7 @@
     
     
       
-        <title>Instructions for docker install of these notes - GEOG0111</title>
+        <title>080 Google Earth Engine in Python - GEOG0111</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#instructions-for-docker-install-of-these-notes" class="md-skip">
+        <a href="#080-google-earth-engine-in-python" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Instructions for docker install of these notes
+              080 Google Earth Engine in Python
             
           </span>
         </div>
@@ -1617,23 +1617,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
+  <a href="#gee" class="md-nav__link">
+    GEE
   </a>
   
-    <nav class="md-nav" aria-label="Requirements">
+    <nav class="md-nav" aria-label="GEE">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker" class="md-nav__link">
-    docker
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
-    git
+  <a href="#ee" class="md-nav__link">
+    EE
   </a>
   
 </li>
@@ -1644,49 +1637,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-install" class="md-nav__link">
-    Local install
+  <a href="#geemap" class="md-nav__link">
+    GEEmap
   </a>
-  
-    <nav class="md-nav" aria-label="Local install">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installing-the-notes-in" class="md-nav__link">
-    Installing the notes in ~
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nasa-earthdata-login" class="md-nav__link">
-    NASA Earthdata login
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-docker" class="md-nav__link">
-    running docker
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    Test
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-of-the-notes-and-updates" class="md-nav__link">
-    Use of the notes and updates
+  <a href="#image-collections" class="md-nav__link">
+    Image collections
   </a>
   
 </li>
@@ -1703,100 +1662,361 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/OutsideInstall-Docker.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/080_DRAFT_GEE.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="instructions-for-docker-install-of-these-notes">Instructions for docker install of these notes</h1>
-<h2 id="requirements">Requirements</h2>
-<h3 id="docker"><code>docker</code></h3>
-<p>One option for running these notes that requires only minimal setup is using <a href="https://www.docker.com"><code>docker</code></a>.</p>
-<p>First then, install the <a href="https://www.docker.com"><code>docker</code></a> software on your computer and test and run it.</p>
-<h3 id="git"><code>git</code></h3>
-<p>You will also need to install the tool <a href="https://git-scm.com">git</a> if you don't already have it. You can check to see if you have it with:</p>
-<pre><code>    which git
-</code></pre>
-<p>This will give something like:</p>
-<pre><code>    /usr/local/bin/git
-</code></pre>
-<p>If you don't get that, look at the installation instruction again. <strong>There is little point trying to go further unless you have this sorted!</strong></p>
-<p>You may want to check if you need to update <code>git</code>: https://phoenixnap.com/kb/how-to-update-git</p>
-<h2 id="local-install">Local install</h2>
-<p>We will make a local copy of these notes on your computer (assumed in <code>~/geog0111</code>) then run the jupyter notebooks using repo2docker.</p>
-<h3 id="installing-the-notes-in">Installing the notes in <code>~</code></h3>
-<p>First, install the notes:</p>
-<p>We assume you will setup the repository in your home directory (<code>~</code>). If not, then replace <code>~</code> below by where you want to setup.</p>
-<p>Clone this repository and cd to the local directory</p>
-<pre><code>    cd ~ &amp;&amp; git clone https://github.com/UCL-EO/geog0111.git
-    cd ~/geog0111
-    cd notebooks &amp;&amp; tar xvzf data/cacheData.tar.Z
-</code></pre>
-<h3 id="nasa-earthdata-login">NASA Earthdata login</h3>
-<p>Set up your NASA Earthdata login on the site <a href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>. Store the Earthdata password locally when you come across it in the notes.</p>
-<h3 id="running-docker">running <code>docker</code></h3>
-<p>Make sure the environment variables <code>HOME</code> and <code>USER</code> are set:</p>
-<pre><code>    env | grep HOME
-    env | grep USER
-</code></pre>
-<p>If not (they should be, though may not be on Windows), then try:</p>
-<pre><code>    export USER=$(whoami)
-    export HOME=$(cd ~ &amp;&amp; pwd)
-</code></pre>
-<p>Then run the following command to pull the docker and run the Jupyter notebook server locally:</p>
-<pre><code>    docker run --rm -i --volume=${HOME}/geog0111:/home/$USER/tmp/geog0111 -w /home/$USER/tmp/geog0111  -p 8888:8888   -t ucleo/geog0111:latest
-</code></pre>
-<p>It will eventually respond with something like:</p>
-<pre><code>    [I 06:58:25.120 NotebookApp] Serving notebooks from local directory: /Users/plewis/Documents/GitHub/geog0111
-    [I 06:58:25.120 NotebookApp] Jupyter Notebook 6.4.4 is running at:
-    [I 06:58:25.120 NotebookApp] http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-    [I 06:58:25.120 NotebookApp]  or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-    [I 06:58:25.120 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-    [C 06:58:25.164 NotebookApp]
+<h1 id="080-google-earth-engine-in-python">080 Google Earth Engine in Python</h1>
+<p>Draft notes under development</p>
+<h2 id="gee">GEE</h2>
+<p>Google Earth Engine is a powerful cloud resource provided by Google that has found wide application in Earth Observation (EO) and related disciplines. </p>
+<p>The power of the tool comes from provision of the underlying processing tools on the remote cloud resource, <strong>alongside</strong> vast quantities of EO data. </p>
+<p>The purpose of this notebook is to provide a brief introduction to some of the basic GEE functionality, datasets and coding in Python.</p>
+<h3 id="ee">EE</h3>
+<p>The GEE library is imported as <code>ee</code>. When you want to use GEE resources, you will need to authenticate your account using a google login. We can set this going using <code>ee.Authenticate()</code>. This will pop up another browser window. </p>
+<p>You should follow the instructions on that to obtain an authentification code (e.g. <code>401AX4XfWj37NbOf5RnY4d4910lyW76yh2B0j9Rvj0aVqs9AVmf8oKM</code>) and initialise GEE (<code>ee.Initialize()</code>). You will only need to do that once per session.</p>
+<pre><code class="language-python">import ee
 
-        To access the notebook, open this file in a browser:
-            file:///Users/plewis/Library/Jupyter/runtime/nbserver-88431-open.html
-        Or copy and paste one of these URLs:
-            http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-         or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
+ee.Authenticate()
+ee.Initialize()
 </code></pre>
-<p>The main things for you to see from this are:</p>
-<p>A. How to stop the jupyter server:</p>
-<pre><code>Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-</code></pre>
-<p>Use Control-C in the shell you started the server. You might try that now to familiarise yourself with it, and then restart <code>jupyter notebook</code></p>
-<p>B. The URL of the server (with the security token). In this case:</p>
-<pre><code>    http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-</code></pre>
-<p>Launch a browser that points to that (your one, not te example here!!). That should take you to the Jupyter server homepage.</p>
-<!-- #endregion -->
+<p>To authorize access needed by Earth Engine, open the following
+        URL in a web browser and follow the instructions:</p>
+<pre><code>    &lt;p&gt;&lt;a href=https://accounts.google.com/o/oauth2/auth?client_id=517222506229-vsmmajv00ul0bs7p89v5m89qs8eb9359.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fearthengine+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.full_control&amp;redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&amp;response_type=code&amp;code_challenge=2OI00sTloC_svLa7KJPAxJIcwORffBNnOdx4yzBDwvo&amp;code_challenge_method=S256&gt;https://accounts.google.com/o/oauth2/auth?client_id=517222506229-vsmmajv00ul0bs7p89v5m89qs8eb9359.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fearthengine+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.full_control&amp;redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&amp;response_type=code&amp;code_challenge=2OI00sTloC_svLa7KJPAxJIcwORffBNnOdx4yzBDwvo&amp;code_challenge_method=S256&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;The authorization workflow will generate a code, which you
+    should paste in the box below&lt;/p&gt;
 
-<!-- #region -->
-<h3 id="test">Test</h3>
-<p>Now, test things:</p>
-<ul>
-<li>navigate to the coursenotes <code>geog0111</code> then <code>notebooks</code></li>
-<li>select the fist notebook <code>001_Notebook_use.md</code></li>
-<li>
-<p>go through the notes and run the code in the cells</p>
-</li>
-<li>
-<p>if that doesn't launch for any reason, try re-stopping and starting the server</p>
-</li>
-<li>failing that, ask for help in the Monday class, or come along to office hours or the Thursday help sessions</li>
-</ul>
-<p>One issue to look out for is if the notebook kernel doesn't start. That normally means that either you haven't set up the  <code>geog0111</code> environment properly, and/or you didn't setup the notebook kernel properly. Look back over sections 3. and 4. above.</p>
-<p>You should test that your setup is robust. </p>
-<ul>
-<li>Try logging out and in again on your computer and launch jupyter again</li>
-</ul>
-<h2 id="use-of-the-notes-and-updates">Use of the notes and updates</h2>
-<p>Periodically, we may have to update the notes. </p>
-<p>Before you do this, be aware that any updated files on the server will over-write your local files. <strong>That means that any changes you may have made to the notebooks</strong>, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. </p>
-<p>You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'OutsideInstall-Local' here) and changing it (e.g. <code>myOutsideInstall-Local</code>). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.</p>
-<p>To update the notes (and over-write your changes), in a shell (Terminal) type:</p>
-<pre><code>cd ~/geog0111 &amp;&amp; git reset --hard HEAD &amp;&amp; git pull
+
+
+Enter verification code: 4/1AX4XfWiEu_p9CW1qMJ4Lv1pIZyYTeCK0IfwFy6N3ohAxZ5JLieVIxPFQT9Q\
+
+Successfully saved authorization token.
+</code></pre>
+<p>The main data types we need to be interested in for GEE are:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Class</th>
+<th align="right">example</th>
+<th align="right">comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><a href="https://developers.google.com/earth-engine/guides/image_overview">Image</a></td>
+<td align="right"><code>image = ee.Image('JAXA/ALOS/AW3D30/V2_2')</code></td>
+<td align="right">An image, often with multiple bands you can access with <code>image.bandNames()</code></td>
+</tr>
+<tr>
+<td align="right"><a href="https://developers.google.com/earth-engine/apidocs/ee-imagecollection">ImageCollection</a></td>
+<td align="right"><code>imageCollection = ee.ImageCollection("COPERNICUS/S2_SR")</code></td>
+<td align="right">A collection (set) of <code>Image</code>s. You can e.g. use <code>imageCollection.map(lambda )</code></td>
+</tr>
+</tbody>
+</table>
+<p>For a full set of docs (in <a href="https://giswqs.medium.com/15-converting-earth-engine-javascripts-to-python-code-with-just-a-few-mouse-clicks-6aa02b1268e1">Javascript, but very similar to Python</a>) in the <a href="https://developers.google.com/earth-engine/apidocs">GEE API docs</a>.</p>
+<p>If we look at the example for <code>Image</code>, we can gain an insight into how GEE works:</p>
+<pre><code class="language-python">image = ee.Image('JAXA/ALOS/AW3D30/V2_2')
+print(image.bandNames())
+</code></pre>
+<pre><code>ee.List({
+  "functionInvocationValue": {
+    "functionName": "Image.bandNames",
+    "arguments": {
+      "image": {
+        "functionInvocationValue": {
+          "functionName": "Image.load",
+          "arguments": {
+            "id": {
+              "constantValue": "JAXA/ALOS/AW3D30/V2_2"
+            }
+          }
+        }
+      }
+    }
+  }
+})
+</code></pre>
+<p>The reason this doesn't seem to be run, is there hat all of this code (and the rest resulting list) is server-side code. So all of this he internal prcessing, which is computationally efficient ads the processing happens on the same machines that hold the data (in effect). But we want to print the value of something, we want that information on the Client side, which is slow as it involves sending the data over the internet. You should <a href="https://developers.google.com/earth-engine/guides/client_server">read more on the pghilisohpy</a> of clibnet-Server architechure and how to write cide in iyt</p>
+<pre><code class="language-python">imageCollection = ee.ImageCollection(&quot;COPERNICUS/S2_SR&quot;)a]
+firstOne = imageCollection.map(lambda x : x.multiply(0.01))cd
+</code></pre>
+<pre><code class="language-python">region = ee.Feature(ee.FeatureCollection('EPA/Ecoregions/2013/L3')\
+  .filter(ee.Filter.eq('us_l3name', 'Sierra Nevada'))\
+  .first());
+
+
+idict = {
+  'reducer': ee.Reducer.mean(),
+  'geometry': region.geometry(),
+  'scale': 30,
+  'maxPixels': 1e9
+}
+print(idict)
+# Reduce the region. The region parameter is the Feature geometry.
+meanDictionary = image.reduceRegion(**idict)
+
+# The result is a Dictionary.  Print it.
+print(meanDictionary);
+</code></pre>
+<pre><code>{'reducer': &lt;ee.Reducer object at 0x7fadcda97e90&gt;, 'geometry': ee.Geometry({
+  "functionInvocationValue": {
+    "functionName": "Feature.geometry",
+    "arguments": {
+      "feature": {
+        "functionInvocationValue": {
+          "functionName": "Collection.first",
+          "arguments": {
+            "collection": {
+              "functionInvocationValue": {
+                "functionName": "Collection.filter",
+                "arguments": {
+                  "collection": {
+                    "functionInvocationValue": {
+                      "functionName": "Collection.loadTable",
+                      "arguments": {
+                        "tableId": {
+                          "constantValue": "EPA/Ecoregions/2013/L3"
+                        }
+                      }
+                    }
+                  },
+                  "filter": {
+                    "functionInvocationValue": {
+                      "functionName": "Filter.equals",
+                      "arguments": {
+                        "leftField": {
+                          "constantValue": "us_l3name"
+                        },
+                        "rightValue": {
+                          "constantValue": "Sierra Nevada"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}), 'scale': 30, 'maxPixels': 1000000000.0}
+ee.Dictionary({
+  "functionInvocationValue": {
+    "functionName": "Image.reduceRegion",
+    "arguments": {
+      "geometry": {
+        "functionInvocationValue": {
+          "functionName": "Feature.geometry",
+          "arguments": {
+            "feature": {
+              "functionInvocationValue": {
+                "functionName": "Collection.first",
+                "arguments": {
+                  "collection": {
+                    "functionInvocationValue": {
+                      "functionName": "Collection.filter",
+                      "arguments": {
+                        "collection": {
+                          "functionInvocationValue": {
+                            "functionName": "Collection.loadTable",
+                            "arguments": {
+                              "tableId": {
+                                "constantValue": "EPA/Ecoregions/2013/L3"
+                              }
+                            }
+                          }
+                        },
+                        "filter": {
+                          "functionInvocationValue": {
+                            "functionName": "Filter.equals",
+                            "arguments": {
+                              "leftField": {
+                                "constantValue": "us_l3name"
+                              },
+                              "rightValue": {
+                                "constantValue": "Sierra Nevada"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "image": {
+        "functionInvocationValue": {
+          "functionName": "Image.load",
+          "arguments": {
+            "id": {
+              "constantValue": "JAXA/ALOS/AW3D30/V2_2"
+            }
+          }
+        }
+      },
+      "maxPixels": {
+        "constantValue": 1000000000.0
+      },
+      "reducer": {
+        "functionInvocationValue": {
+          "functionName": "Reducer.mean",
+          "arguments": {}
+        }
+      },
+      "scale": {
+        "constantValue": 30
+      }
+    }
+  }
+})
+</code></pre>
+<p>When we print this function, we might think that it would print out the band names for 'JAXA/ALOS/AW3D30/V2_2', but instead it returns data in an <code>ee.List</code> type that sets up a dictionary describing the hierachy of command we want to run.  </p>
+<h2 id="geemap">GEEmap</h2>
+<p>One of the best resources built around the core GEE functionality is the <code>geemap</code> library from <a href="Qiusheng Wu">https://github.com/giswqs</a> to provide a simple mapping front end. You will find a huge number of blog entries and tutorials with examples. </p>
+<p><code>Wu, Q., (2020). geemap: A Python package for interactive mapping with Google Earth Engine. The Journal of Open Source Software, 5(51), 2305.</code> <a href="https://doi.org/10.21105/joss.02305">https://doi.org/10.21105/joss.02305</a>.</p>
+<p>One thing to bear in mind with interactive processing in Jupyter notebooks in Python is that you need to be aware of which active window you are using. Notice that if yiou want to finish processing in one cell and run code in another cell, you need to stop the code running in the first cell (stop button on the control panel). </p>
+<h2 id="image-collections">Image collections</h2>
+<p>First you might want to take a look at the datasets available on GEE by looking in the <a href="https://developers.google.com/earth-engine/datasets/catalog/">dataset catalog</a>. </p>
+<p>Suppose we want to develop a visualisation using Sentinel-2 MSI data. In that case, we could select the dataset <code>"COPERNICUS/S2_SR"</code>:</p>
+<pre><code class="language-python">s2 = ee.ImageCollection(&quot;COPERNICUS/S2_SR&quot;)
+
+# what type?
+type(s2)
+</code></pre>
+<pre><code>ee.imagecollection.ImageCollection
+</code></pre>
+<p>The variable <code>s2</code> contains an EE <code>ImageCollection</code>, which is the core data type for collections of raster spatial data assets. </p>
+<p>An image collection is made up of a group of images. The method <code>first()</code>, for example, selects the first image in the collection. </p>
+<pre><code class="language-python">s2_image = s2.first()
+
+# what type?
+type(s2_image)
+</code></pre>
+<pre><code>ee.image.Image
+</code></pre>
+<p>To do some processing on this collection, the main functionality that processes or filters over the image collection are:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Operation</th>
+<th align="right">example</th>
+<th align="right">comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>filterBounds(geometry)</code></td>
+<td align="right"><code>s2.filterBounds(ee.Geometry.Point(0.1276,51.5072))</code></td>
+<td align="right">filter physical extent by defined geometry</td>
+</tr>
+<tr>
+<td align="right"><code>filterDate(start, opt_end=None)</code></td>
+<td align="right"><code>s2.filterDate('2019-01-01', '2019-12-31')</code></td>
+<td align="right">filter the collection by date</td>
+</tr>
+<tr>
+<td align="right"><code>limit(n)</code></td>
+<td align="right"><code>s2.limit(5)</code></td>
+<td align="right">limit the number of images in the collection to <code>n</code></td>
+</tr>
+<tr>
+<td align="right"><code>map(algorithm)</code></td>
+<td align="right"><code>s2.map()</code></td>
+<td align="right">map <code>algorithm</code> to each image in the image collection</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="right">Operation</th>
+<th align="right">example</th>
+<th align="right">comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>reduce(Reducer)</code></td>
+<td align="right"><code>s2.reduce(ee.Reducer.median())</code></td>
+<td align="right">Apply the reducer to the image collection. This results in a single</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">help(s2.map)
+</code></pre>
+<pre><code>Help on method map in module ee.collection:
+
+map(algorithm, opt_dropNulls=None) method of ee.imagecollection.ImageCollection instance
+    Maps an algorithm over a collection.
+
+    Args:
+      algorithm: The operation to map over the images or features of the
+          collection, a Python function that receives an image or features and
+          returns one. The function is called only once and the result is
+          captured as a description, so it cannot perform imperative operations
+          or rely on external state.
+      opt_dropNulls: If true, the mapped algorithm is allowed to return nulls,
+          and the elements for which it returns nulls will be dropped.
+
+    Returns:
+      The mapped collection.
+
+    Raises:
+      ee_exception.EEException: if algorithm is not a function.
+</code></pre>
+<pre><code class="language-python"># centre longitude,latitude
+location = 0.1276, 51.5072
+cloud_thresh = 30
+
+collection = ee.ImageCollection(&quot;COPERNICUS/S2_SR&quot;)\
+.filterBounds(ee.Geometry.Point(*location)).filterDate('2019-01-01', '2019-12-31') \
+    .filter(ee.Filter.lte('CLOUDY_PIXEL_PERCENTAGE', cloud_thresh))
+</code></pre>
+<pre><code class="language-python">import ee
+import geemap
+
+# Create a map centered at (lon, lat).
+Map = geemap.Map(center=location, zoom=10)
+
+# Compute the median of each pixel for each band of the 5 least cloudy scenes.
+median = collection.limit(5).reduce(ee.Reducer.median())
+
+# Define visualization parameters in an object literal.
+vizParams = {'bands': ['B4_median', 'B3_median', 'B2_median'],
+             'min': 0, 'max': 3000, 'gamma': 1.3}
+
+Map.setCenter(*location, 10)
+Map.addLayer(median, vizParams, 'Median image')
+# Display the map.
+Map
+</code></pre>
+<pre><code>Map(center=[51.5072, 0.1276], controls=(WidgetControl(options=['position', 'transparent_bg'], widget=HBox(chil…
+</code></pre>
+<pre><code class="language-python">
+</code></pre>
+<pre><code class="language-python">import ee
+</code></pre>
+<pre><code class="language-python">help(geemap.ee_search)
+</code></pre>
+<pre><code>Help on function ee_search in module geemap.common:
+
+ee_search(asset_limit=100)
+    Search Earth Engine API and user assets. If you received a warning (IOPub message rate exceeded) in Jupyter notebook, you can relaunch Jupyter notebook using the following command:
+        jupyter notebook --NotebookApp.iopub_msg_rate_limit=10000
+
+    Args:
+        asset_limit (int, optional): The number of assets to display for each asset type, i.e., Image, ImageCollection, and FeatureCollection. Defaults to 100.
+</code></pre>
+<pre><code class="language-python">
 </code></pre>
 
   <hr>
@@ -1804,7 +2024,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 6, 2021</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 28, 2022</span>
       
     
   </small>

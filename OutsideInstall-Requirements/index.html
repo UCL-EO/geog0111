@@ -15,7 +15,7 @@
     
     
       
-        <title>Instructions for docker install of these notes - GEOG0111</title>
+        <title>Instructions for local install of these notes - GEOG0111</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#instructions-for-docker-install-of-these-notes" class="md-skip">
+        <a href="#instructions-for-local-install-of-these-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Instructions for docker install of these notes
+              Instructions for local install of these notes
             
           </span>
         </div>
@@ -1617,23 +1617,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
+  <a href="#1-requirements" class="md-nav__link">
+    1. Requirements
   </a>
   
-    <nav class="md-nav" aria-label="Requirements">
+    <nav class="md-nav" aria-label="1. Requirements">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker" class="md-nav__link">
-    docker
+  <a href="#11-gdal" class="md-nav__link">
+    1.1 gdal
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
-    git
+  <a href="#12-anaconda" class="md-nav__link">
+    1.2. Anaconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#121-installing-anaconda" class="md-nav__link">
+    1.2.1 Installing Anaconda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-git" class="md-nav__link">
+    1.3. git
   </a>
   
 </li>
@@ -1644,49 +1658,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-install" class="md-nav__link">
-    Local install
-  </a>
-  
-    <nav class="md-nav" aria-label="Local install">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installing-the-notes-in" class="md-nav__link">
-    Installing the notes in ~
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nasa-earthdata-login" class="md-nav__link">
-    NASA Earthdata login
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-docker" class="md-nav__link">
-    running docker
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    Test
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-of-the-notes-and-updates" class="md-nav__link">
-    Use of the notes and updates
+  <a href="#14-mamba" class="md-nav__link">
+    1.4. mamba
   </a>
   
 </li>
@@ -1703,18 +1676,62 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/OutsideInstall-Docker.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/UCL-EO/geog0111/edit/master/docs/OutsideInstall-Requirements.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="instructions-for-docker-install-of-these-notes">Instructions for docker install of these notes</h1>
-<h2 id="requirements">Requirements</h2>
-<h3 id="docker"><code>docker</code></h3>
-<p>One option for running these notes that requires only minimal setup is using <a href="https://www.docker.com"><code>docker</code></a>.</p>
-<p>First then, install the <a href="https://www.docker.com"><code>docker</code></a> software on your computer and test and run it.</p>
-<h3 id="git"><code>git</code></h3>
+<h1 id="instructions-for-local-install-of-these-notes">Instructions for local install of these notes</h1>
+<p>For a local install of these notes, you need to follow the instructions below to make sure that various pieces of software you will need are set up on your computer.</p>
+<p>These are:</p>
+<ul>
+<li><a href="./#11-gdal"><code>gdal</code></a></li>
+<li><a href="./#12-Anaconda"><code>anaconda</code> <code>python</code></a></li>
+<li><a href="./#13-git"><code>git</code></a></li>
+<li><a href="./#14-mamba"><code>mamba</code></a></li>
+</ul>
+<h2 id="1-requirements">1. Requirements</h2>
+<h3 id="11-gdal">1.1 <code>gdal</code></h3>
+<p>To do the geospatial processing in Python, you will need to install the <code>gdal</code> package on your computer. There are specific instructiuons for that <a href="https://github.com/UCL-EO/gdal-install"><code>gdal</code></a> that youy should follow first. Note that if you are using a windows computer, we suggest using <code>WSL</code>, as explained in the link. Then you must also use <code>WSL</code> for all of the material below.</p>
+<h3 id="12-anaconda">1.2. Anaconda</h3>
+<p>First, you will need to make sure you have Python (3.6+) installed on your computer. We suggest using <a href="https://docs.anaconda.com/anaconda/install">Anaconda</a>, as the package list is set up to work with this. We suggest you get the most up to date version of Python available. We won't be using the additional tools such as PyCharm, so you don't need to install those for this course (you can if you want to). </p>
+<p>The Anaconda package manager is called <code>conda</code>. You should make use of that for managing packages.</p>
+<p>If you think you may have Anaconda installed, look at the material on https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-conda.html to see if you need to update.</p>
+<h3 id="121-installing-anaconda">1.2.1 Installing Anaconda</h3>
+<p>If you choose another version of Python, you will need to convert the environment files and modify the instructions below. </p>
+<p>Follow the instructions on https://docs.anaconda.com/anaconda/install to install Anaconda on your local computer. </p>
+<p>When prompted:</p>
+<pre><code>    Do you wish the installer to initialize Anaconda3
+    by running conda init? [yes|no]
+    [yes] &gt;&gt;&gt; yes
+</code></pre>
+<p>respond <code>yes</code></p>
+<p>You must check you have these installed. <strong>There is little point trying to go further unless you have this sorted!</strong></p>
+<p>Open a new shell (Terminal) and type:</p>
+<pre><code>    conda env list
+</code></pre>
+<p>This should show:        </p>
+<pre><code>    # conda environments:
+    #
+    base                  *   /Users/plewis/anaconda3
+</code></pre>
+<p>The <code>*</code> indicates that you have the base environment set.</p>
+<p>If you want to use Anaconda Python as your default, look at information on https://docs.anaconda.com/anaconda/user-guide/faq/. </p>
+<p>In a shell, type`:</p>
+<pre><code>    conda activate
+</code></pre>
+<p>Then you may need to type:</p>
+<pre><code>    conda init
+</code></pre>
+<p>though that was probably done in the setup.</p>
+<p>You can check where you are getting your Python command from with:</p>
+<pre><code>    which python
+</code></pre>
+<p>This should give something with <code>anaconda3</code> in the name:</p>
+<pre><code>    /Users/plewis/anaconda3/bin/python
+</code></pre>
+<h3 id="13-git">1.3. <code>git</code></h3>
 <p>You will also need to install the tool <a href="https://git-scm.com">git</a> if you don't already have it. You can check to see if you have it with:</p>
 <pre><code>    which git
 </code></pre>
@@ -1723,80 +1740,10 @@
 </code></pre>
 <p>If you don't get that, look at the installation instruction again. <strong>There is little point trying to go further unless you have this sorted!</strong></p>
 <p>You may want to check if you need to update <code>git</code>: https://phoenixnap.com/kb/how-to-update-git</p>
-<h2 id="local-install">Local install</h2>
-<p>We will make a local copy of these notes on your computer (assumed in <code>~/geog0111</code>) then run the jupyter notebooks using repo2docker.</p>
-<h3 id="installing-the-notes-in">Installing the notes in <code>~</code></h3>
-<p>First, install the notes:</p>
-<p>We assume you will setup the repository in your home directory (<code>~</code>). If not, then replace <code>~</code> below by where you want to setup.</p>
-<p>Clone this repository and cd to the local directory</p>
-<pre><code>    cd ~ &amp;&amp; git clone https://github.com/UCL-EO/geog0111.git
-    cd ~/geog0111
-    cd notebooks &amp;&amp; tar xvzf data/cacheData.tar.Z
-</code></pre>
-<h3 id="nasa-earthdata-login">NASA Earthdata login</h3>
-<p>Set up your NASA Earthdata login on the site <a href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>. Store the Earthdata password locally when you come across it in the notes.</p>
-<h3 id="running-docker">running <code>docker</code></h3>
-<p>Make sure the environment variables <code>HOME</code> and <code>USER</code> are set:</p>
-<pre><code>    env | grep HOME
-    env | grep USER
-</code></pre>
-<p>If not (they should be, though may not be on Windows), then try:</p>
-<pre><code>    export USER=$(whoami)
-    export HOME=$(cd ~ &amp;&amp; pwd)
-</code></pre>
-<p>Then run the following command to pull the docker and run the Jupyter notebook server locally:</p>
-<pre><code>    docker run --rm -i --volume=${HOME}/geog0111:/home/$USER/tmp/geog0111 -w /home/$USER/tmp/geog0111  -p 8888:8888   -t ucleo/geog0111:latest
-</code></pre>
-<p>It will eventually respond with something like:</p>
-<pre><code>    [I 06:58:25.120 NotebookApp] Serving notebooks from local directory: /Users/plewis/Documents/GitHub/geog0111
-    [I 06:58:25.120 NotebookApp] Jupyter Notebook 6.4.4 is running at:
-    [I 06:58:25.120 NotebookApp] http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-    [I 06:58:25.120 NotebookApp]  or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-    [I 06:58:25.120 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-    [C 06:58:25.164 NotebookApp]
-
-        To access the notebook, open this file in a browser:
-            file:///Users/plewis/Library/Jupyter/runtime/nbserver-88431-open.html
-        Or copy and paste one of these URLs:
-            http://The-Brain.local:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-         or http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-</code></pre>
-<p>The main things for you to see from this are:</p>
-<p>A. How to stop the jupyter server:</p>
-<pre><code>Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-</code></pre>
-<p>Use Control-C in the shell you started the server. You might try that now to familiarise yourself with it, and then restart <code>jupyter notebook</code></p>
-<p>B. The URL of the server (with the security token). In this case:</p>
-<pre><code>    http://127.0.0.1:8888/?token=146dbb8eb09948a20f219c69256926ca6ab62c4fae03d0c1
-</code></pre>
-<p>Launch a browser that points to that (your one, not te example here!!). That should take you to the Jupyter server homepage.</p>
-<!-- #endregion -->
-
-<!-- #region -->
-<h3 id="test">Test</h3>
-<p>Now, test things:</p>
-<ul>
-<li>navigate to the coursenotes <code>geog0111</code> then <code>notebooks</code></li>
-<li>select the fist notebook <code>001_Notebook_use.md</code></li>
-<li>
-<p>go through the notes and run the code in the cells</p>
-</li>
-<li>
-<p>if that doesn't launch for any reason, try re-stopping and starting the server</p>
-</li>
-<li>failing that, ask for help in the Monday class, or come along to office hours or the Thursday help sessions</li>
-</ul>
-<p>One issue to look out for is if the notebook kernel doesn't start. That normally means that either you haven't set up the  <code>geog0111</code> environment properly, and/or you didn't setup the notebook kernel properly. Look back over sections 3. and 4. above.</p>
-<p>You should test that your setup is robust. </p>
-<ul>
-<li>Try logging out and in again on your computer and launch jupyter again</li>
-</ul>
-<h2 id="use-of-the-notes-and-updates">Use of the notes and updates</h2>
-<p>Periodically, we may have to update the notes. </p>
-<p>Before you do this, be aware that any updated files on the server will over-write your local files. <strong>That means that any changes you may have made to the notebooks</strong>, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. </p>
-<p>You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'OutsideInstall-Local' here) and changing it (e.g. <code>myOutsideInstall-Local</code>). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.</p>
-<p>To update the notes (and over-write your changes), in a shell (Terminal) type:</p>
-<pre><code>cd ~/geog0111 &amp;&amp; git reset --hard HEAD &amp;&amp; git pull
+<h2 id="14-mamba">1.4. <code>mamba</code></h2>
+<p>Actually, <code>conda</code> is pretty slow and cumbersome. A much better package manager (cross platform) is <code>mamba</code>. We advise you to download this and use in place of <code>conda</code>. Everywhere you see <code>conda</code> mantioned below, use <code>mamba</code> (after you have installed it obviously).</p>
+<p>see <a href="https://github.com/mamba-org/mamba">mamba</a> for install. e.g.</p>
+<pre><code>    conda install mamba -n base -c conda-forge
 </code></pre>
 
   <hr>
@@ -1804,7 +1751,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 6, 2021</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 28, 2022</span>
       
     
   </small>
