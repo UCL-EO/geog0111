@@ -26,8 +26,10 @@
 |   | 
 |---|
 |[Wanxin Yang](https://www.geog.ucl.ac.uk/people/research-students/wanxin-yang)|
+|[Thomas Keel](mailto:thomas.keel.18@ucl.ac.uk)|
 
-### Contributing Staff
+
+### Other Contributing Staff
 
 |   |   |   |
 |---|---|---|
@@ -79,11 +81,11 @@ The Thursday help sessions will be held in room 110 in the [Northwest Wing (Geog
 
 Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 
 
-See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for more details.
+See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595) for more details.
 
 ### Useful links
 
-[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)  
+[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595)  
 
 ### Using the notes
 
