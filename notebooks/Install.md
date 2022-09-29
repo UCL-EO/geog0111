@@ -76,7 +76,7 @@ and try again.
 1. Make sure you in the UCL domain OR have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running OR that you are running from [Desktop@UCL](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere)
 2. Log in to the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 3. Navigate to the directory `geog0111/notebooks`
-4. Access the notebooks you want directly, or via the [index](TIMETABLE.md).
+4. Access the notebooks you want directly, or via the index [TIMETABLE.ipynb](TIMETABLE.ipynb).
 5. See further information on the course [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)
 
 # Use of the notes and updates
