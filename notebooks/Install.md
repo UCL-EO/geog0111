@@ -29,8 +29,11 @@ The first time you are using these notes, you should go through the items below.
         conda init
         conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
         echo "conda activate geog0111" >> ~/.bashrc
+        bash
         
-    Then, open a new shell (or type `bash`) and type:
+  This sets up the conda environment we need for the notebooks in the first two commands. The last two commands make sure that the correct environment is loaded when you log in.
+        
+ 6. Now type:
     
         conda env list
         
@@ -48,19 +51,19 @@ If it doesn't, type:
          
 and try again.        
 
-6. Now, set up notebook extensions by running the foillowing in shell (Terminal):
+7. Now, set up notebook extensions by running the foillowing in shell (Terminal):
 
         ~/geog0111/notebooks/bin/postBuild
         
         
-7. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
+8. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
 
    * click on the `Control Panel` button at the top right of the notebook page. 
    * then click the big red button to stop the server
    * next, click `start my server` to restart (you may have to also then click `launch my server`)
    * if you are asked to choose an interface, choose `classic`, then click `start`
   
- 8. Now, test things:
+ 9. Now, test things:
  
    * navigate to the coursenotes `geog0111` then `notebooks`
    * select the fist notebook `001_Notebook_use.ipynb`
