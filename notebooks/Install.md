@@ -56,7 +56,7 @@ and try again.
         ~/geog0111/notebooks/bin/postBuild
         
         
-8. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
+8. This should all be good to go now, but you should make sure that the new settings have taken place by stopping and restarting the notebook server. To do this:
 
    * click on the `Control Panel` button at the top right of the notebook page. 
    * then click the big red button to stop the server
