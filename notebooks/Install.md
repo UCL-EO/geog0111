@@ -20,7 +20,7 @@ The first time you are using these notes, you should go through the items below.
 4. Open a Terminal, from `New->Terminal` on the `Control Panel`
 5. In the Terminal (shell), type:
 
-        cd ~ && /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git clone git://github.com/UCL-EO/geog0111
+        cd ~ && /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git clone https://github.com/UCL-EO/geog0111
     
    This will clone this repository and set up the Python. 
    
