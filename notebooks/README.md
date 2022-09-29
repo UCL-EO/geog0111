@@ -84,7 +84,7 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
-follow the instructions on [UCL installation and running](notebooks/Install.md). 
+follow the instructions on [UCL installation and running](Install.md). 
 
 If you are interested in running the course notes from outside UCL on your own computer, there are several options:
 
