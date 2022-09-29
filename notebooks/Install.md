@@ -20,7 +20,7 @@ The first time you are using these notes, you should go through the items below.
 4. Open a Terminal, from `New->Terminal` on the `Control Panel`
 5. In the Terminal (shell), type:
 
-        cd ~ && git clone git://github.com/UCL-EO/geog0111
+        cd ~ && /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git clone git://github.com/UCL-EO/geog0111
     
    This will clone this repository and set up the Python. 
    
@@ -87,7 +87,7 @@ You can easily do this by clicking on the notebook name panel at the top of the 
 
 To update the notes (and over-write your changes), in a shell (Terminal) type:
 
-    cd ~/geog0111 && git reset --hard HEAD && git pull
+    cd ~/geog0111 && /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git reset --hard HEAD && git pull
     
     
 <!-- #endregion -->
