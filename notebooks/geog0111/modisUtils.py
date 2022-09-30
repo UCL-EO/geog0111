@@ -10,7 +10,7 @@ from osgeo import gdal
 import datetime
 import scipy
 import scipy.ndimage
-
+import requests
 
 try:
   from geog0111.cylog import Cylog
@@ -599,15 +599,23 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
     # auth redirect
     if verbose:
         print(f'logging in to {url.anchor}') 
-    url2 = url.with_userinfo(*Cylog(url.anchor).login())
+
+    #url2 = url.with_userinfo(*Cylog(url.anchor).login())
     if verbose:
         print(f'get info from {url.anchor}') 
-    r = url2.get(timeout=timeout)
 
-    if verbose:
-        print(f'get data from {url.anchor}') 
-    url3=URL(r.url).with_userinfo(*Cylog(url.anchor).login())
-    r2 = url3.get(timeout=timeout)
+    # replace this for 2022/23 using with
+    #r = url2.get(timeout=timeout)
+    #if verbose:
+    #    print(f'get data from {url.anchor}') 
+    #url3=URL(r.url).with_userinfo(*Cylog(url.anchor).login())
+    #r2 = url3.get(timeout=timeout)
+    #import pdb;pdb.set_trace() 
+    with requests.Session() as s:
+        s.auth = Cylog(url.anchor).login()
+        r1 = requests.get(str(url))
+        r2 = s.get(r1.url, stream=True)
+
     if verbose:
         print(f'done - status code {r2.status_code}') 
         
