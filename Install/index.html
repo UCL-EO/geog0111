@@ -1645,19 +1645,23 @@
 <li>
 <p>Open a Terminal, from <code>New-&gt;Terminal</code> on the <code>Control Panel</code></p>
 </li>
-<li>In the Terminal (shell), type:<pre><code>cd ~ &amp;&amp; git clone git://github.com/UCL-EO/geog0111
+<li>In the Terminal (shell), type:<pre><code>cd ~ &amp;&amp; /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git clone https://github.com/UCL-EO/geog0111
 </code></pre>
 </li>
 </ul>
 <p>This will clone this repository and set up the Python. </p>
 <ol>
-<li>
-<p>Set up anaconda. In the Terminal (shell), type:</p>
-<pre><code>conda init
+<li>Set up anaconda. In the Terminal (shell), type:<pre><code>conda init
 conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
 echo "conda activate geog0111" &gt;&gt; ~/.bashrc
+bash
 </code></pre>
-<p>Then, open a new shell (or type <code>bash</code>) and type:</p>
+</li>
+</ol>
+<p>This sets up the conda environment we need for the notebooks in the first two commands. The last two commands make sure that the correct environment is loaded when you log in.</p>
+<ol>
+<li>
+<p>Now type:</p>
 <pre><code>conda env list
 </code></pre>
 <p>This should now show:</p>
@@ -1680,7 +1684,7 @@ geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 </code></pre>
 </li>
 <li>
-<p>This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:</p>
+<p>This should all be good to go now, but you should make sure that the new settings have taken place by stopping and restarting the notebook server. To do this:</p>
 </li>
 <li>
 <p>click on the <code>Control Panel</code> button at the top right of the notebook page. </p>
@@ -1706,7 +1710,7 @@ geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 <li>Make sure you in the UCL domain OR have the <a href="https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn">UCL VPN</a> installed and running OR that you are running from <a href="https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere">Desktop@UCL</a></li>
 <li>Log in to the <a href="https://jupyter.data-science.rc.ucl.ac.uk/">UCL JupyterHub</a>.</li>
 <li>Navigate to the directory <code>geog0111/notebooks</code></li>
-<li>Access the notebooks you want directly, or via the <a href="../TIMETABLE/">index</a>.</li>
+<li>Access the notebooks you want directly, or via the index <a href="../TIMETABLE/">TIMETABLE.md</a>.</li>
 <li>See further information on the course <a href="https://moodle.ucl.ac.uk/course/view.php?id=21495">Moodle page</a></li>
 </ol>
 <h1 id="use-of-the-notes-and-updates">Use of the notes and updates</h1>
@@ -1714,7 +1718,7 @@ geog0111              *  /shared/groups/jrole001/geog0111/envs/geog0111
 <p>Before you do this, be aware that any updated files on the server will over-write your local files. <strong>That means that any changes you may have made to the notebooks</strong>, for example, will be lost. It is vital then that you save the notebooks you are working on with a different name. </p>
 <p>You can easily do this by clicking on the notebook name panel at the top of the notebook (the one that says 'Install' here) and changing it (e.g. <code>myInstall</code>). You might do this consistently for all notebooks you use as you go through the course, then you won't have to worry about it when you do updates.</p>
 <p>To update the notes (and over-write your changes), in a shell (Terminal) type:</p>
-<pre><code>cd ~/geog0111 &amp;&amp; git reset --hard HEAD &amp;&amp; git pull
+<pre><code>cd ~/geog0111 &amp;&amp; /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git reset --hard HEAD &amp;&amp; git pull
 </code></pre>
 <!-- #endregion -->
 

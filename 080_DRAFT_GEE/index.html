@@ -1698,21 +1698,21 @@ Successfully saved authorization token.
 <table>
 <thead>
 <tr>
-<th align="right">Class</th>
-<th align="right">example</th>
-<th align="right">comment</th>
+<th style="text-align: right;">Class</th>
+<th style="text-align: right;">example</th>
+<th style="text-align: right;">comment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="right"><a href="https://developers.google.com/earth-engine/guides/image_overview">Image</a></td>
-<td align="right"><code>image = ee.Image('JAXA/ALOS/AW3D30/V2_2')</code></td>
-<td align="right">An image, often with multiple bands you can access with <code>image.bandNames()</code></td>
+<td style="text-align: right;"><a href="https://developers.google.com/earth-engine/guides/image_overview">Image</a></td>
+<td style="text-align: right;"><code>image = ee.Image('JAXA/ALOS/AW3D30/V2_2')</code></td>
+<td style="text-align: right;">An image, often with multiple bands you can access with <code>image.bandNames()</code></td>
 </tr>
 <tr>
-<td align="right"><a href="https://developers.google.com/earth-engine/apidocs/ee-imagecollection">ImageCollection</a></td>
-<td align="right"><code>imageCollection = ee.ImageCollection("COPERNICUS/S2_SR")</code></td>
-<td align="right">A collection (set) of <code>Image</code>s. You can e.g. use <code>imageCollection.map(lambda )</code></td>
+<td style="text-align: right;"><a href="https://developers.google.com/earth-engine/apidocs/ee-imagecollection">ImageCollection</a></td>
+<td style="text-align: right;"><code>imageCollection = ee.ImageCollection("COPERNICUS/S2_SR")</code></td>
+<td style="text-align: right;">A collection (set) of <code>Image</code>s. You can e.g. use <code>imageCollection.map(lambda )</code></td>
 </tr>
 </tbody>
 </table>
@@ -1907,47 +1907,47 @@ type(s2_image)
 <table>
 <thead>
 <tr>
-<th align="right">Operation</th>
-<th align="right">example</th>
-<th align="right">comment</th>
+<th style="text-align: right;">Operation</th>
+<th style="text-align: right;">example</th>
+<th style="text-align: right;">comment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="right"><code>filterBounds(geometry)</code></td>
-<td align="right"><code>s2.filterBounds(ee.Geometry.Point(0.1276,51.5072))</code></td>
-<td align="right">filter physical extent by defined geometry</td>
+<td style="text-align: right;"><code>filterBounds(geometry)</code></td>
+<td style="text-align: right;"><code>s2.filterBounds(ee.Geometry.Point(0.1276,51.5072))</code></td>
+<td style="text-align: right;">filter physical extent by defined geometry</td>
 </tr>
 <tr>
-<td align="right"><code>filterDate(start, opt_end=None)</code></td>
-<td align="right"><code>s2.filterDate('2019-01-01', '2019-12-31')</code></td>
-<td align="right">filter the collection by date</td>
+<td style="text-align: right;"><code>filterDate(start, opt_end=None)</code></td>
+<td style="text-align: right;"><code>s2.filterDate('2019-01-01', '2019-12-31')</code></td>
+<td style="text-align: right;">filter the collection by date</td>
 </tr>
 <tr>
-<td align="right"><code>limit(n)</code></td>
-<td align="right"><code>s2.limit(5)</code></td>
-<td align="right">limit the number of images in the collection to <code>n</code></td>
+<td style="text-align: right;"><code>limit(n)</code></td>
+<td style="text-align: right;"><code>s2.limit(5)</code></td>
+<td style="text-align: right;">limit the number of images in the collection to <code>n</code></td>
 </tr>
 <tr>
-<td align="right"><code>map(algorithm)</code></td>
-<td align="right"><code>s2.map()</code></td>
-<td align="right">map <code>algorithm</code> to each image in the image collection</td>
+<td style="text-align: right;"><code>map(algorithm)</code></td>
+<td style="text-align: right;"><code>s2.map()</code></td>
+<td style="text-align: right;">map <code>algorithm</code> to each image in the image collection</td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th align="right">Operation</th>
-<th align="right">example</th>
-<th align="right">comment</th>
+<th style="text-align: right;">Operation</th>
+<th style="text-align: right;">example</th>
+<th style="text-align: right;">comment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="right"><code>reduce(Reducer)</code></td>
-<td align="right"><code>s2.reduce(ee.Reducer.median())</code></td>
-<td align="right">Apply the reducer to the image collection. This results in a single</td>
+<td style="text-align: right;"><code>reduce(Reducer)</code></td>
+<td style="text-align: right;"><code>s2.reduce(ee.Reducer.median())</code></td>
+<td style="text-align: right;">Apply the reducer to the image collection. This results in a single</td>
 </tr>
 </tbody>
 </table>
@@ -2024,7 +2024,7 @@ ee_search(asset_limit=100)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 28, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2022</span>
       
     
   </small>
