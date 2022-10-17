@@ -4,8 +4,6 @@
 '''
 helloWorld
 
-Purpose:
-
   function print the string 'hello world' 
 
 '''  
@@ -16,10 +14,7 @@ __license__   = "GPLv3"
 __email__     = "p.lewis@ucl.ac.uk"
 
 def helloWorld():
-    '''
-    function to print the string 'hello world'
-    
-    '''
+    '''function to print the string "hello world"'''
     print('hello world')
     
     
