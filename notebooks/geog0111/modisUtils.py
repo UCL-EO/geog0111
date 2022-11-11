@@ -1113,7 +1113,7 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
                 except:
                     print(f"problem with SDS specification {kwargs['sds']}: should be str or first item in list")
                     return None,None
-            stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
+            stitch_vrt = gdal.BuildVRT(vrtFile, builder)
             del stitch_vrt
             # now warp it
             if (len(warp_args.keys()) == 0) and format == 'VRT':
