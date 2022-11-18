@@ -1012,7 +1012,7 @@ def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
         'doys'       : [doy],
         'sds'        : [sds]
     }
-
+    #import pdb;pdb.set_trace()
     data = getModisFiles(verbose=verbose,timeout=1000,**kwargs)
 
     ofiles = []
@@ -1032,7 +1032,7 @@ def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
             stitch_vrt = gdal.BuildVRT(ofile, list(doy_v.values()))
             del stitch_vrt
             ofiles.append(ofile)
-        
+    #import pdb;pdb.set_trace()    
     if len(ofiles):
         return ofiles[0]
     else:
