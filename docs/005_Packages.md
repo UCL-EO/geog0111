@@ -45,7 +45,7 @@ help(yaml.safe_load)
     
 
 
-Recall from [Python Introduction](010_Python_Introduction.md) that classes start with a capital letter. So, if we see a variable in `Python such as `path`, we recognise that as a class.
+We will learn in [Python Introduction](010_Python_Introduction.md) that classes start with a capital letter. So, if we see a variable in `Python such as `path`, we should recognise that as a class.
 
 Sometimes we wish to only import certain functions or sub-packages. This is done with the `from` directive. For example to import the class `Path` from the package `pathlib`
 
@@ -60,6 +60,10 @@ The class `Path` is now available directly as `Path`, whereas if we had imported
     import pathlib
     
 we would have needed to refer to it as `pathlib.Path`. This will over-ride any current definition of the class `Path` in the current code, so be careful not to over-ride things you don't mean to.
+
+#### Exercise 1
+
+Make and run a Python cell that imports the class `Loader` from the package `yaml` and show the help text for this.
 
 ## Summary
 

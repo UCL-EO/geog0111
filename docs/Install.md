@@ -20,7 +20,7 @@ The first time you are using these notes, you should go through the items below.
 4. Open a Terminal, from `New->Terminal` on the `Control Panel`
 5. In the Terminal (shell), type:
 
-        cd ~ && git clone git://github.com/UCL-EO/geog0111
+        cd ~ && /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git clone https://github.com/UCL-EO/geog0111
     
    This will clone this repository and set up the Python. 
    
@@ -29,8 +29,11 @@ The first time you are using these notes, you should go through the items below.
         conda init
         conda config --prepend envs_dirs /shared/groups/jrole001/geog0111/envs
         echo "conda activate geog0111" >> ~/.bashrc
+        bash
         
-    Then, open a new shell (or type `bash`) and type:
+  This sets up the conda environment we need for the notebooks in the first two commands. The last two commands make sure that the correct environment is loaded when you log in.
+        
+ 6. Now type:
     
         conda env list
         
@@ -48,19 +51,19 @@ If it doesn't, type:
          
 and try again.        
 
-6. Now, set up notebook extensions by running the foillowing in shell (Terminal):
+7. Now, set up notebook extensions by running the foillowing in shell (Terminal):
 
         ~/geog0111/notebooks/bin/postBuild
         
         
-7. This should all be good to go now, but you should make sure that the new settings have taken place by stopping are restarting the notebook server. To do this:
+8. This should all be good to go now, but you should make sure that the new settings have taken place by stopping and restarting the notebook server. To do this:
 
    * click on the `Control Panel` button at the top right of the notebook page. 
    * then click the big red button to stop the server
    * next, click `start my server` to restart (you may have to also then click `launch my server`)
    * if you are asked to choose an interface, choose `classic`, then click `start`
   
- 8. Now, test things:
+ 9. Now, test things:
  
    * navigate to the coursenotes `geog0111` then `notebooks`
    * select the fist notebook `001_Notebook_use.md`
@@ -73,7 +76,7 @@ and try again.
 1. Make sure you in the UCL domain OR have the [UCL VPN](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) installed and running OR that you are running from [Desktop@UCL](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere)
 2. Log in to the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 3. Navigate to the directory `geog0111/notebooks`
-4. Access the notebooks you want directly, or via the [index](TIMETABLE.md).
+4. Access the notebooks you want directly, or via the index [TIMETABLE.md](TIMETABLE.md).
 5. See further information on the course [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)
 
 # Use of the notes and updates
@@ -87,7 +90,7 @@ You can easily do this by clicking on the notebook name panel at the top of the 
 
 To update the notes (and over-write your changes), in a shell (Terminal) type:
 
-    cd ~/geog0111 && git reset --hard HEAD && git pull
+    cd ~/geog0111 && /shared/ucl/apps/git/2.3.5/gnu-4.9.2/bin/git reset --hard HEAD && git pull
     
     
 <!-- #endregion -->

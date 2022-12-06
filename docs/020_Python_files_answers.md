@@ -142,9 +142,9 @@ print(f'After touch: time of most recent modification for {readme} is {h_modifie
 print(f'Now it is {datetime.now()}')
 ```
 
-    Before touch: time of most recent modification for bin/README is 2021-09-29 08:43:14.772314
-    After touch: time of most recent modification for bin/README is 2021-09-29 08:43:26.888338
-    Now it is 2021-09-29 08:43:26.888626
+    Before touch: time of most recent modification for bin/README is 2022-09-29 15:46:20.737117
+    After touch: time of most recent modification for bin/README is 2022-10-21 16:19:25.448961
+    Now it is 2022-10-21 16:19:25.452844
 
 
 #### Exercise 5
@@ -169,7 +169,7 @@ here = Path().cwd()
 print(*here.glob('*.md'))
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/Install.md /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/OutsideInstall-Local.md /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/README.md /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/TIMETABLE.md
+    /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/Install.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/InstallGDAL.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/OutsideInstall-Docker-owner.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/OutsideInstall-Docker.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/OutsideInstall-Local.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/OutsideInstall-Requirements.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/README.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/TIMETABLE.md /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks/Using-the-course-notes.md
 
 
 #### Exercise 6
@@ -313,13 +313,13 @@ ofile.parent.rmdir()
     The file images/ucl.png exists?: True
     The file images/ucl.png size: 1956 B
     The file images/ucl.png size:  1.91 KB
-    The file images/ucl.png modification time: 2021-09-28 21:37:24.043117
+    The file images/ucl.png modification time: 2022-09-29 15:46:26.616106
     
     confirm with ls -lh
-    -rw-r--r-- 1 ucfalew ucfa 2.0K Sep 28 21:37 images/ucl.png
+    -rw-r--r-- 1 coursd0 ucaac2 2.0K Sep 29 15:46 images/ucl.png
     
     ==== After copying
     The file myfiles/ucl.png size:  1.91 KB
-    The file myfiles/ucl.png modification time: 2021-09-29 08:43:27.356321
-    Time now is 2021-09-29 08:43:27.358819
+    The file myfiles/ucl.png modification time: 2022-10-21 16:19:26.415919
+    Time now is 2022-10-21 16:19:26.425067
 

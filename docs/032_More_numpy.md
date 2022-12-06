@@ -507,7 +507,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7fc715dd7490>
+    <matplotlib.colorbar.Colorbar at 0x7fa5b0be04d0>
 
 
 

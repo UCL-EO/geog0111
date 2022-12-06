@@ -699,7 +699,7 @@ from pathlib import Path
 # or it wont work!
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
-site_file = 'HadSEEP_monthly_qc.txt'
+site_file = 'HadSEEP_monthly_totals.txt'
 
 url = URL(site,site_dir,site_file)
 
@@ -715,12 +715,12 @@ else:
     print(f'failed to get {url}')
 ```
 
-    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+    file work/HadSEEP_monthly_totals.txt written: 15209 bytes
 
 
-Now we want to read this file `work/HadSEEP_monthly_qc.txt` into `pandas`.
+Now we want to read this file `work/HadSEEP_monthly_totals.txt` into `pandas`.
 
-[By inspection](https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt), the dataset is seen to have a variable number of spaces between the data columns. This is known as 'whitespace' (i.e. ` ` or `\t` characters). This makes it more complex to read into `pandas` than a CSV format, and we need to specify a [regular expression](https://en.wikipedia.org/wiki/Regular_expression) meaning 'one or more space'. This is `r"[ ]{1,}"` and we give the keyword `sep` for `pandas` as `sep=r"[ ]{1,}"`. Further for `pandas` in this case we must specify that we should use the Python engine to interpret `engine='python'`. Other features of the dataset are that the first 3 rows of data are metadata and should be skipped in reading the dataset: `skiprows=3`, with the 4th line the data column headers. Finally, we see that 'no data' values are given here as the value `-99.9`: `na_values=[-99.9]`. 
+[By inspection](https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_totals.txt), the dataset is seen to have a variable number of spaces between the data columns. This is known as 'whitespace' (i.e. ` ` or `\t` characters). This makes it more complex to read into `pandas` than a CSV format, and we need to specify a [regular expression](https://en.wikipedia.org/wiki/Regular_expression) meaning 'one or more space'. This is `r"[ ]{1,}"` and we give the keyword `sep` for `pandas` as `sep=r"[ ]{1,}"`. Further for `pandas` in this case we must specify that we should use the Python engine to interpret `engine='python'`. Other features of the dataset are that the first 3 rows of data are metadata and should be skipped in reading the dataset: `skiprows=3`, with the 4th line the data column headers. Finally, we see that 'no data' values are given here as the value `-99.9`: `na_values=[-99.9]`. 
 
 Since there are quite a few keyword options to use, we might find it convenient to gather these into a dictionary:
 
@@ -735,7 +735,7 @@ panda_format = {
     'engine'     :  'python'
 }
 
-filename = Path('work','HadSEEP_monthly_qc.txt')
+filename = Path('work','HadSEEP_monthly_totals.txt')
 df=pd.read_table(filename,**panda_format)
 
 df.head()
@@ -762,20 +762,20 @@ df.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
-      <th>JAN</th>
-      <th>FEB</th>
-      <th>MAR</th>
-      <th>APR</th>
-      <th>MAY</th>
-      <th>JUN</th>
-      <th>JUL</th>
-      <th>AUG</th>
-      <th>SEP</th>
-      <th>OCT</th>
-      <th>NOV</th>
-      <th>DEC</th>
-      <th>ANN</th>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Annual</th>
     </tr>
   </thead>
   <tbody>
@@ -894,7 +894,7 @@ from pathlib import Path
 
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
-site_file = 'HadSEEP_monthly_qc.txt'
+site_file = 'HadSEEP_monthly_totals.txt'
 
 url = URL(site,site_dir,site_file)
 
@@ -922,7 +922,7 @@ df_had=pd.read_table(filename,**panda_format)
 df_had.head()
 ```
 
-    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+    file work/HadSEEP_monthly_totals.txt written: 15209 bytes
 
 
 
@@ -946,20 +946,20 @@ df_had.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
-      <th>JAN</th>
-      <th>FEB</th>
-      <th>MAR</th>
-      <th>APR</th>
-      <th>MAY</th>
-      <th>JUN</th>
-      <th>JUL</th>
-      <th>AUG</th>
-      <th>SEP</th>
-      <th>OCT</th>
-      <th>NOV</th>
-      <th>DEC</th>
-      <th>ANN</th>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Annual</th>
     </tr>
   </thead>
   <tbody>
@@ -1054,15 +1054,15 @@ df_had.head()
 
 
 
-This dataset has column titles `YEAR	JAN	FEB	MAR	APR ... ANN`. We can get the list of column titles as `df_had.columns`:
+This dataset has column titles `Year	Jan	Feb	Mar	Apr ... Annual`. We can get the list of column titles as `df_had.columns`:
 
 
 ```python
 print(df_had.columns)
 ```
 
-    Index(['YEAR', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
-           'OCT', 'NOV', 'DEC', 'ANN'],
+    Index(['Year', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+           'Oct', 'Nov', 'Dec', 'Annual'],
           dtype='object')
 
 
@@ -1075,25 +1075,25 @@ for c in cols[1:-1]:
     print(c)
 ```
 
-    JAN
-    FEB
-    MAR
-    APR
-    MAY
-    JUN
-    JUL
-    AUG
-    SEP
-    OCT
-    NOV
-    DEC
+    Jan
+    Feb
+    Mar
+    Apr
+    May
+    Jun
+    Jul
+    Aug
+    Sep
+    Oct
+    Nov
+    Dec
 
 
 To select a column, we can use any of these column names as a key, in the same way as in using a dictionary:
 
 
 ```python
-df_had['JAN']
+df_had['Jan']
 ```
 
 
@@ -1105,12 +1105,12 @@ df_had['JAN']
     3       31.8
     4      146.0
            ...  
-    144     84.8
     145     80.9
     146     34.0
     147     66.9
     148    115.6
-    Name: JAN, Length: 149, dtype: float64
+    149     24.3
+    Name: Jan, Length: 150, dtype: float64
 
 
 
@@ -1145,19 +1145,19 @@ df_had_m.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
-      <th>JAN</th>
-      <th>FEB</th>
-      <th>MAR</th>
-      <th>APR</th>
-      <th>MAY</th>
-      <th>JUN</th>
-      <th>JUL</th>
-      <th>AUG</th>
-      <th>SEP</th>
-      <th>OCT</th>
-      <th>NOV</th>
-      <th>DEC</th>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
     </tr>
   </thead>
   <tbody>
@@ -1251,7 +1251,7 @@ To select data rows, we can set some condition as a mask.
 
 
 ```python
-df_had_m[df_had_m['YEAR'] > 2000].head()
+df_had_m[df_had_m['Year'] > 2000].head()
 ```
 
 
@@ -1275,19 +1275,19 @@ df_had_m[df_had_m['YEAR'] > 2000].head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
-      <th>JAN</th>
-      <th>FEB</th>
-      <th>MAR</th>
-      <th>APR</th>
-      <th>MAY</th>
-      <th>JUN</th>
-      <th>JUL</th>
-      <th>AUG</th>
-      <th>SEP</th>
-      <th>OCT</th>
-      <th>NOV</th>
-      <th>DEC</th>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
     </tr>
   </thead>
   <tbody>
@@ -1385,7 +1385,7 @@ Let's generate a test example to see this where we encode the date as
 ```python
 # generate date strings
 dates = [f'2000-{m:>02d}-01' for m in range(1,13)]
-# put in DataFrmae
+# put in DataFrame
 df = pd.DataFrame(dates,columns=["YY-MM-DD"])
 
 # add a column of some values
@@ -1563,7 +1563,7 @@ As well as reading a CSV file, it would be useful to know how to write such a fi
 
 
 ```python
-import pandas as pd
+import pandas as pd 
 
 x = list(range(100))
 # loop to generate y = x*x

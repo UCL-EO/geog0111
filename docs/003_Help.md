@@ -154,5 +154,12 @@ We have also touched upon the following commands in the exercises:
 
 
 
-You might notice that there are many online forums you can post to to get advice on coding, and we mention  [https://stackoverflow.com](https://stackoverflow.com) as an example. Remember that not all posts are equally useful: pay attention to comments from other users on any answer, as well as post votes. Do not look on `stackoverflow` until you have exhausted simpler help methods. You should *not* generally be posting on these in this course. You will find answers to all that you need in these notes or on existing online pages. You most certainly must *not* post on forums asking questions about anyt exercises you need to complete or work you need to submit. The course administrators may monitor this
+You might notice that there are many online forums you can post to to get advice on coding, and we mention  [https://stackoverflow.com](https://stackoverflow.com) as an example. Remember that not all posts are equally useful: pay attention to comments from other users on any answer, as well as post votes. Do not look on `stackoverflow` until you have exhausted simpler help methods. You should *not* generally be posting on these in this course. You will find answers to all that you need in these notes or on existing online pages. You most certainly must *not* post on forums asking questions about anyt exercises you need to complete or work you need to submit. The course administrators may monitor this.
 
+### You should know how to get help on Python functions 
+
+You should know how to learn about how to use a particular function, through reading the help information. Take notice of the formatting of this, as you will need to be writing your own help statements later in the course.
+
+You should know how to use the Python function `range()` and understand teh basics of how to use the Python `list` data type.
+
+If you are unsure of any of these, then try going over the material again, explore other resources you may find, and/or come to the Thursday help sessions and ask for help.

@@ -148,8 +148,8 @@ print(f'I am in directory {Path.cwd()}')
 print(f'My home is {Path.home()}')
 ```
 
-    I am in directory /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
-    My home is /home/ucfalew
+    I am in directory /nfs/cfs/home3/Ucour1/coursd0/geog0111/notebooks
+    My home is /home/coursd0
 
 
 Really, the object `Path.home()` is a `Path` object. When we direct `print()` to print it, it converts it to a string. If you need to convert a `Path` object to a string in any other context (e.g. passing to some function that needs a filename as a string), then use `Path.as_posix()` to convert:
@@ -166,7 +166,7 @@ print(type(myhome))
 print(type(myhome.as_posix()))
 ```
 
-    My home is /home/ucfalew
+    My home is /home/coursd0
     <class 'pathlib.PosixPath'>
     <class 'str'>
 
@@ -328,8 +328,8 @@ print(f'      owner is {readme.owner()}')
     README file is bin/README
            size is 16 bytes
            mode is 0o100644
-          owner is ucfalew
-    -rw-r--r-- 1 ucfalew ucfa 16 Sep 29 08:43 bin/README
+          owner is coursd0
+    -rw-r--r-- 1 coursd0 ucaac2 16 Sep 29 15:46 bin/README
 
 
 #### Exercise 3
@@ -353,7 +353,7 @@ modified = readme.stat().st_mtime
 print(f'Time of most recent modification for {readme} is {modified}')
 ```
 
-    Time of most recent modification for bin/README is 1632901394.772314
+    Time of most recent modification for bin/README is 1664462780.737117
 
 
 That is not always the most convenient form. So we can use the `datetime.datetime.fromtimestamp` from the `datetime` package to convert it into something more human-readable:
@@ -368,7 +368,7 @@ h_modified = datetime.fromtimestamp(modified)
 print(f'Time of most recent modification for {readme} is {h_modified}')
 ```
 
-    Time of most recent modification for bin/README is 2021-09-29 08:43:14.772314
+    Time of most recent modification for bin/README is 2022-09-29 15:46:20.737117
 
 
 We can also use `datetime` to tell us the time now, with `datetime.now()`, for comparison:
@@ -378,7 +378,7 @@ We can also use `datetime` to tell us the time now, with `datetime.now()`, for c
 print(f'Time now is {datetime.now()}')
 ```
 
-    Time now is 2021-09-29 08:43:26.872358
+    Time now is 2022-10-21 16:19:25.418268
 
 
 #### Exercise 4

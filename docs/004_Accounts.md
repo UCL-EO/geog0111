@@ -39,6 +39,7 @@ You can run a test on your login to NASA Earthdata using the information you hav
 
 ```python
 from osgeo import gdal
+from geog0111.cylog import Cylog
 from geog0111.modisUtils import modisFile
 # settings
 
@@ -65,6 +66,10 @@ else:
     print(test)
 ```
 
+    test passed: login to NASA server achieved and data pulled
+    /Users/philiplewis/Documents/GitHub/geog0111/notebooks/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2019.02.10/MCD15A3H.A2019041.h08v06.006.2019050215716.hdf
+
+
 ## Reset password
 
 If you are interested, you can see the help page for `Cylog`. It shows, for instance, how to over-ride the current entry (e.g. if you have changed your password), by using `force=True`).
@@ -74,6 +79,25 @@ If you are interested, you can see the help page for `Cylog`. It shows, for inst
 from geog0111.cylog import Cylog
 help(Cylog.login)
 ```
+
+    Help on function login in module geog0111.cylog:
+    
+    login(self, site=None, force=False)
+        Reads encrypted information from ~/{dest_path}/.cylog.npz
+        
+        Keyword arguments
+        ----------
+        site = False (so self.site is default)
+               string of anchor URL for site to associate with username and
+               password
+        force = False
+               force password re-entry for site
+        
+        Returns
+        --------
+        A tuple containing plain text (username,password) for (site or self.site)
+    
+
 
 You should be aware that the NASA servers this connects you to go down for maintenance on Wednesdays. You can ping the servers with the follwoing code:
 
@@ -87,13 +111,12 @@ and re-run.
 
 ## Summary
 
-This short notebook is intended to let you store your NASA Earthdata login to make later calls to collect NASA data more straightforward. We have used code from the local class `Cylog` from `geog0111.cylog`, and seen how to setl, reset and test our login.
+This short notebook is intended to let you store your NASA Earthdata login to make later calls to collect NASA data more straightforward. We have used code from the local class `Cylog` from `geog0111.cylog`, and seen how to setl, reset and test our login using `modisUtils.modisFile()`.
 
 |  command | purpose  |   
 |---|---|
 | `l = Cylog(sites); test = l.login()`  |  set / run login for list of URLs `sites` |  
 | `cy = Cylog(sites,force=True); test = l.login()`  | reset / run login for list of URLs `sites` |
-| `test_login(True)`  |  test the login by pulling a dataset from the NASA site|  
 
 
 

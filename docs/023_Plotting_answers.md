@@ -20,7 +20,7 @@ from pathlib import Path
 # Monthly Southeast England precipitation (mm) 
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
-site_file = 'HadSEEP_monthly_qc.txt'
+site_file = 'HadSEEP_monthly_totals.txt'
 
 url = URL(site,site_dir,site_file)
 
@@ -52,7 +52,7 @@ df=pd.read_table(filename,**panda_format)
 df.head()
 ```
 
-    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+    file work/HadSEEP_monthly_totals.txt written: 15209 bytes
 
 
 
@@ -76,20 +76,20 @@ df.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
-      <th>JAN</th>
-      <th>FEB</th>
-      <th>MAR</th>
-      <th>APR</th>
-      <th>MAY</th>
-      <th>JUN</th>
-      <th>JUL</th>
-      <th>AUG</th>
-      <th>SEP</th>
-      <th>OCT</th>
-      <th>NOV</th>
-      <th>DEC</th>
-      <th>ANN</th>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Annual</th>
     </tr>
   </thead>
   <tbody>
@@ -203,7 +203,7 @@ fig, axs = plt.subplots(12,1,figsize=(x_size,y_size))
 # use enumerate in the loop, to get the index
 for i,m in enumerate(months):
     # plot y-data and set the label for the first panel
-    axs[i].plot(df["YEAR"],df[m],'k',label=m)
+    axs[i].plot(df["Year"],df[m],'k',label=m)
     axs[i].set_ylabel(f'{m} Precipitation (mm)')
     axs[i].set_xlim(year0,year1)
 

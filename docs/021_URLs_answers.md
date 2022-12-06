@@ -30,7 +30,7 @@ print('passed')
 
 #### Exercise 1
 
-* Use the `URL.get()` method to pull data from `https://covid.ourworldindata.org/data/ecdc/full_data.csv` and store in a file called `work/full_data.csv`.
+* Use the `URL.get()` method to pull data from `https://covid.ourworldindata.org/data/ecdc/archived/full_data.csv` and store in a file called `work/full_data.csv`.
 * check the file size
 * show the first few lines of data
 
@@ -45,7 +45,7 @@ from urlpath import URL
 # and store in a file called work/full_data.csv
 
 # set up URL object
-url = URL('https://covid.ourworldindata.org/data/ecdc/full_data.csv')
+url = URL('https://covid.ourworldindata.org/data/archived/ecdc/full_data.csv')
 # set up file for data as Path
 ofile = Path('work',url.name)
 
@@ -182,7 +182,7 @@ if filename:
     print(f'file {filename} is: {size_MB :.1f} MB')
 ```
 
-    file /shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.13/MCD15A3H.A2020013.h08v06.006.2020018030252.hdf is: 8.4 MB
+    file /Users/plewis/Documents/GitHub/geog0111/notebooks/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.13/MCD15A3H.A2020013.h08v06.006.2020018030252.hdf is: 8.4 MB
 
 
 #### Exercise 4

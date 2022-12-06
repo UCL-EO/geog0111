@@ -79,7 +79,7 @@ kwargs = {
     'tile'      :    ['h18v03','h18v04'],
     'product'   :    'MCD15A3H',
     'sds'       :    'Fpar_500m',
-    'doys'      : [i for i in range(1,366,4)],
+    'doys'      : np.arange(1,366,4),
     'year'      : 2019,
     'warp_args' : warp_args
 }
@@ -135,7 +135,7 @@ Write a function called `modisAnnual(**kwargs)` with arguments based on:
         'tile'      :    ['h18v03','h18v04'],
         'product'   :    'MCD15A3H',
         'sds'       :    ['Lai_500m', 'Fpar_500m'],
-        'doys'      : [i for i in range(1,366,4)],
+        'doys'      : np.arange(1,366,4),
         'year'      : 2019,
         'warp_args' : warp_args
         'ofile_root': 'work/output_filename_ex3'
@@ -178,7 +178,7 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
             'tile'      :    ['h18v03','h18v04'],
             'product'   :    'MCD15A3H',
             'sds'       :    ['Lai_500m', 'Fpar_500m'],
-            'doys'      : [i for i in range(1,366,4)],
+            'doys'      : np.arange(1,366,4),
             'year'      : 2019,
             'warp_args' : warp_args
         }
@@ -229,7 +229,7 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
             'tile'      :    ['h18v03','h18v04'],
             'product'   :    'MCD15A3H',
             'sds'       :    ['Lai_500m', 'Fpar_500m'],
-            'doys'      : [i for i in range(1,60,4)],
+            'doys'      : np.arange(1,60,4),
             'year'      : 2019,
             'warp_args' : warp_args
         }
@@ -294,7 +294,7 @@ kwargs = {
     'tile'      :    ['h18v03','h18v04'],
     'product'   :    'MCD15A3H',
     'sds'       :    ['Lai_500m', 'Fpar_500m'],
-    'doys'      : [i for i in range(1,366,4)],
+    'doys'      : np.arange(1,366,4),
     'year'      : 2019,
     'verbose'   : False,
     'timeout'   : None,
@@ -383,7 +383,7 @@ def getLai(year=2019,tile=['h18v03','h18v04'],country='LU',verbose=False):
         'product'   :    'MCD15A3H',
         'sds'       :    ['Lai_500m','LaiStdDev_500m']
     ,
-        'doys'      : [i for i in range(1,366,4)],
+        'doys'      : np.arange(1,366,4),
         'year'      : year,
         'warp_args' : warp_args,
         'verbose'   : False
@@ -430,12 +430,15 @@ print(f'shape of std: {std.shape}')
 print(f'shape of doy: {doy.shape}')
 ```
 
-    gathering modis annual data for {'tile': ['h17v03', 'h18v03', 'h17v04', 'h18v04'], 'product': 'MCD15A3H', 'sds': ['Lai_500m', 'LaiStdDev_500m'], 'doys': [1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 169, 173, 177, 181, 185, 189, 193, 197, 201, 205, 209, 213, 217, 221, 225, 229, 233, 237, 241, 245, 249, 253, 257, 261, 265, 269, 273, 277, 281, 285, 289, 293, 297, 301, 305, 309, 313, 317, 321, 325, 329, 333, 337, 341, 345, 349, 353, 357, 361, 365], 'year': 2018, 'warp_args': {'dstNodata': 255, 'format': 'MEM', 'cropToCutline': True, 'cutlineWhere': "FIPS='BE'", 'cutlineDSName': 'data/TM_WORLD_BORDERS-0.3.shp'}, 'verbose': False}
+    gathering modis annual data for {'tile': ['h17v03', 'h18v03', 'h17v04', 'h18v04'], 'product': 'MCD15A3H', 'sds': ['Lai_500m', 'LaiStdDev_500m'], 'doys': array([  1,   5,   9,  13,  17,  21,  25,  29,  33,  37,  41,  45,  49,
+            53,  57,  61,  65,  69,  73,  77,  81,  85,  89,  93,  97, 101,
+           105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153,
+           157, 161, 165, 169, 173, 177, 181, 185, 189, 193, 197, 201, 205,
+           209, 213, 217, 221, 225, 229, 233, 237, 241, 245, 249, 253, 257,
+           261, 265, 269, 273, 277, 281, 285, 289, 293, 297, 301, 305, 309,
+           313, 317, 321, 325, 329, 333, 337, 341, 345, 349, 353, 357, 361,
+           365]), 'year': 2018, 'warp_args': {'dstNodata': 255, 'format': 'MEM', 'cropToCutline': True, 'cutlineWhere': "FIPS='BE'", 'cutlineDSName': 'data/TM_WORLD_BORDERS-0.3.shp'}, 'verbose': False}
     reading datasets
     ...Lai_500m -> work/output_filename_Selektor_FIPS_BE_YEAR_2018_DOYS_1_365_SDS_Lai_500m.vrt
     ...LaiStdDev_500m -> work/output_filename_Selektor_FIPS_BE_YEAR_2018_DOYS_1_365_SDS_LaiStdDev_500m.vrt
-    done
-    shape of lai: (92, 479, 596)
-    shape of std: (92, 479, 596)
-    shape of doy: (92,)
 

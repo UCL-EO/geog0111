@@ -21,4 +21,4 @@ GEOG0111 Timetable 2022-23
 |  10	|  **Recap**	|  [Summary](070_Summary.ipynb)|  	|  	|| | [Part 2](Geog0111_Part2.pdf)|
 
 
-Note that [Part 1](Geog0111_Part1.pdf) and [Part 2](Geog0111_Part2.pdf) are the formal assessments for the course. [Part 1](Geog0111_Part1.html) should be submitted the Monday after Reading week. [Part 2](Geog0111_Part2.pdf) should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before subitting work.
+Note that [Part 1](Geog0111_Part1.pdf) and [Part 2](Geog0111_Part2.pdf) are the formal assessments for the course. [Part 1](Geog0111_Part1.pdf) should be submitted the Monday after Reading week. [Part 2](Geog0111_Part2.pdf) should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before subitting work.

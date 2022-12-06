@@ -44,6 +44,7 @@ echo "--> done making movies in work/*.html"
 
 
 cd "$base/notebooks"
+cp Geog0111*.pdf "$base/docs"
 cp bin/copy/* "$base/docs/bin/copy"
 cp images/ucl_logo.png "$base/docs/images"
 cp images/jl.png "$base/docs/images"

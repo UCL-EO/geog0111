@@ -6,7 +6,7 @@
 
 #### Purpose
 
-Although this course is about coding in Python, it can be of great value to you to learn at least some basic concepts and commands of the operating system. To that end, in this session we will learn some basic `unix` commands. You will be able to use these in almost any modern computing operating system may use: the `unix` shell is a core part of [`linux`](https://www.linux.org/) and [macOS](https://en.wikipedia.org/wiki/MacOS) and is directly available to you even in [Windows 10](https://docs.microsoft.com/en-us/windows/wsl/about). If you use these notes through the [`JupyterLab`](https://jupyterlab.readthedocs.io/en/stable/) interface, even from a mobile device, you will have access to a [`unix` shell](https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash) to run commands.
+Although this course is about coding in Python, it can be of great value to you to learn at least some basic concepts and commands of the operating system. To that end, in this session we will learn some basic `unix` commands. You will be able to use these in almost any modern computing operating system may use: the `unix` shell is a core part of [`linux`](https://www.linux.org/) and [macOS](https://en.wikipedia.org/wiki/MacOS) and is directly available to you even in [Windows 10/11](https://docs.microsoft.com/en-us/windows/wsl/about). If you use these notes through the [`JupyterLab`](https://jupyterlab.readthedocs.io/en/stable/) interface, even from a mobile device, you will have access to a [`unix` shell](https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash) to run commands.
 
 There are many online tutorials on unix. A good place to start backup material and some more features for the material we will cover today is [software-carpentry.org](https://v4.software-carpentry.org/shell/index.html).
 
@@ -32,7 +32,7 @@ The code cells in this notebook take Python commands by default, but we can run 
 !pwd
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    /Users/philiplewis/Documents/GitHub/geog0111/notebooks
 
 
 or by using the [cell magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html) `%%bash`:
@@ -45,7 +45,7 @@ or by using the [cell magic](https://ipython.readthedocs.io/en/stable/interactiv
 pwd
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks
+    /Users/philiplewis/Documents/GitHub/geog0111/notebooks
 
 
 If you are using these notes through the [`JupyterLab`](https://jupyterlab.readthedocs.io/en/stable/) interface you have access to a [terminal](https://jupyterlab.readthedocs.io/en/stable/user/terminal.html?highlight=bash) to run unix commands.
@@ -54,7 +54,7 @@ If you are using these notes through the [`JupyterLab`](https://jupyterlab.readt
 
 ### `~`, `.`, `..`
 
-You will be used to the idea of navigating the filesystem from any previous computing you have ever done. You may have done this by clicking your way to a certain 'location' using `File explorer` (in Windows 10) or `Finder` (in MacOS), but you will have some familiarity with the tree-like nature of a filesystem: you go up or down in the system to find your way to the files and directories you want.
+You will be used to the idea of navigating the filesystem from any previous computing you have ever done. You may have done this by clicking your way to a certain 'location' using `File explorer` (in Windows) or `Finder` (in MacOS), but you will have some familiarity with the tree-like nature of a filesystem: you go up or down in the system to find your way to the files and directories you want.
 
 When we do this typing command in the `unix` shell, the concepts are exactly the same, but we have some new symbols to learn to help us navigate:
 
@@ -76,11 +76,12 @@ So the following sequence:
 
 ```bash
 %%bash
+
 cd ~
 pwd
 ```
 
-    /Users/plewis
+    /Users/philiplewis
 
 
 changes directory to our home, and prints the directory name.
@@ -90,13 +91,14 @@ In the following command, we use `cd ..` to go up one directory. Notice that eac
 
 ```bash
 %%bash
+
 pwd
 cd ..
 pwd
 ```
 
-    /Users/plewis/geog0111/notebooks
-    /Users/plewis/geog0111
+    /Users/philiplewis/Documents/GitHub/geog0111/notebooks
+    /Users/philiplewis/Documents/GitHub/geog0111
 
 
 #### Exercise 1
@@ -130,7 +132,7 @@ cd ~/geog0111/notebooks
 ls -lh README.md
 ```
 
-    -rw-r--r--  1 plewis  staff   3.7K  4 Oct 08:45 README.md
+    -rw-r--r--  1 philiplewis  staff   7.0K 12 Jul 12:18 README.md
 
 
 Here, the file size if `3.3K` (3.3 KBytes), and the file is owned by the user `plewis`. The field `-rw-r--r--` provides information on file permissions. Ignoring the first `-`, it is in 3 sets of 3 bits:
@@ -174,12 +176,13 @@ cd ~/geog0111/notebooks
 
 ls -lh ../README.md
 chmod 755 ../README.md
+
 ls -lh ../README.md
 chmod 644 ../README.md
 ```
 
-    -rw-r--r--  1 plewis  staff   3.7K  4 Oct 08:45 ../README.md
-    -rwxr-xr-x  1 plewis  staff   3.7K  4 Oct 08:45 ../README.md
+    -rw-r--r--  1 philiplewis  staff   7.1K 12 Jul 12:18 ../README.md
+    -rwxr-xr-x  1 philiplewis  staff   7.1K 12 Jul 12:18 ../README.md
 
 
 First the permissions of the file are 644 as we saw above, then we use `chmod 755` to change to 755, then back again to 644. Most commonly, we will use this later ion to apply execute permission to a file:
@@ -194,10 +197,11 @@ A posix directory name that **starts with** the file separator '/' is called an 
 
 ```bash
 %%bash
+
 ls -l ~/geog0111/notebooks/README.md
 ```
 
-    -rw-r--r--  1 plewis  staff  3740  4 Oct 08:45 /Users/plewis/geog0111/notebooks/README.md
+    -rw-r--r--  1 philiplewis  staff  7201 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/README.md
 
 
 
@@ -206,12 +210,13 @@ A *relative pathname* is one that does not start with `/`  or `~`. It is specifi
 
 ```bash
 %%bash
+
 cd ~/geog0111/notebooks
 
 ls -l ../README.md
 ```
 
-    -rw-r--r--  1 plewis  staff  3769  4 Oct 08:45 ../README.md
+    -rw-r--r--  1 philiplewis  staff  7279 12 Jul 12:18 ../README.md
 
 
 Recall that we use `..` to specify 'up one level'. Then:
@@ -219,6 +224,7 @@ Recall that we use `..` to specify 'up one level'. Then:
 
 ```bash
 %%bash
+
 # cd to absolute path ~/geog0111/notebooks/images
 cd ~/geog0111/notebooks/images
 pwd
@@ -232,14 +238,30 @@ cd ..
 pwd
 ```
 
-    /Users/plewis/geog0111/notebooks/images
-    /Users/plewis/geog0111/notebooks/bin
-    /Users/plewis/geog0111/notebooks
+    /Users/philiplewis/geog0111/notebooks/images
+    /Users/philiplewis/geog0111/notebooks/bin
+    /Users/philiplewis/geog0111/notebooks
 
 
 ### Create and delete a file, `cat`, `rm`
 
-We can use the command `cat` to create a text files from a shell, for example:
+#### `cat` and `<<`
+
+We can use the command `cat` to create a text files from a shell, but this is a bit more involved in a notebook cell than in normal use in an interactive unix shell, and involves the use of the redirection marker `<<`,. known as the `here-document` structure.
+
+    cat << EOF
+    line 1
+    line 2
+    EOF
+    
+sends the text input between the markers (`EOF` here):
+
+    line 1
+    line 2
+    
+into the command `cat` (which just sends it to the screen). So that's one (slightly awkward) way to create a file ...
+
+For example:
 
 
 ```bash
@@ -249,7 +271,12 @@ We can use the command `cat` to create a text files from a shell, for example:
 # End Of File (EOF) marker will be saved in 
 # to the file work/newfile.dat
 # the symbols << and > involve 
-# redirection 
+# redirection
+#
+# << is called the here-document structure
+# and redirects input (between markers EOF here) to the cmd
+# > redirects output, to the file work/newererfile.dat 
+
 cd ~/geog0111/notebooks
 
 cat << EOF > work/newererfile.dat
@@ -263,17 +290,19 @@ EOF
 ls -lh work/n*
 ```
 
-    -rw-r--r--  1 plewis  staff    73B  4 Oct 08:57 work/newererfile.dat
+    -rw-r--r--  1 philiplewis  staff    73B 30 Sep 13:36 work/newererfile.dat
 
 
-We can also use `cat` to see what is in a file:
+#### `cat` and `<`
+
+We can also use `cat` to see what is in a file. We use the `stdin` redirection `<` to send text from a text file (`work/newererfile.dat` below) *into* the command `cat`:
 
 
 ```bash
 %%bash
 cd ~/geog0111/notebooks
 
-cat work/newererfile.dat
+cat < work/newererfile.dat
 ```
 
     
@@ -281,6 +310,8 @@ cat work/newererfile.dat
     hello world - this is some text in a file
     
 
+
+#### `rm` 
 
 We can use the command `rm` to delete a file:
 
@@ -290,11 +321,12 @@ We can use the command `rm` to delete a file:
 cd ~/geog0111/notebooks
 
 rm work/newererfile.dat
+
 ```
 
 ### Creating files
 
-You can create files using the the menu item `File -> New -> Text File` to open a new text file.
+In notebooks, you will find it much easier to create files using the the menu item `File -> New -> Text File` to open a new text file (similarly for other types of file).
 
 #### Exercise 3
 
@@ -320,6 +352,10 @@ In this section, we have learned the following `unix` commands and symbols:
 | `.`  |  dot  - current directory | `cd .` |
 | `..`  |  dot dot  - one level up directory | `cd ..` |
 | `*`  | wildcard   | `ls R*` |
+| `<`  |  stdin redirection | `cat < afile.dat` |
+| `<<`  |  here-document structure | `cat << EOF` |
+| | | `text EOF > bfile.dat` |
+| `>`  |  stdout redirection | `cat < afile.dat > bfile.dat` |
 | `cd`  | change directory   | `cd ~/geog0111` |
 | `pwd`  | print working directory | `pwd` |
 | `ls`  | list | `ls README.md` |
@@ -331,3 +367,15 @@ In this section, we have learned the following `unix` commands and symbols:
 | `644` | `rw-r--r--` | `chmod 644 README.md` |
 
 We have seen that we can use the cell magic `%%bash` or `!` to use `unix` commands in Python code cells in a notebook. This is a very basic introduction to unix, but it will allow you to make better use of the operating system and these notebooks.
+
+### You should know how to do some basic operations in a unix shell
+
+You should recognise the special file characters (`.`, `..`, `~`, `*`).
+
+You should know how to navigate the unix file structure using `cd`, `pwd` and these and `/`, and access information about files using `ls`.
+
+You should have come across redirection (`<<`, `<` and `>` here).
+
+You should know how to create files, remove files, and understand and change the file permissions.
+
+If you are unsure of any of these, then try going over the material again, explore other resources you may find, and/or come to the Thursday help sessions and ask for help.

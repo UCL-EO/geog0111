@@ -89,7 +89,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f3540bdb390>
+    <matplotlib.colorbar.Colorbar at 0x7febdb7f0210>
 
 
 

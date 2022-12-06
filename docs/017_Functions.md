@@ -6,6 +6,8 @@
 
 In this session, we will learn about Functions in Python. In essence, a function allows us to write better, more compact and re-usable code. This is a concept we will use a lot in later sessions, so make sure you fully familiarise yourself with the material.
 
+We will also briefly cover some special types of function: `map()`, `reduce()` and `lambda` functions.
+
 
 ### Prerequisites
 
@@ -43,10 +45,7 @@ An example of a simple function in Python is:
 
 ```python
 def hello_world():
-    '''
-    Purpose:
-      print the string 'hello world'
-    '''
+    '''print the string 'hello world'''
     print('hello world')
 ```
 
@@ -78,8 +77,7 @@ help(hello_world)
     Help on function hello_world in module __main__:
     
     hello_world()
-        Purpose:
-          print the string 'hello world'
+        print the string 'hello world
     
 
 
@@ -144,9 +142,9 @@ Let's suppose we need to design a function that will take a first name and last 
 
 The *purpose* of our function could be stated as:
 
-    purpose: 
-    
-        generate a name string from list of strings
+    generate a name string from list of strings
+        
+According to [PEP0257](https://peps.python.org/pep-0257/) this should be a single line to describe the purpose **as the first line in the comment block**. If needed, more information can be given below in a comment block.
     
 The inputs could be:
 
@@ -179,10 +177,7 @@ We have started with the idea of some purpose for our code, then defined what th
 
 ```python
 def full_name(name_list):
-    '''
-    
-    purpose: 
-      generate a name string from list of strings 
+    '''generate a name string from list of strings 
 
     inputs:
     - name_list : list of names
@@ -254,10 +249,7 @@ Now we are sure of the coding concept to achieve what we want in the filter, we 
 
 ```python
 def full_name(name_list):
-    '''
-    
-    purpose: 
-      generate a name string from list of strings 
+    '''generate a name string from list of strings 
 
     inputs:
     - name_list : list of names
@@ -282,8 +274,7 @@ help(full_name)
     Help on function full_name in module __main__:
     
     full_name(name_list)
-        purpose: 
-          generate a name string from list of strings 
+        generate a name string from list of strings 
         
         inputs:
         - name_list : list of names
@@ -365,9 +356,7 @@ The arguments we have used above are positional arguments, in that their definit
 
 ```python
 def hello(s1,s2):
-    '''
-    Purpose:
-      print out positional arguments
+    '''print out positional arguments
       
     Inputs:
       s1 : first argument
@@ -586,45 +575,143 @@ print(*args,**kwargs)
 
 The use of `**kwargs` can be useful sometimes, as you can more easily keep track of keywords for some particular configuration of running a code. For that reason, and because you will see it sometimes in documentation, you should be aware of it. Most likely you won't be using it a lot in your early code development though.
 
-## `lambda` functions
+## `map()` functions
 
-Sometimes the function we want to write is very simple, and might consist of only a few statements on a single line. As an example, consider the function `y(x)` here:
+In Python, the `map()` function is a special function that allows you to apply some function to all the items in a list or similar *iterable* without using an explicit loop. 
+
+As an example, consider the function `y(x)` here:
 
 
 ```python
 def y(x):
-    '''
-    a function y(x) with
-    zeros at x=4,x=3
-    '''
-    return 2.0*(x-3)*(x-4)
+    '''function y(x) with zeros at x=4,x=3'''
+    return 2*(x-3)*(x-4)
 ```
 
-Whilst it is fine to write a function in this way, and it has the advantage of being quite explicit about what it is doing, it is not very efficient: there is a computational cost to calling a function, especially in a high-level language like Python. 
+Now, suppose we want to apply that function to each item in a list. We could do this quite neatly with a list comprehension:
 
-If we were only ever going to use this function in places in the code where performance is unimportant, then we can go ahead with the above.
 
-If we are worried that it might be used in a case when we would not want to slow it down unnecessarily with as function call, we can use a special type of function, called a [`lambda` function](https://www.w3schools.com/python/python_lambda.asp). The syntax is:
+```python
+# some values in an array -- some are float 
+# some are int
+xvals = [1, 3.0, 7]
+
+result = [y(x) for x in xvals]
+print(result)
+```
+
+    [12, -0.0, 24]
+
+
+Or, as we shall see later in the course, we could do this also more directly in numpy arrays if the data type is the same for every item in the list/array. 
+
+Another approach to this is to use a [`map()`](https://realpython.com/python-map-function/) function, which has syntax `map(function,iterable1[,iterable12,...])`, whereby `function(iterable1)` is applied to each iten in turn in `iterable1` (then `iterable12` ...). This can be very efficient as it does not have all of the memory overheads associated with an explicit loop. It is also a very compact way of coding.
+
+For example:
+
+
+```python
+xvals = [1, 3.0, 7]
+
+result = map(y,xvals)
+list(result)
+```
+
+
+
+
+    [12, -0.0, 24]
+
+
+
+## `lambda` functions
+
+A lambda function is a special function definition that has a lower overhead than a *full* function definition.
+
+The syntax is:
 
         function_name = lambda args : function_code
 
 where `function_name` is the name of the function, `args` is a list of arguments, and `function_code` here represents the (short!) code inside the function.
 
-Our example above translates to:
+A function that is often used alongside the `map()` operation, is `reduce()`. This is another operation on an iterable, but this time it has just a single output that is the reduction of the iterable. It has syntax `reduce(function,iterable,initializer=None)`.
+
+
+
+In such a case, we might consider using a [`lambda` function](https://www.w3schools.com/python/python_lambda.asp). The syntax is:
+
+        function_name = lambda args : function_code
+
+where `function_name` is the name of the function, `args` is a list of arguments, and `function_code` here represents the (short!) code inside the function.
+
+Our example for `y(x)` above translates to:
 
 
 ```python
 y = lambda x : 2.0*(x-3)*(x-4)
 ```
 
-which is a much *neater* and more efficient code than a full function. Use these when appropriate.
+although [PEP008](https://www.python.org/dev/peps/pep-0008/) suggests that you don't use it in that way. 
 
-Generally, you are not expected to use a docstring with a `lambda` function, as it should be a simple statement that is self-evident from the code. If you do feel the need, you can add one with:
+Suppose though that we wanted to apply this function to each item in a list, e.g. in a `map()` function. The function is so small and simple that we don't really need to define a full *named* function for this in our code.
 
-        y.__doc__ = '''
-        a function y(x) with
-        zeros at x=4,x=3
-        '''
+We could instead use:
+
+
+```python
+xvals = [1, 3.0, 7]
+
+result = map(lambda x : 2.0*(x-3)*(x-4),xvals)
+list(result)
+```
+
+
+
+
+    [12.0, -0.0, 24.0]
+
+
+
+which is simpler, more efficient, and clearer code to achieve this task.
+
+## `reduce()` functions
+
+A `reduce` function is a special type of function that is often used alongside the `map()` function, particularly within the context of processing environments such as [Google Earth Engine](https://developers.google.com/earth-engine/guides/reducers_intro). Like `map()`, it is an efficient coding method that is applied to each item in an iterable. But unlike `map()`, information is passed in pairs. The first time a function is called within `reduce`, the function receives the first item from the iterator and an `initializer` value if given. If not given, it receives teh first two values. It then calculates the result of this function (with these two inputs). The function is then called with the next item from the iterator and that first result, and so on. At the end of the iterators, the final function output is returned.
+
+To illustrate this:
+
+
+```python
+from functools import reduce
+# import the reduce function
+
+# define a function of 2 variables, a & b
+def my_add(a,b):
+    print(f'I am adding {a} and {b}')
+    return a + b
+
+xvals = [1, 3.0, 7]
+
+print(f'final value: {reduce(my_add, xvals)}')
+```
+
+    I am adding 1 and 3.0
+    I am adding 4.0 and 7
+    final value: 11.0
+
+
+Dropping the `print` this is neater using a `lambda` function:
+
+
+```python
+from functools import reduce
+
+xvals = [1, 3.0, 7]
+
+print(f'final value: {reduce(lambda a,b:a+b, xvals)}')
+```
+
+    final value: 11.0
 
 
 #### Exercise 4
@@ -633,9 +720,7 @@ Consider the function:
 
 
         def power_of_2(ilist):
-            """
-            output a list of 2 raised to the power of 
-            the values of the input arguments 
+            """return a list of 2 to the power of the values of the arguments 
 
             Inputs:
                 ilist : list of integers
@@ -656,7 +741,39 @@ Consider the function:
 
 
 * Test this function, inputting a list of integers from 0 to 4 inclusive
-* Write a more Pythonic version of this, making use of list comprehensions and `lambda` functions
+* Write a more Pythonic version of this, making use of list comprehensions, `map`, `reduce` or `lambda` functions as appropriate.
+
+## More on style guides/PEPs 
+
+PEPs (Python Enhancement Proposals) are design documents for Python. They are primarily aimed at developers of features in the language, but some also contain clear definitions of how to use the language well. The most important of these in the context of these materials of function development is PEP8, but PEP257 is also of relevance.
+
+You should pay attention these ideas of 'best practice' and try to conform to them in your code.
+
+On top of these core language definitions, there are ‘house styles’ for particular organisations or code bases, to ensure a consistent style of code, comments etc to both developers and users.
+
+Further, there are many documents with suggestions on how to write good code, clear comments etc. since these are things you will be marked on, you should pay some attention to these.
+
+### Full list of PEPs
+https://www.python.org/dev/peps/
+
+### Most relevant PEPs
+#### doc strings
+https://www.python.org/dev/peps/pep-0257/
+
+#### code style: pep8
+https://www.python.org/dev/peps/pep-0008/
+
+### Further pep8 advice
+
+https://realpython.com/python-pep8/
+
+### house styles
+
+https://google.github.io/styleguide/pyguide.htm
+
+### comments
+
+https://realpython.com/python-comments-guide/
 
 ## Summary
 
@@ -689,3 +806,4 @@ We have also seen `lambda` functions, used for short functions:
 
         function_name = lambda args : function_code
 
+We also learned about `map()`, `reduce()` and `lambda` functions.

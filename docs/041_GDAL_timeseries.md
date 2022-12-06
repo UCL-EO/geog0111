@@ -178,7 +178,7 @@ kwargs = {
     'tile'      :    ['h18v03','h18v04'],
     'product'   :    'MCD15A3H',
     'sds'       :    'Lai_500m',
-    'doys'      : [i for i in range(1,366,4)],
+    'doys'      : np.arange(1,366,4),
     'year'      : 2019,
     'warp_args' : warp_args
 }
@@ -336,7 +336,7 @@ Write a function called `modisAnnual(**kwargs)` with arguments based on:
         'tile'      :    ['h18v03','h18v04'],
         'product'   :    'MCD15A3H',
         'sds'       :    ['Lai_500m', 'Fpar_500m'],
-        'doys'      : [i for i in range(1,366,4)],
+        'doys'      : np.arange(1,366,4),
         'year'      : 2019,
         'warp_args' : warp_args
         'ofile_root': 'work/output_filename_ex3'
@@ -387,7 +387,7 @@ kwargs = {
     'product'   :    'MCD15A3H',
     'sds'       :    ['Fpar_500m','Lai_500m','FparLai_QC','FparExtra_QC','FparStdDev_500m','LaiStdDev_500m']
 ,
-    'doys'      : [i for i in range(1,366,4)],
+    'doys'      : np.arange(1,366,4),
     'year'      : 2019,
     'warp_args' : warp_args
 }
@@ -648,35 +648,5 @@ Remember:
 from geog0111.modisUtils import modisAnnual
 help(modisAnnual)
 ```
-
-    Help on function modisAnnual in module geog0111.modisUtils:
-    
-    modisAnnual(ofile_root='work/output_filename', **kwargs)
-         generate dictionary of SDS datasets as VRT files
-        
-        arguments based on:
-        
-         warp_args = {
-             'dstNodata'     : 255,
-             'format'        : 'MEM',
-             'cropToCutline' : True,
-             'cutlineWhere'  : "FIPS='LU'",
-             'cutlineDSName' : 'data/TM_WORLD_BORDERS-0.3.shp'
-         }
-        
-         kwargs = {
-             'tile'      :    ['h18v03','h18v04'],
-             'product'   :    'MCD15A3H',
-             'sds'       :    ['Lai_500m', 'Fpar_500m'],
-             'doys'      : [i for i in range(1,60,4)],
-             'year'      : 2019,
-             'warp_args' : warp_args
-         }
-         
-         Return odict,bnames
-         
-         where odict keys are SDS values and the values VRT filenames
-    
-
 
 We have also seen how we can incrementally develop codes to do more complex tasks and wrap up a utility such as `getLai` in the exercise above to retrieve a ready-to-use dataset.

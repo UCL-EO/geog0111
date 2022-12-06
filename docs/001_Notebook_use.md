@@ -12,19 +12,19 @@ This is your first Jupyter notebook of the class. Jupyter notebooks will form th
 
 #### Course material
 
-You will find full, up to date information on this course GEOG0111 on the [UCL course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495). 
+You will find full, up to date information on this course GEOG0111 on the [UCL course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595). 
 
 #### Course load
 
 This course is intended to be 25 % of your course load for the term, which equates to at lesast 9 hours per week. This is the typiocal average of effort you should be putting in each week of the course.
 
-You will find fuller information on the [GEOG0111 course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495), but that percentage should give you some idea of the amount of effort we are expecting you to put in (on average) per week.
+You will find fuller information on the [GEOG0111 course moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595), but that percentage should give you some idea of the amount of effort we are expecting you to put in (on average) per week.
 
 #### Learning 
 
 You will be expected to learn from what we present in these notebooks and by following up material referenced and wider resources. 
 
-Learning is mostly blocked into two-week chunks, with a test you need to submit at the end of the block. You will receive feedback from your test submission to help you learn from what you have done well and not so well. It is important that you submit materials for these tests. It is not about 'getting the right answer', but giving us the opportunity to regularly gauge your progress.
+Learning is mostly blocked into two-week chunks, with a test you need to submit at the end of the block. You will receive feedback from your test submission to help you learn from what you have done well and not so well. It is important that you submit materials for these tests. It is not about 'getting the right answer', but giving us the opportunity to regularly see your progress.
 
 There will be two pieces of work that you submit for formal assessment on the course: one half way through, and one at the end. Again, we will provide you with feedback on these.
 
@@ -43,18 +43,20 @@ Note that you can 'run' the code in a code block using the 'run' widget (above) 
 
 ### Some resources
 
-There is a useful [cheatsheet](https://www.anaconda.com/wp-content/uploads/2019/03/11-2018-JupyterLab-Notebook-Cheatsheet.pdf) on using Jupyter, and [another, on markdown syntax](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) for you to use.
+There is a useful [cheatsheet](https://www.datacamp.com/cheat-sheet/jupyter-notebook-cheat-sheet) on using Jupyter, and [another, on markdown syntax](https://www.markdownguide.org/cheat-sheet) for you to use.
 
 
 
 ## How we will be using notebooks
 
-We will be using Jupyter notebooks to present course notes and view and run exercises. These will run on the [UCL notebook server](https://jupyter.data-science.rc.ucl.ac.uk/). To connect, you need either:
+We will be using Jupyter notebooks to present course notes and view and run exercises. These will run on the UCL Notebook server. To connect, you need either:
 
 * a [UCL VPN connection](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn)
 * use [Desktop@UCL](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere), open a browser in there, and connect to the server.
 
 In either case, you will need to provide your UCL ISD login and password for both the access method ([UCL VPN connection](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) or [Desktop@UCL](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere)) and for the Jupyter notebook server.
+
+You should then be able to connect to the [UCL notebook server](https://jupyter.data-science.rc.ucl.ac.uk/).
 
 
 ## Use of Notebooks
@@ -73,7 +75,26 @@ In notebooks, there will be a green button that you have to press to reveal the 
     
 The notebook is made up of a series of [cells](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html#:~:text=A%20cell%20is%20a%20multiline,markdown%20cells%2C%20and%20raw%20cells). Some cells, such as the one this is written in, are 'text' cells, where we format the text in a language called [markdown](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html).
 
-Take a few minutes to explore the notebook menu, and note how to do things like:
+
+```python
+# a code cell with a line that starts # so this text is a comment
+```
+
+This is a markdown cell
+
+
+```python
+# this is a code cell we will use to run the unix
+# operating system cmd 'ls'
+# The call to the operating is invoked by the '!'
+
+!ls 001_Notebook_use.md
+```
+
+    001_Notebook_use.md
+
+
+Take a few minutes to explore the **notebook menu** (up where it says `File`, `Edit`, `View`, `Insert` etc.) and note how to do things like:
 
 * save the notebook
 * save the notebook with a checkpoint: useful for exercises, as you can go back to previous versions!
@@ -172,7 +193,7 @@ Now:
 
 This notebook has introduced you to using jupyter notebooks.
 
-To make sure you understand it all, it is worthwhile restarting the kernel with cleared output (`Kernel -> Restart & Clear Output`() and running it all again. Once you are happy with that, you might try (`Kernel -> Restart & Run All`().
+To make sure you understand it all, it is worthwhile restarting the kernel with cleared output (`Kernel -> Restart & Clear Output`) and running it all again. Once you are happy with that, you might try (`Kernel -> Restart & Run All`).
 
 We have explored the notebook menu, and seen how to run cells, create new cells, and change the cell type to something appropriate (`Markdown` or `Code` here). 
 
@@ -183,3 +204,17 @@ We have noticed that variables are persistent between cells, so if we define a v
 We have seen one of the *dangers* of a notebook: it allows you to go back and forth running cells. This can lead to confusion, as the next time you run the same notebook in cell order, you may not get the same result! It is one of the most common mistakes for a beginner to make, so be aware of this, and try to always run the cells in the same order. **You can test for this type of error by restarting the kernel, clearing the output, and running all cells.**
 
 We have written our very first `python` codes!
+
+### You should know how to use jupyter notebooks to:
+
+* save a notebook
+* copy/rename a notebook
+* download a notebook as a pdf
+* restart and clear the note book kernel
+* create a markdown cell
+* enter some text and other features in a markdown cell (links, tables, html etc.)
+* create a code cell
+* write comments in a code cell
+* set and print string variables in Python in a code cell
+
+If you are unsure of any of these, then try going over the material again, explore other resources you may find, and/or come to the Thursday help sessions and ask for help.

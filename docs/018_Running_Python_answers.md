@@ -32,8 +32,6 @@ cat << EOF > work/myFirstCode.py
 '''
 myFirstCode
 
-Purpose:
-
   function to print a greeting
   
 '''
@@ -43,9 +41,7 @@ __license__   = "GPLv3"
 __email__     = "p.lewis@ucl.ac.uk"
 
 def myFirstCode():
-    '''
-    function to print a greeting
-    '''
+    '''function to print a greeting'''
     print('hello from me')
     
     

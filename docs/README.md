@@ -84,7 +84,7 @@ See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for mor
 ### Using the course notes
 
 We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
-follow the instructions on [UCL installation and running](notebooks/Install.md). 
+follow the instructions on [UCL installation and running](Install.md). 
 
 If you are interested in running the course notes from outside UCL on your own computer, there are several options:
 
@@ -93,7 +93,7 @@ If you are interested in running the course notes from outside UCL on your own c
 3. You could use [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree) or 
  [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree) to run the course. These use external resources (so, not UCL and not your own computer) to run the notebooks. The only problem for you is that the sessions are not persistent, so any changes or exercises you do in a notebook would be lost to you the next time you start a binder or colab session. There are ways around that that would work fine for the first half of the course. The simplest is for you to download any notebook that you change to your local computer, then relaod it the next time you run a session. Its a bit of a hassle, but the service is free, and you can run it simply from any browser (e.g. yopur phone or ipad).
 
-**### Updating notes
+### Updating notes
 
 From time to time, we need to update the notes because of a bug or some other change. That's great, because we are using `git` which allows and controls all of that.
 

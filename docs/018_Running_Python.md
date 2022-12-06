@@ -58,7 +58,7 @@ as the first line in the file, and is executable. We can see if a file is execut
 !ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 28 21:37 geog0111/helloWorld.py
+    -rwxr-xr-x  1 plewis  staff  489 17 Oct 10:02 [31mgeog0111/helloWorld.py[m[m
 
 
 The first field gives us the file permissions:
@@ -74,7 +74,7 @@ chmod 755 geog0111/helloWorld.py
 ls -l geog0111/helloWorld.py
 ```
 
-    -rwxr-xr-x 1 ucfalew ucfa 514 Sep 28 21:37 geog0111/helloWorld.py
+    -rwxr-xr-x  1 plewis  staff  489 17 Oct 10:02 geog0111/helloWorld.py
 
 
 ### Running Python code from Python
@@ -114,8 +114,6 @@ We will go into more details on this in later classes, but the main format of a 
 '''
 helloWorld
 
-Purpose:
-
   function print the string 'hello world'
   
 '''
@@ -126,10 +124,7 @@ __license__   = "GPLv3"
 __email__     = "p.lewis@ucl.ac.uk"
 
 def helloWorld():
-    '''
-    function to print the string 'hello world'
-
-    '''
+    '''function to print the string "hello world"'''
     print('hello world')
    
    
@@ -159,10 +154,8 @@ This first line of the file allows the shell to know that this file should be in
     '''
     helloWorld
 
-    Purpose:
-
       function print the string 'hello world'
-      
+
     '''
     __author__    = "P Lewis"
     __copyright__ = "Copyright 2020 P Lewis"
@@ -172,9 +165,7 @@ This first line of the file allows the shell to know that this file should be in
 We then have a document string (contained within pairs of triple quotes) describing the purpose and some features of the code in this file. We provide some further information as variables written in the form `__var__` as relevant metadata for the file.  
 
     def helloWorld():
-        '''
-        function to print the string 'hello world'
-        '''
+        '''function to print the string "hello world"'''
         print('hello world')
 
 Next, we define a *function* containing the code we want. In this case, the main body of the code is simply:
@@ -193,7 +184,7 @@ help(helloWorld)
     Help on function helloWorld in module __main__:
     
     helloWorld()
-        function to print the string 'hello world'
+        function to print the string "hello world"
     
 
 
@@ -324,9 +315,7 @@ cat << EOF > work/myHelloWorld.py
 '''
 helloWorld
 
-Purpose:
-
-  function print the string 'hello world'
+function print the string "hello world"
 
 '''
 __author__    = "P Lewis"
@@ -335,9 +324,7 @@ __license__   = "GPLv3"
 __email__     = "p.lewis@ucl.ac.uk"
 
 def helloWorld():
-    '''
-    function to print the string 'hello world'
-    '''
+    '''function to print the string "hello world"'''
     print('hello world')
     
     
@@ -397,18 +384,14 @@ How could we achieve that?
 The answer, as we have seen before, is to pass an argument to our function. So, instead of having:
          
     def helloWorld():
-        '''
-        function to print the string 'hello world'
-        '''
+        '''function to print the string "hello from me"'''
         print('hello from me')
 
 we pass an argument that we might call `name`, and conveniently pass this through to the `print()` statement using an `f-string`.
 
          
     def helloWorld(name):
-        '''
-        function to print the string 'hello world'
-        '''
+        '''function to print the string "hello" from name'''
         print(f'hello from {name}')
 
 Let's test that before going further:
@@ -416,9 +399,7 @@ Let's test that before going further:
 
 ```python
 def hello(name):
-    '''
-    function to print 'hello from {name}'
-    '''
+    '''function to print "hello from {name}"'''
     print(f'hello from {name}')
     
 # call the function with some argument
@@ -464,9 +445,7 @@ cat << EOF > work/hello.py
 '''
 hello
 
-Purpose:
-
-  function to print 'hello from {name}'
+function to print 'hello from {name}'
   
 '''
 __author__    = "P Lewis"
@@ -475,9 +454,7 @@ __license__   = "GPLv3"
 __email__     = "p.lewis@ucl.ac.uk"
 
 def hello(name):
-    '''
-    function to print 'hello from {name}'
-    '''
+    '''function to print "hello from {name}"'''
     print(f'hello from {name}')
     
 # example calling the function    
@@ -525,7 +502,7 @@ import sys
 print(sys.argv)
 ```
 
-    ['/shared/groups/jrole001/geog0111/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/nfs/cfs/home3/Uucfa6/ucfalew/.local/share/jupyter/runtime/kernel-80f12cb9-2877-4281-996c-a1e4054b040b.json']
+    ['/Users/plewis/anaconda3/envs/geog0111/lib/python3.7/site-packages/ipykernel_launcher.py', '-f', '/Users/plewis/Library/Jupyter/runtime/kernel-e15544b6-ec42-49f5-92c2-7e8d1f6e39fa.json']
 
 
 Running from the notebook, we get to see the full command that is run when we launch this notebook. Since `sys` is a package, we first import it:
@@ -549,9 +526,7 @@ import sys
 '''
 helloWorld
 
-Purpose:
-
-  function print the string 'hello world'
+function print the string 'hello world'
 
 '''
 __author__    = "P Lewis"
@@ -560,9 +535,7 @@ __license__   = "GPLv3"
 __email__     = "p.lewis@ucl.ac.uk"
 
 def hello(name):
-    '''
-    function to print 'hello from {name}'
-    '''
+    '''function to print "hello from {name}"'''
     print(f'hello from {name}')
     
 # example calling the function    
@@ -645,9 +618,7 @@ Form of a Python script:
             '''
             helloWorld
 
-            Purpose:
-
-              function print the string 'hello world'
+            function print the string 'hello world'
 
             '''
 
@@ -657,10 +628,7 @@ Form of a Python script:
             __email__     = "p.lewis@ucl.ac.uk"
 
             def helloWorld():
-                '''
-                function to print the string 'hello world'
-
-                '''
+                '''function to print the string "hello world"'''
                 print('hello world')
 
 

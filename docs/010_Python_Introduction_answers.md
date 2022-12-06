@@ -1,9 +1,9 @@
 # 010 Introduction to Python : Answers to exercises
 
-#### Exercise 1
 
-* Try running the code block below
-* Explain what happened ('what the computer did')
+```python
+# a comment
+```
 
 <mark>**ANSWER**
     

@@ -34,8 +34,8 @@ data_MCD15A3H = getModisTiledata(verbose=False,timeout=300,**kwargs)
 keys = list(data_MCD15A3H.keys())[:4]
 
 name = f'{kwargs["product"]} tile {kwargs["tile"]}'
-# plot size 
-x_size,y_size = 8,6
+# plot size : play with these to get the right size for your plot
+x_size,y_size = 16,12
 shape = (2,2)
 
 fig, axs = plt.subplots(*shape,figsize=(x_size,y_size))
@@ -131,13 +131,15 @@ def im_display(data,names,\
                vmin=None,vmax=None,\
                x_size=12,y_size=8,shape=None):
     '''
+    Image display utility 
+    
     a function called im_display that takes as input:
         data  :  a data dictionary
         names :  a list of keywords of datasets to plot
 
         optionally:
-            title = None     : a title
-            colourmap = None : a colourmap name
+            title=None       : a title
+            colourmap=None   : a colourmap name
             vmin,vmax        : lower and upper limits for plot data
             x_size=16        : plot x size * shape[0]
             y_size=12        : plot y size * shape[1]

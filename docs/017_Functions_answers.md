@@ -14,10 +14,7 @@
 
 # in a new code cell below, write a function called my_name that prints your name
 def my_name():
-    '''    
-    Purpose:
-      print my name
-    '''
+    '''print my name'''
     print('Lewis')
 ```
 
@@ -41,8 +38,7 @@ help(my_name)
     Help on function my_name in module __main__:
     
     my_name()
-        Purpose:
-          print my name
+        print my name
     
 
 
@@ -176,9 +172,7 @@ print('test passed')
 # we call our function list2dict
 # and use relevanmt names for the two lists
 def list2dict(keys,values):
-    '''
-    Purpose:
-      generate a dictionary from lists of keys and values
+    '''generate a dictionary from lists of keys and values
       
     Note:
       the length of the lists must be the same
@@ -218,8 +212,7 @@ print('test passed')
     Help on function list2dict in module __main__:
     
     list2dict(keys, values)
-        Purpose:
-          generate a dictionary from lists of keys and values
+        generate a dictionary from lists of keys and values
           
         Note:
           the length of the lists must be the same
@@ -243,9 +236,7 @@ print('test passed')
 # we call our function list2dict
 # and use relevanmt names for the two lists
 def list2dict(keys,values):
-    '''
-    Purpose:
-      generate a dictionary from lists of keys and values
+    '''generate a dictionary from lists of keys and values
       
     Note:
       the length of the lists must be the same
@@ -286,8 +277,7 @@ print('test passed')
     Help on function list2dict in module __main__:
     
     list2dict(keys, values)
-        Purpose:
-          generate a dictionary from lists of keys and values
+        generate a dictionary from lists of keys and values
           
         Note:
           the length of the lists must be the same
@@ -331,9 +321,7 @@ print(msg)
 # we call our function list2dict
 # and use relevanmt names for the two lists
 def list2dict(keys,values):
-    '''
-    Purpose:
-      generate a dictionary from lists of keys and values
+    '''generate a dictionary from lists of keys and values
       
     Note:
       the length of the lists must be the same
@@ -400,8 +388,7 @@ print('test passed')
     Help on function list2dict in module __main__:
     
     list2dict(keys, values)
-        Purpose:
-          generate a dictionary from lists of keys and values
+        generate a dictionary from lists of keys and values
           
         Note:
           the length of the lists must be the same
@@ -443,9 +430,7 @@ print('test passed')
 #  if verbose=True : print out information on what is going on in the function
 #  set all default keywords to False
 def list2dict(keys,values,check=False,verbose=False):
-    '''
-    Purpose:
-      generate a dictionary from lists of keys and values
+    '''generate a dictionary from lists of keys and values
       
     Note:
       the length of the lists must be the same
@@ -508,8 +493,7 @@ help(list2dict)
     Help on function list2dict in module __main__:
     
     list2dict(keys, values, check=False, verbose=False)
-        Purpose:
-          generate a dictionary from lists of keys and values
+        generate a dictionary from lists of keys and values
           
         Note:
           the length of the lists must be the same
@@ -574,9 +558,7 @@ Consider the function:
 
 
         def power_of_2(ilist):
-            """
-            output a list of 2 raised to the power of 
-            the values of the input arguments 
+            """return a list of 2 to the power of the values of the arguments 
 
             Inputs:
                 ilist : list of integers
@@ -597,7 +579,7 @@ Consider the function:
 
 
 * Test this function, inputting a list of integers from 0 to 4 inclusive
-* Write a more Pythonic version of this, making use of list comprehensions and `lambda` functions
+* Write a more Pythonic version of this, making use of list comprehensions, `map`, `reduce` or `lambda` functions as appropriate.
 
 
 ```python
@@ -607,9 +589,7 @@ msg = '''
 Consider the function:
 
         def power_of_2(ilist):
-            """
-            output a list of 2 raised to the power of 
-            the values of the input arguments 
+            """return a list of 2 to the power of the values of the arguments 
 
             Inputs:
                 ilist : list of integers
@@ -632,9 +612,7 @@ Consider the function:
 print(msg)
 
 def power_of_2(ilist):
-    """
-    output a list of 2 raised to the power of 
-    the values of the input arguments 
+    """return a list of 2 raised to the power of the values of the arguments 
 
     Inputs:
         ilist : list of integers
@@ -666,9 +644,7 @@ print(f'inputs:    {ilist}\noutputs: ->{olist}')
     Consider the function:
     
             def power_of_2(ilist):
-                """
-                output a list of 2 raised to the power of 
-                the values of the input arguments 
+                """return a list of 2 to the power of the values of the arguments 
     
                 Inputs:
                     ilist : list of integers
@@ -718,4 +694,23 @@ print(f'inputs:    {ilist}\noutputs: ->{olist}')
     
     inputs:    [0, 1, 2, 3, 4]
     outputs: ->[1, 2, 4, 8, 16]
+
+
+
+```python
+# ANSWER
+
+# probably a map function is most appropriate here
+# with a lambda function to define the 2**x
+
+ilist = [1,2,3,4]
+
+print(f'2**{ilist} = {list(map(lambda x: 2**x,ilist))}')
+
+## but a list comprehension would do very well too
+print(f'2**{ilist} = {[2**x for x in ilist]}')
+```
+
+    2**[1, 2, 3, 4] = [2, 4, 8, 16]
+    2**[1, 2, 3, 4] = [2, 4, 8, 16]
 

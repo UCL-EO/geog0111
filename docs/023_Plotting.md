@@ -43,7 +43,7 @@ from pathlib import Path
 # Monthly Southeast England precipitation (mm) 
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
-site_file = 'HadSEEP_monthly_qc.txt'
+site_file = 'HadSEEP_monthly_totals.txt'
 
 
 panda_format = {
@@ -74,7 +74,7 @@ else:
 df.head()
 ```
 
-    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+    file work/HadSEEP_monthly_totals.txt written: 15209 bytes
 
 
 
@@ -98,20 +98,20 @@ df.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
-      <th>JAN</th>
-      <th>FEB</th>
-      <th>MAR</th>
-      <th>APR</th>
-      <th>MAY</th>
-      <th>JUN</th>
-      <th>JUL</th>
-      <th>AUG</th>
-      <th>SEP</th>
-      <th>OCT</th>
-      <th>NOV</th>
-      <th>DEC</th>
-      <th>ANN</th>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Annual</th>
     </tr>
   </thead>
   <tbody>
@@ -216,8 +216,8 @@ headings = df.columns
 print(headings)
 ```
 
-    Index(['YEAR', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
-           'OCT', 'NOV', 'DEC', 'ANN'],
+    Index(['Year', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+           'Oct', 'Nov', 'Dec', 'Annual'],
           dtype='object')
 
 
@@ -229,8 +229,8 @@ headings = df.columns[1:-1]
 print(headings)
 ```
 
-    Index(['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT',
-           'NOV', 'DEC'],
+    Index(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
+           'Nov', 'Dec'],
           dtype='object')
 
 
@@ -241,13 +241,13 @@ Let's plot some of this dataset now:
 import matplotlib.pyplot as plt
 
 fig, axs = plt.subplots(1,1,figsize=(10,10))
-axs.plot(df["YEAR"],df['JAN'],label='JAN')
+axs.plot(df["Year"],df['Jan'],label='Jan')
 ```
 
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fdbd1804190>]
+    [<matplotlib.lines.Line2D at 0x7f07683fe210>]
 
 
 
@@ -264,8 +264,8 @@ We can easily customise this by adding titles and labels:
 import matplotlib.pyplot as plt
 
 # make a useful title
-year0 = list(df["YEAR"])[0]
-year1 = list(df["YEAR"])[-1]
+year0 = list(df["Year"])[0]
+year1 = list(df["Year"])[-1]
 name = f'Monthly SE UK precipitation {year0} to {year1}'
 
 # plot size 
@@ -278,12 +278,12 @@ fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
 fig.suptitle(name)
 
 # plot y-data and set the label
-axs.plot(df["YEAR"],df['JAN'],label='JAN')
+axs.plot(df["Year"],df['Jan'],label='Jan')
 # set x-limits to get a neat graph
 axs.set_xlim(year0,year1)
 
 # set the subplot title
-axs.set_title('JAN')
+axs.set_title('Jan')
 # y-label
 axs.set_ylabel(f'Precipitation (mm)')
 # x-label
@@ -317,14 +317,14 @@ x_size,y_size = 12,4
 fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
 
 # plot y-data and set the label
-axs.plot(df["YEAR"],df['JAN'],label='JAN')
-axs.plot(df["YEAR"],df['FEB'],label='FEB')
+axs.plot(df["Year"],df['Jan'],label='Jan')
+axs.plot(df["Year"],df['Feb'],label='Feb')
 axs.set_xlim(year0,year1)
 
 # set legend now
 axs.legend(loc='best')
 # set the subplot title
-axs.set_title('JAN-FEB')
+axs.set_title('Jan-Feb')
 # y-label
 axs.set_ylabel(f'Precipitation (mm)')
 # x-label
@@ -374,13 +374,13 @@ axs = axs.flatten()
 fig.suptitle(name)
 
 # plot y-data and set the label for the first panel
-axs[0].plot(df["YEAR"],df['JAN'],'k',label='JAN')
-axs[0].set_ylabel(f'JAN Precipitation (mm)')
+axs[0].plot(df["Year"],df['Jan'],'k',label='Jan')
+axs[0].set_ylabel(f'Jan Precipitation (mm)')
 axs[0].set_xlim(year0,year1)
 
 # plot y-data and set the label for the next panel
-axs[1].plot(df["YEAR"],df['FEB'],'k',label='FEB')
-axs[1].set_ylabel(f'FEB Precipitation (mm)')
+axs[1].plot(df["Year"],df['Feb'],'k',label='Feb')
+axs[1].set_ylabel(f'Feb Precipitation (mm)')
 axs[1].set_xlim(year0,year1)
 
 # x-label
@@ -429,7 +429,7 @@ from pathlib import Path
 # Monthly Southeast England precipitation (mm) 
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
-site_file = 'HadSEEP_monthly_qc.txt'
+site_file = 'HadSEEP_monthly_totals.txt'
 
 
 url = URL(site,site_dir,site_file)
@@ -461,7 +461,7 @@ df=pd.read_table(filename,**panda_format)
 # get mean and std over all months
 ```
 
-    file work/HadSEEP_monthly_qc.txt written: 13000 bytes
+    file work/HadSEEP_monthly_totals.txt written: 15209 bytes
 
 
 We will go into the details of `numpy` in a future session, but here we just need to calculate the mean and standard deviation of precipitation over all months.
@@ -470,17 +470,17 @@ We will go into the details of `numpy` in a future session, but here we just nee
 ```python
 import numpy as np
 months = df.columns[1:-1]
-year   = df["YEAR"]
-mean = np.array(df[months]).mean(axis=1)
-std  = np.array(df[months]).std(axis=1)
+year   = df["Year"]
+mean = np.nanmean(np.array(df[months]),axis=1)
+std  = np.nanstd(np.array(df[months]),axis=1)
 ```
 
 
 ```python
 import matplotlib.pyplot as plt
 # make a useful title
-year0 = list(df["YEAR"])[0]
-year1 = list(df["YEAR"])[-1]
+year0 = list(df["Year"])[0]
+year1 = list(df["Year"])[-1]
 name = f'Monthly SE UK precipitation {year0} to {year1}: mean and 1.95 std (over months)'
 
 # plot size 
@@ -530,14 +530,14 @@ x_size,y_size = 12,4
 fig, axs = plt.subplots(1,1,figsize=(x_size,y_size))
 
 # plot y-data and set the label
-axs.plot(df["YEAR"],df['JAN'],label='JAN')
-axs.plot(df["YEAR"],df['FEB'],label='FEB')
+axs.plot(df["Year"],df['Jan'],label='Jan')
+axs.plot(df["Year"],df['Feb'],label='Feb')
 axs.set_xlim(year0,year1)
 
 # set legend now
 axs.legend(loc='best')
 # set the subplot title
-axs.set_title('JAN-FEB')
+axs.set_title('Jan-Feb')
 # y-label
 axs.set_ylabel(f'Precipitation (mm)')
 # x-label
@@ -580,11 +580,11 @@ print(f'year {now.year}')
 print(f"{now.hour} O'clock")
 ```
 
-    It is now 2021-10-07 14:38:01.754287
-    day 7
+    It is now 2022-10-31 10:53:34.776343
+    day 31
     month 10
-    year 2021
-    14 O'clock
+    year 2022
+    10 O'clock
 
 
 You can set up the `datetime` fields explicitly:
@@ -632,7 +632,7 @@ yesterday = now - timedelta(days=1)
 print(f'yesterday was {yesterday}')
 ```
 
-    yesterday was 2021-10-06 14:38:01.789308
+    yesterday was 2022-10-30 10:53:34.842724
 
 
 ### `strftime` and `strptime`
@@ -654,8 +654,8 @@ date_now = now.strftime("%m/%d/%Y")
 print(f"data now: {date_now}")
 ```
 
-    time now: 14:38:01
-    data now: 10/07/2021
+    time now: 10:53:34
+    data now: 10/31/2022
 
 
 and `strptime` to load a `datetime` object from a string. To do so, we need to specify the format of the string. For example:

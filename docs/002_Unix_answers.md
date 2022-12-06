@@ -29,10 +29,10 @@ cd ../..
 pwd
 ```
 
-    /Users/plewis/geog0111/notebooks
-    /Users/plewis/geog0111
-    /Users/plewis
-    /
+    /Users/philiplewis/Documents/GitHub/geog0111/notebooks
+    /Users/philiplewis/Documents/GitHub/geog0111
+    /Users/philiplewis/Documents/GitHub
+    /Users/philiplewis
 
 
 
@@ -53,9 +53,9 @@ cd geog0111/notebooks
 pwd
 ```
 
-    /Users/plewis/geog0111/notebooks
-    /Users/plewis
-    /Users/plewis/geog0111/notebooks
+    /Users/philiplewis/Documents/GitHub/geog0111/notebooks
+    /Users/philiplewis
+    /Users/philiplewis/geog0111/notebooks
 
 
 #### Exercise 2
@@ -67,6 +67,15 @@ pwd
 
 ```bash
 %%bash
+
+# This solution is called a bash script
+# it runs a series of bash (unix) commands, one after the other
+# It uses a special shell feature cat << EOF ... EOF for convenience
+# This is known as the 'here-document' structure that allows
+# multi-line input so everything between the EOF markers
+# is treated as if it essentially came from a text file. 
+# All that does here is to print out everything in the ... 
+# to the terminal (sends to the stdin of the cmd cat)
 
 # pwd
 pwd
@@ -96,34 +105,34 @@ The README file is not executable: its just a text file.
 EOF
 ```
 
-    /Users/plewis/geog0111/notebooks
-    -rw-r--r--  1 plewis  staff   245B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/NASAaccount0111.py
-    -rw-r--r--  1 plewis  staff    16B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/README
-    -rwxr-xr-x  1 plewis  staff   1.1K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/build-conda-package
-    -rwxr-xr-x  1 plewis  staff   220B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/build-pypi-package
-    -rwxr-xr-x  1 plewis  staff   1.3K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/clean0111.sh
-    lrwxr-xr-x  1 plewis  staff     7B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/copy -> ../copy
-    -rwxr-xr-x  1 plewis  staff    43B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/database.sh
-    -rwxr-xr-x  1 plewis  staff   217B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/docker-build
-    -rwxr-xr-x  1 plewis  staff   428B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/docker-killall
-    -rwxr-xr-x  1 plewis  staff   1.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/docker-run
-    -rwxr-xr-x  1 plewis  staff   534B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/fixA.sh
-    -rwxr-xr-x  1 plewis  staff   2.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/get-datasets.sh
-    -rwxr-xr-x  1 plewis  staff   569B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/git-remove-all.sh
-    -rw-r--r--  1 plewis  staff   257B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/howmany.sh
-    -rwxr-xr-x  1 plewis  staff   2.2K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/init.sh
-    -rwxr-xr-x  1 plewis  staff   2.7K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/init0111.sh
-    -rwxr-xr-x  1 plewis  staff   3.2K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/link-set.sh
-    -rwxr-xr-x  1 plewis  staff   8.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/notebook-mkdocs.sh
-    -rwxr-xr-x  1 plewis  staff   2.0K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/notebook-run.sh
-    -rwxr-xr-x  1 plewis  staff   1.5K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/postBuild
-    -rwxr-xr-x  1 plewis  staff    44B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/pullYou
-    -rwxr-xr-x  1 plewis  staff   100B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/pushMe
-    -rwxr-xr-x  1 plewis  staff   526B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/set-course.sh
-    -rwxr-xr-x  1 plewis  staff   3.4K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/setup.sh
-    -rwxr-xr-x  1 plewis  staff   754B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/shellMe.sh
-    -rwxr-xr-x  1 plewis  staff   2.6K  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/sort-db.sh
-    -rwxr-xr-x  1 plewis  staff   742B  3 Oct 01:14 /Users/plewis/geog0111/notebooks/bin/tidy.sh
+    /Users/philiplewis/Documents/GitHub/geog0111/notebooks
+    -rw-r--r--  1 philiplewis  staff   245B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/NASAaccount0111.py
+    -rw-r--r--  1 philiplewis  staff    16B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/README
+    -rwxr-xr-x  1 philiplewis  staff   1.1K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/build-conda-package
+    -rwxr-xr-x  1 philiplewis  staff   220B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/build-pypi-package
+    -rwxr-xr-x  1 philiplewis  staff   1.3K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/clean0111.sh
+    lrwxr-xr-x  1 philiplewis  staff     7B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/copy -> ../copy
+    -rwxr-xr-x  1 philiplewis  staff    43B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/database.sh
+    -rwxr-xr-x  1 philiplewis  staff   217B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/docker-build
+    -rwxr-xr-x  1 philiplewis  staff   428B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/docker-killall
+    -rwxr-xr-x  1 philiplewis  staff   1.0K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/docker-run
+    -rwxr-xr-x  1 philiplewis  staff   534B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/fixA.sh
+    -rwxr-xr-x  1 philiplewis  staff   2.0K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/get-datasets.sh
+    -rwxr-xr-x  1 philiplewis  staff   569B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/git-remove-all.sh
+    -rw-r--r--  1 philiplewis  staff   257B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/howmany.sh
+    -rwxr-xr-x  1 philiplewis  staff   2.2K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/init.sh
+    -rwxr-xr-x  1 philiplewis  staff   2.7K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/init0111.sh
+    -rwxr-xr-x  1 philiplewis  staff   3.2K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/link-set.sh
+    -rwxr-xr-x  1 philiplewis  staff   8.0K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/notebook-mkdocs.sh
+    -rwxr-xr-x  1 philiplewis  staff   2.0K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/notebook-run.sh
+    -rwxr-xr-x  1 philiplewis  staff   1.5K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/postBuild
+    -rwxr-xr-x  1 philiplewis  staff    44B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/pullYou
+    -rwxr-xr-x  1 philiplewis  staff    95B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/pushMe
+    -rwxr-xr-x  1 philiplewis  staff   526B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/set-course.sh
+    -rwxr-xr-x  1 philiplewis  staff   3.4K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/setup.sh
+    -rwxr-xr-x  1 philiplewis  staff   754B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/shellMe.sh
+    -rwxr-xr-x  1 philiplewis  staff   2.6K 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/sort-db.sh
+    -rwxr-xr-x  1 philiplewis  staff   742B 12 Jul 12:18 /Users/philiplewis/geog0111/notebooks/bin/tidy.sh
     ===============================
     * what do you notice about these?
     ===============================
@@ -163,7 +172,7 @@ EOF
 ls -l work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73  4 Oct 08:57 work/newfile.dat
+    -rw-r--r--  1 philiplewis  staff  73 30 Sep 13:36 work/newfile.dat
 
 
 
@@ -181,7 +190,7 @@ ls -l work/newfile.dat
 cat work/newfile.dat
 ```
 
-    -rw-r--r--  1 plewis  staff  73  4 Oct 08:57 work/newfile.dat
+    -rw-r--r--  1 philiplewis  staff  73 30 Sep 13:36 work/newfile.dat
     
     # this will go into the file
     hello world - this is some text in a file
@@ -191,6 +200,8 @@ cat work/newfile.dat
 
 ```bash
 %%bash
+cd ~/geog0111/notebooks
+
 # ANSWER
 # delete the file
 rm work/newfile.dat
@@ -221,10 +232,10 @@ ls -lh geog0111/f*
 # and only read for others
 ```
 
-    -rw-r--r--  1 plewis  wheel   362B  3 Oct 21:28 geog0111/fdict.py
-    -rw-r--r--  1 plewis  wheel   1.7K  3 Oct 21:28 geog0111/filter_movies.py
-    -rw-r--r--  1 plewis  wheel   2.2K  3 Oct 21:28 geog0111/fire_practical_model.py
-    -rw-r--r--  1 plewis  wheel   4.3K  3 Oct 21:28 geog0111/fire_practical_satellite.py
-    -rw-r--r--  1 plewis  wheel   1.9K  3 Oct 21:28 geog0111/fire_practical_telecon.py
-    -rw-r--r--  1 plewis  wheel    66B  3 Oct 21:28 geog0111/flatten.py
+    -rwxr-xr-x  1 philiplewis  staff   362B 12 Jul 12:18 geog0111/fdict.py
+    -rwxr-xr-x  1 philiplewis  staff   1.7K 12 Jul 12:18 geog0111/filter_movies.py
+    -rwxr-xr-x  1 philiplewis  staff   2.2K 12 Jul 12:18 geog0111/fire_practical_model.py
+    -rwxr-xr-x  1 philiplewis  staff   4.3K 12 Jul 12:18 geog0111/fire_practical_satellite.py
+    -rwxr-xr-x  1 philiplewis  staff   1.9K 12 Jul 12:18 geog0111/fire_practical_telecon.py
+    -rwxr-xr-x  1 philiplewis  staff    66B 12 Jul 12:18 geog0111/flatten.py
 

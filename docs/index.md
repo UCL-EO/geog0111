@@ -15,6 +15,10 @@ UCL Geography MSc notes.
 
  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree)
  [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree)
+ 
+ For previous versions of the course:
+ 
+ * [Release 1.1.0 for course notes for session 2021/22](https://github.com/UCL-EO/geog0111/releases/tag/1.1.0)
 
 ## Course information
 
@@ -22,23 +26,25 @@ UCL Geography MSc notes.
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2021-2022
+### Teaching Staff 2022-2023
 
 |   | 
 |---|
 |[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
-### Support Staff 2021-2022
+### Support Staff 2022-2023
 
 |   | 
 |---|
 |[Wanxin Yang](https://www.geog.ucl.ac.uk/people/research-students/wanxin-yang)|
+|[Thomas Keel](mailto:thomas.keel.18@ucl.ac.uk)|
 
-### Contributing Staff
+
+### Other Contributing Staff
 
 |   |   |   |
 |---|---|---|
-|[Dr Qingling Wu](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/qingling-wu/)| [Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
+|[Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
 
 
 ### Purpose of this course
@@ -72,11 +78,11 @@ Follow the instructions on [UCL installation and running](Install.md)
 
 ## Timetable
 
-[class timetable for 2021/22](TIMETABLE.md)
+[class timetable for 2022/23](TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1, on Monday in the UCL Computing Lab (113) in [Torrington (1-19)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=086), UCL. 
+The course takes place over 10 weeks in term 1, on Monday 11:00-14:00 in the UCL Computing Lab (G20) in [CHRISTOPHER INGOLD BUILDING, 20 GORDON STREET, LONDON, WC1H 0AJ](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=067), UCL. 
 
-Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/estates/sites/estates/files/cal_term_times_2021_2022.pdf) for further information.
+Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures/term-dates-and-closures-2022-23) for further information.
 
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday with help sessions on Thursdays.
 
@@ -86,15 +92,17 @@ The Thursday help sessions will be held in room 110 in the [Northwest Wing (Geog
 
 Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 
 
-See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495) for more details.
+See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595) for more details.
 
 ### Useful links
 
-[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=21495)  
+[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595)  
 
-### Using the course notes
+### Using the notes
 
-We will generally use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
+# Using the course notes
+
+We will use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
 follow the instructions on [UCL installation and running](Install.md). 
 
 If you are interested in running the course notes from outside UCL on your own computer, there are several options:
@@ -103,47 +111,9 @@ If you are interested in running the course notes from outside UCL on your own c
 2. You can run a [Docker](https://www.docker.com) container on your local computer. That Docker image contains all of the software you need to do the course, so all you have to do is to set up [Docker](https://www.docker.com) on your computer. There are various ways to run it, but we adviuse that you make a copy of the notes on your local computer, then run the notebookjs using Docker. There are full instructions these [here](OutsideInstall-Docker.md), but the basics of what you need are given in the [docker hub](https://hub.docker.com/repository/docker/proflewis/geog0111).
 3. You could use [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree) or 
  [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree) to run the course. These use external resources (so, not UCL and not your own computer) to run the notebooks. The only problem for you is that the sessions are not persistent, so any changes or exercises you do in a notebook would be lost to you the next time you start a binder or colab session. There are ways around that that would work fine for the first half of the course. The simplest is for you to download any notebook that you change to your local computer, then relaod it the next time you run a session. Its a bit of a hassle, but the service is free, and you can run it simply from any browser (e.g. yopur phone or ipad).
+ 
+# Updating the course notes
 
-### Updating notes
-
-From time to time, we need to update the notes because of a bug or some other change. That's great, because we are using `git` which allows and controls all of that.
-
-At the same time, we don't want any update to mess up any work you may have already done, for example in a notebook.
-
-There is a mechanism in `git` that allows this sort of thing, called a [stash](https://www.freecodecamp.org/news/git-stash-explained/).
-
-The way to use it is, when you are told to update the notes, first create a stash with some meaningful name/label, e.g. `my edits on monday'. First, go to the directory your work in in (the working directory):
-
-    cd ~/geog0111/notebooks
-    
-Then create the stash with your label:
-
-    git stash save "my edits on monday"
-    
-Now, pull the new notes:
-
-    git pull origin master
-    
-Suppose this pulled a new version of the file `001_Notebook_use.ipynb`,m but you had edits in that file that you wasnted to keep. Then the pull wouyld overwrite your edits, BUT they would still be available via the stash.
-
-You can see a `diff` (what changed from the last stash entry) by using:
-
-    git stash show -p stash@{0}
-    
-You have two main options then for using the stash:
-
-apply the changes to the new file:
-
-    git stash apply STASH-NAME
-    
-    
-Or move the old file back in place of the new file:
-
-
-    git stash pop STASH-NAME
-   
-   
-For anything more complex than that, look at this [explainer](https://www.freecodecamp.org/news/git-stash-explained/).
-    
+From time-to-time we will need to provide updates to the notes or software. You need to be aware of how to do that and also what the consequences oif opulling a new version are. Please go through [these notes](Using-the-course-notes.md) before you start using the notes.
 
 

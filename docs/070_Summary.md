@@ -408,7 +408,7 @@ Common `Path` methods:
 `*` Really, `Path.stat()` equates to the `unix` command `stat`, but this contains the information we access using `ls -l`.
 
 
-            from geog0111.gurlpath import URL
+            from urlpath import URL
 
 #### 021 URLs
 

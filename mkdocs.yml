@@ -26,6 +26,7 @@ nav:
     - Notebook Use: 001_Notebook_use_answers.md
     - Unix: 002_Unix_answers.md
     - Help: 003_Help_answers.md
+    - Packages: 005_Packages_answers.md
 - Core Concepts:
   - Python Introduction: 010_Python_Introduction.md
   - Python Data Types: 011_Python_data_types.md
@@ -88,7 +89,7 @@ nav:
   - Part1 Code: 063_Part1_code.md
   - Numpy: 064_Numpy.md
   - Lai: 065_LAI.md
-  - Part2: 066_Part2.md
+  - Part2 Code: 066_Part2_code.md
   - Answers:
     - Groups: 060_Groups_answers.md
     - Script: 061_Script_answers.md

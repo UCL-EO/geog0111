@@ -146,7 +146,8 @@ kwargs = {
     'year'      : 2019,
 }
 
-filename,bandname = modisAnnual(verbose=False,**kwargs)
+filename,bandname = modisAnnual(force=True,verbose=False,**kwargs)
+
 data_MCD15A3H = {}
 for f,v in filename.items():
     g = gdal.Open(v)
@@ -203,16 +204,6 @@ for f,v in filename.items():
 
 
 ```python
-filename
-!ls work/output_filename_YEAR_2019_DOYS_41_41*
-```
-
-    work/output_filename_YEAR_2019_DOYS_41_41_SDS_Lai_500m.vrt
-    work/output_filename_YEAR_2019_DOYS_41_41_SDS_Lai_500m.vrt_bands
-
-
-
-```python
 import numpy as np
 # multiply by scale
 scale = 0.1
@@ -229,7 +220,7 @@ im_display(data_MCD15A3H,['Lai_500m'],x_size=16,y_size=8)
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_13_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_12_0.png)
     
 
 
@@ -289,20 +280,6 @@ We now simply need to encode any scale factors or invalidity thresholds, and we 
 
 
 ```python
-from geog0111.modisUtils import getModisTiledata
-xx = getModisTiledata(doy=None,year=2019, month=6, day=1,tile='h22v10', product='MCD64A1')
-xx.keys()
-```
-
-
-
-
-    dict_keys(['Burn Date', 'Burn Date Uncertainty', 'QA MOD_Grid_Monthly_500m_DB_BA', 'First Day', 'Last Day'])
-
-
-
-
-```python
 from geog0111.modisUtils import modisAnnual
 from osgeo import gdal
 from geog0111.im_display import im_display
@@ -347,7 +324,7 @@ im_display(data_MCD64A1,kwargs['sds'],\
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_22_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_20_0.png)
     
 
 
@@ -355,13 +332,6 @@ im_display(data_MCD64A1,kwargs['sds'],\
     
 There are two MODIS daily snow cover datasets: [`MOD10A1` and `MYD10A1`](https://modis-snow-ice.gsfc.nasa.gov/?c=MOD10A1) for data from the MODIS Terra and Aqua sensors, respectively. The field [`NDSI_Snow_Cover`](https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD10A1) has valid values in the range 0 to 100.
 
-
-
-```python
-# not now needed to access data for snow
-#from geog0111.modisUtils import preamble
-#preamble()
-```
 
 
 ```python
@@ -398,10 +368,6 @@ for f,v in filename.items():
 data_MOD10A1 = data_mask(data_MOD10A1,sds,scale,uthresh,lthresh)
 ```
 
-    /nfs/cfs/home3/Uucfa6/ucfalew/geog0111/notebooks/geog0111/data_mask.py:27: RuntimeWarning: invalid value encountered in less_equal
-      ds[ds<=lthresh[i] * scale] = np.nan
-
-
 
 ```python
 # have to take sub-area to see anything here:
@@ -412,7 +378,7 @@ im_display(data_MOD10A1,kwargs['sds'],\
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_26_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_23_0.png)
     
 
 
@@ -453,7 +419,7 @@ plot_lc(data_MCD12Q1['LC_Type1'])
 
 
     
-![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_28_0.png)
+![png](030_NASA_MODIS_Earthdata_files/030_NASA_MODIS_Earthdata_25_0.png)
     
 
 

@@ -114,7 +114,7 @@ fig.colorbar(im, ax=axs[0])
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f2cd0fd3310>
+    <matplotlib.colorbar.Colorbar at 0x7fc61f3f9bd0>
 
 
 
@@ -432,7 +432,7 @@ plt.legend(handles=patches,
 
 
 
-    <matplotlib.legend.Legend at 0x7f2cca833b10>
+    <matplotlib.legend.Legend at 0x7fc60c2f0c90>
 
 
 

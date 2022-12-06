@@ -135,9 +135,12 @@ for j,i in enumerate(np.sort(np.unique(level[1]))):
     this = {"Answers":othera}
     other.append(this)
 
-  this = {chapter_names[j].strip().title():other}
-  nav.append(this)
-
+  try:
+    print(f'i {i} j {chapter_names[j]}')
+    this = {chapter_names[j].strip().title():other}
+    nav.append(this)
+  except:
+    pass
 
 # put in dev notes?
 if dev:

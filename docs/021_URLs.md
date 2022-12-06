@@ -71,13 +71,13 @@ A text file example:
 from urlpath import URL
 site = 'https://www.metoffice.gov.uk/'
 site_dir = 'hadobs/hadukp/data/monthly'
-site_file = 'HadSEEP_monthly_qc.txt'
-
+site_file = 'HadSEEP_monthly_totals.txt'
+ 
 url = URL(site,site_dir,site_file)
 print(f'remote file {url}')
 ```
 
-    remote file https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_qc.txt
+    remote file https://www.metoffice.gov.uk/hadobs/hadukp/data/monthly/HadSEEP_monthly_totals.txt
 
 
 A binary file example:
@@ -177,7 +177,7 @@ If the data type to be accessed is raw (ASCII) text, then you can access the dat
 from urlpath import URL
 
 site = 'https://covid.ourworldindata.org'
-site_dir = 'data/ecdc'
+site_dir = 'data/archived/ecdc'
 site_file = 'full_data.csv'
 site_file = 'locations.csv'
 
@@ -202,7 +202,7 @@ if r.status_code == 200:
     print(data[:500])
 ```
 
-    data access good for https://covid.ourworldindata.org/data/ecdc/locations.csv
+    data access good for https://covid.ourworldindata.org/data/archived/ecdc/locations.csv
     
     ==== data as text ====
     countriesAndTerritories,location,continent,population_year,population
@@ -224,7 +224,7 @@ if r.status_code == 200:
 
 #### Exercise 1
 
-* Use the `URL.get()` method to pull data from `https://covid.ourworldindata.org/data/ecdc/full_data.csv` and store in a file called `work/full_data.csv`.
+* Use the `URL.get()` method to pull data from `https://covid.ourworldindata.org/data/ecdc/archived/full_data.csv` and store in a file called `work/full_data.csv`.
 * check the file size
 * show the first few lines of data
 
@@ -321,6 +321,7 @@ Because of the NASA login, we need to make two calls to the server. The first wi
 # first call to URL to get auth
 r = url.get()
 url2 = URL(r.url).with_userinfo(username,password)
+
 ```
 
 Now we can make a call to this with `get()` to retrieve the data from the URL. We need to check that the `status_code` returned is 200 to see if the call worked:
@@ -334,7 +335,9 @@ print(f'response: {r2.status_code}')
     response: 200
 
 
-If its ok, we can get the binary data as `r2.content` and use `Path().write_bytes()` to write this to a file:
+If the response is *not* `200`, then you have a problem of some sort. This could be that you don't have a correct password stored via `cylog`. If you suspect that might be the case, **go back and check the test on [`004_Accounts.md`](004_Accounts.md)**. If it is *Wednesday afternoon*, it is probably just that the NASA servers are down for maintenance. 
+
+If its ok (`200`), we can get the binary data as `r2.content` and use `Path().write_bytes()` to write this to a file:
 
 
 ```python
@@ -396,7 +399,7 @@ if filename:
     print(f'file {filename} is: {size_MB :.1f} MB')
 ```
 
-    file /shared/groups/jrole001/geog0111/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf is: 8.9 MB
+    file /Users/plewis/Documents/GitHub/geog0111/notebooks/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf is: 8.9 MB
 
 
 #### Exercise 3

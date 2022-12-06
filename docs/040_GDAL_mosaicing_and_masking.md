@@ -327,7 +327,7 @@ fig.colorbar(im, ax=axs)
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f0dc7e68610>
+    <matplotlib.colorbar.Colorbar at 0x7fdc098db510>
 
 
 
@@ -369,19 +369,6 @@ We can use standard [`numpy` slicing](032_More_numpy.md#slicing) to sub-set then
 
 
 ```python
-xx = '1234.vrt'
-xx[:-4]
-```
-
-
-
-
-    '1234'
-
-
-
-
-```python
 ofile = 'work/stitch_Lai_500m_2019_041_Tiles_h17v03_h18v03_h17v04_h18v04.vrt'
 stitch_vrt = gdal.Open(ofile)
 # get the lai data
@@ -406,7 +393,7 @@ print(f'shape now {pyrenees.shape}')
 
 
     
-![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_27_1.png)
+![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_26_1.png)
     
 
 
@@ -438,7 +425,7 @@ print(f'shape now {pyrenees.shape}')
 
 
     
-![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_29_1.png)
+![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_28_1.png)
     
 
 
@@ -558,30 +545,25 @@ warp_args = {
 
 vrtFile = stitchModisDate(**kwargs)
 
-# build a VRT 
-stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
-del stitch_vrt
-
-# now warp it
+# now apply warp args
 g = gdal.Warp("", vrtFile,**warp_args)
 
 fig, axs = plt.subplots(1,1,figsize=(12,6))
 im = axs.imshow(g.ReadAsArray()*0.1,vmax=7,\
                 cmap=plt.cm.inferno_r,interpolation='nearest')
 fig.colorbar(im, ax=axs)
-
 ```
 
 
 
 
-    <matplotlib.colorbar.Colorbar at 0x7f10c57ebf50>
+    <matplotlib.colorbar.Colorbar at 0x7fde666ff4d0>
 
 
 
 
     
-![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_34_1.png)
+![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_33_1.png)
     
 
 
@@ -657,13 +639,13 @@ for datafile,bname in zip(datafiles,bnames):
 
 
     
-![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_39_0.png)
+![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_38_0.png)
     
 
 
 
     
-![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_39_1.png)
+![png](040_GDAL_mosaicing_and_masking_files/040_GDAL_mosaicing_and_masking_38_1.png)
     
 
 

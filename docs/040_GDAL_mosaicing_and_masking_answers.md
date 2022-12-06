@@ -270,9 +270,6 @@ warp_args = {
 
 vrtFile = stitchModisDate(**kwargs)
 
-# build a VRT 
-stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
-del stitch_vrt
 # now warp it
 g = gdal.Warp("", vrtFile,**warp_args)
 
