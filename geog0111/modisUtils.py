@@ -148,8 +148,10 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
       if verbose:
         print(f'cache {cache}')
 
+    #import pdb;pdb.set_trace()
     server = modisServer(product,version=version) / f'{year}.{month:02d}.{day:02d}' 
     #server = server.with_userinfo(*Cylog(server.anchor).login())
+
     if verbose:
       print(f'server {server}')
 
@@ -181,7 +183,12 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
         if verbose:
           print(f'getting data from server ...')
         #import pdb;pdb.set_trace()
-        r = server.get(timeout=timeout)
+        url = server
+        with requests.Session() as s:
+            s.auth = Cylog(url.anchor).login()
+            r1 = requests.get(str(server))
+            r = s.get(r1.url, stream=True)
+            #r = server.get(timeout=timeout)
         if verbose:
           print(f'status code: {r.status_code}')
 
@@ -1005,7 +1012,7 @@ def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
         'doys'       : [doy],
         'sds'        : [sds]
     }
-
+    #import pdb;pdb.set_trace()
     data = getModisFiles(verbose=verbose,timeout=1000,**kwargs)
 
     ofiles = []
@@ -1025,7 +1032,7 @@ def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
             stitch_vrt = gdal.BuildVRT(ofile, list(doy_v.values()))
             del stitch_vrt
             ofiles.append(ofile)
-        
+    #import pdb;pdb.set_trace()    
     if len(ofiles):
         return ofiles[0]
     else:
@@ -1067,6 +1074,7 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
     ofiles = []
     bnames = []
     year = int(year)
+    #import pdb;pdb.set_trace()
     for doy in doys:
         doy = int(doy)
         bnames.append(f'{year}-{doy:03d}')
@@ -1104,8 +1112,17 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
                 ofile = f'{ofile}_warp.dat'
 
             # build a VRT for the first SDS
-            stitch_vrt = gdal.BuildVRT(vrtFile, kwargs['sds'][0])
-            del stitch_vrt
+            #import pdb;pdb.set_trace()
+            #if type(kwargs['sds']) == str:
+            #    builder = kwargs['sds']
+            #else:
+            #    try:
+            #        builder = kwargs['sds'][0]
+            #    except:
+            #        print(f"problem with SDS specification {kwargs['sds']}: should be str or first item in list")
+            #        return None,None
+            #stitch_vrt = gdal.BuildVRT(vrtFile, builder)
+            #del stitch_vrt
             # now warp it
             if (len(warp_args.keys()) == 0) and format == 'VRT':
                 if verbose:
