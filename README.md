@@ -8,6 +8,7 @@
  For previous versions of the course:
  
  * [Release 1.1.0 for course notes for session 2021/22](https://github.com/UCL-EO/geog0111/releases/tag/1.1.0)
+ * [Release 1.1.1 for course notes for session 2022/23](https://github.com/UCL-EO/geog0111/releases/tag/1.1.1)
 
 ## Course information
 
