@@ -79,7 +79,7 @@ def NASAServerUp(zone="America/New_York",verbose=True,deadHour=9):
 
 def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,\
-                 version='061',no_cache=False,cache=None,\
+                 version='006',no_cache=False,cache=None,\
                  verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
 
@@ -100,7 +100,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
     Returns:
       html  : string of html from MODIS data product page
               e.g. what you would find on 
-              https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05
+              https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
 
     Control options:
       year : int of year (2000+ for Terra, 2002+ for Aqua products)
@@ -109,7 +109,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
       day  : int of day (1-31, as appropriate) (day=1)
       tile : string of tile (tile='h08v06')  
       product : string of MODIS product name (product='MCD15A3H')
-      version : int or string of version (version='061')
+      version : int or string of version (version='006')
       timeout : timeout in seconds
 
       verbose : verbosity (verbose=False)
@@ -162,19 +162,19 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
 
     The cached files are stored in the same structure as the URL, i.e
     
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
     
     will be stored (personal cache) as:
  
-    ./.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    ./.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     The html cache is what is returned from e.g.
 
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
 
     and is stored as eg
 
-    ./.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/index.html
+    ./.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
     year  = int(year)
@@ -253,7 +253,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
                 print(f'some issue without password for html {server.anchor}') 
                 #import pdb;pdb.set_trace()
                 getIndex((server/'index.html').as_posix(),cache_dir.as_posix())
-                # https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.061/
+                # https://n5eil01u.ecs.nsidc.org/MOST/MOD10A1.006/
     else:
         if cache_file.exists():
           if verbose:
@@ -267,12 +267,12 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
           html_file = altcache_file
     return html,html_file 
 
-def modisServer(product='MCD15A3H',version='061',**kwargs):
+def modisServer(product='MCD15A3H',version='006',**kwargs):
     '''
     modisServer : return the server and dirbase for
                   a given product. 
 
-    e.g. modisServer('MCD15A3H') ->  https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061
+    e.g. modisServer('MCD15A3H') ->  https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
 
     Example of use:
 
@@ -288,11 +288,11 @@ def modisServer(product='MCD15A3H',version='061',**kwargs):
 
       server = modisServer(**modinfo,verbose=False)
       print(f'-> {server}')
-      -> https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061
+      -> https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
 
     Returns:
       server   : URL of core MODIS data product page
-                 e.g. https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061
+                 e.g. https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006
 
     Control options:
       tile : string of tile (tile='h08v06')  
@@ -344,13 +344,13 @@ def modisServer(product='MCD15A3H',version='061',**kwargs):
 
 def modisURL(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',\
-                 version='061',timeout=None,\
+                 version='006',timeout=None,\
                  no_cache=False,cache=None,\
                  verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     modisURL : return the URL for a MODIS product
                E.g.
-               https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+               https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     Example of use:
 
@@ -366,10 +366,10 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 
       url = modisURL(**modinfo,verbose=False)
       print(f'-> {url}')
-      -> https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+      -> https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
     Returns:
       url  : Url (urlpath URL object) of MODIS data product
-              e.g. https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+              e.g. https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     Control options:
       year : int of year (2000+ for Terra, 2002+ for Aqua products)
@@ -378,7 +378,7 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
       day  : int of day (1-31, as appropriate) (day=1)
       tile : string of tile (tile='h08v06')  
       product : string of MODIS product name (product='MCD15A3H')
-      version : int or string of version (version='061')
+      version : int or string of version (version='006')
       timeout : timeout in seconds
 
       verbose : verbosity (verbose=False)
@@ -428,19 +428,19 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 
     The cached files are stored in the same structure as the URL, i.e
     
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
     
     will be stored (personal cache) as:
  
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     The html cache is what is returned from e.g.
 
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
 
     and is stored as eg
 
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/index.html
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
 
@@ -484,7 +484,7 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
 
 def modisFile(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,\
-                 version='061',no_cache=False,cache=None,\
+                 version='006',no_cache=False,cache=None,\
                  verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     Get the filename associated with a MODIS product file
@@ -493,8 +493,8 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
     modisFile : return the filename for a MODIS product
                E.g.
                /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/\
-                    MOTA/MCD15A3H.061/2020.01.05/\
-                    MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+                    MOTA/MCD15A3H.006/2020.01.05/\
+                    MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     N.B. You need to have a username and password to access the data.
     These are available at https://urs.earthdata.nasa.gov
@@ -517,21 +517,21 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
       filename = modisFile(**modinfo,verbose=False)
       print(f'-> {filename}')
 
-      -> https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+      -> https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
       -> /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/\
-           MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+           MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
 
     Returns:
       filename  : Path object of MODIS data product file
               e.g. what you would find on 
 
-              https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+              https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
               Downloaded to some cache location e.g.
 
-              /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+              /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     Control options:
       year : int of year (2000+ for Terra, 2002+ for Aqua products)
@@ -540,7 +540,7 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
       day  : int of day (1-31, as appropriate) (day=1)
       tile : string of tile (tile='h08v06')  
       product : string of MODIS product name (product='MCD15A3H')
-      version : int or string of version (version='061')
+      version : int or string of version (version='006')
       timeout : timeout in seconds
 
       verbose : verbosity (verbose=False)
@@ -591,21 +591,21 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
 
     The cached files are stored in the same structure as the URL, i.e
     
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/\
-                MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/\
+                MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
     
     will be stored (personal cache) as:
  
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/\
-                MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/\
+                MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     The html cache is what is returned from e.g.
 
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
 
     and is stored as eg
 
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/index.html
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
     # new code 28 June 2023 P. Lewis
@@ -616,10 +616,10 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
       # if version is eg 6, use 006
       version = f'{version:03d}'
     else:
-      # else, if eg 6.1, then we want 061
+      # else, if eg 6.1, then we want 006
       # so convert to str, remove . and use %03d
-      # if its a string already eg 061, it will
-      # revert to 061
+      # if its a string already eg 006, it will
+      # revert to 006
       version  = int(str(version).replace('.',''))
       version = f'{version:03d}'
 
@@ -748,7 +748,7 @@ def get_sds_name(name,product):
 
 def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
                  product='MCD15A3H',timeout=None,sds='None',\
-                 version='061',no_cache=False,cache=None,\
+                 version='006',no_cache=False,cache=None,\
                  verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     return list of MODIS data filenames of given SDS for given MODIS tile
@@ -776,11 +776,11 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
     Returns file list of MODIS data product filef
               e.g. what you would find on 
 
-           https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+           https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
               Downloaded to some cache location e.g.
 
-              /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+              /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     Control options:
       year : int of year (2000+ for Terra, 2002+ for Aqua products)
@@ -793,7 +793,7 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
       
       tile    : string of tile (tile='h08v06')  
       product : string of MODIS product name (product='MCD15A3H')
-      version : int or string of version (version='061')
+      version : int or string of version (version='006')
       sds     : only load these SDS (string or list)
            
       timeout : timeout in seconds
@@ -845,19 +845,19 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
 
     The cached files are stored in the same structure as the URL, i.e
     
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
     
     will be stored (personal cache) as:
  
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     The html cache is what is returned from e.g.
 
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
 
     and is stored as eg
 
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/index.html
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
     if type(sds) == str:
@@ -911,7 +911,7 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
 
 def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,sds='None',\
-                 version='061',no_cache=False,cache=None,\
+                 version='006',no_cache=False,cache=None,\
                  verbose=False,force=False,altcache='/shared/groups/jrole001/geog0111'):
     '''
     return MODIS data dictionary of given SDS for given MODIS tile
@@ -940,11 +940,11 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
     Returns data read from MODIS data product file
               e.g. what you would find on 
 
-           https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+           https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
               Downloaded to some cache location e.g.
 
-              /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+              /Users/plewis/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     Control options:
       year : int of year (2000+ for Terra, 2002+ for Aqua products)
@@ -957,7 +957,7 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
       
       tile    : string of tile (tile='h08v06')  
       product : string of MODIS product name (product='MCD15A3H')
-      version : int or string of version (version='061')
+      version : int or string of version (version='006')
       sds     : only load these SDS (string or list)
            
       timeout : timeout in seconds
@@ -1009,19 +1009,19 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
 
     The cached files are stored in the same structure as the URL, i.e
     
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
     
     will be stored (personal cache) as:
  
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/MCD15A3H.A2020005.h08v06.061.2020010210940.hdf
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/MCD15A3H.A2020005.h08v06.006.2020010210940.hdf
 
     The html cache is what is returned from e.g.
 
-    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05
+    https://e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05
 
     and is stored as eg
 
-    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.061/2020.01.05/index.html
+    ~/.modis_cache/e4ftl01.cr.usgs.gov/MOTA/MCD15A3H.006/2020.01.05/index.html
 
     '''
     if type(sds) == str:
@@ -1032,8 +1032,8 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
     day, month, year = getDate(day=day, month=month, year=year, doy=doy)
     #import pdb;pdb.set_trace()
     filename = modisFile(year=year, month=month, day=day,tile=tile,\
-                 product=product,timeout=timeout,version=version,\
-                 no_cache=no_cache,cache=cache,\
+                 product=product,timeout=timeout,\
+                 version=version,no_cache=no_cache,cache=cache,\
                  verbose=verbose,force=force,altcache=altcache)
     
     # error checking
@@ -1063,7 +1063,7 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
     
 def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
               tile=['h17v03','h18v03'],verbose=False,\
-              product='MCD15A3H',version='061'):
+              product='MCD15A3H'):
     '''
     function called stitchModisDate with arguments:
     
@@ -1090,7 +1090,6 @@ def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
         'product'    : product,
         'tile'       : tile,
         'year'       : year,
-        'version'    : version,
         'doys'       : [doy],
         'sds'        : [sds]
     }
@@ -1124,7 +1123,7 @@ def stitchModisDate(year=2019,doy=1,sds='Lai_500m',timeout=None,\
 def getModis(year=2019,doys=[1],sds='Lai_500m',\
               tile=['h17v03','h18v03'],\
               format='VRT',verbose=False,timeout=None,\
-              product='MCD15A3H',version='061',warp_args={}):
+              product='MCD15A3H',warp_args={}):
     '''
     function to return Modis data array for defined
     conditions, for a single day and single SDS and
@@ -1144,7 +1143,7 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
         verbose  : verbose (False)
         timeout  : timeout (None) in seconds. Set to e.g. 1000 if
                    you are having problems
-        version  : file version e.g. 6.1 for MODIS or 2 for VIIRS 
+ 
   
     generates stitched VRT files for each doy with the appropriate data,
     save in VRT of GTiff, along with data you can use to identify the year and doy 
@@ -1165,7 +1164,6 @@ def getModis(year=2019,doys=[1],sds='Lai_500m',\
             'tile'       : tile,
             'year'       : year,
             'doy'       : doy,
-            'version'   : version,
             'sds'        : sds
         }
         if verbose:
@@ -1240,7 +1238,6 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         kwargs = {
             'tile'      :    ['h18v03','h18v04'],
             'product'   :    'MCD15A3H',
-            'version'   : '061',
             'sds'       :    ['Lai_500m', 'Fpar_500m'],
             'doys'      : [i for i in range(1,60,4)],
             'year'      : 2019,
@@ -1276,12 +1273,7 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         verbose = kwargs['verbose']
     else:
         verbose = False
-
-    if 'version' in kwargs:
-        version = kwargs['version']
-    else:
-        version = '061'
-
+ 
     # output dict
     odict = {}
     if ('force' in kwargs.keys()) and kwargs['force'] == False:
@@ -1292,23 +1284,7 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
         del kwargs['force']
     else:
         redo = True
-       
-    if 'product' in kwargs:
-        product = kwargs['product']
-        platform = product[:3]
-    else:
-        platform = 'MOD'
-
-    # set sensor
-    if platform[0] == 'M':
-        sensor = 'MODIS'
-    elif platform[0] == 'V':
-        sensor = 'VIIRS'
-    else:
-        sensor = 'UNKNOWN'
-    vstring_int = int(str(version).replace('.',''))
-    ofile_root = f'{ofile_root}_{sensor}_{platform}_{vstring_int:03d}'
- 
+        
     if 'warp_args' in kwargs:
         warp_args = kwargs['warp_args']
         if 'cutlineWhere' in warp_args:
@@ -1325,8 +1301,7 @@ def modisAnnual(ofile_root='work/output_filename',**kwargs):
     ofile_root = f'{ofile_root}_YEAR_{year}_DOYS_{doys.min()}_{doys.max()}'
     if verbose:
         print(f'root name of output file: {ofile_root}')
-   
-    #import pdb;pdb.set_trace() 
+    
     for s in sds_list:
         datafiles = None
         ofile = f"{ofile_root}_SDS_{s}.vrt"
@@ -1362,7 +1337,7 @@ from osgeo import gdal
 
 
 def getLai(year=2019,tile=['h18v03','h18v04'],country='LU',\
-           force=False,version='061',\
+           force=False,\
            ofile_root='work/modisLAI',verbose=False):
     '''
     Get LAI and std for year,tile,country
@@ -1391,8 +1366,7 @@ def getLai(year=2019,tile=['h18v03','h18v04'],country='LU',\
         'doys'      : [i for i in range(1,366,4)],
         'year'      : year,
         'warp_args' : warp_args,
-        'verbose'   : False,
-        'version'   : version
+        'verbose'   : False
     }
     
 
