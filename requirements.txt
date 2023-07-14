@@ -61,7 +61,6 @@ frozenlist
 fsspec
 future
 gast
-GDAL
 gdown
 geeadd
 geemap
