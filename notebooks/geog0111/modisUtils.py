@@ -11,13 +11,15 @@ import datetime
 import scipy
 import scipy.ndimage
 import requests
-import h5py
-
 
 try:
   from geog0111.cylog import Cylog
+  from geog0111.VIIRS_HDF5toGeoTIFF import h52h5
 except:
   from cylog import Cylog
+  from VIIRS_HDF5toGeoTIFF import h52h5
+
+gdal.UseExceptions()
 
 '''
 Some MODIS utils
@@ -78,192 +80,6 @@ def NASAServerUp(zone="America/New_York",verbose=True,deadHour=9):
                  f': it is  {d.strftime("%A")} {d.strftime("%H")} Hrs' + \
                  f' in {zone}', file=sys.stderr)
         return (True)
-
-def getInfoHDF5(this_sds):
-    '''
-    Function to get projection and geographic info for HDF5
-    that is not propoerly stored in VIIRS V1 files (at least)
-    but which should act as a general fix for HDF5 files anyway
-
-    argument: dataset name as string eg 
-
-    HDF5:"/Users/philiplewis/Documents/GitHub/geog0111/notebooks/\
-          .modis_cache/e4ftl01.cr.usgs.gov/VIIRS/VNP15A2H.001/2019.02.10/\
-          VNP15A2H.A2019041.h18v03.001.2019049173341.h5"\
-          ://HDFEOS/GRIDS/VNP_Grid_VNP15A2H/Data_Fields/Lai'
-
-    returns geoInfo_sd,projInfo_sd
-
-    return (),() on error eg not hdf5 or no file (not checked)
-
-    For use with:
-    
-    ds.SetGeoTransform(geoInfo_sd) 
-    ds.SetProjection(projInfo_sd)
-
-    '''
-
-    # pull the file name
-    vnp_name = Path(this_sds.split('"')[1]).as_posix()
-
-    # open file with h5py: this will fail if file is not hdf5
-    # or worng name etc.
-    try:
-      f = h5py.File(vnp_name, "r")
-      # this is funny -- in this_sds the field is held as 'Data_Fields'
-      # but in the hdf file it is 'Data Fields' so we have to translate
-      # P. Lewis 29 June 2023 
-      ds = this_sds.split(':')[-1][2:].replace('Data_Fields','Data Fields')
-      dsArray = f[ds][()]
-      nRow = dsArray.shape[0]
-      nCol = dsArray.shape[1]
-      del f
-    except:
-      return (),()
-
-    # from https://git.earthdata.nasa.gov/projects/LPDUR/repos/nasa-viirs/browse/scripts/VIIRS_HDF5toGeoTIFF.py
-    def getProjInfoHDF5(vnp_name):
-
-        projInfo = 'PROJCS["unnamed",\
-                    GEOGCS["Unknown datum based upon the custom spheroid", \
-                    DATUM["Not specified (based on custom spheroid)", \
-                    SPHEROID["Custom spheroid",6371007.181,0]],\
-                  PRIMEM["Greenwich",0], \
-                  UNIT["degree",0.0174532925199433]], \
-                  PROJECTION["Sinusoidal"],\
-                  PARAMETER["longitude_of_center",0],\
-                  PARAMETER["false_easting",0],\
-                  PARAMETER["false_northing",0],\
-                  UNIT["Meter",1]]',\
-              'GEOGCS["Unknown datum based upon the Clarke 1866 ellipsoid", \
-                  DATUM["Not specified (based on Clarke 1866 spheroid)", \
-                    SPHEROID["Clarke 1866",6378206.4,294.9786982139006]], \
-                  PRIMEM["Greenwich",0], \
-                  UNIT["degree",0.0174532925199433]]'
-        if vnp_name[5:8] == 'CMG':
-            return projInfo[1]
-        else:
-            return projInfo[0]
-
-    def getGeoInfoHDF5(vnp_name):
-
-        # Function to get geoinformation from the StructMetadata object
-        def GetGeographicInfo(input_file):
-            # Get info from the StructMetadata Object
-            f_Metadata = input_file['HDFEOS INFORMATION']['StructMetadata.0'][()].split()
-            # Info returned is of type Byte, must convert to string before using it
-            f_Metadata_byte2str = [s.decode('utf-8') for s in f_Metadata]
-            # Get upper left points
-            ulc = [i for i in f_Metadata_byte2str if 'UpperLeftPointMtrs' in i]
-            ulcLon = float(ulc[0].replace('=', ',').replace('(', '') \
-                    .replace(')', '').split(',')[1])
-            ulcLat = float(ulc[0].replace('=', ',').replace('(', '') \
-                    .replace(')', '').split(',')[2])
-            return((ulcLon,  0, ulcLat, 0))
-
-        # read as hdf5
-        f = h5py.File(vnp_name, "r")
-        geoInfo = GetGeographicInfo(f)
-        del f
-
-        # sort geoInfo
-        geoInfo_sd = list(geoInfo)
-        # Cell size not specified in the metadata of VIIRS version 001
-        if nRow == 1200:    # VIIRS VNP09A1, VNP09GA - 1km
-            yRes = -926.6254330555555
-            xRes = 926.6254330555555
-        elif nRow == 2400:  # VIIRS VNP09H1, VNP09GA - 500m
-            yRes = -463.31271652777775
-            xRes = 463.31271652777775
-        elif nRow == 3600 and nCol == 7200: # VIIRS VNP09CMG
-            yRes = -0.05
-            xRes = 0.05
-            # Set upper left dims for CMG product
-            geoInfo_sd[0] = -180.00
-            geoInfo_sd[2] = 90.00
-        # Set cell size and data type for output files
-        geoInfo_sd.insert(1, xRes)
-        geoInfo_sd.insert(5, yRes)
-
-        return geoInfo_sd
-    
-    geoInfo_sd = getGeoInfoHDF5(vnp_name)
-    projInfo_sd = getProjInfoHDF5(vnp_name)
-    return geoInfo_sd,projInfo_sd
-
-def setHDF5GeoProj(this_sds,g):
-    '''
-    fix the Geo and Proj info in an open gdal HDF5 file
-    
-    This is done by reading that information from h5py and other fixes for VIIRS datsa
-
-    arguments: this_sds : dataset name as string eg
-
-    HDF5:"/Users/philiplewis/Documents/GitHub/geog0111/notebooks/\
-          .modis_cache/e4ftl01.cr.usgs.gov/VIIRS/VNP15A2H.001/2019.02.10/\
-          VNP15A2H.A2019041.h18v03.001.2019049173341.h5"\
-          ://HDFEOS/GRIDS/VNP_Grid_VNP15A2H/Data_Fields/Lai'
-
-                g       : open gdal pointer eg from
-                          g = gdal.Open(this_sds)
-
-    returns g, open gdal pointer
-
-    Improve function with error checking at some point.
-
-    P. Lewis 29 June 2023
-    '''
-    geoInfo_sd,projInfo_sd = getInfoHDF5(this_sds)
-    g.SetGeoTransform(geoInfo_sd)
-    g.SetProjection(projInfo_sd)
-
-    return g
-
-
-def gFix(this_sds,g=None):
-  '''
-  fix the Geo and Proj info in VIIRS HDF5 files
-  '''
-  this_sds = str(this_sds)
-
-  if len(this_sds.split('"'))<2:
-    # this is NOT an SDS ... it is probably a filename
-    # check if h5
-    if this_sds.split('.')[-1] != 'h5':
-      # not an hdf5 file, so dont try to fix
-      return False
-    # find an sds
-    if not Path(this_sds).exists():
-      # doesnt exist so cant fix yet
-      return False
-
-    g = gdal.Open(this_sds)
-    if g:
-      sds = g.GetSubDatasets()[0][0]     
-      return gFix(sds) 
-      del g
-    else:
-      # couldnt open file in any case
-      return False 
-
-
-  if g == None:
-    g = gdal.Open(this_sds)
-    if g:
-      retval = gFix(this_sds,g)
-      del g
-      return retval
-    return False
-  try:
-    product = Path(this_sds.split('"')[1]).name.split('.')[0]
-    if get_platform_name(product) == 'VIIRS':
-      geoInfo_sd,projInfo_sd = getInfoHDF5(this_sds)
-      g.SetGeoTransform(geoInfo_sd)
-      g.SetProjection(projInfo_sd)
-      return True
-  except:
-    pass
-  return False
 
 def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,\
@@ -393,6 +209,7 @@ def modisHTML(year=2020, month=1, day=1,tile='h08v06',\
     if verbose:
       print(f'server {server}')
 
+    #import pdb;pdb.set_trace()
     if not no_cache:
       # get cache_file
       cache_dir = Path(cache,server.hostinfo,'/'.join(server.parts[1:]))
@@ -524,6 +341,9 @@ def modisServer(product='MCD15A3H',version='061',**kwargs):
           sub = 'MOLA' 
         elif product[:3] == 'VNP':
           sub = 'VIIRS'
+        elif product[:3] == 'VJP':
+          sub = 'VIIRS'
+
           # VIIRS
         else:
           sub = 'UKNOWN'
@@ -653,7 +473,7 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
       links = [mylink.attrs['href'] for mylink in BeautifulSoup(html,'lxml').find_all('a')]
       filenames = [l for l in links if fnmatch.fnmatch(str(l), filename_start+'*'+filename_ext)]
       # xml files for h5 files
-      '''
+      ''' 
       if filename_ext == 'h5':
           # VIIRS filename type ext 
           xml_filenames = [l+'.xml' for l in filenames]  
@@ -668,12 +488,23 @@ def modisURL(year=2020, month=1, day=1,tile='h08v06',\
             return None
         
       # result
+      '''
       if verbose:
         print(f'filename: {filename}')
-      
+        if filename_ext == 'h5':
+          print(f'xml filename: {xml_filename}') 
+      if filename_ext == 'h5':
+          xml_filename = xml_filenames[0]
+          return server / filename, server / xml_filename
+      '''
       return server / filename
     return None
 
+def isVIIRS(filename):
+    '''
+    check if filename indicated VIIRS
+    '''
+    return "VIIRS" in filename.parts
 
 def modisFile(year=2020, month=1, day=1,tile='h08v06',\
                  product='MCD15A3H',timeout=None,\
@@ -844,12 +675,20 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
       cache = Path().cwd()
     cache = cache / ".modis_cache"
     cache.mkdir(parents=True,exist_ok=True)
+
+    #import pdb;pdb.set_trace()
+    #isVIIRS(cache_file):
     if not no_cache:
       if verbose:
         print(f'cache {cache}')
     #import pdb;pdb.set_trace()
     # generate the Path where the local cache would go
     cache_part = Path(url.hostinfo,'/'.join(url.parts[1:]))
+    
+    # change VIIRS to tif file
+    #if isVIIRS(cache_part):
+    #  if (verbose ): print ("changing target file to tif as we have a cached VIIRS file")
+    #  cache_part = cache_part.with_suffix('.tif')
 
     # check to see if we have it
     if (not no_cache) and (not force) and Path(cache,cache_part).exists():
@@ -886,8 +725,8 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
         print(f'get info from {url.anchor}') 
 
     #import pdb;pdb.set_trace()
-    xml_data = None
-    '''
+    data = None
+    
     if str(url).split('.')[-1] == 'h5':
       url_xml = f'{url}.xml'
       with requests.Session() as s:
@@ -895,10 +734,22 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
         r1 = requests.get(url_xml)
         r2 = s.get(r1.url, stream=True)
         if r2.status_code == 200:
-          xml_data = r2.text
+          data = r2.text
           if verbose:
             print(f'got xml file {url_xml}')
-    '''
+          if verbose:
+            print(f"received {len(data)} bytes")
+          #import pdb;pdb.set_trace()
+          cache_file = Path(cache,cache_part.as_posix() + '.xml')
+          cache_file.parent.mkdir(parents=True,exist_ok=True)
+          nbytes_written = cache_file.write_text(data)
+          if not (nbytes_written == len(data)):
+            if verbose:
+              print(f'error writing cache file {cache_file}: {len(data)} bytes expected but {nbytes_written} bytes written')
+              return None
+            else:
+              print(f'cached data to file {cache_file}: {len(data)}')
+ 
     # replace this for 2022/23 using with
     #r = url2.get(timeout=timeout)
     #if verbose:
@@ -928,21 +779,12 @@ def modisFile(year=2020, month=1, day=1,tile='h08v06',\
           return None
         else:
           print(f'cached data to file {cache_file}: {len(data)}')
-      '''
-      if xml_data is not None:
-        # write to cache file
-        cache_file_xml = cache / f'{str(cache_part)}.xml'
-        nbytes_written = cache_file_xml.write_text(xml_data)
-        if not (nbytes_written == len(xml_data)):
-          if verbose:
-            print(f'error writing cache file {cache_file_xml}: {len(xml_data)} bytes expected but {nbytes_written} bytes written')
-            return None
-          else:
-            print(f'cached data to file {cache_file_xml}: {len(xml_data)}')
-      '''
-      import pdb;pdb.set_trace()
-      gFix(cache_file)
+      # fix and output to tiff if data are VIIRS
 
+      if isVIIRS(cache_file):
+        # in this case the h5 files are awkward, so we convert to tif and a vrt
+        #import pdb;pdb.set_trace()
+        cache_file = h52h5(str(cache_file),verbose=verbose)
       return cache_file
     else:
       if verbose:
@@ -1152,8 +994,9 @@ def getModisFiles(doys=None,year=2020,tile='h08v06',doy=None,month=None,\
                 # error checking
                 if verbose:
                     print(f'reading dataset from {filename}')
-                g = gdal.Open(filename.as_posix())
-                  
+                g = gdal.Open(str(filename))
+
+                #import pdb;pdb.set_trace()                  
                 if g:
                     for filename,name in g.GetSubDatasets():
                        
@@ -1683,9 +1526,7 @@ def getLai(year=2019,tile=['h18v03','h18v04'],country='LU',\
         if verbose:
             print(f'...{k} -> {v}')
         g = gdal.Open(v)
-        # fix for VIIRS data
-        # gFix would work, if yoiu had write permission
-        gFix(v,g)
+        #gFix(v,g)
         if g:
             ddict[k] = g.ReadAsArray()
     
