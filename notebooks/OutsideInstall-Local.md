@@ -27,7 +27,9 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
 This will be faster if you first install the package `mamba`. To do this:
 
-        conda install mamba
+        conda install -c conda-forge mamba
+
+Answer `Y` to any prompts.
 
 If you choose to use `mamba` then you can install the `geog0111` environment with:
 
