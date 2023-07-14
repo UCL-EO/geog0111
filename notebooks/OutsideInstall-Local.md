@@ -25,12 +25,15 @@ We assume you will setup the repository in your home directory (`~`). If not, th
 
 ## 2. Download/update required Python packages 
 
-This may take minutes/tens of minutes, either (if you have `mamba installed):
+This will be faster if you first install the package `mamba`. To do this:
+
+        conda install mamba
+
+If you choose to use `mamba` then you can install the `geog0111` environment with:
 
         mamba env create --force -n geog0111 -f environment.yml
         
-
-or (if no `mamba`. Warning: this is *much* slower)
+This may take minutes/tens of minutes. If you do not have `mamba`, just use `conda` (Warning: this is *much* slower):
 
         conda env create --force -n geog0111 -f environment.yml
 
