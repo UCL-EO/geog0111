@@ -36,8 +36,6 @@ cligj
 cloudpickle
 colorama
 colour
-conda
-conda-package-handling
 cryptography
 cycler
 cytoolz
