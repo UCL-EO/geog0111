@@ -14,27 +14,28 @@
 
 ### Course Convenor 
 
+[Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
 ### Teaching Staff 2022-2023
 
 |   | 
 |---|
+|[Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 |[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
 ### Support Staff 2022-2023
 
 |   | 
 |---|
-|[Wanxin Yang](https://www.geog.ucl.ac.uk/people/research-students/wanxin-yang)|
-|[Thomas Keel](mailto:thomas.keel.18@ucl.ac.uk)|
+|TBA
 
 
 ### Other Contributing Staff
 
 |   |   |   |
 |---|---|---|
-|[Dr. Jose Gomez-Dans](http://www.geog.ucl.ac.uk/about-the-department/people/research-staff/jose-gomez-dans/)|[Feng Yin](https://www.geog.ucl.ac.uk/people/research-students/feng-yin)|
+|TBA
 
 
 ### Purpose of this course
@@ -72,7 +73,7 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 The course takes place over 10 weeks in term 1, on Monday 11:00-14:00 in the UCL Computing Lab (G20) in [CHRISTOPHER INGOLD BUILDING, 20 GORDON STREET, LONDON, WC1H 0AJ](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=067), UCL. 
 
-Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures/term-dates-and-closures-2022-23) for further information.
+Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates]() for further information.
 
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday with help sessions on Thursdays.
 
@@ -82,11 +83,11 @@ The Thursday help sessions will be held in room 110 in the [Northwest Wing (Geog
 
 Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 
 
-See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595) for more details.
+See the [Moodle page](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures-2023-24) for more details.
 
 ### Useful links
 
-[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=26595)  
+[Course Moodle page](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures-2023-24)  
 
 ### Using the notes
 
@@ -104,4 +105,4 @@ If you are interested in running the course notes from outside UCL on your own c
  
 # Updating the course notes
 
-From time-to-time we will need to provide updates to the notes or software. You need to be aware of how to do that and also what the consequences oif opulling a new version are. Please go through [these notes](notebooks/Using-the-course-notes.md) before you start using the notes.
+From time-to-time we will need to provide updates to the notes or software. You need to be aware of how to do that and also what the consequences of pulling a new version are. Please go through [these notes](notebooks/Using-the-course-notes.md) before you start using the notes.
