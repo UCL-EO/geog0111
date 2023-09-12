@@ -18,7 +18,7 @@
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2023-2024
+### Teaching Staff 2023-2025
 
 |   | 
 |---|
