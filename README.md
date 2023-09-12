@@ -18,14 +18,14 @@
 
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
-### Teaching Staff 2022-2023
+### Teaching Staff 2023-2024
 
 |   | 
 |---|
 |[Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 |[Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)|
 
-### Support Staff 2022-2023
+### Support Staff 2023-2024
 
 |   | 
 |---|
@@ -34,8 +34,8 @@
 
 ### Other Contributing Staff
 
-|   |   |   |
-|---|---|---|
+|   |
+|---|
 |TBA
 
 
