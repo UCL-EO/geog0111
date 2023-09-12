@@ -15,6 +15,7 @@
 ### Course Convenor 
 
 [Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
+
 [Prof P. Lewis](http://www.geog.ucl.ac.uk/~plewis)
 
 ### Teaching Staff 2022-2023
@@ -69,7 +70,7 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 ## Timetable
 
-[class timetable for 2022/23](notebooks/TIMETABLE.md)
+[class timetable for 2023/24](notebooks/TIMETABLE.md)
 
 The course takes place over 10 weeks in term 1, on Monday 11:00-14:00 in the UCL Computing Lab (G20) in [CHRISTOPHER INGOLD BUILDING, 20 GORDON STREET, LONDON, WC1H 0AJ](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=067), UCL. 
 
