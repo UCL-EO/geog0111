@@ -1,4 +1,4 @@
-GEOG0111 Timetable 2022-23
+GEOG0111 Timetable 2023-24
 
 
 
