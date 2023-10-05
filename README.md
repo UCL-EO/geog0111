@@ -68,7 +68,7 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 [class timetable for 2023/24](notebooks/TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1, on Monday 11:00-14:00 in the UCL Computing Lab (G20) in [CHRISTOPHER INGOLD BUILDING, 20 GORDON STREET, LONDON, WC1H 0AJ](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=067), UCL. 
+The course takes place over 10 weeks in term 1, on Monday 11:00-14:00 in the the Birkbeck Main Building, room 109 in Birkbeck Malet Street, Malet Street, Torrington Square Entrance, London, WC1E 7HX, UCL. 
 
 Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates]() for further information.
 
