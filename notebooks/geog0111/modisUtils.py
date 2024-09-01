@@ -1164,7 +1164,7 @@ def getModisTiledata(doy=None,year=2020, month=1, day=1,tile='h08v06',\
                 # read the dataset
                 gsub = gdal.Open(filename)
                 #gFix would work, if yoiu had write permission
-                gFix(filename,gsub)
+                #gFix(filename,gsub)
                 if gsub:
                     data = gsub.ReadAsArray()
                     sds_name = get_sds_name(name,product)
