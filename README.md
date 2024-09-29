@@ -65,11 +65,11 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 ## Timetable
 
-[class timetable for 2023/24](notebooks/TIMETABLE.md)
+[class timetable for 2024/25](notebooks/TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1, on Monday 11:00-14:00 in the the Birkbeck Main Building, room 109 in Birkbeck Malet Street, Malet Street, Torrington Square Entrance, London, WC1E 7HX, UCL. 
+The course takes place over 10 weeks in term 1, on Monday from 12:00-15:00 in the Birkbeck Malet Street 416/417 public cluster in Birkbeck Malet Street, Malet Street, Torrington Square Entrance, London, WC1E 7HX. 
 
-Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates]() for further information.
+Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures/provisional-term-dates-and-closures-2024-25) for further information.
 
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday with help sessions on Thursdays.
 
@@ -79,11 +79,11 @@ The Thursday help sessions will be held in room 110 in the [Northwest Wing (Geog
 
 Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 
 
-See the [Moodle page](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures-2023-24) for more details.
+See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=41552) for more details.
 
 ### Useful links
 
-[Course Moodle page](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures-2023-24)  
+[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=41552)  
 
 ### Using the notes
 
