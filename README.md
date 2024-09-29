@@ -18,12 +18,12 @@
 [Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 
 
-|Teaching Staff 2023-2024|
+|Teaching Staff 2024-2025|
 |---|
 [Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 
 
-|Support Staff 2023-2024| 
+|Support Staff 2024-2025| 
 |---|
 [Jie Gong](https://www.ucl.ac.uk/geography/jie-gong)
 [Rebekah Horner](https://www.ucl.ac.uk/geography/rebekah-horner)
