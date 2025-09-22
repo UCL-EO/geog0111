@@ -25,8 +25,8 @@
 
 |Support Staff 2024-2025| 
 |---|
-[Jie Gong](https://www.ucl.ac.uk/geography/jie-gong)
-[Rebekah Horner](https://www.ucl.ac.uk/geography/rebekah-horner)
+[Jie Gong](https://profiles.ucl.ac.uk/85081-jie-gong)
+Yuxin Zhao
 
 
 |Other Contributing Staff|
@@ -65,7 +65,7 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 ## Timetable
 
-[class timetable for 2024/25](notebooks/TIMETABLE.md)
+[class timetable for 2025/26](notebooks/TIMETABLE.md)
 
 The course takes place over 10 weeks in term 1, on Monday from 12:00-15:00 in the Birkbeck Malet Street 416/417 public cluster in Birkbeck Malet Street, Malet Street, Torrington Square Entrance, London, WC1E 7HX. 
 
