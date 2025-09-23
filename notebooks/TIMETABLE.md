@@ -13,12 +13,12 @@ GEOG0111 Timetable 2025-26
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[URLs](021_URLs.ipynb)| [Pandas](022_Pandas.ipynb) 	|
 |  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](Geog0111_Part1_2025_26.pdf) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
-|  6	|**Data** 	|  [NASA MODIS](030_NASA_MODIS_Earthdata.ipynb)	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| || [Numpy exercise](064_Numpy.ipynb)|
-|  7	|  **Space and time**	| [Mosaicing](040_GDAL_mosaicing_and_masking.ipynb) 	|  [Timeseries](041_GDAL_timeseries.ipynb)	|  	|
-|  8	| **Regularisation** 	|  [Smoothing theory](042_Weighted_smoothing_and_interpolation.ipynb)	| [Smoothing and interpolation](043_Weighted_interpolation.ipynb) 	|  	| |  |[LAI](065_LAI.ipynb)|
+|  6	|**Data** 	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| [Numpy exercise](064_Numpy.ipynb) || ||
+|  7	|  **Remote Sensing - Spatial, Spectral and Temporal**	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
+|  8	| **GEE** 	|  Google Earth Engine	|  	|  	| |  ||
 |	| |[![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/143428cb-d1f2-48bd-b064-d15c224025a4) | 
-|  9	|  **Parameter estimation**	| [Models and inversion](050_Models.ipynb) 	|   [Phenology model](051_Phenology_model.ipynb) 	|  	|
-|  10	|  **Recap**	|  [Summary](070_Summary.ipynb)|  	|  	|| | |
+|  9	|  **Assignments**	| Project 	|   	|  	|
+|  10	|  **Recap and Assignments**	|  Project |  	|  	|| | |
 
 
-Note that [Part 1](Geog0111_Part1_2025_26.pdf) and Part 2 are the formal assessments for the course. [Part 1](Geog0111_Part1_2025_26.pdf) should be submitted the Monday after Reading week. Part 2 should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before subitting work.
+Note that [Part 1](Geog0111_Part1_2025_26.pdf) and Part 2 are the formal assessments for the course. [Part 1](Geog0111_Part1_2025_26.pdf) should be submitted on the Monday after Reading week. Part 2 should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before submitting work.
