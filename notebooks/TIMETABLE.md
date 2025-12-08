@@ -14,7 +14,7 @@ GEOG0111 Timetable 2025-26
 |  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](Geog0111_Part1_2025_26.pdf) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| [Numpy exercise](064_Numpy.ipynb) || ||
-|  7	|  **Remote Sensing - Spatial, Spectral and Temporal**	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
+|  7	|  **Earth Observation - EO data in Python**	|  [EO data in Python]([023_Plotting.ipynb](https://colab.research.google.com/drive/1qqzhfpcIa-3BL2_bbet9TrXgb2eWXeKG?usp=share_link))	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
 |  8	| **GEE** 	|  Google Earth Engine	|  	|  	| |  ||
 |	| |[![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/143428cb-d1f2-48bd-b064-d15c224025a4) | 
 |  9	|  **Assignments**	| Project 	|   	|  	|
