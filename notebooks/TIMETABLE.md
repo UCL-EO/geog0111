@@ -16,7 +16,7 @@ GEOG0111 Timetable 2025-26
 |  6	|**Data** 	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| [Numpy exercise](064_Numpy.ipynb) || ||
 |  7	|  **Earth Observation and Python**	|  [EO data in Python](https://colab.research.google.com/drive/1qqzhfpcIa-3BL2_bbet9TrXgb2eWXeKG?usp=share_link)	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
 |  8	| **GEE** 	|  Google Earth Engine examples	|  	|  	| |  | |
-|  9	|  **Assignments**	| Developing the projects 	|  [Essential Skills]()https://colab.research.google.com/drive/1kHgJuIZqh4yrmDDWDaNN2vuzKLcrAcu6?usp=share_link) 	|  	|
+|  9	|  **Assignments**	| Developing the projects 	|  [Essential Skills]()https://colab.research.google.com/drive/1kHgJuIZqh4yrmDDWDaNN2vuzKLcrAcu6?usp=share_link) 	|  	||||
 |  10	|  **Recap and Assignments**	|  Developing the projects | [Optional topic 1](https://colab.research.google.com/drive/1BKD-8GABb-T337-Stng7jKneVbfNh1ri?usp=sharing) 	| [Optional topic 2](https://colab.research.google.com/drive/1AEX_PB3G_eHUyqm997AKPn7y0MhWLH4A?usp=sharing)  	|| | [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing)|
 
 
