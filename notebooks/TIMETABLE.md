@@ -15,10 +15,9 @@ GEOG0111 Timetable 2025-26
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| [Numpy exercise](064_Numpy.ipynb) || ||
 |  7	|  **Earth Observation and Python**	|  [EO data in Python](https://colab.research.google.com/drive/1qqzhfpcIa-3BL2_bbet9TrXgb2eWXeKG?usp=share_link)	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
-|  8	| **GEE** 	|  Google Earth Engine	|  	|  	| |  ||
-|	| |[![Smoothing theory](images/icon.png)](https://web.microsoftstream.com/video/143428cb-d1f2-48bd-b064-d15c224025a4) | 
-|  9	|  **Assignments**	| Project 	|   	|  	|
-|  10	|  **Recap and Assignments**	|  Developing the projects | [Optional topic 1](https://colab.research.google.com/drive/1BKD-8GABb-T337-Stng7jKneVbfNh1ri?usp=sharing) 	| [Optional topic 1](https://colab.research.google.com/drive/1AEX_PB3G_eHUyqm997AKPn7y0MhWLH4A?usp=sharing)  	|| | [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing)|
+|  8	| **GEE** 	|  Google Earth Engine examples	|  	|  	| |  | |
+|  9	|  **Assignments**	| Developing the projects 	|  [Essential Skills]()https://colab.research.google.com/drive/1kHgJuIZqh4yrmDDWDaNN2vuzKLcrAcu6?usp=share_link) 	|  	|
+|  10	|  **Recap and Assignments**	|  Developing the projects | [Optional topic 1](https://colab.research.google.com/drive/1BKD-8GABb-T337-Stng7jKneVbfNh1ri?usp=sharing) 	| [Optional topic 2](https://colab.research.google.com/drive/1AEX_PB3G_eHUyqm997AKPn7y0MhWLH4A?usp=sharing)  	|| | [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing)|
 
 
-Note that [Part 1](Geog0111_Part1_2025_26.pdf) and Part 2 are the formal assessments for the course. [Part 1](Geog0111_Part1_2025_26.pdf) should be submitted on the Monday after Reading week. Part 2 should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before submitting work.
+Note that [Part 1](Geog0111_Part1_2025_26.pdf) and [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing) are the formal assessments for the course. [Part 1](Geog0111_Part1_2025_26.pdf) should be submitted on the Monday after Reading week. [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing) should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before submitting work.
