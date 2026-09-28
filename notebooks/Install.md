@@ -1,5 +1,7 @@
 # Installation of these notes on UCL JupyterHub
 
+# Even we have moved entirely to Google Colab you have this option to run the jupyter notebooks using UCL JupyterHub
+
 We expect you to run these notes and do this course using Jupyter notebooks, on the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
 
 If you know what you are doing, and have accessed the notes in this way before, then you can go straight to the [UCL JupyterHub](https://jupyter.data-science.rc.ucl.ac.uk/).
