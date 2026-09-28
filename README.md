@@ -1,9 +1,6 @@
 # GEOG0111 Scientific Computing
 
 [Course Documentation](https://UCL-EO.github.io/geog0111/)
-
- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UCL-EO/geog0111/HEAD?urlpath=/tree)
- [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/UCL-EO/geog0111/blob/master/HEAD?urlpath=/tree)
  
  For previous versions of the course:
  
@@ -25,8 +22,8 @@
 
 |Support Staff 2024-2025| 
 |---|
-[Jie Gong](https://profiles.ucl.ac.uk/85081-jie-gong)
-Yuxin Zhao
+[Panpan Zhang](panpan.zhang.25@ucl.ac.uk)
+
 
 
 |Other Contributing Staff|
@@ -50,6 +47,8 @@ The module will cover:
 * Computing for image analysis
 * Computing for environmental modelling
 * Data visualisation for scientific applications
+* Vibe coding
+* Implementation of the skills to own project
 
 ### Learning Outcomes
 
@@ -65,11 +64,11 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 ## Timetable
 
-[class timetable for 2025/26](notebooks/TIMETABLE.md)
+[class timetable for 2026/27](notebooks/TIMETABLE.md)
 
-The course takes place over 10 weeks in term 1, on Monday from 12:00-15:00 in the Birkbeck Malet Street 416/417 public cluster in Birkbeck Malet Street, Malet Street, Torrington Square Entrance, London, WC1E 7HX. 
+The course takes place over 10 weeks in term 1, on Monday from 11:00-13:30 in the Room 110 in the [Northwest Wing (Geography Department, first floor)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=003).
 
-Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures/provisional-term-dates-and-closures-2024-25) for further information.
+Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates]([https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures/provisional-term-dates-and-closures-2024-25](https://www.ucl.ac.uk/study/current-students/life-ucl/term-dates-and-closures)) for further information.
 
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday with help sessions on Thursdays.
 
@@ -77,22 +76,21 @@ The Thursday help sessions will be held in room 110 in the [Northwest Wing (Geog
 
 ### Assessment
 
-Assessment is through two pieces of coursework, submitted in both paper form and electronically via Moodle. 
+Assessment is through two pieces of coursework submitted electronically via Moodle. 
 
-See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=41552) for more details.
+See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=62098)) for more details.
 
 ### Useful links
 
-[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=41552)  
+[Course Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=62098)
 
 ### Using the notes
 
 # Using the course notes
 
-We will use `jupyter` notebooks for running interactive Python programs. If you are taking this course at UCL, 
-follow the instructions on [UCL installation and running](notebooks/Install.md). 
+We will use `jupyter` notebooks for running interactive Python programs. And all will be through Google Colab. 
 
-If you are interested in running the course notes from outside UCL on your own computer, there are several options:
+If you are interested in running the code or notebooks on your own computer, there are several options:
 
 1. Do a local install of the required software to run the notebooks (basically, Anaconda Python and some packages, this is around 15 GB of space on my own setup, but you might get away with a smaller Pythjon install). Its quite easy to set up, particularly on linux or OS X. It is a little more involved on Windows, but quite achievable following [these notes](notebooks/OutsideInstall-Local.md)
 2. You can run a [Docker](https://www.docker.com) container on your local computer. That Docker image contains all of the software you need to do the course, so all you have to do is to set up [Docker](https://www.docker.com) on your computer. There are various ways to run it, but we adviuse that you make a copy of the notes on your local computer, then run the notebookjs using Docker. There are full instructions these [here](OutsideInstall-Docker.md), but the basics of what you need are given in the [docker hub](https://hub.docker.com/repository/docker/proflewis/geog0111).
