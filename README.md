@@ -1,6 +1,4 @@
 # GEOG0111 Scientific Computing
-
-[Course Documentation](https://UCL-EO.github.io/geog0111/)
  
  For previous versions of the course:
  
