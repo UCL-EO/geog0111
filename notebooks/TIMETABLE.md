@@ -11,7 +11,7 @@ GEOG0111 Timetable 2025-26
 |  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For loop](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | [Python script](061_Script.ipynb)|
 |	| |[![Control in Python](images/icon.png)](https://web.microsoftstream.com/video/bca9c0f5-93f3-4e0e-9514-afbfb7636467) | [![For loop](images/icon.png)](https://web.microsoftstream.com/video/20bac8b4-2aa7-442b-bdbc-7f1e247102c1)|[![Function](images/icon.png)](https://web.microsoftstream.com/video/16fdbf94-2ae9-4679-8693-7ae8d47dd949)|[![Scripts](images/icon.png)](https://web.microsoftstream.com/video/087a1c32-9bd4-4a45-a481-826cb1f39279)
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[URLs](021_URLs.ipynb)| [Pandas](022_Pandas.ipynb) 	|
-|  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](Geog0111_Part1_2025_26.pdf) [Code advice](063_Part1_code.ipynb)|
+|  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| [Numpy exercise](064_Numpy.ipynb) || ||
 |  7	|  **Earth Observation and Python**	|  [EO data in Python](https://colab.research.google.com/drive/1qqzhfpcIa-3BL2_bbet9TrXgb2eWXeKG?usp=share_link)	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
