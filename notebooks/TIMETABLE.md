@@ -1,12 +1,12 @@
-GEOG0111 Timetable 2025-26
+GEOG0111 Timetable 2026-27
 
 
 
-| Course Week	|  Topic	|  |  | 	| || Assessment |
+| Course Week	|  Topic	|  |  | 	| || Assassment |
 |-	|-	|-	|-	|-	|-	|-	|- |
 |  1	|  **Course basics**	|  [Notebook use](001_Notebook_use.ipynb)	|  [Unix](002_Unix.ipynb)	|  [Help](003_Help.ipynb)	| [Packages](005_Packages.ipynb)|| 
-|  2	|  **Python** 	| [Python Introduction](010_Python_Introduction.ipynb)	| [Data Types](011_Python_data_types.ipynb) 	|  [Strings](012_Python_strings.ipynb)	| [String methods](013_Python_string_methods.ipynb) | [Groups](014_Python_groups.ipynb) |[Lists and dictionaries](060_Groups.ipynb)|
-|  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For loop](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | [Python script](061_Script.ipynb)|
+|  2	|  **Python** 	| [Python Introduction](010_Python_Introduction.ipynb)	| [Data Types](011_Python_data_types.ipynb) 	|  [Strings](012_Python_strings.ipynb)	| [String methods](013_Python_string_methods.ipynb) | [Groups](014_Python_groups.ipynb) ||
+|  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For loop](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | |
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[URLs](021_URLs.ipynb)| [Pandas](022_Pandas.ipynb) 	|
 |  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
