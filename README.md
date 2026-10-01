@@ -8,22 +8,13 @@
 
 [Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 
-
 |Teaching Staff 2026-2027|
 |---|
 [Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 
-
 |Support Staff 2026-2027| 
 |---|
 [Panpan Zhang](panpan.zhang.25@ucl.ac.uk)
-
-
-
-|Other Contributing Staff|
-|---|
-|TBA
-
 
 ### Purpose of this course
 
