@@ -6,12 +6,12 @@ GEOG0111 Timetable 2026-27
 |-	|-	|-	|-	|-	|-	|-	|- |
 |  1	|  **Course basics**	|  Notebook use	|  Unix	|  Help| Packages|[Notebook without solutions](01_Module_Intro_and_Python_Foundations_student.ipynb)|| 
 |||||||[Notebook with solutions](01_Module_Intro_and_Python_Foundations_solutions.ipynb)| 
-|  2	|  **Python** 	| [Python Introduction](010_Python_Introduction.ipynb)	| [Data Types](011_Python_data_types.ipynb) 	|  [Strings and string methods](012_Python_strings.ipynb)	| [Groups](014_Python_groups.ipynb) |  ||
-|  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For loop](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | |
-|  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[URLs](021_URLs.ipynb)| [Pandas](022_Pandas.ipynb) 	|
-|  5	| **Graphics** 	|  [Plotting](023_Plotting.ipynb)	|  [Image display](024_Image_display.ipynb)	|  	| | |[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
+|  2	|  **Python** 	| Python Introduction	| Data Types |  Strings and string methods	| Groups |  ||
+|  3	|  **Control**	| Control in Python 	| For loop 	| Functions 	| Scripts | | |
+|  4	| **Files** 	|  Files	|  	URLs| Pandas 	|
+|  5	| **Graphics** 	|  Plotting](023_Plotting.ipynb	|  Image display	|  	| | |[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
-|  6	|**Data** 	|  [numpy](031_Numpy.ipynb)	|  [more numpy](032_More_numpy.ipynb)	| [Numpy exercise](064_Numpy.ipynb) || ||
+|  6	|**Data** 	|  numpy	|  more numpy	| Numpy exercise || ||
 |  7	|  **Earth Observation and Python**	|  [EO data in Python](https://colab.research.google.com/drive/1qqzhfpcIa-3BL2_bbet9TrXgb2eWXeKG?usp=share_link)	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
 |  8	| **GEE** 	|  Google Earth Engine examples	|  	|  	| |  | |
 |  9	|  **Assignments**	| Developing the projects 	|  [Essential Skills](https://colab.research.google.com/drive/1kHgJuIZqh4yrmDDWDaNN2vuzKLcrAcu6?usp=share_link) 	|  	||||
