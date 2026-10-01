@@ -9,12 +9,12 @@
 [Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 
 
-|Teaching Staff 2024-2025|
+|Teaching Staff 2026-2027|
 |---|
 [Dr. Martin Mokros](mailto:m.mokros@ucl.ac.uk)
 
 
-|Support Staff 2024-2025| 
+|Support Staff 2026-2027| 
 |---|
 [Panpan Zhang](panpan.zhang.25@ucl.ac.uk)
 
@@ -62,7 +62,7 @@ Follow the instructions on [UCL installation and running](notebooks/Install.md)
 
 The course takes place over 10 weeks in term 1, on Monday from 11:00-13:30 in the Room 110 in the [Northwest Wing (Geography Department, first floor)](https://www.ucl.ac.uk/estates/roombooking/building-location/?id=003).
 
-Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates]([https://www.ucl.ac.uk/students/life-ucl/term-dates-and-closures/provisional-term-dates-and-closures-2024-25](https://www.ucl.ac.uk/study/current-students/life-ucl/term-dates-and-closures)) for further information.
+Classes take place from the second week of term to the final week of term, other than Reading week. See UCL [term dates](https://www.ucl.ac.uk/study/current-students/life-ucl/term-dates-and-closures) for further information.
 
 The timetable is available on the UCL Academic Calendar. Live class sessions will take place in groups on Monday with help sessions on Thursdays.
 
@@ -72,7 +72,7 @@ The Thursday help sessions will be held in room 110 in the [Northwest Wing (Geog
 
 Assessment is through two pieces of coursework submitted electronically via Moodle. 
 
-See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=62098)) for more details.
+See the [Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=62098) for more details.
 
 ### Useful links
 
