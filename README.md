@@ -1,12 +1,8 @@
 # GEOG0111 Scientific Computing
- 
- For previous versions of the course:
- 
- * [Release 1.1.0 for course notes for session 2021/22](https://github.com/UCL-EO/geog0111/releases/tag/1.1.0)
- * [Release 1.1.1 for course notes for session 2022/23](https://github.com/UCL-EO/geog0111/releases/tag/1.1.1)
- * [Release 1.1.2 for course notes for session 2023/24](https://github.com/UCL-EO/geog0111/releases/tag/1.1.2)
 
 ## Course information
+
+### [Class timetable for 2026/27](notebooks/TIMETABLE.md)
 
 ### Course Convenor 
 
@@ -98,3 +94,10 @@ If you are interested in running the code or notebooks on your own computer, the
 # Updating the course notes
 
 From time-to-time we will need to provide updates to the notes or software. You need to be aware of how to do that and also what the consequences of pulling a new version are. Please go through [these notes](notebooks/Using-the-course-notes.md) before you start using the notes.
+
+For previous versions of the course:
+ 
+ * [Release 1.1.0 for course notes for session 2021/22](https://github.com/UCL-EO/geog0111/releases/tag/1.1.0)
+ * [Release 1.1.1 for course notes for session 2022/23](https://github.com/UCL-EO/geog0111/releases/tag/1.1.1)
+ * [Release 1.1.2 for course notes for session 2023/24](https://github.com/UCL-EO/geog0111/releases/tag/1.1.2)
+
