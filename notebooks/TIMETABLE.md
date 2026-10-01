@@ -2,9 +2,9 @@ GEOG0111 Timetable 2026-27
 
 
 
-| Course Week	|  Topic	|  |  | 	| |Link to notebooks| Assassment |
+| Course Week	|  Topic	| Topic | Topic | Topic	| |Link to notebooks| Assassment |
 |-	|-	|-	|-	|-	|-	|-	|- |
-|  1	|  **Course basics**	|  [Notebook use](001_Notebook_use.ipynb)	|  [Unix](002_Unix.ipynb)	|  [Help](003_Help.ipynb)	| [Packages](005_Packages.ipynb)|| 
+|  1	|  **Course basics**	|  Notebook use	|  Unix	|  Help| Packages|[Week 1 Notebook](?)| 
 |  2	|  **Python** 	| [Python Introduction](010_Python_Introduction.ipynb)	| [Data Types](011_Python_data_types.ipynb) 	|  [Strings and string methods](012_Python_strings.ipynb)	| [Groups](014_Python_groups.ipynb) |  ||
 |  3	|  **Control**	| [Control in Python](015_Python_control.ipynb) 	| [For loop](016_Python_for.ipynb) 	| [Functions](017_Functions.ipynb) 	| [Scripts](018_Running_Python.ipynb) | | |
 |  4	| **Files** 	|  [Files](020_Python_files.ipynb)	|  	[URLs](021_URLs.ipynb)| [Pandas](022_Pandas.ipynb) 	|
