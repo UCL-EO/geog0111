@@ -6,7 +6,7 @@ GEOG0111 Timetable 2026-27
 |-	|-	|-	|-	|-	|-	|-	|- |
 |  1	|  **Course basics**	|  Notebook use	|  Unix	|  Help| Packages|[Notebook without solutions](01_Module_Intro_and_Python_Foundations_student.ipynb)|| 
 |||||||[Notebook with solutions](01_Module_Intro_and_Python_Foundations_solutions.ipynb)| 
-|  2	|  **Python** 	| Python Introduction	| Data Types |  Strings and string methods	| Groups |  ||
+|  2	|  **Python** 	| Python Introduction	| Data Types |  Strings and string methods	| Groups |  [Notebook without solutions](02_Python_Basics_Types_Strings_Groups_no_solutions.ipynb)||
 |  3	|  **Control**	| Control in Python 	| For loop 	| Functions 	| Scripts | | |
 |  4	| **Files** 	|  Files	|  	URLs| Pandas 	|
 |  5	| **Graphics** 	|  Plotting](023_Plotting.ipynb	|  Image display	|  	| | |[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
