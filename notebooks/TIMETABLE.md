@@ -8,7 +8,7 @@ GEOG0111 Timetable 2026-27
 |||||||[Notebook with solutions](01_Module_Intro_and_Python_Foundations_solutions.ipynb)| 
 |  2	|  **Python** 	| Python Introduction	| Data Types |  Strings and string methods	| Groups |  [Notebook without solutions](02_Python_Basics_Types_Strings_Groups_no_solutions.ipynb)||
 |  3	|  **Control**	| Control in Python 	| For loop 	| Functions 	| Scripts | [Notebook without solutions](03_Control_Loops_Functions_Scripts_student.ipynb)| |
-|  4	| **Files** 	|  Files	|  	URLs| Pandas 	|
+|  4	| **Files** 	|  Files	|  	URLs| Pandas 	||[Notebook without solutions](04_Files_URLs_Pandas_student.ipynb)| |
 |  5	| **Graphics** 	|  Plotting](023_Plotting.ipynb	|  Image display	|  	| | |[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  numpy	|  more numpy	| Numpy exercise || ||
