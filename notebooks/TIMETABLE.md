@@ -4,15 +4,16 @@ GEOG0111 Timetable 2026-27
 
 | Course Week	|  Topic	| Topic | Topic | Topic	| |Link to notebooks| Assassment |
 |-	|-	|-	|-	|-	|-	|-	|- |
-|  1	|  **Course basics**	|  Notebook use	|  Unix	|  Help| Packages|[Notebook without solutions](01_Module_Intro_and_Python_Foundations_student.ipynb)|| 
-|||||||[Notebook with solutions](01_Module_Intro_and_Python_Foundations_solutions.ipynb)| 
-|  2	|  **Python** 	| Python Introduction	| Data Types |  Strings and string methods	| Groups |  [Notebook without solutions](02_Python_Basics_Types_Strings_Groups_no_solutions.ipynb)||
-|||||||[Notebook with solutions](02_Python_Basics_Types_Strings_Groups_solutions.ipynb)| 
-|  3	|  **Control**	| Control in Python 	| For loop 	| Functions 	| Scripts | [Notebook without solutions](03_Control_Loops_Functions_Scripts_student.ipynb)| |
-|||||||[Notebook with solutions](03_Control_Loops_Functions_Scripts_solutions.ipynb)| 
-|  4	| **Files** 	|  Files	|  	URLs| Pandas 	||[Notebook without solutions](04_Files_URLs_Pandas_student.ipynb)| |
-|||||||[Notebook with solutions](04_Files_URLs_Pandas_solutions.ipynb)| 
-|  5	| **Graphics** 	|  Plotting](023_Plotting.ipynb	|  Image display	|  	| | |[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
+|  1	|  **Course basics**	|  Notebook use	|  Unix	|  Help| Packages|[Week 1 without solutions](01_Module_Intro_and_Python_Foundations_student.ipynb)|| 
+|||||||[Week 1 with solutions](01_Module_Intro_and_Python_Foundations_solutions.ipynb)| 
+|  2	|  **Python** 	| Python Introduction	| Data Types |  Strings and string methods	| Groups |  [Week 2 without solutions](02_Python_Basics_Types_Strings_Groups_no_solutions.ipynb)||
+|||||||[Week 2 with solutions](02_Python_Basics_Types_Strings_Groups_solutions.ipynb)| 
+|  3	|  **Control**	| Control in Python 	| For loop 	| Functions 	| Scripts | [Week 3 without solutions](03_Control_Loops_Functions_Scripts_student.ipynb)| |
+|||||||[Week 3 with solutions](03_Control_Loops_Functions_Scripts_solutions.ipynb)| 
+|  4	| **Files** 	|  Files	|  	URLs| Pandas 	||[Week 4 without solutions](04_Files_URLs_Pandas_student.ipynb)| |
+|||||||[Week 4 with solutions](04_Files_URLs_Pandas_solutions.ipynb)| 
+|  5	| **Graphics** 	|  Plotting	|  Image display	|  	| | [Week 5 without solutions](05_Plotting_and_Image_Display_student.ipynb)|[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
+|||||||[Week 5 with solutions](05_Plotting_and_Image_Display_solutions.ipynb)| 
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|**Data** 	|  numpy	|  more numpy	| Numpy exercise || ||
 |  7	|  **Earth Observation and Python**	|  [EO data in Python](https://colab.research.google.com/drive/1qqzhfpcIa-3BL2_bbet9TrXgb2eWXeKG?usp=share_link)	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
