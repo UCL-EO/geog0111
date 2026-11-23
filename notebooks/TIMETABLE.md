@@ -20,7 +20,7 @@ GEOG0111 Timetable 2026-27
 |  7	|**Data** 	|  numpy	|  more EO examples	| Numpy exercise ||  ||
 |  8	| **GEE** 	|  Google Earth Engine examples	|  	|  	| |  | |
 |  9	|  **Assignments**	| Developing the projects 	|  Essential Skills 	|  	||||
-|  10	|  **Recap and Assignments**	|  Developing the projects | [Optional topic 1](https://colab.research.google.com/drive/1BKD-8GABb-T337-Stng7jKneVbfNh1ri?usp=sharing) 	| [Optional topic 2](https://colab.research.google.com/drive/1AEX_PB3G_eHUyqm997AKPn7y0MhWLH4A?usp=sharing)  	|| | [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing)|
+|  10	|  **Recap and Assignments**	|  Developing the projects | [Optional topic 1](PartB_Topic1_UHI_London.ipynb) 	| [Optional topic 2](PartB_Topic2_Amazon_Deforestation_Fire.ipynb)  	|| | [Part 2](GEOG0111_Part_B.ipynb)|
 
 
 Note that [Part 1](Geog0111_Part1_2025_26.pdf) and [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing) are the formal assessments for the course. [Part 1](Geog0111_Part1_2025_26.pdf) should be submitted on the Monday after Reading week. [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing) should be submitted in the first week of Term 2. Please read [Code advice](063_Part1_code.ipynb) before submitting work.
