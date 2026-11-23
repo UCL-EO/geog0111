@@ -15,8 +15,9 @@ GEOG0111 Timetable 2026-27
 |  5	| **Graphics** 	|  Plotting	|  Image display	|  	| | [Week 5 without solutions](05_Plotting_and_Image_Display_student.ipynb)|[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
 |||||||[Week 5 with solutions](05_Plotting_and_Image_Display_solutions.ipynb)| 
 |  *Reading Week*	|  	|  	|  	|  	|
-|  6	|**Data** 	|  numpy	|  more numpy	| Numpy exercise || ||
-|  7	|  **Earth Observation and Python**	|  [EO data in Python](https://colab.research.google.com/drive/1qqzhfpcIa-3BL2_bbet9TrXgb2eWXeKG?usp=share_link)	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
+|  6	|  **Earth Observation and Python**	|  EO data in Python	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|
+|  7	|**Data** 	|  numpy	|  more EO examples	| Numpy exercise || [Week 6 EO data]((06_Getting_EO_Data.ipynb)) ||
+|||||||[Presentation on EO data](Week6_Earth_Observation.pdf)| 
 |  8	| **GEE** 	|  Google Earth Engine examples	|  	|  	| |  | |
 |  9	|  **Assignments**	| Developing the projects 	|  [Essential Skills](https://colab.research.google.com/drive/1kHgJuIZqh4yrmDDWDaNN2vuzKLcrAcu6?usp=share_link) 	|  	||||
 |  10	|  **Recap and Assignments**	|  Developing the projects | [Optional topic 1](https://colab.research.google.com/drive/1BKD-8GABb-T337-Stng7jKneVbfNh1ri?usp=sharing) 	| [Optional topic 2](https://colab.research.google.com/drive/1AEX_PB3G_eHUyqm997AKPn7y0MhWLH4A?usp=sharing)  	|| | [Part 2](https://colab.research.google.com/drive/1X2N6Qg80QG3aFLeG3rCFSQcZhgrEfyjX?usp=sharing)|
