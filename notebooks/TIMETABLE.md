@@ -15,7 +15,7 @@ GEOG0111 Timetable 2026-27
 |  5	| **Graphics** 	|  Plotting	|  Image display	|  	| | [Week 5 without solutions](05_Plotting_and_Image_Display_student.ipynb)|[Part 1](Geog0111_Part1_2026_27.pdf) [Code advice](063_Part1_code.ipynb)|
 |||||||[Week 5 with solutions](05_Plotting_and_Image_Display_solutions.ipynb)| 
 |  *Reading Week*	|  	|  	|  	|  	|
-|  6	|  **Earth Observation and Python**	|  EO data in Python	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|[Week 6 EO data]((06_Getting_EO_Data.ipynb)) ||
+|  6	|  **Earth Observation and Python**	|  EO data in Python	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|[Week 6 EO data](06_Getting_EO_Data.ipynb) ||
 |||||||[Presentation on EO data](Week6_Earth_Observation.pdf)| 
 |  7	|**Data** 	|  numpy	|  more EO examples	| Numpy exercise ||  ||
 |  8	| **GEE** 	|  Google Earth Engine examples	|  	|  	| |  | |
