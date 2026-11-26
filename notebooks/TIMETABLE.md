@@ -17,7 +17,7 @@ GEOG0111 Timetable 2026-27
 |  *Reading Week*	|  	|  	|  	|  	|
 |  6	|  **Earth Observation and Python**	|  EO data in Python	| Remote Sensing in Nutshell |  Data sources and Accessing data - emphasis on free data	|  	|[Week 6 EO data](06_Getting_EO_Data.ipynb) ||
 |||||||[Presentation on EO data](Week6_Earth_Observation.pdf)| 
-|  7	|**Data** 	|  numpy	|  more EO examples	| Numpy exercise ||  ||
+|  7	|**Data** 	|  numpy	|  more EO examples	| Numpy exercise ||  [Week 7 notebook](07_NumPy_Arrays_for_EO_.ipynb)||
 |  8	| **GEE** 	|  Google Earth Engine examples	|  	|  	| |  | |
 |  9	|  **Assignments**	| Developing the projects 	|  Essential Skills 	|  	||||
 |  10	|  **Recap and Assignments**	|  Developing the projects | [Optional topic 1](PartB_Topic1_UHI_London.ipynb) 	| [Optional topic 2](PartB_Topic2_Amazon_Deforestation_Fire.ipynb)  	|| | [Part 2](GEOG0111_Part_B.ipynb)|
